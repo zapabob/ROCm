@@ -7,7 +7,7 @@
 
     <default revision="master" />
 
-    <project path="llvm" remote="llvm.org" name="llvm" revision="testing" />
+    <project path="llvm" remote="llvm.org" name="llvm" />
     <project path="llvm/tools/lld" remote="llvm.org" name="lld" />
     <project path="hcc" remote="roc-github" name="hcc" />
     <project path="LLVM-AMDGPU-Assembler-Extra" remote="roc-github" name="LLVM-AMDGPU-Assembler-Extra" />
