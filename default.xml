@@ -11,7 +11,7 @@
     <project path="llvm/tools/lld" remote="llvm.org" name="lld" />
     <project path="hcc" remote="roc-github" name="hcc" />
     <project path="LLVM-AMDGPU-Assembler-Extra" remote="roc-github" name="LLVM-AMDGPU-Assembler-Extra" />
-    <project path="ROCR-ROCT-Thunk-Interface" remote="roc-github" name="ROCT-Thunk-Interface" revision="dev"/>
+    <project path="ROCT-Thunk-Interface" remote="roc-github" name="ROCT-Thunk-Interface" revision="dev"/>
     <project path="ROCR-Runtime" remote="roc-github" name="ROCR-Runtime" revision="dev"/>
     <project path="HIP" remote="pctools-github" name="HIP"/>
     <project path="HIP-Examples" remote="pctools-github" name="HIP-Examples"/>
