@@ -3,7 +3,7 @@ The ROCm Platform delivers on the vision of the  Boltzmann Initiative, bringing 
 
 On November 16th, 2015, the Radeon Technology Group rolled out Boltzmann Initiative with three core foundation elements:
 
-* New Linux(R) Driver and Runtime Stack optimized for HPC & Ultra scale class computing,
+* New Linux(R) Driver and Runtime Stack optimized for HPC & Ultra-scale class computing,
 * Heterogeneous C and C++ compiler which best address the whole system not just a single device
 * HIP acknowledging the need for platform choice when utilizing GPU computing API
 
