@@ -45,6 +45,8 @@ packages in both repositories have been signed to ensure package integrity.
 Directions for each repository are given below:
 
 #### Debian repository - apt-get
+
+##### Add the ROCm apt repository
 For Debian based systems, like Ubuntu, configure the Debian ROCm repository as
 follows:
 
@@ -53,26 +55,61 @@ wget -qO - http://atlpackages01.amd.com:81/rocm/apt/debian/rocm.gpg.key | sudo a
 sudo sh -c 'echo deb [arch=amd64] http://atlpackages01.amd.com:81/rocm/apt/debian/ trusty main > /etc/apt/sources.list.d/rocm.list'
 ```
 
-Finally, update the apt-get repository list and install the rocm-rel driver
-package and the rocm-dev development package:
+##### Install or Update
+Next, update the apt-get repository list and install/update the rocm package:
+
+>**Warning**: Before proceeding, make sure to completely
+>[uninstall any pre-release ROCm packages](https://github.com/RadeonOpenCompute/ROCm#removing-pre-release-packages):
 
 ```shell
 sudo apt-get update
-sudo apt-get install rocm-rel
-sudo apt-get install rocm-dev
+sudo apt-get install rocm
 ```
+
+##### Un-install
 To un-install the entire rocm-dev development package execute:
 
 ```shell
-sudo apt-get autoremove rocm-dev
+sudo apt-get autoremove rocm
 ```
-The rocm driver package can be un-installed in a similar way, but the kernel
-images will remain on the system because apt-get will never remove old kernels
-by default (refer to the file /etc/apt/apt.conf.d/01autoremove-kernels). Kernel
-images can be removed manually using dpkg or apt-get directly on the package
-names.
+
+##### Installing development packages for cross compilation
+It is often useful to develop and test on different systems. In this scenario,
+you may prefer to avoid installing the ROCm Kernel to your development system.
+
+In this case, install the development subset of packages:
+
+```shell
+sudo apt-get update
+sudo apt-get install rocm-dev
+```
+
+>**Note:** To execute ROCm enabled apps you will require a system with the full
+>ROCm driver stack installed
+
+##### Removing pre-release packages
+If you installed any of the ROCm pre-release packages from github, they will
+need to be manually un-installed:
+
+```shell
+sudo apt-get purge libhsakmt
+```
+```shell
+for package in $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{print $2}');do
+    echo "=== Removing $package ==="
+    sudo apt-get purge $package
+done
+```
+
+If possible, we would recommend starting with a fresh OS install.
 
 #### RPM repository - dnf (yum)
+
+##### Add the AMD apt repository
+##### Install or Update
+##### Un-install
+##### Installing development packages for cross compilation
+
 
 #### Closed Source Components
 The ROCm platform relies on a few closed source components to provide legacy
