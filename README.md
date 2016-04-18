@@ -64,6 +64,17 @@ Next, update the apt-get repository list and install/update the rocm package:
 sudo apt-get update
 sudo apt-get install rocm
 ```
+Then, make the ROCm kernel your default kernel. If using grub2 as your
+bootloader, you can edit the `GRUB_DEFAULT` variable in the following file:
+
+```shell
+sudo vi /etc/default/grub
+sudo update-grub
+```
+
+Once complete, reboot your system.
+
+We recommend you [verify your installation](https://github.com/RadeonOpenCompute/ROCm#verify-installation) to make sure everything completed successfully.
 
 ##### Un-install
 To un-install the entire rocm-dev development package execute:
@@ -92,12 +103,7 @@ need to be manually un-installed:
 
 ```shell
 sudo apt-get purge libhsakmt
-```
-```shell
-for package in $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{print $2}');do
-    echo "=== Removing $package ==="
-    sudo apt-get purge $package
-done
+sudo apt-get purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{print $2}')
 ```
 
 If possible, we would recommend starting with a fresh OS install.
@@ -105,6 +111,17 @@ If possible, we would recommend starting with a fresh OS install.
 #### RPM repository - dnf (yum)
 
 The RPM repository is still under construction but will be available soon.
+
+#### Verify Installation
+
+To verify that the ROCm stack completed successfully you can execute to HSA
+vectory\_copy sample application:
+
+```shell
+cd /opt/rocm/hsa/sample
+make
+./vector_copy
+```
 
 #### Closed Source Components
 The ROCm platform relies on a few closed source components to provide legacy
