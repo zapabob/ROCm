@@ -19,12 +19,11 @@ composed of several components based on our efforts to develop the
 Heterogeneous System Architecture for APUs, including the new AMDGPU driver,
 the Kernel Fusion Driver (KFD), the HSA+ Runtime and an LLVM based compilation
 stack for the building of key language support. This support starts with AMD’s
-FIJI Family of dGPU, but support is planned to expand in the future to include
-future ASICS.
+FIJI Family of dGPU, but support is planned to expand to include future ASICS.
 
 ### The Latest ROCm Platform - ROCm 1.0
 The latest tested version of the drivers, tools, libraries and source code for
-the ROCm platform have been released and are available under the roc-1.0 branch
+the ROCm platform have been released and are available under the roc-1.0.0 tag
 of the following GitHub repositories:
 
 * [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/dev)
@@ -35,7 +34,7 @@ of the following GitHub repositories:
 * [ROCnRDMA](https://github.com/RadeonOpenCompute/ROCnRDMA/tree/dev)
 
 In addition the following mirror repositories that support the HCC compiler are
-also available on GitHub, and frozen for the roc-1.0 release:
+also available on GitHub, and frozen for the roc-1.0.0 release:
 
 * [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.0)
 * [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.0)
