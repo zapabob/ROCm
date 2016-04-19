@@ -134,7 +134,7 @@ Note: make sure ~/bin exists and it is part of your PATH
 #### Cloning the code
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.0
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.0.0
 repo sync
 ```
 
