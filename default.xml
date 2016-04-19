@@ -5,14 +5,13 @@
     <remote name="roc-github" fetch="https://github.com/RadeonOpenCompute/" />
     <remote name="pctools-github" fetch="https://github.com/GPUOpen-ProfessionalCompute-Tools/" />
 
-    <default revision="master" />
+    <default revision="roc-1.0.x" />
 
-    <project path="llvm" remote="llvm.org" name="llvm" />
-    <project path="llvm/tools/lld" remote="llvm.org" name="lld" />
+    <project path="llvm" remote="llvm.org" name="llvm" revision="master" />
+    <project path="llvm/tools/lld" remote="llvm.org" name="lld" revision="master" />
     <project path="hcc" remote="roc-github" name="hcc" />
-    <project path="LLVM-AMDGPU-Assembler-Extra" remote="roc-github" name="LLVM-AMDGPU-Assembler-Extra" />
-    <project path="ROCT-Thunk-Interface" remote="roc-github" name="ROCT-Thunk-Interface" revision="dev" />
-    <project path="ROCR-Runtime" remote="roc-github" name="ROCR-Runtime" revision="dev" />
+    <project path="ROCT-Thunk-Interface" remote="roc-github" name="ROCT-Thunk-Interface" />
+    <project path="ROCR-Runtime" remote="roc-github" name="ROCR-Runtime" />
     <project path="HIP" remote="pctools-github" name="HIP" />
     <project path="HIP-Examples" remote="pctools-github" name="HIP-Examples" />
 

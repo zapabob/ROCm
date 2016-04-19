@@ -31,7 +31,6 @@ of the following GitHub repositories:
 * [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/dev)
 * [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.0)
 * [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/master)
-* [ROCnRDMA](https://github.com/RadeonOpenCompute/ROCnRDMA/tree/dev)
 
 In addition the following mirror repositories that support the HCC compiler are
 also available on GitHub, and frozen for the roc-1.0.0 release:
@@ -51,8 +50,8 @@ For Debian based systems, like Ubuntu, configure the Debian ROCm repository as
 follows:
 
 ```shell
-wget -qO - http://atlpackages01.amd.com:81/rocm/apt/debian/rocm.gpg.key | sudo apt-key add -
-sudo sh -c 'echo deb [arch=amd64] http://atlpackages01.amd.com:81/rocm/apt/debian/ trusty main > /etc/apt/sources.list.d/rocm.list'
+wget -qO - http://packages.amd.com/rocm/apt/debian/rocm.gpg.key | sudo apt-key add -
+sudo sh -c 'echo deb [arch=amd64] http://packages.amd.com/rocm/apt/debian/ trusty main > /etc/apt/sources.list.d/rocm.list'
 ```
 
 ##### Install or Update
@@ -105,11 +104,7 @@ If possible, we would recommend starting with a fresh OS install.
 
 #### RPM repository - dnf (yum)
 
-##### Add the AMD apt repository
-##### Install or Update
-##### Un-install
-##### Installing development packages for cross compilation
-
+The RPM repository is still under construction but will be available soon.
 
 #### Closed Source Components
 The ROCm platform relies on a few closed source components to provide legacy
@@ -118,7 +113,7 @@ components are only available through the ROCm repositories, and will either be
 deprecated or become open source components in the future. These components are
 made available in the following packages:
 
-*  hsa-ext-rocm-dev
+*  hsa-ext-rocr-dev
 
 ### Getting ROCm Source Code
 Modifications can be made to the ROCm 1.0 components by modifying the open
@@ -145,5 +140,3 @@ repo sync
 
 These series of commands will pull all of the open source code associated with
 the ROCm 1.0 release.
-
-### Building the open source binaries
