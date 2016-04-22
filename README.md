@@ -29,7 +29,7 @@ of the following GitHub repositories:
 * [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/dev)
 * [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/dev)
 * [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/dev)
-* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.0)
+* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.0.x)
 * [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/master)
 
 In addition the following mirror repositories that support the HCC compiler are
