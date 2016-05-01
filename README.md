@@ -111,7 +111,34 @@ If possible, we would recommend starting with a fresh OS install.
 
 #### RPM repository - dnf (yum)
 
-The RPM repository is still under construction but will be available soon.
+A dnf (yum) repostiory is also available for installation of rpm packages. To configure a
+system to use the ROCm rpm directory create the file /etc/yum.repos.d/rocm.repo with
+the following contents:
+
+```shell
+[remote]
+
+name=ROCm Repo
+
+baseurl=http://atlpackages01.amd.com:81/rocm/yum/rpm/
+
+enabled=1
+
+gpgcheck=0
+```
+Execute the following commands:
+
+```shell
+sudo dnf clean all
+sudo dnf install rocm
+```
+
+As with the debian packages, it is possible to install rocm-dev or rocm-kernel individually.
+To uninstall the packages execute:
+
+```shell
+sudo dnf remove rocm
+```
 
 #### Verify Installation
 
