@@ -120,7 +120,7 @@ the following contents:
 
 name=ROCm Repo
 
-baseurl=http://atlpackages01.amd.com:81/rocm/yum/rpm/
+baseurl=http://packages.amd.com/rocm/yum/rpm/
 
 enabled=1
 
