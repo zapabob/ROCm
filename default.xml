@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
-    <remote name="llvm.org"
-            fetch="http://llvm.org/git/" />
     <remote name="roc-github"
             fetch="ssh://git@github.com/RadeonOpenCompute/" />
     <remote name="pctools-github"
@@ -12,8 +10,10 @@
              remote="roc-github"
              sync-j="4" />
 
-    <project path="llvm" remote="llvm.org" name="llvm" revision="master" />
-    <project path="llvm/tools/lld" remote="llvm.org" name="lld" revision="master" />
+    <project path="llvm" name="llvm" />
+    <project path="llvm-amdgpu-assembler-extra" name="LLVM-AMDGPU-Assembler-Extra" />
+    <project path="clang" name="clang" />
+
     <project path="hcc" name="hcc" />
     <project path="ROCT-Thunk-Interface" name="ROCT-Thunk-Interface" />
     <project path="ROCK-Kernel-Driver" name="ROCK-Kernel-Driver" />
