@@ -16,6 +16,10 @@
     <project path="llvm/tools/lld" remote="llvm.org" name="lld" revision="master" />
     <project path="hcc" name="hcc" />
     <project path="ROCT-Thunk-Interface" name="ROCT-Thunk-Interface" />
+    <project path="ROCK-Kernel-Driver" name="ROCK-Kernel-Driver" />
+    <project path="ROC-smi" name="ROC-smi" />
+    <project path="ROCnRDMA" name="ROCnRDMA" />
+    <project path="rdma-perftest" name="rdma-perftest" />
     <project path="ROCR-Runtime" name="ROCR-Runtime" />
     <project path="HIP" remote="pctools-github" name="HIP" />
     <project path="HIP-Examples" remote="pctools-github" name="HIP-Examples" />
