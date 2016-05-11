@@ -12,7 +12,7 @@ Initiative with three core foundation elements:
 * HIP acknowledging the need for platform choice when utilizing GPU computing
   API
 
-Using our knowledge of the HSA Standards and, more importantly, the HSA 1.0
+Using our knowledge of the HSA Standards and, more importantly, the HSA 1.1
 Runtime we have been able to successfully extended support to the dGPU with
 critical features for NUMA class acceleration. As a result, the ROCK driver is
 composed of several components based on our efforts to develop the
@@ -21,27 +21,41 @@ the Kernel Fusion Driver (KFD), the HSA+ Runtime and an LLVM based compilation
 stack for the building of key language support. This support starts with AMD’s
 FIJI Family of dGPU, but support is planned to expand to include future ASICS.
 
-### The Latest ROCm Platform - ROCm 1.0
+### The Latest ROCm Platform - ROCm 1.1
 The latest tested version of the drivers, tools, libraries and source code for
-the ROCm platform have been released and are available under the roc-1.0.0 tag
+the ROCm platform have been released and are available under the roc-1.1.0 tag
 of the following GitHub repositories:
 
-* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/dev)
-* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/dev)
-* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/dev)
-* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.0.x)
-* [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/master)
+* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.1.0)
+* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.1.0)
+* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.1.0)
+* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.1.0)
+* [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/roc-1.1.0)
+* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.1.0)
+* [ROCnRDMA](https://github.com/RadeonOpenCompute/ROCnRDMA/tree/roc-1.1.0)
+* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.1.0)
+* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.1.0)
 
 In addition the following mirror repositories that support the HCC compiler are
-also available on GitHub, and frozen for the roc-1.0.0 release:
+also available on GitHub, and frozen for the roc-1.1.0 release:
 
-* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.0)
-* [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.0)
+* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.1.0)
+* [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.1.0)
 
 ### Installing from AMD ROCm Repositories
-AMD is hosting both debian and rpm repositories for the ROCm 1.0 packages. The
+AMD is hosting both debian and rpm repositories for the ROCm 1.1 packages. The
 packages in both repositories have been signed to ensure package integrity.
 Directions for each repository are given below:
+
+#### Supported Operating Systems
+
+The ROCm platform has been tested on the following operating systems:
+ * Ubuntu 14.04.04
+ * Fedora 23
+
+There is experimental support for the following operating systems:
+ * Ubuntu 16.04
+ * Fedora 22
 
 #### Debian repository - apt-get
 
@@ -161,10 +175,10 @@ made available in the following packages:
 *  hsa-ext-rocr-dev
 
 ### Getting ROCm Source Code
-Modifications can be made to the ROCm 1.0 components by modifying the open
+Modifications can be made to the ROCm 1.1 components by modifying the open
 source code base and rebuilding the components. Source code can be cloned from
 each of the GitHub repositories using git, or users can use the repo command
-and the ROCm 1.0 manifest file to download the entire ROCm 1.0 source code.
+and the ROCm 1.1 manifest file to download the entire ROCm 1.1 source code.
 
 #### Installing repo
 Google's repo tool allows you to manage multiple git repositories
@@ -179,9 +193,9 @@ Note: make sure ~/bin exists and it is part of your PATH
 #### Cloning the code
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.0.0
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.1.0
 repo sync
 ```
 
 These series of commands will pull all of the open source code associated with
-the ROCm 1.0 release.
+the ROCm 1.1 release.
