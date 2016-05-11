@@ -4,9 +4,9 @@
     <remote name="llvm.org"
             fetch="http://llvm.org/git/" />
     <remote name="roc-github"
-            fetch="https://github.com/RadeonOpenCompute/" />
+            fetch="ssh://git@github.com/RadeonOpenCompute/" />
     <remote name="pctools-github"
-            fetch="https://github.com/GPUOpen-ProfessionalCompute-Tools/" />
+            fetch="ssh://git@github.com/GPUOpen-ProfessionalCompute-Tools/" />
 
     <default revision="master"
              remote="roc-github"
