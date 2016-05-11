@@ -26,17 +26,21 @@ The latest tested version of the drivers, tools, libraries and source code for
 the ROCm platform have been released and are available under the roc-1.1.0 tag
 of the following GitHub repositories:
 
-* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/dev)
-* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/dev)
-* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/dev)
-* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.1.x)
-* [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/master)
+* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.1.0)
+* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.1.0)
+* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.1.0)
+* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.1.0)
+* [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/roc-1.1.0)
+* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.1.0)
+* [ROCnRDMA](https://github.com/RadeonOpenCompute/ROCnRDMA/tree/roc-1.1.0)
+* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.1.0)
+* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.1.0)
 
 In addition the following mirror repositories that support the HCC compiler are
 also available on GitHub, and frozen for the roc-1.1.0 release:
 
-* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.1)
-* [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.1)
+* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.1.0)
+* [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.1.0)
 
 ### Installing from AMD ROCm Repositories
 AMD is hosting both debian and rpm repositories for the ROCm 1.1 packages. The
