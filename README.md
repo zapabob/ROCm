@@ -1,16 +1,12 @@
 ## Are You Ready to ROCK!
-The ROCm Platform delivers on the vision of the  Boltzmann Initiative, bringing
-new opportunities in GPU Computing Research.
+The ROCm Platform bringing a rich foundation to advanced computing by better intergrating the CPU and GPU to solve realworld problems.
 
-On November 16th, 2015, the Radeon Technology Group rolled out Boltzmann
-Initiative with three core foundation elements:
+On April 25th, 2016, we delivered ROCm 1.0 built around three core foundation elements:
 
-* New Linux(R) Driver and Runtime Stack optimized for HPC & Ultra-scale class
-  computing,
-* Heterogeneous C and C++ compiler which best address the whole system not just
-  a single device
-* HIP acknowledging the need for platform choice when utilizing GPU computing
-  API
+Open Hetrogenous Computing Platform (Linux(R) Driver and Runtime Stack) optimized for HPC & Ultra-scale class computing
+Heterogeneous C and C++ Single Source to better address the whole system computation not just a gpu device
+HIP acknowledging the need for platform choice when utilizing GPU computing API
+
 
 Using our knowledge of the HSA Standards and, more importantly, the HSA 1.1
 Runtime we have been able to successfully extended support to the dGPU with
