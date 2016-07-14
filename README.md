@@ -1,4 +1,4 @@
-## Are You Ready to ROCK!
+## Are You Ready to ROCK?
 The ROCm Platform bringing a rich foundation to advanced computing by better intergrating the CPU and GPU to solve realworld problems.
 
 On April 25th, 2016, we delivered ROCm 1.0 built around three core foundation elements:
