@@ -63,6 +63,7 @@ follows:
 wget -qO - http://packages.amd.com/rocm/apt/debian/rocm.gpg.key | sudo apt-key add -
 sudo sh -c 'echo deb [arch=amd64] http://packages.amd.com/rocm/apt/debian/ trusty main > /etc/apt/sources.list.d/rocm.list'
 ```
+The gpg key might change, so it may need to be updated when installing a new release.
 
 ##### Install or Update
 Next, update the apt-get repository list and install/update the rocm package:
