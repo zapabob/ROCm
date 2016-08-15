@@ -15,31 +15,32 @@ composed of several components based on our efforts to develop the
 Heterogeneous System Architecture for APUs, including the new AMDGPU driver,
 the Kernel Fusion Driver (KFD), the HSA+ Runtime and an LLVM based compilation
 stack for the building of key language support. This support starts with AMD’s
-FIJI Family of dGPU, but support is planned to expand to include future ASICS.
+FIJI Family of dGPU, and has expanded to include the Hawaii dGPU Family  in
+ROCm 1.2.
 
-### The Latest ROCm Platform - ROCm 1.1
+### The Latest ROCm Platform - ROCm 1.2
 The latest tested version of the drivers, tools, libraries and source code for
-the ROCm platform have been released and are available under the roc-1.1.0 tag
+the ROCm platform have been released and are available under the roc-1.2.0 tag
 of the following GitHub repositories:
 
-* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.1.0)
-* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.1.0)
-* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.1.0)
-* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.1.0)
-* [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/roc-1.1.0)
-* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.1.0)
-* [ROCnRDMA](https://github.com/RadeonOpenCompute/ROCnRDMA/tree/roc-1.1.0)
-* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.1.0)
-* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.1.0)
+* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.2.0)
+* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.2.0)
+* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.2.0)
+* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.2.0)
+* [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/roc-1.2.0)
+* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.2.0)
+* [ROCnRDMA](https://github.com/RadeonOpenCompute/ROCnRDMA/tree/roc-1.2.0)
+* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.2.0)
+* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.2.0)
 
 In addition the following mirror repositories that support the HCC compiler are
-also available on GitHub, and frozen for the roc-1.1.0 release:
+also available on GitHub, and frozen for the roc-1.2.0 release:
 
-* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.1.0)
-* [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.1.0)
+* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.2.0)
+* [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.2.0)
 
 ### Installing from AMD ROCm Repositories
-AMD is hosting both debian and rpm repositories for the ROCm 1.1 packages. The
+AMD is hosting both debian and rpm repositories for the ROCm 1.2 packages. The
 packages in both repositories have been signed to ensure package integrity.
 Directions for each repository are given below:
 
@@ -63,7 +64,7 @@ follows:
 wget -qO - http://packages.amd.com/rocm/apt/debian/rocm.gpg.key | sudo apt-key add -
 sudo sh -c 'echo deb [arch=amd64] http://packages.amd.com/rocm/apt/debian/ trusty main > /etc/apt/sources.list.d/rocm.list'
 ```
-The gpg key might change, so it may need to be updated when installing a new release.
+The gpg key might change, so it may need to be updated when installing a new release. A new key is required for ROCm 1.2.0.
 
 ##### Install or Update
 Next, update the apt-get repository list and install/update the rocm package:
@@ -172,10 +173,10 @@ made available in the following packages:
 *  hsa-ext-rocr-dev
 
 ### Getting ROCm Source Code
-Modifications can be made to the ROCm 1.1 components by modifying the open
+Modifications can be made to the ROCm 1.12components by modifying the open
 source code base and rebuilding the components. Source code can be cloned from
 each of the GitHub repositories using git, or users can use the repo command
-and the ROCm 1.1 manifest file to download the entire ROCm 1.1 source code.
+and the ROCm 1.2 manifest file to download the entire ROCm 1.2 source code.
 
 #### Installing repo
 Google's repo tool allows you to manage multiple git repositories
@@ -190,9 +191,9 @@ Note: make sure ~/bin exists and it is part of your PATH
 #### Cloning the code
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.1.0
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.2.0
 repo sync
 ```
 
 These series of commands will pull all of the open source code associated with
-the ROCm 1.1 release.
+the ROCm 1.2 release.
