@@ -173,7 +173,7 @@ made available in the following packages:
 *  hsa-ext-rocr-dev
 
 ### Getting ROCm Source Code
-Modifications can be made to the ROCm 1.12components by modifying the open
+Modifications can be made to the ROCm 1.2 components by modifying the open
 source code base and rebuilding the components. Source code can be cloned from
 each of the GitHub repositories using git, or users can use the repo command
 and the ROCm 1.2 manifest file to download the entire ROCm 1.2 source code.
