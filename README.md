@@ -8,7 +8,7 @@ Heterogeneous C and C++ Single Source to better address the whole system computa
 HIP acknowledging the need for platform choice when utilizing GPU computing API
 
 
-Using our knowledge of the HSA Standards and, more importantly, the HSA 1.1
+Using our knowledge of the HSA Standards and, more importantly, the HSA
 Runtime we have been able to successfully extended support to the dGPU with
 critical features for NUMA class acceleration. As a result, the ROCK driver is
 composed of several components based on our efforts to develop the
