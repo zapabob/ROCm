@@ -1,6 +1,5 @@
 ## Are You Ready to ROCK?
-et -o vi
-he ROCm Platform bringing a rich foundation to advanced computing by better intergrating the CPU and GPU to solve realworld problems.
+The ROCm Platform bringing a rich foundation to advanced computing by better intergrating the CPU and GPU to solve realworld problems.
 
 On April 25th, 2016, we delivered ROCm 1.0 built around three core foundation elements:
 
