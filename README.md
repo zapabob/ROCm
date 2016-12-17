@@ -17,6 +17,17 @@ stack for the building of key language support. This support starts with AMD’s
 FIJI Family of dGPU, and has expanded to include the Hawaii dGPU Family in ROCm 1.2
 ROCm 1.3 expands this support to include the Polaris Family of ASICS.
 
+### New Features to ROCm 
+
+#### Developer preview of the new OpenCl 1.2 compatible language runtime and compiler
+
+ * OpenCL 2.0 compatible kernal language support with OpenCL 1.2 compatible runtime 
+ * Supports offline ahead of time compilation today, for Beta we will be adding in-process/in-memory compilation. 
+ * Binary Package support for Ubuntu 14.04 and 16.04 
+ 
+#### IPC support 
+
+
 ### The Latest ROCm Platform - ROCm 1.4
 The latest tested version of the drivers, tools, libraries and source code for
 the ROCm platform have been released and are available under the roc-1.4.0 tag
@@ -170,6 +181,7 @@ deprecated or become open source components in the future. These components are
 made available in the following packages:
 
 *  hsa-ext-rocr-dev
+*  OpenCL Developer Preview for version 1.4 is closed source for this release only. 
 
 ### Getting ROCm Source Code
 Modifications can be made to the ROCm 1.4 components by modifying the open
@@ -196,3 +208,5 @@ repo sync
 
 These series of commands will pull all of the open source code associated with
 the ROCm 1.4 release.
+
+* OpenCL Runtime and Compiler will be submited to Khronos Group for conformance prior final release. 
