@@ -38,9 +38,9 @@ of the following GitHub repositories:
 * [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.4.0)
 * [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.4.x)
 * [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/roc-1.4.x)
-* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.4.0)
-* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.4.x)
-* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.4.x)
+* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.4.x)
+* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP)
+* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples)
 
 In addition the following mirror repositories that support the HCC compiler are
 also available on GitHub, and frozen for the roc-1.4.0 release:
