@@ -20,14 +20,17 @@ ROCm 1.3 expands this support to include the Polaris Family of ASICS.
 #### Supported CPU's
 
 * Our GFX8 GPU's ( FIJI &  Polaris Familiy) use PCIe Gen 3 and PCIe Atomics (Fetch ADD,Compare and SWAP, Unconditional SWAP, AtomicsOpCompletion) To find out more about [PCIe atomics](https://github.com/RadeonOpenCompute/RadeonOpenCompute.github.io/blob/master/ROCmPCIeFeatures.md)
+
 Current CPU which support PCIe Gen3 + PCIe Atomics are: 
+
   * Intel Xeon E5 v3 or newer CPU's 
   * Intel Xeon E3 v3 or newer CPU's 
   * Intel Core i7 v3, Core i5 v3, Core i3 v3 or newer CPU's  
   * AMD Ryzen CPU's
   * AMD Naples Server CPU 
   * Cavium Thunder X Server Processor 
-  * Our GF7 GPU's Radeon R9 290, R9 390, AMD FirePro S9150, S9170 do not support PCIe Atomics, but we do not recomend nor   test ROCm with PCIe Gen 2 enabled CPU's such as the AMD Opeteron, Phenom, Phenom II, , Athlon, Athlon X2, Athlon II and Older Intel Xeon and Intel Core Archtecture CPU's. 
+
+* Our GF7 GPU's Radeon R9 290, R9 390, AMD FirePro S9150, S9170 do not support PCIe Atomics, but we do not recomend nor   test ROCm with PCIe Gen 2 enabled CPU's such as the AMD Opeteron, Phenom, Phenom II, , Athlon, Athlon X2, Athlon II and Older Intel Xeon and Intel Core Archtecture CPU's. 
 
 AMD Carizzo based APU have limited support due to OEM & ODM's Carizzo enabled Laptop, All In One System and Desktop system had inconsistancy in supporting the correct System BIOS configurations for ROCm driver enablement. Before you buy a Carizzo system to run ROCm.  Your should check the SBIOS to see if has an option to enable IOMMUv2. If this is enable next we need test for  the correct CRAT Table to properly configure the driver.   
 
