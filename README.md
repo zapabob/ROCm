@@ -36,17 +36,17 @@ of the following GitHub repositories:
 * [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.4.0)
 * [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.4.0)
 * [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.4.0)
-* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.4.0)
-* [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/roc-1.4.0)
+* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.4.x)
+* [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/roc-1.4.x)
 * [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.4.0)
-* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.4.0)
-* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.4.0)
+* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.4.x)
+* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.4.x)
 
 In addition the following mirror repositories that support the HCC compiler are
 also available on GitHub, and frozen for the roc-1.4.0 release:
 
-* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.4.0)
-* [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.4.0)
+* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.4.x)
+* [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.4.x)
 
 #### Supported Operating Systems
 
