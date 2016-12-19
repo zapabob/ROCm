@@ -6,8 +6,10 @@ On April 25th, 2016, we delivered ROCm 1.0 built around three pillars:
 
 1) Open Heterogeneous Computing Platform (Linux(R) Driver and Runtime Stack), 
    optimized for HPC & Ultra-scale class computing;
+   
 2) Heterogeneous C and C++ Single Source Compiler, to approach computation 
    holistically, on a system level, rather than as a discrete GPU artifact;
+   
 3) HIP, acknowledging the need for freedom of choice when it comes to platforms
    and APIs for GPU computing.
 
