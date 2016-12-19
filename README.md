@@ -18,7 +18,7 @@ FIJI Family of dGPU, and has expanded to include the Hawaii dGPU Family in ROCm 
 ROCm 1.3 expands this support to include the Polaris Family of ASICS.
 
 #### Supported CPU's
-ROCm Platform Leverage PCIe Atomics (Fetch ADD,Compare and SWAP, Unconditional SWAP, AtomicsOpCompletion) To find out more about [PCIe atomics](https://github.com/RadeonOpenCompute/RadeonOpenCompute.github.io/blob/master/ROCmPCIeFeatures.md) which are only supported on PCIe Gen3 Enabled CPU's and PCIe Gen3 Switches like Broadcom PLX. When you install your GPU's Make sure you install them on real PCIe Gen3 x16 or x8 lanes directly on CPU's Root I/O controller or PCIe Switch directly attached to the CPU's Root I/O controller. We have seen many issue with Consumer motherboard which support Physical x16 Connectors, but the connector is electrically connected as PCIe Gen2 x4, if you see this it is typically hanging off the Southbridge PCIe I/O controller. If you mother is configured this way please do not use this connector for your GPU's..
+ROCm Platform Leverage PCIe Atomics (Fetch ADD,Compare and SWAP, Unconditional SWAP, AtomicsOpCompletion). [PCIe atomics](https://github.com/RadeonOpenCompute/RadeonOpenCompute.github.io/blob/master/ROCmPCIeFeatures.md) are only supported on PCIe Gen3 Enabled CPU's and PCIe Gen3 Switches like Broadcom PLX. When you install your GPU's Make sure you install them on real PCIe Gen3 x16 or x8 lanes directly on CPU's Root I/O controller or PCIe switch directly attached to the CPU's Root I/O controller. We have seen many issues with consumer motherboards which support Physical x16 Connectors, but have electrically connected as a PCIe Gen2 x4. This typically occurs when connecting via the Southbridge PCIe I/O controller. If you mother is configured this way please do not use this connector for your GPU's using ROCm.
 
 
 * Our GFX8 GPU's ( FIJI &  Polaris Familiy) use PCIe Gen 3 and PCIe Atomics 
@@ -53,7 +53,6 @@ I know many of you are looking forward to support ROCm on APU system which suppo
  * Binary Package support for Ubuntu 14.04 and 16.04 
  
 #### IPC support 
-
 
 ### The Latest ROCm Platform - ROCm 1.4
 The latest tested version of the drivers, tools, libraries and source code for
