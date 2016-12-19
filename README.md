@@ -30,7 +30,7 @@ Current CPU which support PCIe Gen3 + PCIe Atomics are:
   * AMD Naples Server CPU 
   * Cavium Thunder X Server Processor 
 
-* Our GF7 GPU's Radeon R9 290, R9 390, AMD FirePro S9150, S9170 do not support PCIe Atomics, we still recommend PCIe Gen3 are new enabled CPU's. 
+* Our GF7 GPU's Radeon R9 290, R9 390, AMD FirePro S9150, S9170 do not support PCIe Atomics. For these GPU's we still recommend PCIe Gen3 enabled CPU's. 
 
 
 #### Not Supported or Very Limited Support Under ROCm 
