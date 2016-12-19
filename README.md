@@ -18,7 +18,8 @@ FIJI Family of dGPU, and has expanded to include the Hawaii dGPU Family in ROCm 
 ROCm 1.3 expands this support to include the Polaris Family of ASICS.
 
 #### Supported CPU's
-ROCm Platform Leverage PCIe Atomics (Fetch ADD,Compare and SWAP, Unconditional SWAP, AtomicsOpCompletion) To find out more about [PCIe atomics](https://github.com/RadeonOpenCompute/RadeonOpenCompute.github.io/blob/master/ROCmPCIeFeatures.md) which are only supported on PCIe Gen3 Enabled CPU's and PCIe Gen3 Switches like Broadcomm PLX. When you install your GPU's Make sure you install them on real PCIe Gen3 x16 or x8 lanes directly on CPU's Root I/O controler or PCIe Switch directly attacted to the CPU's Root I/O contorler.  We have seen many issue with Consumer motherboard which support Physical x16 Conecectors, but the conector is elecitically conected as PCIe Gen2 x4, if you see this it is typically hanging off the southbridge PCIe I/O controler. If you mother is configured this way please do not use this conector for your GPU's.
+ROCm Platform Leverage PCIe Atomics (Fetch ADD,Compare and SWAP, Unconditional SWAP, AtomicsOpCompletion) To find out more about PCIe atomics which are only supported on PCIe Gen3 Enabled CPU's and PCIe Gen3 Switches like Broadcom PLX. When you install your GPU's Make sure you install them on real PCIe Gen3 x16 or x8 lanes directly on CPU's Root I/O controller or PCIe Switch directly attached to the CPU's Root I/O controller. We have seen many issue with Consumer motherboard which support Physical x16 Connectors, but the connector is electrically connected as PCIe Gen2 x4, if you see this it is typically hanging off the Southbridge PCIe I/O controller. If you mother is configured this way please do not use this connector for your GPU's.
+
 
 * Our GFX8 GPU's ( FIJI &  Polaris Familiy) use PCIe Gen 3 and PCIe Atomics 
 
@@ -38,7 +39,7 @@ Current CPU which support PCIe Gen3 + PCIe Atomics are:
 * We do not support ROCm with PCIe Gen 2 enabled CPU's such as the AMD Opteron, Phenom, Phenom II, , Athlon, Athlon X2, Athlon II and Older Intel Xeon and Intel Core Architecture and Pentium CPU's.  
 * We also do not support AMD Carizo and Kaveri APU with external GPU Attached are not supported by ROCm 
 * Thunderbolt 1 and 2 enabled GPU's are not Support by ROCm.  Thunderbolt 1 & 2 are PCIe Gen2 based.
-* AMD Carizo based APU have limited support due to OEM & ODM's Carizo enabled Laptop, All In One System and Desktop system had inconsistency in supporting the correct System BIOS configurations for ROCm driver enablement. Before you buy a Carizo system to run ROCm.  You should check the SBIOS to see if has an option to enable IOMMUv2. If this is enabled, next we need test for the correct CRAT Table support to properly configure the driver.   
+* AMD Carrizo based APU have limited support due to OEM & ODM's Carrizo enabled Laptop, All In One System and Desktop system had inconsistency in supporting the correct System BIOS configurations for ROCm driver enablement. Before you buy a Carrizo system to run ROCm.  You should check the SBIOS to see if has an option to enable IOMMUv2. If this is enabled, next we need test for the correct CRAT Table support to properly configure the driver.   
 
 #### Potential Future APU Support
 I know many of you are looking forward to support ROCm on APU system which support Fine Grained Shared Virtual Memory and cache coherency between the CPU and GPU. In the 2017 we plan on testing commercial AM4 Socketed Bristol Ridge and Raven Ridge motherboard. Just like we still waiting to get access to them, once we get our first board we blog about the experience and begin building up a list of motherboard that are qualified with ROCm
