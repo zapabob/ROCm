@@ -34,19 +34,19 @@ Current CPU which support PCIe Gen3 + PCIe Atomics are:
 
 
 #### Not Supported or Very Limited Support Under ROCm 
-* We do not support ROCm with PCIe Gen 2 enabled CPU's such as the AMD Opeteron, Phenom, Phenom II, , Athlon, Athlon X2, Athlon II and Older Intel Xeon and Intel Core Archtecture CPU's.  
-* We also do not support AMD Carizzo and Kaveri APU with external GPU Attached are not supported by ROCm 
+* We do not support ROCm with PCIe Gen 2 enabled CPU's such as the AMD Opteron, Phenom, Phenom II, , Athlon, Athlon X2, Athlon II and Older Intel Xeon and Intel Core Architecture and Pentium CPU's.  
+* We also do not support AMD Carizo and Kaveri APU with external GPU Attached are not supported by ROCm 
 
-* AMD Carizzo based APU have limited support due to OEM & ODM's Carizzo enabled Laptop, All In One System and Desktop system had inconsistancy in supporting the correct System BIOS configurations for ROCm driver enablement. Before you buy a Carizzo system to run ROCm.  Your should check the SBIOS to see if has an option to enable IOMMUv2. If this is enable next we need test for  the correct CRAT Table to properly configure the driver.   
+* AMD Carizo based APU have limited support due to OEM & ODM's Carizo enabled Laptop, All In One System and Desktop system had inconsistency in supporting the correct System BIOS configurations for ROCm driver enablement. Before you buy a Carizo system to run ROCm.  You should check the SBIOS to see if has an option to enable IOMMUv2. If this is enabled, next we need test for the correct CRAT Table support to properly configure the driver.   
 
 #### Potential Future APU Support
-I know many of you are looking forward to support support ROCm on APU system which support Fine Grained Shared Virtual Memory and cache coherency between the CPU and GPU. In the 2017 we plan on testing commercial AM4 Socketed Bristol Ridge and Raven Ridge motherboard. Just like we still waiting to get access to them, once we get our first board we blog about the experiance and begin building up a list of motherboard that are qualified with ROCm
+I know many of you are looking forward to support ROCm on APU system which support Fine Grained Shared Virtual Memory and cache coherency between the CPU and GPU. In the 2017 we plan on testing commercial AM4 Socketed Bristol Ridge and Raven Ridge motherboard. Just like we still waiting to get access to them, once we get our first board we blog about the experience and begin building up a list of motherboard that are qualified with ROCm
 
 ### New Features to ROCm 
 
 #### Developer preview of the new OpenCl 1.2 compatible language runtime and compiler
 
- * OpenCL 2.0 compatible kernal language support with OpenCL 1.2 compatible runtime 
+ * OpenCL 2.0 compatible kernel language support with OpenCL 1.2 compatible runtime 
  * Supports offline ahead of time compilation today, for Beta we will be adding in-process/in-memory compilation. 
  * Binary Package support for Ubuntu 14.04 and 16.04 
  
