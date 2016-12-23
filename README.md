@@ -71,6 +71,7 @@ purchasing a Carrizo system for ROCm, please verify that the BIOS provides an
 option for enabling IOMMUv2. If this is the case, the final requirement is
 associated with correct CRAT table support - please inquire with the OEM about 
 the latter.
+* AMD Merlin/Falcon Embedded System is also not currently supported by the public Repo. 
 
 #### Support for future APUs
 We are well aware of the excitement and anticipation built around using ROCm
@@ -159,6 +160,31 @@ sudo update-grub
 Once complete, reboot your system.
 
 We recommend you [verify your installation](https://github.com/RadeonOpenCompute/ROCm#verify-installation) to make sure everything completed successfully.
+
+#### To intall ROCm with Developer Preview of OpenCL 
+
+#####Start by following the istruction of installing ROCm with Debian Repository:
+
+ at the step "sudo apt-get install rocm" replace it with 
+ 
+ sudo apt-get install rocm opencl-rocm
+ 
+ Then follow the direction for Debian Repository 
+ 
+###### Upon restart, To test your OpenCL instance 
+
+ Build and run Hello World OCL app..
+
+HelloWorld sample:
+ wget https://raw.githubusercontent.com/bgaster/opencl-book-samples/master/src/Chapter_2/HelloWorld/HelloWorld.cpp
+ wget https://raw.githubusercontent.com/bgaster/opencl-book-samples/master/src/Chapter_2/HelloWorld/HelloWorld.cl
+
+ Build it using the default ROCm OpenCL include and library locations:
+ g++ -I /opt/rocm/opencl/include/opencl1.2 ./HelloWorld.cpp -o HelloWorld -L /opt/rocm/opencl/lib/x86_64 -lOpenCL
+
+ Run it:
+ ./HelloWorld
+
 
 ##### Un-install
 To un-install the entire rocm-dev development package execute:
