@@ -172,7 +172,7 @@ We recommend you [verify your installation](https://github.com/RadeonOpenCompute
  sudo apt-get install rocm opencl-rocm
  ```
  
- To install the development kit for opencl, which includes the OpenCL header files, execute this installation command instead:
+ To install the development kit for OpenCL, which includes the OpenCL header files, execute this installation command instead:
  
  ```shell
  sudo apt-get install rocm opencl-rocm-dev
