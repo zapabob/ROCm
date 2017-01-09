@@ -90,7 +90,8 @@ a list of motherboard that are qualified for use with ROCm.
    runtime 
  * Supports offline ahead of time compilation today;
    during the Beta phase we will add in-process/in-memory compilation. 
- * Binary Package support for Ubuntu 14.04 and 16.04 
+ * Binary Package support for Ubuntu 16.04 only
+ * Supports Fiji, Baffin and Ellesmere ASICS only
  
 #### IPC support 
 
@@ -165,10 +166,18 @@ We recommend you [verify your installation](https://github.com/RadeonOpenCompute
 
 ##### Start by following the istruction of installing ROCm with Debian Repository:
 
- at the step "sudo apt-get install rocm" replace it with 
+ at the step "sudo apt-get install rocm" replace it with:
  
+ ```shell
  sudo apt-get install rocm opencl-rocm
+ ```
  
+ To install the development kit for opencl, which includes the OpenCL header files, execute this installation command instead:
+ 
+ ```shell
+ sudo apt-get install rocm opencl-rocm-dev
+  ```
+  
  Then follow the direction for Debian Repository 
  
 ###### Upon restart, To test your OpenCL instance 
