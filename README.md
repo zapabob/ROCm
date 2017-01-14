@@ -185,15 +185,20 @@ We recommend you [verify your installation](https://github.com/RadeonOpenCompute
  Build and run Hello World OCL app..
 
 HelloWorld sample:
+```
  wget https://raw.githubusercontent.com/bgaster/opencl-book-samples/master/src/Chapter_2/HelloWorld/HelloWorld.cpp
  wget https://raw.githubusercontent.com/bgaster/opencl-book-samples/master/src/Chapter_2/HelloWorld/HelloWorld.cl
+```
 
  Build it using the default ROCm OpenCL include and library locations:
- g++ -I /opt/rocm/opencl/include/opencl1.2 ./HelloWorld.cpp -o HelloWorld -L /opt/rocm/opencl/lib/x86_64 -lOpenCL
+```
+g++ -I /opt/rocm/opencl/include/ ./HelloWorld.cpp -o HelloWorld -L/opt/rocm/opencl/lib/x86_64 -lOpenCL
+```
 
  Run it:
+ ```
  ./HelloWorld
-
+```
 
 ##### Un-install
 To un-install the entire rocm-dev development package execute:
