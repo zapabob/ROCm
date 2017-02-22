@@ -113,7 +113,7 @@ Additionally, the following mirror repositories that support the HCC compiler
 are also available on GitHub, and frozen for the roc-1.4.0 release:
 
 * [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.4.x)
-* [clang](https://github.com/RadeonOpenCompute/clang/tree/roc-1.4.x)
+* [clang](https://github.com/RadeonOpenCompute/clang/tree/amd-common)
 
 #### Supported Operating Systems
 
