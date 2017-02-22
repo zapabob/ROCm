@@ -104,7 +104,7 @@ of the following GitHub repositories:
 * [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.4.0)
 * [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.4.0)
 * [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.4.x)
-* [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra/tree/roc-1.4.x)
+* [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra)
 * [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.4.x)
 * [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP)
 * [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples)
