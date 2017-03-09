@@ -120,7 +120,7 @@ are also available on GitHub, and frozen for the roc-1.4.0 release:
 The ROCm platform has been tested on the following operating systems:
  * Ubuntu 14.04.04
  * Ubuntu 16.04
- * Fedora 23
+ * Fedora 23 (Hawaii based GPUs, i.e. Radeon R9 290, R9 390, AMD FirePro S9150, S9170, are not supported)
 
 ### Installing from AMD ROCm Repositories
 AMD is hosting both debian and rpm repositories for the ROCm 1.4 packages. The
