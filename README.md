@@ -263,6 +263,9 @@ individually. To uninstall the packages execute:
 ```shell
 sudo dnf remove rocm
 ```
+
+Just like Ubuntu installs, the ROCm kernel must be the default kernel used at boot time.
+
 #### Manual installation steps for Fedora 23
 
 A fully functional Fedora installation requires a few manual steps to properly 
