@@ -321,5 +321,5 @@ repo sync
 These series of commands will pull all of the open source code associated with
 the ROCm 1.4 release.
 
-* OpenCL Runtime and Compiler will be submitted to the Khronos Groupm, prior to
+* OpenCL Runtime and Compiler will be submitted to the Khronos Group, prior to
   the final release, for conformance testing.
