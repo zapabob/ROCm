@@ -4,7 +4,7 @@ The ROCm Platform brings a rich foundation to advanced computing by seamlessly
 
 On April 25th, 2016, we delivered ROCm 1.0 built around three pillars:
 
-1) Open Heterogeneous Computing Platform (Linux(R) Driver and Runtime Stack), 
+1) Open Heterogeneous Computing Platform (Linux Driver and Runtime Stack), 
    optimized for HPC & Ultra-scale class computing;
    
 2) Heterogeneous C and C++ Single Source Compiler, to approach computation 
@@ -20,8 +20,8 @@ driver is composed of several components based on our efforts to develop the
 Heterogeneous System Architecture for APUs, including the new AMDGPU driver,
 the Kernel Fusion Driver (KFD), the HSA+ Runtime and an LLVM based compilation
 stack which provides support for key languages. This support starts with AMD’s
-FIJI Family of dGPUs, and has expanded to include the Hawaii dGPU Family in ROCm
-1.2. ROCm 1.3 further extends support to include the Polaris Family of ASICs.
+Fiji family of dGPUs, and has expanded to include the Hawaii dGPU family in ROCm
+1.2. ROCm 1.3 further extends support to include the Polaris family of ASICs.
 
 #### Supported CPUs
 The ROCm Platform leverages PCIe Atomics (Fetch ADD, Compare and SWAP, 
@@ -38,7 +38,7 @@ Southbridge PCIe I/O controller. If you motherboard is part of this category,
 please do not use this connector for your GPUs, if you intend to exploit ROCm.
 
 
-Our GFX8 GPU's ( Fiji &  Polaris Family) use PCIe Gen 3 and PCIe Atomics. 
+Our GFX8 GPU's (Fiji & Polaris Family) use PCIe Gen 3 and PCIe Atomics. 
 
 Current CPUs which support PCIe Gen3 + PCIe Atomics are: 
   * Intel Xeon E5 v3 or newer CPUs; 
@@ -55,7 +55,7 @@ Our GFX7 GPUs Radeon R9 290, R9 390, AMD FirePro S9150, S9170 do not support or
 take advantage of PCIe Atomics. However, we still recommend that you use a CPU
 from the list provided above. 
 
-#### Not Supported or Very Limited Support Under ROCm 
+#### Not supported or very limited support under ROCm 
 * We do not support ROCm with PCIe Gen 2 enabled CPUs such as the AMD Opteron,
 Phenom, Phenom II, Athlon, Athlon X2, Athlon II and Older Intel Xeon and Intel
 Core Architecture and Pentium CPUs.  
@@ -84,7 +84,7 @@ a list of motherboard that are qualified for use with ROCm.
 
 ### New Features to ROCm 
 
-#### Developer preview of the new OpenCl 1.2 compatible language runtime and compiler
+#### Developer preview of the new OpenCL 1.2 compatible language runtime and compiler
 
  * OpenCL 2.0 compatible kernel language support with OpenCL 1.2 compatible
    runtime 
@@ -95,7 +95,7 @@ a list of motherboard that are qualified for use with ROCm.
  
 #### IPC support 
 
-### The Latest ROCm Platform - ROCm 1.4
+### The latest ROCm platform - ROCm 1.4
 The latest tested version of the drivers, tools, libraries and source code for
 the ROCm platform have been released and are available under the roc-1.4.0 tag
 of the following GitHub repositories:
@@ -122,7 +122,7 @@ The ROCm platform has been tested on the following operating systems:
  * Ubuntu 16.04
  * Fedora 23 (Hawaii based GPUs, i.e. Radeon R9 290, R9 390, AMD FirePro S9150, S9170, are not supported)
 
-### Installing from AMD ROCm Repositories
+### Installing from AMD ROCm repositories
 AMD is hosting both debian and rpm repositories for the ROCm 1.4 packages. The
 packages in both repositories have been signed to ensure package integrity.
 Directions for each repository are given below:
@@ -164,7 +164,7 @@ We recommend you [verify your installation](https://github.com/RadeonOpenCompute
 
 #### To install ROCm with Developer Preview of OpenCL 
 
-##### Start by following the instruction of installing ROCm with Debian Repository:
+##### Start by following the instruction of installing ROCm with Debian repository:
 
  at the step "sudo apt-get install rocm" replace it with:
  
@@ -272,7 +272,7 @@ A fully functional Fedora installation requires a few manual steps to properly
 setup, including:
  * [Building compatible libc++ and libc++abi libraries for Fedora](https://github.com/RadeonOpenCompute/hcc/wiki#fedora)
 
-#### Verify Installation
+#### Verify installation
 
 To verify that the ROCm stack completed successfully you can execute to HSA
 vectory\_copy sample application (we do recommend that you copy it to a
@@ -284,7 +284,7 @@ make
 ./vector_copy
 ```
 
-#### Closed Source Components
+#### Closed source components
 The ROCm platform relies on a few closed source components to provide legacy
 functionality like HSAIL finalization and debugging/profiling support. These
 components are only available through the ROCm repositories, and will either be
@@ -295,7 +295,7 @@ made available in the following packages:
 *  OpenCL Developer Preview for version 1.4 is closed source (applies only to 
    this release). 
 
-### Getting ROCm Source Code
+### Getting ROCm source code
 Modifications can be made to the ROCm 1.4 components by modifying the open
 source code base and rebuilding the components. Source code can be cloned from
 each of the GitHub repositories using git, or users can use the repo command
