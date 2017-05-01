@@ -15,7 +15,6 @@
     <project path="ROCT-Thunk-Interface" name="ROCT-Thunk-Interface" />
     <project path="ROC-smi" name="ROC-smi" />
     <project path="hcc" name="hcc" revision="rocm-1.5.0" />
-    <project path="compiler-runtime" name="compiler-runtime" revision="rocm-1.5.0" />
     <project path="HIP" remote="pctools-github" name="HIP" />
     <project path="HIP-Examples" remote="pctools-github" name="HIP-Examples" />
     <project path="atmi" name="atmi" revision="0.3.7" />
