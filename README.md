@@ -114,7 +114,7 @@ Additionally, the following mirror repositories that support the HCC compiler
 are also available on GitHub, and frozen for the rocm-1.5.0 release:
 
 * [llvm](https://github.com/RadeonOpenCompute/llvm/tree/rocm-1.5.0)
-* [ldd](https://github.com/RadeonOpenCompute/lld/tree/rocm-1.5.0)
+* [lld](https://github.com/RadeonOpenCompute/lld/tree/rocm-1.5.0)
 * [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/rocm-1.5.0)
 * [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/rocm-1.5.0)
 
@@ -317,9 +317,9 @@ mkdir ROCm && cd ROCm
 repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.5.0
 repo sync
 ```
-
 These series of commands will pull all of the open source code associated with
-the ROCm 1.5 release.
+the ROCm 1.5 release. Please ensure that ssh-keys are configured for the
+target machine on GitHub for your GitHub ID.
 
 * OpenCL Runtime and Compiler will be submitted to the Khronos Group, prior to
   the final release, for conformance testing.

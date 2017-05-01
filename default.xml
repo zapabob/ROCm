@@ -6,21 +6,22 @@
     <remote name="pctools-github"
             fetch="ssh://git@github.com/GPUOpen-ProfessionalCompute-Tools/" />
 
-    <default revision="roc-1.5.0"
+    <default revision="roc-1.5.x"
              remote="roc-github"
              sync-j="4" />
 
-    <project path="ROCK-Kernel-Driver" name="ROCK-Kernel-Driver" />
-    <project path="ROCR-Runtime" name="ROCR-Runtime" />
-    <project path="ROCT-Thunk-Interface" name="ROCT-Thunk-Interface" />
+    <project path="ROCK-Kernel-Driver" name="ROCK-Kernel-Driver" revision="master" />
+    <project path="ROCT-Thunk-Interface" name="ROCT-Thunk-Interface" revision="master" />
     <project path="ROC-smi" name="ROC-smi" />
-    <project path="hcc" name="hcc" revision="rocm-1.5.0" />
-    <project path="HIP" remote="pctools-github" name="HIP" />
-    <project path="HIP-Examples" remote="pctools-github" name="HIP-Examples" />
-    <project path="atmi" name="atmi" revision="0.3.7" />
-    <project path="llvm" name="llvm" revision="rocm-1.5.0" />
-    <project path="ldd" name="ldd" revision="rocm-1.5.0" />
-    <project path="hcc-clang-upgrade" name="hcc-clang-upgrade" revision="rocm-1.5.0" />
-    <project path="ROCm-Device-Libs" name="ROCm-Device-Libs" revision="rocm-1.5.0" />
+    <project path="ROCR-Runtime" name="ROCR-Runtime" />
+    <project path="hcc" name="hcc" />
+    <project path="compiler-rt" name="compiler-rt" />
+    <project path="HIP" remote="pctools-github" name="HIP" revision="master" />
+    <project path="HIP-Examples" remote="pctools-github" name="HIP-Examples" revision="master" />
+    <project path="atmi" name="atmi" revision="master" />
+    <project path="llvm" name="llvm" />
+    <project path="lld" name="lld" />
+    <project path="hcc-clang-upgrade" name="hcc-clang-upgrade" />
+    <project path="ROCm-Device-Libs" name="ROCm-Device-Libs" />
 
 </manifest>
