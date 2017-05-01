@@ -44,10 +44,10 @@ Current CPUs which support PCIe Gen3 + PCIe Atomics are:
   * Intel Xeon E5 v3 or newer CPUs; 
   * Intel Xeon E3 v3 or newer CPUs; 
   * Intel Core i7 v3, Core i5 v3, Core i3 v3 or newer CPUs (i.e. Haswell family
+  * AMD Ryzen CPUs;
   or newer).
   
 Upcoming CPUs which will support PCIe Gen3 + PCIe Atomics are:
-  * AMD Ryzen CPUs;
   * AMD Naples Server CPUs; 
   * Cavium Thunder X Server Processor. 
 
@@ -76,7 +76,7 @@ the latter.
 #### Support for future APUs
 We are well aware of the excitement and anticipation built around using ROCm
 with an APU system which fully exposes Shared Virtual Memory alongside and cache
-coherency between the CPU and GPU. To this end, in 2017 we plan on testing 
+coherency between the CPU and GPU. To this end, in mid 2017 we plan on testing 
 commercial AM4 motherboards for the Bristol Ridge and Raven Ridge families of 
 APUs. Just like you, we still waiting for access to them! Once we have the first
 boards in the lab we will detail our experiences via our blog, as well as build
@@ -95,36 +95,38 @@ a list of motherboard that are qualified for use with ROCm.
  
 #### IPC support 
 
-### The latest ROCm platform - ROCm 1.4
+### The latest ROCm platform - ROCm 1.5
 The latest tested version of the drivers, tools, libraries and source code for
-the ROCm platform have been released and are available under the roc-1.4.0 tag
+the ROCm platform have been released and are available under the roc-1.5.0 or rocm-1.5.0 tag
 of the following GitHub repositories:
 
-* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.4.0)
-* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.4.0)
-* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.4.0)
-* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.4.x)
-* [LLVM-AMDGPU-Assembler-Extra](https://github.com/RadeonOpenCompute/LLVM-AMDGPU-Assembler-Extra)
-* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.4.x)
+* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.5.0)
+* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.5.0)
+* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.5.0)
+* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.5.0)
+* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/rocm-1.5.0)
+* [compiler-runtime](https://github.com/RadeonOpenCompute/compiler-rt/tree/rocm-1.5.0)
 * [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP)
 * [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples)
+* [atmi](https://github.com/RadeonOpenCompute/atmi/tree/0.3.7)
 
 Additionally, the following mirror repositories that support the HCC compiler
-are also available on GitHub, and frozen for the roc-1.4.0 release:
+are also available on GitHub, and frozen for the rocm-1.5.0 release:
 
-* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.4.x)
-* [clang](https://github.com/RadeonOpenCompute/clang/tree/amd-common)
+* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/rocm-1.5.0)
+* [ldd](https://github.com/RadeonOpenCompute/lld/tree/rocm-1.5.0)
+* [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/rocm-1.5.0)
+* [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/rocm-1.5.0)
 
 #### Supported Operating Systems
 
 The ROCm platform has been tested on the following operating systems:
- * Ubuntu 14.04.04
  * Ubuntu 16.04
- * Fedora 23 (Hawaii based GPUs, i.e. Radeon R9 290, R9 390, AMD FirePro S9150, S9170, are not supported)
+ * Fedora 24 (Hawaii based GPUs, i.e. Radeon R9 290, R9 390, AMD FirePro S9150, S9170, are not supported)
 
 ### Installing from AMD ROCm repositories
-AMD is hosting both debian and rpm repositories for the ROCm 1.4 packages. The
-packages in both repositories have been signed to ensure package integrity.
+AMD is hosting both debian and rpm repositories for the ROCm 1.5 packages. The
+packages in the Debian repository have been signed to ensure package integrity.
 Directions for each repository are given below:
 
 #### Debian repository - apt-get
@@ -201,7 +203,7 @@ g++ -I /opt/rocm/opencl/include/ ./HelloWorld.cpp -o HelloWorld -L/opt/rocm/open
 ```
 
 ##### Un-install
-To un-install the entire rocm-dev development package execute:
+To un-install the entire rocm development package execute:
 
 ```shell
 sudo apt-get autoremove rocm
@@ -257,8 +259,8 @@ sudo dnf clean all
 sudo dnf install rocm
 ```
 
-As with the debian packages, it is possible to install rocm-dev or rocm-kernel
-individually. To uninstall the packages execute:
+As with the debian packages, it is possible to install rocm-dev individually.
+To uninstall the packages execute:
 
 ```shell
 sudo dnf remove rocm
@@ -292,14 +294,12 @@ deprecated or become open source components in the future. These components are
 made available in the following packages:
 
 *  hsa-ext-rocr-dev
-*  OpenCL Developer Preview for version 1.4 is closed source (applies only to 
-   this release). 
 
 ### Getting ROCm source code
-Modifications can be made to the ROCm 1.4 components by modifying the open
+Modifications can be made to the ROCm 1.5 components by modifying the open
 source code base and rebuilding the components. Source code can be cloned from
 each of the GitHub repositories using git, or users can use the repo command
-and the ROCm 1.4 manifest file to download the entire ROCm 1.4 source code.
+and the ROCm 1.5 manifest file to download the entire ROCm 1.5 source code.
 
 #### Installing repo
 Google's repo tool allows you to manage multiple git repositories
@@ -314,12 +314,12 @@ Note: make sure ~/bin exists and it is part of your PATH
 #### Cloning the code
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.4.0
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.5.0
 repo sync
 ```
 
 These series of commands will pull all of the open source code associated with
-the ROCm 1.4 release.
+the ROCm 1.5 release.
 
 * OpenCL Runtime and Compiler will be submitted to the Khronos Group, prior to
   the final release, for conformance testing.
