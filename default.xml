@@ -10,14 +10,14 @@
              remote="roc-github"
              sync-j="4" />
 
-    <project path="ROCK-Kernel-Driver" name="ROCK-Kernel-Driver" revision="master" />
-    <project path="ROCT-Thunk-Interface" name="ROCT-Thunk-Interface" revision="master" />
+    <project path="ROCK-Kernel-Driver" name="ROCK-Kernel-Driver" />
+    <project path="ROCT-Thunk-Interface" name="ROCT-Thunk-Interface" />
     <project path="ROC-smi" name="ROC-smi" />
     <project path="ROCR-Runtime" name="ROCR-Runtime" />
     <project path="hcc" name="hcc" />
     <project path="compiler-rt" name="compiler-rt" />
-    <project path="HIP" remote="pctools-github" name="HIP" revision="master" />
-    <project path="HIP-Examples" remote="pctools-github" name="HIP-Examples" revision="master" />
+    <project path="HIP" remote="pctools-github" name="HIP" />
+    <project path="HIP-Examples" remote="pctools-github" name="HIP-Examples" />
     <project path="atmi" name="atmi" revision="master" />
     <project path="llvm" name="llvm" />
     <project path="lld" name="lld" />

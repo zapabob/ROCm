@@ -106,8 +106,8 @@ of the following GitHub repositories:
 * [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.5.0)
 * [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/rocm-1.5.0)
 * [compiler-runtime](https://github.com/RadeonOpenCompute/compiler-rt/tree/rocm-1.5.0)
-* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP)
-* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples)
+* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.5.0)
+* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.5.0)
 * [atmi](https://github.com/RadeonOpenCompute/atmi/tree/0.3.7)
 
 Additionally, the following mirror repositories that support the HCC compiler
@@ -268,7 +268,7 @@ sudo dnf remove rocm
 
 Just like Ubuntu installs, the ROCm kernel must be the default kernel used at boot time.
 
-#### Manual installation steps for Fedora 23
+#### Manual installation steps for Fedora
 
 A fully functional Fedora installation requires a few manual steps to properly 
 setup, including:
