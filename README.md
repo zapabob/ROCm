@@ -43,9 +43,8 @@ Our GFX8 GPU's (Fiji & Polaris Family) use PCIe Gen 3 and PCIe Atomics.
 Current CPUs which support PCIe Gen3 + PCIe Atomics are: 
   * Intel Xeon E5 v3 or newer CPUs; 
   * Intel Xeon E3 v3 or newer CPUs; 
-  * Intel Core i7 v3, Core i5 v3, Core i3 v3 or newer CPUs (i.e. Haswell family
+  * Intel Core i7 v3, Core i5 v3, Core i3 v3 or newer CPUs (i.e. Haswell family or newer).
   * AMD Ryzen CPUs;
-  or newer).
   
 Upcoming CPUs which will support PCIe Gen3 + PCIe Atomics are:
   * AMD Naples Server CPUs; 
@@ -90,8 +89,8 @@ a list of motherboard that are qualified for use with ROCm.
    runtime 
  * Supports offline ahead of time compilation today;
    during the Beta phase we will add in-process/in-memory compilation. 
- * Binary Package support for Ubuntu 16.04 only
- * Supports Fiji, Baffin and Ellesmere ASICS only
+ * Binary Package support for Ubuntu 16.04 and Fedora 24
+ * Dropping binary package support for Ubuntu 14.04 and Fedora 23
  
 #### IPC support 
 
