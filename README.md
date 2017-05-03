@@ -145,7 +145,7 @@ release.
 Next, update the apt-get repository list and install/update the rocm package:
 
 >**Warning**: Before proceeding, make sure to completely
->[uninstall any pre-release ROCm packages](https://github.com/RadeonOpenCompute/ROCm#removing-pre-release-packages):
+>[uninstall any previous ROCm package](https://github.com/RadeonOpenCompute/ROCm#removing-pre-release-packages):
 
 ```shell
 sudo apt-get update
