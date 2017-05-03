@@ -121,7 +121,7 @@ are also available on GitHub, and frozen for the rocm-1.5.0 release:
 
 The ROCm platform has been tested on the following operating systems:
  * Ubuntu 16.04
- * Fedora 24 (Hawaii based GPUs, i.e. Radeon R9 290, R9 390, AMD FirePro S9150, S9170, are not supported)
+ * Fedora 24
 
 ### Installing from AMD ROCm repositories
 AMD is hosting both debian and rpm repositories for the ROCm 1.5 packages. The
@@ -173,10 +173,10 @@ We recommend you [verify your installation](https://github.com/RadeonOpenCompute
  sudo apt-get install rocm rocm-opencl
  ```
  
- To install the development kit for OpenCL, which includes the OpenCL header files, execute this installation command instead:
+ To install the development kit for OpenCL, which includes the OpenCL header files, execute this installation command:
  
  ```shell
- sudo apt-get install rocm rocm-opencl-dev
+ sudo apt-get install rocm-opencl-dev
   ```
   
  Then follow the direction for Debian Repository 
