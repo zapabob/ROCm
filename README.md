@@ -145,7 +145,7 @@ release.
 Next, update the apt-get repository list and install/update the rocm package:
 
 >**Warning**: Before proceeding, make sure to completely
->[uninstall any pre-release ROCm packages](https://github.com/RadeonOpenCompute/ROCm#removing-pre-release-packages):
+>[uninstall any previous ROCm package](https://github.com/RadeonOpenCompute/ROCm#removing-pre-release-packages):
 
 ```shell
 sudo apt-get update
@@ -170,13 +170,13 @@ We recommend you [verify your installation](https://github.com/RadeonOpenCompute
  at the step "sudo apt-get install rocm" replace it with:
  
  ```shell
- sudo apt-get install rocm opencl-rocm
+ sudo apt-get install rocm rocm-opencl
  ```
  
  To install the development kit for OpenCL, which includes the OpenCL header files, execute this installation command instead:
  
  ```shell
- sudo apt-get install rocm opencl-rocm-dev
+ sudo apt-get install rocm rocm-opencl-dev
   ```
   
  Then follow the direction for Debian Repository 
