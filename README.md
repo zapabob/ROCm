@@ -42,8 +42,8 @@ Our GFX8 GPU's (Fiji & Polaris Family) and GFX9 (Vega)  use PCIe Gen 3 and PCIe 
 
 New for ROCm 1.6 is 
 
-	* Radeon Instinct Family MI25, MI8, MI6 
-	* Radeon Vega Frontier Edition 
+	Radeon Instinct Family MI25, MI8, MI6 
+	Radeon Vega Frontier Edition 
 
 Current CPUs which support PCIe Gen3 + PCIe Atomics are: 
   * Intel Xeon E5 v3 or newer CPUs; 
