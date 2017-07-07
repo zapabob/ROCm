@@ -122,6 +122,8 @@ are also available on GitHub, and frozen for the rocm-1.6.0 release:
 * [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/rocm-1.6.0)
 * [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/rocm-1.6.0)
 
+**WARNING: Binaries compiled for ROCm 1.5 may not operate correctly on ROCm 1.6 and will need to be rebuilt**
+
 #### Supported Operating Systems
 
 The ROCm platform has been tested on the following operating systems:
