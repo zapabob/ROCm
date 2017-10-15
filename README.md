@@ -48,7 +48,7 @@ New GPU Support for ROCm 1.6:
 Current CPUs which support PCIe Gen3 + PCIe Atomics are: 
   * Intel Xeon E5 v3 or newer CPUs; 
   * Intel Xeon E3 v3 or newer CPUs; 
-  * Intel Core i7 v3, Core i5 v3, Core i3 v3 or newer CPUs (i.e. Haswell family or newer).
+  * Intel Core i7 v4, Core i5 v4, Core i3 v4 or newer CPUs (i.e. Haswell family or newer).
   * AMD Ryzen CPUs;
   
 Upcoming CPUs which will support PCIe Gen3 + PCIe Atomics are:
