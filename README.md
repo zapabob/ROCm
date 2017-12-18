@@ -103,26 +103,26 @@ a list of motherboard that are qualified for use with ROCm.
 
 ### The latest ROCm platform - ROCm 1.7
 The latest tested version of the drivers, tools, libraries and source code for
-the ROCm platform have been released and are available under the roc-1.7.0 or rocm-1.7.0 tag
+the ROCm platform have been released and are available under the roc-1.7.x or rocm-1.7.x tag
 of the following GitHub repositories:
 
-* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.7.0)
-* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.7.0)
-* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.7.0)
-* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.7.0)
-* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/rocm-1.7.0)
-* [compiler-runtime](https://github.com/RadeonOpenCompute/compiler-rt/tree/rocm-1.7.0)
-* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.7.0)
-* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.7.0)
+* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.7.x)
+* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.7.x)
+* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.7.x)
+* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.7.x)
+* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.7.x)
+* [compiler-runtime](https://github.com/RadeonOpenCompute/compiler-rt/tree/roc-1.7.x)
+* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.7.x)
+* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.7.x)
 * [atmi](https://github.com/RadeonOpenCompute/atmi/tree/0.3.7)
 
 Additionally, the following mirror repositories that support the HCC compiler
 are also available on GitHub, and frozen for the rocm-1.7.0 release:
 
-* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/rocm-1.7.0)
-* [lld](https://github.com/RadeonOpenCompute/lld/tree/rocm-1.7.0)
-* [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/rocm-1.7.0)
-* [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/rocm-1.7.0)
+* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.7.x)
+* [lld](https://github.com/RadeonOpenCompute/lld/tree/rocm-1.7.x)
+* [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/roc-1.7.x)
+* [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-1.7.x)
 
 #### Supported Operating Systems
 
