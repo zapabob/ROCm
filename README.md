@@ -95,7 +95,8 @@ a list of motherboard that are qualified for use with ROCm.
    runtime 
  * Supports offline ahead of time compilation today;
    during the Beta phase we will add in-process/in-memory compilation. 
- * Binary Package support for Ubuntu 16.04 and Fedora 24
+ * Binary Package support for Ubuntu 16.04
+ * Binary Package support for Fedora 24 is not currently available
  * Dropping binary package support for Ubuntu 14.04, Fedora 23
  
 #### IPC support 
