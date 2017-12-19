@@ -88,7 +88,7 @@ a list of motherboard that are qualified for use with ROCm.
  * New driver installation uses Dynamic Kernel Module Support (DKMS)
  * Only amdkfd and amdgpu kernel modules are installed to support AMD hardware
  * Currently only Debian packages are provided for DKMS (no Fedora suport available)
- * See the [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.7.x) and [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.7.x) for additional documentation on driver setup
+ * See the [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.7.x) and [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.7.x) for additional documentation on driver setup
 
 #### Developer preview of the new OpenCL 1.2 compatible language runtime and compiler
 
