@@ -40,11 +40,6 @@ please do not use this connector for your GPUs, if you intend to exploit ROCm.
 
 Our GFX8 GPU's (Fiji & Polaris Family) and GFX9 (Vega)  use PCIe Gen 3 and PCIe Atomics. 
 
-New GPU Support for ROCm 1.6:
-
-	Radeon Instinct Family MI25, MI8, MI6 
-	Radeon Vega Frontier Edition 
-
 Current CPUs which support PCIe Gen3 + PCIe Atomics are: 
   * Intel Xeon E5 v3 or newer CPUs; 
   * Intel Xeon E3 v3 or newer CPUs; 
@@ -86,7 +81,14 @@ APUs. Just like you, we still waiting for access to them! Once we have the first
 boards in the lab we will detail our experiences via our blog, as well as build
 a list of motherboard that are qualified for use with ROCm.
 
-### New Features to ROCm 
+### New Features to ROCm 1.7
+
+#### DKMS driver installation
+
+ * New driver installation uses Dynamic Kernel Module Support (DKMS)
+ * Only amdkfd and amdgpu kernel modules are installed to support AMD hardware
+ * Currently only Debian packages are provided for DKMS (no Fedora suport available)
+ * See the [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.7.x) and [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.7.x) for additional documentation on driver setup
 
 #### Developer preview of the new OpenCL 1.2 compatible language runtime and compiler
 
@@ -94,44 +96,43 @@ a list of motherboard that are qualified for use with ROCm.
    runtime 
  * Supports offline ahead of time compilation today;
    during the Beta phase we will add in-process/in-memory compilation. 
- * Binary Package support for Ubuntu 16.04 and Fedora 24
- * Dropping binary package support for Ubuntu 14.04 and Fedora 23
+ * Binary Package support for Ubuntu 16.04
+ * Binary Package support for Fedora 24 is not currently available
+ * Dropping binary package support for Ubuntu 14.04, Fedora 23
  
 #### IPC support 
 
-### The latest ROCm platform - ROCm 1.6
+### The latest ROCm platform - ROCm 1.7
 The latest tested version of the drivers, tools, libraries and source code for
-the ROCm platform have been released and are available under the roc-1.6.0 or rocm-1.6.0 tag
+the ROCm platform have been released and are available under the roc-1.7.x or rocm-1.7.x tag
 of the following GitHub repositories:
 
-* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.6.0)
-* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.6.0)
-* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.6.0)
-* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.6.0)
-* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/rocm-1.6.0)
-* [compiler-runtime](https://github.com/RadeonOpenCompute/compiler-rt/tree/rocm-1.6.0)
-* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.6.0)
-* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.6.0)
+* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.7.x)
+* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.7.x)
+* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.7.x)
+* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.7.x)
+* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.7.x)
+* [compiler-runtime](https://github.com/RadeonOpenCompute/compiler-rt/tree/roc-1.7.x)
+* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.7.x)
+* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.7.x)
 * [atmi](https://github.com/RadeonOpenCompute/atmi/tree/0.3.7)
 
 Additionally, the following mirror repositories that support the HCC compiler
-are also available on GitHub, and frozen for the rocm-1.6.0 release:
+are also available on GitHub, and frozen for the rocm-1.7.0 release:
 
-* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/rocm-1.6.0)
-* [lld](https://github.com/RadeonOpenCompute/lld/tree/rocm-1.6.0)
-* [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/rocm-1.6.0)
-* [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/rocm-1.6.0)
-
-**WARNING: Binaries compiled for ROCm 1.5 may not operate correctly on ROCm 1.6 and will need to be rebuilt**
+* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.7.x)
+* [lld](https://github.com/RadeonOpenCompute/lld/tree/rocm-1.7.x)
+* [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/roc-1.7.x)
+* [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-1.7.x)
 
 #### Supported Operating Systems
 
-The ROCm platform has been tested on the following operating systems:
+The ROCm 1.7 platform has been tested on the following operating systems:
  * Ubuntu 16.04
- * Fedora 24
 
 ### Installing from AMD ROCm repositories
-AMD is hosting both debian and rpm repositories for the ROCm 1.6 packages. 
+AMD is hosting only debian repositories for the ROCm 1.7 packages at this time. It is expected
+that an rpm repository will be available in the next point release.
 
 The packages in the Debian repository have been signed to ensure package integrity.
 Directions for each repository are given below:
@@ -164,16 +165,8 @@ Next, update the apt-get repository list and install/update the rocm package:
 
 ```shell
 sudo apt-get update
-sudo apt-get install rocm
+sudo apt-get install rocm-dkms
 ```
-Then, make the ROCm kernel your default kernel. If using grub2 as your
-bootloader, you can edit the `GRUB_DEFAULT` variable in the following file:
-
-```shell
-sudo vi /etc/default/grub
-sudo update-grub
-```
-
 Once complete, reboot your system.
 
 We recommend you [verify your installation](https://github.com/RadeonOpenCompute/ROCm#verify-installation) to make sure everything completed successfully.
@@ -182,10 +175,10 @@ We recommend you [verify your installation](https://github.com/RadeonOpenCompute
 
 ##### Start by following the instruction of installing ROCm with Debian repository:
 
- at the step "sudo apt-get install rocm" replace it with:
+ at the step "sudo apt-get install rocm-dkms" replace it with:
  
  ```shell
- sudo apt-get install rocm rocm-opencl
+ sudo apt-get install rocm-dkms rocm-opencl
  ```
  
  To install the development kit for OpenCL, which includes the OpenCL header files, execute this installation command:
@@ -220,7 +213,7 @@ g++ -I /opt/rocm/opencl/include/ ./HelloWorld.cpp -o HelloWorld -L/opt/rocm/open
 To un-install the entire rocm development package execute:
 
 ```shell
-sudo apt-get autoremove rocm
+sudo apt-get autoremove rocm-dkms
 ```
 
 ##### Installing development packages for cross compilation
@@ -251,54 +244,7 @@ If possible, we would recommend starting with a fresh OS install.
 
 #### RPM repository - dnf (yum)
 
-A dnf (yum) repository is also available for installation of rpm packages.
-To configure a system to use the ROCm rpm directory create the file
-/etc/yum.repos.d/rocm.repo with the following contents:
-
-```shell
-[remote]
-
-name=ROCm Repo
-
-baseurl=http://repo.radeon.com/rocm/yum/rpm/
-
-enabled=1
-
-gpgcheck=0
-```
-Execute the following commands:
-
-```shell
-sudo dnf clean all
-sudo dnf install rocm
-```
-
-As with the debian packages, it is possible to install rocm-dev individually.
-To uninstall the packages execute:
-
-```shell
-sudo dnf remove rocm
-```
-
-Just like Ubuntu installs, the ROCm kernel must be the default kernel used at boot time.
-
-#### Manual installation steps for Fedora
-
-A fully functional Fedora installation requires a few manual steps to properly 
-setup, including:
- * [Building compatible libc++ and libc++abi libraries for Fedora](https://github.com/RadeonOpenCompute/hcc/wiki#fedora)
-
-#### Verify installation
-
-To verify that the ROCm stack completed successfully you can execute to HSA
-vectory\_copy sample application (we do recommend that you copy it to a
-separate folder and invoke make therein):
-
-```shell
-cd /opt/rocm/hsa/sample
-make
-./vector_copy
-```
+A repository containing rpm packages is currently no available for the ROCm 1.7 release.
 
 #### Closed source components
 The ROCm platform relies on a few closed source components to provide legacy
@@ -310,10 +256,10 @@ made available in the following packages:
 *  hsa-ext-rocr-dev
 
 ### Getting ROCm source code
-Modifications can be made to the ROCm 1.6 components by modifying the open
+Modifications can be made to the ROCm 1.7 components by modifying the open
 source code base and rebuilding the components. Source code can be cloned from
 each of the GitHub repositories using git, or users can use the repo command
-and the ROCm 1.6 manifest file to download the entire ROCm 1.6 source code.
+and the ROCm 1.7 manifest file to download the entire ROCm 1.7 source code.
 
 #### Installing repo
 Google's repo tool allows you to manage multiple git repositories
@@ -328,11 +274,11 @@ Note: make sure ~/bin exists and it is part of your PATH
 #### Cloning the code
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.6.0
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.7.0
 repo sync
 ```
 These series of commands will pull all of the open source code associated with
-the ROCm 1.6 release. Please ensure that ssh-keys are configured for the
+the ROCm 1.7 release. Please ensure that ssh-keys are configured for the
 target machine on GitHub for your GitHub ID.
 
 * OpenCL Runtime and Compiler will be submitted to the Khronos Group, prior to
