@@ -168,6 +168,7 @@ sudo apt-get update
 sudo apt-get install rocm-dkms
 ```
 
+###### Next set your permsions 
 With move to upstreaming the KFD driver and the support of DKMS,  for all Console aka headless user, you will need to add all  your users to the  'video" group by setting the Unix permissions
 
 Configure 
