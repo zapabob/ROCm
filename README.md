@@ -170,9 +170,18 @@ sudo apt-get install rocm-dkms
 
 With move to upstreaming the KFD driver and the support of DKMS,  for all Console aka headless user you will need  add all  your users to the  'video" group by setting the unix permisions
 
+Configure 
+Ensure that your user account is a member of the "video" group prior to using the ROCm driver. You can find which groups you are a member of with the following command:
+
 ```shell
-sudo usermod -a -G video <username>
+groups
 ```
+
+To add yourself to the video group you will need the sudo password and can use the following command:
+
+```shell
+sudo usermod -a -G video $LOGNAME 
+``` 
 
 Once complete, reboot your system.
 
