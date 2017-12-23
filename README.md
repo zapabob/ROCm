@@ -137,6 +137,14 @@ that an rpm repository will be available in the next point release.
 The packages in the Debian repository have been signed to ensure package integrity.
 Directions for each repository are given below:
 
+##### First make sure your system is up to date 
+
+```shell
+sudo apt update
+sudo apt dist-upgrade
+sudo reboot
+```
+
 #### Packaging server update
 The packaging server has been changed from the old http://packages.amd.com
 to the new repository site http://repo.radeon.com. 
