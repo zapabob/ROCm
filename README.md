@@ -142,6 +142,7 @@ Directions for each repository are given below:
 ```shell
 sudo apt update
 sudo apt dist-upgrade
+sudo apt-get install libnuma-dev
 sudo reboot
 ```
 
