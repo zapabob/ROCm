@@ -2,27 +2,6 @@
 The ROCm Platform brings a rich foundation to advanced computing by seamlessly
  integrating the CPU and GPU with the goal of solving real-world problems.
 
-On April 25th, 2016, we delivered ROCm 1.0 built around three pillars:
-
-1) Open Heterogeneous Computing Platform (Linux Driver and Runtime Stack), 
-   optimized for HPC & Ultra-scale class computing;
-   
-2) Heterogeneous C and C++ Single Source Compiler, to approach computation 
-   holistically, on a system level, rather than as a discrete GPU artifact;
-   
-3) HIP, acknowledging the need for freedom of choice when it comes to platforms
-   and APIs for GPU computing.
-
-Using our knowledge of the HSA Standards and, more importantly, the HSA
-Runtime, we have been able to successfully extended support to the dGPU with
-critical features for accelerating NUMA computation. As a result, the ROCK
-driver is composed of several components based on our efforts to develop the
-Heterogeneous System Architecture for APUs, including the new AMDGPU driver,
-the Kernel Fusion Driver (KFD), the HSA+ Runtime and an LLVM based compilation
-stack which provides support for key languages. This support starts with AMD’s
-Fiji family of dGPUs, and has expanded to include the Hawaii dGPU family in ROCm
-1.2. ROCm 1.3 further extends support to include the Polaris family of ASICs.
-
 #### Supported CPUs
 The ROCm Platform leverages PCIe Atomics (Fetch ADD, Compare and SWAP, 
 Unconditional SWAP, AtomicsOpCompletion).
