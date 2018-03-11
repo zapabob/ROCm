@@ -71,15 +71,7 @@ option for enabling IOMMUv2. If this is the case, the final requirement is
 associated with correct CRAT table support - please inquire with the OEM about 
 the latter.
 * AMD Merlin/Falcon Embedded System is also not currently supported by the public Repo. 
-
-#### Support for future APUs
-We are well aware of the excitement and anticipation built around using ROCm
-with an APU system which fully exposes Shared Virtual Memory alongside and cache
-coherency between the CPU and GPU. To this end, in mid 2017 we plan on testing 
-commercial AM4 motherboards for the Bristol Ridge and Raven Ridge families of 
-APUs. Just like you, we still waiting for access to them! Once we have the first
-boards in the lab we will detail our experiences via our blog, as well as build
-a list of motherboard that are qualified for use with ROCm.
+* AMD Raven Ridge APU are currently not supported 
 
 ### New Features to ROCm 1.7
 
