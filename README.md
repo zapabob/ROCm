@@ -89,10 +89,10 @@ of the following GitHub repositories:
 * [atmi](https://github.com/RadeonOpenCompute/atmi/tree/0.3.7)
 
 Additionally, the following mirror repositories that support the HCC compiler
-are also available on GitHub, and frozen for the rocm-1.7.0 release:
+are also available on GitHub, and frozen for the rocm-1.7.1 release:
 
 * [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.7.x)
-* [lld](https://github.com/RadeonOpenCompute/lld/tree/roc-1.7.x)
+* [ldd](https://github.com/RadeonOpenCompute/lld/tree/roc-1.7.x)
 * [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/roc-1.7.x)
 * [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-1.7.x)
 
@@ -172,19 +172,8 @@ We recommend you [verify your installation](https://github.com/RadeonOpenCompute
 
 ##### Start by following the instruction of installing ROCm with Debian repository:
 
- at the step "sudo apt-get install rocm-dkms" replace it with:
+No additional steps are required. The rocm-opencl package is now installed with rocm-dkms as a dependency. This includes the development package, rocm-opencl-dev.
  
- ```shell
- sudo apt-get install rocm-dkms rocm-opencl
- ```
- 
- To install the development kit for OpenCL, which includes the OpenCL header files, execute this installation command:
- 
- ```shell
- sudo apt-get install rocm-opencl-dev
-  ```
-  
- Then follow the direction for Debian Repository 
  
 ###### Upon restart, To test your OpenCL instance 
 
@@ -233,7 +222,7 @@ need to be manually un-installed:
 
 ```shell
 sudo apt-get purge libhsakmt
-sudo apt-get purge radeon-firmware
+sudo apt-get purge compute-firmware
 sudo apt-get purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{print $2}')
 ```
 
@@ -241,7 +230,7 @@ If possible, we would recommend starting with a fresh OS install.
 
 #### RPM repository - dnf (yum)
 
-A repository containing rpm packages is currently no available for the ROCm 1.7 release.
+A repository containing rpm packages is currently not available for the ROCm 1.7 release.
 
 #### Closed source components
 The ROCm platform relies on a few closed source components to provide legacy
@@ -271,7 +260,7 @@ Note: make sure ~/bin exists and it is part of your PATH
 #### Cloning the code
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.7.0
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.7.1
 repo sync
 ```
 These series of commands will pull all of the open source code associated with
