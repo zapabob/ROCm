@@ -2,27 +2,6 @@
 The ROCm Platform brings a rich foundation to advanced computing by seamlessly
  integrating the CPU and GPU with the goal of solving real-world problems.
 
-On April 25th, 2016, we delivered ROCm 1.0 built around three pillars:
-
-1) Open Heterogeneous Computing Platform (Linux Driver and Runtime Stack), 
-   optimized for HPC & Ultra-scale class computing;
-   
-2) Heterogeneous C and C++ Single Source Compiler, to approach computation 
-   holistically, on a system level, rather than as a discrete GPU artifact;
-   
-3) HIP, acknowledging the need for freedom of choice when it comes to platforms
-   and APIs for GPU computing.
-
-Using our knowledge of the HSA Standards and, more importantly, the HSA
-Runtime, we have been able to successfully extended support to the dGPU with
-critical features for accelerating NUMA computation. As a result, the ROCK
-driver is composed of several components based on our efforts to develop the
-Heterogeneous System Architecture for APUs, including the new AMDGPU driver,
-the Kernel Fusion Driver (KFD), the HSA+ Runtime and an LLVM based compilation
-stack which provides support for key languages. This support starts with AMD’s
-Fiji family of dGPUs, and has expanded to include the Hawaii dGPU family in ROCm
-1.2. ROCm 1.3 further extends support to include the Polaris family of ASICs.
-
 #### Supported CPUs
 The ROCm Platform leverages PCIe Atomics (Fetch ADD, Compare and SWAP, 
 Unconditional SWAP, AtomicsOpCompletion).
@@ -71,15 +50,7 @@ option for enabling IOMMUv2. If this is the case, the final requirement is
 associated with correct CRAT table support - please inquire with the OEM about 
 the latter.
 * AMD Merlin/Falcon Embedded System is also not currently supported by the public Repo. 
-
-#### Support for future APUs
-We are well aware of the excitement and anticipation built around using ROCm
-with an APU system which fully exposes Shared Virtual Memory alongside and cache
-coherency between the CPU and GPU. To this end, in mid 2017 we plan on testing 
-commercial AM4 motherboards for the Bristol Ridge and Raven Ridge families of 
-APUs. Just like you, we still waiting for access to them! Once we have the first
-boards in the lab we will detail our experiences via our blog, as well as build
-a list of motherboard that are qualified for use with ROCm.
+* AMD Raven Ridge APU are currently not supported 
 
 ### New Features to ROCm 1.7
 
@@ -137,6 +108,15 @@ that an rpm repository will be available in the next point release.
 The packages in the Debian repository have been signed to ensure package integrity.
 Directions for each repository are given below:
 
+##### First make sure your system is up to date 
+
+```shell
+sudo apt update
+sudo apt dist-upgrade
+sudo apt-get install libnuma-dev
+sudo reboot
+```
+
 #### Packaging server update
 The packaging server has been changed from the old http://packages.amd.com
 to the new repository site http://repo.radeon.com. 
@@ -167,6 +147,23 @@ Next, update the apt-get repository list and install/update the rocm package:
 sudo apt-get update
 sudo apt-get install rocm-dkms
 ```
+
+###### Next set your permsions 
+With move to upstreaming the KFD driver and the support of DKMS,  for all Console aka headless user, you will need to add all  your users to the  'video" group by setting the Unix permissions
+
+Configure 
+Ensure that your user account is a member of the "video" group prior to using the ROCm driver. You can find which groups you are a member of with the following command:
+
+```shell
+groups
+```
+
+To add yourself to the video group you will need the sudo password and can use the following command:
+
+```shell
+sudo usermod -a -G video $LOGNAME 
+``` 
+
 Once complete, reboot your system.
 
 We recommend you [verify your installation](https://github.com/RadeonOpenCompute/ROCm#verify-installation) to make sure everything completed successfully.
