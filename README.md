@@ -121,7 +121,7 @@ Additionally, the following mirror repositories that support the HCC compiler
 are also available on GitHub, and frozen for the rocm-1.7.0 release:
 
 * [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.7.x)
-* [lld](https://github.com/RadeonOpenCompute/lld/tree/rocm-1.7.x)
+* [lld](https://github.com/RadeonOpenCompute/lld/tree/roc-1.7.x)
 * [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/roc-1.7.x)
 * [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-1.7.x)
 
