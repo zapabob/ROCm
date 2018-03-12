@@ -225,7 +225,7 @@ need to be manually un-installed:
 
 ```shell
 sudo apt-get purge libhsakmt
-sudo apt-get purge radeon-firmware
+sudo apt-get purge compute-firmware
 sudo apt-get purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{print $2}')
 ```
 
