@@ -113,15 +113,21 @@ Directions for each repository are given below:
 ```shell
 sudo apt update
 sudo apt dist-upgrade
-sudo apt-get install libnuma-dev
+sudo apt install libnuma-dev
 sudo reboot
 ```
+#### Optional: Upgrade to 4.13 kernel
+Although not required, it is recommended as of ROCm 1.7.1 that the system's kernel is upgraded to the latest 4.13 version available:
 
+```shell
+sudo apt install linux-headers-4.13.0-32-generic linux-image-4.13.0-32-generic linux-image-extra-4.13.0-32-generic linux-signed-image-4.13.0-32-generic
+sudo reboot 
+```
 #### Packaging server update
 The packaging server has been changed from the old http://packages.amd.com
 to the new repository site http://repo.radeon.com. 
 
-#### Debian repository - apt-get
+#### Debian repository - apt
 
 ##### Add the ROCm apt repository
 For Debian based systems, like Ubuntu, configure the Debian ROCm repository as
@@ -138,14 +144,14 @@ but has the following sha1sum hash:
 f0d739836a9094004b0a39058d046349aacc1178  rocm.gpg.key
 
 ##### Install or Update
-Next, update the apt-get repository list and install/update the rocm package:
+Next, update the apt repository list and install/update the rocm package:
 
 >**Warning**: Before proceeding, make sure to completely
 >[uninstall any previous ROCm package](https://github.com/RadeonOpenCompute/ROCm#removing-pre-release-packages):
 
 ```shell
-sudo apt-get update
-sudo apt-get install rocm-dkms
+sudo apt update
+sudo apt install rocm-dkms
 ```
 
 ###### Next set your permsions 
@@ -199,7 +205,7 @@ g++ -I /opt/rocm/opencl/include/ ./HelloWorld.cpp -o HelloWorld -L/opt/rocm/open
 To un-install the entire rocm development package execute:
 
 ```shell
-sudo apt-get autoremove rocm-dkms
+sudo apt autoremove rocm-dkms
 ```
 
 ##### Installing development packages for cross compilation
@@ -209,8 +215,8 @@ you may prefer to avoid installing the ROCm Kernel to your development system.
 In this case, install the development subset of packages:
 
 ```shell
-sudo apt-get update
-sudo apt-get install rocm-dev
+sudo apt update
+sudo apt install rocm-dev
 ```
 
 >**Note:** To execute ROCm enabled apps you will require a system with the full
@@ -221,9 +227,9 @@ If you installed any of the ROCm pre-release packages from github, they will
 need to be manually un-installed:
 
 ```shell
-sudo apt-get purge libhsakmt
-sudo apt-get purge compute-firmware
-sudo apt-get purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{print $2}')
+sudo apt purge libhsakmt
+sudo apt purge compute-firmware
+sudo apt purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{print $2}')
 ```
 
 If possible, we would recommend starting with a fresh OS install.
