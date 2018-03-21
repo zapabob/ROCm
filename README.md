@@ -116,7 +116,13 @@ sudo apt dist-upgrade
 sudo apt-get install libnuma-dev
 sudo reboot
 ```
+#### Optional: Upgrade to 4.13 kernel
+Although not required, it is recommended as of ROCm 1.7.1 that the system's kernel is upgraded to the latest 4.13 version available:
 
+```shell
+sudo apt install linux-headers-4.13.0-32-generic linux-image-4.13.0-32-generic linux-image-extra-4.13.0-32-generic linux-signed-image-4.13.0-32-generic
+sudo reboot 
+```
 #### Packaging server update
 The packaging server has been changed from the old http://packages.amd.com
 to the new repository site http://repo.radeon.com. 
