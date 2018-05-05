@@ -172,7 +172,12 @@ sudo usermod -a -G video $LOGNAME
 
 Once complete, reboot your system.
 
-We recommend you [verify your installation](https://github.com/RadeonOpenCompute/ROCm#verify-installation) to make sure everything completed successfully.
+Upon Reboot run 
+```shell
+rocminfo 
+clinfo 
+``` 
+If you have[Install Issue ](https://rocm.github.io/install_issues.html) please read this FAQ .
 
 #### To install ROCm with Developer Preview of OpenCL 
 
