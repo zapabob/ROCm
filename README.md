@@ -302,7 +302,7 @@ At this point ROCm can be installed on the target system. Create a /etc/yum.repo
 ```shell
 [ROCm]
 name=ROCm
-baseurl=http://<repo URL>
+baseurl=http://repo.radeon.com/rocm/yum/rpm
 enabled=1
 gpgcheck=0
 ```
