@@ -299,11 +299,13 @@ At this point they system can install ROCm using the DKMS drivers.
 Installing ROCm on the system
 At this point ROCm can be installed on the target system. Create a /etc/yum.repos.d/rocm.repo file with the following contents:
 
+```shell
 [ROCm]
 name=ROCm
 baseurl=http://<repo URL>
 enabled=1
 gpgcheck=0
+```
 
 The repo's URL should point to the location of the repositories repodata database. Install ROCm components using these commands:
 
