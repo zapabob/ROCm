@@ -56,24 +56,23 @@ the latter.
 
 #### DKMS driver installation
 
- * New driver installation uses Dynamic Kernel Module Support (DKMS)
- * Only amdkfd and amdgpu kernel modules are installed to support AMD hardware
- * Currently only Debian packages are provided for DKMS (no Fedora suport available)
+ * Debian packages are provided for DKMS on Ubuntu
+ * RPM packages are provided for CentOS/RHEL 7.4 support
  * See the [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.8.x) and [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.8.x) for additional documentation on driver setup
 
 #### Developer preview of the new OpenCL 1.2 compatible language runtime and compiler
 
- * OpenCL 2.0 compatible kernel language support with OpenCL 1.2 compatible
-   runtime 
- * Supports offline ahead of time compilation today;
-   during the Beta phase we will add in-process/in-memory compilation. 
  * Binary Package support for Ubuntu 16.04
- * Binary Package support for Fedora 24 is not currently available
- * Dropping binary package support for Ubuntu 14.04, Fedora 23
+ * Binary Package support for CentoOS 7.4
+ * Binary Package support for RHEL 7.4
  
 #### IPC support 
 
+ * UCX support for OpenMPI
+ * ROCm RDMA
+
 ### The latest ROCm platform - ROCm 1.8
+
 The latest tested version of the drivers, tools, libraries and source code for
 the ROCm platform have been released and are available under the roc-1.8.x or rocm-1.8.x tag
 of the following GitHub repositories:
@@ -104,6 +103,7 @@ The ROCm 1.8 platform has been tested on the following operating systems:
  * RHEL 7.4 (Using devetoolset-7 runtime support)
 
 ### Installing from AMD ROCm repositories
+
 AMD is hosting both debian and RPM repositories for the ROCm 1.8 packages at this time.
 
 The packages in the Debian repository have been signed to ensure package integrity.
@@ -119,6 +119,7 @@ sudo apt install libnuma-dev
 sudo reboot
 ```
 ##### Optional: Upgrade to 4.13 kernel
+
 Although not required, it is recommended as of ROCm 1.8.0 that the system's kernel is upgraded to the latest 4.13 version available:
 
 ```shell
@@ -126,6 +127,7 @@ sudo apt install linux-headers-4.13.0-32-generic linux-image-4.13.0-32-generic l
 sudo reboot 
 ```
 ##### Add the ROCm apt repository
+
 For Debian based systems, like Ubuntu, configure the Debian ROCm repository as
 follows:
 
@@ -140,6 +142,7 @@ but has the following sha1sum hash:
 f0d739836a9094004b0a39058d046349aacc1178  rocm.gpg.key
 
 ##### Install
+
 Next, update the apt repository list and install the rocm package:
 
 >**Warning**: Before proceeding, make sure to completely
@@ -151,6 +154,7 @@ sudo apt install rocm-dkms
 ```
 
 ###### Next set your permsions 
+
 With move to upstreaming the KFD driver and the support of DKMS,  for all Console aka headless user, you will need to add all  your users to the  'video" group by setting the Unix permissions
 
 Configure 
@@ -173,6 +177,7 @@ Upon Reboot run
 rocminfo 
 clinfo 
 ``` 
+
 If you have[Install Issue ](https://rocm.github.io/install_issues.html) please read this FAQ .
 
 #### To install ROCm with Developer Preview of OpenCL 
@@ -205,6 +210,7 @@ g++ -I /opt/rocm/opencl/include/ ./HelloWorld.cpp -o HelloWorld -L/opt/rocm/open
 ```
 
 ##### Un-install
+
 To un-install the entire rocm development package execute:
 
 ```shell
@@ -212,6 +218,7 @@ sudo apt autoremove rocm-dkms
 ```
 
 ##### Installing development packages for cross compilation
+
 It is often useful to develop and test on different systems. In this scenario,
 you may prefer to avoid installing the ROCm Kernel to your development system.
 
@@ -226,6 +233,7 @@ sudo apt install rocm-dev
 >ROCm driver stack installed
 
 ##### Removing pre-release packages
+
 If you installed any of the ROCm pre-release packages from github, they will
 need to be manually un-installed:
 
@@ -238,11 +246,13 @@ sudo apt purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{
 If possible, we would recommend starting with a fresh OS install.
 
 #### CentOS/RHEL 7 Support
+
 Support for CentOS/RHEL 7 has been added in ROCm 1.8, but requires a special 
 runtime environment provided by the RHEL Software Collections and additional
 dkms support packages to properly install in run.
 
 ##### Preparing RHEL 7 for installation
+
 RHEL is a subscription based operating system, and must enable several external
 repositories to enable installation of the devtoolset-7 environment and the DKMS
 support files. These steps are not required for CentOS.
@@ -268,6 +278,7 @@ sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch
 ```
 
 ##### Install and setup Devtoolset-7 Instructions
+
 To setup the Devtoolset-7 environment, follow the instructions on this page:
 
 https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
@@ -275,6 +286,7 @@ https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
 Note that devtoolset-7 is a Software Collections package, and is not supported by AMD.
 
 #### Preparing CentOS/RHEL for DKMS Install
+
 Installing kernel drivers on CentOS/RHEL requires dkms tool being installed:
 
 ```shell
@@ -304,6 +316,7 @@ sudo yum install rocm-dkms
 The rock-dkms component should be installed and the /dev/kfd device should be available on reboot.
 
 ##### Compiling applications using hcc, hip, etc.
+
 To compile applications or samples, please use gcc-7.2 provided by the devtoolset-7 environment.
 To do this, compile all applications after running this command: 
 
@@ -338,6 +351,7 @@ options amdkfd noretry=0
 Once it's done, run sudo update-initramfs -u. Reboot and verify /sys/module/amdkfd/parameters/noretry stays as 0.
 
 #### Closed source components
+
 The ROCm platform relies on a few closed source components to provide legacy
 functionality like HSAIL finalization and debugging/profiling support. These
 components are only available through the ROCm repositories, and will either be
@@ -347,12 +361,14 @@ made available in the following packages:
 *  hsa-ext-rocr-dev
 
 ### Getting ROCm source code
+
 Modifications can be made to the ROCm 1.8 components by modifying the open
 source code base and rebuilding the components. Source code can be cloned from
 each of the GitHub repositories using git, or users can use the repo command
 and the ROCm 1.8 manifest file to download the entire ROCm 1.8 source code.
 
 #### Installing repo
+
 Google's repo tool allows you to manage multiple git repositories
 simultaneously. You can install it by executing the following commands:
 
@@ -363,6 +379,7 @@ chmod a+x ~/bin/repo
 Note: make sure ~/bin exists and it is part of your PATH
 
 #### Cloning the code
+
 ```shell
 mkdir ROCm && cd ROCm
 repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.8.0
