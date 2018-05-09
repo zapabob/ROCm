@@ -178,7 +178,7 @@ rocminfo
 clinfo 
 ``` 
 
-If you have[Install Issue ](https://rocm.github.io/install_issues.html) please read this FAQ .
+If you have an [Install Issue ](https://rocm.github.io/install_issues.html) please read this FAQ .
 
 #### To install ROCm with Developer Preview of OpenCL 
 
@@ -245,13 +245,13 @@ sudo apt purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{
 
 If possible, we would recommend starting with a fresh OS install.
 
-#### CentOS/RHEL 7 Support
+### CentOS/RHEL 7 Support
 
 Support for CentOS/RHEL 7 has been added in ROCm 1.8, but requires a special 
 runtime environment provided by the RHEL Software Collections and additional
 dkms support packages to properly install in run.
 
-##### Preparing RHEL 7 for installation
+#### Preparing RHEL 7 for installation
 
 RHEL is a subscription based operating system, and must enable several external
 repositories to enable installation of the devtoolset-7 environment and the DKMS
@@ -269,7 +269,6 @@ sudo subscription-manager repos --enable rhel-7-server-rhscl-rpms
 sudo subscription-manager repos --enable rhel-7-server-optional-rpms
 sudo subscription-manager repos --enable rhel-7-server-extras-rpms
 ```
- 
 
 Third, enable additional repositories by downloading and installing the epel-release-latest-7 repository RPM:
 
@@ -277,7 +276,7 @@ Third, enable additional repositories by downloading and installing the epel-rel
 sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 ```
 
-##### Install and setup Devtoolset-7 Instructions
+#### Install and setup Devtoolset-7 Instructions
 
 To setup the Devtoolset-7 environment, follow the instructions on this page:
 
@@ -315,7 +314,7 @@ sudo yum install rocm-dkms
 
 The rock-dkms component should be installed and the /dev/kfd device should be available on reboot.
 
-##### Compiling applications using hcc, hip, etc.
+#### Compiling applications using hcc, hip, etc.
 
 To compile applications or samples, please use gcc-7.2 provided by the devtoolset-7 environment.
 To do this, compile all applications after running this command: 
@@ -323,14 +322,14 @@ To do this, compile all applications after running this command:
 ```shell
 scl enable devtoolset-7 bash
 ```
-##### Un-install
+#### Un-install
 To un-install the entire rocm development package execute:
 
 ```shell
 sudo apt autoremove rocm-dkms
 ```
 
-##### Known Issues / Workarounds
+#### Known Issues / Workarounds
 
 If you Plan to Run with X11 - we are seeing  X freezes under load
 
