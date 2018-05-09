@@ -209,7 +209,7 @@ g++ -I /opt/rocm/opencl/include/ ./HelloWorld.cpp -o HelloWorld -L/opt/rocm/open
  ./HelloWorld
 ```
 
-##### Un-install
+##### How to un-install from Ubuntu 16.04
 
 To un-install the entire rocm development package execute:
 
@@ -276,7 +276,7 @@ Third, enable additional repositories by downloading and installing the epel-rel
 sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 ```
 
-#### Install and setup Devtoolset-7 Instructions
+#### Install and setup Devtoolset-7
 
 To setup the Devtoolset-7 environment, follow the instructions on this page:
 
@@ -284,7 +284,7 @@ https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
 
 Note that devtoolset-7 is a Software Collections package, and is not supported by AMD.
 
-#### Preparing CentOS/RHEL for DKMS Install
+#### Prepare CentOS/RHEL for DKMS Install
 
 Installing kernel drivers on CentOS/RHEL requires dkms tool being installed:
 
@@ -322,11 +322,12 @@ To do this, compile all applications after running this command:
 ```shell
 scl enable devtoolset-7 bash
 ```
-#### Un-install
+#### How to un-install ROCm from CentOS/RHEL 7.4
+
 To un-install the entire rocm development package execute:
 
 ```shell
-sudo apt autoremove rocm-dkms
+sudo yum autoremove rocm-dkms
 ```
 
 #### Known Issues / Workarounds
