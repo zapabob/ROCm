@@ -352,6 +352,8 @@ options amdkfd noretry=0
 
 Once it's done, run sudo update-initramfs -u. Reboot and verify /sys/module/amdkfd/parameters/noretry stays as 0.
 
+If you are you are ussing hipCaffe Alexnet training on ImageNet - we are seeing sporadic hangs of hipCaffe during training
+
 #### Closed source components
 
 The ROCm platform relies on a few closed source components to provide legacy
