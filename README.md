@@ -316,6 +316,20 @@ sudo yum install rocm-dkms
 
 The rock-dkms component should be installed and the /dev/kfd device should be available on reboot.
 
+Ensure that your user account is a member of the "video" or "wheel" group prior to using the ROCm driver.
+You can find which groups you are a member of with the following command:
+
+```shell
+groups
+```
+
+To add yourself to the video (or wheel) group you will need the sudo password and can use the
+following command:
+
+```shell
+sudo usermod -a -G video $LOGNAME 
+``` 
+
 #### Compiling applications using hcc, hip, etc.
 
 To compile applications or samples, please use gcc-7.2 provided by the devtoolset-7 environment.
@@ -334,7 +348,7 @@ sudo yum autoremove rocm-dkms
 
 #### Known Issues / Workarounds
 
-If you Plan to Run with X11 - we are seeing  X freezes under load
+##### If you Plan to Run with X11 - we are seeing  X freezes under load
 
 ROCm 1.8.0 a kernel parameter noretry has been set to 1 to improve overall system performance. However it has been proven to bring instability to graphics driver shipped with Ubuntu. This is an ongoing issue and we are looking into it.
 
@@ -352,7 +366,7 @@ options amdkfd noretry=0
 
 Once it's done, run sudo update-initramfs -u. Reboot and verify /sys/module/amdkfd/parameters/noretry stays as 0.
 
-If you are you are ussing hipCaffe Alexnet training on ImageNet - we are seeing sporadic hangs of hipCaffe during training
+##### If you are you are using hipCaffe Alexnet training on ImageNet - we are seeing sporadic hangs of hipCaffe during training
 
 #### Closed source components
 
