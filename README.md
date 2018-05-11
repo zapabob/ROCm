@@ -284,22 +284,18 @@ https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
 
 Note that devtoolset-7 is a Software Collections package, and is not supported by AMD.
 
-#### Prepare CentOS/RHEL for DKMS Install
+#### Prepare CentOS/RHEL 7.4 for DKMS Install
 
-Installing kernel drivers on CentOS/RHEL requires dkms tool being installed:
+Installing kernel drivers on CentOS/RHEL 7.4 requires dkms tool being installed:
 
 ```shell
-sudo yum -y --exclude=kernel\* update
-sudo yum -y -x 'kernel*' update
-sudo yum update
 sudo yum install -y epel-release
 sudo yum install -y dkms
 ```
 
-ROCm recommend to use CentOS7.4. To guard against accidentially updating to CentOS7.5 kernel, ROCm recommends to add the following option:
-
+Current release supports up to CentOS/RHEL 7.4. If for any reason the system needs to be updated to 7.5, don’t update the kernel. Add “--exclude=kernel*” flag to yum install. For example:
 ```shell
-sudo echo 'exclude=kernel*' >> /etc/yum.conf
+sudo yum update --exclude=kernel*
 ```
 
 At this point they system can install ROCm using the DKMS drivers.
@@ -318,7 +314,6 @@ gpgcheck=0
 The repo's URL should point to the location of the repositories repodata database. Install ROCm components using these commands:
 
 ```shell
-sudo yum update
 sudo yum install rocm-dkms
 ```
 
