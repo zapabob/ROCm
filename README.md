@@ -289,6 +289,8 @@ Note that devtoolset-7 is a Software Collections package, and is not supported b
 Installing kernel drivers on CentOS/RHEL requires dkms tool being installed:
 
 ```shell
+sudo yum -y --exclude=kernel\* update
+sudo yum -y -x 'kernel*' update
 sudo yum update
 sudo yum install -y epel-release
 sudo yum install -y dkms
