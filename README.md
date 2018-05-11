@@ -296,6 +296,12 @@ sudo yum install -y epel-release
 sudo yum install -y dkms
 ```
 
+ROCm recommend to use CentOS7.4. To guard against accidentially updating to CentOS7.5 kernel, ROCm recommends to add the following option:
+
+```shell
+sudo echo 'exclude=kernel*' >> /etc/yum.conf
+```
+
 At this point they system can install ROCm using the DKMS drivers.
 
 Installing ROCm on the system
