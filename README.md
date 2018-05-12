@@ -3,54 +3,54 @@ The ROCm Platform brings a rich foundation to advanced computing by seamlessly
  integrating the CPU and GPU with the goal of solving real-world problems.
 
 #### Supported CPUs
-The ROCm Platform leverages PCIe Atomics (Fetch ADD, Compare and SWAP, 
-Unconditional SWAP, AtomicsOpCompletion).
-[PCIe atomics](https://github.com/RadeonOpenCompute/RadeonOpenCompute.github.io/blob/master/ROCmPCIeFeatures.md)
-are only supported on PCIe Gen3 Enabled CPUs and PCIe Gen3 Switches like
-Broadcom PLX. When you install your GPUs make sure you install them in a fully
-PCIe Gen3 x16 or x8 slot attached either directly to the CPU's Root I/O 
-controller or via a PCIe switch directly attached to the CPU's Root I/O 
-controller. In our experience many issues stem from trying to use consumer 
-motherboards which provide Physical x16 Connectors that are electrically 
-connected as e.g. PCIe Gen2 x4. This typically occurs when connecting via the 
-Southbridge PCIe I/O controller. If you motherboard is part of this category,
-please do not use this connector for your GPUs, if you intend to exploit ROCm.
 
 
-Our GFX8 GPU's (Fiji & Polaris Family) and GFX9 (Vega)  use PCIe Gen 3 and PCIe Atomics. 
+Starting with ROCm 1.8 we have relexed the use PCIe Atomics and also PCIe Lane choice for Vega10/GFX9 class GPU.  So now you can support CPU with out PCIe Atomics and also use Gen2 x1 lanes. 
+
+Currently our GFX8 GPU's (Fiji & Polaris Family)still need to use PCIe Gen 3 and PCIe Atomics, but are looking at relaxing this in a future release, once we have fully tested firmware. 
+
 
 Current CPUs which support PCIe Gen3 + PCIe Atomics are: 
+  * AMD Ryzen CPUs;
+  * AMD EPYC CPUs;  
+  * Intel Xeon E7 V3  or newer CPUs;
   * Intel Xeon E5 v3 or newer CPUs; 
   * Intel Xeon E3 v3 or newer CPUs; 
   * Intel Core i7 v4, Core i5 v4, Core i3 v4 or newer CPUs (i.e. Haswell family or newer).
-  * AMD Ryzen CPUs;
-  
-Upcoming CPUs which will support PCIe Gen3 + PCIe Atomics are:
-  * AMD Naples Server CPUs; 
-  * Cavium Thunder X Server Processor. 
+
+For FIJI and Polaris GPU's the ROCm Platform leverages PCIe Atomics (Fetch ADD, Compare and SWAP, 
+Unconditional SWAP, AtomicsOpCompletion).
+[PCIe atomics](https://github.com/RadeonOpenCompute/RadeonOpenCompute.github.io/blob/master/ROCmPCIeFeatures.md)
+PCIe Atomics are only supported on PCIe Gen3 Enabled CPUs and PCIe Gen3 Switches like
+Broadcom PLX. When you install your GPUs make sure you install them in a fully
+PCIe Gen3 x16 or x8, x4 or x1  slot attached either directly to the CPU's Root I/O 
+controller or via a PCIe switch directly attached to the CPU's Root I/O 
+controller. In our experience many issues stem from trying to use consumer 
+motherboards which provide Physical x16 Connectors that are electrically 
+connected as e.g. PCIe Gen2 x4 connected via the 
+Southbridge PCIe I/O controller. 
+ 
 
 Experimental support for our GFX7 GPUs Radeon R9 290, R9 390, AMD FirePro S9150, S9170 note they do not support or
 take advantage of PCIe Atomics. However, we still recommend that you use a CPU
 from the list provided above. 
 
 #### Not supported or very limited support under ROCm 
-* We do not support ROCm with PCIe Gen 2 enabled CPUs such as the AMD Opteron,
-Phenom, Phenom II, Athlon, Athlon X2, Athlon II and Older Intel Xeon and Intel
-Core Architecture and Pentium CPUs.  
-* We also do not support AMD Carrizo and Kaveri APU as host for compliant dGPU
- attachments.
-* Thunderbolt 1 and 2 enabled GPU's are not supported by ROCm. Thunderbolt 1 & 2
-are PCIe Gen2 based.
-* AMD Carrizo based APUs have limited support due to OEM & ODM's choices when it
-comes to some key configuration parameters. On point, we have observed that
-Carrizo Laptops, AIOs and Desktop systems showed inconsistencies in exposing and
-enabling the System BIOS parameters required by the ROCm stack. Before
-purchasing a Carrizo system for ROCm, please verify that the BIOS provides an
-option for enabling IOMMUv2. If this is the case, the final requirement is
-associated with correct CRAT table support - please inquire with the OEM about 
-the latter.
-* AMD Merlin/Falcon Embedded System is also not currently supported by the public Repo. 
-* AMD Raven Ridge APU are currently not supported 
+###### Limited Support 
+
+
+* With ROCm 1.8 and Vega10 it should support  PCIe Gen 2 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and Older Intel Xeon and Intel Core Architecture and Pentium CPUs. But we have done very limited testing. Since our test farm today has been catering to CPU listed above.  This is where we need comunity support. 
+ * Thunderbolt 1,2 &. 3 enabled breakout boxes GPU's should now be able to work with ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based. But we have done no testing on this config and would need comunity support do limited access to this type of equipment 
+
+###### Not Supported 
+
+
+* We also do not support AMD Carrizo and Kaveri APU as host for compliant dGPU attachments.
+ * Thunderbolt 1 and 2 enabled GPU's are not supported by ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based.
+ * AMD Carrizo based APUs have limited support due to OEM & ODM's choices when it comes to some key configuration parameters. On point, we have observed that Carrizo Laptops, AIOs and Desktop systems showed inconsistencies in exposing and enabling the System BIOS parameters required by the ROCm stack. Before purchasing a Carrizo system for ROCm, please verify that the BIOS provides an option for enabling IOMMUv2. If this is the case, the final requirement is associated with correct CRAT table support - please inquire with the OEM about the latter.
+ * AMD Merlin/Falcon Embedded System is also not currently supported by the public Repo.
+ * AMD Raven Ridge APU are currently not supported
+
 
 ### New Features to ROCm 1.8
 
@@ -60,13 +60,13 @@ the latter.
  * RPM packages are provided for CentOS/RHEL 7.4 support
  * See the [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.8.x) and [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.8.x) for additional documentation on driver setup
 
-#### Developer preview of the new OpenCL 1.2 compatible language runtime and compiler
+#### New Distrubtuion Suppport 
 
  * Binary Package support for Ubuntu 16.04
  * Binary Package support for CentoOS 7.4
  * Binary Package support for RHEL 7.4
  
-#### IPC support 
+#### Improved OpenMPI via UCX support 
 
  * UCX support for OpenMPI
  * ROCm RDMA
@@ -180,11 +180,6 @@ clinfo
 
 If you have an [Install Issue ](https://rocm.github.io/install_issues.html) please read this FAQ .
 
-#### To install ROCm with Developer Preview of OpenCL 
-
-##### Start by following the instruction of installing ROCm with Debian repository:
-
-No additional steps are required. The rocm-opencl package is now installed with rocm-dkms as a dependency. This includes the development package, rocm-opencl-dev.
  
 ###### Upon restart, To test your OpenCL instance 
 
