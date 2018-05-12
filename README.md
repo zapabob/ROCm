@@ -291,12 +291,9 @@ Installing kernel drivers on CentOS/RHEL 7.4 requires dkms tool being installed:
 ```shell
 sudo yum install -y epel-release
 sudo yum install -y dkms
+sudo yum install -y kernel-headers-`uname -r`
 ```
 
-Current release supports up to CentOS/RHEL 7.4. If for any reason the system needs to be updated to 7.5, don’t update the kernel. Add “--exclude=kernel*” flag to yum install. For example:
-```shell
-sudo yum update --exclude=kernel*
-```
 
 At this point they system can install ROCm using the DKMS drivers.
 
@@ -331,7 +328,13 @@ following command:
 
 ```shell
 sudo usermod -a -G video $LOGNAME 
-``` 
+```
+
+Current release supports up to CentOS/RHEL 7.4. If for any reason the system needs to be updated to 7.5, don’t update the kernel. Add “--exclude=kernel*” flag to yum install. For example:
+
+```shell
+sudo yum update --exclude=kernel*
+```
 
 #### Compiling applications using hcc, hip, etc.
 
