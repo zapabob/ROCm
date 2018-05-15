@@ -36,13 +36,13 @@ take advantage of PCIe Atomics. However, we still recommend that you use a CPU
 from the list provided above. 
 
 #### Not supported or very limited support under ROCm 
-###### Limited Support 
+###### Limited support 
 
 
 * With ROCm 1.8 and Vega10 it should support  PCIe Gen 2 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and Older Intel Xeon and Intel Core Architecture and Pentium CPUs. But we have done very limited testing. Since our test farm today has been catering to CPU listed above.  This is where we need comunity support. 
  * Thunderbolt 1,2 and 3 enabled breakout boxes GPU's should now be able to work with ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based. But we have done no testing on this config and would need comunity support do limited access to this type of equipment 
 
-###### Not Supported 
+###### Not supported 
 
 
 * We also do not support AMD Carrizo and Kaveri APU as host for compliant dGPU attachments.
@@ -52,7 +52,7 @@ from the list provided above.
  * AMD Raven Ridge APU are currently not supported
 
 
-### New Features to ROCm 1.8
+### New features to ROCm 1.8
 
 #### DKMS driver installation
 
@@ -60,7 +60,7 @@ from the list provided above.
  * RPM packages are provided for CentOS/RHEL 7.4 support
  * See the [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.8.x) and [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.8.x) for additional documentation on driver setup
 
-#### New Distribution Suppport 
+#### New distribution suppport 
 
  * Binary package support for Ubuntu 16.04
  * Binary package support for CentoOS 7.4
