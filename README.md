@@ -40,7 +40,7 @@ from the list provided above.
 
 
 * With ROCm 1.8 and Vega10 it should support  PCIe Gen 2 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and Older Intel Xeon and Intel Core Architecture and Pentium CPUs. But we have done very limited testing. Since our test farm today has been catering to CPU listed above.  This is where we need comunity support. 
- * Thunderbolt 1,2 &. 3 enabled breakout boxes GPU's should now be able to work with ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based. But we have done no testing on this config and would need comunity support do limited access to this type of equipment 
+ * Thunderbolt 1,2 and 3 enabled breakout boxes GPU's should now be able to work with ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based. But we have done no testing on this config and would need comunity support do limited access to this type of equipment 
 
 ###### Not Supported 
 
@@ -60,11 +60,11 @@ from the list provided above.
  * RPM packages are provided for CentOS/RHEL 7.4 support
  * See the [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.8.x) and [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.8.x) for additional documentation on driver setup
 
-#### New Distrubtuion Suppport 
+#### New Distribution Suppport 
 
- * Binary Package support for Ubuntu 16.04
- * Binary Package support for CentoOS 7.4
- * Binary Package support for RHEL 7.4
+ * Binary package support for Ubuntu 16.04
+ * Binary package support for CentoOS 7.4
+ * Binary package support for RHEL 7.4
  
 #### Improved OpenMPI via UCX support 
 
@@ -108,7 +108,7 @@ AMD is hosting both debian and RPM repositories for the ROCm 1.8 packages at thi
 
 The packages in the Debian repository have been signed to ensure package integrity.
 
-#### Installing from a debian repository
+#### Installing from a Debian repository
 
 ##### First make sure your system is up to date 
 
@@ -181,7 +181,7 @@ clinfo
 If you have an [Install Issue ](https://rocm.github.io/install_issues.html) please read this FAQ .
 
  
-###### Upon restart, To test your OpenCL instance 
+###### Upon restart, to test your OpenCL instance 
 
  Build and run Hello World OCL app..
 
