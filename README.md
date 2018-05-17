@@ -5,7 +5,7 @@ The ROCm Platform brings a rich foundation to advanced computing by seamlessly
 #### Supported CPUs
 
 
-Starting with ROCm 1.8 we have relexed the use PCIe Atomics and also PCIe lane choice for Vega10/GFX9 class GPU.  So now you can support CPU without PCIe Atomics and also use Gen2 x1 lanes. 
+Starting with ROCm 1.8 we have relaxed the use of PCIe Atomics and also PCIe lane choice for Vega10/GFX9 class GPU.  So now you can support CPU without PCIe Atomics and also use Gen2 x1 lanes. 
 
 Currently our GFX8 GPU's (Fiji & Polaris family) still need to use PCIe Gen 3 and PCIe Atomics, but are looking at relaxing this in a future release, once we have fully tested firmware. 
 
