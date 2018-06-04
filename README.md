@@ -369,8 +369,7 @@ Once it's done, run sudo update-initramfs -u. Reboot and verify /sys/module/amdk
 
 ##### Users without PCIe atomic support must set HSA_ENABLE_SDMA=0
 
-Some GPUs will work with ROCm if they do not support PCIe atomics. However, these cards cannot use SDMA functionality. The
-Hawaii based ASICs are the only GPUs supported that do not have PCIe atomics.
+Some GPUs will work with ROCm if they do not support PCIe atomics. However, these cards cannot use SDMA functionality.
 
 #### Closed source components
 
