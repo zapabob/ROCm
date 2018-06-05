@@ -51,26 +51,26 @@ from the list provided above.
  * AMD Raven Ridge APU are currently not supported
 
 
-### New features to ROCm 1.8
+### New features to ROCm 1.8.1
 
 #### DKMS driver installation
 
  * Debian packages are provided for DKMS on Ubuntu
- * RPM packages are provided for CentOS/RHEL 7.4 support
+ * RPM packages are provided for CentOS/RHEL 7.4 and 7.5 support
  * See the [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.8.x) and [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.8.x) for additional documentation on driver setup
 
 #### New distribution suppport 
 
  * Binary package support for Ubuntu 16.04
- * Binary package support for CentoOS 7.4
- * Binary package support for RHEL 7.4
+ * Binary package support for CentoOS 7.4 and 7.5
+ * Binary package support for RHEL 7.4 and 7.5
  
 #### Improved OpenMPI via UCX support 
 
  * UCX support for OpenMPI
  * ROCm RDMA
 
-### The latest ROCm platform - ROCm 1.8
+### The latest ROCm platform - ROCm 1.8.1
 
 The latest tested version of the drivers, tools, libraries and source code for
 the ROCm platform have been released and are available under the roc-1.8.x or rocm-1.8.x tag
@@ -96,14 +96,14 @@ are also available on GitHub, and frozen for the rocm-1.8.0 release:
 
 #### Supported Operating Systems - New operating systems available
 
-The ROCm 1.8 platform has been tested on the following operating systems:
+The ROCm 1.8.1 platform has been tested on the following operating systems:
  * Ubuntu 16.04
  * CentOS 7.4 (Using devetoolset-7 runtime support)
  * RHEL 7.4 (Using devetoolset-7 runtime support)
 
 ### Installing from AMD ROCm repositories
 
-AMD is hosting both Debian and RPM repositories for the ROCm 1.8 packages at this time.
+AMD is hosting both Debian and RPM repositories for the ROCm 1.8.1 packages at this time.
 
 The packages in the Debian repository have been signed to ensure package integrity.
 
@@ -239,7 +239,7 @@ sudo apt purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{
 
 If possible, we would recommend starting with a fresh OS install.
 
-### CentOS/RHEL 7 Support
+### CentOS/RHEL 7 (both 7.4 and 7.5) Support
 
 Support for CentOS/RHEL 7 has been added in ROCm 1.8, but requires a special 
 runtime environment provided by the RHEL Software Collections and additional
@@ -323,10 +323,10 @@ following command:
 sudo usermod -a -G video $LOGNAME 
 ```
 
-Current release supports up to CentOS/RHEL 7.4. If for any reason the system needs to be updated to 7.5, don’t update the kernel. Add “--exclude=kernel*” flag to yum install. For example:
+Current release supports up to CentOS/RHEL 7.4 and 7.5. Users should update to the latest version of the OS:
 
 ```shell
-sudo yum update --exclude=kernel*
+sudo yum update
 ```
 
 #### Compiling applications using hcc, hip, etc.
@@ -349,7 +349,7 @@ sudo yum autoremove rocm-dkms
 
 ##### If you Plan to Run with X11 - we are seeing X freezes under load
 
-ROCm 1.8.0 a kernel parameter noretry has been set to 1 to improve overall system performance. However it has been proven to bring instability to graphics driver shipped with Ubuntu. This is an ongoing issue and we are looking into it.
+ROCm 1.8.1 a kernel parameter noretry has been set to 1 to improve overall system performance. However it has been proven to bring instability to graphics driver shipped with Ubuntu. This is an ongoing issue and we are looking into it.
 
 Before that, please try apply this change by changing noretry bit to 0.
 
@@ -366,6 +366,10 @@ options amdkfd noretry=0
 Once it's done, run sudo update-initramfs -u. Reboot and verify /sys/module/amdkfd/parameters/noretry stays as 0.
 
 ##### If you are you are using hipCaffe Alexnet training on ImageNet - we are seeing sporadic hangs of hipCaffe during training
+
+##### Users without PCIe atomic support must set HSA_ENABLE_SDMA=0
+
+Some GPUs will work with ROCm if they do not support PCIe atomics. However, these cards cannot use SDMA functionality.
 
 #### Closed source components
 
@@ -399,7 +403,7 @@ Note: make sure ~/bin exists and it is part of your PATH
 
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.8.0
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.8.1
 repo sync
 ```
 These series of commands will pull all of the open source code associated with
