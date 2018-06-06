@@ -119,7 +119,7 @@ sudo reboot
 ```
 ##### Optional: Upgrade to 4.13 kernel
 
-Although not required, it is recommended as of ROCm 1.8.0 that the system's kernel is upgraded to the latest 4.13 version available:
+Although not required, it is recommended as of ROCm 1.8.1 that the system's kernel is upgraded to the latest 4.13 version available:
 
 ```shell
 sudo apt install linux-headers-4.13.0-32-generic linux-image-4.13.0-32-generic linux-image-extra-4.13.0-32-generic linux-signed-image-4.13.0-32-generic
