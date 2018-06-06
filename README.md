@@ -98,8 +98,8 @@ are also available on GitHub, and frozen for the rocm-1.8.0 release:
 
 The ROCm 1.8.1 platform has been tested on the following operating systems:
  * Ubuntu 16.04
- * CentOS 7.4 (Using devetoolset-7 runtime support)
- * RHEL 7.4 (Using devetoolset-7 runtime support)
+ * CentOS 7.4 &. 7.5 (Using devetoolset-7 runtime support)
+ * RHEL 7.4. &. 7.5  (Using devetoolset-7 runtime support)
 
 ### Installing from AMD ROCm repositories
 
@@ -367,9 +367,13 @@ Once it's done, run sudo update-initramfs -u. Reboot and verify /sys/module/amdk
 
 ##### If you are you are using hipCaffe Alexnet training on ImageNet - we are seeing sporadic hangs of hipCaffe during training
 
-##### Users without PCIe atomic support must set HSA_ENABLE_SDMA=0
+##### Vega10 Users who want to run ROCm without supporting PCIe atomic support must set HSA_ENABLE_SDMA=0
 
-Some GPUs will work with ROCm if they do not support PCIe atomics. However, these cards cannot use SDMA functionality.
+Currently with Vega10 GPUs to disable PCIe atomics support in ROCm, you need to turn off SDMA functionality.
+
+```shell
+export HSA_ENABLE_SDMA=0
+```
 
 #### Closed source components
 
