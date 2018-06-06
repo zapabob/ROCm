@@ -179,7 +179,15 @@ clinfo
 
 If you have an [Install Issue ](https://rocm.github.io/install_issues.html) please read this FAQ .
 
- 
+##### For Vega10 Users who want to run ROCm without supporting PCIe atomic support must set HSA_ENABLE_SDMA=0
+
+Currently with Vega10 GPUs to disable PCIe atomics support in ROCm, you need to turn off SDMA functionality.
+
+```shell
+export HSA_ENABLE_SDMA=0
+```
+
+
 ###### Upon restart, to test your OpenCL instance 
 
  Build and run Hello World OCL app.
@@ -327,6 +335,13 @@ Current release supports up to CentOS/RHEL 7.4 and 7.5. Users should update to t
 
 ```shell
 sudo yum update
+```
+##### For Vega10 Users who want to run ROCm without supporting PCIe atomic support must set HSA_ENABLE_SDMA=0
+
+Currently with Vega10 GPUs to disable PCIe atomics support in ROCm, you need to turn off SDMA functionality.
+
+```shell
+export HSA_ENABLE_SDMA=0
 ```
 
 #### Compiling applications using hcc, hip, etc.
