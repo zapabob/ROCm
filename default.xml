@@ -2,9 +2,9 @@
 <manifest>
 
     <remote name="roc-github"
-            fetch="ssh://git@github.com/RadeonOpenCompute/" />
+            fetch="http://git@github.com/RadeonOpenCompute/" />
     <remote name="pctools-github"
-            fetch="ssh://git@github.com/GPUOpen-ProfessionalCompute-Tools/" />
+            fetch="http://git@github.com/GPUOpen-ProfessionalCompute-Tools/" />
 
     <default revision="roc-1.8.x"
              remote="roc-github"
