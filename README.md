@@ -259,7 +259,7 @@ system with the RHEL subscription server and attaching to a pool id.
 Second, enable the following repositories:
 
 ```shell
-sudo subscription-manager repos --enable rhel-7-server-rhscl-rpms
+sudo subscription-manager repos --enable rhel-server-rhscl-7-rpms
 sudo subscription-manager repos --enable rhel-7-server-optional-rpms
 sudo subscription-manager repos --enable rhel-7-server-extras-rpms
 ```
