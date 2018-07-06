@@ -240,8 +240,8 @@ If you installed any of the ROCm pre-release packages from github, they will
 need to be manually un-installed:
 
 ```shell
-sudo apt purge libhsakmt
-sudo apt purge compute-firmware
+sudo apt purge hsakmt-roct
+sudo apt purge hsakmt-roct-dev
 sudo apt purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{print $2}')
 ```
 
