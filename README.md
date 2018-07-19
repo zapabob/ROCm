@@ -51,7 +51,7 @@ from the list provided above.
  * AMD Raven Ridge APU are currently not supported
 
 
-### New features to ROCm 1.8.1
+### New features to ROCm 1.8.2
 
 #### DKMS driver installation
 
@@ -62,7 +62,7 @@ from the list provided above.
 #### New distribution suppport 
 
  * Binary package support for Ubuntu 16.04
- * Binary package support for CentoOS 7.4 and 7.5
+ * Binary package support for CentOS 7.4 and 7.5
  * Binary package support for RHEL 7.4 and 7.5
  
 #### Improved OpenMPI via UCX support 
@@ -70,7 +70,7 @@ from the list provided above.
  * UCX support for OpenMPI
  * ROCm RDMA
 
-### The latest ROCm platform - ROCm 1.8.1
+### The latest ROCm platform - ROCm 1.8.2
 
 The latest tested version of the drivers, tools, libraries and source code for
 the ROCm platform have been released and are available under the roc-1.8.x or rocm-1.8.x tag
@@ -87,7 +87,7 @@ of the following GitHub repositories:
 * [atmi](https://github.com/RadeonOpenCompute/atmi/tree/0.3.7)
 
 Additionally, the following mirror repositories that support the HCC compiler
-are also available on GitHub, and frozen for the rocm-1.8.0 release:
+are also available on GitHub, and frozen for the rocm-1.8.2 release:
 
 * [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.8.x)
 * [ldd](https://github.com/RadeonOpenCompute/lld/tree/roc-1.8.x)
@@ -96,14 +96,14 @@ are also available on GitHub, and frozen for the rocm-1.8.0 release:
 
 #### Supported Operating Systems - New operating systems available
 
-The ROCm 1.8.1 platform has been tested on the following operating systems:
+The ROCm 1.8.2 platform has been tested on the following operating systems:
  * Ubuntu 16.04
  * CentOS 7.4 &. 7.5 (Using devetoolset-7 runtime support)
  * RHEL 7.4. &. 7.5  (Using devetoolset-7 runtime support)
 
 ### Installing from AMD ROCm repositories
 
-AMD is hosting both Debian and RPM repositories for the ROCm 1.8.1 packages at this time.
+AMD is hosting both Debian and RPM repositories for the ROCm 1.8.2 packages at this time.
 
 The packages in the Debian repository have been signed to ensure package integrity.
 
@@ -117,14 +117,7 @@ sudo apt dist-upgrade
 sudo apt install libnuma-dev
 sudo reboot
 ```
-##### Optional: Upgrade to 4.13 kernel
 
-Although not required, it is recommended as of ROCm 1.8.1 that the system's kernel is upgraded to the latest 4.13 version available:
-
-```shell
-sudo apt install linux-headers-4.13.0-32-generic linux-image-4.13.0-32-generic linux-image-extra-4.13.0-32-generic linux-signed-image-4.13.0-32-generic
-sudo reboot 
-```
 ##### Add the ROCm apt repository
 
 For Debian based systems, like Ubuntu, configure the Debian ROCm repository as
@@ -187,7 +180,6 @@ Currently with Vega10 GPUs to disable PCIe atomics support in ROCm, you need to 
 export HSA_ENABLE_SDMA=0
 ```
 
-
 ###### Upon restart, to test your OpenCL instance 
 
  Build and run Hello World OCL app.
@@ -242,6 +234,7 @@ need to be manually un-installed:
 ```shell
 sudo apt purge hsakmt-roct
 sudo apt purge hsakmt-roct-dev
+sudo apt purge compute-firmware
 sudo apt purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{print $2}')
 ```
 
@@ -286,9 +279,9 @@ https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
 
 Note that devtoolset-7 is a Software Collections package, and is not supported by AMD.
 
-#### Prepare CentOS/RHEL 7.4 for DKMS Install
+#### Prepare CentOS/RHEL 7.4 or 7.5 for DKMS Install
 
-Installing kernel drivers on CentOS/RHEL 7.4 requires dkms tool being installed:
+Installing kernel drivers on CentOS/RHEL 7.4/7.5 requires dkms tool being installed:
 
 ```shell
 sudo yum install -y epel-release
@@ -364,7 +357,7 @@ sudo yum autoremove rocm-dkms
 
 ##### If you Plan to Run with X11 - we are seeing X freezes under load
 
-ROCm 1.8.1 a kernel parameter noretry has been set to 1 to improve overall system performance. However it has been proven to bring instability to graphics driver shipped with Ubuntu. This is an ongoing issue and we are looking into it.
+ROCm 1.8.2 a kernel parameter noretry has been set to 1 to improve overall system performance. However it has been proven to bring instability to graphics driver shipped with Ubuntu. This is an ongoing issue and we are looking into it.
 
 Before that, please try apply this change by changing noretry bit to 0.
 
@@ -422,7 +415,7 @@ Note: make sure ~/bin exists and it is part of your PATH
 
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.8.1
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.8.2
 repo sync
 ```
 These series of commands will pull all of the open source code associated with
