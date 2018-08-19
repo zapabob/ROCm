@@ -121,7 +121,7 @@ follows:
 
 ```shell
 wget -qO - http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | sudo apt-key add -
-sudo sh -c 'echo deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main > /etc/apt/sources.list.d/rocm.list'
+echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | sudo tee /etc/apt/sources.list.d/rocm.list
 ```
 The gpg key might change, so it may need to be updated when installing a new release. 
 If the key signature verification is failed while update, please re-add the key from 
