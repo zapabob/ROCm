@@ -4,52 +4,48 @@ The ROCm Platform brings a rich foundation to advanced computing by seamlessly
 
 #### Supported CPUs
 
+Starting with ROCm 1.8, we have relaxed the requirements for PCIe Atomics on Vega 10 (GFX9) GPUs, and we have similarly opened up more options for number of PCIe lanes. With this release, these GFX9 GPUs can support CPUs without PCIe Atomics and, for example, run on PCIe  Gen2 x1 lanes. To enable this option, please set the environment variable `HSA_ENABLE_SDMA=0`.
 
-Starting with ROCm 1.8 we have relaxed the use of PCIe Atomics and also PCIe lane choice for Vega10/GFX9 class GPU.  So now you can support CPU without PCIe Atomics and also use Gen2 x1 lanes. 
-
-Currently our GFX8 GPU's (Fiji & Polaris family) still need to use PCIe Gen 3 and PCIe Atomics, but are looking at relaxing this in a future release, once we have fully tested firmware. 
-
+Currently, our GFX8 GPUs (Fiji & Polaris family) still need to use PCIe Gen 3 and PCIe Atomics, but are looking at relaxing this in a future release, once we have fully tested firmware.
 
 Current CPUs which support PCIe Gen3 + PCIe Atomics are: 
   * AMD Ryzen CPUs;
   * AMD EPYC CPUs;  
   * Intel Xeon E7 V3  or newer CPUs;
   * Intel Xeon E5 v3 or newer CPUs; 
-  * Intel Xeon E3 v3 or newer CPUs; 
+  * Intel Xeon E3 v3 or newer CPUs;
   * Intel Core i7 v4, Core i5 v4, Core i3 v4 or newer CPUs (i.e. Haswell family or newer).
 
-For Fiji and Polaris GPU's the ROCm platform leverages PCIe Atomics (Fetch and Add, Compare and Swap, 
+For Fiji and Polaris GPUs, the ROCm platform leverages PCIe Atomics (Fetch and Add, Compare and Swap, 
 Unconditional Swap, AtomicsOp Completion).
 PCIe Atomics are only supported on PCIe Gen3 enabled CPUs and PCIe Gen3 switches like
-Broadcom PLX. When you install your GPUs make sure you install them in a fully
+Broadcom PLX. When you install your GPUs, make sure you install them in a fully
 PCIe Gen3 x16 or x8, x4 or x1  slot attached either directly to the CPU's Root I/O 
 controller or via a PCIe switch directly attached to the CPU's Root I/O 
-controller. In our experience many issues stem from trying to use consumer 
+controller. In our experience, many issues stem from trying to use consumer 
 motherboards which provide physical x16 connectors that are electrically 
-connected as e.g. PCIe Gen2 x4 connected via the 
-Southbridge PCIe I/O controller. 
+connected as e.g. PCIe Gen2 x4, PCIe slots connected via the 
+Southbridge PCIe I/O controller, or PCIe slots connected through a PCIe switch that does
+not support PCIe atomics. 
  
-
-Experimental support for our GFX7 GPUs Radeon R9 290, R9 390, AMD FirePro S9150, S9170 note they do not support or
-take advantage of PCIe Atomics. However, we still recommend that you use a CPU
-from the list provided above. 
+Experimental support for our Hawaii (GFX7) GPUs (Radeon R9 290, R9 390, FirePro W9100, S9150, S9170)
+does not require or take advantage of PCIe Atomics. However, we still recommend that you use a CPU
+from the list provided above for compatibility purposes.
 
 #### Not supported or very limited support under ROCm 
 ###### Limited support 
 
-
-* With ROCm 1.8 and Vega10 it should support  PCIe Gen2 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. But we have done very limited testing. Since our test farm today has been catering to CPU listed above.  This is where we need community support. 
- * Thunderbolt 1,2 and 3 enabled breakout boxes GPU's should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe Gen2 based. But we have done no testing on this config and would need comunity support do limited access to this type of equipment 
+* ROCm 1.8 and Vega10 should support PCIe Gen2 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPU listed above. This is where we need community support; if you find problems on such setups, please report these issues.
+ * Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe Gen2 based, and thus are only supported with GPUs that do not require PCIe Gen 3 atomics (i.e. Vega 10). However, we have done no testing on this configuration and would need comunity support due to limited access to this type of equipment 
 
 ###### Not supported 
 
-
-* We also do not support AMD Carrizo and Kaveri APU as host for compliant dGPU attachments.
- * Thunderbolt 1 and 2 enabled GPU's are not supported by ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based.
- * AMD Carrizo based APUs have limited support due to OEM & ODM's choices when it comes to some key configuration parameters. On point, we have observed that Carrizo laptops, AIOs and desktop systems showed inconsistencies in exposing and enabling the System BIOS parameters required by the ROCm stack. Before purchasing a Carrizo system for ROCm, please verify that the BIOS provides an option for enabling IOMMUv2. If this is the case, the final requirement is associated with correct CRAT table support - please inquire with the OEM about the latter.
- * AMD Merlin/Falcon Embedded System is also not currently supported by the public repo.
+* We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe Gen 3 with PCIe atomics.
+  * As such, do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs..
+  * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based.
+* AMD Carrizo based APUs have limited support due to OEM & ODM's choices when it comes to some key configuration parameters. In particular, we have observed that Carrizo laptops, AIOs, and desktop systems showed inconsistencies in exposing and enabling the System BIOS parameters required by the ROCm stack. Before purchasing a Carrizo system for ROCm, please verify that the BIOS provides an option for enabling IOMMUv2 and that the system BIOS properly exposes the correct CRAT table - please inquire with the OEM about the latter.
+ * AMD Merlin/Falcon Embedded System is not currently supported by the public repo.
  * AMD Raven Ridge APU are currently not supported
-
 
 ### New features to ROCm 1.8.2
 
@@ -163,27 +159,47 @@ To add yourself to the video group you will need the sudo password and can use t
 sudo usermod -a -G video $LOGNAME 
 ``` 
 
+You may want to ensure that any future users you add to your system are put into the "video" group by default. To do that, you can run the following commands:
+```shell
+echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
+echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
+```
+
 Once complete, reboot your system.
 
-Upon Reboot run 
+Upon Reboot run the following commands to verify that the ROCm installation waas successful. If you see your GPUs listed by both of these commands, you should be ready to go!
 ```shell
-rocminfo 
-clinfo 
+/opt/rocm/bin/rocminfo 
+/opt/rocm/opencl/bin/x86_64/clinfo 
 ``` 
 
-If you have an [Install Issue ](https://rocm.github.io/install_issues.html) please read this FAQ .
+Note that, to make running ROCm programs easier, you may wish to put the ROCm libraries in your LD_LIBRARY_PATH environment variable and the ROCm binaries in your PATH.
+```shell
+echo 'export LD_LIBRARY_PATH=/opt/rocm/opencl/lib/x86_64:/opt/rocm/hsa/lib:$LD_LIBRARY_PATH' | sudo tee -a /etc/profile.d/rocm.sh
+echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | sudo tee -a /etc/profile.d/rocm.sh
+```
 
-##### For Vega10 Users who want to run ROCm without supporting PCIe atomic support must set HSA_ENABLE_SDMA=0
+If you have an [Install Issue](https://rocm.github.io/install_issues.html) please read this FAQ .
 
-Currently with Vega10 GPUs to disable PCIe atomics support in ROCm, you need to turn off SDMA functionality.
+###### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
+
+Currently, if you want to run ROCm on a Vega10 GPU (GFX9) on a system without PCIe atomics, you must turn off SDMA functionality.
 
 ```shell
 export HSA_ENABLE_SDMA=0
 ```
 
+###### Performing an OpenCL-only Installation of ROCm
+
+Some users may want to install a subset of the full ROCm installation. In particular, if you are trying to install on a system with a limited amount of storage space, or which will only run a small collection of known applications, you may want to install only the packages that are required to run OpenCL applications. To do that, you can run the following installation command **instead** of the command to install `rocm-dkms`.
+
+```shell
+sudo apt-get install dkms rock-dkms rocm-clang-ocl
+```
+
 ###### Upon restart, to test your OpenCL instance 
 
- Build and run Hello World OCL app.
+Build and run Hello World OCL app.
 
 HelloWorld sample:
 
@@ -330,9 +346,9 @@ Current release supports up to CentOS/RHEL 7.4 and 7.5. Users should update to t
 ```shell
 sudo yum update
 ```
-##### For Vega10 Users who want to run ROCm without supporting PCIe atomic support must set HSA_ENABLE_SDMA=0
+###### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
 
-Currently with Vega10 GPUs to disable PCIe atomics support in ROCm, you need to turn off SDMA functionality.
+Currently, if you want to run ROCm on a Vega10 GPU (GFX9) on a system without PCIe atomics, you must turn off SDMA functionality.
 
 ```shell
 export HSA_ENABLE_SDMA=0
@@ -376,9 +392,9 @@ Once it's done, run sudo update-initramfs -u. Reboot and verify /sys/module/amdk
 
 ##### If you are you are using hipCaffe Alexnet training on ImageNet - we are seeing sporadic hangs of hipCaffe during training
 
-##### Vega10 Users who want to run ROCm without supporting PCIe atomic support must set HSA_ENABLE_SDMA=0
+###### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
 
-Currently with Vega10 GPUs to disable PCIe atomics support in ROCm, you need to turn off SDMA functionality.
+Currently, if you want to run ROCm on a Vega10 GPU (GFX9) on a system without PCIe atomics, you must turn off SDMA functionality.
 
 ```shell
 export HSA_ENABLE_SDMA=0
