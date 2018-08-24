@@ -194,7 +194,7 @@ export HSA_ENABLE_SDMA=0
 Some users may want to install a subset of the full ROCm installation. In particular, if you are trying to install on a system with a limited amount of storage space, or which will only run a small collection of known applications, you may want to install only the packages that are required to run OpenCL applications. To do that, you can run the following installation command **instead** of the command to install `rocm-dkms`.
 
 ```shell
-sudo apt-get install dkms rock-dkms rocm-clang-ocl
+sudo apt-get install dkms rock-dkms rocm-opencl
 ```
 
 ###### Upon restart, to test your OpenCL instance 
