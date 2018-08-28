@@ -55,7 +55,7 @@ from the list provided above for compatibility purposes.
  * RPM packages are provided for CentOS/RHEL 7.4 and 7.5 support
  * See the [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.8.x) and [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.8.x) for additional documentation on driver setup
 
-#### New distribution suppport 
+#### New distribution support 
 
  * Binary package support for Ubuntu 16.04
  * Binary package support for CentOS 7.4 and 7.5
