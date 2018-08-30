@@ -47,6 +47,10 @@ from the list provided above for compatibility purposes.
  * AMD Merlin/Falcon Embedded System is not currently supported by the public repo.
  * AMD Raven Ridge APU are currently not supported
 
+### New features to ROCm 1.8.3
+
+* ROCm 1.8.3 is a minor update meant to fix compatibility issues on Ubuntu releases running kernel 4.15.0-33
+
 ### New features to ROCm 1.8.2
 
 #### DKMS driver installation
@@ -66,7 +70,7 @@ from the list provided above for compatibility purposes.
  * UCX support for OpenMPI
  * ROCm RDMA
 
-### The latest ROCm platform - ROCm 1.8.2
+### The latest ROCm platform - ROCm 1.8.3
 
 The latest tested version of the drivers, tools, libraries and source code for
 the ROCm platform have been released and are available under the roc-1.8.x or rocm-1.8.x tag
@@ -83,7 +87,7 @@ of the following GitHub repositories:
 * [atmi](https://github.com/RadeonOpenCompute/atmi/tree/0.3.7)
 
 Additionally, the following mirror repositories that support the HCC compiler
-are also available on GitHub, and frozen for the rocm-1.8.2 release:
+are also available on GitHub, and frozen for the rocm-1.8.3 release:
 
 * [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.8.x)
 * [ldd](https://github.com/RadeonOpenCompute/lld/tree/roc-1.8.x)
@@ -92,14 +96,14 @@ are also available on GitHub, and frozen for the rocm-1.8.2 release:
 
 #### Supported Operating Systems - New operating systems available
 
-The ROCm 1.8.2 platform has been tested on the following operating systems:
+The ROCm 1.8.3 platform has been tested on the following operating systems:
  * Ubuntu 16.04
  * CentOS 7.4 &. 7.5 (Using devetoolset-7 runtime support)
  * RHEL 7.4. &. 7.5  (Using devetoolset-7 runtime support)
 
 ### Installing from AMD ROCm repositories
 
-AMD is hosting both Debian and RPM repositories for the ROCm 1.8.2 packages at this time.
+AMD is hosting both Debian and RPM repositories for the ROCm 1.8.3 packages at this time.
 
 The packages in the Debian repository have been signed to ensure package integrity.
 
@@ -374,7 +378,7 @@ sudo yum autoremove rocm-dkms
 
 ##### If you Plan to Run with X11 - we are seeing X freezes under load
 
-ROCm 1.8.2 a kernel parameter noretry has been set to 1 to improve overall system performance. However it has been proven to bring instability to graphics driver shipped with Ubuntu. This is an ongoing issue and we are looking into it.
+In ROCm 1.8.3, the kernel parameter 'noretry' has been set to 1 to improve overall system performance. However it has been proven to bring instability to graphics driver shipped with Ubuntu. This is an ongoing issue and we are looking into it.
 
 Before that, please try apply this change by changing noretry bit to 0.
 
@@ -432,7 +436,7 @@ Note: make sure ~/bin exists and it is part of your PATH
 
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.8.2
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.8.3
 repo sync
 ```
 These series of commands will pull all of the open source code associated with
