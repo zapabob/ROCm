@@ -51,7 +51,7 @@ from the list provided above for compatibility purposes.
 
 * ROCm 1.8.3 is a minor update meant to fix compatibility issues on Ubuntu releases running kernel 4.15.0-33
 
-### New features to ROCm 1.8.2
+### New features as of ROCm 1.8.2
 
 #### DKMS driver installation
 
