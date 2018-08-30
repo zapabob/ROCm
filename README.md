@@ -358,6 +358,14 @@ Currently, if you want to run ROCm on a Vega10 GPU (GFX9) on a system without PC
 export HSA_ENABLE_SDMA=0
 ```
 
+###### Performing an OpenCL-only Installation of ROCm
+
+Some users may want to install a subset of the full ROCm installation. In particular, if you are trying to install on a system with a limited amount of storage space, or which will only run a small collection of known applications, you may want to install only the packages that are required to run OpenCL applications. To do that, you can run the following installation command **instead** of the command to install `rocm-dkms`.
+
+```shell
+sudo yum install rock-dkms rocm-opencl
+```
+
 #### Compiling applications using hcc, hip, etc.
 
 To compile applications or samples, please use gcc-7.2 provided by the devtoolset-7 environment.
