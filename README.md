@@ -4,9 +4,7 @@ The ROCm Platform brings a rich foundation to advanced computing by seamlessly
 
 #### Supported CPUs
 
-Starting with ROCm 1.8, we have relaxed the requirements for PCIe Atomics on Vega 10 (GFX9) GPUs, and we have similarly opened up more options for number of PCIe lanes. With this release, these GFX9 GPUs can support CPUs without PCIe Atomics and, for example, run on PCIe  Gen2 x1 lanes. To enable this option, please set the environment variable `HSA_ENABLE_SDMA=0`.
-
-Currently, our GFX8 GPUs (Fiji & Polaris family) still need to use PCIe Gen 3 and PCIe Atomics, but are looking at relaxing this in a future release, once we have fully tested firmware.
+Starting with ROCm 1.8, we have relaxed the requirements for PCIe Atomics on Vega 10 (GFX9) GPUs, and we have similarly opened up more options for number of PCIe lanes. With this release, these GFX9 GPUs can support CPUs without PCIe Atomics and, for example, run on PCIe  Gen2 x1 lanes. To enable this option, please set the environment variable `HSA_ENABLE_SDMA=0`.  This is not supported on GPUs below GFX9, i.e. GFX8 cards in Fiji and Polaris families.
 
 Current CPUs which support PCIe Gen3 + PCIe Atomics are: 
   * AMD Ryzen CPUs;
@@ -35,7 +33,7 @@ from the list provided above for compatibility purposes.
 #### Not supported or very limited support under ROCm 
 ###### Limited support 
 
-* ROCm 1.8 and Vega10 should support PCIe Gen2 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPU listed above. This is where we need community support; if you find problems on such setups, please report these issues.
+* ROCm 1.9 and Vega10 should support PCIe Gen2 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPU listed above. This is where we need community support; if you find problems on such setups, please report these issues.
  * Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe Gen2 based, and thus are only supported with GPUs that do not require PCIe Gen 3 atomics (i.e. Vega 10). However, we have done no testing on this configuration and would need comunity support due to limited access to this type of equipment 
 
 ###### Not supported 
@@ -46,6 +44,58 @@ from the list provided above for compatibility purposes.
 * AMD Carrizo based APUs have limited support due to OEM & ODM's choices when it comes to some key configuration parameters. In particular, we have observed that Carrizo laptops, AIOs, and desktop systems showed inconsistencies in exposing and enabling the System BIOS parameters required by the ROCm stack. Before purchasing a Carrizo system for ROCm, please verify that the BIOS provides an option for enabling IOMMUv2 and that the system BIOS properly exposes the correct CRAT table - please inquire with the OEM about the latter.
  * AMD Merlin/Falcon Embedded System is not currently supported by the public repo.
  * AMD Raven Ridge APU are currently not supported
+
+### New features and enhancements in ROCm 1.9.0
+
+#### Preview for Vega 7nm
+* Enables developer preview support for Vega 7nm
+
+#### System Management Interface
+* Adds support for the ROCm SMI (System Management Interface) library, which provides monitoring and management capabilities for AMD GPUs.
+
+#### Improvements to HIP/HCC
+* Support for gfx906
+* Added deprecation warning for C++AMP.  This will be the last version of HCC supporting C++AMP.
+* Improved optimization for global address space pointers passing into a GPU kernel
+* Fixed several race conditions in the HCC runtime
+* Performance tuning to the unpinned copy engine
+* Several codegen enhancement fixes in the compiler backend
+
+#### Preview for rocprof Profiling Tool
+Developer preview (alpha) of profiling tool 'rpl_run.sh', cmd-line front-end for rocProfiler, enables:
+* Cmd-line tool for dumping public per kernel perf-counters/metrics and kernel timestamps
+* Input file with counters list and kernels selecting parameters
+* Multiple counters groups and app runs supported
+* Output results in CSV format
+The tool location is: /opt/rocm/rocprofiler/bin/rpl_run.sh
+
+#### Preview for rocr Debug Agent rocr_debug_agent
+The ROCr Debug Agent is a library that can be loaded by ROCm Platform Runtime to provide the following functionality:
+* Print the state for wavefronts that report memory violation or upon executing a "s_trap 2" instruction.
+* Allows SIGINT (`ctrl c`) or SIGTERM (`kill -15`) to print wavefront state of aborted GPU dispatches.
+* It is enabled on Vega10 GPUs on ROCm1.9.
+The ROCm1.9 release will install the ROCr Debug Agent library at /opt/rocm/lib/librocr_debug_agent64.so
+
+
+#### New distribution support 
+
+* Binary package support for Ubuntu 18.04
+
+#### ROCm 1.9 is ABI compatible with KFD in upstream Linux kernels. 
+Upstream Linux kernels support the following GPUs in these releases:
+4.17: Fiji, Polaris 10, Polaris 11
+4.18: Fiji, Polaris 10, Polaris 11, Vega10
+
+Some ROCm features are not available in the upstream KFD:
+* More system memory available to ROCm applications
+* Interoperability between graphics and compute
+* RDMA
+* IPC
+
+To try ROCm with an upstream kernel, install ROCm as normal, but do not install the rock-dkms package. Also add a udev rule to control /dev/kfd permissions:
+
+    echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
+
 
 ### New features to ROCm 1.8.3
 
@@ -61,7 +111,7 @@ from the list provided above for compatibility purposes.
 
 #### New distribution support 
 
- * Binary package support for Ubuntu 16.04
+ * Binary package support for Ubuntu 16.04 and 18.04
  * Binary package support for CentOS 7.4 and 7.5
  * Binary package support for RHEL 7.4 and 7.5
  
@@ -70,40 +120,40 @@ from the list provided above for compatibility purposes.
  * UCX support for OpenMPI
  * ROCm RDMA
 
-### The latest ROCm platform - ROCm 1.8.3
+### The latest ROCm platform - ROCm 1.9.0
 
 The latest tested version of the drivers, tools, libraries and source code for
-the ROCm platform have been released and are available under the roc-1.8.x or rocm-1.8.x tag
+the ROCm platform have been released and are available under the roc-1.9.0 or rocm-1.9.x tag
 of the following GitHub repositories:
 
-* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.8.x)
-* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.8.x)
-* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.8.x)
-* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.8.x)
-* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.8.x)
-* [compiler-runtime](https://github.com/RadeonOpenCompute/compiler-rt/tree/roc-1.8.x)
-* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.8.x)
-* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.8.x)
+* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.9.x)
+* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.9.x)
+* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.9.x)
+* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.9.x)
+* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.9.x)
+* [compiler-runtime](https://github.com/RadeonOpenCompute/compiler-rt/tree/roc-1.9.x)
+* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.9.x)
+* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.9.x)
 * [atmi](https://github.com/RadeonOpenCompute/atmi/tree/0.3.7)
 
 Additionally, the following mirror repositories that support the HCC compiler
-are also available on GitHub, and frozen for the rocm-1.8.3 release:
+are also available on GitHub, and frozen for the rocm-1.9.0 release:
 
-* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.8.x)
-* [ldd](https://github.com/RadeonOpenCompute/lld/tree/roc-1.8.x)
-* [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/roc-1.8.x)
-* [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-1.8.x)
+* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.9.x)
+* [ldd](https://github.com/RadeonOpenCompute/lld/tree/roc-1.9.x)
+* [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/roc-1.9.x)
+* [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-1.9.x)
 
 #### Supported Operating Systems - New operating systems available
 
-The ROCm 1.8.3 platform has been tested on the following operating systems:
- * Ubuntu 16.04
+The ROCm 1.9.0 platform has been tested on the following operating systems:
+ * Ubuntu 16.04 &. 18.04
  * CentOS 7.4 &. 7.5 (Using devetoolset-7 runtime support)
  * RHEL 7.4. &. 7.5  (Using devetoolset-7 runtime support)
 
 ### Installing from AMD ROCm repositories
 
-AMD is hosting both Debian and RPM repositories for the ROCm 1.8.3 packages at this time.
+AMD is hosting both Debian and RPM repositories for the ROCm 1.9.0 packages at this time.
 
 The packages in the Debian repository have been signed to ensure package integrity.
 
@@ -224,7 +274,7 @@ g++ -I /opt/rocm/opencl/include/ ./HelloWorld.cpp -o HelloWorld -L/opt/rocm/open
  ./HelloWorld
 ```
 
-##### How to un-install from Ubuntu 16.04
+##### How to un-install from Ubuntu 16.04 or Ubuntu 18.04
 
 To un-install the entire rocm development package execute:
 
@@ -248,6 +298,7 @@ sudo apt install rocm-dev
 >ROCm driver stack installed
 
 ##### Removing pre-release packages
+It is recommended to [remove previous rocm installations](https://github.com/RadeonOpenCompute/ROCm#how-to-un-install-from-ubuntu-1604) before installing the latest version to ensure a smooth installation.
 
 If you installed any of the ROCm pre-release packages from github, they will
 need to be manually un-installed:
@@ -306,13 +357,14 @@ Installing kernel drivers on CentOS/RHEL 7.4/7.5 requires dkms tool being instal
 
 ```shell
 sudo yum install -y epel-release
-sudo yum install -y dkms kernel-headers-`uname -r`
+sudo yum install -y dkms kernel-headers-`uname -r` kernel-devel-`uname -r`
 ```
 
 
-At this point they system can install ROCm using the DKMS drivers.
+#### Installing ROCm on the system
 
-Installing ROCm on the system
+It is recommended to [remove previous rocm installations](https://github.com/RadeonOpenCompute/ROCm#how-to-un-install-rocm-from-centosrhel-74) before installing the latest version to ensure a smooth installation.
+
 At this point ROCm can be installed on the target system. Create a /etc/yum.repos.d/rocm.repo file with the following contents:
 
 ```shell
@@ -374,7 +426,7 @@ To do this, compile all applications after running this command:
 ```shell
 scl enable devtoolset-7 bash
 ```
-#### How to un-install ROCm from CentOS/RHEL 7.4
+#### How to un-install ROCm from CentOS/RHEL 7.4 and 7.5
 
 To un-install the entire rocm development package execute:
 
@@ -384,27 +436,17 @@ sudo yum autoremove rocm-dkms
 
 #### Known Issues / Workarounds
 
-##### If you Plan to Run with X11 - we are seeing X freezes under load
+##### Radeon Compute Profiler does not run
 
-In ROCm 1.8.3, the kernel parameter 'noretry' has been set to 1 to improve overall system performance. However it has been proven to bring instability to graphics driver shipped with Ubuntu. This is an ongoing issue and we are looking into it.
+rcprof -A <HSA_application> fails with error message: Radeon Compute Profiler could not be enabled. Version mismatch between HSA runtime and libhsa-runtime-tools64.so.1.
 
-Before that, please try apply this change by changing noretry bit to 0.
+##### Running OCLPerfCounters test results in LLVM ERROR: out of memory
 
-```shell
-echo 0 | sudo tee /sys/module/amdkfd/parameters/noretry
-```
+##### HipCaffe is supported on single GPU configurations
 
-Files under /sys won't be preserved after reboot so you'll need to do it every time.
+##### The ROCm SMI library calls to rsmi_dev_power_cap_set() and rsmi_dev_power_profile_set() will not work for all but the first gpu in multi-gpu set ups.
 
-One way to keep noretry=0 is to change /etc/modprobe.d/amdkfd.conf and make it be:
-
-options amdkfd noretry=0
-
-Once it's done, run sudo update-initramfs -u. Reboot and verify /sys/module/amdkfd/parameters/noretry stays as 0.
-
-##### If you are you are using hipCaffe Alexnet training on ImageNet - we are seeing sporadic hangs of hipCaffe during training
-
-###### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
+##### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
 
 Currently, if you want to run ROCm on a Vega10 GPU (GFX9) on a system without PCIe atomics, you must turn off SDMA functionality.
 
@@ -424,10 +466,10 @@ made available in the following packages:
 
 ### Getting ROCm source code
 
-Modifications can be made to the ROCm 1.8 components by modifying the open
+Modifications can be made to the ROCm 1.9 components by modifying the open
 source code base and rebuilding the components. Source code can be cloned from
 each of the GitHub repositories using git, or users can use the repo command
-and the ROCm 1.8 manifest file to download the entire ROCm 1.8 source code.
+and the ROCm 1.9 manifest file to download the entire ROCm 1.9 source code.
 
 #### Installing repo
 
@@ -444,11 +486,11 @@ Note: make sure ~/bin exists and it is part of your PATH
 
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.8.3
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.9.0
 repo sync
 ```
 These series of commands will pull all of the open source code associated with
-the ROCm 1.8 release. Please ensure that ssh-keys are configured for the
+the ROCm 1.9 release. Please ensure that ssh-keys are configured for the
 target machine on GitHub for your GitHub ID.
 
 * OpenCL Runtime and Compiler will be submitted to the Khronos Group, prior to
