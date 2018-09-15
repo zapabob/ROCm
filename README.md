@@ -1,34 +1,87 @@
 ## Are You Ready to ROCK?
 The ROCm Platform brings a rich foundation to advanced computing by seamlessly
- integrating the CPU and GPU with the goal of solving real-world problems.
+integrating the CPU and GPU with the goal of solving real-world problems.
+This software enables the high-performance operation of AMD GPUs for computationally-oriented tasks in the Linux operating system.
+
+### Current ROCm Version: 1.9.0
+
+- [Hardware Support](#hardware-support)
+  * [Supported GPUs](#supported-gpus)
+  * [Supported CPUs](#supported-cpus)
+  * [Not supported or very limited support under ROCm](#not-supported-or-very-limited-support-under-rocm)
+- [New features and enhancements in ROCm 1.9.0](#new-features-and-enhancements-in-rocm-190)
+- [The latest ROCm platform - ROCm 1.9.0](#the-latest-rocm-platform---rocm-190)
+- [Installing from AMD ROCm repositories](#installing-from-amd-rocm-repositories)
+  * [Ubuntu Support - Installing from a Debian repository](#ubuntu-support---installing-from-a-debian-repository)
+  * [CentOS/RHEL 7 (both 7.4 and 7.5) Support](#centosrhel-7-both-74-and-75-support)
+- [Known Issues / Workarounds](#known-issues--workarounds)
+- [Closed source components](#closed-source-components)
+- [Getting ROCm source code](#getting-rocm-source-code)
+
+### Hardware Support
+ROCm is focused on using AMD GPUs to accelerate computational tasks, such as machine learning, engineering workloads, and scientific computing. In order to focus our development efforts on these domains of interest, ROCm 
+
+#### Supported GPUs
+Because the ROCm Platform has a focus on particular computational domains, we offer official support for a selection of AMD GPUs that are designed to offer good performance and price in these domains.
+
+ROCm officially supports AMD GPUs that have use following chips:
+  * GFX8 GPUs
+    * "Fiji" chips, such as on the the AMD Radeon R9 Fury X and Radeon Instinct MI8
+    * "Polaris 10" chips, such as on the AMD Radeon RX 580 and Radeon Instinct MI6
+    * "Polaris 11" chips, such as on the AMD Radeon RX 570 and Radeon Pro WX 4100
+  * GFX9 GPUs
+    * "Vega 10" chips, such as on the AMD Radeon Radeon RX Vega 64 and Radeon Instinct MI25
+
+ROCm is a collection of software ranging from drivers and runtimnes to libraries and developer tools.
+Some of this software may work with more GPUs than the "officially supported" list above, though AMD does not make any official claims of support for these devices on the ROCm software platform.
+The following list of GPUs are likely to work within ROCm, though full support is not guaranteed:
+  * GFX7 GPUs
+    * "Hawaii" chips, such as the AMD Radeon R9 390X and FirePro W9100
+
+As described in the next section, GFX8 GPUs require PCIe gen 3 with support for PCIe atomics. This requires both CPU and motherboard support. GFX9 GPUs, by default, also require PCIe gen 3 with support for PCIe atomics; if you want to avoid using PCIe atomics, please set the environment variable `HSA_ENABLE_SDMA=0`. GFX7 GPUs do not require PCIe atomics.
+
+At this time, the integrated GPUs in AMD APUs are not officially supported targets for ROCm.
+
+For a more detailed list of hardware support, please see [the following documentation](https://rocm.github.io/hardware.html).
 
 #### Supported CPUs
-
-Starting with ROCm 1.8, we have relaxed the requirements for PCIe Atomics on Vega 10 (GFX9) GPUs, and we have similarly opened up more options for number of PCIe lanes. With this release, these GFX9 GPUs can support CPUs without PCIe Atomics and, for example, run on PCIe  Gen2 x1 lanes. To enable this option, please set the environment variable `HSA_ENABLE_SDMA=0`.  This is not supported on GPUs below GFX9, i.e. GFX8 cards in Fiji and Polaris families.
+As described above, GFX8 and GFX9 GPUs require PCI Express 3.0 with PCIe atomics in the default ROCm configuration.
+In particular, the CPU and every active PCIe point between the CPU and GPU require support for PCIe gen 3 and PCIe atomics.
+The CPU root must indicate PCIe AtomicOp Completion capabilities and any intermediate switch must indicate PCIe AtomicOp Routing capabilities.
 
 Current CPUs which support PCIe Gen3 + PCIe Atomics are: 
   * AMD Ryzen CPUs;
+  * AMD Ryzen APUs;
+  * AMD Ryzen Threadripper CPUs
   * AMD EPYC CPUs;  
-  * Intel Xeon E7 V3  or newer CPUs;
+  * Intel Xeon E7 v3 or newer CPUs;
   * Intel Xeon E5 v3 or newer CPUs; 
   * Intel Xeon E3 v3 or newer CPUs;
   * Intel Core i7 v4, Core i5 v4, Core i3 v4 or newer CPUs (i.e. Haswell family or newer).
 
-For Fiji and Polaris GPUs, the ROCm platform leverages PCIe Atomics (Fetch and Add, Compare and Swap, 
-Unconditional Swap, AtomicsOp Completion).
-PCIe Atomics are only supported on PCIe Gen3 enabled CPUs and PCIe Gen3 switches like
-Broadcom PLX. When you install your GPUs, make sure you install them in a fully
-PCIe Gen3 x16 or x8, x4 or x1  slot attached either directly to the CPU's Root I/O 
-controller or via a PCIe switch directly attached to the CPU's Root I/O 
-controller. In our experience, many issues stem from trying to use consumer 
-motherboards which provide physical x16 connectors that are electrically 
-connected as e.g. PCIe Gen2 x4, PCIe slots connected via the 
-Southbridge PCIe I/O controller, or PCIe slots connected through a PCIe switch that does
-not support PCIe atomics. 
- 
+Beginning with ROCm 1.8, we have relaxed the requirements for PCIe Atomics on GFX9 GPUs such as Vega 10.
+We have similarly opened up more options for number of PCIe lanes.
+GFX9 GPUs can now be run on CPUs without PCIe atomics and on older PCIe generations such as gen 2.
+To enable this option, please set the environment variable `HSA_ENABLE_SDMA=0`.
+This is not supported on GPUs below GFX9, e.g. GFX8 cards in Fiji and Polaris families.
+
+If you are using any PCIe switches in your system, please note that PCIe Atomics are only supported on some switches, such as Boradcom PLX.
+When you install your GPUs, make sure you install them in a fully PCIe Gen3 x16 or x8, x4 or x1 slot attached either directly to the CPU's Root I/O controller or via a PCIe switch directly attached to the CPU's Root I/O controller.
+
+In our experience, many issues stem from trying to use consumer motherboards which provide physical x16 connectors that are electrically connected as e.g. PCIe Gen2 x4, PCIe slots connected via the Southbridge PCIe I/O controller, or PCIe slots connected through a PCIe switch that does
+not support PCIe atomics.
+
+If you attempt to run ROCm on a system without proper PCIe atomic support, you may see an error in the kernel log (`dmesg`):
+```
+kfd: skipped device 1002:7300, PCI rejects atomics
+```
+
 Experimental support for our Hawaii (GFX7) GPUs (Radeon R9 290, R9 390, FirePro W9100, S9150, S9170)
 does not require or take advantage of PCIe Atomics. However, we still recommend that you use a CPU
 from the list provided above for compatibility purposes.
+
+Reminder: if you are using gfx9 GPUs, you can bypass this requirement by setting the environment variable `HSA_ENABLE_SDMA=0`.
+However, this disables the use of DMA engines to move data between the CPU and GPU memory. This can reduce performance.
 
 #### Not supported or very limited support under ROCm 
 ###### Limited support 
@@ -38,6 +91,7 @@ from the list provided above for compatibility purposes.
 
 ###### Not supported 
 
+* "Tonga", "Iceland", "Polaris 12", and "Vega M" GPUs are not supported in ROCm 1.9.0
 * We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe Gen 3 with PCIe atomics.
   * As such, do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs..
   * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based.
@@ -97,7 +151,7 @@ To try ROCm with an upstream kernel, install ROCm as normal, but do not install 
     echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
 
 
-### New features to ROCm 1.8.3
+### New features as of ROCm 1.8.3
 
 * ROCm 1.8.3 is a minor update meant to fix compatibility issues on Ubuntu releases running kernel 4.15.0-33
 
@@ -157,7 +211,7 @@ AMD is hosting both Debian and RPM repositories for the ROCm 1.9.0 packages at t
 
 The packages in the Debian repository have been signed to ensure package integrity.
 
-#### Installing from a Debian repository
+#### Ubuntu Support - installing from a Debian repository
 
 ##### First make sure your system is up to date 
 
@@ -312,13 +366,13 @@ sudo apt purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{
 
 If possible, we would recommend starting with a fresh OS install.
 
-### CentOS/RHEL 7 (both 7.4 and 7.5) Support
+#### CentOS/RHEL 7 (both 7.4 and 7.5) Support
 
 Support for CentOS/RHEL 7 has been added in ROCm 1.8, but requires a special 
 runtime environment provided by the RHEL Software Collections and additional
 dkms support packages to properly install in run.
 
-#### Preparing RHEL 7 for installation
+##### Preparing RHEL 7 for installation
 
 RHEL is a subscription based operating system, and must enable several external
 repositories to enable installation of the devtoolset-7 environment and the DKMS
@@ -343,7 +397,7 @@ Third, enable additional repositories by downloading and installing the epel-rel
 sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 ```
 
-#### Install and setup Devtoolset-7
+##### Install and setup Devtoolset-7
 
 To setup the Devtoolset-7 environment, follow the instructions on this page:
 
@@ -351,7 +405,7 @@ https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
 
 Note that devtoolset-7 is a Software Collections package, and is not supported by AMD.
 
-#### Prepare CentOS/RHEL 7.4 or 7.5 for DKMS Install
+##### Prepare CentOS/RHEL 7.4 or 7.5 for DKMS Install
 
 Installing kernel drivers on CentOS/RHEL 7.4/7.5 requires dkms tool being installed:
 
@@ -361,7 +415,7 @@ sudo yum install -y dkms kernel-headers-`uname -r` kernel-devel-`uname -r`
 ```
 
 
-#### Installing ROCm on the system
+##### Installing ROCm on the system
 
 It is recommended to [remove previous rocm installations](https://github.com/RadeonOpenCompute/ROCm#how-to-un-install-rocm-from-centosrhel-74) before installing the latest version to ensure a smooth installation.
 
@@ -418,7 +472,7 @@ Some users may want to install a subset of the full ROCm installation. In partic
 sudo yum install rock-dkms rocm-opencl
 ```
 
-#### Compiling applications using hcc, hip, etc.
+##### Compiling applications using hcc, hip, etc.
 
 To compile applications or samples, please use gcc-7.2 provided by the devtoolset-7 environment.
 To do this, compile all applications after running this command: 
@@ -426,7 +480,7 @@ To do this, compile all applications after running this command:
 ```shell
 scl enable devtoolset-7 bash
 ```
-#### How to un-install ROCm from CentOS/RHEL 7.4 and 7.5
+##### How to un-install ROCm from CentOS/RHEL 7.4 and 7.5
 
 To un-install the entire rocm development package execute:
 
@@ -434,19 +488,19 @@ To un-install the entire rocm development package execute:
 sudo yum autoremove rocm-dkms
 ```
 
-#### Known Issues / Workarounds
+### Known Issues / Workarounds
 
-##### Radeon Compute Profiler does not run
+#### Radeon Compute Profiler does not run
 
 rcprof -A <HSA_application> fails with error message: Radeon Compute Profiler could not be enabled. Version mismatch between HSA runtime and libhsa-runtime-tools64.so.1.
 
-##### Running OCLPerfCounters test results in LLVM ERROR: out of memory
+#### Running OCLPerfCounters test results in LLVM ERROR: out of memory
 
-##### HipCaffe is supported on single GPU configurations
+#### HipCaffe is supported on single GPU configurations
 
-##### The ROCm SMI library calls to rsmi_dev_power_cap_set() and rsmi_dev_power_profile_set() will not work for all but the first gpu in multi-gpu set ups.
+#### The ROCm SMI library calls to rsmi_dev_power_cap_set() and rsmi_dev_power_profile_set() will not work for all but the first gpu in multi-gpu set ups.
 
-##### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
+#### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
 
 Currently, if you want to run ROCm on a Vega10 GPU (GFX9) on a system without PCIe atomics, you must turn off SDMA functionality.
 
@@ -454,7 +508,7 @@ Currently, if you want to run ROCm on a Vega10 GPU (GFX9) on a system without PC
 export HSA_ENABLE_SDMA=0
 ```
 
-#### Closed source components
+### Closed source components
 
 The ROCm platform relies on a few closed source components to provide legacy
 functionality like HSAIL finalization and debugging/profiling support. These
