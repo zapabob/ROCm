@@ -65,7 +65,7 @@ GFX9 GPUs can now be run on CPUs without PCIe atomics and on older PCIe generati
 To enable this option, please set the environment variable `HSA_ENABLE_SDMA=0`.
 This is not supported on GPUs below GFX9, e.g. GFX8 cards in Fiji and Polaris families.
 
-If you are using any PCIe switches in your system, please note that PCIe Atomics are only supported on some switches, such as Boradcom PLX.
+If you are using any PCIe switches in your system, please note that PCIe Atomics are only supported on some switches, such as Broadcom PLX.
 When you install your GPUs, make sure you install them in a fully PCIe Gen3 x16 or x8, x4 or x1 slot attached either directly to the CPU's Root I/O controller or via a PCIe switch directly attached to the CPU's Root I/O controller.
 
 In our experience, many issues stem from trying to use consumer motherboards which provide physical x16 connectors that are electrically connected as e.g. PCIe Gen2 x4, PCIe slots connected via the Southbridge PCIe I/O controller, or PCIe slots connected through a PCIe switch that does
