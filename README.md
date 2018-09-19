@@ -38,7 +38,7 @@ The following list of GPUs are likely to work within ROCm, though full support i
   * GFX7 GPUs
     * "Hawaii" chips, such as the AMD Radeon R9 390X and FirePro W9100
 
-As described in the next section, GFX8 GPUs require PCIe gen 3 with support for PCIe atomics. This requires both CPU and motherboard support. GFX9 GPUs, by default, also require PCIe gen 3 with support for PCIe atomics; if you want to avoid using PCIe atomics, please set the environment variable `HSA_ENABLE_SDMA=0`. GFX7 GPUs do not require PCIe atomics.
+As described in the next section, GFX8 GPUs require PCIe gen 3 with support for PCIe atomics. This requires both CPU and motherboard support. GFX9 GPUs, by default, also require PCIe gen 3 with support for PCIe atomics, but they can operate in most cases without this capability.
 
 At this time, the integrated GPUs in AMD APUs are not officially supported targets for ROCm.
 
@@ -62,7 +62,6 @@ Current CPUs which support PCIe Gen3 + PCIe Atomics are:
 Beginning with ROCm 1.8, we have relaxed the requirements for PCIe Atomics on GFX9 GPUs such as Vega 10.
 We have similarly opened up more options for number of PCIe lanes.
 GFX9 GPUs can now be run on CPUs without PCIe atomics and on older PCIe generations such as gen 2.
-To enable this option, please set the environment variable `HSA_ENABLE_SDMA=0`.
 This is not supported on GPUs below GFX9, e.g. GFX8 cards in Fiji and Polaris families.
 
 If you are using any PCIe switches in your system, please note that PCIe Atomics are only supported on some switches, such as Broadcom PLX.
@@ -79,9 +78,6 @@ kfd: skipped device 1002:7300, PCI rejects atomics
 Experimental support for our Hawaii (GFX7) GPUs (Radeon R9 290, R9 390, FirePro W9100, S9150, S9170)
 does not require or take advantage of PCIe Atomics. However, we still recommend that you use a CPU
 from the list provided above for compatibility purposes.
-
-Reminder: if you are using gfx9 GPUs, you can bypass this requirement by setting the environment variable `HSA_ENABLE_SDMA=0`.
-However, this disables the use of DMA engines to move data between the CPU and GPU memory. This can reduce performance.
 
 #### Not supported or very limited support under ROCm 
 ###### Limited support 
@@ -291,14 +287,6 @@ echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bi
 
 If you have an [Install Issue](https://rocm.github.io/install_issues.html) please read this FAQ .
 
-###### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
-
-Currently, if you want to run ROCm on a Vega10 GPU (GFX9) on a system without PCIe atomics, you must turn off SDMA functionality.
-
-```shell
-export HSA_ENABLE_SDMA=0
-```
-
 ###### Performing an OpenCL-only Installation of ROCm
 
 Some users may want to install a subset of the full ROCm installation. In particular, if you are trying to install on a system with a limited amount of storage space, or which will only run a small collection of known applications, you may want to install only the packages that are required to run OpenCL applications. To do that, you can run the following installation command **instead** of the command to install `rocm-dkms`.
@@ -458,13 +446,6 @@ Current release supports up to CentOS/RHEL 7.4 and 7.5. Users should update to t
 ```shell
 sudo yum update
 ```
-###### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
-
-Currently, if you want to run ROCm on a Vega10 GPU (GFX9) on a system without PCIe atomics, you must turn off SDMA functionality.
-
-```shell
-export HSA_ENABLE_SDMA=0
-```
 
 ###### Performing an OpenCL-only Installation of ROCm
 
@@ -502,21 +483,12 @@ rcprof -A <HSA_application> fails with error message: Radeon Compute Profiler co
 
 #### The ROCm SMI library calls to rsmi_dev_power_cap_set() and rsmi_dev_power_profile_set() will not work for all but the first gpu in multi-gpu set ups.
 
-#### Vega10 users who want to run ROCm on a system that does not support PCIe atomics must set HSA_ENABLE_SDMA=0
-
-Currently, if you want to run ROCm on a Vega10 GPU (GFX9) on a system without PCIe atomics, you must turn off SDMA functionality.
-
-```shell
-export HSA_ENABLE_SDMA=0
-```
-
 ### Closed source components
 
-The ROCm platform relies on a few closed source components to provide legacy
-functionality like HSAIL finalization and debugging/profiling support. These
-components are only available through the ROCm repositories, and will either be
-deprecated or become open source components in the future. These components are
-made available in the following packages:
+The ROCm platform relies on a few closed source components to provide functionality
+such as HSA image support. These components are only available through the ROCm
+repositories, and will either be deprecated or become open source components in the
+future. These components are made available in the following packages:
 
 *  hsa-ext-rocr-dev
 
