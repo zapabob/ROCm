@@ -116,18 +116,20 @@ However, this disables the use of DMA engines to move data between the CPU and G
 * Several codegen enhancement fixes in the compiler backend
 
 #### Preview for rocprof Profiling Tool
-Developer preview (alpha) of profiling tool 'rpl_run.sh', cmd-line front-end for rocProfiler, enables:
+Developer preview (alpha) of profiling tool rocProfiler. It includes a command-line front-end, `rpl_run.sh`, which enables:
 * Cmd-line tool for dumping public per kernel perf-counters/metrics and kernel timestamps
 * Input file with counters list and kernels selecting parameters
 * Multiple counters groups and app runs supported
 * Output results in CSV format
-The tool location is: /opt/rocm/rocprofiler/bin/rpl_run.sh
+
+The tool can be installed from the `rocprofiler-dev` package. It will be installed into: /opt/rocm/bin/rpl_run.sh
 
 #### Preview for rocr Debug Agent rocr_debug_agent
 The ROCr Debug Agent is a library that can be loaded by ROCm Platform Runtime to provide the following functionality:
 * Print the state for wavefronts that report memory violation or upon executing a "s_trap 2" instruction.
 * Allows SIGINT (`ctrl c`) or SIGTERM (`kill -15`) to print wavefront state of aborted GPU dispatches.
 * It is enabled on Vega10 GPUs on ROCm1.9.
+
 The ROCm1.9 release will install the ROCr Debug Agent library at /opt/rocm/lib/librocr_debug_agent64.so
 
 
