@@ -206,7 +206,7 @@ are also available on GitHub, and frozen for the rocm-1.9.x release:
 #### Supported Operating Systems - New operating systems available
 
 The ROCm 1.9.x platform has been tested on the following operating systems:
- * Ubuntu 16.04 &. 18.04
+ * Ubuntu 16.04 &. 18.04 (Version 16.04.3 and newer or kernels 4.13 and newer)
  * CentOS 7.4 &. 7.5 (Using devetoolset-7 runtime support)
  * RHEL 7.4. &. 7.5  (Using devetoolset-7 runtime support)
 
@@ -349,7 +349,7 @@ sudo apt install rocm-dev
 >ROCm driver stack installed
 
 ##### Removing pre-release packages
-It is recommended to [remove previous rocm installations](https://github.com/RadeonOpenCompute/ROCm#how-to-un-install-from-ubuntu-1604) before installing the latest version to ensure a smooth installation.
+It is recommended to [remove previous rocm installations](https://github.com/RadeonOpenCompute/ROCm#how-to-un-install-from-ubuntu-1604-or-ubuntu-1804) before installing the latest version to ensure a smooth installation.
 
 If you installed any of the ROCm pre-release packages from github, they will
 need to be manually un-installed:
@@ -414,7 +414,7 @@ sudo yum install -y dkms kernel-headers-`uname -r` kernel-devel-`uname -r`
 
 ##### Installing ROCm on the system
 
-It is recommended to [remove previous rocm installations](https://github.com/RadeonOpenCompute/ROCm#how-to-un-install-rocm-from-centosrhel-74) before installing the latest version to ensure a smooth installation.
+It is recommended to [remove previous rocm installations](https://github.com/RadeonOpenCompute/ROCm#how-to-un-install-rocm-from-centosrhel-74-and-75) before installing the latest version to ensure a smooth installation.
 
 At this point ROCm can be installed on the target system. Create a /etc/yum.repos.d/rocm.repo file with the following contents:
 
@@ -448,11 +448,7 @@ following command:
 sudo usermod -a -G video $LOGNAME 
 ```
 
-Current release supports up to CentOS/RHEL 7.4 and 7.5. Users should update to the latest version of the OS:
-
-```shell
-sudo yum update
-```
+Current release supports CentOS/RHEL 7.4 and 7.5. If users want to update the OS version, they should completely remove ROCm packages before updating to the latest version of the OS, to avoid DKMS related issues.
 
 ###### Performing an OpenCL-only Installation of ROCm
 
