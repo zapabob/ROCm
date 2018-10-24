@@ -59,6 +59,7 @@ Current CPUs which support PCIe Gen3 + PCIe Atomics are:
   * Intel Xeon E5 v3 or newer CPUs; 
   * Intel Xeon E3 v3 or newer CPUs;
   * Intel Core i7 v4, Core i5 v4, Core i3 v4 or newer CPUs (i.e. Haswell family or newer).
+  * Some Ivy Bridge-E systems
 
 Beginning with ROCm 1.8, we have relaxed the requirements for PCIe Atomics on GFX9 GPUs such as Vega 10.
 We have similarly opened up more options for number of PCIe lanes.
@@ -94,7 +95,7 @@ from the list provided above for compatibility purposes.
   * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based.
 * AMD Carrizo based APUs have limited support due to OEM & ODM's choices when it comes to some key configuration parameters. In particular, we have observed that Carrizo laptops, AIOs, and desktop systems showed inconsistencies in exposing and enabling the System BIOS parameters required by the ROCm stack. Before purchasing a Carrizo system for ROCm, please verify that the BIOS provides an option for enabling IOMMUv2 and that the system BIOS properly exposes the correct CRAT table - please inquire with the OEM about the latter.
  * AMD Merlin/Falcon Embedded System is not currently supported by the public repo.
- * AMD Raven Ridge APU are currently not supported
+ * AMD Raven Ridge APU are currently not supported as GPU targets
 
 ### New features and enhancements in ROCm 1.9.1
 #### Added DPM support to Vega 7nm
