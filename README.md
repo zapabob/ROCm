@@ -3,15 +3,16 @@ The ROCm Platform brings a rich foundation to advanced computing by seamlessly
 integrating the CPU and GPU with the goal of solving real-world problems.
 This software enables the high-performance operation of AMD GPUs for computationally-oriented tasks in the Linux operating system.
 
-### Current ROCm Version: 1.9.1
+### Current ROCm Version: 1.9.2
 
 - [Hardware Support](#hardware-support)
   * [Supported GPUs](#supported-gpus)
   * [Supported CPUs](#supported-cpus)
   * [Not supported or very limited support under ROCm](#not-supported-or-very-limited-support-under-rocm)
+- [New features and enhancements in ROCm 1.9.2](#new-features-and-enhancements-in-rocm-192)
 - [New features and enhancements in ROCm 1.9.1](#new-features-and-enhancements-in-rocm-191)
 - [New features and enhancements in ROCm 1.9.0](#new-features-and-enhancements-in-rocm-190)
-- [The latest ROCm platform - ROCm 1.9.1](#the-latest-rocm-platform---rocm-191)
+- [The latest ROCm platform - ROCm 1.9.2](#the-latest-rocm-platform---rocm-192)
 - [Installing from AMD ROCm repositories](#installing-from-amd-rocm-repositories)
   * [Ubuntu Support - Installing from a Debian repository](#ubuntu-support---installing-from-a-debian-repository)
   * [CentOS/RHEL 7 (both 7.4 and 7.5) Support](#centosrhel-7-both-74-and-75-support)
@@ -97,6 +98,18 @@ from the list provided above for compatibility purposes.
  * AMD Merlin/Falcon Embedded System is not currently supported by the public repo.
  * AMD Raven Ridge APU are currently not supported as GPU targets
 
+### New features and enhancements in ROCm 1.9.2
+#### RDMA(MPI) support on Vega 7nm
+* Support ROCnRDMA based on Mellanox InfiniBand
+
+#### Improvements to HCC
+* Improved link time optimization
+
+#### Improvements to ROCProfiler tool
+* General bug fixes and implemented versioning APIs
+
+#### Critical bug fixes
+
 ### New features and enhancements in ROCm 1.9.1
 #### Added DPM support to Vega 7nm
 * Dynamic Power Management feature is enabled on Vega 7nm.
@@ -180,7 +193,7 @@ To try ROCm with an upstream kernel, install ROCm as normal, but do not install 
  * UCX support for OpenMPI
  * ROCm RDMA
 
-### The latest ROCm platform - ROCm 1.9.1
+### The latest ROCm platform - ROCm 1.9.2
 
 The latest tested version of the drivers, tools, libraries and source code for
 the ROCm platform have been released and are available under the roc-1.9.0 or rocm-1.9.x tag
@@ -477,8 +490,6 @@ sudo yum autoremove rocm-dkms
 
 ### Known Issues / Workarounds
 
-#### Running OCLPerfCounters test results in LLVM ERROR: out of memory
-
 #### HipCaffe is supported on single GPU configurations
 
 #### The ROCm SMI library calls to rsmi_dev_power_cap_set() and rsmi_dev_power_profile_set() will not work for all but the first gpu in multi-gpu set ups.
@@ -514,11 +525,11 @@ Note: make sure ~/bin exists and it is part of your PATH
 
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.9.1
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.9.2
 repo sync
 ```
 These series of commands will pull all of the open source code associated with
-the ROCm 1.9.1 release. Please ensure that ssh-keys are configured for the
+the ROCm 1.9.2 release. Please ensure that ssh-keys are configured for the
 target machine on GitHub for your GitHub ID.
 
 * OpenCL Runtime and Compiler will be submitted to the Khronos Group, prior to
