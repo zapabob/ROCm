@@ -6,7 +6,7 @@
     <remote name="pctools-github"
             fetch="http://git@github.com/GPUOpen-ProfessionalCompute-Tools/" />
 
-    <default revision="roc-1.9.x"
+    <default revision="roc-2.0.x"
              remote="roc-github"
              sync-j="4" />
 

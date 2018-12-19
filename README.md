@@ -3,25 +3,26 @@ The ROCm Platform brings a rich foundation to advanced computing by seamlessly
 integrating the CPU and GPU with the goal of solving real-world problems.
 This software enables the high-performance operation of AMD GPUs for computationally-oriented tasks in the Linux operating system.
 
-### Current ROCm Version: 1.9.2
+### Current ROCm Version: 2.0
 
 - [Hardware Support](#hardware-support)
   * [Supported GPUs](#supported-gpus)
   * [Supported CPUs](#supported-cpus)
   * [Not supported or very limited support under ROCm](#not-supported-or-very-limited-support-under-rocm)
+- [New features and enhancements in ROCm 2.0](#new-features-and-enhancements-in-rocm-20)
 - [New features and enhancements in ROCm 1.9.2](#new-features-and-enhancements-in-rocm-192)
 - [New features and enhancements in ROCm 1.9.1](#new-features-and-enhancements-in-rocm-191)
 - [New features and enhancements in ROCm 1.9.0](#new-features-and-enhancements-in-rocm-190)
-- [The latest ROCm platform - ROCm 1.9.2](#the-latest-rocm-platform---rocm-192)
+- [The latest ROCm platform - ROCm 2.0](#the-latest-rocm-platform---rocm-20)
 - [Installing from AMD ROCm repositories](#installing-from-amd-rocm-repositories)
   * [Ubuntu Support - Installing from a Debian repository](#ubuntu-support---installing-from-a-debian-repository)
-  * [CentOS/RHEL 7 (both 7.4 and 7.5) Support](#centosrhel-7-both-74-and-75-support)
+  * [CentOS/RHEL 7 (7.4, 7.5 and 7.6) Support](#centosrhel-7-74-75-76-support)
 - [Known Issues / Workarounds](#known-issues--workarounds)
 - [Closed source components](#closed-source-components)
 - [Getting ROCm source code](#getting-rocm-source-code)
 
 ### Hardware Support
-ROCm is focused on using AMD GPUs to accelerate computational tasks, such as machine learning, engineering workloads, and scientific computing. In order to focus our development efforts on these domains of interest, ROCm 
+ROCm is focused on using AMD GPUs to accelerate computational tasks, such as machine learning, engineering workloads, and scientific computing. In order to focus our development efforts on these domains of interest, ROCm supports a targeted set of hardware configurations which are detailed further in this section. 
 
 #### Supported GPUs
 Because the ROCm Platform has a focus on particular computational domains, we offer official support for a selection of AMD GPUs that are designed to offer good performance and price in these domains.
@@ -33,8 +34,9 @@ ROCm officially supports AMD GPUs that have use following chips:
     * "Polaris 11" chips, such as on the AMD Radeon RX 570 and Radeon Pro WX 4100
   * GFX9 GPUs
     * "Vega 10" chips, such as on the AMD Radeon Radeon RX Vega 64 and Radeon Instinct MI25
+    * Vega 7nm
 
-ROCm is a collection of software ranging from drivers and runtimnes to libraries and developer tools.
+ROCm is a collection of software ranging from drivers and runtimes to libraries and developer tools.
 Some of this software may work with more GPUs than the "officially supported" list above, though AMD does not make any official claims of support for these devices on the ROCm software platform.
 The following list of GPUs are likely to work within ROCm, though full support is not guaranteed:
   * GFX7 GPUs
@@ -85,18 +87,70 @@ from the list provided above for compatibility purposes.
 #### Not supported or very limited support under ROCm 
 ###### Limited support 
 
-* ROCm 1.9 and Vega10 should support PCIe Gen2 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPU listed above. This is where we need community support; if you find problems on such setups, please report these issues.
+* ROCm 2.0.x should support PCIe Gen2 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPU listed above. This is where we need community support; if you find problems on such setups, please report these issues.
  * Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe Gen2 based, and thus are only supported with GPUs that do not require PCIe Gen 3 atomics (i.e. Vega 10). However, we have done no testing on this configuration and would need comunity support due to limited access to this type of equipment 
 
 ###### Not supported 
 
-* "Tonga", "Iceland", "Polaris 12", and "Vega M" GPUs are not supported in ROCm 1.9.x
+* "Tonga", "Iceland", "Polaris 12", and "Vega M" GPUs are not supported in ROCm 2.0.x
 * We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe Gen 3 with PCIe atomics.
   * As such, do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs..
   * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are PCIe Gen2 based.
 * AMD Carrizo based APUs have limited support due to OEM & ODM's choices when it comes to some key configuration parameters. In particular, we have observed that Carrizo laptops, AIOs, and desktop systems showed inconsistencies in exposing and enabling the System BIOS parameters required by the ROCm stack. Before purchasing a Carrizo system for ROCm, please verify that the BIOS provides an option for enabling IOMMUv2 and that the system BIOS properly exposes the correct CRAT table - please inquire with the OEM about the latter.
  * AMD Merlin/Falcon Embedded System is not currently supported by the public repo.
  * AMD Raven Ridge APU are currently not supported as GPU targets
+
+### New features and enhancements in ROCm 2.0
+
+#### Adds support for RHEL 7.6 / CentOS 7.6 and Ubuntu 18.04.1
+
+#### Adds support for Vega 7nm
+
+#### Introduces MIVisionX
+* A comprehensive computer vision and machine intelligence libraries, utilities and applications bundled into a single toolkit.
+
+#### Improvements to ROCm Libraries
+* rocSPARSE & hipSPARSE 
+* rocBLAS with improved DGEMM efficiency on Vega 7nm
+
+#### MIOpen
+* This release contains general bug fixes and an updated performance database
+* Group convolutions backwards weights performance has been improved
+* RNNs now support fp16
+
+#### Tensorflow multi-gpu and Tensorflow FP16 support for Vega 7nm
+* TensorFlow v1.12 is enabled with fp16 support
+
+#### PyTorch/Caffe2 with Vega 7nm Support
+* fp16 support is enabled
+* Several bug fixes and performance enhancements
+* Known Issue: breaking changes are introduced in ROCm 2.0 which are not addressed upstream yet. Meanwhile, please continue to use ROCm fork at https://github.com/ROCmSoftwarePlatform/pytorch
+
+#### Improvements to ROCProfiler tool
+* Support for Vega 7nm
+
+#### Support for hipStreamCreateWithPriority
+* Creates a stream with the specified priority. It creates a stream on which enqueued kernels have a different priority for execution compared to kernels enqueued on normal priority streams. The priority could be higher or lower than normal priority streams.
+
+#### OpenCL 2.0 support
+* ROCm 2.0 introduces full support for kernels written in the OpenCL 2.0 C language on certain devices and systems.  Applications can detect this support by calling the “clGetDeviceInfo” query function with “parame_name” argument set to “CL_DEVICE_OPENCL_C_VERSION”.  In order to make use of OpenCL 2.0 C language features, the application must include the option “-cl-std=CL2.0” in options passed to the runtime API calls responsible for compiling or building device programs.  The complete specification for the OpenCL 2.0 C language can be obtained using the following link: https://www.khronos.org/registry/OpenCL/specs/opencl-2.0-openclc.pdf 
+
+#### Improved Virtual Addressing (48 bit VA) management for Vega 10 and later GPUs
+* Fixes Clang AddressSanitizer and potentially other 3rd-party memory debugging tools with ROCm
+* Small performance improvement on workloads that do a lot of memory management
+* Removes virtual address space limitations on systems with more VRAM than system memory
+
+#### Kubernetes support
+ 
+### New features and enhancements in ROCm 1.9.2
+#### RDMA(MPI) support on Vega 7nm
+* Support ROCnRDMA based on Mellanox InfiniBand
+
+#### Improvements to HCC
+* Improved link time optimization
+
+#### Improvements to ROCProfiler tool
+* General bug fixes and implemented versioning APIs
 
 ### New features and enhancements in ROCm 1.9.2
 #### RDMA(MPI) support on Vega 7nm
@@ -193,40 +247,40 @@ To try ROCm with an upstream kernel, install ROCm as normal, but do not install 
  * UCX support for OpenMPI
  * ROCm RDMA
 
-### The latest ROCm platform - ROCm 1.9.2
+### The latest ROCm platform - ROCm 2.0
 
 The latest tested version of the drivers, tools, libraries and source code for
-the ROCm platform have been released and are available under the roc-1.9.0 or rocm-1.9.x tag
+the ROCm platform have been released and are available under the roc-2.0.0 or rocm-2.0.x tag
 of the following GitHub repositories:
 
-* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-1.9.x)
-* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-1.9.x)
-* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-1.9.x)
-* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-1.9.x)
-* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-1.9.x)
-* [compiler-runtime](https://github.com/RadeonOpenCompute/compiler-rt/tree/roc-1.9.x)
-* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-1.9.x)
-* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-1.9.x)
+* [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-2.0.x)
+* [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-2.0.x)
+* [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-2.0.x)
+* [ROC-smi](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-2.0.x)
+* [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-2.0.x)
+* [compiler-runtime](https://github.com/RadeonOpenCompute/compiler-rt/tree/roc-2.0.x)
+* [HIP](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP/tree/roc-2.0.x)
+* [HIP-Examples](https://github.com/GPUOpen-ProfessionalCompute-Tools/HIP-Examples/tree/roc-2.0.x)
 * [atmi](https://github.com/RadeonOpenCompute/atmi/tree/0.3.7)
 
 Additionally, the following mirror repositories that support the HCC compiler
-are also available on GitHub, and frozen for the rocm-1.9.x release:
+are also available on GitHub, and frozen for the rocm-2.0.x release:
 
-* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-1.9.x)
-* [ldd](https://github.com/RadeonOpenCompute/lld/tree/roc-1.9.x)
-* [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/roc-1.9.x)
-* [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-1.9.x)
+* [llvm](https://github.com/RadeonOpenCompute/llvm/tree/roc-2.0.x)
+* [ldd](https://github.com/RadeonOpenCompute/lld/tree/roc-2.0.x)
+* [hcc-clang-upgrade](https://github.com/RadeonOpenCompute/hcc-clang-upgrade/tree/roc-2.0.x)
+* [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-2.0.x)
 
 #### Supported Operating Systems - New operating systems available
 
-The ROCm 1.9.x platform has been tested on the following operating systems:
- * Ubuntu 16.04 &. 18.04 (Version 16.04.3 and newer or kernels 4.13 and newer)
- * CentOS 7.4 &. 7.5 (Using devetoolset-7 runtime support)
- * RHEL 7.4. &. 7.5  (Using devetoolset-7 runtime support)
+The ROCm 2.0.x platform supports the following operating systems:
+ * Ubuntu 16.04.x & 18.04.x (Version 16.04.3 and newer or kernels 4.13 and newer)
+ * CentOS 7.4 & 7.5 & 7.6 (Using devtoolset-7 runtime support)
+ * RHEL 7.4 & 7.5 & 7.6 (Using devtoolset-7 runtime support)
 
 ### Installing from AMD ROCm repositories
 
-AMD is hosting both Debian and RPM repositories for the ROCm 1.9.x packages at this time.
+AMD is hosting both Debian and RPM repositories for the ROCm 2.0.x packages at this time.
 
 The packages in the Debian repository have been signed to ensure package integrity.
 
@@ -252,7 +306,7 @@ echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | su
 ```
 The gpg key might change, so it may need to be updated when installing a new release. 
 If the key signature verification is failed while update, please re-add the key from 
-ROCm apt repository. The current rocm.gpg.key is not avialable in a standard key ring 
+ROCm apt repository. The current rocm.gpg.key is not available in a standard key ring 
 distribution, but has the following sha1sum hash:
 
 f7f8147431c75e505c58a6f3a3548510869357a6  rocm.gpg.key
@@ -294,7 +348,7 @@ echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
 
 Once complete, reboot your system.
 
-Upon Reboot run the following commands to verify that the ROCm installation waas successful. If you see your GPUs listed by both of these commands, you should be ready to go!
+Upon Reboot run the following commands to verify that the ROCm installation was successful. If you see your GPUs listed by both of these commands, you should be ready to go!
 ```shell
 /opt/rocm/bin/rocminfo 
 /opt/rocm/opencl/bin/x86_64/clinfo 
@@ -377,13 +431,13 @@ sudo apt purge $(dpkg -l | grep 'kfd\|rocm' | grep linux | grep -v libc | awk '{
 
 If possible, we would recommend starting with a fresh OS install.
 
-#### CentOS/RHEL 7 (both 7.4 and 7.5) Support
+#### CentOS/RHEL 7 (7.4, 7.5, 7.6) Support
 
 Support for CentOS/RHEL 7 has been added in ROCm 1.8, but requires a special 
 runtime environment provided by the RHEL Software Collections and additional
 dkms support packages to properly install in run.
 
-##### Preparing RHEL 7 for installation
+##### Preparing RHEL 7 (7.4, 7.5, 7.6) for installation
 
 RHEL is a subscription based operating system, and must enable several external
 repositories to enable installation of the devtoolset-7 environment and the DKMS
@@ -416,9 +470,9 @@ https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
 
 Note that devtoolset-7 is a Software Collections package, and is not supported by AMD.
 
-##### Prepare CentOS/RHEL 7.4 or 7.5 for DKMS Install
+##### Prepare CentOS/RHEL (7.4, 7.5, 7.6) for DKMS Install
 
-Installing kernel drivers on CentOS/RHEL 7.4/7.5 requires dkms tool being installed:
+Installing kernel drivers on CentOS/RHEL 7.4/7.5/7.6 requires dkms tool being installed:
 
 ```shell
 sudo yum install -y epel-release
@@ -428,7 +482,7 @@ sudo yum install -y dkms kernel-headers-`uname -r` kernel-devel-`uname -r`
 
 ##### Installing ROCm on the system
 
-It is recommended to [remove previous rocm installations](https://github.com/RadeonOpenCompute/ROCm#how-to-un-install-rocm-from-centosrhel-74-and-75) before installing the latest version to ensure a smooth installation.
+It is recommended to [remove previous rocm installations](https://github.com/RadeonOpenCompute/ROCm#how-to-un-install-rocm-from-centosrhel-74-75-and-76) before installing the latest version to ensure a smooth installation.
 
 At this point ROCm can be installed on the target system. Create a /etc/yum.repos.d/rocm.repo file with the following contents:
 
@@ -462,7 +516,7 @@ following command:
 sudo usermod -a -G video $LOGNAME 
 ```
 
-Current release supports CentOS/RHEL 7.4 and 7.5. If users want to update the OS version, they should completely remove ROCm packages before updating to the latest version of the OS, to avoid DKMS related issues.
+Current release supports CentOS/RHEL 7.4, 7.5, 7.6. If users want to update the OS version, they should completely remove ROCm packages before updating to the latest version of the OS, to avoid DKMS related issues.
 
 ###### Performing an OpenCL-only Installation of ROCm
 
@@ -480,7 +534,7 @@ To do this, compile all applications after running this command:
 ```shell
 scl enable devtoolset-7 bash
 ```
-##### How to un-install ROCm from CentOS/RHEL 7.4 and 7.5
+##### How to un-install ROCm from CentOS/RHEL 7.4, 7.5 and 7.6
 
 To un-install the entire rocm development package execute:
 
@@ -489,6 +543,8 @@ sudo yum autoremove rocm-dkms
 ```
 
 ### Known Issues / Workarounds
+
+#### HCC: removed support for C++AMP
 
 #### HipCaffe is supported on single GPU configurations
 
@@ -505,10 +561,10 @@ future. These components are made available in the following packages:
 
 ### Getting ROCm source code
 
-Modifications can be made to the ROCm 1.9 components by modifying the open
+Modifications can be made to the ROCm 2.0 components by modifying the open
 source code base and rebuilding the components. Source code can be cloned from
 each of the GitHub repositories using git, or users can use the repo command
-and the ROCm 1.9 manifest file to download the entire ROCm 1.9 source code.
+and the ROCm 2.0 manifest file to download the entire ROCm 2.0 source code.
 
 #### Installing repo
 
@@ -525,11 +581,11 @@ Note: make sure ~/bin exists and it is part of your PATH
 
 ```shell
 mkdir ROCm && cd ROCm
-repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-1.9.2
+repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-2.0.0
 repo sync
 ```
 These series of commands will pull all of the open source code associated with
-the ROCm 1.9.2 release. Please ensure that ssh-keys are configured for the
+the ROCm 2.0 release. Please ensure that ssh-keys are configured for the
 target machine on GitHub for your GitHub ID.
 
 * OpenCL Runtime and Compiler will be submitted to the Khronos Group, prior to
