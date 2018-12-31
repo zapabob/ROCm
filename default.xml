@@ -9,6 +9,8 @@
             fetch="https://github.com/ROCmSoftwarePlatform/" />
     <remote name="gpuopen-libs"
             fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
+    <remote name="gpuopen-tools"
+            fetch="https://github.com/GPUOpen-Tools/" />
 
     <default revision="refs/tags/roc-2.0.0"
              remote="roc-github"
@@ -50,6 +52,7 @@
     <project name="ROCm-CompilerSupport" />
     <project name="rocr_debug_agent" remote="rocm-devtools" />
     <project name="rocm_bandwidth_test" />
+    <project name="RCP" remote="gpuopen-tools" revision="refs/tags/v5.6" />
 
     <!-- ROCm Libraries -->
     <project name="rocBLAS" remote="rocm-swplat" revision="refs/tags/v2.0.0" />
@@ -65,4 +68,5 @@
     <project name="rocm_smi_lib" />
     <project name="rccl" remote="rocm-swplat" revision="refs/tags/0.7.1" />
     <project name="MIVisionX" remote="gpuopen-libs" revision="1.0.0" />
+    <project name="cub-hip" remote="rocm-swplat" revision="hip_port_1.7.4" />
 </manifest>
