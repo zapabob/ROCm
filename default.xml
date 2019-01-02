@@ -21,7 +21,7 @@
     <project name="ROCT-Thunk-Interface" />
     <project name="ROCR-Runtime" />
     <project name="ROC-smi" />
-    <project name="rocm-cmake" revision="ac45c6e269d1fd1dbd5dfc81cfe47a7452c96daf" />
+    <project name="rocm-cmake" revision="6240bb35a3f6cc775b57561506b10e932130e20a" />
     <project name="rocminfo" revision="1bb0ccc731f772bb1a553e37b41d06eb0a684926" />
     <project name="rocprofiler" remote="rocm-devtools" />
     <!-- If you want to get the full OpenCL runtime, there is a separate repo

@@ -170,7 +170,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-2.0.0)
 * ROCm Support Software
   - [ROCm SMI](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-2.0.0)
-  - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/ac45c6e6)
+  - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/6240bb35)
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/1bb0ccc7)
   - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-2.0.0)
 * ROCm Development Tools
