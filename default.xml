@@ -67,6 +67,6 @@
     <project name="Thrust" remote="rocm-swplat" revision="e0b8fe2af3d345fb85689011140a20ff46fb610d" sync-s="true" />
     <project name="rocm_smi_lib" />
     <project name="rccl" remote="rocm-swplat" revision="refs/tags/0.7.1" />
-    <project name="MIVisionX" remote="gpuopen-libs" revision="1.0.0" />
+    <project name="MIVisionX" remote="gpuopen-libs" revision="refs/tags/1.0.0" />
     <project name="cub-hip" remote="rocm-swplat" revision="hip_port_1.7.4" />
 </manifest>
