@@ -24,6 +24,7 @@
     <project name="rocm-cmake" revision="6240bb35a3f6cc775b57561506b10e932130e20a" />
     <project name="rocminfo" revision="1bb0ccc731f772bb1a553e37b41d06eb0a684926" />
     <project name="rocprofiler" remote="rocm-devtools" />
+    <project name="roctracer" remote="rocm-devtools" />
     <!-- If you want to get the full OpenCL runtime, there is a separate repo
          manifest that is more authoritative than the copy in this file. It can
          be found at the following URL:
