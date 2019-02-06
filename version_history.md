@@ -1,7 +1,8 @@
 ## ROCm Version History
 This file contains archived version history information for the [ROCm project](https://github.com/RadeonOpenCompute/ROCm)
 
-### Current ROCm Version: 2.0
+### Current ROCm Version: 2.1
+- [New features and enhancements in ROCm 2.1](#new-features-and-enhancements-in-rocm-21)
 - [New features and enhancements in ROCm 2.0](#new-features-and-enhancements-in-rocm-20)
 - [New features and enhancements in ROCm 1.9.2](#new-features-and-enhancements-in-rocm-192)
 - [New features and enhancements in ROCm 1.9.2](#new-features-and-enhancements-in-rocm-192-1)
@@ -11,6 +12,17 @@ This file contains archived version history information for the [ROCm project](h
 - [New features as of ROCm 1.8](#new-features-as-of-rocm-18)
 - [New Features as of ROCm 1.7](#new-features-as-of-rocm-17)
 - [New Features as of ROCm 1.5](#new-features-as-of-rocm-15)
+
+### New features and enhancements in ROCm 2.1
+
+#### RocTracer v1.0 preview release – 'rocprof' HSA runtime tracing and statistics support -
+Supports HSA API tracing and HSA asynchronous GPU activity including kernels execution and memory copy
+     
+#### Improvements to ROCM-SMI tool -
+Added support to show real-time PCIe bandwidth usage via the -b/--showbw flag
+       
+#### DGEMM Optimizations -
+Improved DGEMM performance for large square and reduced matrix sizes (k=384, k=256)
 
 ### New features and enhancements in ROCm 2.0
 
@@ -185,3 +197,4 @@ To try ROCm with an upstream kernel, install ROCm as normal, but do not install 
 #### Dropping binary package support for Ubuntu 14.04, Fedora 23
  
 #### IPC support 
+
