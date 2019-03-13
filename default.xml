@@ -12,7 +12,7 @@
     <remote name="gpuopen-tools"
             fetch="https://github.com/GPUOpen-Tools/" />
 
-    <default revision="refs/tags/roc-2.1.0"
+    <default revision="refs/tags/roc-2.2.0"
              remote="roc-github"
              sync-c="true"
              sync-j="4" />
@@ -21,7 +21,7 @@
     <project name="ROCT-Thunk-Interface" />
     <project name="ROCR-Runtime" />
     <project name="ROC-smi" />
-    <project name="rocm-cmake" revision="6240bb35a3f6cc775b57561506b10e932130e20a" />
+    <project name="rocm-cmake" revision="ac45c6e269d1fd1dbd5dfc81cfe47a7452c96daf" />
     <project name="rocminfo" revision="1bb0ccc731f772bb1a553e37b41d06eb0a684926" />
     <project name="rocprofiler" remote="rocm-devtools" />
     <project name="roctracer" remote="rocm-devtools" />
@@ -38,7 +38,63 @@
     <project path="ROCm-OpenCL-Runtime/library/amdgcn" name="ROCm-Device-Libs"/>
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="261c1288aadd9dcc4637aca08332f603e6c13715" />
 
-    <project name="clang-ocl" revision="688fe5d98b3d6a06838f10d3a7db951c288c0f54" />
+    <project name="clang-ocl" revision="7ce124f86d0fa59387462fc09a49b25ccb81f96b" />
+    <!-- HCC needs to be recursively synced to get it submodules -->
+    <project name="hcc" sync-s="true" />
+    <project name="HCC-Example-Application" remote="rocm-devtools" revision="ffd6533305e79eed667badd3c4cdb7879a1281b8" />
+    <project name="HIP" remote="rocm-devtools" />
+    <project name="HIP-Examples" remote="rocm-devtools" />
+    <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
+    <project name="llvm" path="llvm_amd-common" />
+    <project name="lld" path="llvm_amd-common/lld" />
+    <project name="clang" path="llvm_amd-common/clang" />
+    <project name="ROCm-Device-Libs" />
+    <project name="atmi" revision="4dd14ad8fafc64dc8f35b0646cfe84e3e36a3c64" />
+    <project name="ROCm-CompilerSupport" />
+    <project name="rocr_debug_agent" remote="rocm-devtools" />
+    <project name="rocm_bandwidth_test" />
+    <project name="RCP" remote="gpuopen-tools" revision="refs/tags/v5.6" />
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+    <remote name="roc-github"
+            fetch="http://github.com/RadeonOpenCompute/" />
+    <remote name="rocm-devtools"
+            fetch="https://github.com/ROCm-Developer-Tools/" />
+    <remote name="rocm-swplat"
+            fetch="https://github.com/ROCmSoftwarePlatform/" />
+    <remote name="gpuopen-libs"
+            fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
+    <remote name="gpuopen-tools"
+            fetch="https://github.com/GPUOpen-Tools/" />
+
+    <default revision="refs/tags/roc-2.2.0"
+             remote="roc-github"
+             sync-c="true"
+             sync-j="4" />
+
+    <project name="ROCK-Kernel-Driver" />
+    <project name="ROCT-Thunk-Interface" />
+    <project name="ROCR-Runtime" />
+    <project name="ROC-smi" />
+    <project name="rocm-cmake" revision="ac45c6e269d1fd1dbd5dfc81cfe47a7452c96daf" />
+    <project name="rocminfo" revision="1bb0ccc731f772bb1a553e37b41d06eb0a684926" />
+    <project name="rocprofiler" remote="rocm-devtools" />
+    <project name="roctracer" remote="rocm-devtools" />
+    <!-- If you want to get the full OpenCL runtime, there is a separate repo
+         manifest that is more authoritative than the copy in this file. It can
+         be found at the following URL:
+         https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/blob/roc-2.0.0/opencl.xml -->
+    <remote name="KhronosGroup" fetch="https://github.com/KhronosGroup/" />
+    <project name="ROCm-OpenCL-Runtime" />
+    <project path="ROCm-OpenCL-Runtime/compiler/driver" name="ROCm-OpenCL-Driver"/>
+    <project path="ROCm-OpenCL-Runtime/compiler/llvm" name="llvm" />
+    <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/clang" name="clang" />
+    <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/lld" name="lld" />
+    <project path="ROCm-OpenCL-Runtime/library/amdgcn" name="ROCm-Device-Libs"/>
+    <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="261c1288aadd9dcc4637aca08332f603e6c13715" />
+
+    <project name="clang-ocl" revision="7ce124f86d0fa59387462fc09a49b25ccb81f96b" />
     <!-- HCC needs to be recursively synced to get it submodules -->
     <project name="hcc" sync-s="true" />
     <project name="HCC-Example-Application" remote="rocm-devtools" revision="ffd6533305e79eed667badd3c4cdb7879a1281b8" />
@@ -56,18 +112,18 @@
     <project name="RCP" remote="gpuopen-tools" revision="refs/tags/v5.6" />
 
     <!-- ROCm Libraries -->
-    <project name="rocBLAS" remote="rocm-swplat" revision="refs/tags/v2.0.0" />
-    <project name="hipBLAS" remote="rocm-swplat" revision="refs/tags/v0.12.1.0" />
-    <project name="rocFFT" remote="rocm-swplat" revision="refs/tags/v0.8.8" />
+    <project name="rocBLAS" remote="rocm-swplat" revision="2dbcd2a0b4090fac92c51374571207e02d6cac73" />
+    <project name="hipBLAS" remote="rocm-swplat" revision="refs/tags/v0.12.2.0" />
+    <project name="rocFFT" remote="rocm-swplat" revision="273c18b2abc1a3e1e4ea6283178254d2760d2997" />
     <project name="rocRAND" remote="rocm-swplat" revision="7278524ea37f449795fdafcd0bf5307f61f06ba9" />
-    <project name="rocSPARSE" remote="rocm-swplat" revision="refs/tags/v1.0.1" />
-    <project name="hipSPARSE" remote="rocm-swplat" revision="refs/tags/v1.0.2" />
-    <project name="rocALUTION" remote="rocm-swplat" revision="refs/tags/v1.3.7" />
+    <project name="rocSPARSE" remote="rocm-swplat" revision="refs/tags/v1.0.2" />
+    <project name="hipSPARSE" remote="rocm-swplat" revision="refs/tags/v1.0.3" />
+    <project name="rocALUTION" remote="rocm-swplat" revision="refs/tags/v1.3.8" />
     <project name="MIOpenGEMM" remote="rocm-swplat" revision="9547fb9e8499a5a9f16da83b1e6b749de82dd9fb" />
-    <project name="MIOpen" remote="rocm-swplat" revision="refs/tags/1.7.0" />
+    <project name="MIOpen" remote="rocm-swplat" revision="refs/tags/1.7.1" />
     <project name="Thrust" remote="rocm-swplat" revision="e0b8fe2af3d345fb85689011140a20ff46fb610d" sync-s="true" />
     <project name="rocm_smi_lib" />
     <project name="rccl" remote="rocm-swplat" revision="refs/tags/0.7.4" />
-    <project name="MIVisionX" remote="gpuopen-libs" revision="refs/tags/1.0.0" />
+    <project name="MIVisionX" remote="gpuopen-libs" revision="refs/tags/1.1.0" />
     <project name="cub-hip" remote="rocm-swplat" revision="hip_port_1.7.4" />
 </manifest>

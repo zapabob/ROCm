@@ -1,7 +1,8 @@
 ## ROCm Version History
 This file contains archived version history information for the [ROCm project](https://github.com/RadeonOpenCompute/ROCm)
 
-### Current ROCm Version: 2.1
+### Current ROCm Version: 2.2
+- [New features and enhancements in ROCm 2.2](#new-features-and-enhancements-in-rocm-22)
 - [New features and enhancements in ROCm 2.1](#new-features-and-enhancements-in-rocm-21)
 - [New features and enhancements in ROCm 2.0](#new-features-and-enhancements-in-rocm-20)
 - [New features and enhancements in ROCm 1.9.2](#new-features-and-enhancements-in-rocm-192)
@@ -12,6 +13,18 @@ This file contains archived version history information for the [ROCm project](h
 - [New features as of ROCm 1.8](#new-features-as-of-rocm-18)
 - [New Features as of ROCm 1.7](#new-features-as-of-rocm-17)
 - [New Features as of ROCm 1.5](#new-features-as-of-rocm-15)
+
+### New features and enhancements in ROCm 2.2
+
+#### rocSparse Optimization on Vega20
+Cache usage optimizations for csrsv (sparse triangular solve), coomv
+(SpMV in COO format) and ellmv (SpMV in ELL format) are available.
+
+#### DGEMM and DTRSM Optimization
+Improved DGEMM performance for reduced matrix sizes (k=384, k=256)
+
+#### Caffe2
+Added support for multi-GPU training
 
 ### New features and enhancements in ROCm 2.1
 
