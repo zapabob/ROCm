@@ -187,7 +187,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
 
 The ROCm 2.2.x platform supports the following operating systems:
 
- * Ubuntu 16.04.x and 18.04.x (Version 16.04.3 and newer or kernels 4.13 and newer)
+ * Ubuntu 16.04.x and 18.04.1 (Version 16.04.3 and newer or kernels 4.13-4.15)
  * CentOS 7.4, 7.5, and 7.6 (Using devtoolset-7 runtime support)
  * RHEL 7.4, 7.5, and 7.6 (Using devtoolset-7 runtime support)
 
@@ -621,6 +621,8 @@ tests quick_auxilliary.logging_float and quick_auxilliary.logging_double are not
 observed memory access fault while running SAGAN tensor flow model in Polaris based ASIC
 #### PyTorch
 observing “test_gamma_gpu_sample” subtest failure
+#### Kernel
+The 4.18 kernel is not supported on 2.2. This is planned to be supported with the 2.3 release
 
 ### Closed source components
 
