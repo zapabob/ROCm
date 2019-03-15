@@ -38,7 +38,7 @@
     <project path="ROCm-OpenCL-Runtime/library/amdgcn" name="ROCm-Device-Libs"/>
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="261c1288aadd9dcc4637aca08332f603e6c13715" />
 
-    <project name="clang-ocl" revision="7ce124f86d0fa59387462fc09a49b25ccb81f96b" />
+    <project name="clang-ocl" />
     <!-- HCC needs to be recursively synced to get it submodules -->
     <project name="hcc" sync-s="true" />
     <project name="HCC-Example-Application" remote="rocm-devtools" revision="ffd6533305e79eed667badd3c4cdb7879a1281b8" />
