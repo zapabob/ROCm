@@ -144,7 +144,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCm SMI](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-2.2.0)
   - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/ac45c6e2)
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/1bb0ccc7)
-  - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-2.1.0)
+  - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-2.2.0)
 * ROCm Development Tools
   - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-2.2.0)
   - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-2.2.0)
@@ -157,12 +157,12 @@ The latest supported version of the drivers, tools, libraries and source code fo
       - [ROCm Clang](http://github.com/RadeonOpenCompute/clang/tree/roc-2.2.0)
       - [ROCm lld](http://github.com/RadeonOpenCompute/lld/tree/roc-2.2.0)
       - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-2.2.0)
-  - [ROCM Clang-OCL Kernel Compiler](https://github.com/RadeonOpenCompute/clang-ocl/tree/e605688a)
+  - [ROCM Clang-OCL Kernel Compiler](https://github.com/RadeonOpenCompute/clang-ocl/tree/roc-2.2.0)
   - [Asynchronous Task and Memory Interface (ATMI)](https://github.com/RadeonOpenCompute/atmi/tree/4dd14ad8)
   - [ROCr Debug Agent](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/tree/roc-2.2.0)
   - [ROCm Code Object Manager](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/tree/roc-2.2.0)
   - [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler/tree/roc-2.2.0)
-  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-2.1.0)
+  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-2.2.0)
   - [Radeon Compute Profiler](https://github.com/GPUOpen-Tools/RCP/tree/a31fe682)
   - Example Applications:
     - [HCC Examples](https://github.com/ROCm-Developer-Tools/HCC-Example-Application/tree/ffd65333)
