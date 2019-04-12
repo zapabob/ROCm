@@ -2,14 +2,14 @@
 The ROCm Platform brings a rich foundation to advanced computing by seamlessly integrating the CPU and GPU with the goal of solving real-world problems.
 This software enables the high-performance operation of AMD GPUs for computationally oriented tasks in the Linux operating system.
 
-### Current ROCm Version: 2.2
+### Current ROCm Version: 2.3
 
 - [Hardware Support](#hardware-support)
   * [Supported GPUs](#supported-gpus)
   * [Supported CPUs](#supported-cpus)
   * [Not supported or limited support under ROCm](#not-supported-or-limited-support-under-rocm)
-- [New features and enhancements in ROCm 2.2](#new-features-and-enhancements-in-rocm-22)
-- [The latest ROCm platform - ROCm 2.2](#the-latest-rocm-platform---rocm-220)
+- [New features and enhancements in ROCm 2.3](#new-features-and-enhancements-in-rocm-23)
+- [The latest ROCm platform - ROCm 2.3](#the-latest-rocm-platform---rocm-230)
   * [Supported Operating Systems](#supported-operating-systems---new-operating-systems-available)
   * [ROCm support in upstream Linux kernels](#rocm-support-in-upstream-linux-kernels)
 - [Installing from AMD ROCm repositories](#installing-from-amd-rocm-repositories)
@@ -99,7 +99,7 @@ from the list provided above for compatibility purposes.
 #### Not supported or limited support under ROCm 
 ##### Limited support 
 
-* ROCm 2.2.x should support PCIe 2.0 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPUs listed above. This is where we need community support. _If you find problems on such setups, please report these issues_.
+* ROCm 2.3.x should support PCIe 2.0 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPUs listed above. This is where we need community support. _If you find problems on such setups, please report these issues_.
 * Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe 2.0 based, and thus are only supported with GPUs that do not require PCIe 3.0 atomics (e.g. Vega 10). However, we have done no testing on this configuration and would need community support due to limited access to this type of equipment.
 * AMD "Carrizo" and "Bristol Ridge" APUs are enabled to run OpenCL, but do not yet support HCC, HIP, or our libraries built on top of these compilers and runtimes.
   * As of ROCm 2.1, "Carrizo" and "Bristol Ridge" require the use of upstream kernel drivers.
@@ -112,82 +112,114 @@ from the list provided above for compatibility purposes.
   
 ##### Not supported 
 
-* "Tonga", "Iceland", "Vega M", and "Vega 12" GPUs are not supported in ROCm 2.2.x
+* "Tonga", "Iceland", "Vega M", and "Vega 12" GPUs are not supported in ROCm 2.3.x
 * We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe 3.0 with PCIe atomics.
   * As such, we do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs.
   * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are based on PCIe 2.0.
 
-### New features and enhancements in ROCm 2.2
+### New features and enhancements in ROCm 2.3
 
-#### rocSparse Optimization on Vega20
-Cache usage optimizations for csrsv (sparse triangular solve), coomv
-(SpMV in COO format) and ellmv (SpMV in ELL format) are available.
+#### Mem usage per GPU
+Per GPU memory usage is added to rocm-smi.
+Display information regarding used/total bytes for VRAM, visible VRAM and GTT, via the --showmeminfo flag
 
-#### DGEMM and DTRSM Optimization
-Improved DGEMM performance for reduced matrix sizes (k=384, k=256)
+#### MIVisionX, v1.1 - ONNX	
+ONNX parser changes to adjust to new file formats
 
-#### Caffe2
-Added support for multi-GPU training
+#### MIGraphX, v0.2
+MIGraphX 0.2 supports the following new features:
+* New Python API
+* Support for additional ONNX operators and fixes that now enable a large set of Imagenet models
+* Support for RNN Operators
+* Support for multi-stream Execution
+* [Experimental] Support for Tensorflow frozen protobuf files
+
+See: [Getting-started:-using-the-new-features-of-MIGraphX-0.2](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/wiki/Getting-started:-using-the-new-features-of-MIGraphX-0.2) for more details
+
+#### MIOpen, v1.8 - 3d convolutions and int8
+* This release contains full 3-D convolution support and int8 support for inference.
+* Additionally, there are major updates in the performance database for major models including those found in Torchvision.
+
+See: [MIOpen releases](https://github.com/ROCmSoftwarePlatform/MIOpen/releases)
+
+#### Caffe2 -  mGPU support	
+Multi-gpu support is enabled for Caffe2.
+
+#### rocTracer library, ROCm tracing API for collecting runtimes API and asynchronous GPU activity traces
+HIP/HCC domains support is introduced in rocTracer library.
+
+#### BLAS -  Int8 GEMM performance, Int8 functional and performance	
+Introduces support and performance optimizations for Int8 GEMM, implements TRSV support, and includes improvements and optimizations with Tensile.
+
+#### Prioritized L1/L2/L3 BLAS (functional)	
+Functional implementation of BLAS L1/L2/L3 functions
+
+#### BLAS - tensile optimization
+Improvements and optimizations with tensile
+
+#### MIOpen Int8 support
+Support for int8
 
 Features and enhancements introduced in previous versions of ROCm can be found in [version_history.md](version_history.md)
 
-
-### The latest ROCm platform - ROCm 2.2
+### The latest ROCm platform - ROCm 2.3
 
 The latest supported version of the drivers, tools, libraries and source code for the ROCm platform have been released and are available from the following GitHub repositories:
 
 * ROCm Core Components
   - [ROCk Kernel Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-2.2.0)
-  - [ROCr Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-2.2.0)
-  - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-2.2.0)
+  - [ROCr Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/84443a1)
+  - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-2.3.0)
 * ROCm Support Software
-  - [ROCm SMI](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-2.2.0)
+  - [ROCm SMI](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-2.3.0)
   - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/ac45c6e2)
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/1bb0ccc7)
-  - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-2.2.0)
+  - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-2.3.0)
 * ROCm Development Tools
-  - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-2.2.0)
-  - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-2.2.0)
-  - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-2.2.0)
+  - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-2.3.0)
+  - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-2.3.0)
+  - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-2.3.0)
   - ROCm OpenCL, which is created from the following components:
-    - [ROCm OpenCL Runtime](http://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/tree/roc-2.2.0)
-    - [ROCm OpenCL Driver](http://github.com/RadeonOpenCompute/ROCm-OpenCL-Driver/tree/roc-2.2.0)
+    - [ROCm OpenCL Runtime](http://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/tree/roc-2.3.0)
+    - [ROCm OpenCL Driver](http://github.com/RadeonOpenCompute/ROCm-OpenCL-Driver/tree/roc-2.3.0)
     - The ROCm OpenCL compiler, which is created from the following components:
-      - [ROCm LLVM](http://github.com/RadeonOpenCompute/llvm/tree/roc-2.2.0)
-      - [ROCm Clang](http://github.com/RadeonOpenCompute/clang/tree/roc-2.2.0)
-      - [ROCm lld](http://github.com/RadeonOpenCompute/lld/tree/roc-2.2.0)
-      - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-2.2.0)
-  - [ROCM Clang-OCL Kernel Compiler](https://github.com/RadeonOpenCompute/clang-ocl/tree/roc-2.2.0)
+      - [ROCm LLVM OCL](http://github.com/RadeonOpenCompute/llvm/tree/roc-ocl-2.3.0)
+      - [ROCm LLVM HCC](http://github.com/RadeonOpenCompute/llvm/tree/roc-hcc-2.3.0)
+      - [ROCm Clang](http://github.com/RadeonOpenCompute/clang/tree/roc-2.3.0)
+      - [ROCm lld OCL](http://github.com/RadeonOpenCompute/lld/tree/roc-ocl-2.3.0)
+      - [ROCm lld HCC](http://github.com/RadeonOpenCompute/lld/tree/roc-hcc-2.3.0)
+      - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-2.3.0)
+  - [ROCM Clang-OCL Kernel Compiler](https://github.com/RadeonOpenCompute/clang-ocl/tree/roc-2.3.0)
   - [Asynchronous Task and Memory Interface (ATMI)](https://github.com/RadeonOpenCompute/atmi/tree/4dd14ad8)
-  - [ROCr Debug Agent](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/tree/roc-2.2.0)
-  - [ROCm Code Object Manager](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/tree/roc-2.2.0)
-  - [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler/tree/roc-2.2.0)
-  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-2.2.0)
+  - [ROCr Debug Agent](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/tree/roc-2.3.0)
+  - [ROCm Code Object Manager](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/tree/roc-2.3.0)
+  - [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler/tree/roc-2.3.x)
+  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-2.3.x)
   - [Radeon Compute Profiler](https://github.com/GPUOpen-Tools/RCP/tree/a31fe682)
   - Example Applications:
     - [HCC Examples](https://github.com/ROCm-Developer-Tools/HCC-Example-Application/tree/ffd65333)
-    - [HIP Examples](https://github.com/ROCm-Developer-Tools/HIP-Examples/tree/roc-2.2.0)
+    - [HIP Examples](https://github.com/ROCm-Developer-Tools/HIP-Examples/tree/roc-2.3.0)
 * ROCm Libraries
-  - [rocBLAS](https://github.com/ROCmSoftwarePlatform/rocBLAS/tree/v2.2.0)
-  - [hipBLAS](https://github.com/ROCmSoftwarePlatform/hipBLAS/tree/v0.12.2.0)
-  - [rocFFT](https://github.com/ROCmSoftwarePlatform/rocFFT/tree/v0.8.8)
-  - [rocRAND](https://github.com/ROCmSoftwarePlatform/rocRAND/tree/master-rocm-2.2)
-  - [rocSPARSE](https://github.com/ROCmSoftwarePlatform/rocSPARSE/tree/master-rocm-2.2)
-  - [hipSPARSE](https://github.com/ROCmSoftwarePlatform/hipSPARSE/tree/master-rocm-2.2)
-  - [rocALUTION](https://github.com/ROCmSoftwarePlatform/rocALUTION/tree/master-rocm-2.2)
+  - [rocBLAS](https://github.com/ROCmSoftwarePlatform/rocBLAS/tree/master-rocm-2.3)
+  - [hipBLAS](https://github.com/ROCmSoftwarePlatform/hipBLAS/tree/master-rocm-2.3)
+  - [rocFFT](https://github.com/ROCmSoftwarePlatform/rocFFT/tree/master-rocm-2.3)
+  - [rocRAND](https://github.com/ROCmSoftwarePlatform/rocRAND/tree/master-rocm-2.3)
+  - [rocSPARSE](https://github.com/ROCmSoftwarePlatform/rocSPARSE/tree/master-rocm-2.3)
+  - [hipSPARSE](https://github.com/ROCmSoftwarePlatform/hipSPARSE/tree/master-rocm-2.3)
+  - [rocALUTION](https://github.com/ROCmSoftwarePlatform/rocALUTION/tree/master-rocm-2.3)
   - [MIOpenGEMM](https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/tree/9547fb9e)
-  - [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen/tree/1.7.0)
-  - [HIP Thrust](https://github.com/ROCmSoftwarePlatform/Thrust/tree/e0b8fe2a)
-  - [ROCm SMI Lib](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/ce2c7c16)
-  - [RCCL](https://github.com/ROCmSoftwarePlatform/rccl/tree/0.7.4)
-  - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/1.0.0)
+  - [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen/tree/roc-2.3.0)
+  - [HIP Thrust](https://github.com/ROCmSoftwarePlatform/Thrust/tree/master-rocm-2.3)
+  - [ROCm SMI Lib](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/roc-2.3.0)
+  - [RCCL](https://github.com/ROCmSoftwarePlatform/rccl/tree/master-rocm-2.3)
+  - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/8ec8732)
   - [CUB HIP](https://github.com/ROCmSoftwarePlatform/cub-hip/tree/hip_port_1.7.4)
 
 #### Supported Operating Systems - New operating systems available
 
 The ROCm 2.2.x platform supports the following operating systems:
 
- * Ubuntu 16.04.x and 18.04.1 (Version 16.04.3 and newer or kernels 4.13-4.15)
+ * Ubuntu 16.04.x, 18.04.1 and 18.04.2 (Version 16.04.3 and newer or kernels 4.13-4.15)
  * CentOS 7.4, 7.5, and 7.6 (Using devtoolset-7 runtime support)
  * RHEL 7.4, 7.5, and 7.6 (Using devtoolset-7 runtime support)
 
@@ -219,7 +251,7 @@ For users that have the option of using either AMD's or the upstreamed driver, t
 
 ### Installing from AMD ROCm repositories
 
-AMD hosts both [Debian](http://repo.radeon.com/rocm/apt/debian/) and [RPM](http://repo.radeon.com/rocm/yum/rpm/) repositories for the ROCm 2.2.x packages at this time.
+AMD hosts both [Debian](http://repo.radeon.com/rocm/apt/debian/) and [RPM](http://repo.radeon.com/rocm/yum/rpm/) repositories for the ROCm 2.3.x packages at this time.
 
 The packages in the Debian repository have been signed to ensure package integrity.
 
@@ -613,16 +645,20 @@ echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee
 
 ### Known issues / workarounds
 
+#### Rocprim
+"Memory access fault" observed with rocprim.hip.device.scan
+#### HPL
+HPL fails to run in higher problem size (85000 Ns)
+#### Resnet50
+Multi-GPU resnet50 training using the caffe2 framework will cause a hardhang with a console message:
+kfd2kgd: amdgpu_amdkfd_restore_userptr_worker: Failed to resume KFD
+#### Caffe2
+Caffe2 images/sec drops 40% when 4 processes simultaneously run it, each using one GPU 
 #### Thrust
 functions zip_iterator.out and copy.out are not working as expected
-#### rocBLAS
-tests quick_auxilliary.logging_float and quick_auxilliary.logging_double are not working as expected
+thrust exclusive_scan produces incorrect results when running on thrust device
 #### Tensor flow
 observed memory access fault while running SAGAN tensor flow model in Polaris based ASIC
-#### PyTorch
-observing “test_gamma_gpu_sample” subtest failure
-#### Kernel
-The 4.18 kernel is not supported on 2.2. This is planned to be supported with the 2.3 release
 
 ### Closed source components
 
