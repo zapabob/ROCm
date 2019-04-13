@@ -167,7 +167,7 @@ Features and enhancements introduced in previous versions of ROCm can be found i
 The latest supported version of the drivers, tools, libraries and source code for the ROCm platform have been released and are available from the following GitHub repositories:
 
 * ROCm Core Components
-  - [ROCk Kernel Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-2.2.0)
+  - [ROCk Kernel Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-2.3.0)
   - [ROCr Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/84443a1)
   - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-2.3.0)
 * ROCm Support Software
