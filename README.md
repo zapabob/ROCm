@@ -697,7 +697,7 @@ If you chose a directory other than `~/bin/` to install `repo`, you should use t
 ```shell
 mkdir -p ~/ROCm/
 cd ~/ROCm/
-~/bin/repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-2.2.0
+~/bin/repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-2.3.0
 repo sync
 ```
 
