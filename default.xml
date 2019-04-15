@@ -32,9 +32,9 @@
     <remote name="KhronosGroup" fetch="https://github.com/KhronosGroup/" />
     <project name="ROCm-OpenCL-Runtime" />
     <project path="ROCm-OpenCL-Runtime/compiler/driver" name="ROCm-OpenCL-Driver"/>
-    <project path="ROCm-OpenCL-Runtime/compiler/llvm" name="llvm" />
+    <project path="ROCm-OpenCL-Runtime/compiler/llvm" name="llvm" revision="refs/tags/roc-ocl-2.3.0" />
     <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/clang" name="clang" />
-    <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/lld" name="lld" />
+    <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/lld" name="lld" revision="refs/tags/roc-ocl-2.3.0" />
     <project path="ROCm-OpenCL-Runtime/library/amdgcn" name="ROCm-Device-Libs"/>
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="261c1288aadd9dcc4637aca08332f603e6c13715" />
 
@@ -45,8 +45,8 @@
     <project name="HIP" remote="rocm-devtools" />
     <project name="HIP-Examples" remote="rocm-devtools" />
     <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
-    <project name="llvm" path="llvm_amd-common" />
-    <project name="lld" path="llvm_amd-common/lld" />
+    <project name="llvm" path="llvm_amd-common" revision="refs/tags/roc-hcc-2.3.0" />
+    <project name="lld" path="llvm_amd-common/lld" revision="refs/tags/roc-hcc-2.3.0" />
     <project name="clang" path="llvm_amd-common/clang" />
     <project name="ROCm-Device-Libs" />
     <project name="atmi" revision="4dd14ad8fafc64dc8f35b0646cfe84e3e36a3c64" />
