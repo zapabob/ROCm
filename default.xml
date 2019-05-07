@@ -12,7 +12,7 @@
     <remote name="gpuopen-tools"
             fetch="https://github.com/GPUOpen-Tools/" />
 
-    <default revision="refs/tags/roc-2.3.0"
+    <default revision="refs/tags/roc-2.4.0"
              remote="roc-github"
              sync-c="true"
              sync-j="4" />
@@ -32,9 +32,9 @@
     <remote name="KhronosGroup" fetch="https://github.com/KhronosGroup/" />
     <project name="ROCm-OpenCL-Runtime" />
     <project path="ROCm-OpenCL-Runtime/compiler/driver" name="ROCm-OpenCL-Driver"/>
-    <project path="ROCm-OpenCL-Runtime/compiler/llvm" name="llvm" revision="refs/tags/roc-ocl-2.3.0" />
+    <project path="ROCm-OpenCL-Runtime/compiler/llvm" name="llvm" revision="refs/tags/roc-ocl-2.4.0" />
     <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/clang" name="clang" />
-    <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/lld" name="lld" revision="refs/tags/roc-ocl-2.3.0" />
+    <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/lld" name="lld" revision="refs/tags/roc-ocl-2.4.0" />
     <project path="ROCm-OpenCL-Runtime/library/amdgcn" name="ROCm-Device-Libs"/>
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="261c1288aadd9dcc4637aca08332f603e6c13715" />
 
@@ -45,8 +45,8 @@
     <project name="HIP" remote="rocm-devtools" />
     <project name="HIP-Examples" remote="rocm-devtools" />
     <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
-    <project name="llvm" path="llvm_amd-common" revision="refs/tags/roc-hcc-2.3.0" />
-    <project name="lld" path="llvm_amd-common/lld" revision="refs/tags/roc-hcc-2.3.0" />
+    <project name="llvm" path="llvm_amd-common" revision="refs/tags/roc-hcc-2.4.0" />
+    <project name="lld" path="llvm_amd-common/lld" revision="refs/tags/roc-hcc-2.4.0" />
     <project name="clang" path="llvm_amd-common/clang" />
     <project name="ROCm-Device-Libs" />
     <project name="atmi" revision="4dd14ad8fafc64dc8f35b0646cfe84e3e36a3c64" />
@@ -56,18 +56,18 @@
     <project name="RCP" remote="gpuopen-tools" revision="refs/tags/v5.6" />
 
     <!-- ROCm Libraries -->
-    <project name="rocBLAS" remote="rocm-swplat" revision="00da0857152eeda58a9bfda611572ab30dbdc4de" />
-    <project name="hipBLAS" remote="rocm-swplat" revision="4accc37a9cb29eccbc17a036dc6d4ae0144bed4e" />
-    <project name="rocFFT" remote="rocm-swplat" revision="673805db60597698e23a409a1efe75d236b9f9d3" />
+    <project name="rocBLAS" remote="rocm-swplat" revision="refs/tags/rocm-2.4" />
+    <project name="hipBLAS" remote="rocm-swplat" revision="refs/tags/rocm-2.4" />
+    <project name="rocFFT" remote="rocm-swplat" revision="9a0d296ce91889a4ac549adeac045604f040af92" />
     <project name="rocRAND" remote="rocm-swplat" revision="687d659a294f416c69dd6e860a8ded939e55c22a" />
-    <project name="rocSPARSE" remote="rocm-swplat" revision="0676d85f2f37e59f5696c02bcdc5dead6db6e5e9" />
-    <project name="hipSPARSE" remote="rocm-swplat" revision="refs/tags/v1.0.4" />
-    <project name="rocALUTION" remote="rocm-swplat" revision="be8d0c577bc3db217a8c10caaf9d2627119a3444" />
+    <project name="rocSPARSE" remote="rocm-swplat" revision="refs/tags/rocm-2.4" />
+    <project name="hipSPARSE" remote="rocm-swplat" revision="refs/tags/rocm-2.4" />
+    <project name="rocALUTION" remote="rocm-swplat" revision="refs/tags/rocm-2.4" />
     <project name="MIOpenGEMM" remote="rocm-swplat" revision="9547fb9e8499a5a9f16da83b1e6b749de82dd9fb" />
     <project name="MIOpen" remote="rocm-swplat" revision="refs/tags/roc-2.3.0" />
-    <project name="Thrust" remote="rocm-swplat" revision="2f23ffb3932f303d910cad824b327c11893f0d68" sync-s="true" />
+    <project name="Thrust" remote="rocm-swplat" revision="a58d8d783c05202bd3fa7732c2af62362198112e" sync-s="true" />
     <project name="rocm_smi_lib" />
     <project name="rccl" remote="rocm-swplat" revision="refs/tags/0.7.5" />
-    <project name="MIVisionX" remote="gpuopen-libs" revision="8ec87326b74d60a6f03a39298b83f192d440a939" />
+    <project name="MIVisionX" remote="gpuopen-libs" revision="f05574dc81b861cce7431153b9502718e79e0647" />
     <project name="cub-hip" remote="rocm-swplat" revision="hip_port_1.7.4" />
 </manifest>
