@@ -1,7 +1,8 @@
 ## ROCm Version History
 This file contains archived version history information for the [ROCm project](https://github.com/RadeonOpenCompute/ROCm)
 
-### Current ROCm Version: 2.4
+### Current ROCm Version: 2.5
+- [New features and enhancements in ROCm 2.4](#new-features-and-enhancements-in-rocm-24)
 - [New features and enhancements in ROCm 2.3](#new-features-and-enhancements-in-rocm-23)
 - [New features and enhancements in ROCm 2.2](#new-features-and-enhancements-in-rocm-22)
 - [New features and enhancements in ROCm 2.1](#new-features-and-enhancements-in-rocm-21)
@@ -14,6 +15,14 @@ This file contains archived version history information for the [ROCm project](h
 - [New features as of ROCm 1.8](#new-features-as-of-rocm-18)
 - [New Features as of ROCm 1.7](#new-features-as-of-rocm-17)
 - [New Features as of ROCm 1.5](#new-features-as-of-rocm-15)
+
+### New features and enhancements in ROCm 2.4
+
+#### TensorFlow 2.0 support
+ROCm 2.4 includes the enhanced compilation toolchain and a set of bug fixes to support TensorFlow 2.0 features natively
+
+#### AMD Infinity Fabric&#x2122; Link enablement 
+ROCm 2.4 adds support to connect two Radeon Instinct MI60 or Radeon Instinct MI50 boards via AMD Infinity Fabric&#x2122; Link GPU interconnect technology.
 
 ### New features and enhancements in ROCm 2.3
 
