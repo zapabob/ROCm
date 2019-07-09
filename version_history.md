@@ -1,7 +1,8 @@
 ## ROCm Version History
 This file contains archived version history information for the [ROCm project](https://github.com/RadeonOpenCompute/ROCm)
 
-### Current ROCm Version: 2.5
+### Current ROCm Version: 2.6
+- [New features and enhancements in ROCm 2.5](#new-features-and-enhancements-in-rocm-25)
 - [New features and enhancements in ROCm 2.4](#new-features-and-enhancements-in-rocm-24)
 - [New features and enhancements in ROCm 2.3](#new-features-and-enhancements-in-rocm-23)
 - [New features and enhancements in ROCm 2.2](#new-features-and-enhancements-in-rocm-22)
@@ -16,12 +17,42 @@ This file contains archived version history information for the [ROCm project](h
 - [New Features as of ROCm 1.7](#new-features-as-of-rocm-17)
 - [New Features as of ROCm 1.5](#new-features-as-of-rocm-15)
 
+### New features and enhancements in ROCm 2.5
+
+#### UCX 1.6 support
+Support for UCX version 1.6 has been added.
+
+#### BFloat16 GEMM in rocBLAS/Tensile
+Software support for BFloat16 on Radeon Instinct MI50, MI60 has been added.  This includes:
+- Mixed precision GEMM with BFloat16 input and output matrices, and all arithmetic in IEEE32 bit
+- Input matrix values are converted from BFloat16 to IEEE32 bit, all arithmetic and accumulation is IEEE32 bit. Output values are rounded from IEEE32 bit to BFloat16
+- Accuracy should be correct to 0.5 ULP
+
+#### ROCm-SMI enhancements
+CLI support for querying the memory size, driver version, and firmware version has been added to ROCm-smi.
+
+#### [PyTorch] multi-GPU functional support (CPU aggregation/Data Parallel)
+Multi-GPU support is enabled in PyTorch using Dataparallel path for versions of PyTorch built using the 06c8aa7a3bbd91cda2fd6255ec82aad21fa1c0d5 commit or later.
+
+#### rocSparse optimization on Radeon Instinct MI50 and MI60
+This release includes performance optimizations for csrsv routines in the rocSparse library.
+
+#### [Thrust] Preview
+Preview release for early adopters. rocThrust is a port of thrust, a parallel algorithm library. Thrust has been ported to the HIP/ROCm platform to use the rocPRIM library. The HIP ported library works on HIP/ROCm platforms.
+
+Note: This library will replace https://github.com/ROCmSoftwarePlatform/thrust in a future release. The package for rocThrust (this library) currently conflicts with version 2.5 package of thrust. They should not be installed together.
+
+#### Support overlapping kernel execution in same HIP stream
+HIP API has been enhanced to allow independent kernels to run in parallel on the same stream.
+
+#### AMD Infinity Fabric&#x2122; Link enablement
+The ability to connect four Radeon Instinct MI60 or Radeon Instinct MI50 boards in one hive via AMD Infinity Fabric™ Link GPU interconnect technology has been added.
 ### New features and enhancements in ROCm 2.4
 
 #### TensorFlow 2.0 support
 ROCm 2.4 includes the enhanced compilation toolchain and a set of bug fixes to support TensorFlow 2.0 features natively
 
-#### AMD Infinity Fabric&#x2122; Link enablement 
+#### AMD Infinity Fabric&#x2122; Link enablement
 ROCm 2.4 adds support to connect two Radeon Instinct MI60 or Radeon Instinct MI50 boards via AMD Infinity Fabric&#x2122; Link GPU interconnect technology.
 
 ### New features and enhancements in ROCm 2.3
@@ -30,7 +61,7 @@ ROCm 2.4 adds support to connect two Radeon Instinct MI60 or Radeon Instinct MI5
 Per GPU memory usage is added to rocm-smi.
 Display information regarding used/total bytes for VRAM, visible VRAM and GTT, via the --showmeminfo flag
 
-#### MIVisionX, v1.1 - ONNX 
+#### MIVisionX, v1.1 - ONNX
 ONNX parser changes to adjust to new file formats
 
 #### MIGraphX, v0.2
@@ -49,16 +80,16 @@ See: [Getting-started:-using-the-new-features-of-MIGraphX-0.2](https://github.co
 
 See: [MIOpen releases](https://github.com/ROCmSoftwarePlatform/MIOpen/releases)
 
-#### Caffe2 -  mGPU support 
+#### Caffe2 -  mGPU support
 Multi-gpu support is enabled for Caffe2.
 
 #### rocTracer library, ROCm tracing API for collecting runtimes API and asynchronous GPU activity traces
 HIP/HCC domains support is introduced in rocTracer library.
 
-#### BLAS -  Int8 GEMM performance, Int8 functional and performance 
+#### BLAS -  Int8 GEMM performance, Int8 functional and performance
 Introduces support and performance optimizations for Int8 GEMM, implements TRSV support, and includes improvements and optimizations with Tensile.
 
-#### Prioritized L1/L2/L3 BLAS (functional) 
+#### Prioritized L1/L2/L3 BLAS (functional)
 Functional implementation of BLAS L1/L2/L3 functions
 
 #### BLAS - tensile optimization
@@ -83,10 +114,10 @@ Added support for multi-GPU training
 
 #### RocTracer v1.0 preview release – 'rocprof' HSA runtime tracing and statistics support -
 Supports HSA API tracing and HSA asynchronous GPU activity including kernels execution and memory copy
-     
+
 #### Improvements to ROCM-SMI tool -
 Added support to show real-time PCIe bandwidth usage via the -b/--showbw flag
-       
+
 #### DGEMM Optimizations -
 Improved DGEMM performance for large square and reduced matrix sizes (k=384, k=256)
 
@@ -252,15 +283,14 @@ To try ROCm with an upstream kernel, install ROCm as normal, but do not install 
 #### Developer preview of the new OpenCL 1.2 compatible language runtime and compiler
 
  * OpenCL 2.0 compatible kernel language support with OpenCL 1.2 compatible
-   runtime 
+   runtime
  * Supports offline ahead of time compilation today;
-   during the Beta phase we will add in-process/in-memory compilation. 
+   during the Beta phase we will add in-process/in-memory compilation.
 
 #### Binary Package support for Ubuntu 16.04
 
 #### Binary Package support for Fedora 24 is not currently available
 
 #### Dropping binary package support for Ubuntu 14.04, Fedora 23
- 
-#### IPC support 
 
+#### IPC support
