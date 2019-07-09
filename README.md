@@ -133,7 +133,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCm SMI Lib](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/roc-2.6.0)
   - [RCCL](https://github.com/ROCmSoftwarePlatform/rccl/tree/master-rocm-2.6)
   - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/1.3.0)
-  - [HIP Thrust](https://github.com/ROCmSoftwarePlatform/Thrust/tree/master-rocm.2.6)
+  - [HIP Thrust](https://github.com/ROCmSoftwarePlatform/Thrust/tree/2.6.0)
   - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/tree/2.6.0)
 
 ### Hardware Support
