@@ -108,7 +108,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
       - [ROCm Clang](http://github.com/RadeonOpenCompute/clang/tree/roc-2.6.0)
       - [ROCm lld OCL](http://github.com/RadeonOpenCompute/lld/tree/roc-ocl-2.6.0)
       - [ROCm lld HCC](http://github.com/RadeonOpenCompute/lld/tree/roc-hcc-2.6.0)
-      - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/releases/tag/roc-ocl-2.6.0)
+      - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-ocl-2.6.0)
   - [ROCM Clang-OCL Kernel Compiler](https://github.com/RadeonOpenCompute/clang-ocl/tree/roc-2.6.0)
   - [Asynchronous Task and Memory Interface (ATMI)](https://github.com/RadeonOpenCompute/atmi/tree/4dd14ad8)
   - [ROCr Debug Agent](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/tree/roc-2.6.0)
@@ -133,7 +133,8 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCm SMI Lib](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/roc-2.6.0)
   - [RCCL](https://github.com/ROCmSoftwarePlatform/rccl/tree/master-rocm-2.6)
   - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/1.3.0)
-  - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/2.6.0)
+  - [HIP Thrust](https://github.com/ROCmSoftwarePlatform/Thrust/tree/master-rocm.2.6)
+  - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/tree/2.6.0)
 
 ### Hardware Support
 ROCm is focused on using AMD GPUs to accelerate computational tasks such as machine learning, engineering workloads, and scientific computing.
@@ -311,7 +312,8 @@ The packages for each of the major ROCm components are:
   - ROCm SMI Lib: `rocm_smi_lib64`
   - RCCL: `rccl`
   - MIVisionX: `mivisionx`
-  -  hipCUB: `hipCUB`
+  - rocThrust: `rocThrust`
+  - hipCUB: `hipCUB`
 
 To make it easier to install ROCm, the AMD binary repos provide a number of meta-packages that will automatically install multiple other packages.
 For example, `rocm-dkms` is the primary meta-package that is used to install most of the base technology needed for ROCm to operate.
