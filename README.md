@@ -1,6 +1,7 @@
 ## Are You Ready to ROCK?
 The ROCm Platform brings a rich foundation to advanced computing by seamlessly integrating the CPU and GPU with the goal of solving real-world problems.
 This software enables the high-performance operation of AMD GPUs for computation oriented tasks in the Linux operating system.
+Please refer the ROCm Documentation [here](https://rocm-documentation.readthedocs.io/en/latest/index.html).
 
 ### Current ROCm Version: 2.6
 
