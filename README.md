@@ -391,7 +391,7 @@ If the key signature verification is failed while update, please re-add the key 
 ROCm apt repository. The current rocm.gpg.key is not available in a standard key ring
 distribution, but has the following sha1sum hash:
 
-`f7f8147431c75e505c58a6f3a3548510869357a6  rocm.gpg.key`
+`e85a40d1a43453fe37d63aa6899bc96e08f2817a  rocm.gpg.key`
 
 ##### Install
 
