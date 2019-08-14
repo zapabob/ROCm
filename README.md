@@ -32,7 +32,7 @@ Please refer the ROCm Documentation [here](https://rocm-documentation.readthedoc
 #### [rocFFT] Real FFT Functional
 Improved real/complex 1D even-length transforms of unit stride. Performance improvements of up to 4.5x are observed. Large problem sizes should see approximately 2x.
 
-#### rocRand Enhancements and Optimizations 
+#### rocRand Enhancements and Optimizations
 - Added support for new datatypes: uchar, ushort, half.
 - Improved performance on "Vega 7nm" chips, such as on the Radeon Instinct MI50
 - mtgp32 uniform double performance changes due generation algorithm standardization. Better quality random numbers now generated with 30% decrease in performance
@@ -100,7 +100,6 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCm SMI Lib](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/roc-2.7.0)
   - [RCCL](https://github.com/ROCmSoftwarePlatform/rccl/tree/master-rocm-2.7)
   - [MIVisionX](https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/1.3.0)
-  - [HIP Thrust](https://github.com/ROCmSoftwarePlatform/Thrust/tree/2.7.0)
   - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/tree/rocm-2.7)
 
 ### Hardware Support
@@ -276,7 +275,6 @@ The packages for each of the major ROCm components are:
   - rocALUTION: `rocalution:`
   - MIOpenGEMM: `miopengemm`
   - MIOpen: `MIOpen-HIP` (for the HIP version), `MIOpen-OpenCL` (for the OpenCL version)
-  - HIP Thrust: `thrust` (on RHEL/CentOS), `hip-thrust` (on Ubuntu)
   - ROCm SMI Lib: `rocm_smi_lib64`
   - RCCL: `rccl`
   - MIVisionX: `mivisionx`
@@ -689,7 +687,7 @@ As such, you should go to the repository you are interested in building to find 
 That said, AMD also offers [a project](https://github.com/RadeonOpenCompute/Experimental_ROC) that demonstrates how to download, build, package, and install ROCm software on various distributions.
 The scripts here may be useful for anyone looking to build ROCm components.
 
-#### Deprecation Notice 
+#### Deprecation Notice
 
 ### HCC
 AMD is deprecating HCC to put more focus on HIP development and on
