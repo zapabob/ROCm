@@ -128,10 +128,10 @@ The following list of GPUs are enabled in the ROCm software, though full support
   * GFX7 GPUs
     * "Hawaii" chips, such as the AMD Radeon R9 390X and FirePro W9100
 
-As described in the next section, GFX8 GPUs require PCI Express 3.0 (PCIe 3.0) with support for PCIe atomics. This requires both CPU and motherboard support. GFX9 GPUs, by default, also require PCIe 3.0 with support for PCIe atomics, but they can operate in most cases without this capability.
+As described in the next section, GFX8 GPUs require PCI Express 3.0 (PCIe 3.0) with support for PCIe atomics. This requires both CPU and motherboard support. GFX9 GPUs require PCIe 3.0 with support for PCIe atomics by default, but they can operate in most cases without this capability.
 
-At this time, the integrated GPUs in AMD APUs are not officially supported targets for ROCm.
-As descried [below](#limited-support), "Carrizo", "Bristol Ridge", and "Raven Ridge" APUs are enabled in our upstream drivers and the ROCm OpenCL runtime.
+The integrated GPUs in AMD APUs are not officially supported targets for ROCm.
+As described [below](#limited-support), "Carrizo", "Bristol Ridge", and "Raven Ridge" APUs are enabled in our upstream drivers and the ROCm OpenCL runtime.
 However, they are not enabled in our HCC or HIP runtimes, and may not work due to motherboard or OEM hardware limitations.
 As such, they are not yet officially supported targets for ROCm.
 
@@ -144,14 +144,14 @@ The CPU root must indicate PCIe AtomicOp Completion capabilities and any interme
 
 Current CPUs which support PCIe Gen3 + PCIe Atomics are:
 
-  * AMD Ryzen CPUs;
-  * The CPUs in AMD Ryzen APUs;
+  * AMD Ryzen CPUs
+  * The CPUs in AMD Ryzen APUs
   * AMD Ryzen Threadripper CPUs
-  * AMD EPYC CPUs;  
-  * Intel Xeon E7 v3 or newer CPUs;
-  * Intel Xeon E5 v3 or newer CPUs;
-  * Intel Xeon E3 v3 or newer CPUs;
-  * Intel Core i7 v4, Core i5 v4, Core i3 v4 or newer CPUs (i.e. Haswell family or newer).
+  * AMD EPYC CPUs
+  * Intel Xeon E7 v3 or newer CPUs
+  * Intel Xeon E5 v3 or newer CPUs
+  * Intel Xeon E3 v3 or newer CPUs
+  * Intel Core i7 v4, Core i5 v4, Core i3 v4 or newer CPUs (i.e. Haswell family or newer)
   * Some Ivy Bridge-E systems
 
 Beginning with ROCm 1.8, GFX9 GPUs (such as Vega 10) no longer require PCIe atomics.
@@ -266,22 +266,22 @@ The packages for each of the major ROCm components are:
   - ROC Tracer: `roctracer-dev`
   - Radeon Compute Profiler: `rocm-profiler`
 * ROCm Libraries
+  - rocALUTION: `rocalution`
   - rocBLAS: `rocblas`
   - hipBLAS: `hipblas`
+  - hipCUB: `hipCUB`
   - rocFFT: `rocfft`
   - rocRAND: `rocrand`
   - rocSPARSE: `rocsparse`
   - hipSPARSE: `hipsparse`
-  - rocALUTION: `rocalution:`
-  - MIOpenGEMM: `miopengemm`
-  - MIOpen: `MIOpen-HIP` (for the HIP version), `MIOpen-OpenCL` (for the OpenCL version)
   - ROCm SMI Lib: `rocm_smi_lib64`
-  - RCCL: `rccl`
-  - MIVisionX: `mivisionx`
   - rocThrust: `rocThrust`
-  - hipCUB: `hipCUB`
+  - MIOpen: `MIOpen-HIP` (for the HIP version), `MIOpen-OpenCL` (for the OpenCL version)
+  - MIOpenGEMM: `miopengemm`
+  - MIVisionX: `mivisionx`
+  - RCCL: `rccl`
 
-To make it easier to install ROCm, the AMD binary repos provide a number of meta-packages that will automatically install multiple other packages.
+To make it easier to install ROCm, the AMD binary repositories provide a number of meta-packages that will automatically install multiple other packages.
 For example, `rocm-dkms` is the primary meta-package that is used to install most of the base technology needed for ROCm to operate.
 It will install the `rock-dkms` kernel driver, and another meta-package (`rocm-dev`) which installs most of the user-land ROCm core components, support software, and development tools.
 
@@ -291,33 +291,36 @@ Finally, the `rocm-libs` meta-package will install some (but not all) of the lib
 The chain of software installed by these meta-packages is illustrated below
 
 ```
-rocm-dkms
- |-- rock-dkms
- \-- rocm-dev
-      |--hsa-rocr-dev
-      |--hsa-ext-rocr-dev
-      |--rocm-device-libs
-      |--rocm-utils
-          |-- rocminfo
-          |-- rocm-cmake
-          \-- rocm-clang-ocl # This will cause OpenCL to be installed
-      |--hcc
-      |--hip_base
-      |--hip_doc
-      |--hip_hcc
-      |--hip_samples
-      |--rocm-smi
-      |--hsakmt-roct
-      |--hsakmt-roct-dev
-      |--hsa-amd-aqlprofile
-      |--comgr
-      \--rocr_debug_agent
+  rocm-dkms
+    |--rock-dkms
+    \--rocm-dev
+       |--hsa-rocr-dev
+       |--hsa-ext-rocr-dev
+       |--hsakmt-roct
+       |--hsakmt-roct-dev
+       |--rocm-cmake
+       |--rocm-device-libs
+       |--hcc
+       |--hip_base
+       |--hip_doc
+       |--hip_hcc
+       |--hip_samples
+       |--rocm-smi
+       |--hsa-amd-aqlprofile
+       |--comgr
+       |--rocr_debug_agent
+       \--rocm-utils
+          |--rocminfo
+          \--rocm-clang-ocl # This will cause OpenCL to be installed
 
-rocm-libs
- |-- rocblas
- |-- rocfft
- |-- rocrand
- \-- hipblas
+  rocm-libs
+    |--rocalution
+    |--hipblas
+    |--rocblas
+    |--rocfft
+    |--rocrand
+    |--hipsparse
+    \--rocsparse
 ```
 
 These meta-packages are not required but may be useful to make it easier to install ROCm on most systems.
@@ -692,11 +695,11 @@ The scripts here may be useful for anyone looking to build ROCm components.
 ### HCC
 AMD is deprecating HCC to put more focus on HIP development and on
 other languages supporting heterogeneous compute.  We will no longer
-develop any new feature in HCC and we will stop maintaining HCC after
-its final release, which is planned for end of year, 2019.  If your
+develop any new feature in HCC. We will stop maintaining HCC after
+its final release, which is planned for the end of 2019.  If your
 application was developed with the hc C++ API, we would encourage you
 to transition it to other languages supported by AMD, such as HIP or
-OpenCL.  HIP and hc language share the same compiler technology, so
+OpenCL.  HIP and hc languages share the same compiler technology, so
 many hc kernel language features (including inline assembly) are also
 available through the HIP compilation path.
 
