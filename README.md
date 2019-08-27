@@ -48,19 +48,22 @@ To upgrade, please remove 2.7 completely as specified [here](#how-to-uninstall-f
 
 #### Other notes
 
-  To use rocprofiler features, you will need to install roctracer using this command, before using rocprofiler
+  To use rocprofiler features, the following steps need to be completed before using rocprofiler: 
+  
+  ##### Step-1: Install roctracer
 
-##### Ubuntu 16.04 or Ubuntu 18.04:
+###### Ubuntu 16.04 or Ubuntu 18.04:
 
   ```shell
   sudo apt install roctracer-dev
   ```
 
-#####  CentOS/RHEL 7.6:
+######  CentOS/RHEL 7.6:
 
   ```shell
   sudo yum install roctracer-dev
   ```
+  ##### Step-2: Add /opt/rocm/roctracer/lib to LD_LIBRARY_PATH
 
 ### New features and enhancements in ROCm 2.7
 
