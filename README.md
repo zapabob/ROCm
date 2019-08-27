@@ -6,7 +6,7 @@ Please refer the ROCm Documentation [here](https://rocm-documentation.readthedoc
 
 ### Current ROCm Version: 2.7.1
 
-- [Hotfix release ROCm 2.7.1](#hotfix-release-rocm-2.7.1)
+- [Hotfix release ROCm 2.7.1](#hotfix-release-rocm-271)
 - [New features and enhancements in ROCm 2.7](#new-features-and-enhancements-in-rocm-27)
 - [The latest ROCm platform - ROCm 2.7](#the-latest-rocm-platform-rocm-27)
 - [Hardware Support](#hardware-support)
