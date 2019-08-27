@@ -44,7 +44,7 @@ All traces and results will be saved under $PWD/traces path
 
 #### Upgrading from ROCm 2.7 to 2.7.1
 
-To upgrade, please remove 2.7 completely as specified [here](#how-to-uninstall-from-ubuntu-16.04-or-Ubuntu-18.04) or [here](#how-to-uninstall-rocm-from-centosrhel-76), and install 2.7.1 as per instructions [here](#installing-from-amd-rocm-repositories)
+To upgrade, please remove 2.7 completely as specified [here](#how-to-uninstall-from-ubuntu-1604-or-Ubuntu-1804) or [here](#how-to-uninstall-rocm-from-centosrhel-76), and install 2.7.1 as per instructions [here](#installing-from-amd-rocm-repositories)
 
 #### Other notes
 
