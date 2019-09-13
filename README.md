@@ -4,9 +4,9 @@ The ROCm Platform brings a rich foundation to advanced computing by seamlessly i
 This software enables the high-performance operation of AMD GPUs for computation oriented tasks in the Linux operating system.
 Please refer the ROCm Documentation [here](https://rocm-documentation.readthedocs.io/en/latest/index.html).
 
-### Current ROCm Version: 2.7.1
+### Current ROCm Version: 2.7.2
 
-- [Hotfix release ROCm 2.7.1](#hotfix-release-rocm-271)
+- [Hotfix release ROCm 2.7.2](#hotfix-release-rocm-272)
 - [New features and enhancements in ROCm 2.7](#new-features-and-enhancements-in-rocm-27)
 - [The latest ROCm platform - ROCm 2.7](#the-latest-rocm-platform-rocm-27)
 - [Hardware Support](#hardware-support)
@@ -28,42 +28,13 @@ Please refer the ROCm Documentation [here](https://rocm-documentation.readthedoc
 - [Deprecation Notice](#deprecation-notice-hcc)
 - [Final notes](#final-notes)
 
-### Hotfix release ROCm 2.7.1
+### Hotfix release ROCm 2.7.2
 
-This release is a hotfix release for ROCm release 2.7.1, and addresses the defect mentioned below. The features and enhancements as mentioned in [ROCm 2.7](#new-features-and-enhancements-in-rocm-27) remain relevant to ROCm release 2.7.1 as well.
+This release is a hotfix release for ROCm release 2.7.2, and addresses the defect mentioned below. The features and enhancements as mentioned in [ROCm 2.7](#new-features-and-enhancements-in-rocm-27) remain relevant to ROCm release 2.7.2 as well.
 
-#### Defect fixed in ROCm 2.7.1
+#### Defect fixed in ROCm 2.7.2
 
-##### rocprofiler --hiptrace and --hsatrace fails to load roctracer library
-In ROCm 2.7.1, rocprofiler --hiptrace and --hsatrace fails to load roctracer library defect has been fixed.  
-To generate traces, please provide directory path also using the parameter: -d <$directoryPath> for ex:
-```shell
-/opt/rocm/bin/rocprof  --hsa-trace -d $PWD/traces /opt/rocm/hip/samples/0_Intro/bit_extract/bit_extract
-  ```
-All traces and results will be saved under $PWD/traces path
-
-#### Upgrading from ROCm 2.7 to 2.7.1
-
-To upgrade, please remove 2.7 completely as specified [here](#how-to-uninstall-from-ubuntu-1604-or-Ubuntu-1804) or [here](#how-to-uninstall-rocm-from-centosrhel-76), and install 2.7.1 as per instructions [here](#installing-from-amd-rocm-repositories)
-
-#### Other notes
-
-  To use rocprofiler features, the following steps need to be completed before using rocprofiler: 
-  
-  ##### Step-1: Install roctracer
-
-###### Ubuntu 16.04 or Ubuntu 18.04:
-
-  ```shell
-  sudo apt install roctracer-dev
-  ```
-
-######  CentOS/RHEL 7.6:
-
-  ```shell
-  sudo yum install roctracer-dev
-  ```
-  ##### Step-2: Add /opt/rocm/roctracer/lib to LD_LIBRARY_PATH
+##### Upgrade from older ROCm release to ROCm2.7.2 related defects has been fixed.
 
 ### New features and enhancements in ROCm 2.7
 
@@ -101,8 +72,8 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/roc-2.7.0)
   - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-2.7.0)
 * ROCm Development Tools
-  - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-hcc-2.7.0)
-  - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-2.7.0)
+  - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-hcc-2.7.2)
+  - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-2.7.2)
   - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-hcc-2.7.0)
   - ROCm OpenCL, which is created from the following components:
     - [ROCm OpenCL Runtime](http://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/tree/roc-2.7.0)
@@ -119,7 +90,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCr Debug Agent](https://github.com/ROCm-Developer-Tools/rocr_debug_agent/tree/roc-2.7.0)
   - [ROCm Code Object Manager](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/tree/roc-2.7.0)
   - [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler/tree/roc-2.6.x)
-  - [ROC Tracer](https://github.com/ROCmSoftwarePlatform/roctracer/tree/roc-2.7.x)
+  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-2.7.2)
   - [Radeon Compute Profiler](https://github.com/GPUOpen-Tools/RCP/tree/3a49405)
   - Example Applications:
     - [HCC Examples](https://github.com/ROCm-Developer-Tools/HCC-Example-Application/tree/ffd65333)
