@@ -24,7 +24,7 @@
     <project name="rocm-cmake" revision="master-rocm-2.7" />
     <project name="rocminfo" />
     <project name="rocprofiler" remote="rocm-devtools" revision="refs/tags/roc-2.6.0"/>
-    <project name="roctracer" remote="rocm-devtools" revision="roc-2.7.x"/>
+    <project name="roctracer" remote="rocm-devtools" revision="refs/tags/roc-2.7.2"/>
     <!-- If you want to get the full OpenCL runtime, there is a separate repo
          manifest that is more authoritative than the copy in this file. It can
          be found at the following URL:
@@ -40,9 +40,9 @@
 
     <project name="clang-ocl" />
     <!-- HCC needs to be recursively synced to get it submodules -->
-    <project name="hcc" sync-s="true" revision="refs/tags/roc-hcc-2.7.0" />
+    <project name="hcc" sync-s="true" revision="refs/tags/roc-hcc-2.7.2" />
     <project name="HCC-Example-Application" remote="rocm-devtools" revision="ffd6533305e79eed667badd3c4cdb7879a1281b8" />
-    <project name="HIP" remote="rocm-devtools" />
+    <project name="HIP" remote="rocm-devtools" revision="refs/tags/roc-2.7.2" />
     <project name="HIP-Examples" remote="rocm-devtools" />
     <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
     <project name="llvm" path="llvm_amd-common" revision="refs/tags/roc-ocl-2.7.0" />
