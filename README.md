@@ -31,11 +31,11 @@ Please refer the ROCm Documentation [here](https://rocm-documentation.readthedoc
 
 ### Hotfix release ROCm 2.7.2
 
-This release is a hotfix release for ROCm release 2.7.2, and addresses the defect mentioned below. The features and enhancements as mentioned in [ROCm 2.7](#new-features-and-enhancements-in-rocm-27) remain relevant to ROCm release 2.7.2 as well.
+This is a hotfix release for ROCm release 2.7.2.
 
 #### Defect fixed in ROCm 2.7.2
 
-##### Upgrade from older ROCm release to ROCm2.7.2 related defects has been fixed.
+##### A defect in upgrades from older ROCm release has been fixed.
 
 ### Hotfix release ROCm 2.7.1
 
