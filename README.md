@@ -31,7 +31,7 @@ Please refer the ROCm Documentation [here](https://rocm-documentation.readthedoc
 
 ### Hotfix release ROCm 2.7.2
 
-This is a hotfix release for ROCm release 2.7.2.
+This release is a hotfix for ROCm release 2.7.2.
 
 #### Defect fixed in ROCm 2.7.2
 
