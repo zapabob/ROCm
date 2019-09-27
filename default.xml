@@ -59,7 +59,7 @@
     <project name="rocBLAS" remote="rocm-swplat" revision="refs/tags/rocm-2.8" />
     <project name="hipBLAS" remote="rocm-swplat" revision="refs/tags/rocm-2.8" />
     <project name="rocFFT" remote="rocm-swplat" revision="refs/tags/rocm-2.8" />
-    <project name="rocRAND" remote="rocm-swplat" revision="refs/tags/rocm-2.8" />
+    <project name="rocRAND" remote="rocm-swplat" revision="refs/tags/2.8.0" />
     <project name="rocSPARSE" remote="rocm-swplat" revision="refs/tags/rocm-2.8" />
     <project name="hipSPARSE" remote="rocm-swplat" revision="refs/tags/rocm-2.8" />
     <project name="rocALUTION" remote="rocm-swplat" revision="refs/tags/rocm-2.8" />
