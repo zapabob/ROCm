@@ -1,7 +1,8 @@
 ## ROCm Version History
 This file contains archived version history information for the [ROCm project](https://github.com/RadeonOpenCompute/ROCm)
 
-### Current ROCm Version: 2.8
+### Current ROCm Version: 2.9
+- [New features and enhancements in ROCm 2.8](#new-features-and-enhancements-in-rocm-28)
 - [New features and enhancements in ROCm 2.7.2](#new-features-and-enhancements-in-rocm-272)
 - [New features and enhancements in ROCm 2.7](#new-features-and-enhancements-in-rocm-27)
 - [New features and enhancements in ROCm 2.6](#new-features-and-enhancements-in-rocm-26)
@@ -19,6 +20,11 @@ This file contains archived version history information for the [ROCm project](h
 - [New features as of ROCm 1.8](#new-features-as-of-rocm-18)
 - [New Features as of ROCm 1.7](#new-features-as-of-rocm-17)
 - [New Features as of ROCm 1.5](#new-features-as-of-rocm-15)
+
+### New features and enhancements in ROCm 2.8
+
+#### Support for NCCL2.4.8 API
+Implements ncclCommAbort() and ncclCommGetAsyncError() to match the NCCL 2.4.x API
 
 ### New features and enhancements in ROCm 2.7.2
 
