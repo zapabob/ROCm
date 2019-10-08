@@ -23,7 +23,7 @@
     <project name="ROC-smi" />
     <project name="rocm-cmake" />
     <project name="rocminfo" />
-    <project name="rocprofiler" remote="rocm-devtools" revision="refs/tags/roc-2.8.0" />
+    <project name="rocprofiler" remote="rocm-devtools" revision="refs/tags/roc-2.9.0" />
     <project name="roctracer" remote="rocm-devtools" revision="roc-2.9.x" />
     <!-- If you want to get the full OpenCL runtime, there is a separate repo
          manifest that is more authoritative than the copy in this file. It can
