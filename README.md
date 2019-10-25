@@ -311,18 +311,22 @@ The chain of software installed by these meta-packages is illustrated below
        |--hsa-amd-aqlprofile
        |--comgr
        |--rocr_debug_agent
+       |--rocprofiler-dev
        \--rocm-utils
           |--rocminfo
           \--rocm-clang-ocl # This will cause OpenCL to be installed
 
   rocm-libs
-    |--rocalution
-    |--hipblas
     |--rocblas
+    |--hipblas
     |--rocfft
     |--rocrand
+    |--rocsparse
     |--hipsparse
-    \--rocsparse
+    |--rocalution
+    |--rocprim
+    |--rocthrust
+    \--hipcub
 ```
 
 These meta-packages are not required but may be useful to make it easier to install ROCm on most systems.
