@@ -1,10 +1,10 @@
 
-## Are You Ready to ROCK?
+
 The ROCm Platform brings a rich foundation to advanced computing by seamlessly integrating the CPU and GPU with the goal of solving real-world problems.
 This software enables the high-performance operation of AMD GPUs for computation oriented tasks in the Linux operating system.
 Please refer the ROCm Documentation [here](https://rocm-documentation.readthedocs.io/en/latest/index.html).
 
-### Current ROCm Version: 2.9
+### Current ROCm Version: 2.10
 
 - [New features and enhancements in ROCm 2.9](#new-features-and-enhancements-in-rocm-29)
 - [The latest ROCm platform - ROCm 2.9](#the-latest-rocm-platform-rocm-29)
@@ -28,7 +28,7 @@ Please refer the ROCm Documentation [here](https://rocm-documentation.readthedoc
 - [Final notes](#final-notes)
 
 
-### New features and enhancements in ROCm 2.9
+### New features and enhancements in ROCm 2.10
 
 #### Initial release for Radeon Augmentation Library(RALI)
 The AMD Radeon Augmentation Library (RALI) is designed to efficiently decode and process images from a variety of storage formats and modify them through a processing graph programmable by the user. RALI currently provides C API.
