@@ -1,12 +1,12 @@
 
 ### ROCm - Machine Learning and High Performance Computing Software Stack for AMD GPU
 
-### Current ROCm Version: 2.10
+### ROCm Version: Version 2.10
 
   * [ROCm Binary Package Structure](#rocm-binary-package-structure)
 
 
-### The latest ROCm platform - ROCm 2.10
+### Links to Drivers, Tools, Libraries and Source Code for the ROCm Platform
 
 The latest supported version of the drivers, tools, libraries and source code for the ROCm platform have been released and are available from the following GitHub repositories:
 
