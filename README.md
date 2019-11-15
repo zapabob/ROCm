@@ -1,4 +1,4 @@
-
+ROCm - Machine Learning and High Performance Computing Software Stack for AMD GPU
 
 
 ### Current ROCm Version: 2.10
