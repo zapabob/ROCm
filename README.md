@@ -1,5 +1,6 @@
 
-## ROCm Version 2.10 - Machine Learning and High Performance Computing Software Stack for AMD GPU
+## ROCm Version 2.10 
+Machine Learning and High Performance Computing Software Stack for AMD GPU
 
 ### ROCm Binary Package Structure
 
