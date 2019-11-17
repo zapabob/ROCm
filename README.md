@@ -12,7 +12,7 @@
 
 The latest supported version of the drivers, tools, libraries and source code for the ROCm platform have been released and are available from the following GitHub repositories:
 
-* [ROCm Core Components](#ROCm Core Components)
+* [ROCm Core Components](#ROCm-Core-Components)
 
 
 
