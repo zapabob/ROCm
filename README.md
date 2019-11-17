@@ -13,6 +13,11 @@
 The latest supported version of the drivers, tools, libraries and source code for the ROCm platform have been released and are available from the following GitHub repositories:
 
 * [ROCm Core Components](#ROCm-Core-Components)
+* [ROCm Support Software](#ROCm-Support-Software)
+* [ROCm Development Tools](#ROCm-Development-Tools)
+* [ROCm Libraries](#ROCm-Libraries)
+
+
 
 
 
@@ -21,18 +26,14 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [ROCr Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-2.9.0)
   - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-2.9.0)  
 
-* ROCm Core Components
-  - [ROCk Kernel Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/tree/roc-2.9.0)
-  - [ROCr Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/tree/roc-2.9.0)
-  - [ROCt Thunk Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/tree/roc-2.9.0)
   
-* ROCm Support Software
+#### ROCm Support Software
   - [ROCm SMI](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-2.9.0)
   - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/roc-2.9.0)
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/roc-2.9.0)
   - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-2.9.0)
   
-* ROCm Development Tools
+#### ROCm Development Tools
   - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-hcc-2.9.0)
   - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-2.9.0)
   - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-hcc-2.9.0)
@@ -57,7 +58,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
     - [HCC Examples](https://github.com/ROCm-Developer-Tools/HCC-Example-Application/tree/ffd65333)
     - [HIP Examples](https://github.com/ROCm-Developer-Tools/HIP-Examples/tree/roc-2.9.0)
     
-* ROCm Libraries
+#### ROCm Libraries
   - [rocBLAS](https://github.com/ROCmSoftwarePlatform/rocBLAS/tree/rocm-2.9)
   - [hipBLAS](https://github.com/ROCmSoftwarePlatform/hipBLAS/tree/rocm-2.9)
   - [rocFFT](https://github.com/ROCmSoftwarePlatform/rocFFT/tree/rocm-2.9)
