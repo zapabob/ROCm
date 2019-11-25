@@ -451,7 +451,7 @@ Each ROCm component repository contains directions for building that component. 
 
 
 
-### Hardware Support
+### Hardware and Software Support
 ROCm is focused on using AMD GPUs to accelerate computational tasks such as machine learning, engineering workloads, and scientific computing.
 In order to focus our development efforts on these domains of interest, ROCm supports a targeted set of hardware configurations which are detailed further in this section.
 
