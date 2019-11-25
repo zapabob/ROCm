@@ -118,68 +118,76 @@ For information about upstream kernel drivers, see the Using Debian-based ROCm w
 ### Installing a ROCm Package from a Debian Repository
 To install from a Debian Repository:
 1.	Run the following code to ensure that your system is up to date:
+      
+     	sudo apt update
  
-     
-     sudo apt update
- 
-     sudo apt dist-upgrade
+     	sudo apt dist-upgrade
     
-     sudo apt install libnuma-dev
+     	sudo apt install libnuma-dev
     
-     sudo reboot 
-     
-    
-     
+     	sudo reboot 
+          
     
  2. Add the ROCm apt repository.
 
      For Debian-based systems like Ubuntu, configure the Debian ROCm repository as follows:
    
-      wget -q0 –
-      http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | 
+      	wget -q0 –
+     	 http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | 
 
-      sudo apt-key add -echo 'deb [arch=amd64] 
-      http://repo.radeon.com/rocm/apt/debian/ xenial main' | 
+      	sudo apt-key add -echo 'deb [arch=amd64] 
+      	http://repo.radeon.com/rocm/apt/debian/ xenial main' | 
 
-      sudo tee /etc/apt/sources.list.d/rocm.list
+      	sudo tee /etc/apt/sources.list.d/rocm.list
       
-
-
   The gpg key may change; ensure it is updated when installing a new release. If the key signature verification fails while updating,     re-add the key from the ROCm apt repository. 
 
   The current rocm.gpg.key is not available in a standard key ring distribution, but has the following sha1sum hash:
 
-  e85a40d1a43453fe37d63aa6899bc96e08f2817a rocm.gpg.key
+  	e85a40d1a43453fe37d63aa6899bc96e08f2817a rocm.gpg.key
+	
 
-3.	Install the ROCm meta-package.
-   
-    Update the appropriate repository list and install the rocm-dkms meta-package:
+3. Install the ROCm meta-package.
+   Update the appropriate repository list and install the rocm-dkms meta-package:
 
-     sudo apt update
+     	sudo apt update
    
-     sudo apt install rocm-dkms
+     	sudo apt install rocm-dkms
 
 
-4.	Set permissions.
-
-   To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using        ROCm. To identify the groups you are a member of, use the following command:
+4. Set permissions.
+   To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using        ROCm. To identify the groups you are a member of, use the following command:	   
+	
+		groups
    
-	groups
    
-   
-5.	To add your user to the video group, use the following command for the sudo password:
+5. To add your user to the video group, use the following command for the sudo password:
 	
    	sudo usermod -a -G video $LOGNAME
 
-6.	By default, add any future users to the video group. Run the following command to add users to the video group:
+6. By default, add any future users to the video group. Run the following command to add users to the video group:
 
    	echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
    
    	echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
    
-7.	Restart the system.
+7. Restart the system.
 
-8.	Test the basic ROCm installation.
+8. Test the basic ROCm installation.
+
+9. After restarting the system, run the following commands to verify that the ROCm installation is successful. If you see your GPUs listed by both commands, the installation is considered successful.
+
+		/opt/rocm/bin/rocminfo
+		/opt/rocm/opencl/bin/x86_64/clinfo
+
+Note: To run the ROCm programs more efficiently, add the ROCm binaries in your PATH.
+
+	echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | sudo tee -a /etc/profile.d/rocm.sh
+
+If you have an installation issue, refer the FAQ at:
+https://rocm.github.io/install_issues.html
+
+
 
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
