@@ -82,7 +82,19 @@ Issue: Applications fail when the docker container is launched on the NUMA syste
 
 Resolution: Configure the “–security-opt seccomp=unconfined” variable setting to avoid this issue.
 
+## Deprecated Features
+The following features are deprecated in the AMD ROCm v2.10 release. 
 
+### ROCm OpenCL Driver
+The AMD ROCm-OpenCL-Driver is now deprecated. Users should migrate to ROCm-CompilerSupport, which provides more comprehensive functionality. The compiler support repository provides various lightning compiler-related services. It currently contains a single library, the Code Object Manager (Comgr) at lib/comgr.
+ROCm-OpenCL-Driver will no longer be actively maintained after the v2.10 release. If your application was developed with the ROCm-OpenCL-Driver, we would encourage you to switch to the ROCm-CompilerSupport repository.
+
+### Peer-to-Peer Bridge Driver for PeerDirect
+The Peer-to-Peer bridge driver for the PeerDirect feature still works in the current release, however, it is now included as part of the ROCk kernel driver. ROCmRDMA allows third-party kernel drivers to utilize DMA access to the GPU memory. It allows a direct path for data exchange (peer-to-peer) using the standard features of PCI Express.
+
+Currently, ROCmRDMA provides the following benefits:
+•	Direct access to ROCm memory for 3rd party PCIe devices
+•	Support for PeerDirect(c) interface to offloads the CPU when dealing with ROCm memory for RDMA network stacks
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
 
