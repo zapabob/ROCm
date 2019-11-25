@@ -210,10 +210,8 @@ Note: To execute ROCm enabled applications, you must install the full ROCm drive
 ### Using Debian-based ROCm with Upstream Kernel Drivers
 You can install the ROCm user-level software without installing the AMD's custom ROCk kernel driver. To use the upstream kernels, run the following commands instead of installing rocm-dkms:
 
-	sudo apt update
-	
-	sudo apt install rocm-dev
-	
+	sudo apt update	
+	sudo apt install rocm-dev	
 	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
 
 
@@ -237,10 +235,8 @@ Note: The following steps do not apply to the CentOS installation.
 
 2.Enable the following repositories:
 
-	sudo subscription-manager repos --enable rhel-server-rhscl-7-rpms
-		
-	sudo subscription-manager repos --enable rhel-7-server-optional-rpms
-	
+	sudo subscription-manager repos --enable rhel-server-rhscl-7-rpms		
+	sudo subscription-manager repos --enable rhel-7-server-optional-rpms	
 	sudo subscription-manager repos --enable rhel-7-server-extras-rpms
 
 3.Enable additional repositories by downloading and installing the epel-release-latest-7 repository RPM:
@@ -256,6 +252,39 @@ To setup the Devtoolset-7 environment, follow the instructions on this page:
 https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
 
 Note: devtoolset-7 is a software collections package and is not supported by AMD.
+
+### Installing CentOS/RHEL (v7.6) for DKMS
+
+Use the dkms tool to install the kernel drivers on CentOS/RHEL v7.6:
+
+	sudo yum install -y epel-release
+	sudo yum install -y dkms kernel-headers-`uname -r` kernel-devel-`uname -r`
+
+
+## ROCm Installation
+### Installing ROCm 
+
+To install ROCm on your system, follow the instructions below:
+
+1.Delete the previous versions of ROCm before installing the latest version.
+2.Create a /etc/yum.repos.d/rocm.repo file with the following contents:
+
+	[ROCm]
+	name=ROCm
+	baseurl=http://repo.radeon.com/rocm/yum/rpm
+	enabled=1
+	gpgcheck=0
+
+Note: The URL of the repository must point to the location of the repositories’ repodata database. 
+
+3.Install ROCm components using the following command:
+
+	sudo yum install rocm-dkms
+
+4.Restart the system.
+The rock-dkms component is installed and the /dev/kfd device is now available.
+
+
 
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
