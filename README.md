@@ -164,18 +164,18 @@ To install from a Debian Repository:
 
    To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using        ROCm. To identify the groups you are a member of, use the following command:
    
-	  groups
+	groups
    
    
 5.	To add your user to the video group, use the following command for the sudo password:
 	
-   sudo usermod -a -G video $LOGNAME
+   	sudo usermod -a -G video $LOGNAME
 
 6.	By default, add any future users to the video group. Run the following command to add users to the video group:
 
-   echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
+   	echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
    
-   echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
+   	echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
    
 7.	Restart the system.
 
