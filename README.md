@@ -1,3 +1,46 @@
+# AMD ROCm Release Notes v2.10
+This document describes the features, fixed issues, and information about downloading and installing the ROCm software.
+It also covers known issues and deprecated features in the ROCm v2.10 release.
+1.1	What Is ROCm?
+ROCm is designed to be a universal platform for gpu-accelerated computing. This modular design allows hardware vendors to build drivers that support the ROCm framework. ROCm is also designed to integrate multiple programming languages and makes it easy to add support for other languages. 
+ROCm is built from open source software. Subject to the applicable license, you can download the source code, modify and rebuild the ROCm components. To ensure you are downloading the correct source code versions, the ROCm repository provides a repo manifest file called default.xml. 
+Note: You can also clone the source code for individual ROCm components from the GitHub repositories.
+
+### ROCm Components
+The following components for the ROCm platform are released and available for the v2.10 release:
+•	Drivers
+•	Tools
+•	Libraries
+•	Source Code
+
+You can access the latest supported version of drivers, tools, libraries, and source code for the ROCm platform at the following location:
+https://github.com/RadeonOpenCompute/ROCm
+
+### Supported Operating Systems
+The ROCm v2.10.x platform is designed to support the following operating systems:
+•	SLES 15 SP1 
+•	Ubuntu 16.04.6(Kernel 4.15) and 18.04.3(Kernel 5.0)
+•	CentOS 7.6 (Using devtoolset-7 runtime support)
+•	RHEL 7.6 (Using devtoolset-7 runtime support)
+
+For details about deploying the ROCm v2.10.x on these operating systems, see the Deploying ROCm section later in the document.
+
+### Important ROCm Links
+Access the following links for more information on:
+•	ROCm documentation, see 
+https://rocm-documentation.readthedocs.io/en/latest/index.html
+
+•	ROCm binary structure, see
+https://github.com/RadeonOpenCompute/ROCm/blob/master/README.md#rocm-binary-package-structure
+
+•	Common ROCm installation issues, see
+https://rocm.github.io/install_issues.html
+
+•	Instructions to install PyTorch after ROCm is installed – https://rocm-documentation.readthedocs.io/en/latest/Deep_learning/Deep-learning.html#pytorch
+
+Note: These instructions reference the rocm/pytorch:rocm2.9_ubuntu16.04_py2.7_pytorch image. However, you can substitute the Ubuntu 18.04 image listed at https://hub.docker.com/r/rocm/pytorch/tags
+
+
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
 
