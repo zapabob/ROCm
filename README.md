@@ -118,7 +118,7 @@ For information about upstream kernel drivers, see the Using Debian-based ROCm w
 ### Installing a ROCm Package from a Debian Repository
 To install from a Debian Repository:
 1.	Run the following code to ensure that your system is up to date:
-   <i>     
+ 
      
      sudo apt update
  
@@ -126,34 +126,31 @@ To install from a Debian Repository:
     
      sudo apt install libnuma-dev
     
-     sudo reboot
+     sudo reboot 
      
     
-   
-    
+     
     
  2. Add the ROCm apt repository.
 
-For Debian-based systems like Ubuntu, configure the Debian ROCm repository as follows:
-
-
-<i>
+     For Debian-based systems like Ubuntu, configure the Debian ROCm repository as follows:
    
-wget -q0 –
-http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | 
+      wget -q0 –
+      http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | 
 
-sudo apt-key add -echo 'deb [arch=amd64] 
-http://repo.radeon.com/rocm/apt/debian/ xenial main' | 
+      sudo apt-key add -echo 'deb [arch=amd64] 
+      http://repo.radeon.com/rocm/apt/debian/ xenial main' | 
 
-sudo tee /etc/apt/sources.list.d/rocm.list
+      sudo tee /etc/apt/sources.list.d/rocm.list
+      
 
 
 The gpg key may change; ensure it is updated when installing a new release. If the key signature verification fails while updating, re-add the key from the ROCm apt repository. 
 
 The current rocm.gpg.key is not available in a standard key ring distribution, but has the following sha1sum hash:
 
-<i>
 e85a40d1a43453fe37d63aa6899bc96e08f2817a rocm.gpg.key
+
 
 
 
