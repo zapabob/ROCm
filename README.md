@@ -231,22 +231,22 @@ RHEL is a subscription-based operating system. You must enable the external repo
 
 Note: The following steps do not apply to the CentOS installation.
 
-1.The subscription for RHEL must be enabled and attached to a pool ID. See the Obtaining an RHEL image and license page for instructions on registering your system with the RHEL subscription server and attaching to a pool id.
+1. The subscription for RHEL must be enabled and attached to a pool ID. See the Obtaining an RHEL image and license page for instructions on registering your system with the RHEL subscription server and attaching to a pool id.
 
-2.Enable the following repositories:
+2. Enable the following repositories:
 
 	sudo subscription-manager repos --enable rhel-server-rhscl-7-rpms		
 	sudo subscription-manager repos --enable rhel-7-server-optional-rpms	
 	sudo subscription-manager repos --enable rhel-7-server-extras-rpms
 
-3.Enable additional repositories by downloading and installing the epel-release-latest-7 repository RPM:
+3. Enable additional repositories by downloading and installing the epel-release-latest-7 repository RPM:
 
 	sudo rpm -ivh 
 
 For more details, see
 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
-4.Install and set up Devtoolset-7.
+4. Install and set up Devtoolset-7.
 
 To setup the Devtoolset-7 environment, follow the instructions on this page:
 https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
@@ -266,8 +266,8 @@ Use the dkms tool to install the kernel drivers on CentOS/RHEL v7.6:
 
 To install ROCm on your system, follow the instructions below:
 
-1.Delete the previous versions of ROCm before installing the latest version.
-2.Create a /etc/yum.repos.d/rocm.repo file with the following contents:
+1. Delete the previous versions of ROCm before installing the latest version.
+2. Create a /etc/yum.repos.d/rocm.repo file with the following contents:
 
 	[ROCm]
 	name=ROCm
@@ -277,7 +277,7 @@ To install ROCm on your system, follow the instructions below:
 
 Note: The URL of the repository must point to the location of the repositories’ repodata database. 
 
-3.Install ROCm components using the following command:
+3. Install ROCm components using the following command:
 
 	sudo yum install rocm-dkms
 
@@ -287,11 +287,11 @@ The rock-dkms component is installed and the /dev/kfd device is now available.
 ### Setting Permissions
 To configure permissions, following the instructions below:
 
-1.Ensure that your user account is a member of the "video" or "wheel" group prior to using the ROCm driver. You can find which groups you are a member of with the following command:
+1. Ensure that your user account is a member of the "video" or "wheel" group prior to using the ROCm driver. You can find which groups you are a member of with the following command:
 
 	groups
 	
-2.Add your user to the video (or wheel) group you will need the sudo password and can use the following command:
+2. Add your user to the video (or wheel) group you will need the sudo password and can use the following command:
 
 	sudo usermod -a -G video $LOGNAME
 	
@@ -302,12 +302,90 @@ Note: All future users must be added to the "video" group by default. To add the
 
 Note: The current release supports CentOS/RHEL v7.6. Before updating to the latest version of the operating system, delete the ROCm packages to avoid DKMS-related issues.
 
-3.Restart the system.
+3. Restart the system.
+
+### Testing the ROCm Installation
+After restarting the system, run the following commands to verify that the ROCm installation is successful. If you see your GPUs listed, you are good to go!
+
+	/opt/rocm/bin/rocminfo
+	/opt/rocm/opencl/bin/x86_64/clinfo
+
+Note: Add the ROCm binaries in your PATH for easy implementation of the ROCm programs.
+
+	echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | sudo tee -a /etc/profile.d/rocm.sh
+
+For more information about installation issues, see:
+https://rocm.github.io/install_issues.html
 
 
+### Performing an OpenCL-only Installation of ROCm
+Some users may want to install a subset of the full ROCm installation. If you are trying to install on a system with a limited amount of storage space, or which will only run a small collection of known applications, you may want to install only the packages that are required to run OpenCL applications. To do that, you can run the following installation command instead of the command to install rocm-dkms.
+
+	sudo yum install rock-dkms rocm-opencl-devel
+
+#### Compiling Applications Using HCC, HIP, and Other ROCm Software
+To compile applications or samples, run the following command to use gcc-7.2 provided by the devtoolset-7 environment:
+
+	scl enable devtoolset-7 bash
+
+### Uninstalling ROCm from CentOS/RHEL v7.6
+To uninstall the ROCm packages, run the following command:
+
+	sudo yum autoremove rocm-dkms rock-dkms
+
+### Installing Development Packages for Cross Compilation
+You can develop and test ROCm packages on different systems. For example, some development or build systems may not have an AMD GPU installed. In this scenario, you can avoid installing the ROCm kernel driver on your development system. Instead, install the following development subset of packages:
+
+	sudo yum install rocm-dev
+	
+Note: To execute ROCm-enabled applications, you will require a system installed with the full ROCm driver stack.
+
+### Using ROCm with Upstream Kernel Drivers
+You can install ROCm user-level software without installing AMD's custom ROCk kernel driver. To use the upstream kernel drivers, run the following commands 
+
+	sudo yum install rocm-dev
+	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
+	
+Note: You can use this command instead of installing rocm-dkms.
 
 
+### ROCm Installation - Known Issues and Workarounds 
+#### Docker container environment variable setting
 
+Issue: Applications fail when a Docker container is launched on a NUMA system without --security-opt seccomp=unconfined. 
+
+Resolution: Set "--security-opt seccomp=unconfined" to fix this issue.
+
+#### Closed source components
+The ROCm platform relies on some closed source components to provide functionalities like HSA image support. These components are only available through the ROCm repositories, and they may be deprecated or become open source components in the future. These components are made available in the following packages:
+
+•	hsa-ext-rocr-dev
+
+
+## Getting the ROCm Source Code
+AMD ROCm is built from open source software. It is, therefore, possible to modify the various components of ROCm by downloading the source code and rebuilding the components. The source code for ROCm components can be cloned from each of the GitHub repositories using git.  For easy access to download the correct versions of each of these tools, the ROCm repository contains a repo manifest file called default.xml. You can use this manifest file to download the source code for ROCm software.
+
+### Installing the Repo
+The repo tool from Google® allows you to manage multiple git repositories simultaneously. Run the following commands to install the repo:
+
+	mkdir -p ~/bin/
+	curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+	chmod a+x ~/bin/repo
+
+Note: You can choose a different folder to install the repo into if you desire. ~/bin/ is used as an example.
+
+### Downloading the ROCm Source Code
+The following example shows how to use the repo binary to download the ROCm source code. If you choose a directory other than ~/bin/ to install the repo, you must use that chosen directory in the code as shown below:
+
+	mkdir -p ~/ROCm/
+	cd ~/ROCm/
+	~/bin/repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-2.10.0
+	repo sync
+
+Note: Using this sample code will cause the repo to download the open source code associated with this ROCm release. Ensure that you have ssh-keys configured on your machine for your GitHub ID prior to the download.
+
+### Building the ROCm Source Code
+Each ROCm component repository contains directions for building that component. You can access the desired component for instructions to build the repository.
 
 
 
