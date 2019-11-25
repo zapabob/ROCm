@@ -21,9 +21,13 @@ https://github.com/RadeonOpenCompute/ROCm
 
 ### Supported Operating Systems
 The ROCm v2.10.x platform is designed to support the following operating systems:
+
 •	SLES 15 SP1 
+
 •	Ubuntu 16.04.6(Kernel 4.15) and 18.04.3(Kernel 5.0)
+
 •	CentOS 7.6 (Using devtoolset-7 runtime support)
+
 •	RHEL 7.6 (Using devtoolset-7 runtime support)
 
 For details about deploying the ROCm v2.10.x on these operating systems, see the Deploying ROCm section later in the document.
@@ -93,8 +97,23 @@ ROCm-OpenCL-Driver will no longer be actively maintained after the v2.10 release
 The Peer-to-Peer bridge driver for the PeerDirect feature still works in the current release, however, it is now included as part of the ROCk kernel driver. ROCmRDMA allows third-party kernel drivers to utilize DMA access to the GPU memory. It allows a direct path for data exchange (peer-to-peer) using the standard features of PCI Express.
 
 Currently, ROCmRDMA provides the following benefits:
+
 •	Direct access to ROCm memory for 3rd party PCIe devices
+
 •	Support for PeerDirect(c) interface to offloads the CPU when dealing with ROCm memory for RDMA network stacks
+
+## Deploying ROCm
+AMD hosts both Debian and RPM repositories for the ROCm v2.10x packages. 
+
+The following directions show how to install ROCm on supported Debian-based systems such as Ubuntu 18.04. 
+
+Note: These directions may not work as written on unsupported Debian-based distributions. For example, newer versions of Ubuntu may not be compatible with the rock-dkms kernel driver. In this case, you can exclude the rocm-dkms and rock-dkms packages.
+
+For more information on the ROCm binary structure, see
+https://github.com/RadeonOpenCompute/ROCm/blob/master/README.md#rocm-binary-package-structure
+
+For information about upstream kernel drivers, see the Using Debian-based ROCm with Upstream Kernel Drivers section.
+
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
 
