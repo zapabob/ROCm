@@ -62,6 +62,14 @@ sudo usermod  -a -G sudo $LOGNAME
 sudo reboot
 
 
+### Code Marker Support for rocProfiler and rocTracer Libraries
+Code markers provide the external correlation ID for the calling thread. This function indicates that the calling thread is entering and leaving an external API region.
+•	The rocProfiler library enables you to profile performance counters and derived metrics. This library supports GFX8/GFX9 and provides a hardware-specific low-level performance analysis interface for profiling of GPU compute applications. The profiling includes hardware performance counters with complex performance metrics.
+
+•	The rocTracer library provides a specific runtime profiler to trace API and asynchronous activity. The API provides functionality for registering the runtimes API callbacks and the asynchronous activity records pool support.
+
+•	rocTX provides a C API for code markup for performance profiling and supports annotation of code ranges and ASCII markers.
+
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
 
 ROCm Version 2.10
