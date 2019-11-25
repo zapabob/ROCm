@@ -189,11 +189,73 @@ If you have an installation issue, refer the FAQ at:
 https://rocm.github.io/install_issues.html
 
 
+
 ### Uninstalling ROCm Packages from Ubuntu 
 To uninstall the ROCm packages from Ubuntu 1v6.04 or Ubuntu v18.04, run the following command:
 
 	sudo apt autoremove rocm-dkms rocm-dev rocm-utils
 
+
+### Installing Development Packages for Cross Compilation
+It is recommended that you develop and test development packages on different systems. For example, some development or build systems may not have an AMD GPU installed. In this scenario, you must avoid installing the ROCk kernel driver on the development system. 
+
+Instead, install the following development subset of packages:
+
+	sudo apt update
+	sudo apt install rocm-dev
+
+Note: To execute ROCm enabled applications, you must install the full ROCm driver stack on your system.
+
+
+### Using Debian-based ROCm with Upstream Kernel Drivers
+You can install the ROCm user-level software without installing the AMD's custom ROCk kernel driver. To use the upstream kernels, run the following commands instead of installing rocm-dkms:
+
+	sudo apt update
+	
+	sudo apt install rocm-dev
+	
+	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
+
+
+## CentOS/RHEL v7 (v7.6) Support
+
+This section describes how to install ROCm on supported RPM-based systems such as CentOS v7.6. 
+
+Note: The following instructions may not work on unsupported RPM-based distributions. For example, Fedora may not be compatible with the rock-dkms kernel driver. You can exclude the rocm-dkms and rock-dkms packages and use the upstream kernel driver instead.
+
+Note: Although support for CentOS/RHEL v7 was added in ROCm v1.8, ROCm requires a special runtime environment provided by the RHEL Software Collections and additional dkms support packages to install and run correctly.
+
+For more details, refer:
+https://github.com/RadeonOpenCompute/ROCm/blob/master/README.md#rocm-binary-package-structure
+
+### Preparing RHEL v7 (7.6) for Installation
+RHEL is a subscription-based operating system. You must enable the external repositories to install on the devtoolset-7 environment and the dkms support files. 
+
+Note: The following steps do not apply to the CentOS installation.
+
+1.The subscription for RHEL must be enabled and attached to a pool ID. See the Obtaining an RHEL image and license page for instructions on registering your system with the RHEL subscription server and attaching to a pool id.
+
+2.Enable the following repositories:
+
+	sudo subscription-manager repos --enable rhel-server-rhscl-7-rpms
+		
+	sudo subscription-manager repos --enable rhel-7-server-optional-rpms
+	
+	sudo subscription-manager repos --enable rhel-7-server-extras-rpms
+
+3.Enable additional repositories by downloading and installing the epel-release-latest-7 repository RPM:
+
+	sudo rpm -ivh 
+
+For more details, see
+https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+4.Install and set up Devtoolset-7.
+
+To setup the Devtoolset-7 environment, follow the instructions on this page:
+https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
+
+Note: devtoolset-7 is a software collections package and is not supported by AMD.
 
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
