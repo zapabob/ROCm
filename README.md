@@ -2,6 +2,9 @@
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
 It also covers known issues and deprecated features in the ROCm v2.10 release.
 
+- [What Is ROCm](#What Is ROCm)
+- 
+
 ## What Is ROCm?
 ROCm is designed to be a universal platform for gpu-accelerated computing. This modular design allows hardware vendors to build drivers that support the ROCm framework. ROCm is also designed to integrate multiple programming languages and makes it easy to add support for other languages. 
 
