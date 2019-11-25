@@ -6,7 +6,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [ROCm Components](#ROCm-Components)
   * [Supported Operating Systems](Supported-Operating-Systems)
   * [Important ROCm Links](#Important-ROCm-Links)
-- [What's New in Version 2.10](#What's-New-in-Version 2.10)
+- [What's New in Version 2.10](#What's-New-in-Version-2.10)
   * [rocBLAS - Support for Complex GEMM in AMD Radeon Pro Vega 20](#rocBLAS-Support-for-Complex-GEMM-in-AMD-Radeon-Pro-Vega-20)
   * [Support for SLES 15 SP1](#Support-for-SLES-15-SP1)
   * [Code Marker Support for rocProfiler and rocTracer Libraries](#Code-Marker-Support-for-rocProfiler-and-rocTracer-Libraries)
