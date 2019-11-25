@@ -85,9 +85,46 @@ SUSEConnect -r < Key>
 #### SLES 15 SP1 
 The following section tells you how to perform an install and uninstall ROCm on SLES 15 SP 1. 
 Run the following commands once for a fresh install on the operating system:
-sudo usermod -a -G video  $LOGNAME
-sudo usermod  -a -G sudo $LOGNAME
-sudo reboot
+
+	sudo usermod -a -G video  $LOGNAME
+	sudo usermod  -a -G sudo $LOGNAME
+	sudo reboot
+
+Installation
+1. Install the "dkms" package.
+
+		sudo SUSEConnect --product PackageHub/15.1/x86_64
+		sudo zypper install dkms
+	
+2. Add the ROCm repo.
+
+		sudo zypper clean --all
+		sudo zypper addrepo --no-gpgcheck http://repo.radeon.com/rocm/zyp/zypper/ rocm 
+		sudo zypper ref
+		zypper install rocm-dkms
+		sudo zypper install rocm-dkms
+		sudo reboot
+
+#Run the following command once
+
+	cat <<EOF | sudo tee /etc/modprobe.d/10-unsupported-modules.conf
+ 	allow_unsupported_modules 1
+	EOF
+	sudo modprobe amdgpu
+	
+3. Verify the ROCm installation.
+
+Run /opt/rocm/bin/rocminfo and /opt/rocm/opencl/bin/x86_64/clinfo commands to list the GPUs and verify that the ROCm installation is successful.
+
+Uninstallation
+
+To uninstall, use the following command:
+
+	sudo zypper remove rocm-dkms rock-dkms
+	
+#Ensure all other installed packages/components are removed
+
+Note: Ensure all the content in the /opt/rocm directory is completely removed.
 
 
 ### Code Marker Support for rocProfiler and rocTracer Libraries
