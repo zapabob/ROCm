@@ -461,6 +461,80 @@ Experimental support for our Hawaii (GFX7) GPUs (Radeon R9 290, R9 390, FirePro 
 does not require or take advantage of PCIe Atomics. However, we still recommend that you use a CPU
 from the list provided above for compatibility purposes.
 
+#### Not supported or limited support under ROCm
+##### Limited support
+
+* ROCm 2.9.x should support PCIe 2.0 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPUs listed above. This is where we need community support. _If you find problems on such setups, please report these issues_.
+* Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe 2.0 based, and thus are only supported with GPUs that do not require PCIe 3.0 atomics (e.g. Vega 10). However, we have done no testing on this configuration and would need community support due to limited access to this type of equipment.
+* AMD "Carrizo" and "Bristol Ridge" APUs are enabled to run OpenCL, but do not yet support HCC, HIP, or our libraries built on top of these compilers and runtimes.
+  * As of ROCm 2.1, "Carrizo" and "Bristol Ridge" require the use of upstream kernel drivers.
+  * In addition, various "Carrizo" and "Bristol Ridge" platforms may not work due to OEM and ODM choices when it comes to key configurations parameters such as inclusion of the required CRAT tables and IOMMU configuration parameters in the system BIOS.
+  * Before purchasing such a system for ROCm, please verify that the BIOS provides an option for enabling IOMMUv2 and that the system BIOS properly exposes the correct CRAT table. Inquire with your vendor about the latter.
+* AMD "Raven Ridge" APUs are enabled to run OpenCL, but do not yet support HCC, HIP, or our libraries built on top of these compilers and runtimes.
+  * As of ROCm 2.1, "Raven Ridge" requires the use of upstream kernel drivers.
+  * In addition, various "Raven Ridge" platforms may not work due to OEM and ODM choices when it comes to key configurations parameters such as inclusion of the required CRAT tables and IOMMU configuration parameters in the system BIOS.
+  * Before purchasing such a system for ROCm, please verify that the BIOS provides an option for enabling IOMMUv2 and that the system BIOS properly exposes the correct CRAT table. Inquire with your vendor about the latter.
+
+##### Not supported
+
+* "Tonga", "Iceland", "Vega M", and "Vega 12" GPUs are not supported in ROCm 2.9.x
+* We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe 3.0 with PCIe atomics.
+  * As such, we do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs.
+  * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are based on PCIe 2.0.
+
+### Supported Operating Systems - New operating systems available
+
+The ROCm 2.9.x platform supports the following operating systems:
+
+ * Ubuntu 16.04.5(Kernel 4.15) and 18.04.3(Kernel 4.15 and Kernel 4.18)
+ * CentOS 7.6 (Using devtoolset-7 runtime support)
+ * RHEL 7.6 (Using devtoolset-7 runtime support)
+
+#### ROCm support in upstream Linux kernels
+
+As of ROCm 1.9.0, the ROCm user-level software is compatible with the AMD drivers in certain upstream Linux kernels.
+As such, users have the option of either using the ROCK kernel driver that are part of AMD's ROCm repositories or using the upstream driver and only installing ROCm user-level utilities from AMD's ROCm repositories.
+
+These releases of the upstream Linux kernel support the following GPUs in ROCm:
+ * 4.17: Fiji, Polaris 10, Polaris 11
+ * 4.18: Fiji, Polaris 10, Polaris 11, Vega10
+ * 4.20: Fiji, Polaris 10, Polaris 11, Vega10, Vega 7nm
+
+The upstream driver may be useful for running ROCm software on systems that are not compatible with the kernel driver available in AMD's repositories.
+For users that have the option of using either AMD's or the upstreamed driver, there are various tradeoffs to take into consideration:
+
+|   | Using AMD's `rock-dkms` package | Using the upstream kernel driver |
+| ---- | ------------------------------------------------------------| ----- |
+| Pros | More GPU features, and they are enabled earlier | Includes the latest Linux kernel features |
+|      | Tested by AMD on supported distributions | May work on other distributions and with custom kernels |
+|      | Supported GPUs enabled regardless of kernel version | |
+|      | Includes the latest GPU firmware | |
+| Cons | May not work on all Linux distributions or versions | Features and hardware support varies depending on kernel version |
+|      | Not currently supported on kernels newer than 4.18 | Limits GPU's usage of system memory to 3/8 of system memory |
+|      |   | IPC and RDMA capabilities are not yet enabled |
+|      |   | Not tested by AMD to the same level as `rock-dkms` package |
+|      |   | Does not include most up-to-date firmware |
+
+
+## Software Support
+As of AMD ROCm v1.9.0, the ROCm user-level software is compatible with the AMD drivers in certain upstream Linux kernels. You have the following options:
+
+• Use the ROCk kernel driver that is a part of AMD’s ROCm repositories 
+or
+• Use the upstream driver and only install ROCm user-level utilities from AMD’s ROCm repositories
+
+The releases of the upstream Linux kernel support the following GPUs in ROCm:
+
+• Fiji, Polaris 10, Polaris 11
+• Fiji, Polaris 10, Polaris 11, Vega10
+• Fiji, Polaris 10, Polaris 11, Vega10, Vega 7nm
+
+#### Supported Products
+
+• CUDA v8
+
+
+
 
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
