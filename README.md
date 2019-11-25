@@ -284,6 +284,32 @@ Note: The URL of the repository must point to the location of the repositoriesâ€
 4.Restart the system.
 The rock-dkms component is installed and the /dev/kfd device is now available.
 
+### Setting Permissions
+To configure permissions, following the instructions below:
+
+1.Ensure that your user account is a member of the "video" or "wheel" group prior to using the ROCm driver. You can find which groups you are a member of with the following command:
+
+	groups
+	
+2.Add your user to the video (or wheel) group you will need the sudo password and can use the following command:
+
+	sudo usermod -a -G video $LOGNAME
+	
+Note: All future users must be added to the "video" group by default. To add the users to the group, run the following commands
+
+	echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
+	echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
+
+Note: The current release supports CentOS/RHEL v7.6. Before updating to the latest version of the operating system, delete the ROCm packages to avoid DKMS-related issues.
+
+3.Restart the system.
+
+
+
+
+
+
+
 
 
 
