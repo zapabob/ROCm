@@ -18,7 +18,10 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [Peer-to-Peer Bridge Driver for PeerDirect](#Peer-to-Peer-Bridge-Driver-for-PeerDirect)
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
-  * [CentOS/RHEL v7 (v7.6) Support](#CentOS-/RHEL-v7(v7.6)-Support)
+  * [CentOS/RHEL v7 (v7.6) Support](#CentOS-/RHEL-v7.6-Support)
+- [ROCm Installation](#ROCm-Installation)
+- [Getting the ROCm Source Code](#Getting-the-ROCm-Source-Code)
+- [Hardware and Software Support](#Hardware-and-Software-Support)
 
   
 
