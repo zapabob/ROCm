@@ -2,7 +2,7 @@
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
 It also covers known issues and deprecated features in the ROCm v2.10 release.
 
-- [What Is ROCm](#What Is ROCm)
+- [What Is ROCm](## What Is ROCm)
 - 
 
 ## What Is ROCm?
