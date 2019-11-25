@@ -10,6 +10,16 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [rocBLAS - Support for Complex GEMM in AMD Radeon Pro Vega 20](#rocBLAS-Support-for-Complex-GEMM-in-AMD-Radeon-Pro-Vega-20)
   * [Support for SLES 15 SP1](#Support-for-SLES-15-SP1)
   * [Code Marker Support for rocProfiler and rocTracer Libraries](#Code-Marker-Support-for-rocProfiler-and-rocTracer-Libraries)
+- [Fixed Issues](#Fixed-Issues)
+  * [Memory Access Fault Error While Running RCCL in Docker Container](#Memory-Access-Fault-Error-While-Running-RCCL-in-Docker-Container)
+  * [No Output File Generated on Systems with RHEL Distro](#No-Output-File-Generated-on-Systems-with-RHEL-Distro)
+- [Deprecated Features](#Deprecated-Features)
+  * [ROCm OpenCL Driver](#ROCm-OpenCL-Driver)
+  * [Peer-to-Peer Bridge Driver for PeerDirect](#Peer-to-Peer-Bridge-Driver-for-PeerDirect)
+- [Deploying ROCm](#Deploying-ROCm)
+  * [Ubuntu](#Ubuntu)
+  * [CentOS/RHEL v7 (v7.6) Support](#CentOS-/RHEL-v7(v7.6)-Support)
+
   
 
 ## What Is ROCm?
