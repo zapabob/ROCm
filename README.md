@@ -43,8 +43,7 @@ https://rocm.github.io/install_issues.html
 
 Note: These instructions reference the rocm/pytorch:rocm2.9_ubuntu16.04_py2.7_pytorch image. However, you can substitute the Ubuntu 18.04 image listed at https://hub.docker.com/r/rocm/pytorch/tags
 
-# What’s New in Version 2.10
-## New Features
+## What’s New in Version 2.10
 ### rocBLAS - Support for Complex GEMM in AMD Radeon Pro Vega 20 
 The rocBLAS library is a gpu-accelerated implementation of the standard Basic Linear Algebra Subroutines (BLAS). rocBLAS is designed to enable you to develop algorithms, including high performance computing, image analysis, and machine learning.
 In the AMD ROCm release v2.10, support is extended to the General Matrix Multiply (GEMM) routine for multiple small matrices processed simultaneously for rocBLAS in AMD Radeon Pro Vega 20.  Both single and double precision, CGEMM and ZGEMM, are now supported in rocBLAS.
@@ -69,6 +68,21 @@ Code markers provide the external correlation ID for the calling thread. This fu
 •	The rocTracer library provides a specific runtime profiler to trace API and asynchronous activity. The API provides functionality for registering the runtimes API callbacks and the asynchronous activity records pool support.
 
 •	rocTX provides a C API for code markup for performance profiling and supports annotation of code ranges and ASCII markers.
+
+
+## Fixed Issues
+Fixed Issues in the v2.10 Release
+### Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault error 
+Issue: Running the TensorFlow and PyTorch frameworks in quick succession results in a Memory Access Fault error.
+
+Resolution: This issue is resolved, and the error no longer appears.
+
+### Issue with the Docker Container Environment Variable Setting
+Issue: Applications fail when the docker container is launched on the NUMA system without the ‘security-opt seccomp=unconfined’ setting.
+
+Resolution: Configure the “–security-opt seccomp=unconfined” variable setting to avoid this issue.
+
+
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
 
