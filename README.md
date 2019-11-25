@@ -6,6 +6,7 @@ Please refer the ROCm Documentation [here](https://rocm-documentation.readthedoc
 
 ### Current ROCm Version: 2.9
 
+- 
 - [New features and enhancements in ROCm 2.9](#new-features-and-enhancements-in-rocm-29)
 - [The latest ROCm platform - ROCm 2.9](#the-latest-rocm-platform-rocm-29)
 - [Hardware Support](#hardware-support)
@@ -26,6 +27,24 @@ Please refer the ROCm Documentation [here](https://rocm-documentation.readthedoc
   * [Building the ROCm source code](#building-the-rocm-source-code)
 - [Deprecation Notice](#deprecation-notice-hcc)
 - [Final notes](#final-notes)
+
+
+
+
+
+### New features and enhancements in ROCm version 2.10
+
+#### rocBLAS - Support for Complex GEMM in AMD Radeon Pro Vega 20 
+In the AMD ROCm release v2.10, support is extended to the General Matrix Multiply (GEMM) routine for multiple small matrices processed simultaneously for rocBLAS in AMD Radeon Pro Vega 20.  Both single and double precision, CGEMM and ZGEMM, are now supported in rocBLAS.
+
+#### Support for SLES 15 SP1 
+In the AMD ROCm v2.10 release, support is added for SUSE Linux® Enterprise Server (SLES) 15 SP1. SLES is a modular operating system for both multimodal and traditional IT.
+
+#### Code Marker Support for rocProfiler and rocTracer Libraries
+Code markers provide the external correlation ID for the calling thread. This function indicates that the calling thread is entering and leaving an external API region. We now have code marker support for rocProfiler and rocTracer libraries.
+
+Features and enhancements introduced in previous versions of ROCm can be found in [version_history.md](version_history.md)
+
 
 
 ### New features and enhancements in ROCm 2.9
