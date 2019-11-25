@@ -114,6 +114,25 @@ https://github.com/RadeonOpenCompute/ROCm/blob/master/README.md#rocm-binary-pack
 
 For information about upstream kernel drivers, see the Using Debian-based ROCm with Upstream Kernel Drivers section.
 
+## Ubuntu 
+### Installing a ROCm Package from a Debian Repository
+To install from a Debian Repository:
+1.	Run the following code to ensure that your system is up to date:
+   <i>     
+     
+     sudo apt update
+ 
+     sudo apt dist-upgrade
+    
+     sudo apt install libnuma-dev
+    
+     sudo reboot
+    
+   
+
+
+
+
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
 
