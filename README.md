@@ -43,6 +43,23 @@ https://rocm.github.io/install_issues.html
 
 Note: These instructions reference the rocm/pytorch:rocm2.9_ubuntu16.04_py2.7_pytorch image. However, you can substitute the Ubuntu 18.04 image listed at https://hub.docker.com/r/rocm/pytorch/tags
 
+# What’s New in Version 2.10
+## New Features
+### rocBLAS - Support for Complex GEMM in AMD Radeon Pro Vega 20 
+The rocBLAS library is a gpu-accelerated implementation of the standard Basic Linear Algebra Subroutines (BLAS). rocBLAS is designed to enable you to develop algorithms, including high performance computing, image analysis, and machine learning.
+In the AMD ROCm release v2.10, support is extended to the General Matrix Multiply (GEMM) routine for multiple small matrices processed simultaneously for rocBLAS in AMD Radeon Pro Vega 20.  Both single and double precision, CGEMM and ZGEMM, are now supported in rocBLAS.
+
+### Support for SLES 15 SP1
+In the AMD ROCm v2.10 release, support is added for SUSE Linux® Enterprise Server (SLES) 15 SP1. SLES is a modular operating system for both multimodal and traditional IT.
+Note: The SUSE Linux® Enterprise Server is a licensed platform. Ensure you have registered and have a license key prior to installation. Use the following SUSE command line to apply your license:
+SUSEConnect -r < Key>
+
+#### SLES 15 SP1 
+The following section tells you how to perform an install and uninstall ROCm on SLES 15 SP 1. 
+Run the following commands once for a fresh install on the operating system:
+sudo usermod -a -G video  $LOGNAME
+sudo usermod  -a -G sudo $LOGNAME
+sudo reboot
 
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
