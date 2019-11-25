@@ -145,12 +145,19 @@ To install from a Debian Repository:
       
 
 
-The gpg key may change; ensure it is updated when installing a new release. If the key signature verification fails while updating, re-add the key from the ROCm apt repository. 
+  The gpg key may change; ensure it is updated when installing a new release. If the key signature verification fails while updating,     re-add the key from the ROCm apt repository. 
 
-The current rocm.gpg.key is not available in a standard key ring distribution, but has the following sha1sum hash:
+  The current rocm.gpg.key is not available in a standard key ring distribution, but has the following sha1sum hash:
 
-e85a40d1a43453fe37d63aa6899bc96e08f2817a rocm.gpg.key
+  e85a40d1a43453fe37d63aa6899bc96e08f2817a rocm.gpg.key
 
+3.	Install the ROCm meta-package.
+   
+   Update the appropriate repository list and install the rocm-dkms meta-package:
+
+   sudo apt update
+   
+   sudo apt install rocm-dkms
 
 
 
