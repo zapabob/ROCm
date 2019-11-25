@@ -1,9 +1,12 @@
 # AMD ROCm Release Notes v2.10
 This document describes the features, fixed issues, and information about downloading and installing the ROCm software.
 It also covers known issues and deprecated features in the ROCm v2.10 release.
-1.1	What Is ROCm?
+
+## What Is ROCm?
 ROCm is designed to be a universal platform for gpu-accelerated computing. This modular design allows hardware vendors to build drivers that support the ROCm framework. ROCm is also designed to integrate multiple programming languages and makes it easy to add support for other languages. 
+
 ROCm is built from open source software. Subject to the applicable license, you can download the source code, modify and rebuild the ROCm components. To ensure you are downloading the correct source code versions, the ROCm repository provides a repo manifest file called default.xml. 
+
 Note: You can also clone the source code for individual ROCm components from the GitHub repositories.
 
 ### ROCm Components
