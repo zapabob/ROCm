@@ -163,13 +163,13 @@ To install from a Debian Repository:
    
 5. To add your user to the video group, use the following command for the sudo password:
 	
-   	sudo usermod -a -G video $LOGNAME
+		sudo usermod -a -G video $LOGNAME
 
 6. By default, add any future users to the video group. Run the following command to add users to the video group:
 
-   	echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
+   		echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
    
-   	echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
+   		echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
    
 7. Restart the system.
 
@@ -182,11 +182,17 @@ To install from a Debian Repository:
 
 Note: To run the ROCm programs more efficiently, add the ROCm binaries in your PATH.
 
-	echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | sudo tee -a /etc/profile.d/rocm.sh
+		echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | 
+		sudo tee -a /etc/profile.d/rocm.sh
 
 If you have an installation issue, refer the FAQ at:
 https://rocm.github.io/install_issues.html
 
+
+### Uninstalling ROCm Packages from Ubuntu 
+To uninstall the ROCm packages from Ubuntu 1v6.04 or Ubuntu v18.04, run the following command:
+
+	sudo apt autoremove rocm-dkms rocm-dev rocm-utils
 
 
 
