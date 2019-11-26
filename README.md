@@ -13,6 +13,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
 - [Fixed Issues](#Fixed-Issues)
   * [Memory Access Fault Error While Running RCCL in Docker Container](#Memory-Access-Fault-Error-While-Running-RCCL-in-Docker-Container)
   * [No Output File Generated on Systems with RHEL Distro](#No-Output-File-Generated-on-Systems-with-RHEL-Distro)
+ - [Known Issues](#Known-Issues)
 - [Deprecated Features](#Deprecated-Features)
   * [ROCm OpenCL Driver](#ROCm-OpenCL-Driver)
   * [Peer-to-Peer Bridge Driver for PeerDirect](#Peer-to-Peer-Bridge-Driver-for-PeerDirect)
@@ -150,6 +151,28 @@ Resolution: Configure the “–security-opt seccomp=unconfined” variable sett
 
 ### hc:printf Functionality in ROCm Re-Enabled
 Known issues with hc:printf have been addressed in ROCm v2.10. The hc:printf functionality has now been re-enabled on all supported distros.
+
+## Known Issues
+### Memory Access Fault Error While Running RCCL in Docker Container
+Issue: The Memory Access Fault error appears while running ROCm Communication Collectives Library (RCCL) tests in the Docker container.
+Resolution: While launching the Docker container to run tests related to RCCL, including PyTorch, increase the size limit for the shared memory (SHM) directory to 1 GB. To increase the size limit of the shared memory directory, enter:
+
+“--shm-size = 1G”
+
+By default, Docker uses only16 MB of shared memory. Running a Docker container for RCCL requires you to resize the limit to 1 GB.
+
+### Workaround for Tracer Library Fails to Load on RHEL
+Issue: When running /opt/rocm/bin/rocprof --hip-trace <output filename>, a warning message is printed to console: "Tool lib "/opt/rocm/roctracer/tool/libtracer_tool.so" failed to load", and no output file is generated, on systems with RHEL distro.
+
+Resolution: You can use either of the following workarounds to fix the issue:
+• Run Idconfig
+'SUDO LDCONFIG' 
+
+ or 
+ 
+• Configure LD_LIBRARY_PATH  
+'EXPORT LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/OPT/ROCM/ROCTRACER/LIB'
+
 
 ## Deprecated Features
 The following features are deprecated in the AMD ROCm v2.10 release. 
