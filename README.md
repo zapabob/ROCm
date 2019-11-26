@@ -6,6 +6,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [ROCm Components](#ROCm-Components)
   * [Supported Operating Systems](#Supported-Operating-Systems)
   * [Important ROCm Links](#Important-ROCm-Links)
+  
 - [Whats New in This Release](#Whats-New-in-This-Release)
   * [rocBLAS Support for Complex GEMM](#rocBLAS-Support-for-Complex-GEMM)
   * [Support for SLES 15 SP1](#Support-for-SLES-15-SP1)
@@ -23,9 +24,11 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
 - [Deprecated Features](#Deprecated-Features)
   * [ROCm OpenCL Driver](#ROCm-OpenCL-Driver)
   * [Peer-to-Peer Bridge Driver for PeerDirect](#Peer-to-Peer-Bridge-Driver-for-PeerDirect)
+  
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
   * [CentOS RHEL](#CentOS-RHEL)
+
 - [ROCm Installation](#ROCm-Installation)
 - [Getting the ROCm Source Code](#Getting-the-ROCm-Source-Code)
 - [Hardware and Software Support](#Hardware-and-Software-Support)
@@ -82,7 +85,9 @@ https://rocm.github.io/install_issues.html
 
 Note: These instructions reference the rocm/pytorch:rocm2.9_ubuntu16.04_py2.7_pytorch image. However, you can substitute the Ubuntu 18.04 image listed at https://hub.docker.com/r/rocm/pytorch/tags
 
+
 ## Whats New in This Release
+
 ### rocBLAS Support for Complex GEMM
 The rocBLAS library is a gpu-accelerated implementation of the standard Basic Linear Algebra Subroutines (BLAS). rocBLAS is designed to enable you to develop algorithms, including high performance computing, image analysis, and machine learning.
 
@@ -318,6 +323,7 @@ You can install the ROCm user-level software without installing the AMD's custom
 	sudo apt update	
 	sudo apt install rocm-dev	
 	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
+
 
 
 ## CentOS RHEL 
