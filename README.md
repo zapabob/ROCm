@@ -148,6 +148,9 @@ Issue: Applications fail when the docker container is launched on the NUMA syste
 
 Resolution: Configure the “–security-opt seccomp=unconfined” variable setting to avoid this issue.
 
+### hc:printf Functionality in ROCm Re-Enabled
+Known issues with hc:printf have been addressed in ROCm v2.10. The hc:printf functionality has now been re-enabled on all supported distros.
+
 ## Deprecated Features
 The following features are deprecated in the AMD ROCm v2.10 release. 
 
