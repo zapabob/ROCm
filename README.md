@@ -13,7 +13,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
 - [Fixed Issues](#Fixed-Issues)
   * [Memory Access Fault Error While Running RCCL in Docker Container](#Memory-Access-Fault-Error-While-Running-RCCL-in-Docker-Container)
   * [No Output File Generated on Systems with RHEL Distro](#No-Output-File-Generated-on-Systems-with-RHEL-Distro)
-  * [hc:printf Functionality in ROCm Re-Enabled](#hc-printf-functionality-in-ROCm-Re-Enabled)
+  * [Printf Functionality in ROCm Re-Enabled](#Printf-functionality-in-ROCm-Re-Enabled)
  - [Known Issues](#Known-Issues)
    * [Memory Access Fault Error While Running RCCL in Docker Container](#Memory-Access-Fault-Error-While-Running-RCCL-in-Docker-Container)
    * [Workaround for Tracer Library Fails to Load on RHEL](#Workaround-for-Tracer-Library-Fails-to-Load-on-RHEL)
@@ -152,7 +152,7 @@ Issue: Applications fail when the docker container is launched on the NUMA syste
 
 Resolution: Configure the “–security-opt seccomp=unconfined” variable setting to avoid this issue.
 
-### hc:printf Functionality in ROCm Re-Enabled
+### Printf Functionality in ROCm Re-Enabled
 Known issues with hc:printf have been addressed in ROCm v2.10. The hc:printf functionality has now been re-enabled on all supported distros.
 
 ## Known Issues
