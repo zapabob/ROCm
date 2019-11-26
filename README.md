@@ -31,7 +31,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
 - [Hardware and Software Support](#Hardware-and-Software-Support)
 - [Machine Learning and High Performance Computing Software Stack for AMD GPU](#Machine-Learning-and-High-Performance-Computing-Software-Stack-for-AMD-GPU)
   * [ROCm Binary Package Structure](#ROCm-Binary-Package-Structure)
-  * [ROCm Platform - Links to Drivers ToolChain Libraries and Source Code](#ROCm-Platform-Links-to-Drivers-ToolChain-Libraries-and-Source-Code)
+  * [ROCm Platform - Links to Drivers ToolChains Libraries and Source Code](#ROCm-Platform-Links-to-Drivers-ToolChain-Libraries-and-Source-Code)
   
 
 ## What Is ROCm?
