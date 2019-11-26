@@ -649,7 +649,7 @@ ROCm Version 2.10
   * [ROCm Binary Package Structure](#rocm-binary-package-structure)
 
 
-### ROCm Platform - Links to Drivers, Tools, Libraries and Source Code 
+### ROCm Platform - Links to Drivers ToolChains Libraries and Source Code 
 
 The latest supported version of the drivers, tools, libraries and source code for the ROCm platform have been released and are available from the following GitHub repositories:
 
