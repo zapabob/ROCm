@@ -82,6 +82,7 @@ Note: These instructions reference the rocm/pytorch:rocm2.9_ubuntu16.04_py2.7_py
 ## What’s New in Version 2.10
 ### rocBLAS Support for Complex GEMM
 The rocBLAS library is a gpu-accelerated implementation of the standard Basic Linear Algebra Subroutines (BLAS). rocBLAS is designed to enable you to develop algorithms, including high performance computing, image analysis, and machine learning.
+
 In the AMD ROCm release v2.10, support is extended to the General Matrix Multiply (GEMM) routine for multiple small matrices processed simultaneously for rocBLAS in AMD Radeon Instinct MI50.  Both single and double precision, CGEMM and ZGEMM, are now supported in rocBLAS.
 
 ### Support for SLES 15 SP1
