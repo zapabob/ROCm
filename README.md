@@ -348,13 +348,15 @@ Note: The following steps do not apply to the CentOS installation.
 
 2. Enable the following repositories:
 
-	sudo subscription-manager repos --enable rhel-server-rhscl-7-rpms		
-	sudo subscription-manager repos --enable rhel-7-server-optional-rpms	
-	sudo subscription-manager repos --enable rhel-7-server-extras-rpms
+		sudo subscription-manager repos --enable rhel-server-rhscl-7-rpms
+	
+		sudo subscription-manager repos --enable rhel-7-server-optional-rpms
+	
+		sudo subscription-manager repos --enable rhel-7-server-extras-rpms
 
 3. Enable additional repositories by downloading and installing the epel-release-latest-7 repository RPM:
 
-	sudo rpm -ivh 
+		sudo rpm -ivh 
 
 For more details, see
 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
@@ -382,17 +384,17 @@ To install ROCm on your system, follow the instructions below:
 1. Delete the previous versions of ROCm before installing the latest version.
 2. Create a /etc/yum.repos.d/rocm.repo file with the following contents:
 
-	[ROCm]
-	name=ROCm
-	baseurl=http://repo.radeon.com/rocm/yum/rpm
-	enabled=1
-	gpgcheck=0
+		[ROCm]
+		name=ROCm
+		baseurl=http://repo.radeon.com/rocm/yum/rpm
+		enabled=1
+		gpgcheck=0
 
 Note: The URL of the repository must point to the location of the repositories’ repodata database. 
 
 3. Install ROCm components using the following command:
 
-	sudo yum install rocm-dkms
+		sudo yum install rocm-dkms
 
 4.Restart the system.
 The rock-dkms component is installed and the /dev/kfd device is now available.
@@ -402,11 +404,11 @@ To configure permissions, following the instructions below:
 
 1. Ensure that your user account is a member of the "video" or "wheel" group prior to using the ROCm driver. You can find which groups you are a member of with the following command:
 
-	groups
+		groups
 	
 2. Add your user to the video (or wheel) group you will need the sudo password and can use the following command:
 
-	sudo usermod -a -G video $LOGNAME
+		sudo usermod -a -G video $LOGNAME
 	
 Note: All future users must be added to the "video" group by default. To add the users to the group, run the following commands
 
