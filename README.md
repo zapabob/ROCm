@@ -427,7 +427,8 @@ After restarting the system, run the following commands to verify that the ROCm 
 
 Note: Add the ROCm binaries in your PATH for easy implementation of the ROCm programs.
 
-	echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | sudo tee -a /etc/profile.d/rocm.sh
+	echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | 
+	sudo tee -a /etc/profile.d/rocm.sh
 
 For more information about installation issues, see:
 https://rocm.github.io/install_issues.html
