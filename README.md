@@ -6,7 +6,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [ROCm Components](#ROCm-Components)
   * [Supported Operating Systems](#Supported-Operating-Systems)
   * [Important ROCm Links](#Important-ROCm-Links)
-- [Whats New in Version 2.10](#Whats-New-in-Version-2.10)
+- [Whats New in This Release](#Whats-New-in-This-Release)
   * [rocBLAS Support for Complex GEMM](#rocBLAS-Support-for-Complex-GEMM)
   * [Support for SLES 15 SP1](#Support-for-SLES-15-SP1)
   * [Code Marker Support for rocProfiler and rocTracer Libraries](#Code-Marker-Support-for-rocProfiler-and-rocTracer-Libraries)
@@ -82,7 +82,7 @@ https://rocm.github.io/install_issues.html
 
 Note: These instructions reference the rocm/pytorch:rocm2.9_ubuntu16.04_py2.7_pytorch image. However, you can substitute the Ubuntu 18.04 image listed at https://hub.docker.com/r/rocm/pytorch/tags
 
-## Whats New in Version 2.10
+## Whats New in This Release
 ### rocBLAS Support for Complex GEMM
 The rocBLAS library is a gpu-accelerated implementation of the standard Basic Linear Algebra Subroutines (BLAS). rocBLAS is designed to enable you to develop algorithms, including high performance computing, image analysis, and machine learning.
 
