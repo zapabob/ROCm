@@ -25,7 +25,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [Peer-to-Peer Bridge Driver for PeerDirect](#Peer-to-Peer-Bridge-Driver-for-PeerDirect)
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
-  * [CentOS RHEL v7 (v7.6) Support](#CentOS-RHEL-v76-Support)
+  * [CentOS RHEL](#CentOS-RHEL)
 - [ROCm Installation](#ROCm-Installation)
 - [Getting the ROCm Source Code](#Getting-the-ROCm-Source-Code)
 - [Hardware and Software Support](#Hardware-and-Software-Support)
@@ -320,7 +320,7 @@ You can install the ROCm user-level software without installing the AMD's custom
 	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
 
 
-## CentOS RHEL v7 (v7.6) Support
+## CentOS RHEL 
 
 This section describes how to install ROCm on supported RPM-based systems such as CentOS v7.6. 
 
