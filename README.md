@@ -10,13 +10,16 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [rocBLAS - Support for Complex GEMM in AMD Radeon Pro Vega 20](#rocBLAS-Support-for-Complex-GEMM-in-AMD-Radeon-Pro-Vega-20)
   * [Support for SLES 15 SP1](#Support-for-SLES-15-SP1)
   * [Code Marker Support for rocProfiler and rocTracer Libraries](#Code-Marker-Support-for-rocProfiler-and-rocTracer-Libraries)
+  
 - [Fixed Issues](#Fixed-Issues)
-  * [Memory Access Fault Error While Running RCCL in Docker Container](#Memory-Access-Fault-Error-While-Running-RCCL-in-Docker-Container)
-  * [No Output File Generated on Systems with RHEL Distro](#No-Output-File-Generated-on-Systems-with-RHEL-Distro)
-  * [Printf Functionality in ROCm Re-Enabled](#Printf-functionality-in-ROCm-Re-Enabled)
+   * [Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault error ](#Running-TensorFlow-and-PyTorch-Frameworks-Consecutively-Results-in-the-Memory-Access -Fault-error)
+   * [Issue with the Docker Container Environment Variable Setting](#Issue-with-the-Docker-Container-Environment-Variable-Setting)
+   * [Printf Functionality in ROCm Re-Enabled](#Printf-functionality-in-ROCm-Re-Enabled)
+ 
  - [Known Issues](#Known-Issues)
    * [Memory Access Fault Error While Running RCCL in Docker Container](#Memory-Access-Fault-Error-While-Running-RCCL-in-Docker-Container)
    * [Workaround for Tracer Library Fails to Load on RHEL](#Workaround-for-Tracer-Library-Fails-to-Load-on-RHEL)
+   
 - [Deprecated Features](#Deprecated-Features)
   * [ROCm OpenCL Driver](#ROCm-OpenCL-Driver)
   * [Peer-to-Peer Bridge Driver for PeerDirect](#Peer-to-Peer-Bridge-Driver-for-PeerDirect)
