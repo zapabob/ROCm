@@ -4,9 +4,9 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
 
 - [What Is ROCm?](#What-Is-ROCm)
   * [ROCm Components](#ROCm-Components)
-  * [Supported Operating Systems](Supported-Operating-Systems)
+  * [Supported Operating Systems](#Supported-Operating-Systems)
   * [Important ROCm Links](#Important-ROCm-Links)
-- [What's New in Version 2.10](#What's-New-in-Version-2.10)
+- [Whats New in Version 2.10](#Whats-New-in-Version-2.10)
   * [rocBLAS Support for Complex GEMM](#rocBLAS-Support-for-Complex-GEMM)
   * [Support for SLES 15 SP1](#Support-for-SLES-15-SP1)
   * [Code Marker Support for rocProfiler and rocTracer Libraries](#Code-Marker-Support-for-rocProfiler-and-rocTracer-Libraries)
@@ -25,7 +25,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [Peer-to-Peer Bridge Driver for PeerDirect](#Peer-to-Peer-Bridge-Driver-for-PeerDirect)
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
-  * [CentOS/RHEL v7 (v7.6) Support](#CentOS-/RHEL-v7.6-Support)
+  * [CentOS RHEL v7 (v7.6) Support](#CentOS-RHEL-v7.6-Support)
 - [ROCm Installation](#ROCm-Installation)
 - [Getting the ROCm Source Code](#Getting-the-ROCm-Source-Code)
 - [Hardware and Software Support](#Hardware-and-Software-Support)
@@ -82,7 +82,7 @@ https://rocm.github.io/install_issues.html
 
 Note: These instructions reference the rocm/pytorch:rocm2.9_ubuntu16.04_py2.7_pytorch image. However, you can substitute the Ubuntu 18.04 image listed at https://hub.docker.com/r/rocm/pytorch/tags
 
-## What’s New in Version 2.10
+## Whats New in Version 2.10
 ### rocBLAS Support for Complex GEMM
 The rocBLAS library is a gpu-accelerated implementation of the standard Basic Linear Algebra Subroutines (BLAS). rocBLAS is designed to enable you to develop algorithms, including high performance computing, image analysis, and machine learning.
 
@@ -320,7 +320,7 @@ You can install the ROCm user-level software without installing the AMD's custom
 	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
 
 
-## CentOS/RHEL v7 (v7.6) Support
+## CentOS RHEL v7 (v7.6) Support
 
 This section describes how to install ROCm on supported RPM-based systems such as CentOS v7.6. 
 
