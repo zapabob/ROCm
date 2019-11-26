@@ -31,7 +31,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
 - [Hardware and Software Support](#Hardware-and-Software-Support)
 - [Machine Learning and High Performance Computing Software Stack for AMD GPU](#Machine-Learning-and-High-Performance-Computing-Software-Stack-for-AMD-GPU)
   * [ROCm Binary Package Structure](#ROCm-Binary-Package-Structure)
-  * [ROCm Platform - Links to Drivers ToolChains Libraries and Source Code](#ROCm-Platform-Links-to-Drivers-ToolChains-Libraries-and-Source-Code)
+  * [ROCm Platform Packages](#ROCm-Platform-Packages)
   
 
 ## What Is ROCm?
@@ -646,9 +646,7 @@ ROCm Version 2.10
 
 ### ROCm Binary Package Structure
 
- #### ROCm Binary Package Structure
-
-ROCm is a collection of software ranging from drivers and runtimes to libraries and developer tools.
+ ROCm is a collection of software ranging from drivers and runtimes to libraries and developer tools.
 In AMD's package distributions, these software projects are provided as a separate packages.
 This allows users to install only the packages they need, if they do not wish to install all of ROCm.
 These packages will install most of the ROCm software into `/opt/rocm/` by default.
@@ -741,7 +739,9 @@ Note:Some users may want to skip certain packages. For instance, a user that wan
 Similarly, a user that only wants to install OpenCL support instead of HCC and HIP may want to skip the `rocm-dkms` and `rocm-dev` packages. Instead, they could directly install `rock-dkms`, `rocm-opencl`, and `rocm-opencl-dev` and their dependencies.
 
 
-### ROCm Platform - Links to Drivers ToolChains Libraries and Source Code 
+### ROCm Platform Packages
+
+Drivers, ToolChains, Libraries, and Source Code 
 
 The latest supported version of the drivers, tools, libraries and source code for the ROCm platform have been released and are available from the following GitHub repositories:
 
