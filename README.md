@@ -12,7 +12,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [Code Marker Support for rocProfiler and rocTracer Libraries](#Code-Marker-Support-for-rocProfiler-and-rocTracer-Libraries)
   
 - [Fixed Issues](#Fixed-Issues)
-   * [Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault error ](#Running-TensorFlow-and-PyTorch-Frameworks-Consecutively-Results-in-the-Memory-Access -Fault-error)
+   * [Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault error ](#Running-TensorFlow-and-PyTorch-Frameworks-Consecutively-Results-in-the-Memory-Access-Fault-error)
    * [Issue with the Docker Container Environment Variable Setting](#Issue-with-the-Docker-Container-Environment-Variable-Setting)
    * [Printf Functionality in ROCm Re-Enabled](#Printf-functionality-in-ROCm-Re-Enabled)
  
