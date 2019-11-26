@@ -87,6 +87,7 @@ In the AMD ROCm release v2.10, support is extended to the General Matrix Multipl
 
 ### Support for SLES 15 SP1
 In the AMD ROCm v2.10 release, support is added for SUSE Linux® Enterprise Server (SLES) 15 SP1. SLES is a modular operating system for both multimodal and traditional IT.
+
 Note: The SUSE Linux® Enterprise Server is a licensed platform. Ensure you have registered and have a license key prior to installation. Use the following SUSE command line to apply your license:
 SUSEConnect -r < Key>
 
@@ -190,6 +191,7 @@ The following features are deprecated in the AMD ROCm v2.10 release.
 
 ### ROCm OpenCL Driver
 The AMD ROCm-OpenCL-Driver is now deprecated. Users should migrate to ROCm-CompilerSupport, which provides more comprehensive functionality. The compiler support repository provides various lightning compiler-related services. It currently contains a single library, the Code Object Manager (Comgr) at lib/comgr.
+
 ROCm-OpenCL-Driver will no longer be actively maintained after the v2.10 release. If your application was developed with the ROCm-OpenCL-Driver, we would encourage you to switch to the ROCm-CompilerSupport repository.
 
 ### Peer-to-Peer Bridge Driver for PeerDirect
@@ -255,7 +257,7 @@ To install from a Debian Repository:
 
 
 4. Set permissions.
-   To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using        ROCm. To identify the groups you are a member of, use the following command:	   
+   To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using ROCm. To identify the groups you are a member of, use the following command:	   
 	
 		groups
    
