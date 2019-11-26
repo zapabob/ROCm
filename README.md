@@ -71,7 +71,9 @@ The ROCm v2.10.x platform is designed to support the following operating systems
 For details about deploying the ROCm v2.10.x on these operating systems, see the Deploying ROCm section later in the document.
 
 ### Important ROCm Links
+
 Access the following links for more information on:
+
 •	ROCm documentation, see 
 https://rocm-documentation.readthedocs.io/en/latest/index.html
 
