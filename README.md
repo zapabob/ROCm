@@ -31,7 +31,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
 - [Hardware and Software Support](#Hardware-and-Software-Support)
 - [Machine Learning and High Performance Computing Software Stack for AMD GPU](#Machine-Learning-and-High-Performance-Computing-Software-Stack-for-AMD-GPU)
   * [ROCm Binary Package Structure](#ROCm-Binary-Package-Structure)
-  * [ROCm Platform - Links to Drivers, Tools, Libraries and Source Code](#ROCm-Platform-Links-to-Drivers,-Tools,-Libraries-and-Source-Code)
+  * [ROCm Platform - Links to Drivers, Tools, Libraries and Source Code](#ROCm-Platform-Links-to-Drivers-ToolChain-Libraries-and-Source-Code)
   
 
 ## What Is ROCm?
@@ -665,7 +665,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/roc-2.10.0)
   - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/roc-2.10.0)
   
-#### ROCm Development Tools
+#### ROCm Development ToolChains
   - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/roc-hcc-2.10.0)
   - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/roc-2.10.0)
   - [ROCm Device Libraries](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/tree/roc-hcc-2.10.0)
