@@ -201,7 +201,7 @@ The following features are deprecated in the AMD ROCm v2.10 release.
 ### ROCm OpenCL Driver Compilation Services
 The AMD ROCm-OpenCL-Driver Compilation Services is now deprecated. Users should migrate to ROCm-CompilerSupport, which provides more comprehensive functionality. The compiler support repository provides various lightning compiler-related services. It currently contains a single library, the Code Object Manager (Comgr) at lib/comgr.
 
-ROCm OpenCL Driver Compilation Services will no longer be actively maintained after the v2.10 release. We would encourage you to switch to the ROCm-CompilerSupport repository.
+ROCm-OpenCL-Driver Compilation Services will no longer be actively maintained after the v2.10 release. We would encourage you to switch to the ROCm-CompilerSupport repository.
 
 ### Peer-to-Peer Bridge Driver for PeerDirect
 The Peer-to-Peer bridge driver for the PeerDirect feature still works in the current release, however, it is now included as part of the ROCk kernel driver. ROCmRDMA allows third-party kernel drivers to utilize DMA access to the GPU memory. It allows a direct path for data exchange (peer-to-peer) using the standard features of PCI Express.
