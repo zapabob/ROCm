@@ -275,9 +275,10 @@ To install from a Debian Repository:
 
 6. By default, add any future users to the video group. Run the following command to add users to the video group:
 
-   		echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
-   
-   		echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
+   		echo 'ADD_EXTRA_GROUPS=1' 		
+		sudo tee -a /etc/adduser.conf   
+   		echo 'EXTRA_GROUPS=video' 		
+		sudo tee -a /etc/adduser.conf
    
 7. Restart the system.
 
@@ -454,7 +455,8 @@ Note: To execute ROCm-enabled applications, you will require a system installed 
 You can install ROCm user-level software without installing AMD's custom ROCk kernel driver. To use the upstream kernel drivers, run the following commands 
 
 	sudo yum install rocm-dev
-	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
+	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"'  
+	sudo tee /etc/udev/rules.d/70-kfd.rules
 	
 Note: You can use this command instead of installing rocm-dkms.
 
