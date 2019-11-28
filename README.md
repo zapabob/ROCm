@@ -242,11 +242,9 @@ To install from a Debian Repository:
 
      For Debian-based systems like Ubuntu, configure the Debian ROCm repository as follows:
    
-      	wget -q0 –
-     	 http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | 
+      	wget -q0 – http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | 
 
-      	sudo apt-key add -echo 'deb [arch=amd64] 
-      	http://repo.radeon.com/rocm/apt/debian/ xenial main' | 
+      	sudo apt-key add -echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | 
 
       	sudo tee /etc/apt/sources.list.d/rocm.list
       
@@ -322,7 +320,8 @@ You can install the ROCm user-level software without installing the AMD's custom
 
 	sudo apt update	
 	sudo apt install rocm-dev	
-	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
+	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' 
+	sudo tee /etc/udev/rules.d/70-kfd.rules
 
 
 
