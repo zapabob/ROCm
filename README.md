@@ -242,7 +242,7 @@ To install from a Debian Repository:
 
      For Debian-based systems like Ubuntu, configure the Debian ROCm repository as follows:
    
-        wget -qO - http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | sudo sudo apt-key -
+        wget -qO - http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | sudo apt-key add -
         
         echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | sudo tee /etc/apt/sources.list.d/rocm.list
       
