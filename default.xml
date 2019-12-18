@@ -45,11 +45,10 @@
     <project name="HCC-Example-Application" remote="rocm-devtools" revision="ffd6533305e79eed667badd3c4cdb7879a1281b8" />
     <project name="HIP" remote="rocm-devtools" revision="refs/tags/roc-2.10.0" />
     <project name="HIP-Examples" remote="rocm-devtools" />
+
     <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
-    <project name="llvm" path="llvm_amd-common" revision="refs/tags/roc-ocl-2.10.0" />
-    <project name="lld" path="llvm_amd-common/lld" revision="refs/tags/roc-ocl-2.10.0" />
-    <project name="clang" path="llvm_amd-common/clang" />
-    <project name="ROCm-Device-Libs" revision="refs/tags/roc-ocl-2.10.0" />
+    <project name="llvm-project" path="llvm_amd-stg-open" revision="refs/tags/roc-ocl-3.0.0"/>
+    <project name="ROCm-Device-Libs" revision="refs/tags/roc-ocl-3.0.0"/>
     <project name="atmi" revision="refs/tags/rocm_2.10.0" />
     <project name="ROCm-CompilerSupport" />
     <project name="rocr_debug_agent" remote="rocm-devtools" />
