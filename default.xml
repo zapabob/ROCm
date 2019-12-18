@@ -32,11 +32,6 @@
          https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/blob/roc-2.0.0/opencl.xml -->
     <remote name="KhronosGroup" fetch="https://github.com/KhronosGroup/" />
     <project name="ROCm-OpenCL-Runtime" />
-    <project path="ROCm-OpenCL-Runtime/compiler/driver" name="ROCm-OpenCL-Driver"/>
-    <project path="ROCm-OpenCL-Runtime/compiler/llvm" name="llvm" revision="refs/tags/roc-ocl-2.10.0" />
-    <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/clang" name="clang" />
-    <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/lld" name="lld" revision="refs/tags/roc-ocl-2.10.0" />
-    <project path="ROCm-OpenCL-Runtime/library/amdgcn" name="ROCm-Device-Libs" revision="refs/tags/roc-ocl-2.10.0" />
 
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="6c03f8b58fafd9dd693eaac826749a5cfad515f8" />
     <project name="clang-ocl" />
@@ -45,11 +40,10 @@
     <project name="HCC-Example-Application" remote="rocm-devtools" revision="ffd6533305e79eed667badd3c4cdb7879a1281b8" />
     <project name="HIP" remote="rocm-devtools" revision="refs/tags/roc-2.10.0" />
     <project name="HIP-Examples" remote="rocm-devtools" />
+
     <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
-    <project name="llvm" path="llvm_amd-common" revision="refs/tags/roc-ocl-2.10.0" />
-    <project name="lld" path="llvm_amd-common/lld" revision="refs/tags/roc-ocl-2.10.0" />
-    <project name="clang" path="llvm_amd-common/clang" />
-    <project name="ROCm-Device-Libs" revision="refs/tags/roc-ocl-2.10.0" />
+    <project name="llvm-project" path="llvm_amd-stg-open" revision="refs/tags/roc-ocl-3.0.0"/>
+    <project name="ROCm-Device-Libs" revision="refs/tags/roc-ocl-3.0.0"/>
     <project name="atmi" revision="refs/tags/rocm_2.10.0" />
     <project name="ROCm-CompilerSupport" />
     <project name="rocr_debug_agent" remote="rocm-devtools" />
