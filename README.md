@@ -22,7 +22,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
    * [Workaround for Tracer Library Fails to Load on RHEL](#Workaround-for-Tracer-Library-Fails-to-Load-on-RHEL)
    
 - [Deprecated Features](#Deprecated-Features)
-  * [ROCm OpenCL Driver](#ROCm-OpenCL-Driver)
+  * [ROCm OpenCL Driver Compilation Services](#ROCm-OpenCL-Driver-Compilation-Services)
   * [Peer-to-Peer Bridge Driver for PeerDirect](#Peer-to-Peer-Bridge-Driver-for-PeerDirect)
   
 - [Deploying ROCm](#Deploying-ROCm)
@@ -198,10 +198,10 @@ Resolution: You can use either of the following workarounds to fix the issue:
 ## Deprecated Features
 The following features are deprecated in the AMD ROCm v2.10 release. 
 
-### ROCm OpenCL Driver
-The AMD ROCm-OpenCL-Driver is now deprecated. Users should migrate to ROCm-CompilerSupport, which provides more comprehensive functionality. The compiler support repository provides various lightning compiler-related services. It currently contains a single library, the Code Object Manager (Comgr) at lib/comgr.
+### ROCm OpenCL Driver Compilation Services
+The AMD ROCm-OpenCL-Driver Compilation Services is now deprecated. Users should migrate to ROCm-CompilerSupport, which provides more comprehensive functionality. The compiler support repository provides various lightning compiler-related services. It currently contains a single library, the Code Object Manager (Comgr) at lib/comgr.
 
-ROCm-OpenCL-Driver will no longer be actively maintained after the v2.10 release. If your application was developed with the ROCm-OpenCL-Driver, we would encourage you to switch to the ROCm-CompilerSupport repository.
+ROCm-OpenCL-Driver Compilation Services will no longer be actively maintained after the v2.10 release. We would encourage you to switch to the ROCm-CompilerSupport repository.
 
 ### Peer-to-Peer Bridge Driver for PeerDirect
 The Peer-to-Peer bridge driver for the PeerDirect feature still works in the current release, however, it is now included as part of the ROCk kernel driver. ROCmRDMA allows third-party kernel drivers to utilize DMA access to the GPU memory. It allows a direct path for data exchange (peer-to-peer) using the standard features of PCI Express.
@@ -242,11 +242,9 @@ To install from a Debian Repository:
 
      For Debian-based systems like Ubuntu, configure the Debian ROCm repository as follows:
    
-      	wget -q0 –
-     	 http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | 
+      	wget -q0 – http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | 
 
-      	sudo apt-key add -echo 'deb [arch=amd64] 
-      	http://repo.radeon.com/rocm/apt/debian/ xenial main' | 
+      	sudo apt-key add -echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | 
 
       	sudo tee /etc/apt/sources.list.d/rocm.list
       
@@ -277,9 +275,10 @@ To install from a Debian Repository:
 
 6. By default, add any future users to the video group. Run the following command to add users to the video group:
 
-   		echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
-   
-   		echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
+   		echo 'ADD_EXTRA_GROUPS=1' 		
+		sudo tee -a /etc/adduser.conf   
+   		echo 'EXTRA_GROUPS=video' 		
+		sudo tee -a /etc/adduser.conf
    
 7. Restart the system.
 
@@ -322,7 +321,8 @@ You can install the ROCm user-level software without installing the AMD's custom
 
 	sudo apt update	
 	sudo apt install rocm-dev	
-	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
+	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' 
+	sudo tee /etc/udev/rules.d/70-kfd.rules
 
 
 
@@ -455,7 +455,8 @@ Note: To execute ROCm-enabled applications, you will require a system installed 
 You can install ROCm user-level software without installing AMD's custom ROCk kernel driver. To use the upstream kernel drivers, run the following commands 
 
 	sudo yum install rocm-dev
-	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' | sudo tee /etc/udev/rules.d/70-kfd.rules
+	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"'  
+	sudo tee /etc/udev/rules.d/70-kfd.rules
 	
 Note: You can use this command instead of installing rocm-dkms.
 
@@ -708,33 +709,37 @@ The chain of software installed by these meta-packages is illustrated below
   rocm-dkms
     |--rock-dkms
     \--rocm-dev
-       |--hsa-rocr-dev
-       |--hsa-ext-rocr-dev
-       |--hsakmt-roct
-       |--hsakmt-roct-dev
-       |--rocm-cmake
-       |--rocm-device-libs
+       |--comgr
        |--hcc
        |--hip_base
        |--hip_doc
        |--hip_hcc
        |--hip_samples
-       |--rocm-smi
+       |--hsakmt-roct
+       |--hsakmt-roct-dev
        |--hsa-amd-aqlprofile
-       |--comgr
+       |--hsa-ext-rocr-dev
+       |--hsa-rocr-dev
+       |--rocm-cmake
+       |--rocm-device-libs
+       |--rocm-smi
+       |--rocprofiler-dev
        |--rocr_debug_agent
        \--rocm-utils
           |--rocminfo
           \--rocm-clang-ocl # This will cause OpenCL to be installed
 
   rocm-libs
-    |--rocalution
     |--hipblas
+    |--hipcub
+    |--hipsparse
+    |--rocalution
     |--rocblas
     |--rocfft
+    |--rocprim
     |--rocrand
-    |--hipsparse
-    \--rocsparse
+    |--rocsparse
+    \--rocthrust
 ```
 
 These meta-packages are not required but may be useful to make it easier to install ROCm on most systems.
