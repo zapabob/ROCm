@@ -32,11 +32,6 @@
          https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/blob/roc-2.0.0/opencl.xml -->
     <remote name="KhronosGroup" fetch="https://github.com/KhronosGroup/" />
     <project name="ROCm-OpenCL-Runtime" />
-    <project path="ROCm-OpenCL-Runtime/compiler/driver" name="ROCm-OpenCL-Driver"/>
-    <project path="ROCm-OpenCL-Runtime/compiler/llvm" name="llvm" revision="refs/tags/roc-ocl-2.10.0" />
-    <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/clang" name="clang" />
-    <project path="ROCm-OpenCL-Runtime/compiler/llvm/tools/lld" name="lld" revision="refs/tags/roc-ocl-2.10.0" />
-    <project path="ROCm-OpenCL-Runtime/library/amdgcn" name="ROCm-Device-Libs" revision="refs/tags/roc-ocl-2.10.0" />
 
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="6c03f8b58fafd9dd693eaac826749a5cfad515f8" />
     <project name="clang-ocl" />
