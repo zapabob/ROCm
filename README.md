@@ -13,7 +13,7 @@ It also covers known issues and deprecated features in the ROCm v2.10 release.
   * [Code Marker Support for rocProfiler and rocTracer Libraries](#Code-Marker-Support-for-rocProfiler-and-rocTracer-Libraries)
   
 - [Fixed Issues](#Fixed-Issues)
-   * [Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault error ](#Running-TensorFlow-and-PyTorch-Frameworks-Consecutively-Results-in-the-Memory-Access-Fault-error)
+   * [Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault Error ](#Running-TensorFlow-and-PyTorch-Frameworks-Consecutively-Results-in-the-Memory-Access-Fault-Error)
    * [Issue with the Docker Container Environment Variable Setting](#Issue-with-the-Docker-Container-Environment-Variable-Setting)
    * [Printf Functionality in ROCm Re-Enabled](#Printf-functionality-in-ROCm-Re-Enabled)
  
@@ -71,7 +71,9 @@ The ROCm v2.10.x platform is designed to support the following operating systems
 For details about deploying the ROCm v2.10.x on these operating systems, see the Deploying ROCm section later in the document.
 
 ### Important ROCm Links
+
 Access the following links for more information on:
+
 •	ROCm documentation, see 
 https://rocm-documentation.readthedocs.io/en/latest/index.html
 
@@ -156,7 +158,7 @@ Code markers provide the external correlation ID for the calling thread. This fu
 
 ## Fixed Issues
 Fixed Issues in the v2.10 Release
-### Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault error 
+### Running TensorFlow and PyTorch Frameworks Consecutively Results in the Memory Access Fault Error 
 Issue: Running the TensorFlow and PyTorch frameworks in quick succession results in a Memory Access Fault error.
 
 Resolution: This issue is resolved, and the error no longer appears.
@@ -346,13 +348,15 @@ Note: The following steps do not apply to the CentOS installation.
 
 2. Enable the following repositories:
 
-	sudo subscription-manager repos --enable rhel-server-rhscl-7-rpms		
-	sudo subscription-manager repos --enable rhel-7-server-optional-rpms	
-	sudo subscription-manager repos --enable rhel-7-server-extras-rpms
+		sudo subscription-manager repos --enable rhel-server-rhscl-7-rpms
+	
+		sudo subscription-manager repos --enable rhel-7-server-optional-rpms
+	
+		sudo subscription-manager repos --enable rhel-7-server-extras-rpms
 
 3. Enable additional repositories by downloading and installing the epel-release-latest-7 repository RPM:
 
-	sudo rpm -ivh 
+		sudo rpm -ivh 
 
 For more details, see
 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
@@ -380,17 +384,17 @@ To install ROCm on your system, follow the instructions below:
 1. Delete the previous versions of ROCm before installing the latest version.
 2. Create a /etc/yum.repos.d/rocm.repo file with the following contents:
 
-	[ROCm]
-	name=ROCm
-	baseurl=http://repo.radeon.com/rocm/yum/rpm
-	enabled=1
-	gpgcheck=0
+		[ROCm]
+		name=ROCm
+		baseurl=http://repo.radeon.com/rocm/yum/rpm
+		enabled=1
+		gpgcheck=0
 
 Note: The URL of the repository must point to the location of the repositories’ repodata database. 
 
 3. Install ROCm components using the following command:
 
-	sudo yum install rocm-dkms
+		sudo yum install rocm-dkms
 
 4.Restart the system.
 The rock-dkms component is installed and the /dev/kfd device is now available.
@@ -400,11 +404,11 @@ To configure permissions, following the instructions below:
 
 1. Ensure that your user account is a member of the "video" or "wheel" group prior to using the ROCm driver. You can find which groups you are a member of with the following command:
 
-	groups
+		groups
 	
 2. Add your user to the video (or wheel) group you will need the sudo password and can use the following command:
 
-	sudo usermod -a -G video $LOGNAME
+		sudo usermod -a -G video $LOGNAME
 	
 Note: All future users must be added to the "video" group by default. To add the users to the group, run the following commands
 
@@ -423,7 +427,8 @@ After restarting the system, run the following commands to verify that the ROCm 
 
 Note: Add the ROCm binaries in your PATH for easy implementation of the ROCm programs.
 
-	echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | sudo tee -a /etc/profile.d/rocm.sh
+	echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | 
+	sudo tee -a /etc/profile.d/rocm.sh
 
 For more information about installation issues, see:
 https://rocm.github.io/install_issues.html
