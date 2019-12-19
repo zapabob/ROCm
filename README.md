@@ -641,9 +641,6 @@ The releases of the upstream Linux kernel support the following GPUs in ROCm:
 • Fiji, Polaris 10, Polaris 11, Vega10
 • Fiji, Polaris 10, Polaris 11, Vega10, Vega 7nm
 
-#### Supported Products
-
-• CUDA v8
 
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
