@@ -2,6 +2,7 @@
 This file contains archived version history information for the [ROCm project](https://github.com/RadeonOpenCompute/ROCm)
 
 ### Current ROCm Version: 2.10
+- [New features and enhancements in ROCm v2.10](#new-features-and-enhancements-in-rocm-v210)
 - [New features and enhancements in ROCm 2.9](#new-features-and-enhancements-in-rocm-29)
 - [New features and enhancements in ROCm 2.8](#new-features-and-enhancements-in-rocm-28)
 - [New features and enhancements in ROCm 2.7.2](#new-features-and-enhancements-in-rocm-272)
@@ -23,7 +24,17 @@ This file contains archived version history information for the [ROCm project](h
 - [New Features as of ROCm 1.5](#new-features-as-of-rocm-15)
 
 
+### New features and enhancements in ROCm v2.10
+#### rocBLAS Support for Complex GEMM
+The rocBLAS library is a gpu-accelerated implementation of the standard Basic Linear Algebra Subroutines (BLAS). rocBLAS is designed to enable you to develop algorithms, including high performance computing, image analysis, and machine learning.
 
+In the AMD ROCm release v2.10, support is extended to the General Matrix Multiply (GEMM) routine for multiple small matrices processed simultaneously for rocBLAS in AMD Radeon Instinct MI50. Both single and double precision, CGEMM and ZGEMM, are now supported in rocBLAS.
+
+#### Support for SLES 15 SP1
+In the AMD ROCm v2.10 release, support is added for SUSE Linux® Enterprise Server (SLES) 15 SP1. SLES is a modular operating system for both multimodal and traditional IT.
+
+#### Code Marker Support for rocProfiler and rocTracer Libraries
+Code markers provide the external correlation ID for the calling thread. This function indicates that the calling thread is entering and leaving an external API region.
 
 ### New features and enhancements in ROCm 2.9
 
