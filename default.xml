@@ -12,7 +12,7 @@
     <remote name="gpuopen-tools"
             fetch="https://github.com/GPUOpen-Tools/" />
 
-    <default revision="refs/tags/roc-2.10.0"
+    <default revision="refs/tags/roc-3.0.0"
              remote="roc-github"
              sync-c="true"
              sync-j="4" />
@@ -24,8 +24,8 @@
     <project name="rocm-cmake" />
     <project name="rocminfo" />
 
-    <project name="rocprofiler" remote="rocm-devtools" revision="refs/tags/roc-2.10.0" />
-    <project name="roctracer" remote="rocm-devtools" revision="roc-2.10.x" />
+    <project name="rocprofiler" remote="rocm-devtools" revision="refs/tags/roc-3.0.0" />
+    <project name="roctracer" remote="rocm-devtools" revision="roc-3.0.x" />
     <!-- If you want to get the full OpenCL runtime, there is a separate repo
          manifest that is more authoritative than the copy in this file. It can
          be found at the following URL:
@@ -36,35 +36,51 @@
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="6c03f8b58fafd9dd693eaac826749a5cfad515f8" />
     <project name="clang-ocl" />
     <!-- HCC needs to be recursively synced to get it submodules -->
-    <project name="hcc" sync-s="true" revision="refs/tags/roc-hcc-2.10.0" />
+    <project name="hcc" sync-s="true" revision="refs/tags/roc-hcc-3.0.0" />
     <project name="HCC-Example-Application" remote="rocm-devtools" revision="ffd6533305e79eed667badd3c4cdb7879a1281b8" />
-    <project name="HIP" remote="rocm-devtools" revision="refs/tags/roc-2.10.0" />
+    <project name="HIP" remote="rocm-devtools" revision="refs/tags/roc-3.0.0" />
     <project name="HIP-Examples" remote="rocm-devtools" />
 
     <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
     <project name="llvm-project" path="llvm_amd-stg-open" revision="refs/tags/roc-ocl-3.0.0"/>
     <project name="ROCm-Device-Libs" revision="refs/tags/roc-ocl-3.0.0"/>
-    <project name="atmi" revision="refs/tags/rocm_2.10.0" />
+    <project name="atmi" revision="refs/tags/rocm_3.0.0" />
     <project name="ROCm-CompilerSupport" />
     <project name="rocr_debug_agent" remote="rocm-devtools" />
     <project name="rocm_bandwidth_test" />
     <project name="RCP" remote="gpuopen-tools" revision="3a49405a1500067c49d181844ec90aea606055bb" />
 
     <!-- ROCm Libraries -->
-    <project name="rocBLAS" remote="rocm-swplat" revision="refs/tags/rocm-2.10" />
-    <project name="hipBLAS" remote="rocm-swplat" revision="refs/tags/rocm-2.10" />
-    <project name="rocFFT" remote="rocm-swplat" revision="refs/tags/rocm-2.10" />
-    <project name="rocRAND" remote="rocm-swplat" revision="refs/tags/2.10.0" />
-    <project name="rocSPARSE" remote="rocm-swplat" revision="refs/tags/rocm-2.10" />
-    <project name="hipSPARSE" remote="rocm-swplat" revision="refs/tags/rocm-2.10" />
-    <project name="rocALUTION" remote="rocm-swplat" revision="refs/tags/rocm-2.10" />
+    <project name="rocBLAS" remote="rocm-swplat" revision="refs/tags/rocm-3.0" />
+    <project name="hipBLAS" remote="rocm-swplat" revision="refs/tags/rocm-3.0" />
+    <project name="rocFFT" remote="rocm-swplat" revision="refs/tags/rocm-3.0" />
+    <project name="rocRAND" remote="rocm-swplat" revision="refs/tags/3.0.0" />
+    <project name="rocSPARSE" remote="rocm-swplat" revision="refs/tags/rocm-3.0" />
+    <project name="hipSPARSE" remote="rocm-swplat" revision="refs/tags/rocm-3.0" />
+    <project name="rocALUTION" remote="rocm-swplat" revision="refs/tags/rocm-3.0" />
     <project name="MIOpenGEMM" remote="rocm-swplat" revision="6275a879995b58a6e0b8cca7b1ad8421a5e02ade" />
-    <project name="MIOpen" remote="rocm-swplat" revision="refs/tags/roc-2.10.0" />
-    <project name="rocm_smi_lib" />
-    <project name="rccl" remote="rocm-swplat" revision="refs/tags/2.10.0" />
+    <project name="MIOpen" remote="rocm-swplat" revision="refs/tags/roc-3.0.0" />
+    <project name="rocm_smi_lib" remote="roc-github" revision="refs/tags/roc.3.0.0" />
+    <project name="rccl" remote="rocm-swplat" revision="refs/tags/3.0.0" />
     <project name="MIVisionX" remote="gpuopen-libs" revision="refs/tags/1.5" />
-    <project name="rocThrust" remote="rocm-swplat" revision="refs/tags/2.10.0" />
-    <project name="hipCUB" remote="rocm-swplat" revision="refs/tags/2.10.0" />
-    <project name="rocPRIM" remote="rocm-swplat" revision="refs/tags/2.10.0" />
+    <project name="rocThrust" remote="rocm-swplat" revision="refs/tags/3.0.0" />
+    <project name="hipCUB" remote="rocm-swplat" revision="refs/tags/3.0.0" />
+    <project name="rocPRIM" remote="rocm-swplat" revision="refs/tags/3.0.0" />
+    <project name="AMDMIGraphX" remote="rocm-swplat" revision="0.5-hip-hcc" />
+    <project name="ROCmValidationSuite" remote="rocm-devtools" revision="refs/tags/roc-3.0.0" />
+
+    <!-- Projects for AOMP -->
+    <project name="ROCT-Thunk-Interface" path="aomp/roct-thunk-interface" remote="roc-github" revision="refs/tags/roc-3.0.0" />
+    <project name="ROCR-Runtime" path="aomp/rocr-runtime" remote="roc-github" revision="refs/tags/roc-3.0.0" />
+    <project name="hcc" path="aomp/hcc" remote="roc-github" revision="refs/tags/roc-hcc-3.0.0" />
+    <project name="ROCm-Device-Libs" path="aomp/rocm-device-libs" remote="roc-github" revision="refs/tags/roc-ocl-2.9.0" />
+    <project name="ROCm-CompilerSupport" path="aomp/rocm-compilersupport" remote="roc-github" revision="refs/tags/roc-2.9.0" />
+    <project name="rocminfo" path="aomp/rocminfo" remote="roc-github" revision="a578b432b1d13ef0fd7803a5d3afa0e7895629d1" />
+    <project name="atmi" path="aomp/atmi" remote="roc-github" revision="refs/tags/rocm_3.0.0" />
+    <project name="HIP" path="aomp/hip" remote="rocm-devtools" revision="refs/tags/roc-2.9.0" />
+    <project name="aomp" path="aomp/aomp" remote="rocm-devtools" revision="refs/tags/roc-3.0.0" />
+    <project name="aomp-extras" path="aomp/aomp-extras" remote="rocm-devtools" revision="refs/tags/roc-3.0.0" />
+    <project name="flang" path="aomp/flang" remote="rocm-devtools" revision="refs/tags/roc-3.0.0" />
+    <project name="llvm-project" path="aomp/llvm-project" remote="rocm-devtools" revision="refs/tags/roc-aomp-3.0.0" />
 
 </manifest>
