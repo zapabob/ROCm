@@ -613,7 +613,7 @@ For users that have the option of using either AMD's or the upstreamed driver, t
 |      | Supported GPUs enabled regardless of kernel version | |
 |      | Includes the latest GPU firmware | |
 | Cons | May not work on all Linux distributions or versions | Features and hardware support varies depending on kernel version |
-|      | Not currently supported on kernels newer than 5.4 | Limits GPU’s usage of system memory to 3/4 (5.3, 5.5) and 15/16 (5.6) |
+|      | Not currently supported on kernels newer than 5.4 | Limits GPU’s usage of system memory to 3/8 of system memory |
 |      |   | IPC and RDMA capabilities are not yet enabled |
 |      |   | Not tested by AMD to the same level as `rock-dkms` package |
 |      |   | Does not include most up-to-date firmware |
