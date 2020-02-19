@@ -30,6 +30,7 @@ It also covers known issues and deprecated features in the ROCm v3.0 release.
 - [Deploying ROCm](#Deploying-ROCm)
   * [Ubuntu](#Ubuntu)
   * [CentOS RHEL](#CentOS-RHEL)
+  * [SLES 15 SP1](#SLES-15-SP1)
 
 - [ROCm Installation](#ROCm-Installation)
 - [Getting the ROCm Source Code](#Getting-the-ROCm-Source-Code)
