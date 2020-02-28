@@ -1,7 +1,8 @@
 ## ROCm Version History
 This file contains archived version history information for the [ROCm project](https://github.com/RadeonOpenCompute/ROCm)
 
-### Current ROCm Version: 2.10
+### Current ROCm Version: 3.0
+- [New features and enhancements in ROCm v3.0](#new-features-and-enhancements-in-rocm-v30)
 - [New features and enhancements in ROCm v2.10](#new-features-and-enhancements-in-rocm-v210)
 - [New features and enhancements in ROCm 2.9](#new-features-and-enhancements-in-rocm-29)
 - [New features and enhancements in ROCm 2.8](#new-features-and-enhancements-in-rocm-28)
@@ -22,6 +23,37 @@ This file contains archived version history information for the [ROCm project](h
 - [New features as of ROCm 1.8](#new-features-as-of-rocm-18)
 - [New Features as of ROCm 1.7](#new-features-as-of-rocm-17)
 - [New Features as of ROCm 1.5](#new-features-as-of-rocm-15)
+
+
+### New features and enhancements in ROCm v3.0
+### Support for CentOS RHEL v7.7 <a id="centos-anchor"></a> 
+Support is extended for CentOS/RHEL v7.7 in the ROCm v3.0 release. For more information about the CentOS/RHEL v7.7 release, see:
+
+[CentOS/RHEL](https://centos.org/forums/viewtopic.php?t=71657)
+
+
+### Initial distribution of AOMP 0.7-5 in ROCm v3.0 <a id="aomp-anchor"></a> 
+The code base for this release of AOMP is the Clang/LLVM 9.0 sources as of October 8th, 2019. The LLVM-project branch used to build this release is AOMP-191008. It is now locked. With this release, an artifact tarball of the entire source tree is created. This tree includes a Makefile in the root directory used to build AOMP from the release tarball. You can use Spack to build AOMP from this source tarball or build manually without Spack.
+
+For more information about AOMP 0.7-5, see: [AOMP](https://github.com/ROCm-Developer-Tools/aomp/tree/roc-3.0.0)
+
+
+### Fast Fourier Transform Updates
+The Fast Fourier Transform (FFT) is an efficient algorithm for computing the Discrete Fourier Transform. Fast Fourier transforms are used in signal processing, image processing, and many other areas. The following real FFT performance change is made in the ROCm v3.0 release:
+
+•	Implement efficient real/complex 2D transforms for even lengths.
+
+Other improvements:
+
+•	More 2D test coverage sizes.
+
+•	Fix buffer allocation error for large 1D transforms.
+
+•	C++ compatibility improvements.
+
+### MemCopy Enhancement for rocProf
+In the v3.0 release, the rocProf tool is enhanced with an additional capability to dump asynchronous GPU memcopy information into a .csv file. You can use the '-hsa-trace' option to create the results_mcopy.csv file.
+Future enhancements will include column labels.
 
 
 ### New features and enhancements in ROCm v2.10
