@@ -21,6 +21,7 @@
     <project name="ROCT-Thunk-Interface" />
     <project name="ROCR-Runtime" />
     <project name="ROC-smi" />
+    <project name="rocm_smi_lib" remote="roc-github" revision="refs/tags/roc-3.1.0" />
     <project name="rocm-cmake" revision="1abe21258481d4cf92f5bab0ef5956636c52f735" />
     <project name="rocminfo" />
 
@@ -60,13 +61,12 @@
     <project name="rocALUTION" remote="rocm-swplat" revision="refs/tags/rocm-3.1" />
     <project name="MIOpenGEMM" remote="rocm-swplat" revision="b51a12523676451bf38bfcf0506a0745e80ac64f" />
     <project name="MIOpen" remote="rocm-swplat" revision="refs/tags/roc-3.1.0" />
-    <project name="rocm_smi_lib" remote="roc-github" revision="refs/tags/roc-3.1.0" />
     <project name="rccl" remote="rocm-swplat" revision="refs/tags/3.1.0" />
     <project name="MIVisionX" remote="gpuopen-libs" revision="755e7a08d5299a95c42def092af7c736d5eda90c" />
     <project name="rocThrust" remote="rocm-swplat" revision="refs/tags/3.1.0" />
     <project name="hipCUB" remote="rocm-swplat" revision="refs/tags/3.1.0" />
     <project name="rocPRIM" remote="rocm-swplat" revision="refs/tags/3.1.0" />
-    <project name="AMDMIGraphX" remote="rocm-swplat" revision="refs/tags/0.5.1" />
+    <project name="AMDMIGraphX" remote="rocm-swplat" revision="79bfafc1b02dc276883fe5bab82eb9e481de8bc0" />
     <project name="ROCmValidationSuite" remote="rocm-devtools" revision="refs/tags/roc-3.1.0" />
 
     <!-- Projects for AOMP -->
