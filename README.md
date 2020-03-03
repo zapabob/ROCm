@@ -573,7 +573,7 @@ from the list provided above for compatibility purposes.
 
 The ROCm 3.1.0.x platform supports the following operating systems:
 
- * Ubuntu 16.04.5(Kernel 4.15) and 18.04.3(Kernel 4.15 and Kernel 4.18)
+ * Ubuntu 16.04.5(Kernel 4.15) and 18.04.3(Kernel 4.15 and Kernel 5.3)
  * CentOS 7.7 (Using devtoolset-7 runtime support)
  * RHEL 7.7 (Using devtoolset-7 runtime support)
 
