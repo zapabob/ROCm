@@ -39,7 +39,7 @@
     <!-- HCC needs to be recursively synced to get it submodules -->
     <project name="hcc" sync-s="true" revision="refs/tags/roc-hcc-3.1.0" />
     <project name="HCC-Example-Application" remote="rocm-devtools" revision="ffd6533305e79eed667badd3c4cdb7879a1281b8" />
-    <project name="HIP" remote="rocm-devtools" revision="refs/tags/roc-3.1.0" />
+    <project name="HIP" remote="rocm-devtools" revision="refs/tags/roc-3.1.1" />
     <project name="HIP-Examples" remote="rocm-devtools" />
 
     <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
