@@ -68,7 +68,7 @@ The ROCm v3.1.x platform is designed to support the following operating systems:
 * SLES 15 SP1 
 
 
-For details about deploying the ROCm v3.1.0.x on these operating systems, see the Deploying ROCm section later in the document.
+For details about deploying the ROCm v3.1.x on these operating systems, see the Deploying ROCm section later in the document.
 
 ### Important ROCm Links
 
