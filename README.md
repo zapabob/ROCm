@@ -569,14 +569,6 @@ from the list provided above for compatibility purposes.
   * As such, we do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs.
   * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are based on PCIe 2.0.
 
-### Supported Operating Systems - New operating systems available
-
-The ROCm 3.1.0.x platform supports the following operating systems:
-
- * Ubuntu 16.04.5(Kernel 4.15) and 18.04.3(Kernel 4.15 and Kernel 5.3)
- * CentOS 7.7 (Using devtoolset-7 runtime support)
- * RHEL 7.7 (Using devtoolset-7 runtime support)
-
 #### ROCm support in upstream Linux kernels
 
 As of ROCm 1.9.0, the ROCm user-level software is compatible with the AMD drivers in certain upstream Linux kernels.
