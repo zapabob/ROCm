@@ -51,7 +51,7 @@ https://github.com/RadeonOpenCompute/ROCm
 The ROCm v3.1.x platform is designed to support the following operating systems:
 
 
-* Ubuntu 16.04.6(Kernel 4.15) and 18.04.4 (Kernel 5.3)
+* Ubuntu 16.04.6 (Kernel 4.15) and 18.04.4 (Kernel 5.3)
 
 * CentOS v7.7 (Using devtoolset-7 runtime support)
 
