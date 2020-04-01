@@ -75,7 +75,7 @@ https://rocm-documentation.readthedocs.io/en/latest/Current_Release_Notes/Curren
 https://rocm-documentation.readthedocs.io/en/latest/Installation_Guide/Installation-Guide.html
 
 * ROCm binary structure, see
-https://github.com/RadeonOpenCompute/ROCm/blob/master/README.md#rocm-binary-package-structure
+https://rocm-documentation.readthedocs.io/en/latest/Installation_Guide/Installation-Guide.html#rocm-platform-packages
 
 
 * Instructions to install PyTorch after ROCm is installed – https://rocm-documentation.readthedocs.io/en/latest/Deep_learning/Deep-learning.html#pytorch
