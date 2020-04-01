@@ -12,12 +12,7 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability-Accessibility-and-Serviceability-Support-for-Vega7nm)
   * [SLURM Support for AMD GPU](#SLURM-Support-for-AMD-GPU)
   
-  
-- [Known Issues](#Known-Issues)
-	* [MIVision MIGraphX Installation](#MIVision-MIGraphX-Installation)
-	* [Using TensorFlow](#Using-TensorFlow)
-	* [HIP Compiler Dependency Issue](#HIP-Compiler-Dependency-Issue)
-	* [Error Running ROC Profiler](#Error-Running-ROC-Profiler)
+
     	
  
   
@@ -77,11 +72,15 @@ Access the following links for more information on:
 * ROCm documentation, see 
 https://rocm-documentation.readthedocs.io/en/latest/index.html
 
+* ROCm Release Notes
+https://rocm-documentation.readthedocs.io/en/latest/Current_Release_Notes/Current-Release-Notes.html
+
+* ROCm QuickStart Installation Guide, see
+https://rocm-documentation.readthedocs.io/en/latest/Installation_Guide/Installation-Guide.html
+
 * ROCm binary structure, see
 https://github.com/RadeonOpenCompute/ROCm/blob/master/README.md#rocm-binary-package-structure
 
-* Common ROCm installation issues, see
-https://rocm.github.io/install_issues.html
 
 * Instructions to install PyTorch after ROCm is installed – https://rocm-documentation.readthedocs.io/en/latest/Deep_learning/Deep-learning.html#pytorch
 
@@ -90,53 +89,109 @@ Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_py
 
 ## What\'s New in This Release
 
-### Change in ROCm Installation Directory Structure
-A fresh installation of the ROCm toolkit installs the packages in the */opt/rocm-\<version>* folder. 
+### Multi-Version Installation
+
+Users can install and access multiple versions of the ROCm toolkit simultaneously.
+
+Previously, users could install only a single version of the ROCm toolkit. 
+
+Now, users have the option to install multiple versions simultaneously and toggle to the desired version of the ROCm toolkit. From the v3.3 release, multiple versions of ROCm packages can be installed in the */opt/rocm-<version>* folder. 
+
+
+**Prerequisites**
+
+Ensure the existing installations of ROCm, including/opt/rocm, are completely removed before the v3.3 ROCm toolkit installation. The ROCm v3.3 package requires a clean installation.
+
+* To install a single instance of ROCm, use the rocm-dkms or rocm-dev packages to install all the required components. This creates a symbolic link /opt/rocm pointing to the corresponding version of ROCm installed on the system. 
+
+* To install individual ROCm components, create the /opt/rocm symbolic link pointing to the version of ROCm installed on the system. 
+For example, # ln -s /opt/rocm-3.3.0 /opt/rocm
+
+* To install multiple instance ROCm packages, create /opt/rocm symbolic link pointing to the version of ROCm installed/used on the system. 
+For example, # ln -s /opt/rocm-3.3.0 /opt/rocm
+
+**NOTE**: The Kernel Fusion Driver (KFD) must be compatible with all versions of the ROCm software installed on the system.
+
+**Before You Begin**
+
+Review the following important notes:
+
+Single Version Installation
+
+To install a single instance of the ROCm package, access the non-versioned packages. You must not install any components from the multi-instance set.
+
+For example, 
+
+* rocm-dkms
+* rocm-dev
+* hip
+
+A fresh installation or an upgrade of the single-version installation will remove the existing version completely and install the new version in the */opt/rocm-<version>* folder.
+
+![ScreenShot](singleinstance.png)
+
+
+**Multi-version Installation**
+
+* To install a multi-instance of the ROCm package, access the versioned packages and components. 
+
+For example,
+
+* rocm-dkms3.3.0
+* rocm-dev3.3.0
+* hip3.3.0
 	
-Previously, ROCm toolkit packages were installed in the */opt/rocm* folder. 
+* The new multi-instance package enables you to install two versions of the ROCm toolkit simultaneously and provides the ability to toggle between the two versioned packages.
 
-![ScreenShot](Versionchange1.png)
+* The ROCm-DEV package does not create symlinks
 
-## Reliability, Accessibility, and Serviceability Support for Vega7nm
-The Reliability, Accessibility, and Serviceability (RAS) support for Vega7nm is now available. The support includes:
+* Users must create symlinks if required
 
-* UMC RAS – HBM ECC (uncorrectable error injection), page retirement, RAS recovery via GPU (BACO) reset
-* GFX RAS – GFX, MMHUB ECC (uncorrectable error injection), RAS recovery via GPU (BACO) reset
-* PCIE RAS – PCIE_BIF ECC (uncorrectable error injection), RAS recovery via GPU (BACO) reset
+* Multi-version installation with previous ROCm versions is not supported
 
-## SLURM Support for AMD GPU
-SLURM (Simple Linux Utility for Resource Management) is an open source, fault-tolerant, and highly scalable cluster management and job scheduling system for large and small Linux clusters. The latest version 20.02.0 of SLURM includes AMD plugins that enable SLURM to detect and configure AMD GPUs automatically.  It also collects and reports the energy consumption of AMD GPUs.
+* Kernel Fusion Driver (KFD) must be compatible with all versions of ROCm installations
+
+![ScreenShot](MultiIns.png)
+
+**IMPORTANT**: A single instance ROCm package cannot co-exist with the multi-instance package. 
+
+**NOTE**: The multi-instance installation applies only to ROCm v3.3 and above. This package requires a fresh installation after the complete removal of existing ROCm packages. **The multi-version installation is not backward compatible.**
 
 
+## GPU Process Information 
 
-## Known Issues 
+A new functionality to display process information for GPUs is available in this release. For example,  you can view the process details to determine if the GPU(s) must be reset. 
 
-### MIVision MIGraphX Installation
+To display the GPU process details, you can:
 
-* Install and use the latest version of the MIVision/MIGraphX code.  
-* Ensure the /opt/rocm symbolic link for the new version of ROCm is present and points to the right version of the ROCm toolkit. 
+* Invoke the API 
 
-### Using TensorFlow
-The TensorFlow build system requires the following additional changes to support the new installation path:
+or
 
-* Ensure the /opt/rocm symbolic link is preset and points to the right version of the ROCm toolkit.
-* Modify the build configure file to include the header files from the respective ROCm version-specific folder
+* Use the Command Line Interface (CLI)
 
-### HIP Compiler Dependency Issue
-If the HIP compiler has a dependency on /opt/rocm, use the following workaround: 
+For more details about the API and the command instructions, see
 
-* Ensure the /opt/rocm symbolic link points to the right version of the ROCm software
-* Use the ROCM_PATH environment variable that points to the version of the ROCm software installed on the system. 
-* Use the rocm-dkms package to install required ROCm components.	
+https://github.com/RadeonOpenCompute/rocm_smi_lib/blob/master/docs/ROCm_SMI_Manual.pdf
 
-### Error Running ROC Profiler
-**Issue:** Running ROC profiler results in the following error -
-“: hip / hsa trace due to "ImportError: No module named sqlite3" error”
 
-**Workaround:** Export the Python version before running ROC profiler: 
+## Support for 3D Pooling Layers
 
-	*export ROCP_PYTHON_VERSION=<python version>*
-	*ex: export ROCP_PYTHON_VERSION=python3*
+AMD ROCm is enhanced to include support for 3D pooling layers. The implementation of 3D pooling layers now allows users to run 3D convolutional networks, such as ResNext3D, on AMD Radeon Instinct GPUs. 
+
+
+## ONNX Enhancements
+ 
+Open Neural Network eXchange (ONNX) is a widely-used neural net exchange format. The AMD model compiler & optimizer support the pre-trained models in ONNX, NNEF, & Caffe formats. Currently, ONNX versions 1.3 and below are supported. 
+
+The AMD Neural Net Intermediate Representation (NNIR) is enhanced to handle the rapidly changing ONNX versions and its layers. 
+
+![ScreenShot]onnx.png
+
+For more details about AMD support for ONNX and ISV samples, see
+
+https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/master/model_compiler
+
 
 
 ## Deploying ROCm
@@ -146,337 +201,31 @@ The following directions show how to install ROCm on supported Debian-based syst
 
 Note: These directions may not work as written on unsupported Debian-based distributions. For example, newer versions of Ubuntu may not be compatible with the rock-dkms kernel driver. In this case, you can exclude the rocm-dkms and rock-dkms packages.
 
-For more information on the ROCm binary structure, see
-https://github.com/RadeonOpenCompute/ROCm/blob/master/README.md#rocm-binary-package-structure
+For more information on ROCM installation on all platforms, see
 
-For information about upstream kernel drivers, see the Using Debian-based ROCm with Upstream Kernel Drivers section.
+https://rocm-documentation.readthedocs.io/en/latest/Installation_Guide/Installation-Guide.html
 
-## Ubuntu 
-### Installing a ROCm Package from a Debian Repository
-To install from a Debian Repository:
-1.	Run the following code to ensure that your system is up to date:
-      
-     	sudo apt update
- 
-     	sudo apt dist-upgrade
-    
-     	sudo apt install libnuma-dev
-    
-     	sudo reboot 
-          
-    
- 2. Add the ROCm apt repository.
+## Deprecations in the v3.3 Release
 
-     For Debian-based systems like Ubuntu, configure the Debian ROCm repository as follows:
-   
-        wget -qO - http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | sudo apt-key add -
-        
-        echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | sudo tee /etc/apt/sources.list.d/rocm.list
+### Code Object Manager (Comgr) Functions
 
-      
-  The gpg key may change; ensure it is updated when installing a new release. If the key signature verification fails while updating,     re-add the key from the ROCm apt repository. 
+The following Code Object Manager (Comgr) functions are deprecated.
 
-  The current rocm.gpg.key is not available in a standard key ring distribution, but has the following sha1sum hash:
+* `amd_comgr_action_info_set_options` 
 
-  	e85a40d1a43453fe37d63aa6899bc96e08f2817a rocm.gpg.key
-	
+* `amd_comgr_action_info_get_options` 
 
-3. Install the ROCm meta-package.
-   Update the appropriate repository list and install the rocm-dkms meta-package:
+These functions were originally deprecated in version 1.3 of the Comgr library as they no longer support options with embedded spaces. 
+The deprecated functions are now replaced with the array-oriented options API, which includes 
 
-     	sudo apt update
-   
-     	sudo apt install rocm-dkms
+* `amd_comgr_action_info_set_option_list`
 
+* `amd_comgr_action_info_get_option_list_count`
 
-4. Set permissions.
-   To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using ROCm. To identify the groups you are a member of, use the following command:	   
-	
-		groups
-   
-   
-5. To add your user to the video group, use the following command for the sudo password:
-	
-		sudo usermod -a -G video $LOGNAME
+* `amd_comgr_action_info_get_option_list_item`
 
-6. By default, add any future users to the video group. Run the following command to add users to the video group:
 
-   		echo 'ADD_EXTRA_GROUPS=1' 		
-		sudo tee -a /etc/adduser.conf   
-   		echo 'EXTRA_GROUPS=video' 		
-		sudo tee -a /etc/adduser.conf
-   
-7. Restart the system.
-
-8. Test the basic ROCm installation.
-
-9. After restarting the system, run the following commands to verify that the ROCm installation is successful. If you see your GPUs listed by both commands, the installation is considered successful.
-
-		/opt/rocm/bin/rocminfo
-		/opt/rocm/opencl/bin/x86_64/clinfo
-
-Note: To run the ROCm programs more efficiently, add the ROCm binaries in your PATH.
-
-		echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | 
-		sudo tee -a /etc/profile.d/rocm.sh
-
-If you have an installation issue, refer the FAQ at:
-https://rocm.github.io/install_issues.html
-
-
-
-### Uninstalling ROCm Packages from Ubuntu 
-To uninstall the ROCm packages from Ubuntu v16.04 or Ubuntu v18.04.x, run the following command:
-
-	sudo apt autoremove rocm-dkms 
-
-
-### Installing Development Packages for Cross Compilation
-It is recommended that you develop and test applications on different systems. For example, some development or build systems may not have an AMD GPU installed. In this scenario, you must avoid installing the ROCk kernel driver on the development system. 
-
-Instead, install the following development subset of applications:
-
-	sudo apt update
-	sudo apt install rocm-dev
-
-Note: To execute ROCm enabled applications, you must install the full ROCm driver stack on your system.
-
-
-### Using Debian-based ROCm with Upstream Kernel Drivers
-You can install the ROCm user-level software without installing the AMD's custom ROCk kernel driver. To use the upstream kernels, run the following commands instead of installing rocm-dkms:
-
-	sudo apt update	
-	sudo apt install rocm-dev	
-	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' 
-	sudo tee /etc/udev/rules.d/70-kfd.rules
-
-
-## CentOS RHEL v7 
-
-This section describes how to install ROCm on supported RPM-based systems such as CentOS v7.7. 
-
-For more details, refer:
-https://github.com/RadeonOpenCompute/ROCm/blob/master/README.md#rocm-binary-package-structure
-
-### Preparing RHEL v7 (7.7) for Installation
-RHEL is a subscription-based operating system. You must enable the external repositories to install on the devtoolset-7 environment and the dkms support files. 
-
-Note: The following steps do not apply to the CentOS installation.
-
-1. The subscription for RHEL must be enabled and attached to a pool ID. See the Obtaining an RHEL image and license page for instructions on registering your system with the RHEL subscription server and attaching to a pool id.
-
-2. Enable the following repositories:
-
-		sudo subscription-manager repos --enable rhel-server-rhscl-7-rpms
-	
-		sudo subscription-manager repos --enable rhel-7-server-optional-rpms
-	
-		sudo subscription-manager repos --enable rhel-7-server-extras-rpms
-
-3. Enable additional repositories by downloading and installing the epel-release-latest-7 repository RPM:
-
-		sudo rpm -ivh <repo>
-
-For more details, see
-https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-
-4. Install and set up Devtoolset-7.
-
-  To setup the Devtoolset-7 environment, follow the instructions on this page:
-  https://www.softwarecollections.org/en/scls/rhscl/devtoolset-7/
-
-  Note: devtoolset-7 is a software collections package and is not supported by AMD.
-
-### Installing CentOS/RHEL (v7.7) for DKMS
-
-Use the dkms tool to install the kernel drivers on CentOS/RHEL v7.7:
-
-	sudo yum install -y epel-release
-	sudo yum install -y dkms kernel-headers-`uname -r` kernel-devel-`uname -r`
-
-### Installing ROCm 
-
-To install ROCm on your system, follow the instructions below:
-
-1. Delete the previous versions of ROCm before installing the latest version.
-2. Create a /etc/yum.repos.d/rocm.repo file with the following contents:
-
-		[ROCm]
-		name=ROCm
-		baseurl=http://repo.radeon.com/rocm/yum/rpm
-		enabled=1
-		gpgcheck=0
-
-Note: The URL of the repository must point to the location of the repositories’ repodata database. 
-
-3. Install ROCm components using the following command:
-
-		sudo yum install rocm-dkms
-
-4. Restart the system.The rock-dkms component is installed and the /dev/kfd device is now available.
-
-5. Set permissions.
-To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using ROCm. To identify the groups you are a member of, use the following command:
-
-		groups
-	
-6. To add your user to the video group, use the following command for the sudo password:
-
-		sudo usermod -a -G video $LOGNAME
-	
-7. By default, add any future users to the video group. Run the following command to add users to the video group:
-
-	echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
-	echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
-
-
-8. Restart the system.
-
-9. Test the ROCm installation.
-
-### Testing ROCm Installation
-After restarting the system, run the following commands to verify that the ROCm installation is successful. If you see your GPUs listed, you are good to go!
-
-	/opt/rocm/bin/rocminfo
-	/opt/rocm/opencl/bin/x86_64/clinfo
-
-Note: To run the ROCm programs more efficiently, add the ROCm binaries in your PATH for easy implementation of the ROCm programs.
-
-	echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | 
-	sudo tee -a /etc/profile.d/rocm.sh
-
-
-#### Compiling Applications Using HCC, HIP, and Other ROCm Software
-To compile applications or samples, run the following command to use gcc-7.2 provided by the devtoolset-7 environment:
-
-	scl enable devtoolset-7 bash
-
-### Uninstalling ROCm from CentOS/RHEL v7.7
-To uninstall the ROCm packages, run the following command:
-
-	sudo yum autoremove rocm-dkms rock-dkms
-
-### Installing Development Packages for Cross Compilation
-You can develop and test ROCm packages on different systems. For example, some development or build systems may not have an AMD GPU installed. In this scenario, you can avoid installing the ROCm kernel driver on your development system. Instead, install the following development subset of packages:
-
-	sudo yum install rocm-dev
-	
-Note: To execute ROCm-enabled applications, you will require a system installed with the full ROCm driver stack.
-
-### Using ROCm with Upstream Kernel Drivers
-You can install ROCm user-level software without installing AMD's custom ROCk kernel driver. To use the upstream kernel drivers, run the following commands 
-
-	sudo yum install rocm-dev
-	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"'  
-	sudo tee /etc/udev/rules.d/70-kfd.rules
-	
-Note: You can use these commands instead of installing rocm-dkms.
-
-## SLES 15 Service Pack 1
-
-The following section tells you how to perform an install and uninstall ROCm on SLES 15 SP 1. 
-
-### Installation
-1. Install the "dkms" package.
-
-	sudo SUSEConnect --product PackageHub/15.1/x86_64
-	sudo zypper install dkms
-	
-2. Add the ROCm repo.
- 
-	sudo zypper clean –all
-	sudo zypper addrepo --no-gpgcheck http://repo.radeon.com/rocm/zyp/zypper/ rocm 
-	sudo zypper ref
-	zypper install rocm-dkms
-	sudo zypper install rocm-dkms
-	sudo reboot
-
-3. Run the following command once
-
-	cat <<EOF | sudo tee /etc/modprobe.d/10-unsupported-modules.conf
-	allow_unsupported_modules 1
-	EOF
-	sudo modprobe amdgpu
-
-4. Verify the ROCm installation.
-
-5. Run /opt/rocm/bin/rocminfo and /opt/rocm/opencl/bin/x86_64/clinfo commands to list the GPUs and verify that the ROCm installation is successful.
-
-6. Set permissions. 
-
-To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using 	 ROCm. To identify the groups you are a member of, use the following command:
-
-		groups
-
-7. To add your user to the video group, use the following command for the sudo password:
-	
-		sudo usermod -a -G video $LOGNAME
-	
-8. By default, add any future users to the video group. Run the following command to add users to the video group:
-
-		echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf
-		echo 'EXTRA_GROUPS=video' | sudo tee -a /etc/adduser.conf
-
-9. Restart the system.
-10. Test the basic ROCm installation.
-11. After restarting the system, run the following commands to verify that the ROCm installation is successful. If you see your GPUs listed by both commands, the installation is considered successful.
-
-		/opt/rocm/bin/rocminfo
-		/opt/rocm/opencl/bin/x86_64/clinfo
-
-Note: To run the ROCm programs more efficiently, add the ROCm binaries in your PATH.
-echo 'export PATH=$PATH:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin/x86_64' | 
-
-	sudo tee -a /etc/profile.d/rocm.sh
-
-### Uninstallation
-To uninstall, use the following command:
-
-	sudo zypper remove rocm-dkms rock-dkms
-
-Note: Ensure all other installed packages/components are removed.
-Note: Ensure all the content in the /opt/rocm directory is completely removed.
-
-
-## Performing an OpenCL-only Installation of ROCm
-Some users may want to install a subset of the full ROCm installation. If you are trying to install on a system with a limited amount of storage space, or which will only run a small collection of known applications, you may want to install only the packages that are required to run OpenCL applications. To do that, you can run the following installation command instead of the command to install rocm-dkms.
-
-	sudo yum install rock-dkms rocm-opencl-devel
-	
-## ROCm Installation - Known Issues and Workarounds 
-### Closed source components
-The ROCm platform relies on some closed source components to provide functionalities like HSA image support. These components are only available through the ROCm repositories, and they may be deprecated or become open source components in the future. These components are made available in the following packages:
-
-•	hsa-ext-rocr-dev
-
-
-## Getting the ROCm Source Code
-AMD ROCm is built from open source software. It is, therefore, possible to modify the various components of ROCm by downloading the source code and rebuilding the components. The source code for ROCm components can be cloned from each of the GitHub repositories using git.  For easy access to download the correct versions of each of these tools, the ROCm repository contains a repo manifest file called default.xml. You can use this manifest file to download the source code for ROCm software.
-
-### Installing the Repo
-The repo tool from Google® allows you to manage multiple git repositories simultaneously. Run the following commands to install the repo:
-
-	mkdir -p ~/bin/
-	curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-	chmod a+x ~/bin/repo
-
-Note: You can choose a different folder to install the repo into if you desire. ~/bin/ is used as an example.
-
-### Downloading the ROCm Source Code
-The following example shows how to use the repo binary to download the ROCm source code. If you choose a directory other than ~/bin/ to install the repo, you must use that chosen directory in the code as shown below:
-
-	mkdir -p ~/ROCm/
-	cd ~/ROCm/
-	~/bin/repo init -u https://github.com/RadeonOpenCompute/ROCm.git -b roc-3.1.0
-	repo sync
-
-Note: Using this sample code will cause the repo to download the open source code associated with this ROCm release. Ensure that you have ssh-keys configured on your machine for your GitHub ID prior to the download.
-
-### Building the ROCm Source Code
-Each ROCm component repository contains directions for building that component. You can access the desired component for instructions to build the repository.
-
-
-### Hardware and Software Support
+## Hardware and Software Support
 ROCm is focused on using AMD GPUs to accelerate computational tasks such as machine learning, engineering workloads, and scientific computing.
 In order to focus our development efforts on these domains of interest, ROCm supports a targeted set of hardware configurations which are detailed further in this section.
 
