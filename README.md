@@ -248,7 +248,7 @@ The following list of GPUs are enabled in the ROCm software, though full support
   * GFX7 GPUs
     * "Hawaii" chips, such as the AMD Radeon R9 390X and FirePro W9100
 
-As described in the next section, GFX8 GPUs require PCI Express 3.1.0 (PCIe 3.1.0) with support for PCIe atomics. This requires both CPU and motherboard support. GFX9 GPUs require PCIe 3.1.0 with support for PCIe atomics by default, but they can operate in most cases without this capability.
+As described in the next section, GFX8 GPUs require PCI Express 3.0 (PCIe 3.0) with support for PCIe atomics. This requires both CPU and motherboard support. GFX9 GPUs require PCIe 3.0 with support for PCIe atomics by default, but they can operate in most cases without this capability.
 
 The integrated GPUs in AMD APUs are not officially supported targets for ROCm.
 As described [below](#limited-support), "Carrizo", "Bristol Ridge", and "Raven Ridge" APUs are enabled in our upstream drivers and the ROCm OpenCL runtime.
@@ -258,8 +258,8 @@ As such, they are not yet officially supported targets for ROCm.
 For a more detailed list of hardware support, please see [the following documentation](https://rocm.github.io/hardware.html).
 
 #### Supported CPUs
-As described above, GFX8 GPUs require PCIe 3.1.0 with PCIe atomics in order to run ROCm.
-In particular, the CPU and every active PCIe point between the CPU and GPU require support for PCIe 3.1.0 and PCIe atomics.
+As described above, GFX8 GPUs require PCIe 3.0 with PCIe atomics in order to run ROCm.
+In particular, the CPU and every active PCIe point between the CPU and GPU require support for PCIe 3.0 and PCIe atomics.
 The CPU root must indicate PCIe AtomicOp Completion capabilities and any intermediate switch must indicate PCIe AtomicOp Routing capabilities.
 
 Current CPUs which support PCIe Gen3 + PCIe Atomics are:
@@ -311,7 +311,7 @@ from the list provided above for compatibility purposes.
 ##### Not supported
 
 * "Tonga", "Iceland", "Vega M", and "Vega 12" GPUs are not supported in ROCm 2.9.x
-* We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe 3.1.0 with PCIe atomics.
+* We do not support GFX8-class GPUs (Fiji, Polaris, etc.) on CPUs that do not have PCIe 3.0 with PCIe atomics.
   * As such, we do not support AMD Carrizo and Kaveri APUs as hosts for such GPUs.
   * Thunderbolt 1 and 2 enabled GPUs are not supported by GFX8 GPUs on ROCm. Thunderbolt 1 & 2 are based on PCIe 2.0.
 
