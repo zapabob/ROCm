@@ -8,18 +8,16 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   * [Important ROCm Links](#Important-ROCm-Links)
   
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [Change in ROCm Installation Directory Structure](#Change-in-ROCm-Installation-Directory-Structure)
-  * [Reliability, Accessibility, and Serviceability Support for Vega7nm](#Reliability-Accessibility-and-Serviceability-Support-for-Vega7nm)
-  * [SLURM Support for AMD GPU](#SLURM-Support-for-AMD-GPU)
+  * [Multi Version Installation](#Multi-Version-Installation)
+  * [GPU Process Information](#GPU-Process-Information)
+  * [Support for 3D Pooling Layers](#Support-for-3D-Pooling-Layers)
+  * [ONNX Enhancements](#ONNX-Enhancements)
   
-
-    	
- 
   
 - [Deploying ROCm](#Deploying-ROCm)
-  * [Ubuntu](#Ubuntu)
-  * [CentOS RHEL v7](#CentOS-RHEL-v7)
-  * [SLES 15 Service Pack 1](#SLES-15-Service-Pack-1)
+ 
+- [Deprecations in This Release](#Deprecations-in-This-Release)
+  * [Code Object Manager (Comgr) Functions](#Code-Object-Manager-(Comgr)-Functions)
 
 
 - [Getting the ROCm Source Code](#Getting-the-ROCm-Source-Code)
@@ -89,7 +87,7 @@ Note: These instructions reference the rocm/pytorch:rocm3.0_ubuntu16.04_py2.7_py
 
 ## What\'s New in This Release
 
-### Multi-Version Installation
+### Multi Version Installation
 
 Users can install and access multiple versions of the ROCm toolkit simultaneously.
 
@@ -195,7 +193,7 @@ https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/master/m
 
 
 ## Deploying ROCm
-AMD hosts both Debian and RPM repositories for the ROCm v3.1.0x packages. 
+AMD hosts both Debian and RPM repositories for the ROCm v3.3.0x packages. 
 
 The following directions show how to install ROCm on supported Debian-based systems such as Ubuntu 18.04.x. 
 
@@ -205,7 +203,8 @@ For more information on ROCM installation on all platforms, see
 
 https://rocm-documentation.readthedocs.io/en/latest/Installation_Guide/Installation-Guide.html
 
-## Deprecations in the v3.3 Release
+
+## Deprecations in This Release
 
 ### Code Object Manager (Comgr) Functions
 
