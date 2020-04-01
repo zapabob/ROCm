@@ -20,7 +20,6 @@ It also covers known issues and deprecated features in the ROCm v3.1 release.
   * [Code Object Manager (Comgr) Functions](#Code-Object-Manager-(Comgr)-Functions)
 
 
-- [Getting the ROCm Source Code](#Getting-the-ROCm-Source-Code)
 - [Hardware and Software Support](#Hardware-and-Software-Support)
 - [Machine Learning and High Performance Computing Software Stack for AMD GPU](#Machine-Learning-and-High-Performance-Computing-Software-Stack-for-AMD-GPU)
   * [ROCm Binary Package Structure](#ROCm-Binary-Package-Structure)
