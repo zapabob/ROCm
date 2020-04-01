@@ -473,7 +473,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   
 #### ROCm Support Software
   - [ROCm SMI](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-3.3.0)
-  - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/roc-3.3.0)
+  - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/rocm-3.3.0)
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/rocm-3.3.0)
   - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/rocm-3.3.0)
   
@@ -498,9 +498,9 @@ The latest supported version of the drivers, tools, libraries and source code fo
   
   - [ROCm Code Object Manager](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/tree/rocm-3.3.0)
   
-  - [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler/tree/roc-3.1.0)
+  - [ROC Profiler](https://github.com/ROCm-Developer-Tools/rocprofiler/tree/roc-3.3.0)
   
-  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-3.1.x)
+  - [ROC Tracer](https://github.com/ROCm-Developer-Tools/roctracer/tree/roc-3.3.0)
   
   - [AOMP](https://github.com/ROCm-Developer-Tools/aomp/tree/roc-3.3.0)
   
