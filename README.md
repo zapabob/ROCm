@@ -183,7 +183,7 @@ Open Neural Network eXchange (ONNX) is a widely-used neural net exchange format.
 
 The AMD Neural Net Intermediate Representation (NNIR) is enhanced to handle the rapidly changing ONNX versions and its layers. 
 
-![ScreenShot]onnx.png
+![ScreenShot](onnx.png)
 
 For more details about AMD support for ONNX and ISV samples, see
 
