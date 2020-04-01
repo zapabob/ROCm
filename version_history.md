@@ -1,7 +1,8 @@
 ## ROCm Version History
 This file contains archived version history information for the [ROCm project](https://github.com/RadeonOpenCompute/ROCm)
 
-### Current ROCm Version: 3.0
+### Current ROCm Version: 3.1
+- [New features and enhancements in ROCm v3.1](#new-features-and-enhancements-in-rocm-v31)
 - [New features and enhancements in ROCm v3.0](#new-features-and-enhancements-in-rocm-v30)
 - [New features and enhancements in ROCm v2.10](#new-features-and-enhancements-in-rocm-v210)
 - [New features and enhancements in ROCm 2.9](#new-features-and-enhancements-in-rocm-29)
@@ -25,7 +26,22 @@ This file contains archived version history information for the [ROCm project](h
 - [New Features as of ROCm 1.5](#new-features-as-of-rocm-15)
 
 
-### New features and enhancements in ROCm v3.0
+
+## New features and enhancements in ROCm v3.1
+### Change in ROCm Installation Directory Structure
+
+A fresh installation of the ROCm toolkit installs the packages in the /opt/rocm-<version> folder. Previously, ROCm toolkit packages were installed in the /opt/rocm folder.
+
+### Reliability, Accessibility, and Serviceability Support for Vega 7nm
+
+The Reliability, Accessibility, and Serviceability (RAS) support for Vega7nm is now available.
+
+### SLURM Support for AMD GPU
+
+SLURM (Simple Linux Utility for Resource Management) is an open source, fault-tolerant, and highly scalable cluster management and job scheduling system for large and small Linux clusters.
+
+
+## New features and enhancements in ROCm v3.0
 ### Support for CentOS RHEL v7.7 <a id="centos-anchor"></a> 
 Support is extended for CentOS/RHEL v7.7 in the ROCm v3.0 release. For more information about the CentOS/RHEL v7.7 release, see:
 
