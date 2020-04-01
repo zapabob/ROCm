@@ -358,7 +358,7 @@ The releases of the upstream Linux kernel support the following GPUs in ROCm:
 
 ## Machine Learning and High Performance Computing Software Stack for AMD GPU
 
-ROCm Version 3.1.0
+ROCm Version 3.3.0
 
 ### ROCm Binary Package Structure
 
