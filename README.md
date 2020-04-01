@@ -545,7 +545,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   
   - [hipCUB](https://github.com/ROCmSoftwarePlatform/hipCUB/tree/rocm-3.3.0)
   
-  - [AMDMIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/tree/0.5.1)
+  - [AMDMIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/commits/0.6)
 
 
 Features and enhancements introduced in previous versions of ROCm can be found in [version_history.md](version_history.md)
