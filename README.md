@@ -474,7 +474,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
   
 #### ROCm Support Software
   - [ROCm SMI](https://github.com/RadeonOpenCompute/ROC-smi/tree/roc-3.3.0)
-  - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/roc-3.0.0)
+  - [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake/tree/roc-3.3.0)
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/rocm-3.3.0)
   - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/rocm-3.3.0)
   
