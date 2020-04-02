@@ -477,8 +477,8 @@ The latest supported version of the drivers, tools, libraries and source code fo
   - [rocminfo](https://github.com/RadeonOpenCompute/rocminfo/tree/rocm-3.3.0)
   - [ROCm Bandwidth Test](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/tree/rocm-3.3.0)
   
-#### ROCm Development ToolChains
-  - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/rocm-hcc-3.3.0)
+#### ROCm Development ToolChain
+  - [HCC compiler](https://github.com/RadeonOpenCompute/hcc/tree/rocm-3.3.0)
   
   - [HIP](https://github.com/ROCm-Developer-Tools/HIP/tree/rocm-3.3.0)
   
