@@ -16,7 +16,7 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
   * [rocProfiler Dispatch Callbacks Start/Stop API](#rocProfiler-Dispatch-Callbacks-Start-Stop-API)
   * [ROCm Communications Collective Library](#ROCm-Communications-Collective-Library)
   * [NVIDIA Communications Collective Library Version Compatibility](#NVIDIA-Communications-Collective-Library-Version-Compatibility)
-  * [MIOpen - Optional Kernel Package Installation](#MIOpen-Optional-Kernel-Package-Installation)
+  * [MIOpen Optional Kernel Package Installation](#MIOpen-Optional-Kernel-Package-Installation)
   * [New SMI Event Interface and Library](#New-SMI-Event-Interface-and-Library)
   * [API for CPU Affinity](#API-for-CPU-Affinity)
   * [Radeon Performance Primitives Library](#Radeon-Performance-Primitives-Library)
