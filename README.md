@@ -190,7 +190,7 @@ AMD RCCL is now compatible with NVIDIA Communications Collective Library (NCCL) 
 * Improved CPU type detection
 * Infiniband adaptive routing support
 
-## MIOpen - Optional Kernel Package Installation
+## MIOpen Optional Kernel Package Installation
 MIOpen provides an optional pre-compiled kernel package to reduce startup latency. 
 
 NOTE: The installation of this package is optional. MIOpen will continue to function as expected even if you choose to not install the pre-compiled kernel package. This is because MIOpen compiles the kernels on the target machine once the kernel is run. However, the compilation step may significantly increase the startup time for different operations.
