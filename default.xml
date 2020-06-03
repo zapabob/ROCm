@@ -58,6 +58,7 @@
     <project name="MIOpen" remote="rocm-swplat" />
     <project name="rccl" remote="rocm-swplat" />
     <project name="MIVisionX" remote="gpuopen-libs" revision="refs/tags/1.7" />
+    <project name="rocSOLVER" remote="rocm-swplat" />
     <project name="rocThrust" remote="rocm-swplat" />
     <project name="hipCUB" remote="rocm-swplat" />
     <project name="rocPRIM" remote="rocm-swplat" />
