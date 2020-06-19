@@ -1,3 +1,11 @@
+# AMD ROCm v3.5.1 Patch Release 
+
+AMD ROCm released a maintenance patch release v3.5.1. For more information about the release see, 
+
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_Release_Notes_v3.5.1.pdf
+
+
+
 # AMD ROCm Release Notes v3.5.0
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
 It also covers known issues and deprecated features in the ROCm v3.5.0 release.
@@ -37,11 +45,7 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
   * [ROCm Binary Package Structure](#ROCm-Binary-Package-Structure)
   * [ROCm Platform Packages](#ROCm-Platform-Packages)
   
-# AMD ROCm v3.5.1 Patch Release 
 
-AMD ROCm released a maintenance patch release v3.5.1. For more information about the release see, 
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_Release_Notes_v3.5.1.pdf
 
 # Supported Operating Systems and Documentation Updates
 
