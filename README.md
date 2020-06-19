@@ -36,6 +36,12 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
 - [Machine Learning and High Performance Computing Software Stack for AMD GPU](#Machine-Learning-and-High-Performance-Computing-Software-Stack-for-AMD-GPU)
   * [ROCm Binary Package Structure](#ROCm-Binary-Package-Structure)
   * [ROCm Platform Packages](#ROCm-Platform-Packages)
+  
+# AMD ROCm v3.5.1 Patch Release 
+
+AMD ROCm released a maintenance patch release v3.5.1. For more information about the release see, 
+
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_Release_Notes_v3.5.1.pdf
 
 # Supported Operating Systems and Documentation Updates
 
