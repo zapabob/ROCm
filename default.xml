@@ -17,7 +17,7 @@
              sync-c="true"
              sync-j="4" />
     <!--list of projects for ROCM-->
-    <project name="ROCK-Kernel-Driver" />
+    <project name="ROCK-Kernel-Driver" revision="refs/tags/rocm-3.5.1" />
     <project name="ROCT-Thunk-Interface" />
     <project name="ROCR-Runtime" />
     <project name="ROC-smi" />
@@ -31,7 +31,7 @@
     <project name="clang-ocl" />
     <!--HIP Projects-->
     <project name="HCC-Example-Application" remote="rocm-devtools" revision="ffd6533305e79eed667badd3c4cdb7879a1281b8" />
-    <project name="HIP" remote="rocm-devtools" />
+    <project name="HIP" remote="rocm-devtools" revision="refs/tags/rocm-3.5.1" />
     <project name="HIP-Examples" remote="rocm-devtools" />
     <project name="ROCclr" remote="rocm-devtools" revision="refs/tags/roc-3.5.0" />
     <project name="HIPIFY" remote="rocm-devtools" /> 
@@ -52,16 +52,16 @@
     <project name="rocFFT" remote="rocm-swplat" />
     <project name="rocRAND" remote="rocm-swplat" />
     <project name="rocSPARSE" remote="rocm-swplat" />
+    <project name="rocSOLVER" remote="rocm-swplat" />
     <project name="hipSPARSE" remote="rocm-swplat" />
     <project name="rocALUTION" remote="rocm-swplat" />
     <project name="MIOpenGEMM" remote="rocm-swplat" revision="refs/tags/1.1.6" />
     <project name="MIOpen" remote="rocm-swplat" />
     <project name="rccl" remote="rocm-swplat" />
     <project name="MIVisionX" remote="gpuopen-libs" revision="refs/tags/1.7" />
-    <project name="rocSOLVER" remote="rocm-swplat" />
     <project name="rocThrust" remote="rocm-swplat" />
     <project name="hipCUB" remote="rocm-swplat" />
-    <project name="rocPRIM" remote="rocm-swplat" />
+    <project name="rocPRIM" remote="rocm-swplat" revision="refs/tags/rocm-3.5.1" />
     <project name="AMDMIGraphX" remote="rocm-swplat" />
     <project name="ROCmValidationSuite" remote="rocm-devtools" />
     <!-- Projects for AOMP -->
@@ -70,7 +70,7 @@
     <project name="ROCm-Device-Libs" path="aomp/rocm-device-libs" remote="roc-github" />
     <project name="ROCm-CompilerSupport" path="aomp/rocm-compilersupport" remote="roc-github" />
     <project name="rocminfo" path="aomp/rocminfo" remote="roc-github" />
-    <project name="HIP" path="aomp/hip-on-vdi" remote="rocm-devtools" revision="ffcbd7e63395f8a4d3ccb7e4d5133f8d2dde793e" />
+    <project name="HIP" path="aomp/hip-on-vdi" remote="rocm-devtools" revision="ffcbd7e63395f8a4d3ccb7e4d5133f8d2dde793e"  />
     <project name="aomp" path="aomp/aomp" remote="rocm-devtools" />
     <project name="aomp-extras" path="aomp/aomp-extras" remote="rocm-devtools" />
     <project name="flang" path="aomp/flang" remote="rocm-devtools" />
