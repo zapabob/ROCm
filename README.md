@@ -1,3 +1,10 @@
+
+## Multiple Release Installations of AMD ROCm on a Server Fail
+
+The Side-by-Side install feature does not behave as expected, and multiple release installations of AMD ROCm fails. Attempts to install AMD ROCm v3.5.0 and AMD ROCm v3.5.1 side-by-side can result in breaking the existing ROCm v3.5.0 installation.
+
+This known issue is currently under investigation.
+
 # AMD ROCm v3.5.1 Patch Release 
 
 AMD ROCm released a maintenance patch release v3.5.1. For more information, see
