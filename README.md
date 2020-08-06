@@ -68,7 +68,7 @@ The AMD ROCm v3.5.x platform is designed to support the following operating syst
 
 ## Documentation Updates
 
-### HIP-Clang Compile
+### HIP-Clang Compiler
 
 * [HIP FAQ - Transition from HCC to HIP-Clang](https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq)
 * [HIP-Clang Porting Guide](https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-porting-guide.html#hip-porting-guide)
