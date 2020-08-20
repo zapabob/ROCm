@@ -1,48 +1,21 @@
 
-## Multiple Release Installations of AMD ROCm on a Server Fail
+# AMD ROCm Release Notes v3.7.0
 
-The Side-by-Side install feature does not behave as expected, and multiple release installations of AMD ROCm fail. Attempts to install AMD ROCm v3.5.0 and AMD ROCm v3.5.1 side-by-side can result in breaking the existing ROCm v3.5.0 installation.
-
-This known issue is currently under investigation.
-
-# AMD ROCm v3.5.1 Patch Release 
-
-AMD ROCm released a maintenance patch release v3.5.1. For more information, see
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_Release_Notes_v3.5.1.pdf
-
-
-
-# AMD ROCm Release Notes v3.5.0
 This page describes the features, fixed issues, and information about downloading and installing the ROCm software.
-It also covers known issues and deprecated features in the ROCm v3.5.0 release.
+It also covers known issues and deprecated features in this release.
 
 - [Supported Operating Systems and Documentation Updates](#Supported-Operating-Systems-and-Documentation-Updates)
   * [Supported Operating Systems](#Supported-Operating-Systems)
-  * [Documentation Updates](#Documentation-Updates)
+  * [AMD ROCm Documentation Updates](#AMD-ROCm-Documentation-Updates)
    
 - [What\'s New in This Release](#Whats-New-in-This-Release)
-  * [Upgrading to This Release](#Upgrading-to-This-Release)
-  * [Heterogeneous-Compute Interface for Portability](#Heterogeneous-Compute-Interface-for-Portability)
-  * [Radeon Open Compute Common Language Runtime](#Radeon-Open-Compute-Common-Language-Runtime)
-  * [OpenCL Runtime](#OpenCL-Runtime)
-  * [AMD ROCm GNU Debugger ROCgdb](#AMD-ROCm-GNU-Debugger-ROCgdb)
-  * [AMD ROCm Debugger API Library](#AMD-ROCm-Debugger-API-Library)
-  * [rocProfiler Dispatch Callbacks Start/Stop API](#rocProfiler-Dispatch-Callbacks-Start-Stop-API)
-  * [ROCm Communications Collective Library](#ROCm-Communications-Collective-Library)
-  * [NVIDIA Communications Collective Library Version Compatibility](#NVIDIA-Communications-Collective-Library-Version-Compatibility)
-  * [MIOpen Optional Kernel Package Installation](#MIOpen-Optional-Kernel-Package-Installation)
-  * [New SMI Event Interface and Library](#New-SMI-Event-Interface-and-Library)
-  * [API for CPU Affinity](#API-for-CPU-Affinity)
-  * [Radeon Performance Primitives Library](#Radeon-Performance-Primitives-Library)
-  
-  
-- [Fixed Issues](#Fixed-Issues)
-
+  * [AOMP Enhancements](#AOMP-Enhancements)
+  * [Compatibility with NVIDIA Communications Collective Library v2\.7 API](#Compatibility-with-NVIDIA-Communications-Collective-Library-v27-API)
+  * [Singular Value Decomposition of Bi\-diagonal Matrices](#Singular-Value-Decomposition-of-Bi-diagonal-Matrices)
+  * [rocSPARSE_gemmi\() Operations for Sparse Matrices](#rocSPARSE_gemmi-Operations-for-Sparse-Matrices)
+    
+ 
 - [Known Issues](#Known-Issues)
-
-- [Deprecations](#Deprecations)
-  * [Heterogeneous Compute Compiler](#Heterogeneous-Compute-Compiler)
 
 - [Deploying ROCm](#Deploying-ROCm)
  
@@ -54,323 +27,301 @@ It also covers known issues and deprecated features in the ROCm v3.5.0 release.
   
 
 
-# Supported Operating Systems and Documentation Updates
+# Supported Operating Systems 
 
-## Supported Operating Systems 
+## Support for Ubuntu 20.04 
 
-The AMD ROCm v3.5.x platform is designed to support the following operating systems:
 
-* Ubuntu 16.04.6(Kernel 4.15) and 18.04.4(Kernel 5.3)
-* CentOS 7.7 (Kernel 3.10-1062) and RHEL 7.8(Kernel 3.10.0-1127)(Using devtoolset-7 runtime support)
+In this release, AMD ROCm extends support to Ubuntu 20.04, including dual-kernel.
+
+## List of Supported Operating Systems
+
+The AMD ROCm v3.7.x platform is designed to support the following operating systems:
+
+* Ubuntu 20.04 and 18.04.4 (Kernel 5.3)	
+* CentOS 7.8 & RHEL 7.8 (Kernel 3.10.0-1127) (Using devtoolset-7 runtime support)
+* CentOS 8.2 & RHEL 8.2 (Kernel 4.18.0 ) (devtoolset is not required)
 * SLES 15 SP1
-* CentOS and RHEL 8.1(Kernel 4.18.0-147)
+
+## Fresh Installation of AMD ROCm v3.7 Recommended
+A fresh and clean installation of AMD ROCm v3.7 is recommended. An upgrade from previous releases to AMD ROCm v3.7 is not supported.
+
+For more information, refer to the AMD ROCm Installation Guide at:
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
+
+**Note**: AMD ROCm release v3.3 or prior releases are not fully compatible with AMD ROCm v3.5 and higher versions. You must perform a fresh ROCm installation if you want to upgrade from AMD ROCm v3.3 or older to 3.5 or higher versions and vice-versa.
 
 
-## Documentation Updates
+# AMD ROCm Documentation Updates
 
-### HIP-Clang Compiler
+## AMD ROCm Installation Guide 
 
-* [HIP FAQ - Transition from HCC to HIP-Clang](https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-FAQ.html#hip-faq)
-* [HIP-Clang Porting Guide](https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-porting-guide.html#hip-porting-guide)
-* [HIP - Glossary of Terms](https://rocmdocs.amd.com/en/latest/ROCm_Glossary/ROCm-Glossary.html)
+The AMD ROCm Installation Guide in this release includes:
 
-### AMD ROCDebugger (ROCgdb)
+* Updated Supported Environments
+* HIP Installation Instructions
 
-* [ROCgdb User Guide](https://github.com/RadeonOpenCompute/ROCm/blob/master/gdb.pdf)
-* [ROCgdbapi Guide](https://github.com/RadeonOpenCompute/ROCm/blob/master/amd-dbgapi.pdf)
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
-### AMD ROCm Systems Management Interface
 
-* [System Management Interface Event API Guide](https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual.pdf)
+## AMD ROCm - HIP Documentation Updates
 
-### AMD ROCm Deep Learning
+### Texture and Surface Functions
+The documentation for Texture and Surface functions is updated and available at:
 
-* [MIOpen API](https://github.com/ROCmSoftwarePlatform/MIOpen)
+https://rocmdocs.amd.com/en/latest/Programming_Guides/Kernel_language.html
 
-### AMD ROCm Glossary of Terms
+### Warp Shuffle Functions
+The documentation for Warp Shuffle functions is updated and available at:
 
-* [Updated Glossary of Terms and Definitions](https://rocmdocs.amd.com/en/latest/ROCm_Glossary/ROCm-Glossary.html)
+https://rocmdocs.amd.com/en/latest/Programming_Guides/Kernel_language.html
 
-### General AMD ROCm Documentatin Links
+### Compiler Defines and Environment Variables
+The documentation for the updated HIP Porting Guide is available at:
 
-Access the following links for more information on:
+https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-porting-guide.html#hip-porting-guide
+
+
+## AMD ROCm Debug Agent
+
+ROCm Debug Agent Library 
+
+https://rocmdocs.amd.com/en/latest/ROCm_Tools/rocm-debug-agent.html
+
+
+## General AMD ROCm Documentatin Links
+
+Access the following links for more information:
 
 * For AMD ROCm documentation, see 
 
   https://rocmdocs.amd.com/en/latest/
 
-* For installation instructions on supported platforms, see
+* For installation instructions on supped platforms, see
 
   https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 * For AMD ROCm binary structure, see
 
-  https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#machine-learning-and-high-performance-computing-software-stack-for-amd-gpu-v3-3-0
+  https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#build-amd-rocm
 
 * For AMD ROCm Release History, see
 
   https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#amd-rocm-version-history
 
 
+
 # What\'s New in This Release
 
-## Upgrading to This Release
+## AOMP ENHANCEMENTS
 
-You must perform a fresh and a clean AMD ROCm install to successfully upgrade from v3.3 to v3.5. The following changes apply in this release: 
+AOMP is a scripted build of LLVM. It supports OpenMP target offload on AMD GPUs. Since AOMP is a Clang/LLVM compiler, it also supports GPU offloading with HIP, CUDA, and OpenCL.
 
-* HCC is deprecated and replaced with the HIP-Clang compiler
-* HIP-HCC runtime is changed to Radeon Open Compute Common Language Runtime (HIP-ROCClr)
-* In the v3.5 release, the firmware is separated from the kernel package. The difference is as    follows:
-     * v3.5 release has two separate rock-dkms and rock-dkms-firmware packages
-     * v3.3 release had the firmware as part of the rock-dkms package
+The following enhancements are made for AOMP in this release: 
+* OpenMP 5.0 is enabled by default. You can use -fopenmp-version=45 for OpenMP 4.5 compliance
+* Restructured to include the ROCm compiler
+* B=Bitcode search path using hip policy HIP_DEVICE_LIB_PATH and hip-devic-lib command line option to enable global_free for kmpc_impl_free
+
+Restructured hostrpc, including:
+* Replaced hostcall register functions with handlePayload(service, payload). Note, handlPayload has a simple switch to call the correct service handler function.
+* Removed the WITH_HSA macro
+* Moved the hostrpc stubs and host fallback functions into a single library and the include file. This enables the stubs openmp cpp source instead of hip and reorganizes the directory openmp/libomptarget/hostrpc.
+* Moved hostrpc_invoke.cl to DeviceRTLs/amdgcn.
+* Generalized the vargs processing in printf to work for any vargs function to execute on the host, including a vargs function that uses a function pointer.
+* Reorganized files, added global_allocate and global_free.
+* Fixed llvm TypeID enum to match the current upstream llvm TypeID.
+* Moved strlen_max function inside the declare target #ifdef _DEVICE_GPU in hostrpc.cpp to resolve linker failure seen in pfspecifier_str smoke test.
+* Fixed AOMP_GIT_CHECK_BRANCH in aomp_common_vars to not block builds in Red Hat if the repository is on a specific commit hash.
+* Simplified and reduced the size of openmp host runtime
+* Switched to default OpenMP 5.0
+
+For more information, see https://github.com/ROCm-Developer-Tools/aomp
      
 
-## rocProf Command Line Tool Python Requirement
-SQLite3 is a required Python module for the rocprof command-line tool.  You can install the SQLite3 Python module using the pip utility and set env var ROCP_PYTHON_VERSION to the Python version, which includes the SQLite3 module.
+## ROCm COMMUNICATIONS COLLECTIVE LIBRARY
+
+### Compatibility with NVIDIA Communications Collective Library v2\.7 API
+
+ROCm Communications Collective Library (RCCL) is now compatible with the NVIDIA Communications Collective Library (NCCL) v2.7 API.
+
+RCCL (pronounced "Rickle") is a stand-alone library of standard collective communication routines for GPUs, implementing all-reduce, all-gather, reduce, broadcast, reduce-scatter, gather, scatter, and all-to-all. There is also initial support for direct GPU-to-GPU send and receive operations. It has been optimized to achieve high bandwidth on platforms using PCIe, xGMI as well as networking using InfiniBand Verbs or TCP/IP sockets. RCCL supports an arbitrary number of GPUs installed in a single node or multiple nodes, and can be used in either single- or multi-process (e.g., MPI) applications.
+
+The collective operations are implemented using ring and tree algorithms and have been optimized for throughput and latency. For best performance, small operations can be either batched into larger operations or aggregated through the API.
+
+For more information about RCCL APIs and compatibility with NCCL v2.7, see
+https://rccl.readthedocs.io/en/develop/index.html
 
 
+## Singular Value Decomposition of Bi\-diagonal Matrices
 
-## Heterogeneous-Compute Interface for Portability
+Rocsolver_bdsqr now computes the Singular Value Decomposition (SVD) of bi-diagonal matrices. It is an auxiliary function for the SVD of general matrices (function rocsolver_gesvd). 
 
-In this release, the Heterogeneous Compute Compiler (HCC) compiler is deprecated and the HIP-Clang compiler is introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs.
+BDSQR computes the singular value decomposition (SVD) of a n-by-n bidiagonal matrix B.
 
-NOTE: The HCC environment variables will be gradually deprecated in subsequent releases.
+The SVD of B has the following form:
 
-The majority of the codebase for the HIP-Clang compiler has been upstreamed to the Clang trunk. The HIP-Clang implementation has undergone a strict code review by the LLVM/Clang community and comprehensive tests consisting of LLVM/Clang build bots. These reviews and tests resulted in higher productivity, code quality, and lower cost of maintenance.
+B = Ub * S * Vb'
+where 
+•	S is the n-by-n diagonal matrix of singular values of B
+•	the columns of Ub are the left singular vectors of B
+•	the columns of Vb are its right singular vectors
 
-![ScreenShot](HIPClang2.png)
+The computation of the singular vectors is optional; this function accepts input matrices U (of size nu-by-n) and V (of size n-by-nv) that are overwritten with U*Ub and Vb’*V. If nu = 0 no left vectors are computed; if nv = 0 no right vectors are computed.
 
-For most HIP applications, the transition from HCC to HIP-Clang is transparent and efficient as the HIPCC and HIP cmake files automatically choose compilation options for HIP-Clang and hide the difference between the HCC and HIP-Clang code. However, minor changes may be required as HIP-Clang has a stricter syntax and semantic checks compared to HCC.
+Optionally, this function can also compute Ub’*C for a given n-by-nc input matrix C.
 
-NOTE: Native HCC language features are no longer supported.
+PARAMETERS
 
-## Radeon Open Compute Common Language Runtime
-In this release,  the HIP runtime API is implemented on top of Radeon Open Compute Common Language Runtime (ROCclr). ROCclr is an abstraction layer that provides the ability to interact with different runtime backends such as ROCr.
+•	[in] handle: rocblas_handle.
 
-## OpenCL Runtime
-The following OpenCL runtime changes are made in this release:
+•	[in] uplo: rocblas_fill.
 
-* AMD ROCm OpenCL Runtime extends support to OpenCL2.2
-* The developer branch is changed from master to master-next
+Specifies whether B is upper or lower bidiagonal.
 
-## AMD ROCm GNU Debugger (ROCgdb)
-The AMD ROCm Debugger (ROCgdb) is the AMD ROCm source-level debugger for Linux based on the GNU Debugger (GDB). It enables heterogeneous debugging on the AMD ROCm platform of an x86-based host architecture along with AMD GPU architectures and supported by the AMD Debugger API Library (ROCdbgapi).
+•	[in] n: rocblas_int. n >= 0.
 
-The AMD ROCm Debugger is installed by the rocm-gdb package. The rocm-gdb package is part of the rocm-dev meta-package, which is in the rocm-dkms package.
+The number of rows and columns of matrix B.
 
-The current AMD ROCm Debugger (ROCgdb) is an initial prototype that focuses on source line debugging. Note, symbolic variable debugging capabilities are not currently supported.
+•	[in] nv: rocblas_int. nv >= 0. 
 
-You can use the standard GDB commands for both CPU and GPU code debugging. For more information about ROCgdb, refer to the ROCgdb User Guide, which is installed at:
+The number of columns of matrix V.
 
-* /opt/rocm/share/info/gdb.info as a texinfo file
-* /opt/rocm/share/doc/gdb/gdb.pdf as a PDF file
+•	[in] nu: rocblas_int. nu >= 0. 
 
-The AMD ROCm Debugger User Guide is available as a PDF at:
+The number of rows of matrix U.
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/gdb.pdf
- 
-For more information about GNU Debugger (GDB), refer to the GNU Debugger (GDB) web site at: http://www.gnu.org/software/gdb
+•	[in] nc: rocblas_int. nu >= 0. 
+
+The number of columns of matrix C.
+
+•	[inout] D: pointer to real type. Array on the GPU of dimension n.
+
+On entry, the diagonal elements of B. On exit, if info = 0, the singular values of B in decreasing order; if info > 0, the diagonal elements of a bidiagonal matrix orthogonally equivalent to B.
+
+•	[inout] E: pointer to real type. Array on the GPU of dimension n-1.
+
+On entry, the off-diagonal elements of B. On exit, if info > 0, the off-diagonal elements of a bidiagonal matrix orthogonally equivalent to B (if info = 0 this matrix converges to zero).
+
+•	[inout] V: pointer to type. Array on the GPU of dimension ldv*nv.
+
+On entry, the matrix V. On exit, it is overwritten with Vb’*V. (Not referenced if nv = 0).
+
+•	[in] ldv: rocblas_int. ldv >= n if nv > 0, or ldv >=1 if nv = 0.
+
+Specifies the leading dimension of V.
+
+•	[inout] U: pointer to type. Array on the GPU of dimension ldu*n.
+
+On entry, the matrix U. On exit, it is overwritten with U*Ub. (Not referenced if nu = 0).
+
+•	[in] ldu: rocblas_int. ldu >= nu.
+
+Specifies the leading dimension of U.
+
+•	[inout] C: pointer to type. Array on the GPU of dimension ldc*nc.
+
+On entry, the matrix C. On exit, it is overwritten with Ub’*C. (Not referenced if nc = 0).
+
+•	[in] ldc: rocblas_int. ldc >= n if nc > 0, or ldc >=1 if nc = 0.
+
+Specifies the leading dimension of C.
+
+•	[out] info: pointer to a rocblas_int on the GPU.
+
+If info = 0, successful exit. If info = i > 0, i elements of E have not converged to zero.
+
+For more information, see
+https://rocsolver.readthedocs.io/en/latest/userguide_api.html#rocsolver-type-bdsqr
 
 
-## AMD ROCm Debugger API Library 
+### rocSPARSE_gemmi\() Operations for Sparse Matrices
 
-The AMD ROCm Debugger API Library (ROCdbgapi) implements an AMD GPU debugger application programming interface (API) that provides the support necessary for a client of the library to control the execution and inspect the state of AMD GPU devices.
+This enhancement provides a dense matrix sparse matrix multiplication using the CSR storage format.
+rocsparse_gemmi multiplies the scalar αα with a dense m×km×k matrix AA and the sparse k×nk×n matrix BB defined in the CSR storage format, and adds the result to the dense m×nm×n matrix CC that is multiplied by the scalar ββ, such that
+C:=α⋅op(A)⋅op(B)+β⋅CC:=α⋅op(A)⋅op(B)+β⋅C
+with
 
-The following AMD GPU architectures are supported:
-* Vega 10 
-* Vega 7nm
+op(A)=⎧⎩⎨⎪⎪A,AT,AH,if trans_A == rocsparse_operation_noneif trans_A == rocsparse_operation_transposeif trans_A == rocsparse_operation_conjugate_transposeop(A)={A,if trans_A == rocsparse_operation_noneAT,if trans_A == rocsparse_operation_transposeAH,if trans_A == rocsparse_operation_conjugate_transpose
 
-The AMD ROCm Debugger API Library is installed by the rocm-dbgapi package. The rocm-gdb package is part of the rocm-dev meta-package, which is in the rocm-dkms package.
-The AMD ROCm Debugger API Specification is available as a PDF at:
+and
 
-https://github.com/RadeonOpenCompute/ROCm/blob/master/amd-dbgapi.pdf
+op(B)=⎧⎩⎨⎪⎪B,BT,BH,if trans_B == rocsparse_operation_noneif trans_B == rocsparse_operation_transposeif trans_B == rocsparse_operation_conjugate_transposeop(B)={B,if trans_B == rocsparse_operation_noneBT,if trans_B == rocsparse_operation_transposeBH,if trans_B == rocsparse_operation_conjugate_transpose
+Note: This function is non-blocking and executed asynchronously with the host. It may return before the actual computation has finished.
 
-## rocProfiler Dispatch Callbacks Start Stop API
-
-In this release, a new rocprofiler start/stop API is added to enable/disable GPU kernel HSA dispatch callbacks. The callback can be registered with the 'rocprofiler_set_hsa_callbacks' API. The API helps you eliminate some profiling performance impact by invoking the profiler only for kernel dispatches of interest. This optimization will result in significant performance gains.
-
-The API provides the following functions:
-* *hsa_status_t rocprofiler_start_queue_callbacks();* is used to start profiling
-* *hsa_status_t rocprofiler_stop_queue_callbacks();* is used to stop profiling. 
-
-For more information on kernel dispatches, see the HSA Platform System Architecture Specification guide at http://www.hsafoundation.com/standards/.
-
-## ROCm Communications Collective Library 
-The ROCm Communications Collective Library (RCCL) consists of the following enhancements:
-* Re-enable target 0x803
-* Build time improvements for the HIP-Clang compiler
-
-### NVIDIA Communications Collective Library Version Compatibility
-AMD RCCL is now compatible with NVIDIA Communications Collective Library (NCCL) v2.6.4 and provides the following features: 
-* Network interface improvements with API v3
-* Network topology detection 
-* Improved CPU type detection
-* Infiniband adaptive routing support
-
-## MIOpen Optional Kernel Package Installation
-MIOpen provides an optional pre-compiled kernel package to reduce startup latency. 
-
-NOTE: The installation of this package is optional. MIOpen will continue to function as expected even if you choose to not install the pre-compiled kernel package. This is because MIOpen compiles the kernels on the target machine once the kernel is run. However, the compilation step may significantly increase the startup time for different operations.
-
-To install the kernel package for your GPU architecture, use the following command:
-
-*apt-get install miopen-kernels-<arch>-<num cu>*
- 
-* <arch> is the GPU architecture. For example, gfx900, gfx906
-* <num cu> is the number of CUs available in the GPU. For example, 56 or 64 
- 
-
-## New SMI Event Interface and Library
-
-A Systems Management Interface (SMI) event interface is added to the kernel and ROCm SMI  lib for system administrators to get notified when specific events occur. On the kernel side, AMDKFD_IOC_SMI_EVENTS input/output control is enhanced to allow notifications propagation to user mode through the event channel. 
-
-On the ROCm SMI lib side, APIs are added to set an event mask and receive event notifications with a timeout option. Further, ROCm SMI API details can be found in the PDF generated by Doxygen from source or by referring to the rocm_smi.h header file (see the rsmi_event_notification_* functions).
-
-For the more details about ROCm SMI API, see 
-
-https://github.com/RadeonOpenCompute/ROCm/blob/master/ROCm_SMI_Manual.pdf
-
-## API for CPU Affinity
-A new API is introduced for aiding applications to select the appropriate memory node for a given accelerator(GPU). 
-
-The API for CPU affinity has the following signature:
-
-*rsmi_status_t rsmi_topo_numa_affinity_get(uint32_t dv_ind, uint32_t *numa_node);*
-
-This API takes as input, device index (dv_ind), and returns the NUMA node (CPU affinity), stored at the location pointed by numa_node pointer, associated with the device.
-
-Non-Uniform Memory Access (NUMA) is a computer memory design used in multiprocessing, where the memory access time depends on the memory location relative to the processor. 
-
-## Radeon Performance Primitives Library
-The new Radeon Performance Primitives (RPP) library is a comprehensive high-performance computer vision library for AMD (CPU and GPU) with the HIP and OpenCL backend. The target operating system is Linux.
-
-![ScreenShot](RPP.png)
-
-For more information about prerequisites and library functions, see 
-
-https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/tree/master/docs
-
-# Fixed Issues
-
-## Device printf Support for HIP-Clang
-HIP now supports the use of printf in the device code. The parameters and return value for the device-side printf follow the POSIX.1 standard, with the exception that the "%n" specifier is not supported. A call to printf blocks the calling wavefront until the operation is completely processed by the host. 
-
-No host-side runtime calls by the application are needed to cause the output to appear. There is also no limit on the number of device-side calls to printf or the amount of data that is printed.
-
-For more details, refer the HIP Programming Guide at:
-https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-GUIDE.html#hip-guide
-
-## Assertions in HIP Device Code  
-Previously, a failing assertion caused early termination of kernels and the application to exit with a line number, file, and failing condition printed to the screen.
-This issue is now fixed and the assert() and abort() functions are implemented for HIP device code. 
-NOTE: There may be a performance impact in the use of device assertions in its current form. 
-
-You may choose to disable the assertion in the production code. For example, to disable an assertion of:
-
-*assert(foo != 0);*    
-
-you may comment it out as:  
-
-*//assert(foo != 0);*
-
-NOTE: Assertions are currently enabled by default. 
+For more information and examples, see
+https://rocsparse.readthedocs.io/en/master/usermanual.html#rocsparse-gemmi
+ 
 
 # Known Issues 
-The following are the known issues in the v3.5 release.
+The following are the known issues in this release.
 
-## HIPify-Clang Installation Failure on CentOS/RHEL 
+## (AOMP) ‘Undefined Hidden Symbol’ Linker Error Causes Compilation Failure in HIP
 
-HIPify-Clang fails to install on CentOS/RHEL with the following error:
+The HIP example device_lib fails to compile due to unreferenced symbols with Link Time Optimization resulting in ‘undefined hidden symbol’ errors. 
 
-*file from install of hipify-clang conflicts with file from package hip-base*
-
-**Workaround**: This is a known issue and the following workaround is recommended for a successful installation of HIPify-Clang on CentOS/RHEL:
-
-* Download HIPify-Clang RPM. For example, *hipify-clang-11.0.0.x86_64.rpm*
-* Perform a force install using the following command: 
-
-  *sudo rpm -ivh --force hipify-clang-11.0.0.x86_64.rpm*
+This issue is under investigation and there is no known workaround at this time.
 
 
-## Failure to Process Breakpoint before Queue Destroy Results in ROCm Debugger Error
-When ROCgdb is in non-stop mode with an application that rapidly creates and destroys queues, a breakpoint may be reported that is not processed by the debugger before the queue is deleted. In some cases, this can result in the following error that prevents further debugging:
+## MIGraphX Fails for fp16 Datatype
+The MIGraphX functionality does not work for the fp16 datatype.  
 
-*[amd-dbgapi]: fatal error: kfd_queue_id 2 should have been reported as a NEW_QUEUE before next_pending_event failed (rc=-2)*
+The following workaround is recommended: 
 
-There are no known workarounds at this time.
+Use the AMD ROCm v3.3 of MIGraphX 
 
-## Failure to Process Breakpoint before Queue Destroy Results in ROCm Debugger API Error
+Or
 
-When the ROCdbgapi library is used with an application that rapidly creates and destroys queues, a breakpoint may be reported that is not processed by the client before the queue is deleted. In some cases, this can result in a fatal error and the following error log message is produced:
+Build MIGraphX v3.7 from the source using AMD ROCm v3.3
 
-*[amd-dbgapi]: fatal error: kfd_queue_id 2 should have been reported as a NEW_QUEUE before next_pending_event failed (rc=-2)*
-
-There are no known workarounds at this time.
-
-## rocThrust and hipCUB Unit Test Failures 
-
-The following unit test failures have been observed due to known issues in the ROCclr runtime. 
-
-rocThrust
-* sort 
-* sort_by_key
-
-hipCUB
-* BlockDiscontinuity 
-* BlockExchange 
-* BlockHistogram 
-* BlockRadixSort
-* BlockReduce 
-* BlockScan
-
-There are no known workarounds in the current release. 
+## Missing Google Test Installation May Cause RCCL Unit Test Compilation Failure
+Users of the RCCL install.sh script may encounter an RCCL unit test compilation error. It is recommended to use CMAKE directly instead of install.sh to compile RCCL. Ensure Google Test 1.10+ is available in the CMAKE search path.
 
 
-## Multiple GPU Configuration Freezes with Imagenet Training and tf_cnn_benchmark on TensorFlow 
-
-A random freeze has been observed with Imagenet training and tf_cnn_benchmark on TensorFlow when multiple GPU configurations are involved. 
-
-There is no freeze observed with single GPUs.  
-
-There are no known workarounds at this time.
-
-## Issue with Running AMD ROCm v3.3 User Mode with AMD ROCm v3.5 DKMS Kernel Module
-
-Running AMD ROCm v3.3 in the user mode with the AMD ROCm v3.5 DKMS kernel module will cause the following features to be broken:
-
-* IPC import/export, cross memory copy (used by UCX and MPI)
-* Experimental GDB support
-
-**Resolution**: Install ROCm v3.5 Thunk (*Hsakmt*) when using ROCm 3.5 Kernel Fusion Driver (KFD).
+As a workaround, use the latest RCCL from the GitHub development branch at:
+https://github.com/ROCmSoftwarePlatform/rccl/pull/237
 
 
-## SQLite3 Library Not Found in ROCProfiler
+## Issue with Peer-to-Peer Transfers 
+Using peer-to-peer (P2P) transfers on systems without the hardware P2P assistance may produce incorrect results.
 
-The ROCProfiler tool appears to be broken when the SQLite3 library is not found.
+Ensure the hardware supports peer-to-peer transfers and enable the peer-to-peer setting in the hardware to resolve this issue. 
 
-**Resolution**: Install the SQLite3 Python module separately and ensure the environment variable is set to ROCP_PYTHON_VERSION to confirm the Python version, which includes the SQLite3 module.
+
+## Partial Loss of Tracing Events for Large Applications
+An internal tracing buffer allocation issue can cause a partial loss of some tracing events for large applications.
+
+As a workaround, rebuild the roctracer/rocprofiler libraries from the GitHub ‘roc-3.7’ branch at:
+•	https://github.com/ROCm-Developer-Tools/rocprofiler
+•	https://github.com/ROCm-Developer-Tools/roctracer
+
+
+## GPU Kernel C++ Names Not Demangled
+GPU kernel C++ names in the profiling traces and stats produced by ‘—hsa-trace’ option are not demangled.
+
+As a workaround, users may choose to demangle the GPU kernel C++ names as required.
+
+
+## ‘rocprof’ option ‘--parallel-kernels’ Not Supported in This Release
+
+‘rocprof’ option ‘--parallel-kernels’ is available in the options list, however,  it is not fully validated and supported in this release.
+
+## Random Soft Hang Observed When Running ResNet-Based Models
+
+A random soft hang is observed when running ResNet-based models for a loop run of more than 25 to 30 hours.  The issue is observed on both PyTorch and TensorFlow frameworks.
+You can terminate the unresponsive process to temporarily resolve the issue.
+
+There is no known workaround at this time.
 
 
 
-# Deprecations 
-Install ROCm v3.5 Thunk (Hsakmt) when using ROCm 3.5 Kernel Fusion Driver (KFD). You can access the Thunk package at:
-
-https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface
-## Heterogeneous Compute Compiler
-In this release, the Heterogeneous Compute Compiler (HCC) compiler is deprecated and the HIP-Clang compiler is introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs.
-
-For more information, see HIP documentation at:
-https://rocmdocs.amd.com/en/latest/Programming_Guides/Programming-Guides.html
-
-
-## Deploying ROCm
-AMD hosts both Debian and RPM repositories for the ROCm v3.5.x packages. 
+# Deploying ROCm
+AMD hosts both Debian and RPM repositories for the ROCm v3.7.x packages. 
 
 For more information on ROCM installation on all platforms, see
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
-## Hardware and Software Support
+# Hardware and Software Support
 ROCm is focused on using AMD GPUs to accelerate computational tasks such as machine learning, engineering workloads, and scientific computing.
 In order to focus our development efforts on these domains of interest, ROCm supports a targeted set of hardware configurations which are detailed further in this section.
 
@@ -400,7 +351,7 @@ As described in the next section, GFX8 GPUs require PCI Express 3.0 (PCIe 3.0) w
 
 The integrated GPUs in AMD APUs are not officially supported targets for ROCm.
 As described [below](#limited-support), "Carrizo", "Bristol Ridge", and "Raven Ridge" APUs are enabled in our upstream drivers and the ROCm OpenCL runtime.
-However, they are not enabled in our HCC or HIP runtimes, and may not work due to motherboard or OEM hardware limitations.
+However, they are not enabled in the HIP runtime, and may not work due to motherboard or OEM hardware limitations.
 As such, they are not yet officially supported targets for ROCm.
 
 For a more detailed list of hardware support, please see [the following documentation](https://rocm.github.io/hardware.html).
@@ -447,11 +398,11 @@ from the list provided above for compatibility purposes.
 
 * ROCm 2.9.x should support PCIe 2.0 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPUs listed above. This is where we need community support. _If you find problems on such setups, please report these issues_.
 * Thunderbolt 1, 2, and 3 enabled breakout boxes should now be able to work with ROCm. Thunderbolt 1 and 2 are PCIe 2.0 based, and thus are only supported with GPUs that do not require PCIe 3.1.0 atomics (e.g. Vega 10). However, we have done no testing on this configuration and would need community support due to limited access to this type of equipment.
-* AMD "Carrizo" and "Bristol Ridge" APUs are enabled to run OpenCL, but do not yet support HCC, HIP, or our libraries built on top of these compilers and runtimes.
+* AMD "Carrizo" and "Bristol Ridge" APUs are enabled to run OpenCL, but do not yet support HIP or our libraries built on top of these compilers and runtimes.
   * As of ROCm 2.1, "Carrizo" and "Bristol Ridge" require the use of upstream kernel drivers.
   * In addition, various "Carrizo" and "Bristol Ridge" platforms may not work due to OEM and ODM choices when it comes to key configurations parameters such as inclusion of the required CRAT tables and IOMMU configuration parameters in the system BIOS.
   * Before purchasing such a system for ROCm, please verify that the BIOS provides an option for enabling IOMMUv2 and that the system BIOS properly exposes the correct CRAT table. Inquire with your vendor about the latter.
-* AMD "Raven Ridge" APUs are enabled to run OpenCL, but do not yet support HCC, HIP, or our libraries built on top of these compilers and runtimes.
+* AMD "Raven Ridge" APUs are enabled to run OpenCL, but do not yet support HIP or our libraries built on top of these compilers and runtimes.
   * As of ROCm 2.1, "Raven Ridge" requires the use of upstream kernel drivers.
   * In addition, various "Raven Ridge" platforms may not work due to OEM and ODM choices when it comes to key configurations parameters such as inclusion of the required CRAT tables and IOMMU configuration parameters in the system BIOS.
   * Before purchasing such a system for ROCm, please verify that the BIOS provides an option for enabling IOMMUv2 and that the system BIOS properly exposes the correct CRAT table. Inquire with your vendor about the latter.
