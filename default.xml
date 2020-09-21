@@ -12,7 +12,7 @@
             fetch="https://github.com/GPUOpen-Tools/" />
     <remote name="KhronosGroup"
             fetch="https://github.com/KhronosGroup/" />
-    <default revision="refs/tags/rocm-3.7.0"
+    <default revision="refs/tags/rocm-3.8.0"
              remote="roc-github"
              sync-c="true"
              sync-j="4" />
@@ -39,7 +39,7 @@
     <project name="ROCm-Device-Libs" />
     <project name="atmi" />
     <project name="ROCm-CompilerSupport" />
-    <project name="rocr_debug_agent" remote="rocm-devtools" revision="refs/tags/roc-3.7.0" />
+    <project name="rocr_debug_agent" remote="rocm-devtools" />
     <project name="rocm_bandwidth_test" />
     <project name="RCP" remote="gpuopen-tools" revision="3a49405a1500067c49d181844ec90aea606055bb" />
     <!-- gdb projects -->
@@ -61,7 +61,7 @@
     <project name="rocThrust" remote="rocm-swplat" />
     <project name="hipCUB" remote="rocm-swplat" />
     <project name="rocPRIM" remote="rocm-swplat" />
-    <project name="AMDMIGraphX" remote="rocm-swplat" revision="e66968a25f9342a28af1157b06cbdbf8579c5519" />
+    <project name="AMDMIGraphX" remote="rocm-swplat" revision="refs/tags/0.8" />
     <project name="ROCmValidationSuite" remote="rocm-devtools" />
     <!-- Projects for AOMP -->
     <project name="ROCT-Thunk-Interface" path="aomp/roct-thunk-interface" remote="roc-github" />
