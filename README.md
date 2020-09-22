@@ -238,7 +238,7 @@ As described [below](#limited-support), "Carrizo", "Bristol Ridge", and "Raven R
 However, they are not enabled in the HIP runtime, and may not work due to motherboard or OEM hardware limitations.
 As such, they are not yet officially supported targets for ROCm.
 
-For a more detailed list of hardware support, please see [the following documentation](https://rocm.github.io/hardware.html).
+For a more detailed list of hardware support, please see [the following documentation](https://en.wikipedia.org/wiki/List_of_AMD_graphics_processing_units).
 
 #### Supported CPUs
 As described above, GFX8 GPUs require PCIe 3.0 with PCIe atomics in order to run ROCm.
