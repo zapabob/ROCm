@@ -62,7 +62,6 @@
     <project name="hipCUB" remote="rocm-swplat" />
     <project name="rocPRIM" remote="rocm-swplat" />
     <project name="hipfort" remote="rocm-swplat" />
-    <project name="AMDMIGraphX" remote="rocm-swplat" revision="refs/tags/0.8" />
     <project name="ROCmValidationSuite" remote="rocm-devtools" />
     <!-- Projects for AOMP -->
     <project name="ROCT-Thunk-Interface" path="aomp/roct-thunk-interface" remote="roc-github" />
