@@ -166,7 +166,7 @@ This release also comprises of the requisite changes required for all the compon
 
 In the AMD ROCm v3.8 release, the following libraries support static linking: 
 
-![ScreenShot](https://github.com/Rmalavally/ROCm/blob/master/staticlinkinglib.PNG)
+![ScreenShot](https://github.com/RadeonOpenCompute/ROCm/blob/master/staticlinkinglib.PNG)
 
 # Fixed Defects
 The following defects are fixed in this release:
