@@ -155,7 +155,7 @@ The ROCm Data Center (RDC) tool is enhanced to provide counters to track correct
 
 The RDC tool now helps monitor and protect undetected memory data corruption. If the system is using ECC- enabled memory, the ROCm Data Center tool can report the error counters to monitor the status of the memory. 
 
-![ScreenShot](https://github.com/Rmalavally/ROCm/blob/master/forweb.PNG)
+![ScreenShot](hhttps://github.com/RadeonOpenCompute/ROCm/blob/master/forweb.PNG)
 
 ## Static Linking Libraries 
 
