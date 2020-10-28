@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <remote name="roc-github"
-            fetch="http://github.com/RadeonOpenCompute/" />
+fetch="http://github.com/RadeonOpenCompute/" />
     <remote name="rocm-devtools"
-            fetch="https://github.com/ROCm-Developer-Tools/" />
+fetch="https://github.com/ROCm-Developer-Tools/" />
     <remote name="rocm-swplat"
-            fetch="https://github.com/ROCmSoftwarePlatform/" />
+fetch="https://github.com/ROCmSoftwarePlatform/" />
     <remote name="gpuopen-libs"
-            fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
+fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
     <remote name="gpuopen-tools"
-            fetch="https://github.com/GPUOpen-Tools/" />
+fetch="https://github.com/GPUOpen-Tools/" />
     <remote name="KhronosGroup"
-            fetch="https://github.com/KhronosGroup/" />
-    <default revision="refs/tags/rocm-3.8.0"
-             remote="roc-github"
-             sync-c="true"
-             sync-j="4" />
-    <!--list of projects for ROCM-->
+fetch="https://github.com/KhronosGroup/" />
+    <default revision="refs/tags/rocm-3.9.0"
+remote="roc-github"
+sync-c="true"
+sync-j="4" />
+<!--list of projects for ROCM-->
     <project name="ROCK-Kernel-Driver" />
     <project name="ROCT-Thunk-Interface" />
     <project name="ROCR-Runtime" />
@@ -29,12 +29,12 @@
     <project name="ROCm-OpenCL-Runtime" />
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="6c03f8b58fafd9dd693eaac826749a5cfad515f8" />
     <project name="clang-ocl" />
-    <!--HIP Projects-->
+<!--HIP Projects-->
     <project name="HIP" remote="rocm-devtools" />
     <project name="HIP-Examples" remote="rocm-devtools" />
     <project name="ROCclr" remote="rocm-devtools" />
     <project name="HIPIFY" remote="rocm-devtools" />
-    <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
+<!-- The following projects are all associated with the AMDGPU LLVM compiler -->
     <project name="llvm-project" path="llvm_amd-stg-open" />
     <project name="ROCm-Device-Libs" />
     <project name="atmi" />
@@ -42,10 +42,10 @@
     <project name="rocr_debug_agent" remote="rocm-devtools" />
     <project name="rocm_bandwidth_test" />
     <project name="RCP" remote="gpuopen-tools" revision="3a49405a1500067c49d181844ec90aea606055bb" />
-    <!-- gdb projects -->
+<!-- gdb projects -->
     <project name="ROCgdb" remote="rocm-devtools" />
     <project name="ROCdbgapi" remote="rocm-devtools" />
-    <!-- ROCm Libraries -->
+<!-- ROCm Libraries -->
     <project name="rocBLAS" remote="rocm-swplat" />
     <project name="hipBLAS" remote="rocm-swplat" />
     <project name="rocFFT" remote="rocm-swplat" />
@@ -62,8 +62,9 @@
     <project name="hipCUB" remote="rocm-swplat" />
     <project name="rocPRIM" remote="rocm-swplat" />
     <project name="hipfort" remote="rocm-swplat" />
+    <project name="AMDMIGraphX" remote="rocm-swplat" />
     <project name="ROCmValidationSuite" remote="rocm-devtools" />
-    <!-- Projects for AOMP -->
+<!-- Projects for AOMP -->
     <project name="ROCT-Thunk-Interface" path="aomp/roct-thunk-interface" remote="roc-github" />
     <project name="ROCR-Runtime" path="aomp/rocr-runtime" remote="roc-github" />
     <project name="ROCm-Device-Libs" path="aomp/rocm-device-libs" remote="roc-github" />
@@ -76,4 +77,8 @@
     <project name="amd-llvm-project" path="aomp/amd-llvm-project" remote="rocm-devtools" />
     <project name="ROCclr" path="aomp/vdi" remote="rocm-devtools" />
     <project name="ROCm-OpenCL-Runtime" path="aomp/opencl-on-vdi" remote="roc-github" />
+<!-- Projects for OpenMP-Extras -->
+    <project name="aomp" path="openmp-extras/aomp" remote="rocm-devtools" revision="refs/tags/rocm-uc-3.9.0" />
+    <project name="aomp-extras" path="openmp-extras/aomp-extras" remote="rocm-devtools" revision="refs/tags/rocm-uc-3.9.0" />
+    <project name="flang" path="openmp-extras/flang" remote="rocm-devtools" revision="refs/tags/rocm-uc-3.9.0" />
 </manifest>
