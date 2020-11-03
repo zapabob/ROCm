@@ -37,6 +37,8 @@ It also covers known issues in this release.
 
 In this release, AMD ROCm extends support to Ubuntu 20.04.1, including v5.4 and v5.6-oem.
 
+**Note**: AMD ROCm only supports Long Term Support (LTS) versions of Ubuntu. Versions other than LTS may work with ROCm, however, they are not officially supported. 
+
 ## Support for SLES 15 SP2
 
 This release extends support to SLES 15 SP2.
