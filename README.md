@@ -584,6 +584,8 @@ In order to focus our development efforts on these domains of interest, ROCm sup
 #### Supported GPUs
 Because the ROCm Platform has a focus on particular computational domains, we offer official support for a selection of AMD GPUs that are designed to offer good performance and price in these domains.
 
+**Note:** The integrated GPUs of Ryzen are not officially supported targets for ROCm.
+
 ROCm officially supports AMD GPUs that use following chips:
 
   * GFX8 GPUs
