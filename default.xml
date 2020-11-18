@@ -21,7 +21,7 @@ sync-j="4" />
     <project name="ROCT-Thunk-Interface" />
     <project name="ROCR-Runtime" />
     <project name="ROC-smi" />
-    <project name="rocm_smi_lib" remote="roc-github" />
+    <project name="rocm_smi_lib" />
     <project name="rocm-cmake" />
     <project name="rocminfo" />
     <project name="rocprofiler" remote="rocm-devtools" />
@@ -65,18 +65,18 @@ sync-j="4" />
     <project name="AMDMIGraphX" remote="rocm-swplat" />
     <project name="ROCmValidationSuite" remote="rocm-devtools" />
 <!-- Projects for AOMP -->
-    <project name="ROCT-Thunk-Interface" path="aomp/roct-thunk-interface" remote="roc-github" />
-    <project name="ROCR-Runtime" path="aomp/rocr-runtime" remote="roc-github" />
-    <project name="ROCm-Device-Libs" path="aomp/rocm-device-libs" remote="roc-github" />
-    <project name="ROCm-CompilerSupport" path="aomp/rocm-compilersupport" remote="roc-github" />
-    <project name="rocminfo" path="aomp/rocminfo" remote="roc-github" />
+    <project name="ROCT-Thunk-Interface" path="aomp/roct-thunk-interface" />
+    <project name="ROCR-Runtime" path="aomp/rocr-runtime" />
+    <project name="ROCm-Device-Libs" path="aomp/rocm-device-libs" />
+    <project name="ROCm-CompilerSupport" path="aomp/rocm-compilersupport" />
+    <project name="rocminfo" path="aomp/rocminfo" />
     <project name="HIP" path="aomp/hip-on-vdi" remote="rocm-devtools" />
     <project name="aomp" path="aomp/aomp" remote="rocm-devtools" />
     <project name="aomp-extras" path="aomp/aomp-extras" remote="rocm-devtools" />
     <project name="flang" path="aomp/flang" remote="rocm-devtools" />
     <project name="amd-llvm-project" path="aomp/amd-llvm-project" remote="rocm-devtools" />
     <project name="ROCclr" path="aomp/vdi" remote="rocm-devtools" />
-    <project name="ROCm-OpenCL-Runtime" path="aomp/opencl-on-vdi" remote="roc-github" />
+    <project name="ROCm-OpenCL-Runtime" path="aomp/opencl-on-vdi" />
 <!-- Projects for OpenMP-Extras -->
     <project name="aomp" path="openmp-extras/aomp" remote="rocm-devtools" revision="refs/tags/rocm-uc-3.9.0" />
     <project name="aomp-extras" path="openmp-extras/aomp-extras" remote="rocm-devtools" revision="refs/tags/rocm-uc-3.9.0" />
