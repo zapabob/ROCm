@@ -183,7 +183,7 @@ The ROCm Data Center (RDC) Tool now uses PyThon Binding for Prometheus and colle
 
 * Users can only specify the fields they want to monitor. RdcReader creates groups and fieldgroups, watches the fields, and fetches the fields. 
 
-* The RdcReader can support both the Embedded and Standalone mode. Standalone mode can be used with and without authentication.
+* RdcReader can support both the Embedded and Standalone mode. Standalone mode can be used with and without authentication.
 
 * In the Standalone mode, the RdcReader can automatically reconnect to rdcd when connection is lost.When rdcd is restarted, the previously created group and fieldgroup may lose. The RdcReader can re-create them and watch the fields after a reconnect. 
 
