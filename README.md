@@ -378,6 +378,15 @@ For more information on ROCM installation on all platforms, see
 
 https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
+
+## Machine Learning and High Performance Computing Software Stack for AMD GPU
+
+For an updated version of the software stack for AMD GPU, see
+
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#software-stack-for-amd-gpu
+
+
+
 # Hardware and Software Support
 ROCm is focused on using AMD GPUs to accelerate computational tasks such as machine learning, engineering workloads, and scientific computing.
 In order to focus our development efforts on these domains of interest, ROCm supports a targeted set of hardware configurations which are detailed further in this section.
@@ -501,8 +510,4 @@ For users that have the option of using either AMD's or the upstreamed driver, t
 
 
 
-## Machine Learning and High Performance Computing Software Stack for AMD GPU
 
-For an updated version of the software stack for AMD GPU, see
-
-https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#software-stack-for-amd-gpu
