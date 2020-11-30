@@ -173,7 +173,9 @@ The following enhancements are made to the ROCm Data Center Tool.
 The ROCm Data Center (RDC) Tool now provides the Prometheus plugin, a Python client to collect the telemetry data of the GPU. 
 The RDC uses Python binding for Prometheus and the collected plugin. The Python binding maps the RDC C APIs to Python using ctypes. The functions supported by C APIs can also be used in the Python binding.
 
-For installation instructions, refer to the 
+For installation instructions, refer to the ROCm Data Center Tool User Guide at
+
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide.pdf
 
 ### Python Binding
 
@@ -219,6 +221,7 @@ if __name__ == '__main__':
 
 For more information about RDC Python binding and the Prometheus plugin integration, refer to the ROCm Data Center Tool User Guide at
 
+https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_ROCm_DataCenter_Tool_User_Guide.pdf
 
 
 ## ROCm SYSTEM MANAGEMENT INFORMATION 
@@ -267,6 +270,7 @@ ROCm-SMI library clients can now register to receive the following events:
 * GPU POST RESET: This reset event is sent to the client after a successful GPU RESET.
 
 * GPU THERMAL THROTTLE: This Thermal throttling event is sent if GPU clocks are throttled.
+
 
 For more information, refer to the ROCm SMI API Guide at:
 
