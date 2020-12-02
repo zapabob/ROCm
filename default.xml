@@ -12,7 +12,7 @@ fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
 fetch="https://github.com/GPUOpen-Tools/" />
     <remote name="KhronosGroup"
 fetch="https://github.com/KhronosGroup/" />
-    <default revision="refs/tags/rocm-3.9.0"
+    <default revision="refs/tags/rocm-3.10.0"
 remote="roc-github"
 sync-c="true"
 sync-j="4" />
@@ -35,7 +35,7 @@ sync-j="4" />
     <project name="ROCclr" remote="rocm-devtools" />
     <project name="HIPIFY" remote="rocm-devtools" />
 <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
-    <project name="llvm-project" path="llvm_amd-stg-open" />
+    <project name="llvm-project" />
     <project name="ROCm-Device-Libs" />
     <project name="atmi" />
     <project name="ROCm-CompilerSupport" />
@@ -78,7 +78,7 @@ sync-j="4" />
     <project name="ROCclr" path="aomp/vdi" remote="rocm-devtools" />
     <project name="ROCm-OpenCL-Runtime" path="aomp/opencl-on-vdi" />
 <!-- Projects for OpenMP-Extras -->
-    <project name="aomp" path="openmp-extras/aomp" remote="rocm-devtools" revision="refs/tags/rocm-uc-3.9.0" />
-    <project name="aomp-extras" path="openmp-extras/aomp-extras" remote="rocm-devtools" revision="refs/tags/rocm-uc-3.9.0" />
-    <project name="flang" path="openmp-extras/flang" remote="rocm-devtools" revision="refs/tags/rocm-uc-3.9.0" />
+    <project name="aomp" path="openmp-extras/aomp" remote="rocm-devtools" revision="refs/tags/rocm-uc-3.10.0" />
+    <project name="aomp-extras" path="openmp-extras/aomp-extras" remote="rocm-devtools" revision="refs/tags/rocm-uc-3.10.0" />
+    <project name="flang" path="openmp-extras/flang" remote="rocm-devtools" revision="refs/tags/rocm-uc-3.10.0" />
 </manifest>
