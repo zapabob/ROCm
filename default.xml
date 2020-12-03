@@ -41,11 +41,13 @@ sync-j="4" />
     <project name="ROCm-CompilerSupport" />
     <project name="rocr_debug_agent" remote="rocm-devtools" />
     <project name="rocm_bandwidth_test" />
+    <project name="half" remote="rocm-swplat" revision="37742ce15b76b44e4b271c1e66d13d2fa7bd003e" />
     <project name="RCP" remote="gpuopen-tools" revision="3a49405a1500067c49d181844ec90aea606055bb" />
 <!-- gdb projects -->
     <project name="ROCgdb" remote="rocm-devtools" />
     <project name="ROCdbgapi" remote="rocm-devtools" />
 <!-- ROCm Libraries -->
+    <project name="rdc" remote="roc-github" />
     <project name="rocBLAS" remote="rocm-swplat" />
     <project name="hipBLAS" remote="rocm-swplat" />
     <project name="rocFFT" remote="rocm-swplat" />
