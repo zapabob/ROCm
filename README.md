@@ -542,5 +542,17 @@ For users that have the option of using either AMD's or the upstreamed driver, t
 |      |   | Does not include most up-to-date firmware |
 
 
+#Disclaimer
 
+AMD®, the AMD Arrow logo, AMD Instinct™, Radeon™, ROCm® and combinations thereof are trademarks of Advanced Micro Devices, Inc.
+
+Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.
+
+PCIe® is a registered trademark of PCI-SIG Corporation. Other product names used in this publication are for identification purposes only and may be trademarks of their respective companies.  
+
+Google®  is a registered trademark of Google LLC.
+
+Ubuntu and the Ubuntu logo are registered trademarks of Canonical Ltd.
+
+Other product names used in this publication are for identification purposes only and may be trademarks of their respective companies.
 
