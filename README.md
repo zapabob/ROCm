@@ -217,7 +217,7 @@ https://www.amd.com/system/files/documents/instinct-mi100-brochure.pdf
 https://developer.amd.com/wp-content/resources/CDNA1_Shader_ISA_14December2020.pdf
 
 
-## RAS ENHANCEMENTS
+## RAS Enhancements
 
 RAS (Reliability, Availability, and Accessibility) features provide help with data center GPU management. It is a method provided to users to track and manage data points via options implemented in the ROCm-SMI Command Line Interface (CLI) tool. 
 
