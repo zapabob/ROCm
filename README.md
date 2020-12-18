@@ -401,7 +401,7 @@ https://rocmdocs.amd.com/en/latest/Programming_Guides/openmp_support.html
 
 # Deploying ROCm
 
-AMD hosts both Debian and RPM repositories for the ROCm v3.10.x packages. 
+AMD hosts both Debian and RPM repositories for the ROCm v4.0.0 packages. 
 
 For more information on ROCM installation on all platforms, see
 
