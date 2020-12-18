@@ -542,7 +542,7 @@ For users that have the option of using either AMD's or the upstreamed driver, t
 |      |   | Does not include most up-to-date firmware |
 
 
-#Disclaimer
+# Disclaimer
 
 AMD®, the AMD Arrow logo, AMD Instinct™, Radeon™, ROCm® and combinations thereof are trademarks of Advanced Micro Devices, Inc.
 
