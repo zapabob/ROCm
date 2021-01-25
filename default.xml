@@ -17,7 +17,7 @@ remote="roc-github"
 sync-c="true"
 sync-j="4" />
 <!--list of projects for ROCM-->
-    <project name="ROCK-Kernel-Driver" />
+    <project name="ROCK-Kernel-Driver" revision="refs/tags/rocm-4.0.1" />
     <project name="ROCT-Thunk-Interface" />
     <project name="ROCR-Runtime" />
     <project name="ROC-smi" />
@@ -35,7 +35,7 @@ sync-j="4" />
     <project name="ROCclr" remote="rocm-devtools" />
     <project name="HIPIFY" remote="rocm-devtools" />
 <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
-    <project name="llvm-project" />
+    <project name="llvm-project" revision="refs/tags/rocm-4.0.1" />
     <project name="ROCm-Device-Libs" />
     <project name="atmi" />
     <project name="ROCm-CompilerSupport" />
@@ -57,7 +57,7 @@ sync-j="4" />
     <project name="hipSPARSE" remote="rocm-swplat" />
     <project name="rocALUTION" remote="rocm-swplat" />
     <project name="MIOpenGEMM" remote="rocm-swplat" />
-    <project name="MIOpen" remote="rocm-swplat" />
+    <project name="MIOpen" remote="rocm-swplat"  revision="refs/tags/rocm-4.0.1" />
     <project name="rccl" remote="rocm-swplat" />
     <project name="MIVisionX" remote="gpuopen-libs" />
     <project name="rocThrust" remote="rocm-swplat" />
@@ -65,7 +65,7 @@ sync-j="4" />
     <project name="rocPRIM" remote="rocm-swplat" />
     <project name="hipfort" remote="rocm-swplat" />
     <project name="AMDMIGraphX" remote="rocm-swplat" />
-    <project name="ROCmValidationSuite" remote="rocm-devtools" />
+    <project name="ROCmValidationSuite" remote="rocm-devtools" revision="refs/tags/rocm-4.0.1" />
 <!-- Projects for OpenMP-Extras -->
     <project name="aomp" path="openmp-extras/aomp" remote="rocm-devtools" />
     <project name="aomp-extras" path="openmp-extras/aomp-extras" remote="rocm-devtools" />
