@@ -470,6 +470,8 @@ https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#so
 ROCm is focused on using AMD GPUs to accelerate computational tasks such as machine learning, engineering workloads, and scientific computing.
 In order to focus our development efforts on these domains of interest, ROCm supports a targeted set of hardware configurations which are detailed further in this section.
 
+**Note:** The AMD ROCm™ open software platform is a compute stack for headless system deployments, and GUI-based software applications are not currently supported.
+
 #### Supported GPUs
 Because the ROCm Platform has a focus on particular computational domains, we offer official support for a selection of AMD GPUs that are designed to offer good performance and price in these domains.
 
