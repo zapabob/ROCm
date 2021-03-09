@@ -483,7 +483,7 @@ ROCm officially supports AMD GPUs that use following chips:
 
   - "Vega 10" chips, such as on the AMD Radeon RX Vega 64 and Radeon Instinct MI25
   
-  - "Vega 7nm" chips, such as on the Radeon Instinct MI50, Radeon Instinct MI60 or AMD Radeon VII, 
+  - "Vega 7nm" chips, such as on the Radeon Instinct MI50, Radeon Instinct MI60 or AMD Radeon VII, Radeon Pro VII 
 
 * CDNA GPUs
 
