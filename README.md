@@ -375,9 +375,8 @@ HIP now supports the hipEventDisableTiming flag for hipEventCreateWithFlags. Not
 
 Cooperative Groups defines, synchronizes, and communicates between groups of threads and blocks for efficiency and ease of management. HIP now supports the following kernel language Cooperative Groups types and functions:
 
-![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/CG1.PNG)
-![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/CG2.PNG)
-![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/CG3.PNG)
+![Screenshot](images/CGMain.PNG)
+
 
 
 ###  Support for Extern Shared Declarations
