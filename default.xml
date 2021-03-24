@@ -13,9 +13,9 @@ fetch="https://github.com/GPUOpen-Tools/" />
     <remote name="KhronosGroup"
 fetch="https://github.com/KhronosGroup/" />
     <default revision="refs/tags/rocm-4.1.0"
-remote="roc-github"
-sync-c="true"
-sync-j="4" />
+     remote="roc-github"
+     sync-c="true"
+     sync-j="4" />
 <!--list of projects for ROCM-->
     <project name="ROCK-Kernel-Driver" />
     <project name="ROCT-Thunk-Interface" />
@@ -50,7 +50,6 @@ sync-j="4" />
     <project name="rdc" remote="roc-github" />
     <project name="rocBLAS" remote="rocm-swplat" />
     <project name="Tensile" remote="rocm-swplat" />
-    <project name="MIOpenKernels" remote="rocm-swplat" />
     <project name="hipBLAS" remote="rocm-swplat" />
     <project name="rocFFT" remote="rocm-swplat" />
     <project name="rocRAND" remote="rocm-swplat" />
