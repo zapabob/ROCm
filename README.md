@@ -45,7 +45,7 @@ The AMD ROCm platform is designed to support the following operating systems:
 * CentOS 8.3 (4.18.0-193.el8) and RHEL 8.3 (4.18.0-193.1.1.el8) (devtoolset is not required)
 * SLES 15 SP2
 
-### FRESH INSTALLATION OF AMD ROCM V4.1 RECOMMENDED
+### Fresh Installation of AMD ROCM V4.1 Recommended
 
 A complete uninstallation of previous ROCm versions is required before installing a new version of ROCm. An upgrade from previous releases to AMD ROCm v4.1 is not supported. For more information, refer to the AMD ROCm Installation Guide at
 
@@ -59,7 +59,7 @@ https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 * For ROCm v3.3 and older releases, the clinfo path remains /opt/rocm/opencl/bin/x86_64/clinfo. 
  
-### ROCM MULTI-VERSION INSTALLATION UPDATE
+### ROCM Multi-Version Installation Update
 
 With the AMD ROCm v4.1 release, the following ROCm multi-version installation changes apply:
 
@@ -224,7 +224,7 @@ Access the following links for more information:
 
 # What\'s New in This Release
 
-## TARGETID FOR MULTIPLE CONFIGURATIONS
+## TargetID for Multiple Configurations
 
 The new TargetID functionality allows compilations to specify various configurations of the supported hardware. 
 
@@ -438,7 +438,7 @@ The following OpenMP defects are fixed in this release:
 * Fix problems with device math functions being ambiguous, especially the pow function.ix aompcc to accept file type cxx. 
 * Fix a latent race between host runtime and devicertl.
 
-## MIOPEN TENSILE INTEGRATION
+## MIOpen Tensile Integration
 
 MIOpenTensile provides host-callable interfaces to the Tensile library and supports the HIP programming model. You may use the Tensile feature in the HIP backend by setting the building environment variable value to ON.
 
