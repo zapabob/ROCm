@@ -296,7 +296,7 @@ following instructions to install the Perl modules:
    
 *CentOS*
             
-      yum install “ perl(File::Which) perl(File::BaseDir) perl(File::Copy) perl(URI::Encode)
+      yum install "perl(File::Which) perl(File::BaseDir) perl(File::Copy) perl(URI::Encode)"
 
 
 
