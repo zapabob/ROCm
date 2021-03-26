@@ -297,10 +297,27 @@ following instructions to install the Perl modules:
 *CentOS*
             
     “sudo yum install perl-File-Which perl-File-BaseDir perl-File-Copy-Recursive perl-URI-Encode” 
+    
+
+For CentOS8.3: 
+
+    sudo yum config-manager --set-enabled powertools
+
 
 *RHEL*
 
     sudo yum install perl-File-Which perl-File-BaseDir perl-File-Copy-Recursive perl-URI-Encode 
+    
+
+For RHEL8.3: 
+
+    sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+
+
+*SLES 15 SP2*
+
+       sudo zypper addrepo https://download.opensuse.org/repositories/devel:languages:perl/SLE_15/devel:languages:perl.repo
+
 
 ## ROCm Data Center Tool 
 
