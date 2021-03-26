@@ -52,6 +52,7 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="Tensile" remote="rocm-swplat" />
     <project name="hipBLAS" remote="rocm-swplat" />
     <project name="rocFFT" remote="rocm-swplat" />
+    <project name="hipFFT" remote="rocm-swplat" />
     <project name="rocRAND" remote="rocm-swplat" />
     <project name="rocSPARSE" remote="rocm-swplat" />
     <project name="rocSOLVER" remote="rocm-swplat" />
