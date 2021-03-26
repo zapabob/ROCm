@@ -299,7 +299,7 @@ following instructions to install the Perl modules:
     “sudo yum install perl-File-Which perl-File-BaseDir perl-File-Copy-Recursive perl-URI-Encode” 
     
 
-For CentOS8.3: 
+Repo for CentOS8.3: 
 
     sudo yum config-manager --set-enabled powertools
 
@@ -309,7 +309,7 @@ For CentOS8.3:
     sudo yum install perl-File-Which perl-File-BaseDir perl-File-Copy-Recursive perl-URI-Encode 
     
 
-For RHEL8.3: 
+Repo for RHEL8.3: 
 
     sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
 
