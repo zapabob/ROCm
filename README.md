@@ -85,9 +85,9 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
 The hip-base package has a dependency on Perl modules that some operating systems may not have in their default package repositories.  Use the following commands to add repositories that have the required Perl packages:
 
 
-* For SLES 15 SP2
+#### For SLES 15 SP2
 
-	sudo zypper addrepo 
+		sudo zypper addrepo 
 
 
 For more information, see
@@ -96,14 +96,14 @@ https://download.opensuse.org/repositories/devel:languages:perl/SLE_15/devel:lan
 
 
 
-* For CentOS8.3
+#### For CentOS8.3
 
-	sudo yum config-manager --set-enabled powertools
+		sudo yum config-manager --set-enabled powertools
 	
 
-* For RHEL8.3
+#### For RHEL8.3
 
-	sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+		sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
  
 
 # Driver Compatibility Issue in This Release
