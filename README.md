@@ -80,6 +80,37 @@ The meta packages rocm-dkms<version> are now deprecated for multi-version ROCm i
 **NOTE**: The single version installation of the ROCm stack remains the same. The rocm-dkms package can be used for single version installs and is not deprecated at this time.
 
 
+## Updated HIP Instructions for ROCm Installation**
+
+The hip-base package has a dependency on Perl modules that some operating systems may not have in their default package repositories.  Use the following commands to add repositories that have the required Perl packages:
+
+
+* For SLES 15 SP2
+
+::
+
+	sudo zypper addrepo 
+
+
+For more information, see
+
+https://download.opensuse.org/repositories/devel:languages:perl/SLE_15/devel:languages:perl.repo
+
+
+
+* For CentOS8.3
+
+::
+
+	sudo yum config-manager --set-enabled powertools
+	
+
+* For RHEL8.3
+
+::
+
+	sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+ 
 
 # Driver Compatibility Issue in This Release
 
