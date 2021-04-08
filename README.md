@@ -16,7 +16,7 @@ While the *HIP_PLATFORM=hcc* environment variable was functional in subsequent r
 
 * *HIP_PLATFORM=nvcc to HIP_PLATFORM=nvidia*
 
-Therefore, any applications continuing to use the HIP_PLATFORM=hcc variable will fail. You must update the environment variables to reflect the changes as mentioned above.
+Therefore, any applications continuing to use the *HIP_PLATFORM=hcc* variable will fail. You must update the environment variables to reflect the changes as mentioned above.
 
 
 ## Updated HIP Instructions for ROCm Installation
