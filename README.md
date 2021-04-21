@@ -23,6 +23,9 @@ The ROCm v4.1.1 release consists of the following updates:
 
 * Updated HIP Instructions for ROCm Installation
 
+* Fixed Defect - Performance Impact for LDS-BOUND Kernels
+
+
 ## Changed Environment Variables for HIP 
 
 In the ROCm v3.5 release, the Heterogeneous Compute Compiler (HCC) compiler was deprecated, and the HIP-Clang compiler was introduced for compiling Heterogeneous-Compute Interface for Portability (HIP) programs. In addition, the HIP runtime API was implemented on top of Radeon Open Compute Common Language Runtime (ROCclr). ROCclr is an abstraction layer that provides the ability to interact with different runtime backends such as ROCr. 
@@ -53,6 +56,14 @@ The hip-base package has a dependency on Perl modules that some operating system
 * For RHEL8.3
 
 		sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+
+
+## Fixed Defect - Performance Impact for LDS-BOUND Kernels 
+
+The following known issue in the ROCm v4.1 release is fixed in the ROCm v4.1.1 patch release. 
+
+The compiler in ROCm v4.1 generates LDS load and stores instructions that incorrectly assume equal performance between aligned and misaligned accesses. While this does not impact code correctness, it may result in sub-optimal performance.
+
 
 
 # AMD ROCm™ v4.1 Release Notes 
