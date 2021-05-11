@@ -12,7 +12,7 @@ fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
 fetch="https://github.com/GPUOpen-Tools/" />
     <remote name="KhronosGroup"
 fetch="https://github.com/KhronosGroup/" />
-    <default revision="refs/tags/rocm-4.1.0"
+    <default revision="refs/tags/rocm-4.2.0"
      remote="roc-github"
      sync-c="true"
      sync-j="4" />
@@ -20,7 +20,7 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="ROCK-Kernel-Driver" />
     <project name="ROCT-Thunk-Interface" />
     <project name="ROCR-Runtime" />
-    <project name="ROC-smi" />
+    <project name="ROC-smi" revision="refs/tags/rocm-4.1.0" />
     <project name="rocm_smi_lib" />
     <project name="rocm-cmake" />
     <project name="rocminfo" />
@@ -30,12 +30,12 @@ fetch="https://github.com/KhronosGroup/" />
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="6c03f8b58fafd9dd693eaac826749a5cfad515f8" />
     <project name="clang-ocl" />
 <!--HIP Projects-->
-    <project name="HIP" remote="rocm-devtools" revision="refs/tags/rocm-4.1.1" />
+    <project name="HIP" remote="rocm-devtools" />
     <project name="HIP-Examples" remote="rocm-devtools" />
     <project name="ROCclr" remote="rocm-devtools" />
     <project name="HIPIFY" remote="rocm-devtools" />
 <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
-    <project name="llvm-project" revision="refs/tags/rocm-4.1.1" />
+    <project name="llvm-project" />
     <project name="ROCm-Device-Libs" />
     <project name="atmi" />
     <project name="ROCm-CompilerSupport" />
