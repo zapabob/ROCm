@@ -34,7 +34,7 @@ The AMD ROCm platform is designed to support the following operating systems:
 ![Screenshot](https://github.com/Rmalavally/ROCm/blob/master/images/OSKernel.PNG)
 
 
-### Complete Installation of AMD ROCM V4.3 Recommended
+### Fresh Installation of AMD ROCM V4.3 Recommended
 
 Complete uninstallation of previous ROCm versions is required before installing a new version of ROCm. **An upgrade from previous releases to AMD ROCm v4.3 is not supported**. For more information, refer to the AMD ROCm Installation Guide at
 
