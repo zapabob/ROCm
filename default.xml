@@ -12,7 +12,7 @@ fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
 fetch="https://github.com/GPUOpen-Tools/" />
     <remote name="KhronosGroup"
 fetch="https://github.com/KhronosGroup/" />
-    <default revision="refs/tags/rocm-4.2.0"
+    <default revision="refs/tags/rocm-4.3.0"
      remote="roc-github"
      sync-c="true"
      sync-j="4" />
@@ -20,7 +20,6 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="ROCK-Kernel-Driver" />
     <project name="ROCT-Thunk-Interface" />
     <project name="ROCR-Runtime" />
-    <project name="ROC-smi" revision="refs/tags/rocm-4.1.0" />
     <project name="rocm_smi_lib" />
     <project name="rocm-cmake" />
     <project name="rocminfo" />
