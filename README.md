@@ -569,7 +569,7 @@ From a user perspective, this new execution mode requires:
 	
 1. Generation of trace data per MPI (or process) rank.
 	
-2. Use of a new "merge_traces.sh" utility script (see: <insert link here>) to combine traces from multiple processes into a unified trace for profiling.
+2. Use of a new ["merge_traces.sh" utility script](https://github.com/ROCm-Developer-Tools/rocprofiler/blob/rocm-4.3.x/bin/merge_traces.sh) to combine traces from multiple processes into a unified trace for profiling.
 	
 For example, to accomplish step #1, ROCm provides a simple bash wrapper that demonstrates how to generate a unique output directory per process:
 	
@@ -577,11 +577,11 @@ For example, to accomplish step #1, ROCm provides a simple bash wrapper that dem
 	$ cat wrapper.sh
 	#! /usr/bin/env bash
 	if [[ -n ${OMPI_COMM_WORLD_RANK+z} ]]; then
- 	 # mpich
-  	export MPI_RANK=${OMPI_COMM_WORLD_RANK}
+ 	  # mpich
+  	  export MPI_RANK=${OMPI_COMM_WORLD_RANK}
 	elif [[ -n ${MV2_COMM_WORLD_RANK+z} ]]; then
-  	# ompi
-  	export MPI_RANK=${MV2_COMM_WORLD_RANK}
+  	  # ompi
+  	  export MPI_RANK=${MV2_COMM_WORLD_RANK}
 	fi
 	args="$*"
 	pid="$$"
@@ -612,7 +612,7 @@ This generates an output directory for each used MPI rank. For example,
 	4096 rank_513556_1
 ```	
 	
-Finally, these traces may be combined using the merge traces script (<insert link here>). For example, 
+Finally, these traces may be combined using the [merge traces script](https://github.com/ROCm-Developer-Tools/rocprofiler/blob/rocm-4.3.x/bin/merge_traces.sh). For example, 
 
 ```
 	$  ./merge_traces.sh -h
@@ -628,7 +628,7 @@ Use the following input arguments to the merge_traces.sh script to control which
 	
 * <*inputdir*>... - space-separated list of rocprofiler directories. If not specified, CWD is used.
 
-The file 'unified/results.json' is generated,  and the resulting unified/results.json file contains trace data from both MPI ranks. 
+For example, if an output directory named "unified" was supplied to the `merge_traces.sh` script, the file 'unified/results.json' will be generated, and the contains trace data from both MPI ranks. 
 
 Known issue for ROCProfiler
 	
