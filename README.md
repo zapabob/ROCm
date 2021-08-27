@@ -38,6 +38,7 @@ For more information about legacy and new pass managers, see http://llvm.org.
 ### General Userspace and Application Freeze on MI25
 
 For some workloads on MI25, general user space and application freeze are observed, and the GPU resets intermittently. Note, the freeze may take hours to reproduce.
+
 This issue is under active investigation, and no workarounds are available currently.
 
 ### HIPRTC - FILE NOT FOUND ERROR
