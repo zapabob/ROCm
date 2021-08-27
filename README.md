@@ -45,7 +45,6 @@ This issue is under active investigation, and no workarounds are available curre
 hipRTC may fail, and users may encounter the following error:
 
 ::
-
 	<built-in>:1:10: fatal error: '__clang_hip_runtime_wrapper.h' file not found
 	#include "__clang_hip_runtime_wrapper.h"
 
@@ -58,7 +57,6 @@ hipRTC may fail, and users may encounter the following error:
 * Add “-I <path to ROCm>/llvm/lib/clang/13.0.0/include/” to compiler options in the call to hiprtcCompileProgram (). Note, this workaround requires the following changes in the code:
 
 :: 
-
 	// set NUM_OPTIONS to one more than the number of options that was previously required
 	const char* options[NUM_OPTIONS];
 	// fill other options[] here
