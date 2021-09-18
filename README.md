@@ -515,7 +515,7 @@ Linear solvers for general non-square systems:
 	
 * Known issues with Thin-SVD. The problem was identified in the test specification, not in the thin-SVD implementation or the rocBLAS gemm_batched routines.
 
-* Benchmark client longer crashes as a result of leading dimension or stride arguments not being provided on the command line.
+* Benchmark client no longer crashes as a result of leading dimension or stride arguments not being provided on the command line.
 
 **Optimizations**
 	
