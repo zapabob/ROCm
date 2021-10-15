@@ -9,7 +9,15 @@ It also covers known issues in this release.
 
 The AMD ROCm platform supports the following operating systems:
 
-![Screenshot](https://github.com/RadeonOpenCompute/ROCm/blob/master/images/SuppEnv.PNG)
+| OS             | Kernel              |
+| ---            | ---                 |
+| SLES15 SP3     | 5.3.18-24.49        |
+| RHEL 7.9       | 3.10.0-1160.6.1.el7 |
+| CentOS 7.9     | 3.10.0-1127         |
+| RHEL 8.4       | 4.18.0-193.1.1.el8  |
+| CentOS 8.3     | 4.18.0-193.el8      |
+| Ubuntu 18.04.5 | 5.4.0-71-generic    |
+| Ubuntu 20.04.2 | 5.8.0-48-generic    |
 
 
 ## What\'s New in This Release
@@ -101,7 +109,15 @@ This document describes the features, fixed issues, and information about downlo
 
 The AMD ROCm platform is designed to support the following operating systems:
 
-![Screenshot](https://github.com/RadeonOpenCompute/ROCm/blob/master/images/OSKernelupdated.PNG)
+| OS             | Kernel              |
+| ---            | ---                 |
+| SLES15 SP3     | 5.3.18-24.49        |
+| RHEL 7.9       | 3.10.0-1160.6.1.el7 |
+| CentOS 7.9     | 3.10.0-1127         |
+| RHEL 8.4       | 4.18.0-193.1.1.el8  |
+| CentOS 8.3     | 4.18.0-193.el8      |
+| Ubuntu 18.04.5 | 5.4.0-71-generic    |
+| Ubuntu 20.04.2 | 5.8.0-48-generic    |
 
 
 ### Fresh Installation of AMD ROCM V4.3 Recommended
