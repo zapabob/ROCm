@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <remote name="roc-github"
-fetch="http://github.com/RadeonOpenCompute/" />
+fetch="https://github.com/RadeonOpenCompute/" />
     <remote name="rocm-devtools"
 fetch="https://github.com/ROCm-Developer-Tools/" />
     <remote name="rocm-swplat"
@@ -30,6 +30,7 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="clang-ocl" />
 <!--HIP Projects-->
     <project name="HIP" remote="rocm-devtools" />
+    <project name="hipamd" remote="rocm-devtools" />
     <project name="HIP-Examples" remote="rocm-devtools" />
     <project name="ROCclr" remote="rocm-devtools" />
     <project name="HIPIFY" remote="rocm-devtools" />
@@ -46,7 +47,7 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="ROCgdb" remote="rocm-devtools" />
     <project name="ROCdbgapi" remote="rocm-devtools" />
 <!-- ROCm Libraries -->
-    <project name="rdc" remote="roc-github" />
+    <project name="rdc" />
     <project name="rocBLAS" remote="rocm-swplat" />
     <project name="Tensile" remote="rocm-swplat" />
     <project name="hipBLAS" remote="rocm-swplat" />
@@ -60,6 +61,7 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="rocALUTION" remote="rocm-swplat" />
     <project name="MIOpenGEMM" remote="rocm-swplat" />
     <project name="MIOpen" remote="rocm-swplat" />
+    <project name="MIOpenTensile" remote="rocm-swplat" />
     <project name="rccl" remote="rocm-swplat" />
     <project name="MIVisionX" remote="gpuopen-libs" />
     <project name="rocThrust" remote="rocm-swplat" />
