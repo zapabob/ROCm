@@ -52,8 +52,6 @@ The AMD ROCm platform supports the following operating systems:
 | CentOS 8.3        | 4.18.0-193.el8      |
 | Ubuntu 18.04.5    | 5.4.0-71-generic    |
 | Ubuntu 20.04.3HWE | 5.8.0-48-generic    |
-| Host OS           | Azure RS1.86        |
-| Guest OS          | Ubuntu 20.04        |
 
 
 
