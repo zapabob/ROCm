@@ -225,8 +225,7 @@ This feature can be disabled by setting the following environment variable,
 
 ### Support for HIP Graph 
 
-ROCm v4.5 extends support for HIP Graph. For details, refer to the HIP
-API Guide at
+ROCm v4.5 extends support for HIP Graph. For details, refer to the HIP API Guide at
 
 https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD-HIP-API-4.5.pdf
 
@@ -258,8 +257,7 @@ https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD-HIP-API-4.5.pdf
 
 ### New Flag for Backwards Compatibility on float/double atomicAdd Function
 
-In the ROCm4.5 release, a new compilation flag is introduced as an
-option in the CMAKE file. This flag ensures backwards compatibility in
+In the ROCm4.5 release, a new compilation flag is introduced as an option in the CMAKE file. This flag ensures backwards compatibility in
 float/double atomicAdd functions.
 
 ```   
@@ -295,8 +293,7 @@ The HIP version can be queried from the following HIP API call,
      hipRuntimeGetVersion(&runtimeVersion);
 ```  
 
-The version returned is always greater than the versions in the previous
-ROCm releases.
+The version returned is always greater than the versions in the previous ROCm releases.
 
 **Note:** The version definition of the HIP runtime is different from that of CUDA. The function returns the HIP runtime version on the AMD
 platform, while on the NVIDIA platform, it returns the CUDA runtime version. There is no mapping or a correlation between the HIP and CUDA
@@ -364,8 +361,8 @@ compiler builds code that works in both modes. Code can be optimized for one spe
 OpenCL:
 
 ```  
-     clang \... -mcpu=gfx908:**xnack+**:sramecc- \... // xnack on, sramecc off\
-     clang \... -mcpu=gfx908:**xnack-**:sramecc+ \... // xnack off, sramecc on
+     clang \... -mcpu=gfx908:xnack+:sramecc- \... // xnack on, sramecc off\
+     clang \... -mcpu=gfx908:xnack-:sramecc+ \... // xnack off, sramecc on
 ```  
 
 HIP:
