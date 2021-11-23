@@ -430,10 +430,8 @@ The default power cap is 225.0W before any changes.
 
 ## OpenMP Enhancements
 
-The ROCm installation includes an LLVM-based implementation, which fully
-supports OpenMP 4.5 standard and a subset of the OpenMP 5.0 standard.
-Fortran and C/C++ compilers and corresponding runtime libraries are
-included. Along with host APIs, the OpenMP compilers support offloading
+The ROCm installation includes an LLVM-based implementation, which fully supports OpenMP 4.5 standard and a subset of the OpenMP 5.0 standard.
+Fortran and C/C++ compilers and corresponding runtime libraries are included. Along with host APIs, the OpenMP compilers support offloading
 code and data onto GPU devices.
 
 For more information, refer to
