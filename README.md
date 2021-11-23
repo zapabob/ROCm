@@ -285,7 +285,7 @@ https://github.com/RadeonOpenCompute/ROCm/blob/master/AMD_HIP_Programming_Guide.
 The HIP version definition is updated as follows:
 
 ```  
-     HIP_VERSION=HIP_VERSION_MAJOR \* 10000000 + HIP_VERSION_MINOR \*
+     HIP_VERSION=HIP_VERSION_MAJOR * 10000000 + HIP_VERSION_MINOR *
      100000 + HIP_VERSION_PATCH)
 ```  
 
@@ -364,8 +364,8 @@ compiler builds code that works in both modes. Code can be optimized for one spe
 OpenCL:
 
 ```  
-     clang \... -mcpu=gfx908:***xnack+***:sramecc- \... // xnack on, sramecc off\
-     clang \... -mcpu=gfx908:***xnack-***:sramecc+ \... // xnack off, sramecc on
+     clang \... -mcpu=gfx908:**xnack+**:sramecc- \... // xnack on, sramecc off\
+     clang \... -mcpu=gfx908:**xnack-**:sramecc+ \... // xnack off, sramecc on
 ```  
 
 HIP:
