@@ -1,4 +1,12 @@
 
+New AMD ROCm Information Portal ROCm v4.5 and Above
+-----------------------------------------------------
+
+Beginning ROCm release v5.0, AMD ROCm documentation has a new portal at `https://docs.amd.com  This portal consists of ROCm documentation v4.5 and above.
+
+For documentation prior to ROCm v4.5, you may continue to access `http://rocmdocs.amd.com.
+
+
 # AMD ROCm™ v5.0 Release Notes
 
 
