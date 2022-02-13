@@ -2,9 +2,9 @@
 New AMD ROCm Information Portal ROCm v4.5 and Above
 -----------------------------------------------------
 
-Beginning ROCm release v5.0, AMD ROCm documentation has a new portal at `https://docs.amd.com  This portal consists of ROCm documentation v4.5 and above.
+Beginning ROCm release v5.0, AMD ROCm documentation has a new portal at https://docs.amd.com  This portal consists of ROCm documentation v4.5 and above.
 
-For documentation prior to ROCm v4.5, you may continue to access `http://rocmdocs.amd.com.
+For documentation prior to ROCm v4.5, you may continue to access https://rocmdocs.amd.com.
 
 
 # AMD ROCm™ v5.0 Release Notes
@@ -20,8 +20,8 @@ It also covers known issues and deprecations in this release.
 
 To make a distinction between open-source and closed-source components, all ROCm repositories will consist of sub-folders in future releases.
 
-- All open-source components will be placed in the _base-url/\&lt;rocm-ver\&gt;/main_ sub-folder
-- All closed-source components will reside in the _base-url/\&lt;rocm-ver\&gt;/ proprietary_  sub-folder
+- All open-source components will be placed in the `base-url/<rocm-ver>/main` sub-folder
+- All closed-source components will reside in the `base-url/<rocm-ver>/proprietary`  sub-folder
 
 ## List of Supported Operating Systems
 
@@ -49,11 +49,8 @@ This release extends support for RHEL v8.5.
 This release extends ROCm support for Radeon Pro V620 and W6800 Workstation GPUs.
 
 - SRIOV virtualization support for Radeon Pro V620
-
 - KVM Hypervisor (1VF support only) on Ubuntu Host OS with Ubuntu, CentOs, and RHEL Guest
-
 - Support for ROCm-SMI in an SRIOV environment. For more details, refer to the ROCm SMI API documentation.
-
 
 **Note:** Radeon Pro v620 is not supported on SLES.
 
@@ -76,11 +73,11 @@ In this release, users can install the kernel-mode driver using the Installer me
 
 Users now can install multiple ROCm releases simultaneously on a system using the newly introduced installer script and package manager install mechanism.
 
-Users can also uninstall multi-version ROCm releases using the _amdgpu-uninstall_ script and package manager.
+Users can also uninstall multi-version ROCm releases using the `amdgpu-uninstall` script and package manager.
 
 ### Support for Updating Information on Local Repositories
 
-In this release, the _amdgpu-install_ script automates the process of updating local repository information before proceeding to ROCm installation.
+In this release, the `amdgpu-install` script automates the process of updating local repository information before proceeding to ROCm installation.
 
 ### Support for Release Upgrades
 
@@ -92,9 +89,9 @@ For more details, refer to the AMD ROCm Installation Guide v5.0.
 
 ## New AMD ROCm Information Portal – ROCm v4.5 and Above
 
-Beginning ROCm release v5.0, AMD ROCm documentation has a new portal at _[https://docs.amd.com](https://docs.amd.com/)_. This portal consists of ROCm documentation v4.5 and above.
+Beginning ROCm release v5.0, AMD ROCm documentation has a new portal at https://docs.amd.com. This portal consists of ROCm documentation v4.5 and above.
 
-For documentation prior to ROCm v4.5, you may continue to access _[http://rocmdocs.amd.com](http://rocmdocs.amd.com/)_.
+For documentation prior to ROCm v4.5, you may continue to access https://rocmdocs.amd.com.
 
 ## Documentation Updates for ROCm 5.0
 
@@ -181,21 +178,21 @@ For documentation prior to ROCm v4.5, you may continue to access _[http://rocmdo
 
 - For AMD ROCm documentation, see
 
-_[https://rocmdocs.amd.com/en/latest/](https://rocmdocs.amd.com/en/latest/)_
+https://rocmdocs.amd.com/en/latest/
 
 - For installation instructions on supported platforms, see
 
-_[https://rocmdocs.amd.com/en/latest/Installation\_Guide/Installation-Guide.html](https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html)_
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html
 
 - For AMD ROCm binary structure, see
 
-_[https://rocmdocs.amd.com/en/latest/Installation\_Guide/Software-Stack-for-AMD-GPU.html](https://rocmdocs.amd.com/en/latest/Installation_Guide/Software-Stack-for-AMD-GPU.html)_
+https://rocmdocs.amd.com/en/latest/Installation_Guide/Software-Stack-for-AMD-GPU.html
 
 - For AMD ROCm release history, see
 
-_https://rocmdocs.amd.com/en/latest/Current\_Release\_Notes/ROCm-Version-History.html_
+https://rocmdocs.amd.com/en/latest/Current_Release_Notes/ROCm-Version-History.html
 
-# What&#39;s New in This Release
+# What's New in This Release
 
 ## HIP Enhancements
 
@@ -209,43 +206,28 @@ Refer to the HIP Installation Guide v5.0 for more details.
 
 ### Managed Memory Allocation
 
-Managed memory, including the ` __managed__ ` keyword, is now supported in the HIP combined host/device compilation. Through unified memory allocation, managed memory allows data to be shared and accessible to both the CPU and GPU using a single pointer. The allocation is managed by the AMD GPU driver using the Linux Heterogeneous Memory Management (HMM) mechanism. The user can call managed memory API hipMallocManaged to allocate a large chunk of HMM memory, execute kernels on a device, and fetch data between the host and device as needed.
+Managed memory, including the `__managed__` keyword, is now supported in the HIP combined host/device compilation. Through unified memory allocation, managed memory allows data to be shared and accessible to both the CPU and GPU using a single pointer. The allocation is managed by the AMD GPU driver using the Linux Heterogeneous Memory Management (HMM) mechanism. The user can call managed memory API hipMallocManaged to allocate a large chunk of HMM memory, execute kernels on a device, and fetch data between the host and device as needed.
 
 **Note:** In a HIP application, it is recommended to do a capability check before calling the managed memory APIs. For example,
 
-```
+```c
+int managed_memory = 0;
+HIPCHECK(hipDeviceGetAttribute(&managed_memory, hipDeviceAttributeManagedMemory, p_gpuDevice));
 
-int managed\_memory = 0;
-
-HIPCHECK(hipDeviceGetAttribute(&amp;managed\_memory,
-
-hipDeviceAttributeManagedMemory,p\_gpuDevice));
-
-if (!managed\_memory ) {
-
-printf (&quot;info: managed memory access not supported on the device %d\n Skipped\n&quot;, p\_gpuDevice);
-
+if (!managed_memory) {
+  printf ("info: managed memory access not supported on the device %d\n Skipped\n", p_gpuDevice);
+} else {
+  HIPCHECK(hipSetDevice(p_gpuDevice));
+  HIPCHECK(hipMallocManaged(&Hmm, N * sizeof(T)));
+  . . .
 }
-
-else {
-
-HIPCHECK(hipSetDevice(p\_gpuDevice));
-
-HIPCHECK(hipMallocManaged(&amp;Hmm, N \* sizeof(T)));
-
-. . .
-
-}
-
 ```
 
 **Note:** The managed memory capability check may not be necessary; however, if HMM is not supported, managed malloc will fall back to using system memory. Other managed memory API calls will, then, have
 
 Refer to the HIP API documentation for more details on managed memory APIs.
 
-For the application, see
-
-_[https://github.com/ROCm-Developer-Tools/HIP/blob/rocm-4.5.x/tests/src/runtimeApi/memory/hipMallocManaged.cpp](https://github.com/ROCm-Developer-Tools/HIP/blob/rocm-4.5.x/tests/src/runtimeApi/memory/hipMallocManaged.cpp)_
+For the application, see [hipMallocManaged.cpp](https://github.com/ROCm-Developer-Tools/HIP/blob/rocm-4.5.x/tests/src/runtimeApi/memory/hipMallocManaged.cpp)
 
 ## New Environment Variable
 
@@ -253,42 +235,38 @@ The following new environment variable is added in this release:
 
 | **Environment Variable** | **Value** | **Description** |
 | --- | --- | --- |
-| **HSA\_COOP\_CU\_COUNT** | 0 or 1 (default is 0) | Some processors support more CUs than can reliably be used in a cooperative dispatch. Setting the environment variable HSA\_COOP\_CU\_COUNT to 1 will cause ROCr to return the correct CU count for cooperative groups through the HSA\_AMD\_AGENT\_INFO\_COOPERATIVE\_COMPUTE\_UNIT\_COUNT attribute of hsa\_agent\_get\_info(). Setting HSA\_COOP\_CU\_COUNT to other values, or leaving it unset, will cause ROCr to return the same CU count for the attributes HSA\_AMD\_AGENT\_INFO\_COOPERATIVE\_COMPUTE\_UNIT\_COUNT and HSA\_AMD\_AGENT\_INFO\_COMPUTE\_UNIT\_COUNT. Future ROCm releases will make HSA\_COOP\_CU\_COUNT=1 the default.
+| **HSA\_COOP\_CU\_COUNT** | 0 or 1 (default is 0) | Some processors support more compute units than can reliably be used in a cooperative dispatch. Setting the environment variable HSA\_COOP\_CU\_COUNT to 1 will cause ROCr to return the correct CU count for cooperative groups through the HSA\_AMD\_AGENT\_INFO\_COOPERATIVE\_COMPUTE\_UNIT\_COUNT attribute of hsa\_agent\_get\_info(). Setting HSA\_COOP\_CU\_COUNT to other values, or leaving it unset, will cause ROCr to return the same CU count for the attributes HSA\_AMD\_AGENT\_INFO\_COOPERATIVE\_COMPUTE\_UNIT\_COUNT and HSA\_AMD\_AGENT\_INFO\_COMPUTE\_UNIT\_COUNT. Future ROCm releases will make HSA\_COOP\_CU\_COUNT=1 the default.
  |
 
 ## ROCm Math and Communication Libraries
 
 | **Library** | **Changes** |
 | --- | --- |
-| **rocBLAS** | **Added** <br> Added rocblas\_get\_version\_string\_size convenience functionAdded rocblas\_xtrmm\_outofplace, an out-of-place version of rocblas\_xtrmmAdded hpl and trig initialization for gemm\_ex to rocblas-benchAdded source code gemm. It can be used as an alternative to Tensile for debugging and developmentAdded option ROCM\_MATHLIBS\_API\_USE\_HIP\_COMPLEX to opt-in to use hipFloatComplex and hipDoubleComplex <br> **Optimizations** <br> Improved performance of non-batched and batched single-precision GER for size m \&gt; 1024. Performance enhanced by 5-10% measured on a MI100 (gfx908) GPU.Improved performance of non-batched and batched HER for all sizes and data types. Performance enhanced by 2-17% measured on a MI100 (gfx908) GPU. <br> **Changed** <br> Instantiate templated rocBLAS functions to reduce size of librocblas.soRemoved static library dependency on msgpackRemoved boost dependencies for clients <br> **Fixed** <br> Option to install script to build only rocBLAS clients with a pre-built rocBLAS libraryCorrectly set output of nrm2\_batched\_ex and nrm2\_strided\_batched\_ex when given bad inputFix for dgmm with side == rocblas\_side\_left and a negative incxFixed out-of-bounds read for small trsmFixed numerical checking for tbmv\_strided\_batched <br>
+| **rocBLAS** | **Added** <ul><li>Added rocblas\_get\_version\_string\_size convenience function</li><li>Added rocblas\_xtrmm\_outofplace, an out-of-place version of rocblas\_xtrmm</li><li>Added hpl and trig initialization for gemm\_ex to rocblas-bench</li><li>Added source code gemm. It can be used as an alternative to Tensile for debugging and development</li><li>Added option `ROCM_MATHLIBS_API_USE_HIP_COMPLEX` to opt-in to use hipFloatComplex and hipDoubleComplex</li></ul> **Optimizations** <ul><li>Improved performance of non-batched and batched single-precision GER for size m > 1024. Performance enhanced by 5-10% measured on a MI100 (gfx908) GPU.</li><li>Improved performance of non-batched and batched HER for all sizes and data types. Performance enhanced by 2-17% measured on a MI100 (gfx908) GPU.</li></ul> **Changed** <ul><li>Instantiate templated rocBLAS functions to reduce size of librocblas.so</li><li>Removed static library dependency on msgpack</li><li>Removed boost dependencies for clients</li></ul> **Fixed** <ul><li>Option to install script to build only rocBLAS clients with a pre-built rocBLAS library</li><li>Correctly set output of nrm2\_batched\_ex and nrm2\_strided\_batched\_ex when given bad input</li><li>Fix for dgmm with side == rocblas\_side\_left and a negative incx</li><li>Fixed out-of-bounds read for small trsm</li><li>Fixed numerical checking for tbmv\_strided\_batched</li></ul> |
 | | |
-| **hipBLAS** | **Added** <br> Added rocSOLVER functions to hipblas-benchAdded option ROCM\_MATHLIBS\_API\_USE\_HIP\_COMPLEX to opt-in to use hipFloatComplex and hipDoubleComplexAdded compilation warning for future trmm changesAdded documentation to hipblas.hAdded option to forgo pivoting for getrf and getri when ipiv is nullptrAdded code coverage option <br> **Fixed** <br> Fixed use of incorrect &#39;HIP\_PATH&#39; when building from source.Fixed windows packagingAllowing negative increments in hipblas-benchRemoved boost dependency | <br>
+| **hipBLAS** | **Added** <ul><li>Added rocSOLVER functions to hipblas-bench</li><li>Added option `ROCM_MATHLIBS_API_USE_HIP_COMPLEX` to opt-in to use hipFloatComplex and hipDoubleComplex</li><li>Added compilation warning for future trmm changes</li><li>Added documentation to hipblas.h</li><li>Added option to forgo pivoting for getrf and getri when ipiv is nullptr</li><li>Added code coverage option</li></ul> **Fixed** <ul><li>Fixed use of incorrect `HIP_PATH` when building from source.</li><li>Fixed windows packaging</li><li>Allowing negative increments in hipblas-bench</li><li>Removed boost dependency</li></ul> |
 | | |
-| **rocFFT** | **Changed** <br> Enabled runtime compilation of single FFT kernels \&gt; length 1024.Re-aligned split device library into 4 roughly equal libraries.Implemented the FuseShim framework to replace the original OptimizePlanImplemented the generic buffer-assignment framework. The buffer assignment is no longer performed by each node. A generic algorithm is designed to test and pick the best assignment path. With the help of FuseShim, more kernel-fusions are achieved.Do not read the imaginary part of the DC and Nyquist modes for even-length complex-to-real transforms. <br> **Optimizations** <br> Optimized twiddle-conjugation; complex-to-complex inverse transforms have similar performance to foward transforms now.Improved performance of single-kernel small 2D transforms.<br> |
+| **rocFFT** | **Changed** <ul><li>Enabled runtime compilation of single FFT kernels > length 1024.</li><li>Re-aligned split device library into 4 roughly equal libraries.</li><li>Implemented the FuseShim framework to replace the original OptimizePlan</li><li>Implemented the generic buffer-assignment framework. The buffer assignment is no longer performed by each node. A generic algorithm is designed to test and pick the best assignment path. With the help of FuseShim, more kernel-fusions are achieved.</li><li>Do not read the imaginary part of the DC and Nyquist modes for even-length complex-to-real transforms.</li></ul> **Optimizations** <ul><li>Optimized twiddle-conjugation; complex-to-complex inverse transforms have similar performance to foward transforms now.</li><li>Improved performance of single-kernel small 2D transforms.</li></ul> |
 | | |
-| **hipFFT** | **Fixed** <br> Fixed incorrect reporting of rocFFT version. <br> **Changed** <br> Unconditionally enabled callback functionality. On the CUDA backend, callbacks only run correctly when hipFFT is built as a static library, and is linked against the static cuFFT library. <br> |
+| **hipFFT** | **Fixed** <ul><li>Fixed incorrect reporting of rocFFT version.</li></ul> **Changed** <ul><li>Unconditionally enabled callback functionality. On the CUDA backend, callbacks only run correctly when hipFFT is built as a static library, and is linked against the static cuFFT library.</li></ul> |
 | | |
-| **rocSPARSE** | <div align="left">**Added** <br> csrmv, coomv, ellmv, hybmv for (conjugate) transposed matricescsrmv for symmetric matrices <br> **Changed** <br> spmm\_ex is now deprecated and will be removed in the next major release <br> **Improved** <br> Optimization for gtsv <br> |
+| **rocSPARSE** | **Added** <ul><li>csrmv, coomv, ellmv, hybmv for (conjugate) transposed matricescsrmv for symmetric matrices</li></ul> **Changed** <ul><li>spmm\_ex is now deprecated and will be removed in the next major release</li></ul> **Improved** <ul><li>Optimization for gtsv</li></ul> |
 | | |
-| **hipSPARSE** | **Added** <br> Added (conjugate) transpose support for csrmv, hybmv and spmv routines <br> |
+| **hipSPARSE** | **Added** <ul><li>Added (conjugate) transpose support for csrmv, hybmv and spmv routines</li></ul> |
 | | |
-| **rocALUTION** | **Changed** <br> Removed deprecated GlobalPairwiseAMG class, please use PairwiseAMG instead. <br> **Improved** <br> Improved documentation <br> |
+| **rocALUTION** | **Changed** <ul><li>Removed deprecated GlobalPairwiseAMG class, please use PairwiseAMG instead.</li></ul> **Improved** <ul><li>Improved documentation</li></ul> |
 | | |
-| **rocTHRUST** | **Updates** <br> Updated to match upstream Thrust 1.13.0Updated to match upstream Thrust 1.14.0Added async scan <br> **Changed** <br> Scan algorithms: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output). And low-res input with high-res output (e.g. float input, double output) <br> |
+| **rocTHRUST** | **Updates** <ul><li>Updated to match upstream Thrust 1.13.0</li><li>Updated to match upstream Thrust 1.14.0</li><li>Added async scan</li></ul> **Changed** <ul><li>Scan algorithms: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output). And low-res input with high-res output (e.g. float input, double output)</li></ul> |
 | | |
-| **rocSOLVER** | **Added** <br> Symmetric matrix factorizations:LASYF <br> - SYTF2, SYTRF (with batched and strided\_batched versions) <br> Added rocsolver\_get\_version\_string\_size to help with version string queriesAdded rocblas\_layer\_mode\_ex and the ability to print kernel calls in the trace and profile logsExpanded batched and strided\_batched sample programs. <br> **Optimizations** <br> Improved general performance of LU factorizationIncreased parallelism of specialized kernels when compiling from source, reducing build times on multi-core systems. <br> **Changed** <br> The rocsolver-test client now prints the rocSOLVER version used to run the tests, rather than the version used to build themThe rocsolver-bench client now prints the rocSOLVER version used in the benchmark <br> **Fixed** <br> Added missing stdint.h include to rocsolver.h <br> |
+| **rocSOLVER** | **Added** <ul><li>Symmetric matrix factorizations: <ul><li>LASYF</li><li>SYTF2, SYTRF (with batched and strided\_batched versions)</li></ul><li>Added rocsolver\_get\_version\_string\_size to help with version string queries</li><li>Added rocblas\_layer\_mode\_ex and the ability to print kernel calls in the trace and profile logs</li><li>Expanded batched and strided\_batched sample programs.</li></ul> **Optimizations** <ul><li>Improved general performance of LU factorization</li><li>Increased parallelism of specialized kernels when compiling from source, reducing build times on multi-core systems.</li></ul> **Changed** <ul><li>The rocsolver-test client now prints the rocSOLVER version used to run the tests, rather than the version used to build them</li><li>The rocsolver-bench client now prints the rocSOLVER version used in the benchmark</li></ul> **Fixed** <ul><li>Added missing stdint.h include to rocsolver.h</li></ul> |
 | | |
-| **hipSOLVER** | **Added** <br> Added functions <br> - sytrf <br> - hipsolverSsytrf\_bufferSize, hipsolverDsytrf\_bufferSize, hipsolverCsytrf\_bufferSize, hipsolverZsytrf\_bufferSize- hipsolverSsytrf, hipsolverDsytrf, hipsolverCsytrf, hipsolverZsytrf <br> **Fixed** <br> Fixed use of incorrect HIP\_PATH when building from source (#40). <br> |
+| **hipSOLVER** | **Added** <ul><li>Added SYTRF functions: hipsolverSsytrf\_bufferSize, hipsolverDsytrf\_bufferSize, hipsolverCsytrf\_bufferSize, hipsolverZsytrf\_bufferSize, hipsolverSsytrf, hipsolverDsytrf, hipsolverCsytrf, hipsolverZsytrf</li></ul> **Fixed** <ul><li>Fixed use of incorrect `HIP_PATH` when building from source</li></ul> |
 | | |
-| **RCCL** | **Added** <br> Compatibility with NCCL 2.10.3 <br> **Known issues** <br> Managed memory is not currently supported for clique-based kernels <br> |
+| **RCCL** | **Added** <ul><li>Compatibility with NCCL 2.10.3</li></ul> **Known issues** <ul><li>Managed memory is not currently supported for clique-based kernels</li></ul> |
 | | |
-| **hipCUB** | **Fixed** <br> Added missing includes to hipcub.hpp <br> **Added** <br> Bfloat16 support to test cases (device\_reduce &amp; device\_radix\_sort)Device merge sortBlock merge sortAPI update to CUB 1.14.0 <br> **Changed** <br> The SetupNVCC.cmake automatic target selector select all of the capabalities of all available card for NVIDIA backend. <br> |
+| **hipCUB** | **Fixed** <ul><li>Added missing includes to hipcub.hpp</li></ul> **Added** <ul><li>Bfloat16 support to test cases (device\_reduce & device\_radix\_sort)</li><li>Device merge sort</li><li>Block merge sort</li><li>API update to CUB 1.14.0</li></ul> **Changed** <ul><li>The SetupNVCC.cmake automatic target selector select all of the capabalities of all available card for NVIDIA backend.</li></ul> |
 | | |
-| **rocPRIM** | **Fixed** <br> Enable bfloat16 tests and reduce threshold for bfloat16Fix device scan limit\_size featureNon-optimized builds no longer trigger local memory limit errors <br> **Added** <br> Scan size limit featureReduce size limit featureTransform size limit featureAdd block\_load\_striped and block\_store\_stripedAdd gather\_to\_blocked to gather values from other threads into a blocked arrangementThe block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel configBlock sort step supports multiple items per thread <br> **Changed** <br> size\_limit for scan, reduce and transform can now be set in the config struct instead of a parameterDevice\_scan and device\_segmented\_scan: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output).low-res input with high-res output (e.g. float input, double output)Revert old Fiji workaround, because they solved the issue at compiler sideUpdate README cmake minimum version numberBlock sort support multiple items per threadCurrently only powers of two block sizes, and items per threads are supported and only for full blocksBumped the minimum required version of CMake to 3.16 <br> **Known issues** <br> Unit tests may soft hang on MI200 when running in hipMallocManaged mode.device\_segmented\_radix\_sort, device\_scan unit tests failing for HIP on WindowsReduceEmptyInput cause random faulire with bfloat16 <br> **Known issues** <br> Managed memory is not currently supported for clique-based kernels |
-| | |
-| **hipCUB** | **Fixed** <br> Added missing includes to hipcub.hpp <br> **Added** <br> Bfloat16 support to test cases (device\_reduce & device\_radix\_sort) <br> Device merge sort <br> Block merge sort <br> API update to CUB 1.14.0 <br> **Changed** <br> The SetupNVCC.cmake automatic target selector select all of the capabalities of all available card for NVIDIA backend. <br> |
-| | |
-| **rocPRIM** | **Fixed** <br> Enable bfloat16 tests and reduce threshold for bfloat16 <br> Fix device scan limit\_size feature <br> Non-optimized builds no longer trigger local memory limit errors <br> **Added** <br> Scan size limit feature <br> Reduce size limit feature <br> Transform size limit feature <br> Add block\_load\_striped and block\_store\_striped <br> Add gather\_to\_blocked to gather values from other threads into a blocked arrangement <br> The block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel config <br> Block sort step supports multiple items per thread <br> **Changed** <br> size\_limit for scan, reduce and transform can now be set in the config struct instead of a parameter <br> Device\_scan and device\_segmented\_scan: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output). <br> low-res input with high-res output (e.g. float input, double output) <br> Revert old Fiji workaround, because they solved the issue at compiler side <br> Update README cmake minimum version number <br> Block sort support multiple items per thread <br> Currently only powers of two block sizes, and items per threads are supported and only for full blocks <br> Bumped the minimum required version of CMake to 3.16 <br> **Known issues** <br> Unit tests may soft hang on MI200 when running in hipMallocManaged mode. <br> device\_segmented\_radix\_sort, device\_scan unit tests failing for HIP on Windows <br> ReduceEmptyInput cause random faulire with bfloat16 |
+| **rocPRIM** | **Fixed** <ul><li>Enable bfloat16 tests and reduce threshold for bfloat16</li><li>Fix device scan limit\_size feature</li><li>Non-optimized builds no longer trigger local memory limit errors</li></ul> **Added** <ul><li>Scan size limit feature</li><li>Reduce size limit feature</li><li>Transform size limit feature</li><li>Add block\_load\_striped and block\_store\_striped</li><li>Add gather\_to\_blocked to gather values from other threads into a blocked arrangement</li><li>The block sizes for device merge sorts initial block sort and its merge steps are now separate in its kernel config (the block sort step supports multiple items per thread)</li></ul> **Changed** <ul><li>size\_limit for scan, reduce and transform can now be set in the config struct instead of a parameter</li><li>device\_scan and device\_segmented\_scan: inclusive\_scan now uses the input-type as accumulator-type, exclusive\_scan uses initial-value-type. This particularly changes behaviour of small-size input types with large-size output types (e.g. short input, int output) and low-res input with high-res output (e.g. float input, double output)</li><li>Revert old Fiji workaround, because the issue was solved at compiler side</li><li>Update README cmake minimum version number</li><li>Block sort support multiple items per thread. Currently only powers of two block sizes, and items per threads are supported and only for full blocks</li><li>Bumped the minimum required version of CMake to 3.16</li></ul> **Known issues** <ul><li>Unit tests may soft hang on MI200 when running in hipMallocManaged mode.</li><li>device\_segmented\_radix\_sort, device\_scan unit tests failing for HIP on WindowsReduceEmptyInput cause random failure with bfloat16</li><li>Managed memory is not currently supported for clique-based kernels</li></ul> |
 
 ## System Management Interface
 
@@ -296,40 +274,30 @@ The following new environment variable is added in this release:
 
 This feature lists GPU events as they occur in real-time and can be used with _kfdtest_ to produce _vm\_fault_ events for testing.
 
-The command can be called with either &quot; **-e**&quot; or &quot; **--showevents**&quot; like this:
+The command can be called with either &quot; `-e` or `--showevents` like this:
 
-```
+    -e [EVENT [EVENT ...]], --showevents [EVENT [EVENT ...]]  Show event list
 
-  **-e** [EVENT [EVENT ...]], **--showevents** [EVENT [EVENT ...]]  Show event list
-  
-```
-
-Where &quot;EVENT&quot; is any list combination of &#39; **VM\_FAULT**&#39;, &#39; **THERMAL\_THROTTLE**&#39;, or &#39; **GPU\_RESET**&#39; and is NOT case sensitive.
+Where `EVENT` is any list combination of `VM_FAULT`, `THERMAL_THROTTLE`, or `GPU_RESET` and is NOT case sensitive.
 
 **Note:** If no event arguments are passed, all events will be watched by default.
 
 #### CLI Commands
 
 ```
+$ rocm-smi --showevents vm_fault thermal_throttle gpu_reset
 
-./rocm-smi --showevents vm\_fault thermal\_throttle gpu\_reset
+======================= ROCm System Management Interface =======================
+================================= Show Events ==================================
+press 'q' or 'ctrl + c' to quit
+DEVICE		TIME		TYPE		DESCRIPTION	
 
-=========== ROCm System Management Interface ======================
-
-========================== Show Events ============================
-
-press &#39;q&#39; or &#39;ctrl + c&#39; to quit
-
-DEVICE          TIME            TYPE            DESCRIPTION
-
-========================= End of ROCm SMI Log =====================
-
-\*run kfdtest in another window to test for vm\_fault events
-
-
+============================= End of ROCm SMI Log ==============================
 ```
 
-**Note:** Unlike other rocm-smi CLI commands, this command does not quit unless specified by the user. Users may press either &#39; **q**&#39; or &#39; **ctrl + c**&#39; to quit.
+(Run kfdtest in another window to test for vm\_fault events.)
+
+**Note:** Unlike other rocm-smi CLI commands, this command does not quit unless specified by the user. Users may press either `q` or `ctrl + c` to quit.
 
 ### Display XGMI Bandwidth Between Nodes
 
@@ -338,57 +306,46 @@ The _rsmi\_minmax\_bandwidth\_get_ API reads the HW Topology file and displays b
 The Command Line Interface (CLI) command can be called as follows:
 
 ```
+$ rocm-smi --shownodesbw
 
-./rocm-smi --shownodesbw
+======================= ROCm System Management Interface =======================
+================================== Bandwidth ===================================
+GPU0 GPU1 GPU2 GPU3 GPU4 GPU5 GPU6 GPU7
+GPU0 N/A 50000-200000 50000-50000 0-0 0-0 0-0 50000-100000 0-0
+GPU1 50000-200000 N/A 0-0 50000-50000 0-0 50000-50000 0-0 0-0
+GPU2 50000-50000 0-0 N/A 50000-200000 50000-100000 0-0 0-0 0-0
+GPU3 0-0 50000-50000 50000-200000 N/A 0-0 0-0 0-0 50000-50000
+GPU4 0-0 0-0 50000-100000 0-0 N/A 50000-200000 50000-50000 0-0
+GPU5 0-0 50000-50000 0-0 0-0 50000-200000 N/A 0-0 50000-50000
+GPU6 50000-100000 0-0 0-0 0-0 50000-50000 0-0 N/A 50000-200000
+GPU7 0-0 0-0 0-0 50000-50000 0-0 50000-50000 50000-200000 N/A
+Format: min-max; Units: mps
+============================= End of ROCm SMI Log ==============================
+```
 
-CLI ---shownodesbw
+The sample output above shows the maximum theoretical xgmi bandwidth between 2 numa nodes,
 
-usage- We show maximum theoretical xgmi bandwidth between 2 numa nodes
-
-sample output-
-
-================= ROCm System Management Interface ================
- ================= Bandwidth ===================================
- GPU0 GPU1 GPU2 GPU3 GPU4 GPU5 GPU6 GPU7
- GPU0 N/A 50000-200000 50000-50000 0-0 0-0 0-0 50000-100000 0-0
- GPU1 50000-200000 N/A 0-0 50000-50000 0-0 50000-50000 0-0 0-0
- GPU2 50000-50000 0-0 N/A 50000-200000 50000-100000 0-0 0-0 0-0
- GPU3 0-0 50000-50000 50000-200000 N/A 0-0 0-0 0-0 50000-50000
- GPU4 0-0 0-0 50000-100000 0-0 N/A 50000-200000 50000-50000 0-0
- GPU5 0-0 50000-50000 0-0 0-0 50000-200000 N/A 0-0 50000-50000
- GPU6 50000-100000 0-0 0-0 0-0 50000-50000 0-0 N/A 50000-200000
- GPU7 0-0 0-0 0-0 50000-50000 0-0 50000-50000 50000-200000 N/A
- Format: min-max; Units: mps
- 
- ```
-
-**Note:**&quot;0-0&quot; min-max bandwidth indicates devices are not connected directly.
+**Note:** "0-0" min-max bandwidth indicates devices are not connected directly.
 
 ### P2P Connection Status
 
-The _rsmi\_is\_p2p\_accessible_ API returns &quot;True&quot; if P2P can be implemented between two nodes, and returns &quot;False&quot; if P2P cannot be implemented between the two nodes.
+The _rsmi\_is\_p2p\_accessible_ API returns "True" if P2P can be implemented between two nodes, and returns "False" if P2P cannot be implemented between the two nodes.
 
 The Command Line Interface command can be called as follows:
 
-```
-
-./rocm-smi –showtopoaccess
+    rocm-smi --showtopoaccess
 
 Sample Output:
 
-./rocm-smi --showtopoaccess
-
-====================== ROCm System Management Interface =======================
-
-==================== Link accessibility between two GPUs ======================
-
+```
+$ rocm-smi --showtopoaccess
+======================= ROCm System Management Interface =======================
+===================== Link accessibility between two GPUs ======================
 GPU0 GPU1
-
 GPU0 True True
-
 GPU1 True True
-
-============================= End of ROCm SMI Log ============================
+============================= End of ROCm SMI Log ==============================
+```
 
 # Breaking Changes
 
@@ -398,390 +355,196 @@ Re-ordering of the enumerated type in hip\_runtime\_api.h to better match NV.  S
 
 ROCm software will be affected if any of the defined enums listed below are used in the code.  Applications built with ROCm v5.0 enumerated types will work with a ROCm 4.5.2 driver. However, an undefined behavior error will occur with a ROCm v4.5.2 application that uses these enumerated types with a ROCm 5.0 runtime.
 
-typedef enum hipDeviceAttribute\_t {
-
-- hipDeviceAttributeMaxThreadsPerBlock, ///\&lt; Maximum number of threads per block.
-
-- hipDeviceAttributeMaxBlockDimX, ///\&lt; Maximum x-dimension of a block.
-
-- hipDeviceAttributeMaxBlockDimY, ///\&lt; Maximum y-dimension of a block.
-
-- hipDeviceAttributeMaxBlockDimZ, ///\&lt; Maximum z-dimension of a block.
-
-- hipDeviceAttributeMaxGridDimX, ///\&lt; Maximum x-dimension of a grid.
-
-- hipDeviceAttributeMaxGridDimY, ///\&lt; Maximum y-dimension of a grid.
-
-- hipDeviceAttributeMaxGridDimZ, ///\&lt; Maximum z-dimension of a grid.
-
-- hipDeviceAttributeMaxSharedMemoryPerBlock, ///\&lt; Maximum shared memory available per block in
-
-- ///\&lt; bytes.
-
-- hipDeviceAttributeTotalConstantMemory, ///\&lt; Constant memory size in bytes.
-
-- hipDeviceAttributeWarpSize, ///\&lt; Warp size in threads.
-
-- hipDeviceAttributeMaxRegistersPerBlock, ///\&lt; Maximum number of 32-bit registers available to a
-
-- ///\&lt; thread block. This number is shared by all thread
-
-- ///\&lt; blocks simultaneously resident on a
-
-- ///\&lt; multiprocessor.
-
-- hipDeviceAttributeClockRate, ///\&lt; Peak clock frequency in kilohertz.
-
-- hipDeviceAttributeMemoryClockRate, ///\&lt; Peak memory clock frequency in kilohertz.
-
-- hipDeviceAttributeMemoryBusWidth, ///\&lt; Global memory bus width in bits.
-
-- hipDeviceAttributeMultiprocessorCount, ///\&lt; Number of multiprocessors on the device.
-
-- hipDeviceAttributeComputeMode, ///\&lt; Compute mode that device is currently in.
-
-- hipDeviceAttributeL2CacheSize, ///\&lt; Size of L2 cache in bytes. 0 if the device doesn&#39;t have L2
-
-- ///\&lt; cache.
-
-- hipDeviceAttributeMaxThreadsPerMultiProcessor, ///\&lt; Maximum resident threads per
-
-- ///\&lt; multiprocessor.
-
-- hipDeviceAttributeComputeCapabilityMajor, ///\&lt; Major compute capability version number.
-
-- hipDeviceAttributeComputeCapabilityMinor, ///\&lt; Minor compute capability version number.
-
-- hipDeviceAttributeConcurrentKernels, ///\&lt; Device can possibly execute multiple kernels
-
-- ///\&lt; concurrently.
-
-- hipDeviceAttributePciBusId, ///\&lt; PCI Bus ID.
-
-- hipDeviceAttributePciDeviceId, ///\&lt; PCI Device ID.
-
-- hipDeviceAttributeMaxSharedMemoryPerMultiprocessor, ///\&lt; Maximum Shared Memory Per
-
-- ///\&lt; Multiprocessor.
-
-- hipDeviceAttributeIsMultiGpuBoard, ///\&lt; Multiple GPU devices.
-
-- hipDeviceAttributeIntegrated, ///\&lt; iGPU
-
-- hipDeviceAttributeCooperativeLaunch, ///\&lt; Support cooperative launch
-
-- hipDeviceAttributeCooperativeMultiDeviceLaunch, ///\&lt; Support cooperative launch on multiple devices
-
-- hipDeviceAttributeMaxTexture1DWidth, ///\&lt; Maximum number of elements in 1D images
-
-- hipDeviceAttributeMaxTexture2DWidth, ///\&lt; Maximum dimension width of 2D images in image elements
-
-- hipDeviceAttributeMaxTexture2DHeight, ///\&lt; Maximum dimension height of 2D images in image elements
-
-- hipDeviceAttributeMaxTexture3DWidth, ///\&lt; Maximum dimension width of 3D images in image elements
-
-- hipDeviceAttributeMaxTexture3DHeight, ///\&lt; Maximum dimensions height of 3D images in image elements
-
-- hipDeviceAttributeMaxTexture3DDepth, ///\&lt; Maximum dimensions depth of 3D images in image elements
-
-+ hipDeviceAttributeCudaCompatibleBegin = 0,
-
-- hipDeviceAttributeHdpMemFlushCntl, ///\&lt; Address of the HDP\_MEM\_COHERENCY\_FLUSH\_CNTL register
-
-- hipDeviceAttributeHdpRegFlushCntl, ///\&lt; Address of the HDP\_REG\_COHERENCY\_FLUSH\_CNTL register
-
-+ hipDeviceAttributeEccEnabled = hipDeviceAttributeCudaCompatibleBegin, ///\&lt; Whether ECC support is enabled.
-
-+ hipDeviceAttributeAccessPolicyMaxWindowSize, ///\&lt; Cuda only. The maximum size of the window policy in bytes.
-
-+ hipDeviceAttributeAsyncEngineCount, ///\&lt; Cuda only. Asynchronous engines number.
-
-+ hipDeviceAttributeCanMapHostMemory, ///\&lt; Whether host memory can be mapped into device address space
-
-+ hipDeviceAttributeCanUseHostPointerForRegisteredMem,///\&lt; Cuda only. Device can access host registered memory
-
-+ ///\&lt; at the same virtual address as the CPU
-
-+ hipDeviceAttributeClockRate, ///\&lt; Peak clock frequency in kilohertz.
-
-+ hipDeviceAttributeComputeMode, ///\&lt; Compute mode that device is currently in.
-
-+ hipDeviceAttributeComputePreemptionSupported, ///\&lt; Cuda only. Device supports Compute Preemption.
-
-+ hipDeviceAttributeConcurrentKernels, ///\&lt; Device can possibly execute multiple kernels concurrently.
-
-+ hipDeviceAttributeConcurrentManagedAccess, ///\&lt; Device can coherently access managed memory concurrently with the CPU
-
-+ hipDeviceAttributeCooperativeLaunch, ///\&lt; Support cooperative launch
-
-+ hipDeviceAttributeCooperativeMultiDeviceLaunch, ///\&lt; Support cooperative launch on multiple devices
-
-+ hipDeviceAttributeDeviceOverlap, ///\&lt; Cuda only. Device can concurrently copy memory and execute a kernel.
-
-+ ///\&lt; Deprecated. Use instead asyncEngineCount.
-
-+ hipDeviceAttributeDirectManagedMemAccessFromHost, ///\&lt; Host can directly access managed memory on
-
-+ ///\&lt; the device without migration
-
-+ hipDeviceAttributeGlobalL1CacheSupported, ///\&lt; Cuda only. Device supports caching globals in L1
-
-+ hipDeviceAttributeHostNativeAtomicSupported, ///\&lt; Cuda only. Link between the device and the host supports native atomic operations
-
-+ hipDeviceAttributeIntegrated, ///\&lt; Device is integrated GPU
-
-+ hipDeviceAttributeIsMultiGpuBoard, ///\&lt; Multiple GPU devices.
-
-+ hipDeviceAttributeKernelExecTimeout, ///\&lt; Run time limit for kernels executed on the device
-
-+ hipDeviceAttributeL2CacheSize, ///\&lt; Size of L2 cache in bytes. 0 if the device doesn&#39;t have L2 cache.
-
-+ hipDeviceAttributeLocalL1CacheSupported, ///\&lt; caching locals in L1 is supported
-
-+ hipDeviceAttributeLuid, ///\&lt; Cuda only. 8-byte locally unique identifier in 8 bytes. Undefined on TCC and non-Windows platforms
-
-+ hipDeviceAttributeLuidDeviceNodeMask, ///\&lt; Cuda only. Luid device node mask. Undefined on TCC and non-Windows platforms
-
-+ hipDeviceAttributeComputeCapabilityMajor, ///\&lt; Major compute capability version number.
-
-+ hipDeviceAttributeManagedMemory, ///\&lt; Device supports allocating managed memory on this system
-
-+ hipDeviceAttributeMaxBlocksPerMultiProcessor, ///\&lt; Cuda only. Max block size per multiprocessor
-
-+ hipDeviceAttributeMaxBlockDimX, ///\&lt; Max block size in width.
-
-+ hipDeviceAttributeMaxBlockDimY, ///\&lt; Max block size in height.
-
-+ hipDeviceAttributeMaxBlockDimZ, ///\&lt; Max block size in depth.
-
-+ hipDeviceAttributeMaxGridDimX, ///\&lt; Max grid size in width.
-
-+ hipDeviceAttributeMaxGridDimY, ///\&lt; Max grid size in height.
-
-+ hipDeviceAttributeMaxGridDimZ, ///\&lt; Max grid size in depth.
-
-+ hipDeviceAttributeMaxSurface1D, ///\&lt; Maximum size of 1D surface.
-
-+ hipDeviceAttributeMaxSurface1DLayered, ///\&lt; Cuda only. Maximum dimensions of 1D layered surface.
-
-+ hipDeviceAttributeMaxSurface2D, ///\&lt; Maximum dimension (width, height) of 2D surface.
-
-+ hipDeviceAttributeMaxSurface2DLayered, ///\&lt; Cuda only. Maximum dimensions of 2D layered surface.
-
-+ hipDeviceAttributeMaxSurface3D, ///\&lt; Maximum dimension (width, height, depth) of 3D surface.
-
-+ hipDeviceAttributeMaxSurfaceCubemap, ///\&lt; Cuda only. Maximum dimensions of Cubemap surface.
-
-+ hipDeviceAttributeMaxSurfaceCubemapLayered, ///\&lt; Cuda only. Maximum dimension of Cubemap layered surface.
-
-+ hipDeviceAttributeMaxTexture1DWidth, ///\&lt; Maximum size of 1D texture.
-
-+ hipDeviceAttributeMaxTexture1DLayered, ///\&lt; Cuda only. Maximum dimensions of 1D layered texture.
-
-+ hipDeviceAttributeMaxTexture1DLinear, ///\&lt; Maximum number of elements allocatable in a 1D linear texture.
-
-+ ///\&lt; Use cudaDeviceGetTexture1DLinearMaxWidth() instead on Cuda.
-
-+ hipDeviceAttributeMaxTexture1DMipmap, ///\&lt; Cuda only. Maximum size of 1D mipmapped texture.
-
-+ hipDeviceAttributeMaxTexture2DWidth, ///\&lt; Maximum dimension width of 2D texture.
-
-+ hipDeviceAttributeMaxTexture2DHeight, ///\&lt; Maximum dimension hight of 2D texture.
-
-+ hipDeviceAttributeMaxTexture2DGather, ///\&lt; Cuda only. Maximum dimensions of 2D texture if gather operations performed.
-
-+ hipDeviceAttributeMaxTexture2DLayered, ///\&lt; Cuda only. Maximum dimensions of 2D layered texture.
-
-+ hipDeviceAttributeMaxTexture2DLinear, ///\&lt; Cuda only. Maximum dimensions (width, height, pitch) of 2D textures bound to pitched memory.
-
-+ hipDeviceAttributeMaxTexture2DMipmap, ///\&lt; Cuda only. Maximum dimensions of 2D mipmapped texture.
-
-+ hipDeviceAttributeMaxTexture3DWidth, ///\&lt; Maximum dimension width of 3D texture.
-
-+ hipDeviceAttributeMaxTexture3DHeight, ///\&lt; Maximum dimension height of 3D texture.
-
-+ hipDeviceAttributeMaxTexture3DDepth, ///\&lt; Maximum dimension depth of 3D texture.
-
-+ hipDeviceAttributeMaxTexture3DAlt, ///\&lt; Cuda only. Maximum dimensions of alternate 3D texture.
-
-+ hipDeviceAttributeMaxTextureCubemap, ///\&lt; Cuda only. Maximum dimensions of Cubemap texture
-
-+ hipDeviceAttributeMaxTextureCubemapLayered, ///\&lt; Cuda only. Maximum dimensions of Cubemap layered texture.
-
-+ hipDeviceAttributeMaxThreadsDim, ///\&lt; Maximum dimension of a block
-
-+ hipDeviceAttributeMaxThreadsPerBlock, ///\&lt; Maximum number of threads per block.
-
-+ hipDeviceAttributeMaxThreadsPerMultiProcessor, ///\&lt; Maximum resident threads per multiprocessor.
-
-+ hipDeviceAttributeMaxPitch, ///\&lt; Maximum pitch in bytes allowed by memory copies
-
-+ hipDeviceAttributeMemoryBusWidth, ///\&lt; Global memory bus width in bits.
-
-+ hipDeviceAttributeMemoryClockRate, ///\&lt; Peak memory clock frequency in kilohertz.
-
-+ hipDeviceAttributeComputeCapabilityMinor, ///\&lt; Minor compute capability version number.
-
-+ hipDeviceAttributeMultiGpuBoardGroupID, ///\&lt; Cuda only. Unique ID of device group on the same multi-GPU board
-
-+ hipDeviceAttributeMultiprocessorCount, ///\&lt; Number of multiprocessors on the device.
-
-+ hipDeviceAttributeName, ///\&lt; Device name.
-
-+ hipDeviceAttributePageableMemoryAccess, ///\&lt; Device supports coherently accessing pageable memory
-
-+ ///\&lt; without calling hipHostRegister on it
-
-+ hipDeviceAttributePageableMemoryAccessUsesHostPageTables, ///\&lt; Device accesses pageable memory via the host&#39;s page tables
-
-+ hipDeviceAttributePciBusId, ///\&lt; PCI Bus ID.
-
-+ hipDeviceAttributePciDeviceId, ///\&lt; PCI Device ID.
-
-+ hipDeviceAttributePciDomainID, ///\&lt; PCI Domain ID.
-
-+ hipDeviceAttributePersistingL2CacheMaxSize, ///\&lt; Cuda11 only. Maximum l2 persisting lines capacity in bytes
-
-+ hipDeviceAttributeMaxRegistersPerBlock, ///\&lt; 32-bit registers available to a thread block. This number is shared
-
-+ ///\&lt; by all thread blocks simultaneously resident on a multiprocessor.
-
-+ hipDeviceAttributeMaxRegistersPerMultiprocessor, ///\&lt; 32-bit registers available per block.
-
-+ hipDeviceAttributeReservedSharedMemPerBlock, ///\&lt; Cuda11 only. Shared memory reserved by CUDA driver per block.
-
-+ hipDeviceAttributeMaxSharedMemoryPerBlock, ///\&lt; Maximum shared memory available per block in bytes.
-
-+ hipDeviceAttributeSharedMemPerBlockOptin, ///\&lt; Cuda only. Maximum shared memory per block usable by special opt in.
-
-+ hipDeviceAttributeSharedMemPerMultiprocessor, ///\&lt; Cuda only. Shared memory available per multiprocessor.
-
-+ hipDeviceAttributeSingleToDoublePrecisionPerfRatio, ///\&lt; Cuda only. Performance ratio of single precision to double precision.
-
-+ hipDeviceAttributeStreamPrioritiesSupported, ///\&lt; Cuda only. Whether to support stream priorities.
-
-+ hipDeviceAttributeSurfaceAlignment, ///\&lt; Cuda only. Alignment requirement for surfaces
-
-+ hipDeviceAttributeTccDriver, ///\&lt; Cuda only. Whether device is a Tesla device using TCC driver
-
-+ hipDeviceAttributeTextureAlignment, ///\&lt; Alignment requirement for textures
-
-+ hipDeviceAttributeTexturePitchAlignment, ///\&lt; Pitch alignment requirement for 2D texture references bound to pitched memory;
-
-+ hipDeviceAttributeTotalConstantMemory, ///\&lt; Constant memory size in bytes.
-
-+ hipDeviceAttributeTotalGlobalMem, ///\&lt; Global memory available on devicice.
-
-+ hipDeviceAttributeUnifiedAddressing, ///\&lt; Cuda only. An unified address space shared with the host.
-
-+ hipDeviceAttributeUuid, ///\&lt; Cuda only. Unique ID in 16 byte.
-
-+ hipDeviceAttributeWarpSize, ///\&lt; Warp size in threads.
-
-- hipDeviceAttributeMaxPitch, ///\&lt; Maximum pitch in bytes allowed by memory copies
-
-- hipDeviceAttributeTextureAlignment, ///\&lt;Alignment requirement for textures
-
-- hipDeviceAttributeTexturePitchAlignment, ///\&lt;Pitch alignment requirement for 2D texture references bound to pitched memory;
-
-- hipDeviceAttributeKernelExecTimeout, ///\&lt;Run time limit for kernels executed on the device
-
-- hipDeviceAttributeCanMapHostMemory, ///\&lt;Device can map host memory into device address space
-
-- hipDeviceAttributeEccEnabled, ///\&lt;Device has ECC support enabled
-
-+ hipDeviceAttributeCudaCompatibleEnd = 9999,
-
-+ hipDeviceAttributeAmdSpecificBegin = 10000,
-
-- hipDeviceAttributeCooperativeMultiDeviceUnmatchedFunc, ///\&lt; Supports cooperative launch on multiple
-
-- ///devices with unmatched functions
-
-- hipDeviceAttributeCooperativeMultiDeviceUnmatchedGridDim, ///\&lt; Supports cooperative launch on multiple
-
-- ///devices with unmatched grid dimensions
-
-- hipDeviceAttributeCooperativeMultiDeviceUnmatchedBlockDim, ///\&lt; Supports cooperative launch on multiple
-
-- ///devices with unmatched block dimensions
-
-- hipDeviceAttributeCooperativeMultiDeviceUnmatchedSharedMem, ///\&lt; Supports cooperative launch on multiple
-
-- ///devices with unmatched shared memories
-
-- hipDeviceAttributeAsicRevision, ///\&lt; Revision of the GPU in this device
-
-- hipDeviceAttributeManagedMemory, ///\&lt; Device supports allocating managed memory on this system
-
-- hipDeviceAttributeDirectManagedMemAccessFromHost, ///\&lt; Host can directly access managed memory on
-
-- /// the device without migration
-
-- hipDeviceAttributeConcurrentManagedAccess, ///\&lt; Device can coherently access managed memory
-
-- /// concurrently with the CPU
-
-- hipDeviceAttributePageableMemoryAccess, ///\&lt; Device supports coherently accessing pageable memory
-
-- /// without calling hipHostRegister on it
-
-- hipDeviceAttributePageableMemoryAccessUsesHostPageTables, ///\&lt; Device accesses pageable memory via
-
-- /// the host&#39;s page tables
-
-- hipDeviceAttributeCanUseStreamWaitValue ///\&lt; &#39;1&#39; if Device supports hipStreamWaitValue32() and
-
-- ///\&lt; hipStreamWaitValue64() , &#39;0&#39; otherwise.
-
-+ hipDeviceAttributeClockInstructionRate = hipDeviceAttributeAmdSpecificBegin, ///\&lt; Frequency in khz of the timer used by the device-side &quot;clock\*&quot;
-
-+ hipDeviceAttributeArch, ///\&lt; Device architecture
-
-+ hipDeviceAttributeMaxSharedMemoryPerMultiprocessor, ///\&lt; Maximum Shared Memory PerMultiprocessor.
-
-+ hipDeviceAttributeGcnArch, ///\&lt; Device gcn architecture
-
-+ hipDeviceAttributeGcnArchName, ///\&lt; Device gcnArch name in 256 bytes
-
-+ hipDeviceAttributeHdpMemFlushCntl, ///\&lt; Address of the HDP\_MEM\_COHERENCY\_FLUSH\_CNTL register
-
-+ hipDeviceAttributeHdpRegFlushCntl, ///\&lt; Address of the HDP\_REG\_COHERENCY\_FLUSH\_CNTL register
-
-+ hipDeviceAttributeCooperativeMultiDeviceUnmatchedFunc, ///\&lt; Supports cooperative launch on multiple
-
-+ ///\&lt; devices with unmatched functions
-
-+ hipDeviceAttributeCooperativeMultiDeviceUnmatchedGridDim, ///\&lt; Supports cooperative launch on multiple
-
-+ ///\&lt; devices with unmatched grid dimensions
-
-+ hipDeviceAttributeCooperativeMultiDeviceUnmatchedBlockDim, ///\&lt; Supports cooperative launch on multiple
-
-+ ///\&lt; devices with unmatched block dimensions
-
-+ hipDeviceAttributeCooperativeMultiDeviceUnmatchedSharedMem, ///\&lt; Supports cooperative launch on multiple
-
-+ ///\&lt; devices with unmatched shared memories
-
-+ hipDeviceAttributeIsLargeBar, ///\&lt; Whether it is LargeBar
-
-+ hipDeviceAttributeAsicRevision, ///\&lt; Revision of the GPU in this device
-
-+ hipDeviceAttributeCanUseStreamWaitValue, ///\&lt; &#39;1&#39; if Device supports hipStreamWaitValue32() and
-
-+ ///\&lt; hipStreamWaitValue64() , &#39;0&#39; otherwise.
-
-+ hipDeviceAttributeAmdSpecificEnd = 19999,
-
-+ hipDeviceAttributeVendorSpecificBegin = 20000,
-
-+ // Extended attributes for vendors
-
-} hipDeviceAttribute\_t;
-
-enum hipComputeMode {
-
+```c
+typedef enum hipDeviceAttribute_t {
+  hipDeviceAttributeMaxThreadsPerBlock, // Maximum number of threads per block.
+  hipDeviceAttributeMaxBlockDimX, // Maximum x-dimension of a block.
+  hipDeviceAttributeMaxBlockDimY, // Maximum y-dimension of a block.
+  hipDeviceAttributeMaxBlockDimZ, // Maximum z-dimension of a block.
+  hipDeviceAttributeMaxGridDimX, // Maximum x-dimension of a grid.
+  hipDeviceAttributeMaxGridDimY, // Maximum y-dimension of a grid.
+  hipDeviceAttributeMaxGridDimZ, // Maximum z-dimension of a grid.
+  hipDeviceAttributeMaxSharedMemoryPerBlock, // Maximum shared memory available per block in bytes.
+  hipDeviceAttributeTotalConstantMemory, // Constant memory size in bytes.
+  hipDeviceAttributeWarpSize, // Warp size in threads.
+  hipDeviceAttributeMaxRegistersPerBlock, // Maximum number of 32-bit registers available to a
+                                          // thread block. This number is shared by all thread
+                                          // blocks simultaneously resident on a
+                                          // multiprocessor.
+  hipDeviceAttributeClockRate, // Peak clock frequency in kilohertz.
+  hipDeviceAttributeMemoryClockRate, // Peak memory clock frequency in kilohertz.
+  hipDeviceAttributeMemoryBusWidth, // Global memory bus width in bits.
+  hipDeviceAttributeMultiprocessorCount, // Number of multiprocessors on the device.
+  hipDeviceAttributeComputeMode, // Compute mode that device is currently in.
+  hipDeviceAttributeL2CacheSize, // Size of L2 cache in bytes. 0 if the device doesn't have L2
+                                 // cache.
+  hipDeviceAttributeMaxThreadsPerMultiProcessor, // Maximum resident threads per
+                                                 // multiprocessor.
+  hipDeviceAttributeComputeCapabilityMajor, // Major compute capability version number.
+  hipDeviceAttributeComputeCapabilityMinor, // Minor compute capability version number.
+  hipDeviceAttributeConcurrentKernels, // Device can possibly execute multiple kernels
+                                       // concurrently.
+  hipDeviceAttributePciBusId, // PCI Bus ID.
+  hipDeviceAttributePciDeviceId, // PCI Device ID.
+  hipDeviceAttributeMaxSharedMemoryPerMultiprocessor, // Maximum Shared Memory Per
+                                                      // Multiprocessor.
+  hipDeviceAttributeIsMultiGpuBoard, // Multiple GPU devices.
+  hipDeviceAttributeIntegrated, // iGPU
+  hipDeviceAttributeCooperativeLaunch, // Support cooperative launch
+  hipDeviceAttributeCooperativeMultiDeviceLaunch, // Support cooperative launch on multiple devices
+  hipDeviceAttributeMaxTexture1DWidth, // Maximum number of elements in 1D images
+  hipDeviceAttributeMaxTexture2DWidth, // Maximum dimension width of 2D images in image elements
+  hipDeviceAttributeMaxTexture2DHeight, // Maximum dimension height of 2D images in image elements
+  hipDeviceAttributeMaxTexture3DWidth, // Maximum dimension width of 3D images in image elements
+  hipDeviceAttributeMaxTexture3DHeight, // Maximum dimensions height of 3D images in image elements
+  hipDeviceAttributeMaxTexture3DDepth, // Maximum dimensions depth of 3D images in image elements
+  hipDeviceAttributeCudaCompatibleBegin = 0,
+  hipDeviceAttributeHdpMemFlushCntl, // Address of the HDP\_MEM\_COHERENCY\_FLUSH\_CNTL register
+  hipDeviceAttributeHdpRegFlushCntl, // Address of the HDP\_REG\_COHERENCY\_FLUSH\_CNTL register
+  hipDeviceAttributeEccEnabled = hipDeviceAttributeCudaCompatibleBegin, // Whether ECC support is enabled.
+  hipDeviceAttributeAccessPolicyMaxWindowSize, // Cuda only. The maximum size of the window policy in bytes.
+  hipDeviceAttributeAsyncEngineCount, // Cuda only. Asynchronous engines number.
+  hipDeviceAttributeCanMapHostMemory, // Whether host memory can be mapped into device address space
+  hipDeviceAttributeCanUseHostPointerForRegisteredMem, // Cuda only. Device can access host registered memory
+  // at the same virtual address as the CPU
+  hipDeviceAttributeClockRate, // Peak clock frequency in kilohertz.
+  hipDeviceAttributeComputeMode, // Compute mode that device is currently in.
+  hipDeviceAttributeComputePreemptionSupported, // Cuda only. Device supports Compute Preemption.
+  hipDeviceAttributeConcurrentKernels, // Device can possibly execute multiple kernels concurrently.
+  hipDeviceAttributeConcurrentManagedAccess, // Device can coherently access managed memory concurrently with the CPU
+  hipDeviceAttributeCooperativeLaunch, // Support cooperative launch
+  hipDeviceAttributeCooperativeMultiDeviceLaunch, // Support cooperative launch on multiple devices
+  hipDeviceAttributeDeviceOverlap, // Cuda only. Device can concurrently copy memory and execute a kernel.
+                                   // Deprecated. Use instead asyncEngineCount.
+  hipDeviceAttributeDirectManagedMemAccessFromHost, // Host can directly access managed memory on
+                                                    // the device without migration
+  hipDeviceAttributeGlobalL1CacheSupported, // Cuda only. Device supports caching globals in L1
+  hipDeviceAttributeHostNativeAtomicSupported, // Cuda only. Link between the device and the host supports native atomic operations
+  hipDeviceAttributeIntegrated, // Device is integrated GPU
+  hipDeviceAttributeIsMultiGpuBoard, // Multiple GPU devices.
+  hipDeviceAttributeKernelExecTimeout, // Run time limit for kernels executed on the device
+  hipDeviceAttributeL2CacheSize, // Size of L2 cache in bytes. 0 if the device doesn&#39;t have L2 cache.
+  hipDeviceAttributeLocalL1CacheSupported, // caching locals in L1 is supported
+  hipDeviceAttributeLuid, // Cuda only. 8-byte locally unique identifier in 8 bytes. Undefined on TCC and non-Windows platforms
+  hipDeviceAttributeLuidDeviceNodeMask, // Cuda only. Luid device node mask. Undefined on TCC and non-Windows platforms
+  hipDeviceAttributeComputeCapabilityMajor, // Major compute capability version number.
+  hipDeviceAttributeManagedMemory, // Device supports allocating managed memory on this system
+  hipDeviceAttributeMaxBlocksPerMultiProcessor, // Cuda only. Max block size per multiprocessor
+  hipDeviceAttributeMaxBlockDimX, // Max block size in width.
+  hipDeviceAttributeMaxBlockDimY, // Max block size in height.
+  hipDeviceAttributeMaxBlockDimZ, // Max block size in depth.
+  hipDeviceAttributeMaxGridDimX, // Max grid size in width.
+  hipDeviceAttributeMaxGridDimY, // Max grid size in height.
+  hipDeviceAttributeMaxGridDimZ, // Max grid size in depth.
+  hipDeviceAttributeMaxSurface1D, // Maximum size of 1D surface.
+  hipDeviceAttributeMaxSurface1DLayered, // Cuda only. Maximum dimensions of 1D layered surface.
+  hipDeviceAttributeMaxSurface2D, // Maximum dimension (width, height) of 2D surface.
+  hipDeviceAttributeMaxSurface2DLayered, // Cuda only. Maximum dimensions of 2D layered surface.
+  hipDeviceAttributeMaxSurface3D, // Maximum dimension (width, height, depth) of 3D surface.
+  hipDeviceAttributeMaxSurfaceCubemap, // Cuda only. Maximum dimensions of Cubemap surface.
+  hipDeviceAttributeMaxSurfaceCubemapLayered, // Cuda only. Maximum dimension of Cubemap layered surface.
+  hipDeviceAttributeMaxTexture1DWidth, // Maximum size of 1D texture.
+  hipDeviceAttributeMaxTexture1DLayered, // Cuda only. Maximum dimensions of 1D layered texture.
+  hipDeviceAttributeMaxTexture1DLinear, // Maximum number of elements allocatable in a 1D linear texture.
+                                        // Use cudaDeviceGetTexture1DLinearMaxWidth() instead on Cuda.
+  hipDeviceAttributeMaxTexture1DMipmap, // Cuda only. Maximum size of 1D mipmapped texture.
+  hipDeviceAttributeMaxTexture2DWidth, // Maximum dimension width of 2D texture.
+  hipDeviceAttributeMaxTexture2DHeight, // Maximum dimension hight of 2D texture.
+  hipDeviceAttributeMaxTexture2DGather, // Cuda only. Maximum dimensions of 2D texture if gather operations performed.
+  hipDeviceAttributeMaxTexture2DLayered, // Cuda only. Maximum dimensions of 2D layered texture.
+  hipDeviceAttributeMaxTexture2DLinear, // Cuda only. Maximum dimensions (width, height, pitch) of 2D textures bound to pitched memory.
+  hipDeviceAttributeMaxTexture2DMipmap, // Cuda only. Maximum dimensions of 2D mipmapped texture.
+  hipDeviceAttributeMaxTexture3DWidth, // Maximum dimension width of 3D texture.
+  hipDeviceAttributeMaxTexture3DHeight, // Maximum dimension height of 3D texture.
+  hipDeviceAttributeMaxTexture3DDepth, // Maximum dimension depth of 3D texture.
+  hipDeviceAttributeMaxTexture3DAlt, // Cuda only. Maximum dimensions of alternate 3D texture.
+  hipDeviceAttributeMaxTextureCubemap, // Cuda only. Maximum dimensions of Cubemap texture
+  hipDeviceAttributeMaxTextureCubemapLayered, // Cuda only. Maximum dimensions of Cubemap layered texture.
+  hipDeviceAttributeMaxThreadsDim, // Maximum dimension of a block
+  hipDeviceAttributeMaxThreadsPerBlock, // Maximum number of threads per block.
+  hipDeviceAttributeMaxThreadsPerMultiProcessor, // Maximum resident threads per multiprocessor.
+  hipDeviceAttributeMaxPitch, // Maximum pitch in bytes allowed by memory copies
+  hipDeviceAttributeMemoryBusWidth, // Global memory bus width in bits.
+  hipDeviceAttributeMemoryClockRate, // Peak memory clock frequency in kilohertz.
+  hipDeviceAttributeComputeCapabilityMinor, // Minor compute capability version number.
+  hipDeviceAttributeMultiGpuBoardGroupID, // Cuda only. Unique ID of device group on the same multi-GPU board
+  hipDeviceAttributeMultiprocessorCount, // Number of multiprocessors on the device.
+  hipDeviceAttributeName, // Device name.
+  hipDeviceAttributePageableMemoryAccess, // Device supports coherently accessing pageable memory
+                                          // without calling hipHostRegister on it
+  hipDeviceAttributePageableMemoryAccessUsesHostPageTables, // Device accesses pageable memory via the host&#39;s page tables
+  hipDeviceAttributePciBusId, // PCI Bus ID.
+  hipDeviceAttributePciDeviceId, // PCI Device ID.
+  hipDeviceAttributePciDomainID, // PCI Domain ID.
+  hipDeviceAttributePersistingL2CacheMaxSize, // Cuda11 only. Maximum l2 persisting lines capacity in bytes
+  hipDeviceAttributeMaxRegistersPerBlock, // 32-bit registers available to a thread block. This number is shared
+                                          // by all thread blocks simultaneously resident on a multiprocessor.
+  hipDeviceAttributeMaxRegistersPerMultiprocessor, // 32-bit registers available per block.
+  hipDeviceAttributeReservedSharedMemPerBlock, // Cuda11 only. Shared memory reserved by CUDA driver per block.
+  hipDeviceAttributeMaxSharedMemoryPerBlock, // Maximum shared memory available per block in bytes.
+  hipDeviceAttributeSharedMemPerBlockOptin, // Cuda only. Maximum shared memory per block usable by special opt in.
+  hipDeviceAttributeSharedMemPerMultiprocessor, // Cuda only. Shared memory available per multiprocessor.
+  hipDeviceAttributeSingleToDoublePrecisionPerfRatio, // Cuda only. Performance ratio of single precision to double precision.
+  hipDeviceAttributeStreamPrioritiesSupported, // Cuda only. Whether to support stream priorities.
+  hipDeviceAttributeSurfaceAlignment, // Cuda only. Alignment requirement for surfaces
+  hipDeviceAttributeTccDriver, // Cuda only. Whether device is a Tesla device using TCC driver
+  hipDeviceAttributeTextureAlignment, // Alignment requirement for textures
+  hipDeviceAttributeTexturePitchAlignment, // Pitch alignment requirement for 2D texture references bound to pitched memory;
+  hipDeviceAttributeTotalConstantMemory, // Constant memory size in bytes.
+  hipDeviceAttributeTotalGlobalMem, // Global memory available on devicice.
+  hipDeviceAttributeUnifiedAddressing, // Cuda only. An unified address space shared with the host.
+  hipDeviceAttributeUuid, // Cuda only. Unique ID in 16 byte.
+  hipDeviceAttributeWarpSize, // Warp size in threads.
+  hipDeviceAttributeMaxPitch, // Maximum pitch in bytes allowed by memory copies
+  hipDeviceAttributeTextureAlignment, //Alignment requirement for textures
+  hipDeviceAttributeTexturePitchAlignment, //Pitch alignment requirement for 2D texture references bound to pitched memory;
+  hipDeviceAttributeKernelExecTimeout, //Run time limit for kernels executed on the device
+  hipDeviceAttributeCanMapHostMemory, //Device can map host memory into device address space
+  hipDeviceAttributeEccEnabled, //Device has ECC support enabled
+  hipDeviceAttributeCudaCompatibleEnd = 9999,
+  hipDeviceAttributeAmdSpecificBegin = 10000,
+  hipDeviceAttributeCooperativeMultiDeviceUnmatchedFunc, // Supports cooperative launch on multiple
+                                                         // devices with unmatched functions
+  hipDeviceAttributeCooperativeMultiDeviceUnmatchedGridDim, // Supports cooperative launch on multiple
+                                                            // devices with unmatched grid dimensions
+  hipDeviceAttributeCooperativeMultiDeviceUnmatchedBlockDim, // Supports cooperative launch on multiple
+                                                             // devices with unmatched block dimensions
+  hipDeviceAttributeCooperativeMultiDeviceUnmatchedSharedMem, // Supports cooperative launch on multiple
+                                                              // devices with unmatched shared memories
+  hipDeviceAttributeAsicRevision, // Revision of the GPU in this device
+  hipDeviceAttributeManagedMemory, // Device supports allocating managed memory on this system
+  hipDeviceAttributeDirectManagedMemAccessFromHost, // Host can directly access managed memory on
+                                                    //  the device without migration
+  hipDeviceAttributeConcurrentManagedAccess, // Device can coherently access managed memory
+                                             // concurrently with the CPU
+  hipDeviceAttributePageableMemoryAccess, // Device supports coherently accessing pageable memory
+                                          // without calling hipHostRegister on it
+  hipDeviceAttributePageableMemoryAccessUsesHostPageTables, // Device accesses pageable memory via
+                                                            // the host's page tables
+  hipDeviceAttributeCanUseStreamWaitValue // '1' if Device supports hipStreamWaitValue32() and
+                                          // hipStreamWaitValue64(), '0' otherwise.
+  hipDeviceAttributeClockInstructionRate = hipDeviceAttributeAmdSpecificBegin, // Frequency in khz of the timer used by the device-side "clock"
+  hipDeviceAttributeArch, // Device architecture
+  hipDeviceAttributeMaxSharedMemoryPerMultiprocessor, // Maximum Shared Memory PerMultiprocessor.
+  hipDeviceAttributeGcnArch, // Device gcn architecture
+  hipDeviceAttributeGcnArchName, // Device gcnArch name in 256 bytes
+  hipDeviceAttributeHdpMemFlushCntl, // Address of the HDP_MEM_COHERENCY_FLUSH_CNTL register
+  hipDeviceAttributeHdpRegFlushCntl, // Address of the HDP_REG_COHERENCY_FLUSH_CNTL register
+  hipDeviceAttributeCooperativeMultiDeviceUnmatchedFunc, // Supports cooperative launch on multiple
+                                                         // devices with unmatched functions
+  hipDeviceAttributeCooperativeMultiDeviceUnmatchedGridDim, // Supports cooperative launch on multiple
+                                                            // devices with unmatched grid dimensions
+  hipDeviceAttributeCooperativeMultiDeviceUnmatchedBlockDim, // Supports cooperative launch on multiple
+                                                             // devices with unmatched block dimensions
+  hipDeviceAttributeCooperativeMultiDeviceUnmatchedSharedMem, // Supports cooperative launch on multiple
+                                                              // devices with unmatched shared memories
+  hipDeviceAttributeIsLargeBar, // Whether it is LargeBar
+  hipDeviceAttributeAsicRevision, // Revision of the GPU in this device
+  hipDeviceAttributeCanUseStreamWaitValue, // '1' if Device supports hipStreamWaitValue32() and
+                                           // hipStreamWaitValue64() , '0' otherwise.
+  hipDeviceAttributeAmdSpecificEnd = 19999,
+  hipDeviceAttributeVendorSpecificBegin = 20000,   // Extended attributes for vendors
+} hipDeviceAttribute_t;
 ```
 
 # Known Issues in This Release
@@ -790,7 +553,7 @@ enum hipComputeMode {
 
 The AMDVBFlash tool, used for flashing the VBIOS image to dGPU, does not communicate with the ROM Controller specifically when the driver is present. This is because the driver, as part of its runtime power management feature, puts the dGPU to a sleep state.
 
-As a workaround, users can run _amdgpu.runpm=0_, which temporarily disables the runtime power management feature from the driver and dynamically changes some power control-related sysfs files.
+As a workaround, users can run `amdgpu.runpm=0`, which temporarily disables the runtime power management feature from the driver and dynamically changes some power control-related sysfs files.
 
 ## Issue with START Timestamp in ROCProfiler
 
@@ -807,8 +570,8 @@ This defect is related to the Start timestamp functionality, which incorrectly s
 
 To reproduce the issue,
 
-1. Enable timing using the _--timestamp on_ flag_._
-2. Use the _-i_ option with the input filename that contains the name of the counter(s) to monitor.
+1. Enable timing using the `--timestamp on` flag.
+2. Use the `-i` option with the input filename that contains the name of the counter(s) to monitor.
 3. Run the program.
 4. Check the output result file.
 
@@ -820,7 +583,7 @@ BeginNS is lower than DispatchNS, which is incorrect.
 
 The correct order is:
 
-_Dispatch \&lt; Start \&lt; End \&lt; Complete_
+_Dispatch < Start < End < Complete_
 
 Users cannot use ROCProfiler to measure the time spent on each kernel because of the incorrect timestamp with counter collection enabled.
 
@@ -828,12 +591,12 @@ Users cannot use ROCProfiler to measure the time spent on each kernel because of
 
 Users are recommended to collect kernel execution timestamps without monitoring counters, as follows:
 
-1. ​Enable timing using the _--timestamp on_ flag, and run the application.
-2. Rerun the application using the _-i_ option with the input filename that contains the name of the counter(s) to monitor, and save this to a different output file using the _-o_ flag.
+1. Enable timing using the `--timestamp on` flag, and run the application.
+2. Rerun the application using the `-i` option with the input filename that contains the name of the counter(s) to monitor, and save this to a different output file using the `-o` flag.
 3. Check the output result file from step 1.
 4. The order of timestamps correctly displays as:
 
-_DispathNS \&lt; BeginNS \&lt; EndNS \&lt; CompleteNS_
+_DispathNS < BeginNS < EndNS < CompleteNS_
 
 1. Users can find the values of the collected counters in the output file generated in step 2.
 
@@ -847,63 +610,44 @@ System Management Interface (SMI) and ROCDebugger are not supported in the SRIOV
 
 ## ROCm Libraries Changes – Deprecations and Deprecation Removal
 
-- The hipFFT.h header is now provided only by the hipFFT package.  Up to ROCm 5.0, users would get hipFFT.h in the rocFFT package too.
+- The hipfft.h header is now provided only by the hipfft package.  Up to ROCm 5.0, users would get hipfft.h in the rocfft package too.
 - The GlobalPairwiseAMG class is now entirely removed, users should use the PairwiseAMG class instead.
 - The rocsparse\_spmm signature in 5.0 was changed to match that of rocsparse\_spmm\_ex.  In 5.0, rocsparse\_spmm\_ex is still present, but deprecated.  Signature diff for rocsparse\_spmm
 
-### _rocsparse\_spmm in 5.0_
+### _rocsparse\_spmm_ in 5.0
 
-rocsparse\_status rocsparse\_spmm(rocsparse\_handle            handle,
+```c
+rocsparse_status rocsparse_spmm(rocsparse_handle            handle,
+                                rocsparse_operation         trans_A,
+                                rocsparse_operation         trans_B,
+                                const void*                 alpha,
+                                const rocsparse_spmat_descr mat_A,
+                                const rocsparse_dnmat_descr mat_B,
+                                const void*                 beta,
+                                const rocsparse_dnmat_descr mat_C,
+                                rocsparse_datatype          compute_type,
+                                rocsparse_spmm_alg          alg,
+                                rocsparse_spmm_stage        stage,
+                                size_t*                     buffer_size,
+                                void*                       temp_buffer);
+```
 
-                                rocsparse\_operation         trans\_A,
+### _rocsparse\_spmm_ in 4.0
 
-                                rocsparse\_operation         trans\_B,
-
-                                const void\*                 alpha,
-
-                                const rocsparse\_spmat\_descr mat\_A,
-
-                                const rocsparse\_dnmat\_descr mat\_B,
-
-                                const void\*                 beta,
-
-                                const rocsparse\_dnmat\_descr mat\_C,
-
-                                rocsparse\_datatype          compute\_type,
-
-                                rocsparse\_spmm\_alg          alg,
-
-                                rocsparse\_spmm\_stage        stage,
-
-                                size\_t\*                     buffer\_size,
-
-                                void\*                       temp\_buffer);
-
-### _rocSPARSE\_spmm in 4.0_
-
-rocsparse\_status rocsparse\_spmm(rocsparse\_handle            handle,
-
-                                rocsparse\_operation         trans\_A,
-
-                                rocsparse\_operation         trans\_B,
-
-                                const void\*                 alpha,
-
-                                const rocsparse\_spmat\_descr mat\_A,
-
-                                const rocsparse\_dnmat\_descr mat\_B,
-
-                                const void\*                 beta,
-
-                                const rocsparse\_dnmat\_descr mat\_C,
-
-                                rocsparse\_datatype          compute\_type,
-
-                                rocsparse\_spmm\_alg          alg,
-
-                                size\_t\*                     buffer\_size,
-
-                                void\*                       temp\_buffer);
+```c
+rocsparse_status rocsparse_spmm(rocsparse_handle            handle,
+                                rocsparse_operation         trans_A,
+                                rocsparse_operation         trans_B,
+                                const void*                 alpha,
+                                const rocsparse_spmat_descr mat_A,
+                                const rocsparse_dnmat_descr mat_B,
+                                const void*                 beta,
+                                const rocsparse_dnmat_descr mat_C,
+                                rocsparse_datatype          compute_type,
+                                rocsparse_spmm_alg          alg,
+                                size_t*                     buffer_size,
+                                void*                       temp_buffer);
+```
 
 ## HIP API Deprecations and Warnings
 
@@ -914,9 +658,9 @@ In this release, arithmetic operators of HIP complex and vector types are deprec
 - As alternatives to arithmetic operators of HIP complex types, users can use arithmetic operators of std::complex types.
 - As alternatives to arithmetic operators of HIP vector types, users can use the operators of the native clang vector type associated with the data member of HIP vector types.
 
-During the deprecation, two macros\_HIP\_ENABLE\_COMPLEX\_OPERATORS and\_HIP\_ENABLE\_VECTOR\_OPERATORS are provided to allow users to conditionally enable arithmetic operators of HIP complex or vector types.
+During the deprecation, two macros `__HIP_ENABLE_COMPLEX_OPERATORS` and `__HIP_ENABLE_VECTOR_OPERATORS` are provided to allow users to conditionally enable arithmetic operators of HIP complex or vector types.
 
-Note, the two macros are mutually exclusive and, by default, set to _Off_.
+Note, the two macros are mutually exclusive and, by default, set to off.
 
 The arithmetic operators of HIP complex and vector types will be removed in a future release.
 
@@ -926,7 +670,7 @@ Refer to the HIP API Guide for more information.
 
 In prior ROCm releases, by default, the hipcc/hipconfig Perl scripts were used to identify and set target compiler options, target platform, compiler, and runtime appropriately.
 
-In ROCm v5.0, hipcc.bin and hipconfig.bin have been added as the compiled binary implementations of the hipcc and hipconfig. These new binaries are currently a work-in-progress, considered, and marked as experimental. ROCm plans to fully transition to hipcc.bin and hipconfig.bin in the a future ROCm release. The existing hipcc and hipconfig Perl scripts are renamed to hipcc.pl and hipconfig.pl respectively. New top-level hipcc and hipconfig Perl scripts are created, which can switch between the Perl script or the compiled binary based on the environment variable HIPCC\_USE\_PERL\_SCRIPT.
+In ROCm v5.0, hipcc.bin and hipconfig.bin have been added as the compiled binary implementations of the hipcc and hipconfig. These new binaries are currently a work-in-progress, considered, and marked as experimental. ROCm plans to fully transition to hipcc.bin and hipconfig.bin in the a future ROCm release. The existing hipcc and hipconfig Perl scripts are renamed to hipcc.pl and hipconfig.pl respectively. New top-level hipcc and hipconfig Perl scripts are created, which can switch between the Perl script or the compiled binary based on the environment variable `HIPCC_USE_PERL_SCRIPT`.
 
 In ROCm 5.0, by default, this environment variable is set to use hipcc and hipconfig through the Perl scripts.
 
@@ -1016,9 +760,8 @@ In our experience, many issues stem from trying to use consumer motherboards whi
 not support PCIe atomics.
 
 If you attempt to run ROCm on a system without proper PCIe atomic support, you may see an error in the kernel log (`dmesg`):
-```
-kfd: skipped device 1002:7300, PCI rejects atomics
-```
+
+    kfd: skipped device 1002:7300, PCI rejects atomics
 
 Experimental support for our Hawaii (GFX7) GPUs (Radeon R9 290, R9 390, FirePro W9100, S9150, S9170)
 does not require or take advantage of PCIe Atomics. However, we still recommend that you use a CPU
@@ -1081,10 +824,3 @@ The information presented in this document is for informational purposes only an
 
 ## Third-party Disclaimer
 Third-party content is licensed to you directly by the third party that owns the content and is not licensed to you by AMD.  ALL LINKED THIRD-PARTY CONTENT IS PROVIDED “AS IS” WITHOUT A WARRANTY OF ANY KIND.  USE OF SUCH THIRD-PARTY CONTENT IS DONE AT YOUR SOLE DISCRETION AND UNDER NO CIRCUMSTANCES WILL AMD BE LIABLE TO YOU FOR ANY THIRD-PARTY CONTENT.  YOU ASSUME ALL RISK AND ARE SOLELY RESPONSIBLE FOR ANY DAMAGES THAT MAY ARISE FROM YOUR USE OF THIRD-PARTY CONTENT. 
-
-
-
-
-
-
-
