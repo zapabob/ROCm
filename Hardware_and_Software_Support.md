@@ -20,6 +20,7 @@ ROCm officially supports AMD GPUs that use following chips:
 * CDNA GPUs
 
   - MI100 chips such as on the AMD Instinct™ MI100
+  - MI200 such as on the AMD Instinct™ MI200
 
 
 ROCm is a collection of software ranging from drivers and runtimes to libraries and developer tools.
