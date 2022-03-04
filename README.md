@@ -24,6 +24,8 @@ The resolution includes a compiler change, which emits the required metadata by 
 
 The compatibility matrix in the AMD Deep Learning Guide is updated for ROCm v5.0.2.
 
+For more information and documentation updates, refer to https://docs.amd.com.
+
 
 
 # AMD ROCm™ v5.0.1 Release Notes
