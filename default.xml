@@ -12,7 +12,7 @@ fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
 fetch="https://github.com/GPUOpen-Tools/" />
     <remote name="KhronosGroup"
 fetch="https://github.com/KhronosGroup/" />
-    <default revision="refs/tags/rocm-5.1.1"
+    <default revision="refs/tags/rocm-5.1.3"
      remote="roc-github"
      sync-c="true"
      sync-j="4" />
@@ -61,7 +61,7 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="rocALUTION" remote="rocm-swplat" />
     <project name="MIOpenGEMM" remote="rocm-swplat" />
     <project name="MIOpen" remote="rocm-swplat" />
-    <project name="MIOpenTensile" remote="rocm-swplat" />
+    <project name="MIOpenTensile" remote="rocm-swplat" revision="refs/tags/rocm-5.1.1" />
     <project name="rccl" remote="rocm-swplat" />
     <project name="MIVisionX" remote="gpuopen-libs" />
     <project name="rocThrust" remote="rocm-swplat" />
