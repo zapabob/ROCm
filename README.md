@@ -6,26 +6,28 @@ Beginning ROCm release v5.0, AMD ROCm documentation has a new portal at https://
 
 For documentation prior to ROCm v4.5, you may continue to access https://rocmdocs.amd.com.
 
-# AMD  ROCm™ V5.1.3 Release 
+# AMD ROCm™ Releases
+
+## AMD  ROCm™ V5.1.3 Release
 
 AMD ROCm v5.1.3 is now released. The release documentation is available at https://docs.amd.com.
 
-# AMD  ROCm™ V5.1.1 Release 
+## AMD  ROCm™ V5.1.1 Release
 
 AMD ROCm v5.1.1 is now released. The release documentation is available at https://docs.amd.com.
 
-# AMD  ROCm™ V5.1 Release 
+## AMD  ROCm™ V5.1 Release
 
 AMD ROCm v5.1 is now released. The release documentation is available at https://docs.amd.com.
 
 
-# AMD ROCm™ v5.0.2 Release Notes
+## AMD ROCm™ v5.0.2 Release Notes
 
-## Fixed Defects in This Release
+### Fixed Defects in This Release
 
 The following defects are fixed in the ROCm v5.0.2 release.
 
-### Issue with hostcall Facility in HIP Runtime
+#### Issue with hostcall Facility in HIP Runtime
 
 In ROCm v5.0, when using the “assert()” call in a HIP kernel, the compiler may sometimes fail to emit kernel metadata related to the hostcall facility, which results in incomplete initialization of the hostcall facility in the HIP runtime. This can cause the HIP kernel to crash when it attempts to execute the “assert()” call. 
 The root cause was an incorrect check in the compiler to determine whether the hostcall facility is required by the kernel. This is fixed in the ROCm v5.0.2 release. 
@@ -33,7 +35,7 @@ The resolution includes a compiler change, which emits the required metadata by 
 
 **Note**: This fix may lead to breakage in some OpenMP offload use cases, which use print inside a target region and result in an abort in device code. The issue will be fixed in a future release. 
 
-### Compatibility Matrix Updates to ROCm Deep Learning Guide
+#### Compatibility Matrix Updates to ROCm Deep Learning Guide
 
 The compatibility matrix in the AMD Deep Learning Guide is updated for ROCm v5.0.2.
 
@@ -41,11 +43,11 @@ For more information and documentation updates, refer to https://docs.amd.com.
 
 
 
-# AMD ROCm™ v5.0.1 Release Notes
+## AMD ROCm™ v5.0.1 Release Notes
 
-## Deprecations and Warnings
+### Deprecations and Warnings
 
-### Refactor of HIPCC/HIPCONFIG
+#### Refactor of HIPCC/HIPCONFIG
 
 In prior ROCm releases, by default, the hipcc/hipconfig Perl scripts were used to identify and set target compiler options, target platform, compiler, and runtime appropriately.
 In ROCm v5.0.1, hipcc.bin and hipconfig.bin have been added as the compiled binary implementations of the hipcc and hipconfig. These new binaries are currently a work-in-progress, considered, and marked as experimental. ROCm plans to fully transition to hipcc.bin and hipconfig.bin in the a future ROCm release. The existing hipcc and hipconfig Perl scripts are renamed to hipcc.pl and hipconfig.pl respectively. New top-level hipcc and hipconfig Perl scripts are created, which can switch between the Perl script or the compiled binary based on the environment variable HIPCC_USE_PERL_SCRIPT. 
@@ -53,7 +55,7 @@ In ROCm 5.0.1, by default, this environment variable is set to use hipcc and hip
 Subsequently, Perl scripts will no longer be available in ROCm in a future release.
 
 
-## ROCM DOCUMENTATION UPDATES FOR ROCM 5.0.1
+### ROCM DOCUMENTATION UPDATES FOR ROCM 5.0.1
 
 * ROCm Downloads Guide
 
@@ -65,7 +67,7 @@ For more information, see https://docs.amd.com.
 
 
 
-# AMD ROCm™ v5.0 Release Notes
+## AMD ROCm™ v5.0 Release Notes
 
 
 # ROCm Installation Updates
@@ -348,7 +350,7 @@ $ rocm-smi --showevents vm_fault thermal_throttle gpu_reset
 ======================= ROCm System Management Interface =======================
 ================================= Show Events ==================================
 press 'q' or 'ctrl + c' to quit
-DEVICE		TIME		TYPE		DESCRIPTION	
+DEVICE		TIME		TYPE		DESCRIPTION
 
 ============================= End of ROCm SMI Log ==============================
 ```
