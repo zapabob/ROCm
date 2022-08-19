@@ -13,7 +13,7 @@ Additionally, ROCm releases will return to use of the [ROCm](https://github.com/
 All users of the ROCm v5.2.1 release and below are encouraged to upgrade. Refer to https://docs.amd.com for documentation associated with this release.
 
 
-## Introducing Preview Support for Ubuntu 22.04.5 HWE
+## Introducing Preview Support for Ubuntu 20.04.5 HWE
 
 Refer to the following article for information on the preview support for Ubuntu 20.04.5 HWE.
 
