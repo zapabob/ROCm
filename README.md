@@ -3,6 +3,10 @@ This repository contains the manifest file for ROCm™ releases, changelogs, and
 
 The default.xml file uses the repo Manifest format.
 
+
+# ROCm v5.3 Release Notes
+ROCm v5.3 is now released. For ROCm v5.3 documentation, refer to https://docs.amd.com.
+
 # ROCm v5.2.3 Release Notes
 The ROCm v5.2.3 patch release is now available. The details are listed below. Highlights of this release include enhancements in RCCL version compatibility and minor bug fixes in the HIP Runtime.
 
