@@ -3,6 +3,9 @@ This repository contains the manifest file for ROCm™ releases, changelogs, and
 
 The default.xml file uses the repo Manifest format.
 
+# ROCm v5.4.1 Release Notes
+ROCm v5.4.1 is now released. For ROCm v5.4.1 documentation, refer to https://docs.amd.com.
+
 # ROCm v5.4 Release Notes
 ROCm v5.4 is now released. For ROCm v5.4 documentation, refer to https://docs.amd.com.
 
