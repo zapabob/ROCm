@@ -6,6 +6,16 @@ repositories and the associated commit used to build the current ROCm release.
 
 The default.xml file uses the repo Manifest format.
 
+## How to build documentation via Sphinx
+
+```bash
+cd docs
+
+pip3 install -r .sphinx/requirements.txt
+
+python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
+```
+
 ## ROCm v5.4.3 Release Notes
 
 ROCm v5.4.3 is now released. For ROCm v5.4.3 documentation, refer to
