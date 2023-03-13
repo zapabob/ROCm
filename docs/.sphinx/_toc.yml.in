@@ -98,7 +98,7 @@ subtrees:
               title: Communication Libraries
               subtrees:
                 - entries:
-                  - url: https://rocmdocs.amd.com/projects/RCCL/en/{branch}/
+                  - url: https://rocmdocs.amd.com/projects/rccl/en/{branch}/
                     title: RCCL
             - url: https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html
               title: MIOpen - Machine Intelligence
