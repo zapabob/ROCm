@@ -4,10 +4,6 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-import shutil
-shutil.copy2('../CHANGELOG.md','./')
-shutil.copy2('../RELEASE.md','./')
-
 from rocm_docs import ROCmDocs
 
 docs_core = ROCmDocs("ROCm Documentation")
