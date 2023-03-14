@@ -21,7 +21,6 @@ Docker
 ^^^
 
 - [Guide](deploy/docker)
-- [Dockerhub](https://hub.docker.com/u/rocm/#!)
 
 ::::
 
