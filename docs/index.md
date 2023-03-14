@@ -8,10 +8,11 @@ Welcome to AMD ROCm's documentation!
 ::::{grid-item}
 :::{dropdown} [Release Info](release)
 
-- Release Notes
-- [GPU and OS Support](gpu_os_support)
+- [Release Notes](release)
+- [GPU and OS Support](release/gpu_os_support)
 - [Known Issues](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue)
-- End Of Life and Support Policies
+- [Compatibility](release/compatibility)
+- [Licensing](release/licensing)
 
 :::
 ::::
@@ -21,8 +22,11 @@ Welcome to AMD ROCm's documentation!
 
 - [Quick Start (Linux)](quick_start)
 - [Quick Start (Windows)](hip_sdk_install_win/hip_sdk_install_win)
-- [Advanced (Linux)](deploy/advanced)
 - [Docker](deploy/docker)
+- [Basic Installation Guide](deploy/install)
+- [Multi-ROCm Installation](deploy/multi.md)
+- [Spack](deploy/spack)
+- [Build from source](deploy/build_source)
 
 :::
 ::::
@@ -40,7 +44,7 @@ Welcome to AMD ROCm's documentation!
 - [HIP](reference/hip)
 - [OpenMP](reference/openmp/openmp)
 - [Compilers and Tools](reference/compilers)
-- [Management Tools](reference/tools)
+- [Management Tools](reference/management_tools)
 - [GPU Architecture](reference/gpu_arch)
 
 :::
@@ -50,8 +54,9 @@ Welcome to AMD ROCm's documentation!
 Understand ROCm
 ^^^
 
-- What compiler should I choose?
-- All Articles
+- [ISV Deployment Guide (Windows)](isv_deployment_win)
+- [Deep Learning Guide](understand/deep_learning/deep_learning)
+- [Using CMake](understand/cmake_packages)
 :::
 
 :::{grid-item-card}
@@ -59,7 +64,11 @@ Understand ROCm
 How to Guides
 ^^^
 - [How to Isolate GPUs in Docker?](how_to/docker_gpu_isolation)
-- [Magma Installation for ROCm](how_to/magma_install/magma_install)
+- [Setting up for Deep Learning with ROCm](how_to/deep_learning_rocm)
+  - [Magma Installation](how_to/magma_install/magma_install)
+  - [PyTorch Installation](how_to/pytorch_install/pytorch_install)
+  - [TensorFlow Installation](how_to/tensorflow_install/tensorflow_install)
+- [System Level Debugging](how_to/system_debugging.md)
 
 :::
 
@@ -68,7 +77,9 @@ How to Guides
 Examples
 ^^^
 
-- [rocm-examples](https://github.com/amd/rocm-examples)
+- [ROCm Examples](https://github.com/amd/rocm-examples)
+- [AI/ML/Inferencing](examples/ai_ml_inferencing)
+  - [Inception V3 with PyTorch](examples/inception_casestudy/inception_casestudy)
 
 :::
 ::::
