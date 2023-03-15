@@ -1,4 +1,4 @@
-# AMD ROCm Documentation 
+# AMD ROCm Documentation
 
 Welcome to AMD ROCm's documentation!
 
@@ -63,6 +63,7 @@ Understand ROCm
 :padding: 2
 How to Guides
 ^^^
+
 - [How to Isolate GPUs in Docker?](how_to/docker_gpu_isolation)
 - [Setting up for Deep Learning with ROCm](how_to/deep_learning_rocm)
   - [Magma Installation](how_to/magma_install/magma_install)

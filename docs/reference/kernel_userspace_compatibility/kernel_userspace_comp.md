@@ -1,1 +1,1 @@
-# Kernel Userspace Compatiblity Reference
+# Kernel Userspace Compatibility Reference

@@ -8,7 +8,7 @@ ROCm libraries for BLAS are as follows:
 :::{grid-item-card} hipBLAS
 hipBLAS is a compatiblity layer for GPU accelerated BLAS optimized for AMD GPUs
 via rocBLAS and rocSOLVER. hipBLAS allows for a common interface for other GPU
-BLAS libraries. 
+BLAS libraries.
 
 - [Changelog](https://github.com/ROCmSoftwarePlatform/hipBLAS/blob/develop/CHANGELOG.md)
 - [API Reference Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/rtd/)

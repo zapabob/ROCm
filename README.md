@@ -145,4 +145,4 @@ No notable changes in this release for deployment and management tools.
 ## Older ROCm™ Releases
 
 For release information for older ROCm™ releases, refer to
-[CHANGELOG](CHANGELOG.md).
+[CHANGELOG](./CHANGELOG.md).

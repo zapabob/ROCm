@@ -13,7 +13,7 @@ TODO: provide link to supported GPU guide.
 
 Installation options are listed in Table 1.
 
-| **Table 1. Components for Installation** |                                                                                                                                                                                                        |
+| **Table 1. Components for Installation** |||                                                                                                                                                                                                      |
 |:------------------------:|:----------------:|:------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | **HIP Components**       | **Install Type** | **Display Driver** | **Install Options**                                                                                                                                                            |
 | **HIP SDK Core**         | **Full**         | Adrenalin 22.40    | **Full:** Provides all AMD Software features and controls for gaming, recording, streaming, and tweaking your performance on your graphics hardware.                           |
@@ -35,17 +35,17 @@ The installer will begin to load and detect your system's configuration and
 compatibility, as shown in Figure 2. A completely loaded AMD HIP SDK Installer
 window will appear, as shown in Figure 3.
 
-| ![Setup](../data/hip_sdk_install_win/image/Setup-Icon.png) |
-|:------------------------------:|
-| **Figure 1. Setup Icon**       |
+| ![Setup](../data/hip_sdk_install_win/Setup-Icon.png) |
+|:----------------------------------------------------:|
+| **Figure 1. Setup Icon**                             |
 
-| ![Loading Window](../data/hip_sdk_install_win/image/Loading-Window.png) |
-|:-------------------------------------------:|
-| **Figure 2. AMD HIP SDK Loading Window**    |
+| ![Loading Window](../data/hip_sdk_install_win/Loading-Window.png) |
+|:-----------------------------------------------------------------:|
+| **Figure 2. AMD HIP SDK Loading Window**                          |
 
-| ![Installer Window](../data/hip_sdk_install_win/image/Installer-Window.png) |
-|:-----------------------------------------------:|
-| **Figure 3. AMD HIP SDK Installer Window**      |
+| ![Installer Window](../data/hip_sdk_install_win/Installer-Window.png) |
+|:---------------------------------------------------------------------:|
+| **Figure 3. AMD HIP SDK Installer Window**                            |
 
 ### Installation Selections
 
@@ -76,9 +76,9 @@ in the upper right corner of the installer window, as seen in Figure 3. Figure 4
 demonstrates the installer window once the installation components are all
 deselected.
 
-| ![DeSelect All](../data/hip_sdk_install_win/image/DeSelectAll.png) |
-|:--------------------------------------:|
-| **Figure 4. Deselect All Selection**   |
+| ![DeSelect All](../data/hip_sdk_install_win/DeSelectAll.png) |
+|:------------------------------------------------------------:|
+| **Figure 4. Deselect All Selection**                         |
 
 #### HIP Components
 
@@ -95,25 +95,25 @@ Figures 4 through 8 demonstrate the options available to you when you click
 **Note** You can manually select installation locations for the HIP SDK Core, as
 shown in Figure 5.
 
-| ![HIP SDK Core](../data/hip_sdk_install_win/image/HIP-SDK-Core.png) |
-|:---------------------------------------:|
-| **Figure 5. HIP SDK Core Option**       |
+| ![HIP SDK Core](../data/hip_sdk_install_win/HIP-SDK-Core.png) |
+|:-------------------------------------------------------------:|
+| **Figure 5. HIP SDK Core Option**                             |
 
-| ![HIP Libraries](../data/hip_sdk_install_win/image/HIP-Libraries.png) |
-|:-----------------------------------------:|
-| **Figure 6. HIP Libraries Option**        |
+| ![HIP Libraries](../data/hip_sdk_install_win/HIP-Libraries.png) |
+|:---------------------------------------------------------------:|
+| **Figure 6. HIP Libraries Option**                              |
 
-| ![HIP Runtime Compiler](../data/hip_sdk_install_win/image/HIP-Runtime-Compiler.png) |
-|:-------------------------------------------------------:|
-| **Figure 7. HIP Runtime Compiler Option**               |
+| ![HIP Runtime Compiler](../data/hip_sdk_install_win/HIP-Runtime-Compiler.png) |
+|:-----------------------------------------------------------------------------:|
+| **Figure 7. HIP Runtime Compiler Option**                                     |
 
-| ![HIP Ray Tracing](../data/hip_sdk_install_win/image/HIP-Ray-Tracing.png) |
-|:---------------------------------------------:|
-| **Figure 8. HIP Ray Tracing**                 |
+| ![HIP Ray Tracing](../data/hip_sdk_install_win/HIP-Ray-Tracing.png) |
+|:-------------------------------------------------------------------:|
+| **Figure 8. HIP Ray Tracing**                                       |
 
-| ![BitCode Profiler](../data/hip_sdk_install_win/image/BitCode-Profiler.png) |
-|:-----------------------------------------------:|
-| **Figure 9. BitCode Profiler**                  |
+| ![BitCode Profiler](../data/hip_sdk_install_win/BitCode-Profiler.png) |
+|:---------------------------------------------------------------------:|
+| **Figure 9. BitCode Profiler**                                        |
 
 #### AMD Display Driver
 
@@ -140,26 +140,26 @@ previously installed drivers.
 | **Minimal Install** | Provides only the basic controls for AMD Software features and does not include advanced features such as performance tweaking or recording and capturing content. |
 | **Driver Only**     | Provides no user interface for AMD Software features.                                                                                                              |
 
-| ![Display Driver](image/AMD-Display-Driver.png) |
-|:-----------------------------------------------:|
-| **Figure 10. AMD Display Driver Options**       |
+| ![Display Driver](../data/hip_sdk_install_win/AMD-Display-Driver.png) |
+|:---------------------------------------------------------------------:|
+| **Figure 10. AMD Display Driver Options**                             |
 
 ## Installing Components
 
 Please wait for the installation to complete during as shown in Figure 11.
 
-| ![Installing](../data/hip_sdk_install_win/image/Installation.png) |
-|:-------------------------------------:|
-| **Figure 11. Active Installation**    |
+| ![Installing](../data/hip_sdk_install_win/Installation.png) |
+|:-----------------------------------------------------------:|
+| **Figure 11. Active Installation**                          |
 
 ### Installation Complete
 
 Once the installation is complete, the installer window may prompt you for a
 system restart. Click **Restart** at the lower right corner, shown in Figure 12.
 
-| ![Installation Complete](../data/hip_sdk_install_win/image/Installation-Complete.png) |
-|:---------------------------------------------------------:|
-| **Figure 12. Installation Complete**                      |
+| ![Installation Complete](../data/hip_sdk_install_win/Installation-Complete.png) |
+|:-------------------------------------------------------------------------------:|
+| **Figure 12. Installation Complete**                                            |
 
 ## Uninstallation
 
@@ -174,6 +174,6 @@ uninstallation of the HIP SDK Core and drivers repeat the steps in the sections
 **Note** Selecting **Install** once ROCm has already installed results in its
 uninstallation.
 
-| ![Uninstall](../data/hip_sdk_install_win/image/Uninstallation.png)   |
-|:----------------------------------------:|
-| **Figure 13. HIP SDK Uninstalling**      |
+| ![Uninstall](../data/hip_sdk_install_win/Uninstallation.png) |
+|:------------------------------------------------------------:|
+| **Figure 13. HIP SDK Uninstalling**                          |

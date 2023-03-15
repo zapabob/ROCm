@@ -515,8 +515,8 @@ typedef enum hipDeviceAttribute_t {
   hipDeviceAttributeMaxTexture3DHeight, // Maximum dimensions height of 3D images in image elements
   hipDeviceAttributeMaxTexture3DDepth, // Maximum dimensions depth of 3D images in image elements
   hipDeviceAttributeCudaCompatibleBegin = 0,
-  hipDeviceAttributeHdpMemFlushCntl, // Address of the HDP\_MEM\_COHERENCY\_FLUSH\_CNTL register
-  hipDeviceAttributeHdpRegFlushCntl, // Address of the HDP\_REG\_COHERENCY\_FLUSH\_CNTL register
+  hipDeviceAttributeHdpMemFlushCntl, // Address of the HDP_MEM_COHERENCY_FLUSH_CNTL register
+  hipDeviceAttributeHdpRegFlushCntl, // Address of the HDP_REG_COHERENCY_FLUSH_CNTL register
   hipDeviceAttributeEccEnabled = hipDeviceAttributeCudaCompatibleBegin, // Whether ECC support is enabled.
   hipDeviceAttributeAccessPolicyMaxWindowSize, // Cuda only. The maximum size of the window policy in bytes.
   hipDeviceAttributeAsyncEngineCount, // Cuda only. Asynchronous engines number.

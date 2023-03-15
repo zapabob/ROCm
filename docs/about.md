@@ -28,9 +28,9 @@ upstream project is using a different tool).
 originally used for python. It is now widely used in the Open Source community.
 Originally, sphinx supported rst based documentation. Markdown support is now
 available. ROCm documentation plans to default to markdown for new projects.
-Existing projects using rst are under no obligation to convert to markdown. New projects
-that believe markdown is not suitable should contact the documentation team
-prior to selecting rst.
+Existing projects using rst are under no obligation to convert to markdown. New
+projects that believe markdown is not suitable should contact the documentation
+team prior to selecting rst.
 
 ### Sphinx Theme
 
