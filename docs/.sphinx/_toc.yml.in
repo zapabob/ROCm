@@ -5,31 +5,28 @@ defaults:
   maxdepth: 6
 root: index
 subtrees:
-- entries:
+- caption: Release Info
+  entries:
   - file: release
+  - file: release/gpu_os_support
+  - file: release/licensing
+  - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
+    title: Known Issues
+  - file: release/compatibility
     subtrees:
       - entries:
-          - file: release/gpu_os_support
-          - file: release/licensing
-          - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
-            title: Known Issues
-          - file: release/compatibility
-            subtrees:
-              - entries:
-                - file: reference/framework_compatiblity/framework_compatiblity
-                - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
+        - file: reference/framework_compatiblity/framework_compatiblity
+        - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
 
-- entries:
-  - file: deploy
-    subtrees:
-      - entries:    
-          - file: quick_start
-          - file: hip_sdk_install_win/hip_sdk_install_win
-          - file: deploy/docker
-          - file: deploy/install
-          - file: deploy/multi
-          - file: deploy/spack
-          - file: deploy/build_source
+- caption: Deploy ROCm
+  entries:
+  - file: quick_start
+  - file: hip_sdk_install_win/hip_sdk_install_win
+  - file: deploy/docker
+  - file: deploy/install
+  - file: deploy/multi
+  - file: deploy/spack
+  - file: deploy/build_source
 
 
 - caption: APIs and Reference

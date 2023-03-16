@@ -6,7 +6,7 @@
 
 from rocm_docs import ROCmDocs
 
-docs_core = ROCmDocs("ROCm Documentation")
+docs_core = ROCmDocs("ROCm Docs 5.6.0")
 docs_core.setup()
 
 for sphinx_var in ROCmDocs.SPHINX_VARS:
