@@ -29,7 +29,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 :sync: instinct
 Use Driver Shipped with ROCm
 | GPU               | Architecture    | Product | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows     |
-|:-=---------------:|:---------------:|:-------:|:--------------------------------------------------------------------:|:------------------------------------:|:-----------:|
+|:-----------------:|:---------------:|:-------:|:--------------------------------------------------------------------:|:------------------------------------:|:-----------:|
 | Instinct™ MI250X  | CDNA2           | Full    | gfx90a                                                               | Supported                            | Unsupported |
 | Instinct™ MI250   | CDNA2           | Full    | gfx90a                                                               | Supported                            | Unsupported |
 | Instinct™ MI210   | CDNA2           | Full    | gfx90a                                                               | Supported                            | Unsupported |
