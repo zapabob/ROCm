@@ -5,9 +5,12 @@
 The driver package uses
 [`DKMS`](https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support) to build
 the amdgpu module (driver) for the installed kernels. This requires the linux
-kernel headers and modules to be installed for each.
+kernel headers and modules to be installed for each. Usually these are
+automatically installed with the kernel, but if you have multiple kernel
+versions or you have downloaded the kernel images and not the kernel
+meta-packages then they must be manually installed.
 
-To install these for the currently active kernel run the command corresponding
+To install for the currently active kernel run the command corresponding
 to your distribution.
 ::::{tab-set}
 :::{tab-item} Ubuntu
@@ -21,14 +24,14 @@ sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
 :::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 ```shell
-# TODO
+sudo yum install kernel-headers kernel-devel
 ```
 :::
 
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 ```shell
-# TODO
+sudo zypper install kernel-default-devel
 ```
 :::
 ::::
@@ -41,20 +44,14 @@ sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
 
 ::::{rubric} 1. Download and convert the package signing key
 ::::
-
 ```shell
-# Download the key
-wget https://repo.radeon.com/rocm/rocm.gpg.key
 # Make the directory if it doesn't exist yet.
 # This location is recommended by the distribution maintainers.
-mkdir --parents --mode=0755 /etc/apt/keyrings
-# Convert the signing-key to a full keyring required
-# by apt and store in the keyring directory
-TMPRING="$(mktemp --suffix=.gpg --quiet)"
-gpg --keyring="$TMPRING" --no-default-keyring --import rocm.gpg.key
-gpg --keyring="$TMPRING" --no-default-keyring --export --output /etc/apt/keyrings/rocm.gpg
-# Remove the key and the temporary keyring used for the conversion
-rm -f "$TMPRING" rocm.gpg.key
+sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+# Download the key, convert the signing-key to a full
+# keyring required by apt and store in the keyring directory
+wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | \
+    gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
 ```
 
 ::::{rubric} 2. Add the repositories
@@ -83,7 +80,7 @@ deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/am
 EOF
 # ROCm repository for jammy
 sudo tee /etc/apt/sources.list.d/rocm.list <<'EOF'
-echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian jammy main
+deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian jammy main
 EOF
 ```
 :::
@@ -94,52 +91,138 @@ EOF
 ```shell
 sudo apt update
 ```
-
 :::::
 
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
-TODO
+::::{rubric} 1. Add the repositories
+::::
 
 ::::{tab-set}
-:::{tab-item} RHEL8
-:sync: RHEL8
+:::{tab-item} RHEL 8.6
+:sync: RHEL-8.6
 ```shell
-# TODO
+# Add the amdgpu module repository for RHEL 8.6
+sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/latest/rhel/8.6/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+# Add the rocm repository for RHEL 8
+sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
+[rocm]
+name=rocm
+baseurl=https://repo.radeon.com/rocm/rhel8/latest/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
 ```
 :::
 
-:::{tab-item} RHEL9
-:sync: RHEL9
+:::{tab-item} RHEL 8.7
+:sync: RHEL-8.7
 ```shell
-# TODO
+# Add the amdgpu module repository for RHEL 8.7
+sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/latest/rhel/8.7/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+# Add the rocm repository for RHEL 8
+sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
+[rocm]
+name=rocm
+baseurl=https://repo.radeon.com/rocm/rhel8/latest/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+```
+:::
+
+:::{tab-item} RHEL 9.1
+:sync: RHEL-9.1
+```shell
+# Add the amdgpu module repository for RHEL 9.1
+sudo tee /etc/yum.repos.d/amdgpu.repo <<'EOF'
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/latest/rhel/9.1/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+# Add the rocm repository for RHEL 9
+sudo tee /etc/yum.repos.d/rocm.repo <<'EOF'
+[rocm]
+name=rocm
+baseurl=https://repo.radeon.com/rocm/rhel9/latest/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
 ```
 :::
 ::::
+
+::::{rubric} 2. Clean cached files from enabled repositories
+::::
+
+```shell
+sudo yum clean all
+```
 :::::
 
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 
-TODO
+::::{rubric} 1. Add the repositories
+::::
 
 ::::{tab-set}
-:::{tab-item} SLES15 SP3
-:sync: SLES15-SP3
-```shell
-# TODO
-```
-:::
-
-:::{tab-item} SLES15 SP4
+:::{tab-item} Service Pack 4
 :sync: SLES15-SP4
 ```shell
-# TODO
+# Add the amdgpu module repository for SLES 15.4
+sudo tee /etc/zypp/repos.d/amdgpu.repo <<'EOF'
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/latest/sle/15.4/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+# Add the rocm repository for SLES
+sudo tee /etc/zypp/repos.d/rocm.repo <<'EOF'
+[rocm]
+name=rocm
+baseurl=https://repo.radeon.com/rocm/zyp/zypper
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
 ```
 :::
-
 ::::
+
+::::{rubric} 2. Update the new repository
+::::
+```shell
+sudo zypper ref
+```
+
 :::::
 ::::::
 
@@ -166,7 +249,7 @@ sudo yum install amdgpu-dkms
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 ```shell
-sudo zypper --gpg-auto-import-keys install amdgpu-dkms
+sudo zypper install amdgpu-dkms
 ```
 :::
 
@@ -174,7 +257,7 @@ sudo zypper --gpg-auto-import-keys install amdgpu-dkms
 
 ## Install ROCm Runtimes
 
-Install the `rocm-hip-runtime` metapackage. This contains depedencies for most
+Install the `rocm-hip-libraries` meta-package. This contains dependencies for most
 common ROCm applications.
 
 ::::{tab-set}
@@ -195,7 +278,7 @@ sudo yum install rocm-hip-libraries
 :::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 ```console shell
-sudo zypper --gpg-auto-import-keys install rocm-hip-libraries
+sudo zypper install rocm-hip-libraries
 ```
 :::
 ::::
