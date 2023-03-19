@@ -3,6 +3,8 @@
 ## OS Support
 
 ROCm supports the operating systems listed below.
+:::{table} Supported OSes with validated kernel versions
+:widths: auto
 | OS                 | Validated Kernel   |
 |:------------------:|:------------------:|
 | RHEL 9.1           | `5.14`             |
@@ -10,7 +12,7 @@ ROCm supports the operating systems listed below.
 | SLES 15 SP4        |                    |
 | Ubuntu 20.04.5 LTS | `5.15`             |
 | Ubuntu 22.04.1 LTS | `5.15`, OEM `5.17` |
-
+:::
 ## Virtualization Support
 
 ROCm supports virtualization for select GPUs only as shown below.

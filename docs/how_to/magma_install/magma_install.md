@@ -9,9 +9,14 @@ each framework. Refer to the ROCm Compatible Frameworks Release Notes for each
 framework's most current release notes at
 [/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html](/bundle/ROCm-Compatible-Frameworks-Release-Notes/page/Framework_Release_Notes.html).
 
-| ![Figure 5](../../data/how_to/magma_install/image.005.png)         |
-|:------------------------------------------------------------------:|
-| Figure 5. ROCm Compatible Frameworks Flowchart                     |
+
+```{figure} ../../data/how_to/magma_install/image.005.png
+---
+scale: 100%
+align: center
+---
+ROCm Compatible Frameworks Flowchart
+```
 
 ## PyTorch
 
