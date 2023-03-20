@@ -125,8 +125,14 @@ subtrees:
       title: Management Tools
       subtrees:
         - entries:
-          - url: http://smi
+          - url: https://rocmdocs.amd.com/projects/amdsmi/en/{branch}/
+            title: AMD SMI
+          - url: https://rocmdocs.amd.com/projects/rocmsmi/en/{branch}/
             title: rocmsmi
+          - url: https://rocmdocs.amd.com/projects/rvs/en/{branch}/
+            title: RVS
+          - url: https://rocmdocs.amd.com/projects/rdc/en/{branch}/
+            title: ROCm Datacenter Tool
     - file: reference/gpu_arch
 - caption: Understand ROCm
   entries:
