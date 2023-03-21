@@ -63,7 +63,7 @@ manifest file.
 The additional terms and conditions below apply to your use of ROCm technical
 documentation.
 
-©2022 Advanced Micro Devices, Inc. All rights reserved.
+©2023 Advanced Micro Devices, Inc. All rights reserved.
 
 The information presented in this document is for informational purposes only
 and may contain technical inaccuracies, omissions, and typographical errors. The
