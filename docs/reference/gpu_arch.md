@@ -17,3 +17,17 @@
 - [AMD CDNA Architecture Whitepaper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
 - [AMD Vega Architecture Whitepaper](https://en.wikichip.org/w/images/a/a1/vega-whitepaper.pdf)
 - [AMD RDNA Architecture Whitepaper](https://www.amd.com/system/files/documents/rdna-whitepaper.pdf)
+
+## Architecture Guides
+
+:::::{grid} 1 1 1 1
+:gutter: 1
+
+:::{grid-item-card} AMD Instinct MI200
+This chapter briefly reviews hardware aspects of the AMD Instinct MI250 accelerators and the CDNA™ 2 architecture that is the foundation of these GPUs.
+
+- [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
+- [Whitepaper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
+- [Guide](./gpu_arch/mi250.md)
+
+:::
