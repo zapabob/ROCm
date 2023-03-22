@@ -1,0 +1,14 @@
+
+name: Markdownlint Action
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+    - name: Use markdownlint
+      uses: actionshub/markdownlint@v3.1.3
+      with:
+        filesToIgnoreRegex: "CHANGELOG.md|README.md|docs/packaging_guidelines.md|docs/about.md|docs/quick_start.md|docs/index.md|docs/release/gpu_os_support.md|docs/how_to/magma_install/magma_install.md|docs/reference/gpu_libraries/math.md|docs/reference/rocmcc/rocmcc.md|docs/reference/docker.md|docs/reference/hip.md|docs/hip_sdk_install_win/hip_sdk_install_win.md|docs/all_deploy_options.md"
