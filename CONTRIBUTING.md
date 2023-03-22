@@ -15,13 +15,19 @@ GitHub repository.
 
 ## Supported Formats
 
-Our documentation supports both markdown and rst files. Markdown is encouraged
-over rst due to lower barrier to participation. Sphinx supports the
-[MyST](https://myst-parser.readthedocs.io/en/latest/intro.html) flavor of
-markdown. That is the preferred standard for markdown for ROCm documentation. We
-accept GitHub flavored markdown as well. Please see
+Our documentation includes both markdown and rst files. Markdown is encouraged
+over rst due to the lower barrier to participation. GitHub flavored markdown is preferred
+for all submissions as it will render accurately on our GitHub repositories. For existing documentation, 
+[MyST](https://myst-parser.readthedocs.io/en/latest/intro.html) markdown
+is used to implement certain features unsupported in GitHub markdown. This is 
+not encouraged for new documentation. AMD will transition
+to stricter use of GitHub flavored markdown with a few caveats. ROCm documentation 
+also uses [sphinx-design](https://sphinx-design.readthedocs.io/en/latest/index.html)
+in our markdown and rst files. We also will use breathe syntax for doxygen documentation
+in our markdown files. Other design elements for effective HTML rendering of the documents
+may be added to our markdown files. Please see
 [GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github)'s
-guide on writing and formatting on GitHub as a starting point.
+guide on writing and formatting on GitHub as a starting point. 
 
 ROCm documentation adds additional requirements to markdown and rst based files
 as follows:
@@ -31,10 +37,16 @@ as follows:
 - Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via
 our automated github action on a Pull Request (PR).
 
-## How to submit your change request?
+## Filenames and folder structure
+Please use snake case for file names. Our documentation follows pitchfork for 
+folder structure. All documentation is in /docs except for special files like
+the contributing guide in the / folder. All images used in the documentation are 
+place in the /docs/data folder.
+
+## How do provide feedback for for ROCm documentation?
+There are three standard ways to provide feedback for this repository.
 
 ### Pull Request
-
 All contributions to ROCm documentation should arrive via the
 [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
 targetting the develop branch of the repository. If you are unable to contribute
