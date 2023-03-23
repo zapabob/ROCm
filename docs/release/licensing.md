@@ -1,9 +1,11 @@
 # Licensing Terms
 
-ROCm™ is released by Advanced Micro Devices, Inc. under the open source licenses
-via public GitHub repositories. The following table is a list of ROCm components
-with the links to the license terms. The list is ordered to follow ROCm's
-manifest file.
+ROCm™ is released by Advanced Micro Devices, Inc. and is licensed per component separately.
+The following table is a list of ROCm components with links to their respective license
+terms. These components may include third party components subject to 
+additional licenses. Please review individual repositories for more information.
+The table shows ROCm components, the name of license and link to the license terms. 
+The table is ordered to follow ROCm's manifest file.
 
 | Component                                                                                        | License                                                                                                                    |
 |:------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
@@ -24,6 +26,7 @@ manifest file.
 | [HIPIFY](https://github.com/ROCm-Developer-Tools/HIPIFY/)                                        | [MIT](https://github.com/ROCm-Developer-Tools/HIPIFY/blob/amd-staging/LICENSE.txt)                                         |
 | [HIPCC](https://github.com/ROCm-Developer-Tools/HIPCC/blob/)                                     | [MIT](https://github.com/ROCm-Developer-Tools/HIPCC/blob/develop/LICENSE.txt)                                              |
 | [llvm-project](https://github.com/ROCm-Developer-Tools/llvm-project/)                            | [Apache](https://github.com/ROCm-Developer-Tools/llvm-project/blob/main/LICENSE.TXT)                                       |
+| rocm-llvm-alt                                                                                    | [AMD Proprietary License](https://www.amd.com/en/support/gpu-pro-eula)
 | [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/)                       | [The University of Illinois/NCSA](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/blob/amd-stg-open/LICENSE.TXT)     |
 | [atmi](https://github.com/RadeonOpenCompute/atmi/)                                               | [MIT](https://github.com/RadeonOpenCompute/atmi/blob/master/LICENSE.txt)                                                   |
 | [ROCm-CompilerSupport](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/)               | [The University of Illinois/NCSA](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/blob/amd-stg-open/LICENSE.txt) |
@@ -41,7 +44,7 @@ manifest file.
 | [hipFFT](https://github.com/ROCmSoftwarePlatform/hipFFT/)                                        | [MIT](https://github.com/ROCmSoftwarePlatform/hipFFT/blob/develop/LICENSE.md)                                              |
 | [rocRAND](https://github.com/ROCmSoftwarePlatform/rocRAND/)                                      | [MIT](https://github.com/ROCmSoftwarePlatform/rocRAND/blob/develop/LICENSE.txt)                                            |
 | [rocSPARSE](https://github.com/ROCmSoftwarePlatform/rocSPARSE/)                                  | [MIT](https://github.com/ROCmSoftwarePlatform/rocSPARSE/blob/develop/LICENSE.md)                                           |
-| [rocSOLVER](https://github.com/ROCmSoftwarePlatform/rocSOLVER/)                                  | [MIT](https://github.com/ROCmSoftwarePlatform/rocSOLVER/blob/develop/LICENSE.md)                                           |
+| [rocSOLVER](https://github.com/ROCmSoftwarePlatform/rocSOLVER/)                                  | [BSD-2-Clause](https://github.com/ROCmSoftwarePlatform/rocSOLVER/blob/develop/LICENSE.md)                                           |
 | [hipSOLVER](https://github.com/ROCmSoftwarePlatform/hipSOLVER/)                                  | [MIT](https://github.com/ROCmSoftwarePlatform/hipSOLVER/blob/develop/LICENSE.md)                                           |
 | [hipSPARSE](https://github.com/ROCmSoftwarePlatform/hipSPARSE/)                                  | [MIT](https://github.com/ROCmSoftwarePlatform/hipSPARSE/blob/develop/LICENSE.md)                                           |
 | [rocALUTION](https://github.com/ROCmSoftwarePlatform/rocALUTION/)                                | [MIT](https://github.com/ROCmSoftwarePlatform/rocALUTION/blob/develop/LICENSE.md)                                          |
@@ -59,6 +62,13 @@ manifest file.
 | [aomp](https://github.com/ROCm-Developer-Tools/aomp/)                                            | [Apache 2.0](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/LICENSE)                                           |
 | [aomp-extras](https://github.com/ROCm-Developer-Tools/aomp-extras/)                              | [MIT](https://github.com/ROCm-Developer-Tools/aomp-extras/blob/aomp-dev/LICENSE)                                           |
 | [flang](https://github.com/ROCm-Developer-Tools/flang/)                                          | [Apache 2.0](https://github.com/ROCm-Developer-Tools/flang/blob/master/LICENSE.txt)                                        |
+
+Open sourced ROCm components are released via public GitHub 
+repositories, packages on repo.radeon.com and other distribution channels.
+Proprietary products are only available on repo.radeon.com. Currently, only 
+one component of ROCm, rocm-llvm-alt is governed by a proprietary license.
+Proprietary components are organized in a proprietary subdirectory in the package
+repositories to distinguish from open sourced packages.
 
 The additional terms and conditions below apply to your use of ROCm technical
 documentation.
