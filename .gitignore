@@ -9,3 +9,6 @@ _static/
 _templates/
 _toc.yml
 docBin/
+
+# avoid duplicating contributing.md due to conf.py
+docs/contributing.md

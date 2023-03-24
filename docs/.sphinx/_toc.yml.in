@@ -31,6 +31,7 @@ subtrees:
 
 - caption: APIs and Reference
   entries:
+    - file: reference/all
     - file: reference/hip
       subtrees:
         - entries:
@@ -38,73 +39,83 @@ subtrees:
               url: https://advanced-micro-devices-hip-saad.readthedocs-hosted.com/en/wip-sphinx/
             - title: HIPify - Port Your Code
               url: https://advanced-micro-devices-demo--737.com.readthedocs.build/projects/HIPIFY/en/737/
-            - file: reference/gpu_libraries/math
-              title: Math Libraries
-              subtrees:
-                - entries:
-                  - file: reference/gpu_libraries/linear_algebra
-                    subtrees:
-                    - entries: 
-                      - title: rocBLAS
-                        url: https://rocmdocs.amd.com/projects/rocBLAS/en/{branch}/
-                      - title: hipBLAS
-                        url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
-                      - title: rocWMMA
-                        url: https://rocmdocs.amd.com/projects/rocWMMA/en/{branch}/
-                      - title: rocSPARSE
-                        url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
-                      - title: hipSPARSE
-                        url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
-                      - title: rocALUTION
-                        url: https://rocmdocs.amd.com/projects/rocALUTION/en/{branch}/
-                      - title: rocSOLVER
-                        url: https://rocmdocs.amd.com/projects/rocSOLVER/en/{branch}/
-                      - title: hipSOLVER
-                        url: https://rocmdocs.amd.com/projects/hipSOLVER/en/{branch}/
-                  - file: reference/gpu_libraries/fft
-                    subtrees:
-                    - entries: 
-                      - title: rocFFT
-                        url: https://rocmdocs.amd.com/projects/rocFFT/en/{branch}/
-                      - title: hipFFT
-                        url: https://rocmdocs.amd.com/projects/hipFFT/en/{branch}/
-                  - file: reference/gpu_libraries/rand
-                    subtrees:
-                    - entries: 
-                      - title: rocRAND
-                        url: https://rocmdocs.amd.com/projects/rocRAND/en/{branch}/
-                      - title: hipRAND
-                        url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/
-            - file: reference/gpu_libraries/c++_primitives
-              title: C++ Primitives
-              subtrees:
-                - entries:
-                  - url: https://rocmdocs.amd.com/projects/rocPRIM/en/{branch}/
-                    title: rocPRIM
-                - entries:
-                  - url: https://rocmdocs.amd.com/projects/hipCUB/en/{branch}/
-                    title: hipCUB 
-                - entries:
-                  - url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
-                    title: rocThrust
-            - file: reference/gpu_libraries/communication
-              title: Communication Libraries
-              subtrees:
-                - entries:
-                  - url: https://rocmdocs.amd.com/projects/rccl/en/{branch}/
-                    title: RCCL
-            - url: https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html
-              title: MIOpen - Machine Intelligence
-            - url: https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/
-              title: MIGraphX- Graph Optimization
-            - file: reference/computer_vision
-              subtrees:
-                - entries:
-                  - url: https://rocmdocs.amd.com/projects/MIVisionX/en/{branch}/
-                    title: MIVisionX
-                - entries:
-                  - url: https://rocmdocs.amd.com/projects/rocAL/en/{branch}/
-                    title: rocAL 
+    - file: reference/gpu_libraries/math
+      title: Math Libraries
+      subtrees:
+        - entries:
+          - file: reference/gpu_libraries/linear_algebra
+            subtrees:
+            - entries: 
+              - title: rocBLAS
+                url: https://rocmdocs.amd.com/projects/rocBLAS/en/{branch}/
+              - title: hipBLAS
+                url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
+              - title: hipBLASLt
+                url: https://rocmdocs.amd.com/projects/hipBLASLt/en/{branch}/
+              - title: rocWMMA
+                url: https://rocmdocs.amd.com/projects/rocWMMA/en/{branch}/
+              - title: rocSPARSE
+                url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
+              - title: hipSPARSE
+                url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
+              - title: hipSPARSELt
+                url: https://rocmdocs.amd.com/projects/hipSPARSELt/en/{branch}/
+              - title: rocALUTION
+                url: https://rocmdocs.amd.com/projects/rocALUTION/en/{branch}/
+              - title: rocSOLVER
+                url: https://rocmdocs.amd.com/projects/rocSOLVER/en/{branch}/
+              - title: hipSOLVER
+                url: https://rocmdocs.amd.com/projects/hipSOLVER/en/{branch}/
+          - file: reference/gpu_libraries/fft
+            subtrees:
+            - entries: 
+              - title: rocFFT
+                url: https://rocmdocs.amd.com/projects/rocFFT/en/{branch}/
+              - title: hipFFT
+                url: https://rocmdocs.amd.com/projects/hipFFT/en/{branch}/
+          - file: reference/gpu_libraries/rand
+            subtrees:
+            - entries: 
+              - title: rocRAND
+                url: https://rocmdocs.amd.com/projects/rocRAND/en/{branch}/
+              - title: hipRAND
+                url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/
+    - file: reference/gpu_libraries/c++_primitives
+      title: C++ Primitives
+      subtrees:
+        - entries:
+          - title: rocPRIM
+            url: https://rocmdocs.amd.com/projects/rocPRIM/en/{branch}/
+        - entries:
+          - title: hipCUB 
+            url: https://rocmdocs.amd.com/projects/hipCUB/en/{branch}/
+        - entries:
+          - title: rocThrust
+            url: https://rocmdocs.amd.com/projects/rocThrust/en/{branch}/
+    - file: reference/gpu_libraries/communication
+      title: Communication Libraries
+      subtrees:
+        - entries:
+          - title: RCCL
+            url: https://rocmdocs.amd.com/projects/rccl/en/{branch}/
+    - file: reference/ai_tools
+      title: AI Tools
+      subtrees:
+        - entries:
+          - title: MIOpen - Machine Intelligence
+            url: https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html
+          - title: Composable Kernel
+            url: https://rocmdocs.amd.com/projects/composable_kernel/en/{branch}/
+    - title: MIGraphX - Graph Optimization
+      url: https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/
+    - file: reference/computer_vision
+      subtrees:
+        - entries:
+          - url: https://rocmdocs.amd.com/projects/MIVisionX/en/{branch}/
+            title: MIVisionX
+        - entries:
+          - url: https://rocmdocs.amd.com/projects/rocAL/en/{branch}/
+            title: rocAL 
     - file: reference/openmp/openmp
       title: OpenMP
     - file: reference/compilers
@@ -141,7 +152,7 @@ subtrees:
 - caption: Understand ROCm
   entries:
     - title: Compiler Disambiguation
-      file: understand/compiler_disabiguation
+      file: understand/compiler_disambiguation
     - file: isv_deployment_win
     - file: understand/deep_learning/deep_learning
     - file: understand/cmake_packages
@@ -159,8 +170,8 @@ subtrees:
 
 - caption: Examples
   entries:
-    - title: rocm-examples
-      url: https://github.com/
+    - title: ROCm Examples
+      url: https://github.com/amd/rocm-examples
     - file: examples/ai_ml_inferencing
       title: AI/ML/Inferencing
       subtrees:
