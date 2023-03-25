@@ -58,8 +58,6 @@ subtrees:
                 url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
               - title: hipSPARSE
                 url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
-              - title: hipSPARSELt
-                url: https://rocmdocs.amd.com/projects/hipSPARSELt/en/{branch}/
               - title: rocALUTION
                 url: https://rocmdocs.amd.com/projects/rocALUTION/en/{branch}/
               - title: rocSOLVER
@@ -99,15 +97,15 @@ subtrees:
           - title: RCCL
             url: https://rocmdocs.amd.com/projects/rccl/en/{branch}/
     - file: reference/ai_tools
-      title: AI Tools
+      title: AI Libraries
       subtrees:
         - entries:
           - title: MIOpen - Machine Intelligence
             url: https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html
           - title: Composable Kernel
             url: https://rocmdocs.amd.com/projects/composable_kernel/en/{branch}/
-    - title: MIGraphX - Graph Optimization
-      url: https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/
+          - title: MIGraphX - Graph Optimization
+            url: https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/
     - file: reference/computer_vision
       subtrees:
         - entries:
@@ -154,7 +152,6 @@ subtrees:
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
     - file: isv_deployment_win
-    - file: understand/deep_learning/deep_learning
     - file: understand/cmake_packages
 
 - caption: How to Guides
