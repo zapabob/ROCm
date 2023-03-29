@@ -147,6 +147,8 @@ subtrees:
         - entries:
             - file: reference/gpu_arch/mi250
               title: MI250
+            - file: reference/gpu_arch/mi100
+              title: MI100
 - caption: Understand ROCm
   entries:
     - title: Compiler Disambiguation
