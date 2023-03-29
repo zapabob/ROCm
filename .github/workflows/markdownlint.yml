@@ -1,6 +1,9 @@
 
 name: Markdownlint Action
-on: push
+on:
+  push:
+  pull_request:
+    branches: [develop, main]
 
 jobs:
   build:
