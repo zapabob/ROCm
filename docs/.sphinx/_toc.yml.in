@@ -52,18 +52,18 @@ subtrees:
                 url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
               - title: hipBLASLt
                 url: https://rocmdocs.amd.com/projects/hipBLASLt/en/{branch}/
-              - title: rocWMMA
-                url: https://rocmdocs.amd.com/projects/rocWMMA/en/{branch}/
-              - title: rocSPARSE
-                url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
-              - title: hipSPARSE
-                url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
               - title: rocALUTION
                 url: https://rocmdocs.amd.com/projects/rocALUTION/en/{branch}/
+              - title: rocWMMA
+                url: https://rocmdocs.amd.com/projects/rocWMMA/en/{branch}/
               - title: rocSOLVER
                 url: https://rocmdocs.amd.com/projects/rocSOLVER/en/{branch}/
               - title: hipSOLVER
                 url: https://rocmdocs.amd.com/projects/hipSOLVER/en/{branch}/
+              - title: rocSPARSE
+                url: https://rocmdocs.amd.com/projects/rocSPARSE/en/{branch}/
+              - title: hipSPARSE
+                url: https://rocmdocs.amd.com/projects/hipSPARSE/en/{branch}/
           - file: reference/gpu_libraries/fft
             subtrees:
             - entries: 
@@ -79,7 +79,7 @@ subtrees:
               - title: hipRAND
                 url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/
     - file: reference/gpu_libraries/c++_primitives
-      title: C++ Primitives
+      title: C++ Primitive Libraries
       subtrees:
         - entries:
           - title: rocPRIM
@@ -122,13 +122,13 @@ subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
             title: ROCmCC
-          - url: http://profiler
-            title: ROCGDB
-          - url: http://profiler
-            title: rocprof
-          - url: http://profiler
+          - url: https://rocmdocs.amd.com/projects/ROCmCC/en/{branch}/
+            title: ROCgdb
+          - url: https://rocmdocs.amd.com/projects/ROCgdb/en/{branch}/
+            title: rocprofiler
+          - url: https://rocmdocs.amd.com/projects/rocprofiler/en/{branch}/
             title: roctracer
-          - url: http://profiler
+          - url: https://rocmdocs.amd.com/projects/roctracer/en/{branch}/
             title: ROCdbgapi             
     - file: reference/management_tools
       title: Management Tools
@@ -137,11 +137,17 @@ subtrees:
           - url: https://rocmdocs.amd.com/projects/amdsmi/en/{branch}/
             title: AMD SMI
           - url: https://rocmdocs.amd.com/projects/rocmsmi/en/{branch}/
-            title: rocmsmi
-          - url: https://rocmdocs.amd.com/projects/rvs/en/{branch}/
-            title: RVS
+            title: ROCm SMI
           - url: https://rocmdocs.amd.com/projects/rdc/en/{branch}/
             title: ROCm Datacenter Tool
+    - file: reference/validation_tools
+      title: Validation Tools
+      subtrees:
+        - entries:
+          - url: https://rocmdocs.amd.com/projects/rvs/en/{branch}/
+            title: RVS
+          - url: https://rocmdocs.amd.com/projects/TransferBench/en/{branch}/
+            title: TransferBench
     - file: reference/gpu_arch
       subtrees:
         - entries:

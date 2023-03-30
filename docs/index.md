@@ -45,12 +45,12 @@ Welcome to AMD ROCm's documentation!
 - [Math Libraries](reference/gpu_libraries/math)
 - [C++ Primitives](reference/gpu_libraries/c++_primitives)
 - [Communication Libraries](reference/gpu_libraries/communication)
-- [MIOpen - Machine Intelligence](https://rocmsoftwareplatform.github.io/MIOpen/doc/html/releasenotes.html)
-- [MIGraphX - Graph Optimization](https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/)
+- [AI Libraries](reference/ai_tools)
 - [Computer Vision](reference/computer_vision)
 - [OpenMP](reference/openmp/openmp)
 - [Compilers and Tools](reference/compilers)
 - [Management Tools](reference/management_tools)
+- [Validation Tools](reference/validation_tools)
 - [GPU Architecture](reference/gpu_arch)
 
 :::

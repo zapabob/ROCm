@@ -9,6 +9,7 @@ _static/
 _templates/
 _toc.yml
 docBin/
+_doxygen/
 
 # avoid duplicating contributing.md due to conf.py
 docs/contributing.md
