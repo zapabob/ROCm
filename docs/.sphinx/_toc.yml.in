@@ -20,10 +20,9 @@ subtrees:
 
 - caption: Deploy ROCm
   entries:
-  - file: quick_start
-  - file: hip_sdk_install_win/hip_sdk_install_win
+  - file: how_to/quick_start_linux
+  - file: how_to/quick_start_windows
   - file: deploy/docker
-  - file: deploy/install
   - file: deploy/multi
   - file: deploy/spack
   - file: deploy/build_source
@@ -157,6 +156,11 @@ subtrees:
               title: MI100
 - caption: Understand ROCm
   entries:
+    - file: understand/installing_linux
+      subtrees:
+        - entries:
+          - file: understand/installing_linux/prerequisites
+          - file: understand/installing_linux/package_manager_integration
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
     - file: isv_deployment_win
