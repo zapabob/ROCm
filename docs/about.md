@@ -9,12 +9,7 @@ yourself with our documentation toolchain.
 
 [ReadTheDocs](https://docs.readthedocs.io/en/stable/) is our frontend for the
 our documentation. By frontend, this is the tool that serves our HTML based
-documentation to our end users. We are using a paid ReadTheDocs plan. Many
-projects were using the free readthedocs plan. All projects should transition to
-the paid readthedocs site as this is add free. The paid site has additional
-functionality including longer build times, better user monitoring and the
-[rocmdoc.amd.com](https://rocmdoc.amd.com) URL. Please contact the documentation
-team or devops for readthedocs access.
+documentation to our end users. 
 
 ## Doxygen
 

@@ -79,7 +79,6 @@ subtrees:
               - title: hipRAND
                 url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/
     - file: reference/gpu_libraries/c++_primitives
-      title: C++ Primitive Libraries
       subtrees:
         - entries:
           - title: rocPRIM
