@@ -165,6 +165,7 @@ subtrees:
       file: understand/compiler_disambiguation
     - file: isv_deployment_win
     - file: understand/cmake_packages
+    - file: understand/file_reorg
 
 - caption: How to Guides
   entries:
