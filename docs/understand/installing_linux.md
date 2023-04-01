@@ -106,7 +106,7 @@ Some of the ROCm-specific use cases the installer supports are:
 
 For more information, refer to the How to Install ROCm section in this guide.
 
-## Instalation types
+## Installation types
 
 This section discusses the single-version and multiversion installation of the
 ROCm software stack.

@@ -9,7 +9,6 @@ subtrees:
   entries:
   - file: release
   - file: release/gpu_os_support
-  - file: release/licensing
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known Issues
   - file: release/compatibility
@@ -18,6 +17,7 @@ subtrees:
         - file: release/docker_support_matrix
         - file: reference/framework_compatibility/framework_compatibility
         - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
+  - file: release/licensing
 
 - caption: Deploy ROCm
   entries:
@@ -79,6 +79,7 @@ subtrees:
               - title: hipRAND
                 url: https://rocmdocs.amd.com/projects/hipRAND/en/{branch}/
     - file: reference/gpu_libraries/c++_primitives
+      title: C++ Primitive Libraries
       subtrees:
         - entries:
           - title: rocPRIM
@@ -163,7 +164,7 @@ subtrees:
           - file: understand/installing_linux/package_manager_integration
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
-    - file: isv_deployment_win
+    - file: understand/isv_deployment_win
     - file: understand/cmake_packages
     - file: understand/file_reorg
 

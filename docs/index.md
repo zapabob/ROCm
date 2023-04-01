@@ -20,8 +20,8 @@ Welcome to AMD ROCm's documentation!
 ::::{grid-item}
 :::{dropdown} [Deploy ROCm](deploy)
 
-- [Quick Start (Linux)](quick_start)
-- [Quick Start (Windows)](hip_sdk_install_win/hip_sdk_install_win)
+- [Quick Start (Linux)](how_to/quick_start_linux)
+- [Quick Start (Windows)](how_to/quick_start_windows)
 - [Docker](deploy/docker)
 - [Basic Installation Guide](deploy/install)
 - [Multi-ROCm Installation](deploy/multi.md)
@@ -38,7 +38,7 @@ Welcome to AMD ROCm's documentation!
 
 :::{grid-item-card}
 :padding: 2
-[APIs and Reference](https://example.com)
+[APIs and Reference](reference/all)
 ^^^
 
 - [HIP](reference/hip)
@@ -60,9 +60,12 @@ Welcome to AMD ROCm's documentation!
 Understand ROCm
 ^^^
 
-- [ISV Deployment Guide (Windows)](isv_deployment_win)
-- [Deep Learning Guide](understand/deep_learning/deep_learning)
+- [Installation (Linux)](understand/installing_linux)
+- [Compiler Disambiguation](understand/compiler_disambiguation)
+- [ISV Deployment Guide (Windows)](understand/isv_deployment_win)
 - [Using CMake](understand/cmake_packages)
+- [ROCm File Reorganization White Paper](understand/file_reorg)
+
 :::
 
 :::{grid-item-card}

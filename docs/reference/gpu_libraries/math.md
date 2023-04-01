@@ -39,5 +39,3 @@ at compile-time of the hipLIB in question. For dynamic dispatch between vendor i
 - [hipRAND](https://rocmdocs.amd.com/projects/hipRAND/en/develop/)
 
 :::
-
-:::::
