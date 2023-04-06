@@ -44,7 +44,7 @@ Obtain the value of gpu-arch by running the following command:
 
 [//]: # (dated link below, needs upading)
 
-See the complete list of compiler command-line references [here](https://github.com/RadeonOpenCompute/llvm-project/blob/amd-stg-open/clang/docs/ClangCommandLineReference.rst).
+See the complete list of compiler command-line references [here](https://github.com/RadeonOpenCompute/llvm-project/blob/amd-stg-open/clang/docs/CommandGuide/clang.rst).
 
 ### Using rocprof with OpenMP
 
