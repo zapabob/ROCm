@@ -184,6 +184,8 @@ subtrees:
   entries:
     - title: ROCm Examples
       url: https://github.com/amd/rocm-examples
+    - title: AMD lab notes
+      url: https://github.com/amd/amd-lab-notes
     - file: examples/ai_ml_inferencing
       title: AI/ML/Inferencing
       subtrees:
