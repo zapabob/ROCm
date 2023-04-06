@@ -162,6 +162,7 @@ subtrees:
         - entries:
           - file: understand/installing_linux/prerequisites
           - file: understand/installing_linux/package_manager_integration
+          - file: how_to/manage_install/install_linux
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
     - file: understand/isv_deployment_win

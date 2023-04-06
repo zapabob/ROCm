@@ -1,4 +1,4 @@
-# Installation (Linux)
+# Installation Overview (Linux)
 
 This chapter provides an overview of ROCm™ installation.
 
@@ -105,6 +105,8 @@ Some of the ROCm-specific use cases the installer supports are:
 - Kernel-mode driver
 
 For more information, refer to the How to Install ROCm section in this guide.
+
+(installation-types)=
 
 ## Installation types
 
