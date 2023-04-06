@@ -88,6 +88,7 @@ Examples
 ^^^
 
 - [ROCm Examples](https://github.com/amd/rocm-examples)
+- [AMD lab notes](https://github.com/amd/amd-lab-notes)
 - [AI/ML/Inferencing](examples/ai_ml_inferencing)
   - [Inception V3 with PyTorch](examples/inception_casestudy/inception_casestudy)
 
