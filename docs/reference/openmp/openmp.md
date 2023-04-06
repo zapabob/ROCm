@@ -25,15 +25,15 @@ The example programs can be compiled and run by pointing the environment variabl
 **Example:**
 
 ```bash
-% export AOMP=/opt/rocm-{version}/llvm
-% cd $AOMP/examples/openmp/veccopy
+% export ROCM_PATH=/opt/rocm-{version}
+% cd $ROCM_PATH/share/openmp-extras/examples/openmp/veccopy
 % make run
 ```
 
 The above invocation of Make compiles and runs the program. Note the options that are required for target offload from an OpenMP program:
 
 ```bash
--target x86_64-pc-linux-gnu -fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=<gpu-arch>
+-fopenmp --offload-arch=<gpu-arch>
 ```
 
 Obtain the value of gpu-arch by running the following command:
@@ -141,7 +141,7 @@ xnack+ --offload-arch=gfx908:xnack+
 The programmer must write offloading kernels carefully to avoid any page faults on the GPU at runtime when choosing to disable Xnack replay.
 
 ```bash
-xnack- with –offload-arch=gfx908:xnack-
+xnack- with -–offload-arch=gfx908:xnack-
 ```
 
 #### Unified Shared Memory Pragma
@@ -195,7 +195,7 @@ The OpenMP runtime in ROCm implements a subset of the OMPT device APIs, as descr
 The following example demonstrates how a tool uses the supported OMPT target APIs. The README in /opt/rocm/llvm/examples/tools/ompt outlines the steps to be followed, and the provided example can be run as shown below:
 
 ```bash
-% cd /opt/rocm/llvm/examples/tools/ompt/veccopy-ompt-target-tracing
+% cd $ROCM_PATH/share/openmp-extras/examples/tools/ompt/veccopy-ompt-target-tracing
 % make run
 ```
 
@@ -219,7 +219,7 @@ To disable the generation of fast floating-point atomic instructions at the file
 
 ```bash
 double a = 0.0;
-#pragma omp atomic hin.t(AMD_safe_fp_atomics)
+#pragma omp atomic hint(AMD_safe_fp_atomics)
 a = a + 1.0;
 ```
 
