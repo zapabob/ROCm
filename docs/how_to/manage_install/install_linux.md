@@ -10,6 +10,8 @@ For information on installing ROCm on devices with NVIDIA GPUs, refer to the HIP
 Installation Guide.
 ```
 
+(install-script-method)=
+
 ## Installer Script Method
 
 The installer script method automates the installation process for the AMDGPU
@@ -44,6 +46,7 @@ script for installing use cases.
 :::::{tab-item} Ubuntu
 :sync: ubuntu
 
+<!-- markdownlint-disable-next-line MD013 -->
 ::::{rubric} To download the amdgpu-install script on the system, use the following commands.
 ::::
 
@@ -73,6 +76,7 @@ sudo apt install ./amdgpu-install_5.4.50403-1_all.deb
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
+<!-- markdownlint-disable-next-line MD013 -->
 ::::{rubric} To download the amdgpu-install script on the system, use the following commands.
 ::::
 
@@ -106,6 +110,7 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.4.3/rhel/9.1/amdgpu-in
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 
+<!-- markdownlint-disable-next-line MD013 -->
 ::::{rubric} To download the amdgpu-install script on the system, use the following commands.
 ::::
 
@@ -238,17 +243,14 @@ required repositories for the latest release.
 :::::{tab-item} Ubuntu
 :sync: ubuntu
 
-Add the ROCm repositories for the releases you want to install by choosing
-`<Release-1 specific rocm baseurl>` and `<Release-2 specific rocm baseurl>` from
-the given [Base URLs for AMDGPU and ROCm Stack Repositories]().
-
 ::::{tab-set}
 :::{tab-item} Ubuntu 20.04
 :sync: ubuntu-20.04
 
 ```shell
-echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] <Release-1 specific rocm baseurl> focal main' | sudo tee /etc/apt/sources.list.d/rocm.list
-echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] <Release-2 specific rocm baseurl> focal main' | sudo tee /etc/apt/sources.list.d/rocm.list
+for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
+done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
 sudo apt update
 ```
@@ -258,8 +260,9 @@ sudo apt update
 :sync: ubuntu-22.04
 
 ```shell
-echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] <Release-1 specific rocm baseurl> jammy main' | sudo tee /etc/apt/sources.list.d/rocm.list
-echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] <Release-2 specific rocm baseurl> jammy main' | sudo tee /etc/apt/sources.list.d/rocm.list
+for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
+done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
 sudo apt update
 ```
@@ -270,66 +273,37 @@ sudo apt update
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
-1. Create a `/etc/yum.repos.d/rocm.repo` file with the following content:
-
-   Provide the `<Release-1 specific rocm baseurl>` and
-   `<Release-2 specific rocm baseurl>` baseurl from the given
-   [Base URLs for AMDGPU and ROCm Stack Repositories]().
-
-   ```shell
-   [ROCm-1]
-   Name=ROCm<Release version 1>
-   baseurl=<Release-1 specific rocm baseurl>
-   enabled=1
-   priority=50
-   gpgcheck=1
-   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-   [ROCm-2]
-   Name=ROCm<Release version 2>
-   baseurl=<Release-2 specific rocm baseurl>
-   enabled=1
-   priority=50
-   gpgcheck=1
-   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-   ```
-
-2. To clean the cached files from enabled repositories, execute the command
-below:
-
-   ```shell
-   sudo yum clean all
-   ```
+```shell
+for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
+[ROCm-$ver]
+Name=ROCm$ver
+baseurl=https://repo.radeon.com/rocm/$ver/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+done
+sudo yum clean all
+```
 
 :::::
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 
-1. Create a `/etc/zypp/repos.d/amdgpu.repo` file with the following content:
-
-   Select the `<Release-1 specific rocm baseurl>` and
-   `<Release-2 specific rocm baseurl>` from
-   [Base URLs for AMDGPU and ROCm Stack Repositories]().
-
-   ```shell
-   [rocm]
-   name=rocm<Release version 1>
-   baseurl=<Release-1 specific rocm baseurl>
-   enabled=1
-   gpgcheck=1
-   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-   [rocm]
-   name=rocm<Release version 2>
-   baseurl=<Release-2 specific rocm baseurl>
-   enabled=1
-   gpgcheck=1
-   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-   ```
-
-2. To update the added repositories, use the following command:
-
-   ```shell
-   sudo zypper ref
-   ```
+```shell
+for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
+sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
+name=rocm
+baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+done
+sudo zypper ref
+```
 
 :::::
 ::::::
@@ -447,7 +421,7 @@ version corresponding to the kernel's version.
 
 **Example:** If the system is running the Linux kernel version
 `5.15.0-41-generic`, you must install the identical versions of Linux-headers
-and development packages. Refer to the [Kernel Information]() section to check
+and development packages. Refer to {ref}`check-kernel-info` on to how to check
 the system's kernel version.
 
 To check the `kernel-headers` and `linux-modules-extra` package versions,
@@ -615,8 +589,8 @@ kernel's version.
 
 **Example:** If the system is running Linux kernel version
 `3.10.0-1160.el7.x86_64`, you must install the identical versions of kernel
-headers and development packages. To check the kernel version on your system,
-refer to the [Kernel Information]() section.
+headers and development packages. Refer to {ref}`check-kernel-info` on to how to
+check the system's kernel version.
 
 To check the kernel headers and `linux-modules-extra` package versions,
 follow these steps:
@@ -777,7 +751,7 @@ kernel's version.
 
 **Example:** If the system is running the Linux kernel version
 `5.3.18-57_11.0.18`, you must install the same versions of linux-headers and
-development packages. Refer to the [Kernel Information]() section to check
+development packages. Refer to {ref}`check-kernel-info` on to how to check
 the system's kernel version.
 
 To check the `kernel-headers` and `linux-modules-extra` package versions, follow
@@ -804,5 +778,177 @@ with the command below:
    sudo zypper install kernel-default-devel or kernel-default
    ```
 
+::::{rubric} Adding the AMDGPU and ROCm Stack Repositories
+::::
+
+1. Add the AMDGPU Stack Repository and Install the Kernel-mode Driver
+
+   ```{attention}
+   If you have a version of the kernel-mode driver installed, you may skip this
+   section.
+   ```
+
+   ```shell
+   sudo tee --append /etc/zypp/repos.d/amdgpu.repo <<EOF
+   [amdgpu]
+   name=amdgpu
+   baseurl=https://repo.radeon.com/amdgpu/5.4.3/sle/15.4/main/x86_64
+   enabled=1
+   gpgcheck=1
+   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+   EOF
+   sudo zypper ref
+   ```
+
+   Install the kernel mode driver and reboot the system using the following
+   commands:
+
+   ```shell
+   sudo zypper --gpg-auto-import-keys install amdgpu-dkms
+   sudo reboot
+   ```
+
+2. Add the ROCm Stack Repository and Install Meta-packages
+
+   To add the ROCm repository, use the following steps:
+
+   ```shell
+   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
+   sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
+   name=rocm
+   baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
+   enabled=1
+   gpgcheck=1
+   gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+   EOF
+   done
+   sudo zypper ref
+   ```
+
+   Install packages of your choice in a single-version ROCm install or
+   in a multi-version ROCm install fashion. For more information on what
+   single/multi-version installations are, refer to {ref}`installation-types`.
+   For a comprehensive list of meta-packages, refer to
+   {ref}`meta-package-desc`.
+
+- Sample Single-version installation
+
+   ```shell
+   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk
+   ```
+
+- Sample Multi-version installation
+
+   ```{important}
+   If the existing ROCm release contains non-versioned ROCm packages, you must
+   uninstall those packages before proceeding to the multiversion installation
+   to avoid conflicts.
+   ```
+
+   ```shell
+   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.4.3 rocm-hip-sdk5.2.5
+   ```
+
 :::::
 ::::::
+
+(post-install-actions-linux)=
+
+## Post-install Actions and Verification Process
+
+The post-install actions listed here are optional and depend on your use case,
+but are generally useful. Verification of the install is advised.
+
+### Post-install Actions
+
+1. Instruct the system linker where to find the shared objects (`.so` files) for
+ROCm applications.
+
+   ```shell
+   sudo tee --append /etc/ld.so.conf.d/rocm.conf <<EOF
+   /opt/rocm/lib
+   /opt/rocm/lib64
+   EOF
+   sudo ldconfig
+   ```
+
+   ```{note}
+   Multi-version installations require extra care. Having multiple versions on
+   the system linker library search path is unadvised. One must take care both
+   at compile-time and at run-time to assure that the proper libraries are
+   picked up. You can override `ld.so.conf` entries on a case-by-case basis
+   using the `LD_LIBRARY_PATH` environmental variable.
+   ```
+
+2. Add binary paths to the `PATH` environment variable.
+
+   ```shell
+   export PATH=$PATH:/opt/rocm-5.4.3/bin:/opt/rocm-5.4.3/opencl/bin
+   ```
+
+   ```{attention}
+   When using CMake to build applications, having the ROCm install location on
+   the PATH subtly affects how ROCm libraries are searched for. See [Config Mode
+   Search Procedure](https://cmake.org/cmake/help/latest/command/find_package.html#config-mode-search-procedure)
+   and [CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH](https://cmake.org/cmake/help/latest/variable/CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH.html)
+   for details.
+
+   (Entries in the `PATH` minus `bin` and `sbin` are added to library search
+   paths, therefore this convenience will affect builds and result in ROCm libs
+   almost always being found. This may be an issue when you're developing these
+   libraries or want to use self-built versions of them.)
+   ```
+
+### Verifying Kernel-mode Driver Installation
+
+Check the installation of the kernel-mode driver by typing the command given
+below:
+
+```shell
+dkms status
+```
+
+### Verifying ROCm Installation
+
+After completing the ROCm installation, execute the following commands on the
+system to verify if the installation is successful. If you see your GPUs listed
+by both commands, the installation is considered successful:
+
+```shell
+/opt/rocm/bin/rocminfo
+# OR
+/opt/rocm/opencl/bin/clinfo
+```
+
+### Verifying Package Installation
+
+To ensure the packages are installed successfully, use the following commands:
+
+::::{tab-set}
+:::{tab-item} Ubuntu
+:sync: ubuntu
+
+```shell  
+sudo apt list --installed
+```
+
+:::
+
+:::{tab-item} Red Hat Enterprise Linux
+:sync: RHEL
+
+```shell
+sudo yum list installed
+```
+
+:::
+
+:::{tab-item} SUSE Linux Enterprise Server 15
+:sync: SLES15
+
+```shell
+sudo zypper search --installed-only
+```
+
+:::
+::::

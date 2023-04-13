@@ -1,4 +1,4 @@
-# Prerequisites (Linux)
+# Prerequisites
 
 You must perform the following steps before installing ROCm and check if the
 system meets all the requirements to proceed with the installation.
@@ -37,6 +37,8 @@ with [System Requirements](/release/gpu_os_support#os-support).
    DISTRIB_CODENAME=focal
    DISTRIB_DESCRIPTION="Ubuntu 20.04.5 LTS"
    ```
+
+(check-kernel-info)=
 
 #### Kernel Information
 

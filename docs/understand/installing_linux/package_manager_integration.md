@@ -1,4 +1,4 @@
-# Package Manager Integration (Linux)
+# Package Manager Integration
 
 This section provides information about the required meta-packages for the
 following AMD ROCm programming models:
