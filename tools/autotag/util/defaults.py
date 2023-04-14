@@ -23,34 +23,52 @@ def processor_factory():
     """A dictionary for regex processors by library, with default."""
 
     def default_processor(
-        data: ReleaseLib, template: str, unchanged: Optional[bool] = None
+        data: ReleaseLib, template: str, unchanged: Optional[bool] = None, ignore_unreleased = False
     ) -> bool:
+        # Get the changelog for the provided library release.
         changelog = data.repo.get_contents("CHANGELOG.md", data.commit)
         changelog = changelog.decoded_content.decode()
+
         pattern = re.compile(template)
         latest_match: Optional[re.Match] = None
         for match in pattern.finditer(changelog):
-            if match["lib_name"].lower() != data.name.lower():
+            lib_name     = match["lib_name"]
+            lib_version  = match["lib_version"]
+            rocm_version = match["rocm_version"]
+
+            if lib_name.lower() != data.name.lower():
                 continue
-            if not match["rocm_version"]:
+
+            if not rocm_version:
                 print(match[0])
+                if ignore_unreleased:
+                    continue
                 if not get_yn_input(
-                    "ROCm version not detected, release these changes for ROCm"
-                    f" {data.full_version}?"
+                    f"ROCm version not detected, release these ({lib_name}-"
+                    f"{lib_version}) changes for ROCm {data.full_version}?"
                 ):
                     continue
             elif vparse(match["rocm_version"]) > vparse(data.full_version):
                 continue
             elif vparse(match["rocm_version"]) < vparse(data.full_version):
                 latest_match = match
-                break
 
             data.message = (
                 f"{match['lib_name']} {match['lib_version']} for ROCm"
                 f" {data.full_version}"
             )
             data.notes = match["body"]
+            data.lib_version = lib_version
+
+            change_pattern = re.compile(
+                r"^#+ +(?P<type>[^\n]+)$\n*(?P<change>(^(?!#).*\n*)*)",
+                re.RegexFlag.MULTILINE
+            )
+            
+            for match in change_pattern.finditer(data.notes):
+                data.data.changes[match["type"]] = match["change"]
             return True
+
         is_previous = False
         for tag in data.repo.get_tags():
             if tag.commit.sha == data.commit:

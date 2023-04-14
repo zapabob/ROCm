@@ -49,25 +49,25 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="ROCdbgapi" remote="rocm-devtools" />
 <!-- ROCm Libraries -->
     <project name="rdc" />
-    <project name="rocBLAS" remote="rocm-swplat" />
-    <project name="Tensile" remote="rocm-swplat" />
-    <project name="hipBLAS" remote="rocm-swplat" />
-    <project name="rocFFT" remote="rocm-swplat" />
-    <project name="hipFFT" remote="rocm-swplat" />
-    <project name="rocRAND" remote="rocm-swplat" />
-    <project name="rocSPARSE" remote="rocm-swplat" />
-    <project name="rocSOLVER" remote="rocm-swplat" />
-    <project name="hipSOLVER" remote="rocm-swplat" />
-    <project name="hipSPARSE" remote="rocm-swplat" />
-    <project name="rocALUTION" remote="rocm-swplat" />
+    <project groups="mathlibs" name="rocBLAS" remote="rocm-swplat" />
+    <project groups="mathlibs" name="Tensile" remote="rocm-swplat" />
+    <project groups="mathlibs" name="hipBLAS" remote="rocm-swplat" />
+    <project groups="mathlibs" name="rocFFT" remote="rocm-swplat" />
+    <project groups="mathlibs" name="hipFFT" remote="rocm-swplat" />
+    <project groups="mathlibs" name="rocRAND" remote="rocm-swplat" />
+    <project groups="mathlibs" name="rocSPARSE" remote="rocm-swplat" />
+    <project groups="mathlibs" name="rocSOLVER" remote="rocm-swplat" />
+    <project groups="mathlibs" name="hipSOLVER" remote="rocm-swplat" />
+    <project groups="mathlibs" name="hipSPARSE" remote="rocm-swplat" />
+    <project groups="mathlibs" name="rocALUTION" remote="rocm-swplat" />
     <project name="MIOpenGEMM" remote="rocm-swplat" />
     <project name="MIOpen" remote="rocm-swplat" />
-    <project name="rccl" remote="rocm-swplat" />
+    <project groups="mathlibs" name="rccl" remote="rocm-swplat" />
     <project name="MIVisionX" remote="gpuopen-libs" />
-    <project name="rocThrust" remote="rocm-swplat" />
-    <project name="hipCUB" remote="rocm-swplat" />
-    <project name="rocPRIM" remote="rocm-swplat" />
-    <project name="rocWMMA" remote="rocm-swplat" />
+    <project groups="mathlibs" name="rocThrust" remote="rocm-swplat" />
+    <project groups="mathlibs" name="hipCUB" remote="rocm-swplat" />
+    <project groups="mathlibs" name="rocPRIM" remote="rocm-swplat" />
+    <project groups="mathlibs" name="rocWMMA" remote="rocm-swplat" />
     <project name="hipfort" remote="rocm-swplat" />
     <project name="AMDMIGraphX" remote="rocm-swplat" />
     <project name="ROCmValidationSuite" remote="rocm-devtools" />

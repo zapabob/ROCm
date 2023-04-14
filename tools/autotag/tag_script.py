@@ -4,13 +4,16 @@
 from dataclasses import dataclass
 import dbm
 import sys
-from typing import List, Optional, TextIO, Union
+from typing import Dict, List, Optional, TextIO, Tuple, Union
 import xml.etree.ElementTree as ET
 import urllib.request
 import argparse
 from github import Github, NamedUser
+from packaging.version import Version
 
-from util.release_data import ReleaseDataFactory, ReleaseLib
+from util.release_data import ReleaseBundleFactory, ReleaseDataFactory
+from util.changelog import Changelog
+from util.util import get_yn_input
 from util import PROCESSORS, TEMPLATES
 
 
@@ -63,6 +66,7 @@ class TaggingArgs(argparse.Namespace):
     github_url: str = "github.com"
     branch: Optional[str] = None
     compile_file: Optional[TextIO] = None
+
 
     @property
     def org(self) -> Optional[str]:
@@ -184,59 +188,89 @@ def run_tagging():
     """Run the tagging/releasing process on each specified library."""
     args = parse_args()
 
+    # Use the manifest included in the ROCm GitHub repository by default.
     if args.manifest_url is None:
-        manifest_url = (
-            "https://github.com/RadeonOpenCompute/ROCm/raw/develop/default.xml"
+        manifest_path = (
+            "./../../default.xml"
         )
     else:
         manifest_url = args.manifest_url
-    manifest_path, _ = urllib.request.urlretrieve(manifest_url, "manifest.xml")
+        manifest_path, _ = urllib.request.urlretrieve(manifest_url, "manifest.xml")
     manifest_tree = ET.parse(manifest_path).getroot()
 
-    gh_args = {
-        "login_or_token": get_token(
-            args.token, token_keys=["gh_token", "token"]
-        )
-    }
-    pr_args = {"login_or_token": get_token(args.token, token_keys="pr_token")}
+    # Fallback as unauthenticated user for accessing the GitHub API.
+    try:
+        gh_args = {
+            "login_or_token": get_token(
+                args.token, token_keys=["gh_token", "token"]
+            )
+        }
+        pr_args = {"login_or_token": get_token(args.token, token_keys="pr_token")}
+    except ValueError as error:
+        if get_yn_input("Could not retrieve GitHub Token. Continue as unauthenticated user?"):
+            gh_args = { }
+            pr_args = { }
+        else:
+            raise error
 
     if args.github_url != "github.com":
         gh_args["base_url"] = pr_args[
             "base_url"
         ] = f"https://{args.github_url}/api/v3"
 
+    remote_map: Dict[str, str] = { }
+
+    # Fill the remote map with the remotes defined in the manifest.
+    for entry in manifest_tree.findall(".//remote"):
+        remote_name = entry.get("name")
+        remote_url  = entry.get("fetch").lstrip("https://github.com/").rstrip("/")
+        remote_map[remote_name] = remote_url
+
+    # Creates a collection of ROCm libraries grouped by release.
+    release_bundle_factory = ReleaseBundleFactory(
+        "RadeonOpenCompute/ROCm",
+        Github(**gh_args), Github(**pr_args),
+        "RadeonOpenCompute",
+        remote_map,
+        args.branch
+    )
+
+    # Find all the math libraries and their remotes.
+    names_and_remotes = list(
+        (entry.get("name"), entry.get("remote")) for entry in manifest_tree.findall(".//project[@groups='mathlibs']")
+    )
+
+    # Get all the relevant ROCm releases, and only the last version if not doing previous.
+    minimum_version = "5.0.0" if args.previous else args.version
+    releases = release_bundle_factory.create_data_dict(args.version, names_and_remotes, minimum_version)
+
+    # Process the individual releases.
+    failed: List[Tuple[str, str]] = []
+    for (version, release) in releases.items():
+        for (_, library) in release.libraries.items():
+            # Parse the changelog for each library and each version
+            success = PROCESSORS[library.name](
+                library,
+                TEMPLATES[library.name],
+                args.previous,
+                Version(version) < Version(args.version)
+            )
+            if not success:
+                print(f"Error processing {library.name} for ROCm {version}")
+                failed.append((version, library.name))
+
+    # Compile and write changelog.
+    if args.compile_file:
+        Changelog(releases).write_to_file(args.compile_file)
+
+    # Handle release and PRs.
     data_factory = ReleaseDataFactory(
         args.org, args.version, Github(**gh_args), Github(**pr_args)
     )
 
-    remote_map = {
-        "rocmswplatform": "ROCmSoftwarePlatform",
-        "rocmswplatform-internal": "ROCmSoftwarePlatform",
-        "amdgpuopenlib": "GPUOpen-ProfessionalCompute-Libraries",
-        "radeonopencompute": "RadeonOpenCompute",
-        "radeonopencompute-internal": "RadeonOpenCompute"
-    }
-
-    libraries: list[ReleaseLib] = []
-
-    for entry in manifest_tree.findall(".*[@groups='mathlibs']"):
-        if (
-            args.library is None or entry.get("name") in args.library
-        ) and entry.get("name") not in args.exclude:
-            library_data = data_factory.create_data(
-                entry.get("name", ""),
-                entry.get("revision", ""),
-                org=remote_map[entry.get("remote", "")],
-            )
-
-            if args.branch is not None:
-                library_data.commit = library_data.repo.get_branch(
-                    args.branch
-                ).commit.sha
-            libraries.append(library_data)
-
-    failed: list[str] = []
-    for data in libraries:
+    # In the last release...
+    libraries = releases[max(releases, key=lambda v: Version(v))].libraries
+    for data in libraries.values():
         try:
             print(f"{data.name} commit revision = {data.commit}")
             print(
@@ -244,16 +278,7 @@ def run_tagging():
                 f"https://github.com/{data.qualified_repo}/commit/{data.commit}"
             )
 
-            if not PROCESSORS[data.name](
-                data, TEMPLATES[data.name], args.previous
-            ):
-                failed.append(data.name)
-                continue
-
-            if args.compile_file is not None:
-                print("# " + data.repo.name, file=args.compile_file)
-                print(file=args.compile_file)
-                print(data.notes, file=args.compile_file)
+            # Create a PR (rocm-x.x.x -> develop) to bring hotfixes into develop.
             data.do_release(args.release)
             pr = data.do_create_pull(args.pulls, pr_args["login_or_token"])
             if pr is not None:
@@ -261,10 +286,11 @@ def run_tagging():
                     pr.create_review_request([data_factory.gh.get_user().name])
         except Exception as err:
             print(f"Encountered error tagging {data.name}: {err}")
+
     if failed:
         print("Error processing the following libraries:", file=sys.stderr)
-        for lib in failed:
-            print("\t" + lib, file=sys.stderr)
+        for ver, lib in failed:
+            print(f"- {lib} for ROCm {ver}", file=sys.stderr)
         sys.exit(1)
 
 

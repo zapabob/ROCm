@@ -2,24 +2,25 @@
 
 from dataclasses import dataclass, field
 import os
+import re
 import shutil
-from typing import Optional, Union
+from typing import Optional, Union, Dict, List, Tuple
 from github import Github, UnknownObjectException
 from github.Repository import Repository
 from github.Organization import Organization
 from github.NamedUser import NamedUser
 from git import Repo
+from git.cmd import Git
+from packaging.version import Version
 
 from util.util import get_yn_input
-
 
 @dataclass
 class ReleaseData:
     """Store Github data for a release."""
-
     message: str = ""
     notes: str = ""
-
+    changes: Dict[str, str] = field(default_factory=dict)
 
 @dataclass
 class ReleaseLib:
@@ -31,6 +32,7 @@ class ReleaseLib:
     data: ReleaseData = field(default_factory=ReleaseData)
     commit: str = ""
     rocm_version: str = ""
+    lib_version: str = ""
 
     @property
     def qualified_repo(self) -> str:
@@ -56,6 +58,11 @@ class ReleaseLib:
             if self.rocm_version.count(".") > 1
             else self.rocm_version + ".0"
         )
+
+    @property
+    def release_url(self) -> str:
+        """The Github URL of the release."""
+        return f"https://github.com/{self.qualified_repo}/releases/tag/{self.tag}"
 
     @property
     def message(self) -> str:
@@ -151,22 +158,24 @@ class ReleaseLib:
         print(f"Pull request created: {pr.html_url}")
         return pr
 
-
 class ReleaseDataFactory:
     """A factory for ReleaseData objects."""
+
+    lib_versions: Dict[str, str] = { }
+    """A map of commit hashes to lib versions."""
 
     def __init__(
         self, org_name: Optional[str], version: str, gh: Github, pr_gh: Github
     ):
         self.gh: Github = gh
         self.pr_gh: Github = pr_gh
-        self.rocm_version: str = version
+        self.rocm_version: Version = version
         if org_name is None:
             self.org = self.pr_org = None
         else:
             self.org, self.pr_org = self.get_org_or_user(org_name)
 
-    def get_org_or_user(self, name: str):
+    def get_org_or_user(self, name: str) -> Tuple[Union[NamedUser, Organization], Union[NamedUser, Organization]]:
         """Get a Github organization or user by name."""
         gh_ns: Union[NamedUser, Organization]
         pr_ns: Union[NamedUser, Organization]
@@ -205,6 +214,197 @@ class ReleaseDataFactory:
             repo=repo,
             pr_repo=pr_repo,
             commit=commit,
-            rocm_version=self.rocm_version,
+            rocm_version=str(self.rocm_version),
         )
+        return data
+
+@dataclass
+class ReleaseBundle:
+    """Stores data about all the libraries bundled in this release."""
+
+    version: str = ""
+    libraries: Dict[str, ReleaseLib] = field(default_factory=ReleaseLib)
+
+class ReleaseBundleFactory:
+
+    gh: Github = None
+    pr_gh: Github = None
+
+    default_remote: str = ""
+    """The default fallback remote."""
+
+    remotes: Dict[str, str] = { }
+    """A dictionary translating the manifest remote shorthand to the full name."""
+
+    tags: Dict[str, Dict[Version, str]] = { }
+    """A dictionary with all the ROCm version numbers and commit sha for each library."""
+
+    orgs_and_users: Dict[str, Tuple[Union[NamedUser, Organization], Union[NamedUser, Organization]]] = { }
+    """A dictionary containing the base and PR user or organization for each project."""
+
+    pr_repos: Dict[str, Tuple[Repo, Repo]] = { }
+    """A dictionary containing the base and PR repo for each project."""
+
+    def __init__(
+        self,
+        rocm_repo: str,
+        gh: Github,
+        pr_gh: Github,
+        default_remote: str,
+        remotes: Dict[str, str],
+        branch: Optional[str]
+    ):
+        # Store Github data
+        self.gh    = gh
+        self.pr_gh = pr_gh
+
+        self.default_remote = default_remote
+        self.remotes        = remotes
+        self.branch         = branch
+
+        # Get the main repository:
+        self.rocm_repo = gh.get_repo(rocm_repo)
+
+    def get_org(self, remote: str):
+        """Find the org associated with the remote, or use the fallback."""
+        if remote in self.remotes:
+            return self.remotes[remote]
+        return self.default_remote
+    
+    def get_org_or_user(self, remote: str) -> Tuple[Union[NamedUser, Organization], Union[NamedUser, Organization]]:
+        """Gets the base and PR organization or user associated to a remote."""
+        if remote not in self.orgs_and_users:
+            try:
+                gh_ns = self.gh.get_organization(remote)
+                pr_ns = self.pr_gh.get_organization(remote)
+            except UnknownObjectException:
+                try:
+                    gh_ns = self.gh.get_user(remote)
+                    pr_ns = self.pr_gh.get_user(remote)
+                except UnknownObjectException as err:
+                    raise ValueError(
+                        f"Could not find organization/user {remote}."
+                    ) from err
+            self.orgs_and_users[remote] = (gh_ns, pr_ns)
+
+        return self.orgs_and_users[remote]
+
+    def get_repos(self, name: str, remote: str = None) -> Tuple[Repo, Repo]:
+        """Gets the base and PR repository associated to a remote."""
+        org = self.get_org(remote)
+        if name not in self.pr_repos:
+            print(f"Getting remote info for {org}/{name}:")
+            gh_ns, pr_ns = self.get_org_or_user(org)
+            repo = gh_ns.get_repo(name)
+            print(f"  Repo: {repo.url}")
+            try:
+                pr_repo = pr_ns.get_repo(name + "-internal")
+            except UnknownObjectException:
+                pr_repo = pr_ns.get_repo(name)
+            self.pr_repos[name] = (repo, pr_repo)
+
+        return self.pr_repos[name]
+
+    def get_repo(self, name: str, remote: str) -> Repo:
+        """Gets the repository at a remote."""
+        path = f"{self.get_org(remote)}/{name}"
+        try:
+            return self.gh.get_repo(path)
+        except Exception as e:
+            print(f"Could not get repository {path}.")
+            raise e
+
+    def get_tag(self, name: str, version: Version) -> Optional[str]:
+        """Finds the Github tag for a library at a ROCm version."""
+        if name not in self.tags:
+            print(f"Fetching tags for {name}.")
+            repo, _ = self.get_repos(name)
+            self.tags[name] = self.fetch_tags(repo.clone_url)
+
+        if version not in self.tags[name]:
+            return None
+
+        return self.tags[name][version]
+
+    def fetch_tags(self, url: str) -> Dict[Version, str]:
+        """Fetches a version-sha map for a given Git URL."""
+        result: Dict[Version, str] = { }
+        for line in Git().ls_remote("--tags", url).split("\n"):
+            column = line.split("\t")
+            sha = column[0]
+            tag = column[1]
+
+            tag_match = re.search(r"(?P<rocm_tag>rocm-(?P<rocm_ver>\d+(\.\d+)+))", tag)
+            if not tag_match:
+                continue
+
+            rocm_ver = tag_match["rocm_ver"]
+            rocm_ver += ".0" * (2 - rocm_ver.count("."))
+            result[Version(rocm_ver)] = sha
+        return result
+
+    def create_data(
+        self,
+        version: Version,
+        names_and_remotes: List[Tuple[str, str]],
+        is_untagged: bool=False
+    ) -> ReleaseBundle:
+        """Create a release bundle of libraries."""
+        tag_name = f"rocm-{version}"
+        libraries = { }
+        
+        print(f"\nLibraries for rocm-{version}:")
+        for name, remote in names_and_remotes:
+            repo, pr_repo = self.get_repos(name, remote)
+
+            # Find the tag and otherwise
+            commit = self.get_tag(name, version)
+            if not commit:
+                print(f"- Could not find tag '{tag_name}' in '{name}'")
+                if not is_untagged:
+                    continue
+
+                print(f"  Defaulting to branch: {self.branch}")
+                commit = repo.get_branch(self.branch).commit.sha
+            
+            libraries[name] = ReleaseLib(
+                name=name,
+                repo=repo,
+                pr_repo=pr_repo,
+                commit=commit,
+                rocm_version=str(version),
+            )
+            print(f"- {name:11} {commit}")
+
+        data = ReleaseBundle(
+            version=version,
+            libraries=libraries
+        )
+
+        return data
+
+    def create_data_dict(
+        self,
+        up_to_version: str,
+        names_and_remotes: List[Tuple[str, str]],
+        min_version: str = "5.0.0"
+    ) -> Dict[str, ReleaseBundle]:
+        """Create a map of versions and release bundles."""
+
+        # Get the tags and versions
+        max_version = Version(up_to_version)
+        rocm_tags = self.fetch_tags(self.rocm_repo.clone_url)
+        versions = list(rocm_tags.keys())
+
+        if up_to_version not in versions:
+            versions.append(max_version)
+        versions.sort()
+
+        # For each ROCm release, create a bundle.
+        data = {}
+        for version in versions:
+            if version >= Version(min_version) and version <= max_version:
+                can_be_untagged = version == max_version
+                data[str(version)] = self.create_data(version, names_and_remotes, can_be_untagged)
+
         return data
