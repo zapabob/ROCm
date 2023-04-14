@@ -14,4 +14,4 @@ jobs:
     - name: Use markdownlint
       uses: actionshub/markdownlint@v3.1.3
       with:
-        filesToIgnoreRegex: CHANGELOG.md
+        filesToIgnoreRegex: "CHANGELOG.md|tools\\/autotag\\/templates\\/."
