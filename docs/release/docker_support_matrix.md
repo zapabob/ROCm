@@ -1,6 +1,6 @@
 # Frameworks Support Matrix
 
-The software support matrices for ROCm container releases is listed. 
+The software support matrices for ROCm container releases is listed.
 
 ## ROCm 5.6
 

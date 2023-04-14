@@ -23,18 +23,18 @@ To upgrade the system with the desired ROCm release using the package manager
 method, follow the steps below:
 
 1. **Update the AMDGPU stack repository** – Ensure you have updated the AMDGPU
-repository.
+   repository.
 
 2. **Upgrade the kernel-mode driver and reboot the system** – Ensure you have
-upgraded the kernel-mode driver and rebooted the system.
+   upgraded the kernel-mode driver and rebooted the system.
 
 3. **Update the ROCm repository** – Ensure you have updated the ROCm repository
-with the desired ROCm release.
+   with the desired ROCm release.
 
 4. **Upgrade the ROCm meta-packages** – Upgrade the ROCm meta-packages.
 
 5. **Verify the upgrade for the applicable distributions** – Verify if the
-upgrade is successful.
+   upgrade is successful.
 
 To upgrade ROCm on different Linux distributions, refer to the sections below
 for specific commands.

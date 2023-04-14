@@ -77,7 +77,7 @@ For more details on rocprof, refer to the ROCm Profiling Tools document on [http
 **Prerequisite:** When using the --sys-trace option, compile the OpenMP program with:
 
 ```bash
-    -Wl,–rpath,/opt/rocm-{version}/lib -lamdhip64 
+    -Wl,–rpath,/opt/rocm-{version}/lib -lamdhip64
 ```
 
 The following tracing options are widely used to generate useful information:
@@ -159,25 +159,25 @@ A simple program demonstrating the use of this feature is:
 $ cat parallel_for.cpp
 #include <stdlib.h>
 #include <stdio.h>
- 
+
 #define N 64
 #pragma omp requires unified_shared_memory
 int main() {
   int n = N;
   int *a = new int[n];
   int *b = new int[n];
- 
+
   for(int i = 0; i < n; i++)
     b[i] = i;
- 
+
   #pragma omp target parallel for map(to:b[:n])
   for(int i = 0; i < n; i++)
     a[i] = b[i];
- 
+
   for(int i = 0; i < n; i++)
     if(a[i] != i)
       printf("error at %d: expected %d, got %d\n", i, i+1, a[i]);
- 
+
   return 0;
 }
 $ clang++ -O2 -target x86_64-pc-linux-gnu -fopenmp --offload-arch=gfx90a:xnack+ parallel_for.cpp
@@ -231,7 +231,7 @@ See the example below, where the user builds the program using -msafe-fp-atomics
 double a = 0.0;.
 #pragma omp atomic hint(AMD_fast_fp_atomics)
 a = a + 1.0;
- 
+
 double b = 0.0;
 #pragma omp atomic
 b = b + 1.0;
@@ -260,11 +260,12 @@ Address Sanitizer is a memory error detector tool utilized by applications to de
 - Initialization order bugs
 
 **Features Supported on AMDGPU Platform (amdgcn-amd-amdhsa):**
+
 - Heap buffer overflow
 
 - Global buffer overflow
 
-**Software (Kernel/OS) Requirements:** Unified Shared Memory support with Xnack capability. See the section on [Unified Shared Memory](#unified-shared-memory) for prerequisites and details on Xnack. 
+**Software (Kernel/OS) Requirements:** Unified Shared Memory support with Xnack capability. See the section on [Unified Shared Memory](#unified-shared-memory) for prerequisites and details on Xnack.
 
 **Example:**
 
@@ -276,7 +277,7 @@ void  main() {
 .......  // Some program statements
 #pragma omp target map(to : A[0:N], B[0:N]) map(from: C[0:N])
 {
-#pragma omp parallel for 
+#pragma omp parallel for
     for(int i =0 ; i < N; i++){
     C[i+10] = A[i] + B[i];
   }   // end of for loop
@@ -290,7 +291,7 @@ See the complete sample code for heap buffer overflow [here](https://github.com/
 - Global buffer overflow
 
 ```bash
-#pragma omp declare target   
+#pragma omp declare target
    int A[N],B[N],C[N];
 #pragma omp end declare target
 void main(){
@@ -300,7 +301,7 @@ void main(){
 {
 #pragma omp target update to(A,B)
 #pragma omp target parallel for
-for(int i=0; i<N; i++){              
+for(int i=0; i<N; i++){
     C[i]=A[i*100]+B[i+22];
 } // end of for loop
 #pragma omp target update from(C)

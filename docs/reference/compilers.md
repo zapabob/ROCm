@@ -11,7 +11,7 @@ ROCmCC is a Clang/LLVM-based compiler. It is optimized for high-performance comp
 :::
 
 :::{grid-item-card} [ROCgdb](https://rocmdocs.amd.com/projects/ROCgdb/en/latest/)
-This is ROCgdb, the ROCm source-level debugger for Linux, based on GDB, the GNU source-level debugger. 
+This is ROCgdb, the ROCm source-level debugger for Linux, based on GDB, the GNU source-level debugger.
 
 - [Documentation](https://rocmdocs.amd.com/projects/ROCgdb/en/latest/)
 
@@ -25,7 +25,7 @@ ROC profiler library. Profiling with perf-counters and derived metrics. Library 
 :::
 
 :::{grid-item-card} [ROCTracer](https://rocmdocs.amd.com/projects/roctracer/en/latest/)
-Callback/Activity Library for Performance tracing AMD GPU's 
+Callback/Activity Library for Performance tracing AMD GPU's
 
 - [Documentation](https://rocmdocs.amd.com/projects/roctracer/en/latest/)
 

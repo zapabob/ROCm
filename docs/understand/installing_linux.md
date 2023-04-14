@@ -26,11 +26,11 @@ It is customary for Linux installers to integrate into the system's package
 manager. There are two notable groups of package sources:
 
 - AMD-hosted repositories maintained by AMD available to register on supported
-Linux distribution versions. For a complete list of AMD-supported platforms,
-refer to the article: [GPU and OS Support](../release/gpu_os_support).
+  Linux distribution versions. For a complete list of AMD-supported platforms,
+  refer to the article: [GPU and OS Support](../release/gpu_os_support).
 - Distribution-hosted repositories maintained by the developer of said Linux
-distribution. These require little to no setup from the user, but aren't tested
-by AMD. For support on these installations, contact the relevant maintainers.
+  distribution. These require little to no setup from the user, but aren't tested
+  by AMD. For support on these installations, contact the relevant maintainers.
 
 AMD also provides installer scripts for those that wish to drive installations
 in a more manual fashion.
@@ -71,12 +71,12 @@ The `amdgpu-install` script streamlines the installation process by:
 - Abstracting the distribution-specific package installation logic
 - Performing the repository setup
 - Allowing you to specify the use case and automating the installation of all
-the required packages
+  the required packages
 - Installing multiple ROCm releases simultaneously on a system
 - Automating updating local repository information through enhanced
-functionality of the amdgpu-install script
+  functionality of the amdgpu-install script
 - Performing post-install checks to verify whether the installation was
-completed successfully
+  completed successfully
 - Upgrading the installed ROCm release
 - Uninstalling the installed single-version or multiversion ROCm releases
 
@@ -125,8 +125,8 @@ The single-version ROCm installation refers to the following:
 The multiversion installation refers to the following:
 
 - Installation of multiple instances of the ROCm stack on a system. Extending
-the package name and its dependencies with the release version adds the ability
-to support multiple versions of packages simultaneously.
+  the package name and its dependencies with the release version adds the
+  ability to support multiple versions of packages simultaneously.
 - Use of versioned ROCm meta-packages.
 
 ```{note}

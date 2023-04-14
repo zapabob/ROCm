@@ -72,10 +72,10 @@ installation.
 To make installation selections and install, follow these steps:
 
 1. Scroll the window to AMD Display Driver and select the desired install type.
-Refer to the section [AMD Display Driver](#amd-display-driver) for more
-information on installation types.
+   Refer to the section [AMD Display Driver](#amd-display-driver) for more
+   information on installation types.
 2. Once selected, click **Install** located in the lower right corner, and skip
-to [Installing Components](#installing-components).
+   to [Installing Components](#installing-components).
 
 #### Deselect All
 

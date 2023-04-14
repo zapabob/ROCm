@@ -7,7 +7,7 @@ repositories and the associated commit used to build the current ROCm release.
 The default.xml file uses the repo Manifest format.
 
 The develop branch of this repository contains content for the next
-ROCm release. 
+ROCm release.
 
 ## How to build documentation via Sphinx
 

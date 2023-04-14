@@ -2,9 +2,9 @@
 
 ROCm™ is released by Advanced Micro Devices, Inc. and is licensed per component separately.
 The following table is a list of ROCm components with links to their respective license
-terms. These components may include third party components subject to 
+terms. These components may include third party components subject to
 additional licenses. Please review individual repositories for more information.
-The table shows ROCm components, the name of license and link to the license terms. 
+The table shows ROCm components, the name of license and link to the license terms.
 The table is ordered to follow ROCm's manifest file.
 
 | Component                                                                                        | License                                                                                                                    |
@@ -63,9 +63,9 @@ The table is ordered to follow ROCm's manifest file.
 | [aomp-extras](https://github.com/ROCm-Developer-Tools/aomp-extras/)                              | [MIT](https://github.com/ROCm-Developer-Tools/aomp-extras/blob/aomp-dev/LICENSE)                                           |
 | [flang](https://github.com/ROCm-Developer-Tools/flang/)                                          | [Apache 2.0](https://github.com/ROCm-Developer-Tools/flang/blob/master/LICENSE.txt)                                        |
 
-Open sourced ROCm components are released via public GitHub 
+Open sourced ROCm components are released via public GitHub
 repositories, packages on repo.radeon.com and other distribution channels.
-Proprietary products are only available on repo.radeon.com. Currently, only 
+Proprietary products are only available on repo.radeon.com. Currently, only
 one component of ROCm, rocm-llvm-alt is governed by a proprietary license.
 Proprietary components are organized in a proprietary subdirectory in the package
 repositories to distinguish from open sourced packages.

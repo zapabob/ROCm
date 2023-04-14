@@ -13,13 +13,13 @@ distributions. Following is the ROCm proposed file structure.
     | -- lib
          | -- lib<soname>.so->lib<soname>.so.major->lib<soname>.so.major.minor.patch
               (public libaries to link with applications)
-         | -- <component> 
+         | -- <component>
               | -- architecture dependent libraries and binaries used internally by components
          | -- cmake
               | -- <component>
                    | --<component>.config.cmake
     | -- libexec
-         | -- <component> 
+         | -- <component>
               | -- non ISA/architecture independent executables used internally by components
     | -- include
          | -- <component>
@@ -94,11 +94,12 @@ from the new location (/opt/rocm-xxx/include) as shown in the example below.
 The depreciation plan for backward compatibility wrapper header files is as
 follows
 
-- #pragma message announcing deprecation – ROCm v5.2 release.
-- #pragma message changed to #warning – Future release, tentatively ROCm v5.5.
-- #warning changed to #error – Future release, tentatively ROCm v5.6.
+- `#pragma` message announcing deprecation – ROCm v5.2 release.
+- `#pragma` message changed to `#warning` – Future release, tentatively ROCm
+  v5.5.
+- `#warning` changed to `#error` – Future release, tentatively ROCm v5.6.
 - Backward compatibility wrappers removed – Future release, tentatively ROCm
-v6.0.
+  v6.0.
 
 ### Executable files
 
@@ -145,19 +146,19 @@ will be deprecated in a future release. Application have to make sure to include
 correct header file and use correct search paths.
 
 1. `#include<header_file.h>` needs to be changed to
-`#include <component/header_file.h>`
+   `#include <component/header_file.h>`
 
-    For eg: `#include <hip.h>` needs to change
-to `#include <hip/hip.h>`
+   For eg: `#include <hip.h>` needs to change
+   to `#include <hip/hip.h>`
 
 2. Any variable in cmake or makefiles pointing to component folder needs to
-changed.
+   changed.
 
-    For eg: `VAR1=/opt/rocm/hip` needs to be changed to `VAR1=/opt/rocm`
-    `VAR2=/opt/rocm/hsa` needs to be changed to `VAR2=/opt/rocm`
+   For eg: `VAR1=/opt/rocm/hip` needs to be changed to `VAR1=/opt/rocm`
+   `VAR2=/opt/rocm/hsa` needs to be changed to `VAR2=/opt/rocm`
 
 3. Any reference to `/opt/rocm/<component>/bin` or `/opt/rocm/<component>/lib`
-needs to be changed to `/opt/rocm/bin` and `/opt/rocm/lib/` respectively.
+   needs to be changed to `/opt/rocm/bin` and `/opt/rocm/lib/` respectively.
 
 ## References
 

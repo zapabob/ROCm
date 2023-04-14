@@ -61,7 +61,6 @@ Use Driver Shipped with ROCm
 | AMD Radeon™ VII        | Vega           |Full        | gfx906                                                               | Supported                            | Unsupported   |
 | AMD Radeon™ R9 Fury    | Fiji           |Full        | gfx803                                                               | Community                            | Unsupported |
 
-
 :::
 
 ::::
@@ -73,7 +72,7 @@ Use Driver Shipped with ROCm
 :::{tab-item} AMD Instinct™
 :sync: instinct
 
-Instinct™ accelerators support the full stack available in ROCm. Instinct™ 
+Instinct™ accelerators support the full stack available in ROCm. Instinct™
 accelerators are Linux only.
 
 :::
@@ -104,6 +103,7 @@ below:
 - HIP SDK includes the HIP Runtime and a selection of GPU libraries for compute.
   Please see [article](link) for details of HIP SDK.
 - HIP enables the use of the HIP Runtime only.
+
 :::
 
 ::::

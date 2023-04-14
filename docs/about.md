@@ -9,7 +9,7 @@ yourself with our documentation toolchain.
 
 [ReadTheDocs](https://docs.readthedocs.io/en/stable/) is our frontend for the
 our documentation. By frontend, this is the tool that serves our HTML based
-documentation to our end users. 
+documentation to our end users.
 
 ## Doxygen
 
@@ -28,8 +28,9 @@ projects that believe markdown is not suitable should contact the documentation
 team prior to selecting rst.
 
 ### MyST
-[Markedly Structured Text (MyST)](https://myst-tools.org/docs/spec) is an extended 
-flavor of Markdown ([https://commonmark.org/](CommonMark)) influenced by ReStructured 
+
+[Markedly Structured Text (MyST)](https://myst-tools.org/docs/spec) is an extended
+flavor of Markdown ([https://commonmark.org/](CommonMark)) influenced by ReStructured
 Text (RST) and Sphinx.
 It is intergrated via [`myst-parser`](https://myst-parser.readthedocs.io/en/latest/).
 A cheat sheet that showcases how to use the MyST syntax is available over at [the Jupyter

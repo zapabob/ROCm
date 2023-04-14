@@ -18,6 +18,7 @@ The differences are listed in [the table below](rocm-llvm-vs-alt).
 :::
 
 For more details, see:
+
 - AMD GPU usage: [llvm.org/docs/AMDGPUUsage.html](https://llvm.org/docs/AMDGPUUsage.html)
 - Releases and source: <https://github.com/RadeonOpenCompute/llvm-project>
 
@@ -152,7 +153,6 @@ This is effective only under `flto`, as the whole program analysis is required
 to perform this optimization. Users can choose different levels of
 aggressiveness with which this optimization can be applied to the application,
 with 1 being the least aggressive and 7 being the most aggressive level.
-
 
 :::{table} -fstruct-layout Values and Their Effects
 | -fstruct-layout value | Structure peeling | Pointer size after selective compression of self-referential pointers in structures, wherever safe | Type of structure fields eligible for compression | Whether compression performed under safety check |

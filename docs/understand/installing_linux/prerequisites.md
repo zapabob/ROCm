@@ -18,14 +18,14 @@ kernel version.
 Verify the Linux distribution using the following steps:
 
 1. To obtain the Linux distribution information, type the following command on
-your system from the Command Line Interface (CLI):
+   your system from the Command Line Interface (CLI):
 
    ```shell
    uname -m && cat /etc/*release
    ```
 
 2. Confirm that the obtained Linux distribution information matches with those
-with [System Requirements](/release/gpu_os_support#os-support).
+   with [System Requirements](/release/gpu_os_support#os-support).
 
    **Example:** Running the command above on an Ubuntu system results in the
    following output:
@@ -51,7 +51,7 @@ Verify the kernel version using the following steps:
    ```
 
 2. Confirm that the obtained kernel version information matches with System
-Requirements.
+   Requirements.
 
    **Example:** The output of the command above lists the kernel version in the
    following format:
@@ -97,7 +97,7 @@ To verify that your system has a ROCm-capable GPU, use these steps:
    ```
 
 2. Verify from the output that the listed product names match with the Product
-Id given in the table above.
+   Id given in the table above.
 
 ## Confirm the System Has All the Required Tools and Packages Installed
 
@@ -125,7 +125,7 @@ GPU resources.
    ```
 
 3. Use of the video group is recommended for all ROCm-supported operating
-systems.
+   systems.
 
    ```{note}
    render group is required only for Ubuntu v20.04.

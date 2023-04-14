@@ -16,7 +16,7 @@ to your distribution.
 :::{tab-item} Ubuntu
 :sync: ubuntu
 
-```shell  
+```shell
 sudo apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)"
 ```
 

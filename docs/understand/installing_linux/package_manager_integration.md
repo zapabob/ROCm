@@ -60,9 +60,9 @@ of required packages and libraries.
 **Example:**
 
 - rocm-hip-runtime is used to deploy on supported machines to execute HIP
-applications.
+  applications.
 - rocm-hip-sdk contains runtime components to deploy and execute HIP
-applications.
+  applications.
 
 ```{figure-md} meta-packages
 

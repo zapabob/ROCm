@@ -176,7 +176,7 @@ Follow these steps:
         for line in f.readlines():
             split_line = line.split('\t')
             val_dict[split_line[0]] = split_line[1]
-    
+
     paths = glob.glob('./tiny-imagenet-200/val/images/*')
     for path in paths:
         file = path.split('/')[-1]
@@ -184,13 +184,13 @@ Follow these steps:
         if not os.path.exists(target_folder + str(folder)):
             os.mkdir(target_folder + str(folder))
             os.mkdir(target_folder + str(folder) + '/images')
-    
+
     for path in paths:
         file = path.split('/')[-1]
         folder = val_dict[file]
         dest = target_folder + str(folder) + '/images/' + str(file)
         move(path, dest)
-    
+
     rmdir('./tiny-imagenet-200/val/images')
     ```
 
@@ -201,7 +201,7 @@ Follow these steps:
     ```py
     import torch
     import os
-    import torchvision 
+    import torchvision
     from torchvision import transforms
     from torchvision.transforms.functional import InterpolationMode
     ```
@@ -231,7 +231,7 @@ Follow these steps:
 9. To smooth the image, use bilinear interpolation, a resampling method that uses the distance weighted average of the four nearest pixel values to estimate a new pixel value.
 
     ```py
-    interpolation = "bilinear" 
+    interpolation = "bilinear"
     ```
 
     The next parameters control the size to which the validation image is cropped and resized.
@@ -244,7 +244,7 @@ Follow these steps:
     The pretrained Inception v3 model is chosen to be downloaded from torchvision.
 
     ```py
-    model_name = "inception_v3" 
+    model_name = "inception_v3"
     pretrained = True
     ```
 
@@ -289,9 +289,9 @@ Follow these steps:
 
     ```py
     interpolation = InterpolationMode(interpolation)
-    
+
     TRAIN_TRANSFORM_IMG = transforms.Compose([
-    Normalizaing and standardardizing the image    
+    Normalizaing and standardardizing the image
     transforms.RandomResizedCrop(train_crop_size, interpolation=interpolation),
         transforms.PILToTensor(),
         transforms.ConvertImageDtype(torch.float),
@@ -310,16 +310,16 @@ Follow these steps:
         transforms.Normalize(mean=[0.485, 0.456, 0.406],
                             std=[0.229, 0.224, 0.225] )
         ])
-    
-    dataset_test = torchvision.datasets.ImageFolder( 
-        val_dir, 
+
+    dataset_test = torchvision.datasets.ImageFolder(
+        val_dir,
         transform=TEST_TRANSFORM_IMG
     )
-    
+
     print("Creating data loaders")
     train_sampler = torch.utils.data.RandomSampler(dataset)
     test_sampler = torch.utils.data.SequentialSampler(dataset_test)
-    
+
     data_loader = torch.utils.data.DataLoader(
         dataset,
         batch_size=batch_size,
@@ -327,7 +327,7 @@ Follow these steps:
         num_workers=num_workers,
         pin_memory=True
     )
-    
+
     data_loader_test = torch.utils.data.DataLoader(
         dataset_test, batch_size=batch_size, sampler=test_sampler, num_workers=num_workers, pin_memory=True
     )
@@ -445,10 +445,10 @@ Follow these steps:
             running_loss = 0
             for step, (image, target) in enumerate(data_loader_test):
                 image, target = image.to(device), target.to(device)
-                
+
                 output = model(image)
                 loss = criterion(output, target)
-    
+
                 running_loss += loss.item()
         running_loss = running_loss / len(data_loader_test)
         print('Epoch: ', epoch, '| test loss : %0.4f' % running_loss )
@@ -548,7 +548,7 @@ Follow these steps:
 
     ```py
     import torch.nn as nn
-    import torch.nn.functional as F  
+    import torch.nn.functional as F
     ```
 
 8. Define the CNN (Convolution Neural Networks) and relevant activation functions.
@@ -564,7 +564,7 @@ Follow these steps:
     self.conv3 = nn.Conv2d(3, 6, 5)
             self.fc2 = nn.Linear(120, 84)
             self.fc3 = nn.Linear(84, 10)
-    
+
         def forward(self, x):
             x = self.pool(F.relu(self.conv1(x)))
             x = self.pool(F.relu(self.conv2(x)))
@@ -594,21 +594,21 @@ Follow these steps:
 
     ```py
     for epoch in range(2):  # loop over the dataset multiple times
-    
+
         running_loss = 0.0
         for i, data in enumerate(train_loader, 0):
             # get the inputs; data is a list of [inputs, labels]
             inputs, labels = data
-    
+
             # zero the parameter gradients
             optimizer.zero_grad()
-    
+
             # forward + backward + optimize
             outputs = net(inputs)
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
-    
+
             # print statistics
             running_loss += loss.item()
             if i % 2000 == 1999:    # print every 2000 mini-batches
@@ -701,7 +701,7 @@ To understand the code step by step, follow these steps:
 4. The model is tested against the test set, test_images, and test_labels arrays.
 
     ```py
-    fashion_mnist = tf.keras.datasets.fashion_mnist 
+    fashion_mnist = tf.keras.datasets.fashion_mnist
     (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
     ```
 
@@ -751,7 +751,7 @@ To understand the code step by step, follow these steps:
 
     ```py
     train_images = train_images / 255.0
-    
+
     test_images = test_images / 255.0
     ```
 
@@ -823,16 +823,16 @@ To understand the code step by step, follow these steps:
 
         ```py
         test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
-        
+
         print('\nTest accuracy:', test_acc)
         ```
 
     6. With the model trained, you can use it to make predictions about some images: the model's linear outputs and logits. Attach a softmax layer to convert the logits to probabilities, making it easier to interpret.
 
         ```py
-        probability_model = tf.keras.Sequential([model, 
+        probability_model = tf.keras.Sequential([model,
                                                 tf.keras.layers.Softmax()])
-        
+
         predictions = probability_model.predict(test_images)
         ```
 
@@ -856,20 +856,20 @@ To understand the code step by step, follow these steps:
         plt.grid(False)
         plt.xticks([])
         plt.yticks([])
-        
+
         plt.imshow(img, cmap=plt.cm.binary)
-        
+
         predicted_label = np.argmax(predictions_array)
         if predicted_label == true_label:
             color = 'blue'
         else:
             color = 'red'
-        
+
         plt.xlabel("{} {:2.0f}% ({})".format(class_names[predicted_label],
                                         100*np.max(predictions_array),
                                         class_names[true_label]),
                                         color=color)
-        
+
         def plot_value_array(i, predictions_array, true_label):
         true_label = true_label[i]
         plt.grid(False)
@@ -878,7 +878,7 @@ To understand the code step by step, follow these steps:
         thisplot = plt.bar(range(10), predictions_array, color="#777777")
         plt.ylim([0, 1])
         predicted_label = np.argmax(predictions_array)
-        
+
         thisplot[predicted_label].set_color('red')
         thisplot[true_label].set_color('blue')
         ```
@@ -930,7 +930,7 @@ To understand the code step by step, follow these steps:
         ```py
         # Add the image to a batch where it's the only member.
         img = (np.expand_dims(img,0))
-        
+
         print(img.shape)
         ```
 
@@ -938,9 +938,9 @@ To understand the code step by step, follow these steps:
 
         ```py
         predictions_single = probability_model.predict(img)
-        
+
         print(predictions_single)
-        
+
         plot_value_array(1, predictions_single[0], test_labels)
         _ = plt.xticks(range(10), class_names, rotation=45)
         plt.show()
@@ -973,7 +973,7 @@ Follow these steps:
     import shutil
     import string
     import tensorflow as tf
-    
+
     from tensorflow.keras import layers
     from tensorflow.keras import losses
     ```
@@ -982,7 +982,7 @@ Follow these steps:
 
     ```py
     url = "https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
-    
+
     dataset = tf.keras.utils.get_file("aclImdb_v1", url,
                                         untar=True, cache_dir='.',
                                         cache_subdir='')
@@ -1061,12 +1061,12 @@ Follow these steps:
 10. Next, create validation and test the dataset. Use the remaining 5,000 reviews from the training set for validation into two classes of 2,500 reviews each.
 
     ```py
-    raw_val_ds = tf.keras.utils.text_dataset_from_directory('aclImdb/train', 
+    raw_val_ds = tf.keras.utils.text_dataset_from_directory('aclImdb/train',
     batch_size=batch_size,validation_split=0.2,subset='validation', seed=seed)
-    
-    raw_test_ds = 
+
+    raw_test_ds =
     tf.keras.utils.text_dataset_from_directory(
-        'aclImdb/test', 
+        'aclImdb/test',
         batch_size=batch_size)
     ```
 
@@ -1107,7 +1107,7 @@ To prepare the data for training, follow these steps:
     def vectorize_text(text, label):
     text = tf.expand_dims(text, -1)
     return vectorize_layer(text), label
-    
+
     text_batch, label_batch = next(iter(raw_train_ds))
     first_review, first_label = text_batch[0], label_batch[0]
     print("Review", first_review)
@@ -1143,7 +1143,7 @@ To prepare the data for training, follow these steps:
 
     ```py
     AUTOTUNE = tf.data.AUTOTUNE
-    
+
     train_ds = train_ds.cache().prefetch(buffer_size=AUTOTUNE)
     val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
     test_ds = test_ds.cache().prefetch(buffer_size=AUTOTUNE)
@@ -1188,7 +1188,7 @@ To prepare the data for training, follow these steps:
 
     ```py
     loss, accuracy = model.evaluate(test_ds)
-    
+
     print("Loss: ", loss)
     print("Accuracy: ", accuracy)
     ```
@@ -1209,9 +1209,9 @@ To prepare the data for training, follow these steps:
     val_acc = history_dict['val_binary_accuracy']
     loss = history_dict['loss']
     val_loss = history_dict['val_loss']
-    
+
     epochs = range(1, len(acc) + 1)
-    
+
     # "bo" is for "blue dot"
     plt.plot(epochs, loss, 'bo', label='Training loss')
     # b is for "solid blue line"
@@ -1220,7 +1220,7 @@ To prepare the data for training, follow these steps:
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.legend()
-    
+
     plt.show()
     ```
 
@@ -1250,11 +1250,11 @@ To prepare the data for training, follow these steps:
     model,
     layers.Activation('sigmoid')
     ])
-    
+
     export_model.compile(
         loss=losses.BinaryCrossentropy(from_logits=False), optimizer="adam", metrics=['accuracy']
     )
-    
+
     # Test it with `raw_test_ds`, which yields raw strings
     loss, accuracy = export_model.evaluate(raw_test_ds)
     print(accuracy)
@@ -1268,7 +1268,7 @@ To prepare the data for training, follow these steps:
     "The movie was okay.",
     "The movie was terrible..."
     ]
-    
+
     export_model.predict(examples)
     ```
 
@@ -1296,7 +1296,7 @@ MIGraphX is a graph compiler focused on accelerating the Machine Learning infere
 
 - Constant propagation
 
-After doing all these transformations, MIGraphX emits code for the AMD GPU by calling to MIOpen or rocBLAS or creating HIP kernels for a particular operator. MIGraphX can also target CPUs using DNNL or ZenDNN libraries. 
+After doing all these transformations, MIGraphX emits code for the AMD GPU by calling to MIOpen or rocBLAS or creating HIP kernels for a particular operator. MIGraphX can also target CPUs using DNNL or ZenDNN libraries.
 
 MIGraphX provides easy-to-use APIs in C++ and Python to import machine models in ONNX or TensorFlow. Users can compile, save, load, and run these models using MIGraphX's C++ and Python APIs. Internally, MIGraphX parses ONNX or TensorFlow models into internal graph representation where each operator in the model gets mapped to an operator within MIGraphX. Each of these operators defines various attributes such as:
 
@@ -1351,7 +1351,7 @@ To use Docker, follow these steps:
 2. The repo contains a Dockerfile from which you can build a Docker image as:
 
     ```bash
-    docker build -t migraphx . 
+    docker build -t migraphx .
     ```
 
 3. Then to enter the development environment, use Docker run:
@@ -1388,22 +1388,22 @@ Follow these steps:
 2. The following script shows the usage of Python API to import the ONNX model, compile it, and run inference on it. Set LD_LIBRARY_PATH to /opt/rocm/ if required.
 
     ```py
-    # import migraphx and numpy 
+    # import migraphx and numpy
     import migraphx
     import numpy as np
-    # import and parse inception model 
+    # import and parse inception model
     model = migraphx.parse_onnx("inceptioni1.onnx")
     # compile model for the GPU target
     model.compile(migraphx.get_target("gpu"))
     # optionally print compiled model
-    model.print()     
-    # create random input image 
+    model.print()
+    # create random input image
     input_image = np.random.rand(1, 3, 299, 299).astype('float32')
-    # feed image to model, 'x.1` is the input param name 
+    # feed image to model, 'x.1` is the input param name
     results = model.run({'x.1': input_image})
     # get the results back
     result_np = np.array(results[0])
-    # print the inferred class of the input image 
+    # print the inferred class of the input image
     print(np.argmax(result_np))
     ```
 
@@ -1422,7 +1422,7 @@ Follow these steps:
     #include <ctime>
     #include <random>
     #include <migraphx/migraphx.hpp>
-    
+
     int main(int argc, char** argv)
     {
         migraphx::program prog;
@@ -1438,12 +1438,12 @@ Follow these steps:
         prog.compile(targ, comp_opts);
         // print the compiled program
         prog.print();
-        // randomly generate input image 
+        // randomly generate input image
         // of shape (1, 3, 299, 299)
         std::srand(unsigned(std::time(nullptr)));
         std::vector<float> input_image(1*299*299*3);
         std::generate(input_image.begin(), input_image.end(), std::rand);
-        // users need to provide data for the input 
+        // users need to provide data for the input
         // parameters in order to run inference
         // you can query into migraph program for the parameters
         migraphx::program_parameters prog_params;
@@ -1453,7 +1453,7 @@ Follow these steps:
         prog_params.add(input, migraphx::argument(param_shapes[input], input_image.data()));
         // run inference
         auto outputs = prog.eval(prog_params);
-        // read back the output 
+        // read back the output
         float* results = reinterpret_cast<float*>(outputs[0].data());
         float* max     = std::max_element(results, results + 1000);
         int answer = max - results;
@@ -1466,16 +1466,16 @@ Follow these steps:
     ```py
     cmake_minimum_required(VERSION 3.5)
     project (CAI)
-    
+
     set (CMAKE_CXX_STANDARD 14)
     set (EXAMPLE inception_inference)
-    
+
     list (APPEND CMAKE_PREFIX_PATH /opt/rocm/hip /opt/rocm)
     find_package (migraphx)
-    
+
     message("source file: " ${EXAMPLE}.cpp " ---> bin: " ${EXAMPLE})
     add_executable(${EXAMPLE} ${EXAMPLE}.cpp)
-    
+
     target_link_libraries(${EXAMPLE} migraphx::c)
     ```
 
@@ -1541,7 +1541,7 @@ Inference time: 0.029ms
 iterator : 9
 Inference complete
 Inference time: 0.029ms
- 
+
 ### TUNED ###
 iterator : 0
 Inference complete
@@ -1581,7 +1581,7 @@ The best inference performance through MIGraphX is conditioned upon having tuned
 
 Tuning is time consuming, and if the users have not performed tuning, they would see discrepancies between expected or claimed inference performance and actual inference performance. This has led to repetitive and time-consuming tuning tasks for each user.
 
-MIGraphX introduces a feature, known as YModel, that stores the kernel config parameters found during tuning into a .mxr file. This ensures the same level of expected performance, even when a model is copied to a different user/system.   
+MIGraphX introduces a feature, known as YModel, that stores the kernel config parameters found during tuning into a .mxr file. This ensures the same level of expected performance, even when a model is copied to a different user/system.
 
 The YModel feature is available starting from ROCm 5.4.1 and UIF 1.1.
 

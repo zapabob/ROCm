@@ -17,36 +17,39 @@ GitHub repository.
 
 Our documentation includes both markdown and rst files. Markdown is encouraged
 over rst due to the lower barrier to participation. GitHub flavored markdown is preferred
-for all submissions as it will render accurately on our GitHub repositories. For existing documentation, 
+for all submissions as it will render accurately on our GitHub repositories. For existing documentation,
 [MyST](https://myst-parser.readthedocs.io/en/latest/intro.html) markdown
-is used to implement certain features unsupported in GitHub markdown. This is 
+is used to implement certain features unsupported in GitHub markdown. This is
 not encouraged for new documentation. AMD will transition
-to stricter use of GitHub flavored markdown with a few caveats. ROCm documentation 
+to stricter use of GitHub flavored markdown with a few caveats. ROCm documentation
 also uses [sphinx-design](https://sphinx-design.readthedocs.io/en/latest/index.html)
 in our markdown and rst files. We also will use breathe syntax for doxygen documentation
 in our markdown files. Other design elements for effective HTML rendering of the documents
 may be added to our markdown files. Please see
 [GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github)'s
-guide on writing and formatting on GitHub as a starting point. 
+guide on writing and formatting on GitHub as a starting point.
 
 ROCm documentation adds additional requirements to markdown and rst based files
 as follows:
 
 - Level one headers are only used for page titles. There must be only one level
-1 header per file for both Markdown and Restructured Text.
+  1 header per file for both Markdown and Restructured Text.
 - Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via
-our automated github action on a Pull Request (PR).
+  our automated github action on a Pull Request (PR).
 
 ## Filenames and folder structure
-Please use snake case for file names. Our documentation follows pitchfork for 
+
+Please use snake case for file names. Our documentation follows pitchfork for
 folder structure. All documentation is in /docs except for special files like
-the contributing guide in the / folder. All images used in the documentation are 
+the contributing guide in the / folder. All images used in the documentation are
 place in the /docs/data folder.
 
-## How do provide feedback for for ROCm documentation?
+## How to provide feedback for for ROCm documentation
+
 There are three standard ways to provide feedback for this repository.
 
 ### Pull Request
+
 All contributions to ROCm documentation should arrive via the
 [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
 targetting the develop branch of the repository. If you are unable to contribute
@@ -95,6 +98,7 @@ python3 -mvenv .venv
 ```
 
 Python versions known to build documentation:
+
 - 3.8
 - 3.9
 - 3.10
@@ -108,15 +112,15 @@ the PR (`https://github.com/RadeonOpenCompute/ROCm/pull/<pr_number>`) will have
 a summary at the bottom. This requires the user be logged in to GitHub.
 
 - There, click `Show all checks` and `Details` of the Read the Docs pipeline. It
-will take you to `https://readthedocs.com/projects/advanced-micro-devices-rocm/
-builds/<some_build_num>/`
+  will take you to `https://readthedocs.com/projects/advanced-micro-devices-rocm/
+  builds/<some_build_num>/`
   - The list of commands shown are the exact ones used by CI to produce a render
-  of the documentation.
+    of the documentation.
 - There, click on the small blue link `View docs` (which is not the same as the
-bigger button with the same text). It will take you to the built HTML site with
-a URL of the form `https://
-advanced-micro-devices-demo--<pr_number>.com.readthedocs.build/projects/alpha/en
-/<pr_number>/`.
+  bigger button with the same text). It will take you to the built HTML site with
+  a URL of the form `https://
+  advanced-micro-devices-demo--<pr_number>.com.readthedocs.build/projects/alpha/en
+  /<pr_number>/`.
 
 ### Build the docs using VS Code
 
@@ -147,12 +151,11 @@ resulting website show up on a locally serving web server.
 
     The settings in order are set for the following reasons:
     - Sets the root of the output website for live previews. Must be changed
-    alongside the `tasks.json` command.
+      alongside the `tasks.json` command.
     - Tells live server to wait with the update to give time for Sphinx to
-    regenerate site contents and not refresh before all is don. (Empirical value
-    )
+      regenerate site contents and not refresh before all is don. (Empirical value)
     - Automatic virtual env activation is a nice touch, should you want to build
-    the site from the integrated terminal.
+      the site from the integrated terminal.
 
 3. Add the following tasks in `.vscode/tasks.json`
 
@@ -215,11 +218,11 @@ resulting website show up on a locally serving web server.
     ```
 
     > (Implementation detail: two problem matchers were needed to be defined,
-    because VS Code doesn't tolerate some problem information being potentially
-    absent. While a single regex could match all types of errors, if a capture
-    group remains empty (the line number doesn't show up in all warning/error
-    messages) but the `pattern` references said empty capture group, VS Code
-    discards the message completely.)
+    > because VS Code doesn't tolerate some problem information being potentially
+    > absent. While a single regex could match all types of errors, if a capture
+    > group remains empty (the line number doesn't show up in all warning/error
+    > messages) but the `pattern` references said empty capture group, VS Code
+    > discards the message completely.)
 
 4. Configure Python virtual environment (venv)
 
@@ -241,3 +244,5 @@ resulting website show up on a locally serving web server.
     `.vscode/build/html/index.html` and select `Open with Live Server`. The
     contents should update on every rebuild without having to refresh the
     browser.
+
+<!-- markdownlint-restore -->

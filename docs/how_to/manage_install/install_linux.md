@@ -26,10 +26,10 @@ For AMDGPU and ROCm installation using the installer script method on Linux
 distribution, follow these steps:
 
 1. **Meet prerequisites** – Ensure the Prerequisites are met before downloading
-and installing the installer using the installer script method.
+   and installing the installer using the installer script method.
 
 2. **Download and install the installer script** – Ensure you download and
-install the installer script from the recommended URL.
+   install the installer script from the recommended URL.
 
    ```{tip}
    The installer package is updated periodically to resolve known issues and add
@@ -38,7 +38,7 @@ install the installer script from the recommended URL.
    ```
 
 3. **Use the installer script on Linux distributions** – Ensure you execute the
-script for installing use cases.
+   script for installing use cases.
 
 ### Download and Install the Installer Script
 
@@ -147,7 +147,7 @@ To install use cases specific to your requirements, use the installer
 - To install multiple use cases:
 
   ```shell
-  sudo amdgpu-install --usecase=hiplibsdk,rocm 
+  sudo amdgpu-install --usecase=hiplibsdk,rocm
   ```
 
 - To display a list of available use cases:
@@ -164,7 +164,7 @@ To install use cases specific to your requirements, use the installer
 
   ```none
   If --usecase option is not present, the default selection is "graphics,opencl,hip"
-   
+
   Available use cases:
   rocm(for users and developers requiring full ROCm stack)
   - OpenCL (ROCr/KFD based) runtime
@@ -176,16 +176,16 @@ To install use cases specific to your requirements, use the installer
   lrt(for users of applications requiring ROCm runtime)
   - ROCm Compiler and device libraries
   - ROCr runtime and thunk
-  opencl(for users of applications requiring OpenCL on Vega or       
+  opencl(for users of applications requiring OpenCL on Vega or
   later products)
   - ROCr based OpenCL
   - ROCm Language runtime
-   
+
   openclsdk (for application developers requiring ROCr based OpenCL)
   - ROCr based OpenCL
   - ROCm Language runtime
   - development and SDK files for ROCr based OpenCL
-   
+
   hip(for users of HIP runtime on AMD products)
   - HIP runtimes
   hiplibsdk (for application developers requiring HIP on AMD products)
@@ -351,9 +351,9 @@ The functions of a package manager installation system are:
 - Grouping packages based on function
 - Extracting package archives
 - Ensuring a package is installed with all necessary packages and dependencies
-are managed
+  are managed
 - From a remote repository, looking up, downloading, installing, or updating
-existing packages
+  existing packages
 - Ensuring the authenticity and integrity of the package
 
 ### Installing ROCm on Linux Distributions
@@ -362,27 +362,27 @@ For a fresh ROCm installation using the package manager method on a Linux
 distribution, follow the steps below:
 
 1. **Meet prerequisites** – Ensure the Prerequisites are met before the ROCm
-installation.
+   installation.
 
 2. **Install kernel headers and development packages** – Ensure kernel headers
-and development packages are installed on the system.
+   and development packages are installed on the system.
 
 3. **Select the base URLs for AMDGPU and ROCm stack repository** – Ensure the
-base URLs for AMDGPU and ROCm stack repositories are selected.
+   base URLs for AMDGPU and ROCm stack repositories are selected.
 
 4. **Add the AMDGPU stack repository** – Ensure the AMDGPU stack repository is
-added.
+   added.
 
 5. **Install the kernel-mode driver and reboot the system** – Ensure the
-kernel-mode driver is installed and the system is rebooted.
+   kernel-mode driver is installed and the system is rebooted.
 
 6. **Add ROCm stack repository** – Ensure the ROCm stack repository is added.
 
 7. **Install single-version or multiversion ROCm meta-packages** – Install the
-desired meta-packages.
+   desired meta-packages.
 
 8. **Verify installation for the applicable distributions** – Verify if the
-installation is successful.
+   installation is successful.
 
 ```{important}
 You cannot install a kernel-mode driver in a Docker container. Refer to the
@@ -428,8 +428,8 @@ To check the `kernel-headers` and `linux-modules-extra` package versions,
 follow these steps:
 
 1. For the Ubuntu/Debian environment, execute the following command to verify
-the kernel headers and development packages are installed with the respective
-versions:
+   the kernel headers and development packages are installed with the
+   respective versions:
 
    ```shell
    sudo dpkg -l | grep linux-headers
@@ -442,7 +442,7 @@ versions:
    ```
 
 2. Execute the following command to check whether the development packages are
-installed:
+   installed:
 
    ```shell
    sudo dpkg -l | grep linux-modules-extra
@@ -456,8 +456,8 @@ installed:
    ```
 
 3. If the supported version installation of Linux headers and development
-packages are not installed on the system, execute the following command to
-install the packages:
+   packages are not installed on the system, execute the following command
+   to install the packages:
 
    ```shell
    sudo apt install linux-headers-`uname -r` linux-modules-extra-`uname -r`
@@ -492,26 +492,26 @@ install the packages:
 
    To add the AMDGPU stack repository, follow these steps:
 
-::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
+   ::::{tab-set}
+   :::{tab-item} Ubuntu 20.04
+   :sync: ubuntu-20.04
 
    ```shell
    echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/amdgpu/5.4.3/ubuntu focal main' | sudo tee /etc/apt/sources.list.d/amdgpu.list
    sudo apt update
    ```
 
-:::
-:::{tab-item} Ubuntu 22.04
-:sync: ubuntu-22.04
+   :::
+   :::{tab-item} Ubuntu 22.04
+   :sync: ubuntu-22.04
 
    ```shell
    echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/amdgpu/5.4.3/ubuntu jammy main' | sudo tee /etc/apt/sources.list.d/amdgpu.list
    sudo apt update
    ```
 
-:::
-::::
+   :::
+   ::::
 
    Install the kernel mode driver and reboot the system using the following
    commands:
@@ -525,9 +525,9 @@ install the packages:
 
    To add the ROCm repository, use the following steps:
 
-::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
+   ::::{tab-set}
+   :::{tab-item} Ubuntu 20.04
+   :sync: ubuntu-20.04
 
    ```shell
    for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
@@ -537,9 +537,9 @@ install the packages:
    sudo apt update
    ```
 
-:::
-:::{tab-item} Ubuntu 22.04
-:sync: ubuntu-22.04
+   :::
+   :::{tab-item} Ubuntu 22.04
+   :sync: ubuntu-22.04
 
    ```shell
    for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
@@ -549,8 +549,8 @@ install the packages:
    sudo apt update
    ```
 
-:::
-::::
+   :::
+   ::::
 
    Install packages of your choice in a single-version ROCm install or
    in a multi-version ROCm install fashion. For more information on what
@@ -596,7 +596,7 @@ To check the kernel headers and `linux-modules-extra` package versions,
 follow these steps:
 
 1. To verify you have the supported version of the installed kernel headers,
-type the following on the command line:
+   type the following on the command line:
 
    ```shell
    sudo yum list installed kernel-headers
@@ -607,15 +607,15 @@ type the following on the command line:
    the same versions as the kernel.
 
 2. The following command lists the development packages on your system. Verify
-if the listed development package's version number matches the kernel version
-number:
+   if the listed development package's version number matches the kernel
+   version number:
 
    ```shell
    sudo yum list installed kernel-devel
    ```
 
 3. If the supported version installation of kernel headers and development
-packages does not exist on the system, execute the command below to install:
+   packages does not exist on the system, execute the command below to install:
 
    ```shell
    sudo yum install kernel-headers-`uname -r` kernel-devel-`uname -r`
@@ -631,9 +631,9 @@ packages does not exist on the system, execute the command below to install:
    section.
    ```
 
-::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
+   ::::{tab-set}
+   :::{tab-item} RHEL 8.6
+   :sync: RHEL-8.6
 
    ```shell
    sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
@@ -648,10 +648,10 @@ packages does not exist on the system, execute the command below to install:
    sudo yum clean all
    ```
 
-:::
+   :::
 
-:::{tab-item} RHEL 8.7
-:sync: RHEL-8.7
+   :::{tab-item} RHEL 8.7
+   :sync: RHEL-8.7
 
    ```shell
    sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
@@ -666,10 +666,10 @@ packages does not exist on the system, execute the command below to install:
    sudo yum clean all
    ```
 
-:::
+   :::
 
-:::{tab-item} RHEL 9.1
-:sync: RHEL-9.1
+   :::{tab-item} RHEL 9.1
+   :sync: RHEL-9.1
 
    ```shell
    sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
@@ -684,8 +684,8 @@ packages does not exist on the system, execute the command below to install:
    sudo yum clean all
    ```
 
-:::
-::::
+   :::
+   ::::
 
    Install the kernel mode driver and reboot the system using the following
    commands:
@@ -758,8 +758,8 @@ To check the `kernel-headers` and `linux-modules-extra` package versions, follow
 these steps:
 
 1. Ensure that the correct version of the latest `kernel-default-devel` and
-`kernel-default` packages are installed. The following command lists the
-installed kernel-default-devel and kernel-default package:
+   `kernel-default` packages are installed. The following command lists the
+   installed kernel-default-devel and kernel-default package:
 
    ```shell
    sudo zypper info kernel-default-devel or kernel-default
@@ -772,7 +772,7 @@ installed kernel-default-devel and kernel-default package:
    ```
 
 2. If the required version of packages does not exist on the system, install
-with the command below:
+   with the command below:
 
    ```shell
    sudo zypper install kernel-default-devel or kernel-default
@@ -862,7 +862,7 @@ but are generally useful. Verification of the install is advised.
 ### Post-install Actions
 
 1. Instruct the system linker where to find the shared objects (`.so` files) for
-ROCm applications.
+   ROCm applications.
 
    ```shell
    sudo tee --append /etc/ld.so.conf.d/rocm.conf <<EOF
@@ -928,7 +928,7 @@ To ensure the packages are installed successfully, use the following commands:
 :::{tab-item} Ubuntu
 :sync: ubuntu
 
-```shell  
+```shell
 sudo apt list --installed
 ```
 

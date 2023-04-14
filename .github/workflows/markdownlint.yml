@@ -14,4 +14,4 @@ jobs:
     - name: Use markdownlint
       uses: actionshub/markdownlint@v3.1.3
       with:
-        filesToIgnoreRegex: "CHANGELOG.md|CONTRIBUTING.md|README.md|packaging_guidelines.md|about.md|quick_start.md|index.md|gpu_os_support.md|magma_install.md|math.md|reference/rocmcc.md|docker.md|hip.md|hip_sdk_install_win.md|all_deploy_options.md|inception_casestudy.md|deep_learning_rocm.md|quick_start_windows.md|tensorflow_install.md|pytorch_install.md|mi250.md|openmp.md|c++_primitives.md|ai_tools.md|computer_vision.md|all.md|compilers.md|management_tools.md|validation_tools.md|installing_linux.md|file_reorg.md|prerequisites.md|quick_start_linux.md|docker_support_matrix.md|gpu_os_support.md|"
+        filesToIgnoreRegex: CHANGELOG.md
