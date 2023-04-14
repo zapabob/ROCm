@@ -1,6 +1,6 @@
-# AMD ROCm Documentation
+# AMD ROCm™ Platform Documentation
 
-Welcome to AMD ROCm's documentation!
+Welcome to AMD ROCm™ Platform's documentation!
 
 :::::{grid} 1 1 2 2
 :gutter: 1
