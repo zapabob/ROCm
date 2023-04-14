@@ -43,6 +43,8 @@ Use Driver Shipped with ROCm
 :sync: radeonpro
 
 [Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
+
+This table is incomplete.
 | GPU               | Architecture    | SW Level | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows     |
 |:-----------------:|:---------------:|:--------:|:--------------------------------------------------------------------:|:------------------------------------:|:-----------:|
 | AMD Radeon™ Pro W6800 | RDNA2           | Full     | gfx1030                                                              | Supported                            | Supported   |
@@ -54,12 +56,14 @@ Use Driver Shipped with ROCm
 :sync: radeon
 
 [Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
+
+This table is incomplete.
 | GPU                | Architecture   | SW Level   | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Linux                                | Windows     |
 |:------------------:|:--------------:|:----------:|:--------------------------------------------------------------------:|:------------------------------------:|:-----------:|
 | AMD Radeon™ RX 6900 XT | RDNA2          |HIP SDK     | gfx1030                                                              | Supported                            | Supported   |
 | AMD Radeon™ RX 6600    | RDNA2          |HIP Runtime | gfx1031                                                              | Supported                            | Supported   |
 | AMD Radeon™ VII        | Vega           |Full        | gfx906                                                               | Supported                            | Unsupported   |
-| AMD Radeon™ R9 Fury    | Fiji           |Full        | gfx803                                                               | Community                            | Unsupported |
+| AMD Radeon™ R9 Fury    | Fiji           |NA          | gfx803                                                               | Community                            | Unsupported |
 
 :::
 
