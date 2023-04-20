@@ -44,7 +44,7 @@ subtrees:
       subtrees:
         - entries:
             - title: HIP Runtime API
-              url: https://advanced-micro-devices-hip--3192.com.readthedocs.build/en/3192/
+              url: https://rocmdocs.amd.com/projects/HIP/en/{branch}/
             - title: HIPify - Port Your Code
               url: https://advanced-micro-devices-demo--737.com.readthedocs.build/projects/HIPIFY/en/737/
     - file: reference/gpu_libraries/math

@@ -7,10 +7,10 @@ HIP is both AMD's GPU programming language extension and the GPU runtime. This p
 :::::{grid} 1 1 2 2
 :gutter: 1
 
-:::{grid-item-card} [HIP Runtime](https://rocmdocs.amd.com/projects/hipBLAS/en/rtd/)
+:::{grid-item-card} [HIP Runtime](https://rocmdocs.amd.com/projects/HIP/en/develop/)
 The HIP Runtime is used to enable GPU acceleration for all HIP language based products.
 
-- [HIP Runtime API Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/rtd/)
+- [HIP Runtime API Manual](https://rocmdocs.amd.com/projects/HIP/en/develop/)
 - [Examples](https://github.com/amd/rocm-examples/tree/develop/HIP-Basic)
 
 :::
@@ -22,11 +22,11 @@ The HIP Runtime is used to enable GPU acceleration for all HIP language based pr
 :::::{grid} 1 1 1 1
 :gutter: 1
 
-:::{grid-item-card} [HIPify](https://rocmdocs.amd.com/projects/rocBLAS/en/rtd/)
+:::{grid-item-card} [HIPify](https://rocmdocs.amd.com/projects/HIPIFY/en/develop/)
 HIPify assists with porting applications from based on CUDA to the HIP Runtime. Supported
 CUDA APIs are documented here as well.
 
-- [Reference Manual](https://rocmdocs.amd.com/projects/rocBLAS/en/rtd/)
+- [Reference Manual](https://rocmdocs.amd.com/projects/HIPIFY/en/develop/)
 
 :::
 
