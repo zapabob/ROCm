@@ -1,4 +1,4 @@
-# Installation
+# Installation (Linux)
 
 Installing can be done in one of two ways, depending on your preference:
 

@@ -1,16 +1,7 @@
 # Installation Overview (Linux)
 
-This chapter provides an overview of ROCm™ installation.
-
-## About This Document
-
-This document is intended for users familiar with Linux® and discusses the
-installation/uninstallation of ROCm on the various Linux distributions.
-
-```{note}
-The rest of this document refers to _Radeon™ Software for Linux_ as the AMDGPU
-stack and `amdgpu-dkms` driver as the kernel-mode driver.
-```
+This document is intended for users familiar with Linux and discusses the
+installation of ROCm on various distributions.
 
 The guide provides instructions for the following:
 
@@ -20,6 +11,11 @@ The guide provides instructions for the following:
 - ROCm single-version and multi-version uninstallation
 - Kernel-mode driver uninstallation
 
+```{note}
+The rest of this document refers to _Radeon™ Software for Linux_ as the `amdgpu`
+stack and `amdgpu-dkms` driver as the kernel-mode driver.
+```
+
 ## Installation Methods
 
 It is customary for Linux installers to integrate into the system's package
@@ -27,7 +23,7 @@ manager. There are two notable groups of package sources:
 
 - AMD-hosted repositories maintained by AMD available to register on supported
   Linux distribution versions. For a complete list of AMD-supported platforms,
-  refer to the article: [GPU and OS Support](../release/gpu_os_support).
+  refer to the article: [GPU and OS Support](/release/gpu_os_support).
 - Distribution-hosted repositories maintained by the developer of said Linux
   distribution. These require little to no setup from the user, but aren't tested
   by AMD. For support on these installations, contact the relevant maintainers.
@@ -60,7 +56,7 @@ component (Code Object Manager) from the `amd_comgr` folder. A file named
 Integrating with the distribution's package manager let's the user install,
 upgrade and uninstall using familiar commands and workflows. The actual commands
 vary from distribution to distribution. For more information, refer to
-[Package Manager Integration](installing_linux/package_manager_integration).
+[Package Manager Integration](package_manager_integration).
 
 ### Installer Script
 
@@ -136,7 +132,7 @@ multi-version ROCm installation types:
 
 ```{figure-md} install-types
 
-<img src="../data/understand/installing_linux/image.001.png" alt="">
+<img src="/data/deploy/linux/image.001.png" alt="">
 
 ROCm Installation Types
 ```

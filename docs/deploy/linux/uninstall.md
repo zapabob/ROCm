@@ -1,4 +1,4 @@
-# Uninstallation
+# Uninstallation (Linux)
 
 Uninstallation of ROCm entails removing ROCm packages, tools, and libraries from
 the system.

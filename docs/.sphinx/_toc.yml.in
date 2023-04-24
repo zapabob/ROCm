@@ -19,18 +19,28 @@ subtrees:
 
 - caption: Deploy ROCm
   entries:
-  - file: how_to/quick_start_linux
+  - file: deploy/linux/index
     title: Linux
     subtrees:
       - entries:
-        - file: understand/installing_linux/prerequisites
-        - file: understand/installing_linux/package_manager_integration
-        - file: how_to/manage_install/install_linux
-        - file: how_to/manage_install/upgrade_linux
-        - file: how_to/manage_install/uninstall_linux
-  - file: how_to/quick_start_windows
+        - file: deploy/linux/install_overview.md
+          title: Installation Overview
+        - file: deploy/linux/prerequisites
+          title: Prerequisites
+        - file: deploy/linux/quick_start
+          title: Quick Start
+        - file: deploy/linux/install
+          title: Installation
+        - file: deploy/linux/upgrade
+          title: Upgrade
+        - file: deploy/linux/uninstall
+          title: Uninstallation
+        - file: deploy/linux/package_manager_integration
+  - file: deploy/quick_start_windows
     title: Windows
   - file: deploy/docker
+    title: Docker
+
 
 - caption: APIs and Reference
   entries:

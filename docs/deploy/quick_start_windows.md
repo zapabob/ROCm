@@ -34,19 +34,19 @@ To launch the AMD HIP SDK Installer, click the **Setup** icon shown in
 configuration and compatibility, as shown in {numref}`loading-window`. A
 completely loaded AMD HIP SDK Installer window will appear, as shown in {numref}`installer-window`.
 
-:::{figure} ../data/hip_sdk_install_win/Setup-Icon.png
+:::{figure} /data/deploy/quick_start_windows/Setup-Icon.png
 :name: setup-icon
 :alt: Setup
 Setup Icon.
 :::
 
-:::{figure} ../data/hip_sdk_install_win/Loading-Window.png
+:::{figure} /data/deploy/quick_start_windows/Loading-Window.png
 :name: loading-window
 :alt: Loading Window
 AMD HIP SDK Loading Window
 :::
 
-:::{figure} ../data/hip_sdk_install_win/Installer-Window.png
+:::{figure} /data/deploy/quick_start_windows/Installer-Window.png
 :name: installer-window
 :alt: Installer Window
 AMD HIP SDK Installer Window
@@ -81,7 +81,7 @@ in the upper right corner of the installer window, as seen in {numref}`installer
 demonstrates the installer window once the installation components are all
 deselected.
 
-:::{figure} ../data/hip_sdk_install_win/DeSelectAll.png
+:::{figure} /data/deploy/quick_start_windows/DeSelectAll.png
 :name: deselect-all
 :alt: DeSelect All
 Deselect All Selection
@@ -104,31 +104,31 @@ By default, each HIP component will be checked off for full installation,
 **Note** You can manually select installation locations for the HIP SDK Core, as
 shown in {numref}`hip-sdk-core`.
 
-:::{figure} ../data/hip_sdk_install_win/HIP-SDK-Core.png
+:::{figure} /data/deploy/quick_start_windows/HIP-SDK-Core.png
 :name: hip-sdk-core
 :alt: HIP SDK Core
 HIP SDK Core Option
 :::
 
-:::{figure} ../data/hip_sdk_install_win/HIP-Libraries.png
+:::{figure} /data/deploy/quick_start_windows/HIP-Libraries.png
 :name: hip-libraries
 :alt: Hip Libraries
 Hip Libraries Option
 :::
 
-:::{figure} ../data/hip_sdk_install_win/HIP-Runtime-Compiler.png
+:::{figure} /data/deploy/quick_start_windows/HIP-Runtime-Compiler.png
 :name: hip-rtc
 :alt: HIP Runtime Compiler
 HIP Runtime Compiler Option
 :::
 
-:::{figure} ../data/hip_sdk_install_win/HIP-Ray-Tracing.png
+:::{figure} /data/deploy/quick_start_windows/HIP-Ray-Tracing.png
 :name: hip-ray-tracing
 :alt: HIP Ray Tracing
 HIP Ray Tracing
 :::
 
-:::{figure} ../data/hip_sdk_install_win/BitCode-Profiler.png
+:::{figure} /data/deploy/quick_start_windows/BitCode-Profiler.png
 :name: bitcode-profiler
 :alt: BitCode Profiler
 BitCode Profiler
@@ -163,7 +163,7 @@ previously installed drivers.
 | **Driver Only**     | Provides no user interface for AMD Software features.                                                                                                              |
 :::
 
-:::{figure} ../data/hip_sdk_install_win/AMD-Display-Driver.png
+:::{figure} /data/deploy/quick_start_windows/AMD-Display-Driver.png
 :name: display-driver
 :alt: Display Driver
 AMD Display Driver Options
@@ -173,7 +173,7 @@ AMD Display Driver Options
 
 Please wait for the installation to complete during as shown in {numref}`installing`.
 
-:::{figure} ../data/hip_sdk_install_win/Installation.png
+:::{figure} /data/deploy/quick_start_windows/Installation.png
 :name: installing
 :alt: Installing
 Active Installation
@@ -185,7 +185,7 @@ Once the installation is complete, the installer window may prompt you for a
 system restart. Click **Restart** at the lower right corner, shown in
 {numref}`installation-complete`
 
-:::{figure} ../data/hip_sdk_install_win/Installation-Complete.png
+:::{figure} /data/deploy/quick_start_windows/Installation-Complete.png
 :name: installation-complete
 :alt: Installation Complete
 Installation Complete
@@ -204,7 +204,7 @@ uninstallation of the HIP SDK Core and drivers repeat the steps in the sections
 **Note** Selecting **Install** once ROCm has already installed results in its
 uninstallation.
 
-:::{figure} ../data/hip_sdk_install_win/Uninstallation.png
+:::{figure} /data/deploy/quick_start_windows/Uninstallation.png
 :name: uninstall
 :alt: Uninstall
 HIP SDK Uninstalling

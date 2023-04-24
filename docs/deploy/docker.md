@@ -1,10 +1,10 @@
-# Docker
+# Deploy ROCm Docker containers
 
 ## Prerequisites
 
 Docker containers share the kernel with the host operating system, therefore the
-ROCm kernel-mode driver must be installed on the host. Please refer to the
-[Basic Installation Guide](./install.md) for details. The other user-space parts
+ROCm kernel-mode driver must be installed on the host. Please refer to
+[](/deploy/linux/install) for details. The other user-space parts
 (like the HIP-runtime or math libraries) of the ROCm stack will be loaded from
 the container image and don't need to be installed to the host.
 

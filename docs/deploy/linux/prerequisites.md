@@ -1,4 +1,4 @@
-# Prerequisites
+# Installation Prerequisites (Linux)
 
 You must perform the following steps before installing ROCm and check if the
 system meets all the requirements to proceed with the installation.
@@ -24,8 +24,7 @@ Verify the Linux distribution using the following steps:
    uname -m && cat /etc/*release
    ```
 
-2. Confirm that the obtained Linux distribution information matches with those
-   with [System Requirements](/release/gpu_os_support#os-support).
+2. Confirm that the obtained Linux distribution information matches with those listed in {ref}`supported_distributions`.
 
    **Example:** Running the command above on an Ubuntu system results in the
    following output:
@@ -82,7 +81,7 @@ The ROCm platform is designed to support the following GPUs:
 
 To verify that your system has a ROCm-capable GPU, use these steps:
 
-1. Enter the following command from the Command Line Interface (CLI):
+1. Enter the following command:
 
    ```shell
    lspci | grep -i display
@@ -91,19 +90,13 @@ To verify that your system has a ROCm-capable GPU, use these steps:
    The command displays the details of detected GPUs on the system in the
    following format in the case of AMD Instinct™ MI200:
 
-   ```shell
+   ```text
    c1:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Aldebaran
    c5:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Aldebaran
    ```
 
 2. Verify from the output that the listed product names match with the Product
    Id given in the table above.
-
-## Confirm the System Has All the Required Tools and Packages Installed
-
-Register the appropriate repositories in the system's package manager as shown
-in the
-[Linux Quick Start Guide](how_to/quick_start_linux.html#add-repositories).
 
 ### Setting Permissions for Groups
 
@@ -116,7 +109,7 @@ GPU resources.
    groups
    ```
 
-2. Add yourself to the render or video group using the following instruction:
+2. Add yourself to the `render` or `video` group using the following instruction:
 
    ```shell
    sudo usermod -a -G render $LOGNAME
@@ -127,11 +120,7 @@ GPU resources.
 3. Use of the video group is recommended for all ROCm-supported operating
    systems.
 
-   ```{note}
-   render group is required only for Ubuntu v20.04.
-   ```
-
-   To add future users to the video and render groups, run the following command:
+   To add all future users to the `video` and `render` groups by default, run the following commands:
 
    ```shell
    echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf

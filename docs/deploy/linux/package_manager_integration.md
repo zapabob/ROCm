@@ -21,7 +21,7 @@ All meta-packages exist in both versioned and non-versioned forms.
 
 ```{figure-md} package-naming
 
-<img src="../../data/understand/installing_linux/image.002.png" alt="">
+<img src="/data/deploy/linux/image.002.png" alt="">
 
 ROCm Release Package Naming
 ```
@@ -66,7 +66,7 @@ of required packages and libraries.
 
 ```{figure-md} meta-packages
 
-<img src="../../data/understand/installing_linux/image.003.png" alt="">
+<img src="/data/deploy/linux/image.003.png" alt="">
 
 ROCm Meta Packages
 ```
@@ -79,19 +79,19 @@ clang compiler files.
 ```{table} Meta-packages and Their Descriptions
 :name: meta-package-desc
 | **Meta-packages**          | **Description**                                                                                                                           |
-|:--------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------:|
-| `rocm-language-runtime`    | installs the ROCm runtime                                                                                                                 |
-| `rocm-hip-runtime`         | installs packages necessary to run an application written in HIP for the AMD platform                                                     |
-| `rocm-opencl-runtime`      | installs packages required to run OpenCL-based applications on the AMD platform                                                           |
-| `rocm-hip-runtime-devel`   | contains packages to develop an application on HIP or port it from CUDA                                                                   |
-| `rocm-opencl-sdk`          | installs packages required to develop applications in OpenCL for the AMD platform                                                         |
-| `rocm-hip-libraries`       | installs HIP libraries optimized for AMD platforms                                                                                        |
-| `rocm-hip-sdk`             | installs packages necessary to develop/port applications using HIP and libraries for AMD platforms                                        |
-| `rocm-developer-tools`     | installs packages required to debug and profile HIP-based applications                                                                    |
-| `rocm-ml-sdk`              | installs packages necessary to develop and run Machine Learning applications with Machine Learning primitives optimized for AMD platforms |
-| `rocm-ml-libraries`        | installs packages for key Machine Learning libraries, specifically MIOpen                                                                 |
-| `rocm-openmp-sdk`          | installs packages necessary to develop OpenMP-based applications for AMD platforms                                                        |
-| `rocm-openmp-runtime`      | installs packages necessary to run OpenMP-based applications for AMD platforms                                                            |
+|:---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------:|
+| `rocm-language-runtime`  | The ROCm runtime                                                                                                                 |
+| `rocm-hip-runtime`       | Run HIP applications written for the AMD platform                                                     |
+| `rocm-opencl-runtime`    | Run OpenCL-based applications on the AMD platform                                                           |
+| `rocm-hip-runtime-devel` | Develop applications on HIP or port from CUDA                                                                   |
+| `rocm-opencl-sdk`        | Develop applications in OpenCL for the AMD platform                                                         |
+| `rocm-hip-libraries`     | HIP libraries optimized for the AMD platform                                                                                        |
+| `rocm-hip-sdk`           | Develop or port HIP applications and libraries for the AMD platform                                        |
+| `rocm-developer-tools`   | Debug and profile HIP applications                                                                    |
+| `rocm-ml-sdk`            | Develop and run Machine Learning applications with optimized for AMD |
+| `rocm-ml-libraries`      | Key Machine Learning libraries, specifically MIOpen                                                                 |
+| `rocm-openmp-sdk`        | Develop OpenMP-based applications for the AMD platform                                                        |
+| `rocm-openmp-runtime`    | Run OpenMP-based applications for the AMD platform                                                            |
 ```
 
 ## Packages in ROCm Programming Models
@@ -102,7 +102,7 @@ ROCm programming model.
 
 ```{figure-md} assoc-packages
 
-<img src="../../data/understand/installing_linux/image.004.png" alt="">
+<img src="/data/deploy/linux/image.004.png" alt="">
 
 Associated Packages
 ```
