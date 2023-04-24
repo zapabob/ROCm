@@ -18,7 +18,7 @@ This is ROCgdb, the ROCm source-level debugger for Linux, based on GDB, the GNU 
 :::
 
 :::{grid-item-card} [ROCProfiler](https://rocmdocs.amd.com/projects/rocprofiler/en/latest/)
-ROC profiler library. Profiling with perf-counters and derived metrics. Library supports GFX8/GFX9. HW specific low-level performance analysis interface for profiling of GPU compute applications. The profiling includes HW performance counters with complex performance metrics.
+ROC profiler library. Profiling with performance counters and derived metrics. Library supports GFX8/GFX9. Hardware specific low-level performance analysis interface for profiling of GPU compute applications. The profiling includes hardware performance counters with complex performance metrics.
 
 - [Documentation](https://rocmdocs.amd.com/projects/rocprofiler/en/latest/)
 

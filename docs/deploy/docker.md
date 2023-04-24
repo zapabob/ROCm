@@ -1,6 +1,6 @@
 # Docker
 
-## Prequisites
+## Prerequisites
 
 Docker containers share the kernel with the host operating system, therefore the
 ROCm kernel-mode driver must be installed on the host. Please refer to the
@@ -56,9 +56,9 @@ docker run --device /dev/kfd --device /dev/dri/renderD128 --device /dev/dri/rend
 ### Base images
 
 <https://github.com/RadeonOpenCompute/ROCm-docker> hosts images useful for users
-wishing to build their own containers levaraging ROCm. The built images are
+wishing to build their own containers leveraging ROCm. The built images are
 available from [Docker Hub](https://hub.docker.com/u/rocm). In particular
-`rocm/rocm-terminal` is a small image with the prequisites to build HIP
+`rocm/rocm-terminal` is a small image with the prerequisites to build HIP
 applications, but does not include any libraries.
 
 ### Applications

@@ -32,7 +32,7 @@ ROCm template libraries for C++ primitives and algorithms are as follows:
 :::
 
 :::{grid-item-card} [Communication Libraries](gpu_libraries/communication)
-Inter and intra node communication is supported by the following projects:
+Inter and intra-node communication is supported by the following projects:
 
 - [RCCL](https://rocmdocs.amd.com/projects/rccl/en/latest/)
 

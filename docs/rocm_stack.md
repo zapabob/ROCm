@@ -9,7 +9,7 @@ components described in this page. Kernel mo
 
 ## Compiler
 
-### hipcc
+### `hipcc`
 
 ### AMD Clang
 
@@ -17,9 +17,9 @@ components described in this page. Kernel mo
 
 ### Math Libraries
 
-The Math libraries are grouped into libraries starting with a roc-prefix and
+The Math libraries are grouped into libraries starting with a `roc`-prefix and
 hip-prefix. Libraries starting with a hip-prefix provide a support for AMD GPUs
-and NVIDIA GPUs. Libraries beginning the roc-prefix support AMD GPUs only.
+and NVIDIA GPUs. Libraries beginning the `roc`-prefix support AMD GPUs only.
 
 ## #Compute Primitives
 

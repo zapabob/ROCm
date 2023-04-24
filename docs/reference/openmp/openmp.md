@@ -6,9 +6,9 @@ The ROCm™ installation includes an LLVM-based implementation that fully suppor
 
 ### Installation
 
-The OpenMP toolchain is automatically installed as part of the standard ROCm installation and is available under /opt/rocm-{version}/llvm. The sub-directories are:
+The OpenMP toolchain is automatically installed as part of the standard ROCm installation and is available under `/opt/rocm-{version}/llvm`. The sub-directories are:
 
-bin: Compilers (flang and clang) and other binaries.
+bin: Compilers (`flang` and `clang`) and other binaries.
 
 - examples: The usage section below shows how to compile and run these programs.
 
@@ -36,13 +36,13 @@ The above invocation of Make compiles and runs the program. Note the options tha
 -fopenmp --offload-arch=<gpu-arch>
 ```
 
-Obtain the value of gpu-arch by running the following command:
+Obtain the value of `gpu-arch` by running the following command:
 
 ```bash
 % /opt/rocm-{version}/bin/rocminfo | grep gfx
 ```
 
-[//]: # (dated link below, needs upading)
+[//]: # (dated link below, needs updating)
 
 See the complete list of compiler command-line references [here](https://github.com/RadeonOpenCompute/llvm-project/blob/amd-stg-open/clang/docs/CommandGuide/clang.rst).
 
@@ -56,7 +56,7 @@ The following steps describe a typical workflow for using rocprof with OpenMP co
     % rocprof <application> <args>
     ```
 
-    This produces a results.csv file in the user’s current directory that shows basic stats such as kernel names, grid size, number of registers used, etc. The user can choose to specify the preferred output file name using the o option.
+    This produces a `results.csv` file in the user’s current directory that shows basic stats such as kernel names, grid size, number of registers used, etc. The user can choose to specify the preferred output file name using the o option.
 
 2. Add options for a detailed result:
 
@@ -64,9 +64,9 @@ The following steps describe a typical workflow for using rocprof with OpenMP co
     --stats: % rocprof --stats <application> <args>
     ```
 
-    The stats option produces timestamps for the kernels. Look into the output CSV file for the field, DurationNs, which is useful in getting an understanding of the critical kernels in the code.
+    The stats option produces timestamps for the kernels. Look into the output CSV file for the field, `Durations`, which is useful in getting an understanding of the critical kernels in the code.
 
-    Apart from --stats, the option --timestamp on produces a timestamp for the kernels.
+    Apart from `--stats`, the option `--timestamp` on produces a timestamp for the kernels.
 
 3. After learning about the required kernels, the user can take a detailed look at each one of them. rocprof has support for hardware counters: a set of basic and a set of derived ones. See the complete list of counters using options --list-basic and --list-derived. rocprof accepts either a text or an XML file as an input.
 
@@ -74,7 +74,7 @@ For more details on rocprof, refer to the ROCm Profiling Tools document on [http
 
 ### Using Tracing Options
 
-**Prerequisite:** When using the --sys-trace option, compile the OpenMP program with:
+**Prerequisite:** When using the `--sys-trace` option, compile the OpenMP program with:
 
 ```bash
     -Wl,–rpath,/opt/rocm-{version}/lib -lamdhip64
@@ -82,9 +82,9 @@ For more details on rocprof, refer to the ROCm Profiling Tools document on [http
 
 The following tracing options are widely used to generate useful information:
 
-- **--hsa-trace**: This option is used to get a JSON output file with the HSA API execution traces and a flat profile in a CSV file.
+- **`--hsa-trace`**: This option is used to get a JSON output file with the HSA API execution traces and a flat profile in a CSV file.
 
-- **--sys-trace**: This allows programmers to trace both HIP and HSA calls. Since this option results in loading ``libamdhip64.so``, follow the prerequisite as mentioned above.
+- **`--sys-trace`**: This allows programmers to trace both HIP and HSA calls. Since this option results in loading ``libamdhip64.so``, follow the prerequisite as mentioned above.
 
 A CSV and a JSON file are produced by the above trace options. The CSV file presents the data in a tabular format, and the JSON file can be visualized using Google Chrome at chrome://tracing/ or [Perfetto](https://perfetto.dev/). Navigate to Chrome or Perfetto and load the JSON file to see the timeline of the HSA calls.
 
@@ -94,14 +94,14 @@ For more details on tracing, refer to the ROCm Profiling Tools document on [http
 
 :::{table}
 :widths: auto
-| Environment Variable | Description |
-| ----------- | ----------- |
-| OMP_NUM_TEAMS | The implementation chooses the number of teams for kernel launch. The user can change this number for performance tuning using this environment variable, subject to implementation limits. |
-| OMPX_DISABLE_MAPS | Under USM mode, the implementation automatically checks for correctness of the map clauses without performing any copying. The user can disable this check by setting this environment variable to 1. |
-| LIBOMPTARGET_KERNEL_TRACE | This environment variable is used to print useful statistics for device operations. Setting it to 1 and running the program emits the name of every kernel launched, the number of teams and threads used, and the corresponding register usage. Setting it to 2 additionally emits timing information for kernel launches and data transfer operations between the host and the device. |
-| LIBOMPTARGET_INFO | This environment variable is used to print informational messages from the device runtime as the program executes. Users can request fine-grain information by setting it to the value of 1 or higher and can set the value of -1 for complete information. |
-| LIBOMPTARGET_DEBUG | If a debug version of the device library is present, setting this environment variable to 1 and using that library emits further detailed debugging information about data transfer operations and kernel launch. |
-| GPU_MAX_HW_QUEUES | This environment variable is used to set the number of HSA queues in the OpenMP runtime. |
+| Environment Variable        | Description |
+| --------------------------- | ----------- |
+| `OMP_NUM_TEAMS`             | The implementation chooses the number of teams for kernel launch. The user can change this number for performance tuning using this environment variable, subject to implementation limits. |
+| `OMPX_DISABLE_MAPS`         | Under USM mode, the implementation automatically checks for correctness of the map clauses without performing any copying. The user can disable this check by setting this environment variable to 1. |
+| `LIBOMPTARGET_KERNEL_TRACE` | This environment variable is used to print useful statistics for device operations. Setting it to 1 and running the program emits the name of every kernel launched, the number of teams and threads used, and the corresponding register usage. Setting it to 2 additionally emits timing information for kernel launches and data transfer operations between the host and the device. |
+| `LIBOMPTARGET_INFO`         | This environment variable is used to print informational messages from the device runtime as the program executes. Users can request fine-grain information by setting it to the value of 1 or higher and can set the value of -1 for complete information. |
+| `LIBOMPTARGET_DEBUG`        | If a debug version of the device library is present, setting this environment variable to 1 and using that library emits further detailed debugging information about data transfer operations and kernel launch. |
+| `GPU_MAX_HW_QUEUES`         | This environment variable is used to set the number of HSA queues in the OpenMP runtime. |
 :::
 
 ## OpenMP: Features
@@ -110,9 +110,9 @@ The OpenMP programming model is greatly enhanced with the following new features
 
 ### Asynchronous Behavior in OpenMP Target Regions
 
-- Multithreaded offloading on the same device
+- Multi-threaded offloading on the same device
 
-The libomptarget plugin for GPU offloading allows creation of separate configurable HSA queues per chiplet, which enables two or more threads to concurrently offload to the same device.
+The `libomptarget` plugin for GPU offloading allows creation of separate configurable HSA queues per chiplet, which enables two or more threads to concurrently offload to the same device.
 
 - Parallel memory copy invocations
 
@@ -146,7 +146,7 @@ xnack- with -–offload-arch=gfx908:xnack-
 
 #### Unified Shared Memory Pragma
 
-This OpenMP pragma is available on MI200 through xnack+ support.
+This OpenMP pragma is available on MI200 through `xnack+` support.
 
 ```bash
 omp requires unified_shared_memory
@@ -192,20 +192,20 @@ The difference between the memory pages pointed to by these two variables is tha
 
 The OpenMP runtime in ROCm implements a subset of the OMPT device APIs, as described in the OpenMP specification document. These APIs allow first-party tools to examine the profile and kernel traces that execute on a device. A tool can register callbacks for data transfer and kernel dispatch entry points or use APIs to start and stop tracing for device-related activities such as data transfer and kernel dispatch timings and associated metadata. If device tracing is enabled, trace records for device activities are collected during program execution and returned to the tool using the APIs described in the specification.
 
-The following example demonstrates how a tool uses the supported OMPT target APIs. The README in /opt/rocm/llvm/examples/tools/ompt outlines the steps to be followed, and the provided example can be run as shown below:
+The following example demonstrates how a tool uses the supported OMPT target APIs. The `README` in `/opt/rocm/llvm/examples/tools/ompt` outlines the steps to be followed, and the provided example can be run as shown below:
 
 ```bash
 % cd $ROCM_PATH/share/openmp-extras/examples/tools/ompt/veccopy-ompt-target-tracing
 % make run
 ```
 
-The file veccopy-ompt-target-tracing.c simulates how a tool initiates device activity tracing. The file callbacks.h shows the callbacks registered and implemented by the tool.
+The file `veccopy-ompt-target-tracing.c` simulates how a tool initiates device activity tracing. The file `callbacks.h` shows the callbacks registered and implemented by the tool.
 
 ### Floating Point Atomic Operations
 
-The MI200-series GPUs support the generation of hardware floating-point atomics using the OpenMP atomic pragma. The support includes single- and double-precision floating-point atomic operations. The programmer must ensure that the memory subjected to the atomic operation is in coarse-grain memory by mapping it explicitly with the help of map clauses when not implicitly mapped by the compiler as per the [OpenMP specifications](https://www.openmp.org/specifications/). This makes these hardware floating-point atomic instructions “fast,” as they are faster than using a default compare-and-swap loop scheme, but at the same time “unsafe,” as they are not supported on fine-grain memory. The operation in unified_shared_memory mode also requires programmers to map the memory explicitly when not implicitly mapped by the compiler.
+The MI200-series GPUs support the generation of hardware floating-point atomics using the OpenMP atomic pragma. The support includes single- and double-precision floating-point atomic operations. The programmer must ensure that the memory subjected to the atomic operation is in coarse-grain memory by mapping it explicitly with the help of map clauses when not implicitly mapped by the compiler as per the [OpenMP specifications](https://www.openmp.org/specifications/). This makes these hardware floating-point atomic instructions “fast,” as they are faster than using a default compare-and-swap loop scheme, but at the same time “unsafe,” as they are not supported on fine-grain memory. The operation in `unified_shared_memory` mode also requires programmers to map the memory explicitly when not implicitly mapped by the compiler.
 
-To request fast floating-point atomic instructions at the file level, use compiler flag -munsafe-fp-atomics or a hint clause on a specific pragma:
+To request fast floating-point atomic instructions at the file level, use compiler flag `-munsafe-fp-atomics` or a hint clause on a specific pragma:
 
 ```bash
 double a = 0.0;
@@ -213,9 +213,9 @@ double a = 0.0;
 a = a + 1.0;
 ```
 
-NOTE AMD_unsafe_fp_atomics is an alias for AMD_fast_fp_atomics, and AMD_safe_fp_atomics is implemented with a compare-and-swap loop.
+NOTE `AMD_unsafe_fp_atomics` is an alias for `AMD_fast_fp_atomics`, and `AMD_safe_fp_atomics` is implemented with a compare-and-swap loop.
 
-To disable the generation of fast floating-point atomic instructions at the file level, build using the option -msafe-fp-atomics or use a hint clause on a specific pragma:
+To disable the generation of fast floating-point atomic instructions at the file level, build using the option `-msafe-fp-atomics` or use a hint clause on a specific pragma:
 
 ```bash
 double a = 0.0;
@@ -225,7 +225,7 @@ a = a + 1.0;
 
 The hint clause value always has a precedence over the compiler flag, which allows programmers to create atomic constructs with a different behavior than the rest of the file.
 
-See the example below, where the user builds the program using -msafe-fp-atomics to select a file-wide “safe atomic” compilation. However, the fast atomics hint clause over variable “a” takes precedence and operates on “a” using a fast/unsafe floating-point atomic, while the variable “b” in the absence of a hint clause is operated upon using safe floating-point atomics as per the compiler flag.
+See the example below, where the user builds the program using `-msafe-fp-atomics` to select a file-wide “safe atomic” compilation. However, the fast atomics hint clause over variable “a” takes precedence and operates on “a” using a fast/unsafe floating-point atomic, while the variable “b” in the absence of a hint clause is operated upon using safe floating-point atomics as per the compiler flag.
 
 ```bash
 double a = 0.0;.
@@ -239,7 +239,7 @@ b = b + 1.0;
 
 ### Address Sanitizer (ASan) Tool
 
-Address Sanitizer is a memory error detector tool utilized by applications to detect various errors ranging from spatial issues such as out-of-bound access to temporal issues such as use-after-free. The AOMP compiler supports ASan for AMDGPUs with applications written in both HIP and OpenMP.
+Address Sanitizer is a memory error detector tool utilized by applications to detect various errors ranging from spatial issues such as out-of-bound access to temporal issues such as use-after-free. The AOMP compiler supports ASan for AMD GPUs with applications written in both HIP and OpenMP.
 
 **Features Supported on Host Platform (Target x86_64):**
 
@@ -259,7 +259,7 @@ Address Sanitizer is a memory error detector tool utilized by applications to de
 
 - Initialization order bugs
 
-**Features Supported on AMDGPU Platform (amdgcn-amd-amdhsa):**
+**Features Supported on AMDGPU Platform (`amdgcn-amd-amdhsa`):**
 
 - Heap buffer overflow
 
@@ -318,11 +318,11 @@ The No-loop kernel generation feature optimizes the compiler performance by gene
 
 To enable the generation of the specialized kernel, follow these guidelines:
 
-- Do not specify teams, threads, and schedule-related environment variables. The num_teams or a thread_limit clause in an OpenMP target construct acts as an override and prevents the generation of the specialized kernel. As the user is unable to specify the number of teams and threads used within target regions in the absence of the above-mentioned environment variables, the runtime will select the best values for the launch configuration based on runtime knowledge of the program.
+- Do not specify teams, threads, and schedule-related environment variables. The `num_teams` or a `thread_limit` clause in an OpenMP target construct acts as an override and prevents the generation of the specialized kernel. As the user is unable to specify the number of teams and threads used within target regions in the absence of the above-mentioned environment variables, the runtime will select the best values for the launch configuration based on runtime knowledge of the program.
 
-- Assert the absence of the above-mentioned environment variables by adding the command-line option fopenmp-target-ignore-env-vars. This option also allows programmers to enable the No-loop functionality at lower optimization levels.
+- Assert the absence of the above-mentioned environment variables by adding the command-line option `-fopenmp-target-ignore-env-vars`. This option also allows programmers to enable the No-loop functionality at lower optimization levels.
 
-- Also, the No-loop functionality is automatically enabled when -O3 or -Ofast is used for compilation. To disable this feature, use -fno-openmp-target-ignore-env-vars.
+- Also, the No-loop functionality is automatically enabled when `-O3` or `-Ofast` is used for compilation. To disable this feature, use `-fno-openmp-target-ignore-env-vars`.
 
 Note The compiler might not generate the No-loop kernel in certain scenarios where the performance improvement is not substantial.
 

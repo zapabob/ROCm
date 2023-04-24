@@ -8,7 +8,7 @@ automatic differentiation. Other advanced features include:
 
 - Support for distributed training
 - Native ONNX support
-- C++ frontend
+- C++ front-end
 - The ability to deploy at scale using TorchServe
 - A production-ready deployment mechanism through TorchScript
 
@@ -19,7 +19,7 @@ To install ROCm on bare metal, refer to the section
 The recommended option to get a PyTorch environment is through Docker. However,
 installing the PyTorch wheels package on bare metal is also supported.
 
-#### Option 1 (Recommended): Use Docker Image with PyTorch Pre-installed
+#### Option 1 (Recommended): Use Docker Image with PyTorch Pre-Installed
 
 Using Docker gives you portability and access to a prebuilt Docker container
 that has been rigorously tested within AMD. This might also save on the
@@ -56,7 +56,7 @@ Follow these steps:
 PyTorch supports the ROCm platform by providing tested wheels packages. To
 access this feature, refer to
 [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/)
-and choose the "ROCm" compute platform. {numref}`Installation-Matrix-from-Pytorch` is a matrix from pytroch.org that illustrates the installation compatibility between ROCm and the PyTorch build.
+and choose the "ROCm" compute platform. {numref}`Installation-Matrix-from-Pytorch` is a matrix from <http://pytorch.org/> that illustrates the installation compatibility between ROCm and the PyTorch build.
 
 ```{figure} ../../data/how_to/magma_install/image.006.png
 :name: Installation-Matrix-from-Pytorch
@@ -79,7 +79,7 @@ To install PyTorch using the wheels package, follow these installation steps:
       installation directions in the section
       [Installation](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4-/page/Prerequisites.html#d2999e60).
       ROCm 5.2 is installed in this example, as supported by the installation
-      matrix from pytorch.org.
+      matrix from <http://pytorch.org/>.
 
    or
 
@@ -103,7 +103,7 @@ To install PyTorch using the wheels package, follow these installation steps:
    pip3 install wheel setuptools
    ```
 
-4. Install torch, torchvision, and torchaudio as specified by the installation
+4. Install torch, `torchvision`, and `torchaudio` as specified by the installation
    matrix.
 
    :::{note}
@@ -158,7 +158,7 @@ Follow these steps:
 4. Build PyTorch for ROCm.
 
    :::{note}
-   By default in the rocm/pytorch:latest-base, PyTorch builds for these
+   By default in the `rocm/pytorch:latest-base`, PyTorch builds for these
    architectures simultaneously:
    - gfx900
    - gfx906
@@ -253,7 +253,7 @@ Follow these steps:
 5. Build PyTorch for ROCm.
 
    :::{note}
-   By default in the rocm/pytorch:latest-base, PyTorch builds for these
+   By default in the `rocm/pytorch:latest-base`, PyTorch builds for these
    architectures simultaneously:
    - gfx900
    - gfx906
@@ -274,7 +274,7 @@ Follow these steps:
    export PYTORCH_ROCM_ARCH=<uarch>
    ```
 
-   `<uarch>` is the architecture reported by the rocminfo command.
+   `<uarch>` is the architecture reported by the `rocminfo` command.
 
 8. Build PyTorch using:
 
@@ -314,7 +314,7 @@ Follow these steps:
    ```
 
 2. Test if the GPU is accessible from PyTorch. In the PyTorch framework,
-   torch.cuda is a generic mechanism to access the GPU; it will access an AMD
+   `torch.cuda` is a generic mechanism to access the GPU; it will access an AMD
    GPU only if available.
 
    ```bash
@@ -338,8 +338,8 @@ Follow these steps:
    errors when running the unit tests.
    :::
 
-   This will first install some dependencies, such as a supported torchvision
-   version for PyTorch. Torchvision is used in some PyTorch tests for loading
+   This will first install some dependencies, such as a supported `torchvision`
+   version for PyTorch. `torchvision` is used in some PyTorch tests for loading
    models. Next, this will run all the unit tests.
 
    :::{note}
@@ -356,7 +356,7 @@ Follow these steps:
    PYTORCH_TEST_WITH_ROCM=1 python3 test/test_nn.py --verbose
    ```
 
-   test_nn.py can be replaced with any other test set.
+   `test_nn.py` can be replaced with any other test set.
 
 ### Run a Basic PyTorch Example
 
@@ -381,7 +381,7 @@ Follow these steps:
    cd examples/mnist
    ```
 
-3. Follow the instructions in the README file in this folder. In this case:
+3. Follow the instructions in the `README` file in this folder. In this case:
 
    ```bash
    pip3 install -r requirements.txt
@@ -394,7 +394,7 @@ Follow these steps:
    cd examples/imagenet
    ```
 
-5. Follow the instructions in the README file in this folder. In this case:
+5. Follow the instructions in the `README` file in this folder. In this case:
 
    ```bash
    pip3 install -r requirements.txt

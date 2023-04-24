@@ -11,12 +11,12 @@
 - [AMD RDNA Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/rdna-shader-instruction-set-architecture.pdf)
 - [AMD GCN3 Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/gcn3-instruction-set-architecture.pdf)
 
-## Whitepapers
+## White Papers
 
-- [AMD CDNA™ 2 Architecture Whitepaper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
-- [AMD CDNA Architecture Whitepaper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
-- [AMD Vega Architecture Whitepaper](https://en.wikichip.org/w/images/a/a1/vega-whitepaper.pdf)
-- [AMD RDNA Architecture Whitepaper](https://www.amd.com/system/files/documents/rdna-whitepaper.pdf)
+- [AMD CDNA™ 2 Architecture White Paper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
+- [AMD CDNA Architecture White Paper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
+- [AMD Vega Architecture White Paper](https://en.wikichip.org/w/images/a/a1/vega-whitepaper.pdf)
+- [AMD RDNA Architecture White Paper](https://www.amd.com/system/files/documents/rdna-whitepaper.pdf)
 
 ## Architecture Guides
 

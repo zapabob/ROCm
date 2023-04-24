@@ -7,8 +7,8 @@ yourself with our documentation toolchain.
 
 ## ReadTheDocs
 
-[ReadTheDocs](https://docs.readthedocs.io/en/stable/) is our frontend for the
-our documentation. By frontend, this is the tool that serves our HTML based
+[ReadTheDocs](https://docs.readthedocs.io/en/stable/) is our front end for the
+our documentation. By front end, this is the tool that serves our HTML based
 documentation to our end users.
 
 ## Doxygen
@@ -21,18 +21,17 @@ upstream project is using a different tool).
 
 [Sphinx](https://www.sphinx-doc.org/en/master/) is a documentation generator
 originally used for python. It is now widely used in the Open Source community.
-Originally, sphinx supported rst based documentation. Markdown support is now
+Originally, sphinx supported RST based documentation. Markdown support is now
 available. ROCm documentation plans to default to markdown for new projects.
-Existing projects using rst are under no obligation to convert to markdown. New
+Existing projects using RST are under no obligation to convert to markdown. New
 projects that believe markdown is not suitable should contact the documentation
-team prior to selecting rst.
+team prior to selecting RST.
 
 ### MyST
 
 [Markedly Structured Text (MyST)](https://myst-tools.org/docs/spec) is an extended
-flavor of Markdown ([https://commonmark.org/](CommonMark)) influenced by ReStructured
-Text (RST) and Sphinx.
-It is intergrated via [`myst-parser`](https://myst-parser.readthedocs.io/en/latest/).
+flavor of Markdown ([CommonMark](https://commonmark.org/)) influenced by reStructuredText (RST) and Sphinx.
+It is integrated via [`myst-parser`](https://myst-parser.readthedocs.io/en/latest/).
 A cheat sheet that showcases how to use the MyST syntax is available over at [the Jupyter
 reference](https://jupyterbook.org/en/stable/reference/cheatsheet.html).
 
@@ -56,18 +55,18 @@ Other features may be used in the future.
 
 ROCm uses the
 [sphinx-external-toc](https://sphinx-external-toc.readthedocs.io/en/latest/intro.html)
-for our navigation. This tool allows a yml file based left navigation menu. This
+for our navigation. This tool allows a YAML file based left navigation menu. This
 tool was selected due to its flexibility that allows scripts to operate on the
-yml file. Please transition to this file for the project's navigation. You can
+YAML file. Please transition to this file for the project's navigation. You can
 see the `_toc.yml.in` file in this repository in the docs/sphinx folder for an
 example.
 
 ### Breathe
 
-Sphinx uses [Breathe](https://www.breathe-doc.org/) to integrate doxygen
+Sphinx uses [Breathe](https://www.breathe-doc.org/) to integrate Doxygen
 content.
 
-## rocm-docs-core pip package
+## `rocm-docs-core` pip package
 
 [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core) is an AMD
 maintained project that applies customization for our documentation. This

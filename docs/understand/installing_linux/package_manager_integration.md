@@ -17,7 +17,7 @@ support a specific use case.
 All meta-packages exist in both versioned and non-versioned forms.
 
 - Non-versioned packages – For a single-version installation of the ROCm stack
-- Versioned packages – For multiversion installations of the ROCm stack
+- Versioned packages – For multi-version installations of the ROCm stack
 
 ```{figure-md} package-naming
 
@@ -26,7 +26,7 @@ All meta-packages exist in both versioned and non-versioned forms.
 ROCm Release Package Naming
 ```
 
-{numref}`package-naming` demonstrates the single and multiversion ROCm packages' naming
+{numref}`package-naming` demonstrates the single and multi-version ROCm packages' naming
 structure, including examples for various Linux distributions. See terms below:
 
 _Module_ - It is the part of the package that represents the name of the ROCm
@@ -40,16 +40,16 @@ should increase with a newer release.
 _Release version_ - It shows the ROCm release version when the package was
 released.
 
-**Example:** 50400 points to the ROCm 5.4.0 release.
+**Example:** `50400` points to the ROCm 5.4.0 release.
 
-_Build id_ - It represents the jenkins build number for that release.
+_Build id_ - It represents the Jenkins build number for that release.
 
 _Arch_ - It shows the architecture for which the package was created.
 
 _Distro_ - It describes the distribution for which the package was created. It is
 valid only for rpm packages.
 
-**Example:** el8 represents RHEL 8.x packages.
+**Example:** `el8` represents RHEL 8.x packages.
 
 ## Components of ROCm Programming Models
 
@@ -59,9 +59,9 @@ of required packages and libraries.
 
 **Example:**
 
-- rocm-hip-runtime is used to deploy on supported machines to execute HIP
+- `rocm-hip-runtime` is used to deploy on supported machines to execute HIP
   applications.
-- rocm-hip-sdk contains runtime components to deploy and execute HIP
+- `rocm-hip-sdk` contains runtime components to deploy and execute HIP
   applications.
 
 ```{figure-md} meta-packages
@@ -72,7 +72,7 @@ ROCm Meta Packages
 ```
 
 ```{note}
-_rocm-llvm_ is not a meta-package but a single package that installs the ROCm
+`rocm-llvm` is not a meta-package but a single package that installs the ROCm
 clang compiler files.
 ```
 
@@ -80,18 +80,18 @@ clang compiler files.
 :name: meta-package-desc
 | **Meta-packages**          | **Description**                                                                                                                           |
 |:--------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------:|
-| **rocm-language-runtime**  | installs the ROCm runtime                                                                                                                 |
-| **rocm-hip-runtime**       | installs packages necessary to run an application written in HIP for the AMD platform                                                     |
-| **rocm-opencl-runtime**    | installs packages required to run OpenCL-based applications on the AMD platform                                                           |
-| **rocm-hip-runtime-devel** | contains packages to develop an application on HIP or port it from CUDA                                                                   |
-| **rocm-opencl-sdk**        | installs packages required to develop applications in OpenCL for the AMD platform                                                         |
-| **rocm-hip-libraries**     | installs HIP libraries optimized for AMD platforms                                                                                        |
-| **rocm-hip-sdk**           | installs packages necessary to develop/port applications using HIP and libraries for AMD platforms                                        |
-| **rocm-developer-tools**   | installs packages required to debug and profile HIP-based applications                                                                    |
-| **rocm-ml-sdk**            | installs packages necessary to develop and run Machine Learning applications with Machine Learning primitives optimized for AMD platforms |
-| **rocm-ml-libraries**      | installs packages for key Machine Learning libraries, specifically MIOpen                                                                 |
-| **rocm-openmp-sdk**        | installs packages necessary to develop OpenMP-based applications for AMD platforms                                                        |
-| **rocm-openmp-runtime**    | installs packages necessary to run OpenMP-based applications for AMD platforms                                                            |
+| `rocm-language-runtime`    | installs the ROCm runtime                                                                                                                 |
+| `rocm-hip-runtime`         | installs packages necessary to run an application written in HIP for the AMD platform                                                     |
+| `rocm-opencl-runtime`      | installs packages required to run OpenCL-based applications on the AMD platform                                                           |
+| `rocm-hip-runtime-devel`   | contains packages to develop an application on HIP or port it from CUDA                                                                   |
+| `rocm-opencl-sdk`          | installs packages required to develop applications in OpenCL for the AMD platform                                                         |
+| `rocm-hip-libraries`       | installs HIP libraries optimized for AMD platforms                                                                                        |
+| `rocm-hip-sdk`             | installs packages necessary to develop/port applications using HIP and libraries for AMD platforms                                        |
+| `rocm-developer-tools`     | installs packages required to debug and profile HIP-based applications                                                                    |
+| `rocm-ml-sdk`              | installs packages necessary to develop and run Machine Learning applications with Machine Learning primitives optimized for AMD platforms |
+| `rocm-ml-libraries`        | installs packages for key Machine Learning libraries, specifically MIOpen                                                                 |
+| `rocm-openmp-sdk`          | installs packages necessary to develop OpenMP-based applications for AMD platforms                                                        |
+| `rocm-openmp-runtime`      | installs packages necessary to run OpenMP-based applications for AMD platforms                                                            |
 ```
 
 ## Packages in ROCm Programming Models
@@ -108,7 +108,7 @@ Associated Packages
 ```
 
 - Meta-packages can include another meta-package.
-- rocm-core package is common across all the meta-packages.
+- `rocm-core` package is common across all the meta-packages.
 - Meta-packages and associated packages are represented in the same color.
 
 ```{note}

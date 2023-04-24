@@ -204,15 +204,15 @@ automation). Example: `amdgpu-install -y --usecase=rocm`
 When the installation is initiated in Docker, the installer tries to install the
 use case along with the kernel-mode driver. However, you cannot install the
 kernel-mode driver in a Docker container. To skip the installation of the
-kernel-mode driver, proceed with the --no-dkms option, as shown below:
+kernel-mode driver, proceed with the `--no-dkms` option, as shown below:
 
 ```shell
 sudo amdgpu-install --usecase=rocm --no-dkms
 ```
 
-### Using the Installer Script for Multiversion ROCm Installation
+### Using the Installer Script for Multi-version ROCm Installation
 
-The multiversion ROCm installation requires you to download and install the
+The multi-version ROCm installation requires you to download and install the
 latest ROCm release installer from the list of ROCm releases you want to install
 simultaneously on your system.
 
@@ -225,7 +225,7 @@ Installer Script](#download-and-install-the-installer-script) section.
 
 ```{attention}
 If the existing ROCm release contains non-versioned ROCm packages, uninstall
-those packages before proceeding with the multiversion installation to avoid
+those packages before proceeding with the multi-version installation to avoid
 conflicts.
 ```
 
@@ -308,7 +308,7 @@ sudo zypper ref
 :::::
 ::::::
 
-#### Use the Installer to Install Multiversion ROCm Meta-packages
+#### Use the Installer to Install Multi-version ROCm Meta-packages
 
 Use the installer script as given below:
 
@@ -329,7 +329,7 @@ sudo amdgpu-install --usecase=rocm --rocmrelease=4.5.0 --no-dkms
 sudo amdgpu-install --usecase=rocm --rocmrelease=5.4.3 --no-dkms
 ```
 
-Following are examples of ROCm multiversion installation. The kernel-mode
+Following are examples of ROCm multi-version installation. The kernel-mode
 driver, associated with the ROCm release v5.4.3, will be installed as its latest
 release in the list.
 
@@ -378,7 +378,7 @@ distribution, follow the steps below:
 
 6. **Add ROCm stack repository** – Ensure the ROCm stack repository is added.
 
-7. **Install single-version or multiversion ROCm meta-packages** – Install the
+7. **Install single-version or multi-version ROCm meta-packages** – Install the
    desired meta-packages.
 
 8. **Verify installation for the applicable distributions** – Verify if the
@@ -398,7 +398,7 @@ packages with subsequent releases. When a new ROCm release is available, the new
 repository, specific to that release, is added. You can select a specific
 release to install, update the previously installed single version to the later
 available release, or add the latest version of ROCm along with the currently
-installed version by using the multiversion ROCm packages.
+installed version by using the multi-version ROCm packages.
 
 ```{note}
 Users installing multiple versions of the ROCm stack must use the
@@ -476,10 +476,10 @@ follow these steps:
    ```
 
    ```{note}
-   The gpg key may change; ensure it is updated when installing a new release. If
+   The GPG key may change; ensure it is updated when installing a new release. If
    the key signature verification fails while updating, re-add the key from the
-   ROCm to the apt repository as mentioned above. The current rocm.gpg.key is not
-   available in a standard key ring distribution but has the following sha1sum
+   ROCm to the apt repository as mentioned above. The current `rocm.gpg.key` is not
+   available in a standard key ring distribution but has the following SHA1 sum
    hash: `73f5d8100de6048aa38a8b84cd9a87f05177d208 rocm.gpg.key`
    ```
 
@@ -568,7 +568,7 @@ follow these steps:
 
    ```{important}
    If the existing ROCm release contains non-versioned ROCm packages, you must
-   uninstall those packages before proceeding to the multiversion installation
+   uninstall those packages before proceeding to the multi-version installation
    to avoid conflicts.
    ```
 
@@ -730,7 +730,7 @@ follow these steps:
 
    ```{important}
    If the existing ROCm release contains non-versioned ROCm packages, you must
-   uninstall those packages before proceeding to the multiversion installation
+   uninstall those packages before proceeding to the multi-version installation
    to avoid conflicts.
    ```
 
@@ -750,7 +750,7 @@ ROCm installation requires you to install `linux-headers` and
 kernel's version.
 
 **Example:** If the system is running the Linux kernel version
-`5.3.18-57_11.0.18`, you must install the same versions of linux-headers and
+`5.3.18-57_11.0.18`, you must install the same versions of Linux headers and
 development packages. Refer to {ref}`check-kernel-info` on to how to check
 the system's kernel version.
 
@@ -759,7 +759,7 @@ these steps:
 
 1. Ensure that the correct version of the latest `kernel-default-devel` and
    `kernel-default` packages are installed. The following command lists the
-   installed kernel-default-devel and kernel-default package:
+   installed `kernel-default-devel` and `kernel-default` package:
 
    ```shell
    sudo zypper info kernel-default-devel or kernel-default
@@ -841,7 +841,7 @@ these steps:
 
    ```{important}
    If the existing ROCm release contains non-versioned ROCm packages, you must
-   uninstall those packages before proceeding to the multiversion installation
+   uninstall those packages before proceeding to the multi-version installation
    to avoid conflicts.
    ```
 
@@ -894,9 +894,9 @@ but are generally useful. Verification of the install is advised.
    for details.
 
    (Entries in the `PATH` minus `bin` and `sbin` are added to library search
-   paths, therefore this convenience will affect builds and result in ROCm libs
-   almost always being found. This may be an issue when you're developing these
-   libraries or want to use self-built versions of them.)
+   paths, therefore this convenience will affect builds and result in ROCm
+   libraries almost always being found. This may be an issue when you're
+   developing these libraries or want to use self-built versions of them.)
    ```
 
 ### Verifying Kernel-mode Driver Installation

@@ -84,7 +84,7 @@ wrapper header files in its old location for backward compatibility.
 
 Wrapper header files are placed in the old location (
 `/opt/rocm-xxx/<component>/include`) with a warning message to include files
-from the new location (/opt/rocm-xxx/include) as shown in the example below.
+from the new location (`/opt/rocm-xxx/include`) as shown in the example below.
 
 ```cpp
 #pragma message "This file is deprecated. Use file from include path /opt/rocm-ver/include/ and prefix with hip."
@@ -103,7 +103,7 @@ follows
 
 ### Executable files
 
-Executable files are available in the /opt/rocm-xxx/bin folder. For backward
+Executable files are available in the `/opt/rocm-xxx/bin` folder. For backward
 compatibility, the old library location (`/opt/rocm-xxx/<component>/bin`) has a
 soft link to the library at the new location. Soft links will be removed in a
 future release, tentatively ROCm v6.0.
@@ -148,13 +148,13 @@ correct header file and use correct search paths.
 1. `#include<header_file.h>` needs to be changed to
    `#include <component/header_file.h>`
 
-   For eg: `#include <hip.h>` needs to change
+   For example: `#include <hip.h>` needs to change
    to `#include <hip/hip.h>`
 
-2. Any variable in cmake or makefiles pointing to component folder needs to
+2. Any variable in CMake or Makefiles pointing to component folder needs to
    changed.
 
-   For eg: `VAR1=/opt/rocm/hip` needs to be changed to `VAR1=/opt/rocm`
+   For example: `VAR1=/opt/rocm/hip` needs to be changed to `VAR1=/opt/rocm`
    `VAR2=/opt/rocm/hsa` needs to be changed to `VAR2=/opt/rocm`
 
 3. Any reference to `/opt/rocm/<component>/bin` or `/opt/rocm/<component>/lib`

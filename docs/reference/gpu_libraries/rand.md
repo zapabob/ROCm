@@ -13,7 +13,7 @@ rocRAND is an AMD GPU optimized library for pseudo-random number generators (PRN
 :::
 
 :::{grid-item-card} [hipRAND](https://rocmdocs.amd.com/projects/hipRAND/en/rtd/)
-hipRAND is a compatiblity layer for GPU accelerated FFT optimized for AMD GPUs
+hipRAND is a compatibility layer for GPU accelerated FFT optimized for AMD GPUs
 using rocFFT. hipFFT allows for a common interface for other non AMD GPU
 FFT libraries.
 

@@ -11,10 +11,10 @@ The differences are listed in [the table below](rocm-llvm-vs-alt).
 
 :::{table} Differences between `rocm-llvm` and `rocm-llvm-alt`
 :name: rocm-llvm-vs-alt
-| **rocm-llvm**                                       | **rocm-llvm-alt**                                                                                                             |
-|:---------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|
-| Installed by default when ROCm™ itself is installed | An optional package                                                                                                           |
-| Provides an open-source compiler                    | Provides an additional closed-source compiler for users interested in additional CPU optimizations not available in rocm-llvm |
+| **`rocm-llvm`**                                     | **`rocm-llvm-alt`**                                                                                                             |
+|:---------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------:|
+| Installed by default when ROCm™ itself is installed | An optional package                                                                                                             |
+| Provides an open-source compiler                    | Provides an additional closed-source compiler for users interested in additional CPU optimizations not available in `rocm-llvm` |
 :::
 
 For more details, see:
@@ -30,25 +30,25 @@ ROCm currently provides two compiler interfaces for compiling HIP programs:
 - `/opt/rocm/bin/amdclang++`
 
 Both leverage the same LLVM compiler technology with the AMD GCN GPU support;
-however, they offer a slightly different user experience. The hipcc command-line
+however, they offer a slightly different user experience. The `hipcc` command-line
 interface aims to provide a more familiar user interface to users who are
 experienced in CUDA but relatively new to the ROCm/HIP development environment.
-On the other hand, amdclang++ provides a user interface identical to the clang++
+On the other hand, `amdclang++` provides a user interface identical to the clang++
 compiler. It is more suitable for experienced developers who want to directly
 interact with the clang compiler and gain full control of their application’s
 build process.
 
-The major differences between hipcc and amdclang++ are listed below:
+The major differences between `hipcc` and `amdclang++` are listed below:
 
-::::{table} Differences between hipcc and amdclang++
+::::{table} Differences between `hipcc` and `amdclang++`
 :name: hipcc-vs-amdclang
-| *                                  | **hipcc**                                                                                                                | **amdclang++** |
-|:----------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|:--------------:|
-| Compiling HIP source files         | Treats all source files as HIP language source files                                                                     | Enables the HIP language support for files with the “.hip” extension or through the -x hip compiler option |
-| Detecting GPU architecture         | Auto-detects the GPUs available on the system and generates code for those devices when no GPU architecture is specified | Has AMD GCN gfx803 as the default GPU architecture. The --offload-arch compiler option may be used to target other GPU architectures |
-| Finding a HIP installation         | Finds the HIP installation based on its own location and its knowledge about the ROCm directory structure                | First looks for HIP under the same parent directory as its own LLVM directory and then falls back on /opt/rocm. Users can use the --rocm-path option to instruct the compiler to use HIP from the specified ROCm installation. |
-| Linking to the HIP runtime library | Is configured to automatically link to the HIP runtime from the detected HIP installation                                | Requires the --hip-link flag to be specified to link to the HIP runtime. Alternatively, users can use the -l`<dir>` -lamdhip64 option to link to a HIP runtime library. |
-| Device function inlining           | Inlines all GPU device functions, which provide greater performance and compatibility for codes that contain file scoped or device function scoped `__shared__` variables. However, it may increase compile time. | Relies on inlining heuristics to control inlining. Users experiencing performance or compilation issues with code using file scoped or device function scoped `__shared__` variables could try -mllvm -amdgpu-early-inline-all=true -mllvm -amdgpu-function-calls=false to work around the issue. There are plans to address these issues with future compiler improvements. |
+| *                                  | **`hipcc`**                                                                                                              | **`amdclang++`** |
+|:----------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|:----------------:|
+| Compiling HIP source files         | Treats all source files as HIP language source files                                                                     | Enables the HIP language support for files with the `.hip` extension or through the `-x hip` compiler option |
+| Detecting GPU architecture         | Auto-detects the GPUs available on the system and generates code for those devices when no GPU architecture is specified | Has AMD GCN gfx803 as the default GPU architecture. The `--offload-arch` compiler option may be used to target other GPU architectures |
+| Finding a HIP installation         | Finds the HIP installation based on its own location and its knowledge about the ROCm directory structure                | First looks for HIP under the same parent directory as its own LLVM directory and then falls back on `/opt/rocm`. Users can use the `--rocm-path` option to instruct the compiler to use HIP from the specified ROCm installation. |
+| Linking to the HIP runtime library | Is configured to automatically link to the HIP runtime from the detected HIP installation                                | Requires the `--hip-link` flag to be specified to link to the HIP runtime. Alternatively, users can use the `-l<dir> -lamdhip64` option to link to a HIP runtime library. |
+| Device function inlining           | Inlines all GPU device functions, which provide greater performance and compatibility for codes that contain file scoped or device function scoped `__shared__` variables. However, it may increase compile time. | Relies on inlining heuristics to control inlining. Users experiencing performance or compilation issues with code using file scoped or device function scoped `__shared__` variables could try `-mllvm -amdgpu-early-inline-all=true -mllvm -amdgpu-function-calls=false` to work around the issue. There are plans to address these issues with future compiler improvements. |
 | Source code location               | <https://github.com/ROCm-Developer-Tools/HIPCC>                                                                          | <https://github.com/RadeonOpenCompute/llvm-project> |
 ::::
 
@@ -115,8 +115,8 @@ This section outlines commonly used compiler flags for `hipcc` and `amdclang++`.
 
 The CPU compiler optimizations described in this chapter originate from the AMD
 Optimizing C/C++ Compiler (AOCC) compiler. They are available in ROCmCC if the
-optional rocm-llvm-alt package is installed. The user’s interaction with the
-compiler does not change once rocm-llvm-alt is installed. The user should use
+optional `rocm-llvm-alt` package is installed. The user’s interaction with the
+compiler does not change once `rocm-llvm-alt` is installed. The user should use
 the same compiler entry point, provided AMD provides high-performance compiler
 optimizations for Zen-based processors in AOCC.
 
@@ -149,13 +149,13 @@ feasible, this optimization transforms the code to enable these improvements.
 This transformation is likely to improve cache utilization and memory bandwidth.
 It is expected to improve the scalability of programs executed on multiple cores.
 
-This is effective only under `flto`, as the whole program analysis is required
+This is effective only under `-flto`, as the whole program analysis is required
 to perform this optimization. Users can choose different levels of
 aggressiveness with which this optimization can be applied to the application,
 with 1 being the least aggressive and 7 being the most aggressive level.
 
 :::{table} -fstruct-layout Values and Their Effects
-| -fstruct-layout value | Structure peeling | Pointer size after selective compression of self-referential pointers in structures, wherever safe | Type of structure fields eligible for compression | Whether compression performed under safety check |
+| `-fstruct-layout` value | Structure peeling | Pointer size after selective compression of self-referential pointers in structures, wherever safe | Type of structure fields eligible for compression | Whether compression performed under safety check |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | 1 | Enabled | NA | NA | NA |
 | 2 | Enabled | 32-bit | NA | NA |
@@ -191,14 +191,14 @@ optimization, which is invoked as `-flto -fitodcallsbyclone`.
 #### `-fremap-arrays`
 
 Transforms the data layout of a single dimensional array to provide better cache
-locality. This optimization is effective only under `flto`, as the whole program
+locality. This optimization is effective only under `-flto`, as the whole program
 needs to be analyzed to perform this optimization, which can be invoked as
 `-flto -fremap-arrays`.
 
 #### `-finline-aggressive`
 
 Enables improved inlining capability through better heuristics. This
-optimization is more effective when used with `flto`, as the whole program
+optimization is more effective when used with `-flto`, as the whole program
 analysis is required to perform this optimization, which can be invoked as
 `-flto -finline-aggressive`.
 
@@ -282,7 +282,7 @@ or factor of 16. This vectorization width of 16 may be overwritten by
 
 ##### `-enable-redundant-movs`
 
-Removes any redundant mov operations including redundant loads from memory and
+Removes any redundant `mov` operations including redundant loads from memory and
 stores to memory. This can be invoked using
 `-Wl,-plugin-opt=-enable-redundant-movs`.
 
@@ -322,13 +322,13 @@ functions at call sites.
 | 4                             | 10                                                                             |
 :::
 
-This is more effective with flto as the whole program needs to be analyzed to
+This is more effective with `-flto` as the whole program needs to be analyzed to
 perform this optimization, which can be invoked as
 `-flto -inline-recursion=[1,2,3,4]`.
 
 ##### `-reduce-array-computations=[1,2,3]`
 
-Performs array dataflow analysis and optimizes the unused array computations.
+Performs array data flow analysis and optimizes the unused array computations.
 
 :::{table} -reduce-array-computations Values and Their Effects
 | -reduce-array-computations value | Array elements eligible for elimination of computations |
@@ -338,7 +338,7 @@ Performs array dataflow analysis and optimizes the unused array computations.
 | 3                                | Both unused and zero valued |
 :::
 
-This optimization is effective with flto as the whole program needs to be
+This optimization is effective with `-flto` as the whole program needs to be
 analyzed to perform this optimization, which can be invoked as
 `-flto -reduce-array-computations=[1,2,3]`.
 
@@ -352,7 +352,7 @@ vector operations. This option is set to **true** by default.
 Experimental flag for enabling vectorization on certain loops with complex
 control flow, which the normal vectorizer cannot handle.
 
-This optimization is effective with flto as the whole program needs to be
+This optimization is effective with `-flto` as the whole program needs to be
 analyzed to perform this optimization, which can be invoked as
 `-flto -region-vectorize`.
 
@@ -423,12 +423,12 @@ This option is set to false by default.
 ##### `-Hz,1,0x1 [Fortran]`
 
 Helps to preserve array index information for array access expressions which get
-linearized in the compiler frontend. The preserved information is used by the
+linearized in the compiler front end. The preserved information is used by the
 compiler optimization phase in performing optimizations such as loop
 transformations. It is recommended that any user who is using optimizations
 such as loop transformations and other optimizations requiring de-linearized
 index expressions should use the Hz option. This option has no impact on any
-other aspects of the Flang frontend.
+other aspects of the Flang front end.
 
 ### Inline ASM Statements
 
@@ -467,7 +467,7 @@ compiler.
 An LLVM library and tool that is used to query the execution capability of the
 current system as well as to query requirements of a binary file. It is used by
 OpenMP device runtime to ensure compatibility of an image with the current
-system while loading it. It is compatible with TargetID support and multi-image
+system while loading it. It is compatible with target ID support and multi-image
 fat binary support.
 
 **Usage:**
@@ -478,7 +478,7 @@ offload-arch [Options] [Optional lookup-value]
 
 When used without an option, offload-arch prints the value of the first offload
 arch found in the underlying system. This can be used by various clang
-frontends. For example, to compile for OpenMP offloading on your current system,
+front ends. For example, to compile for OpenMP offloading on your current system,
 invoke clang with the following command:
 
 ```bash
@@ -507,11 +507,11 @@ The options are listed below:
 :::
 
 :::{option} -m
-  Prints device code name (often found in pci.ids file).
+  Prints device code name (often found in `pci.ids` file).
 :::
 
 :::{option} -n
-  Prints numeric pci-id.
+  Prints numeric `pci-id`.
 :::
 
 :::{option} -t
@@ -530,12 +530,12 @@ The options are listed below:
   Prints offload capabilities of the underlying system. This option is used by the language runtime to select an image when multiple images are available. A capability must exist for each requirement of the selected image.
 :::
 
-There are symbolic link aliases amdgpu-offload-arch and nvidia-arch for
-offload-arch. These aliases return 1 if no amdgcn GPU or cuda GPU is found.
+There are symbolic link aliases `amdgpu-offload-arch` and `nvidia-arch` for
+`offload-arch`. These aliases return 1 if no AMD GCN GPU or CUDA GPU is found.
 These aliases are useful in determining whether architecture-specific tests
 should be run or to conditionally load architecture-specific software.
 
-#### Command-Line Simplification Using offload-arch Flag
+#### Command-Line Simplification Using `offload-arch` Flag
 
 Legacy mechanism of specifying offloading target for OpenMP involves using three
 flags, `-fopenmp-targets`, `-Xopenmp-target`, and `-march`. The first two flags
@@ -562,14 +562,14 @@ clang -fopenmp -target x86_64-linux-gnu \
 ```
 
 To ensure backward compatibility, both styles are supported. This option is
-compatible with TargetID support and multi-image fat binaries.
+compatible with target ID support and multi-image fat binaries.
 
-#### TargetID Support for OpenMP
+#### Target ID Support for OpenMP
 
 The ROCmCC compiler supports specification of target features along with the GPU
 name while specifying a target offload device in the command line, using
 `-march` or `--offload-arch` options. The compiled image in such cases is
-specialized for a given configuration of device and target features (TargetID).
+specialized for a given configuration of device and target features (target ID).
 
 **Example:**
 
@@ -598,8 +598,8 @@ clang -fopenmp -target x86_64-linux-gnu \
 -march=gfx908:sramecc+:xnack- helloworld.c -o helloworld
 ```
 
-The TargetID specified on the command line is passed to the clang driver using
-target-feature flag, to the LLVM optimizer and backend using `-mattr` flag, and
+The target ID specified on the command line is passed to the clang driver using
+`target-feature` flag, to the LLVM optimizer and back end using `-mattr` flag, and
 to linker using `-plugin-opt=-mattr` flag. This feature is compatible with
 offload-arch command-line option and multi-image binaries for multiple
 architectures.
@@ -609,14 +609,14 @@ architectures.
 The ROCmCC compiler is enhanced to generate binaries that can contain
 heterogenous images. This heterogeneity could be in terms of:
 
-- Images of different architectures, like amdgcn and nvptx
+- Images of different architectures, like AMD GCN and NVPTX
 - Images of same architectures but for different GPUs, like gfx906 and gfx908
 - Images of same architecture and same GPU but for different target features,
-  like gfx908:xnack+ and gfx908:xnack-
+  like `gfx908:xnack+` and `gfx908:xnack-`
 
 An appropriate image is selected by the OpenMP device runtime for execution
 depending on the capability of the current system. This feature is compatible
-with TargetID support and offload-arch command-line options and uses
+with target ID support and offload-arch command-line options and uses
 offload-arch tool to determine capability of the current system.
 
 **Example:**
@@ -660,7 +660,7 @@ capability of the current system.
 #### Unified Shared Memory (USM)
 
 The following OpenMP pragma is available on MI200, and it must be executed with
-xnack+ support.
+`xnack+` support.
 
 ```cpp
 omp requires unified_shared_memory
@@ -673,6 +673,8 @@ refer to the OpenMP Support Guide at [https://docs.amd.com](https://docs.amd.com
 ### Support Status of Other Clang Options
 
 The following table lists the other Clang options and their support status.
+
+<!-- spellcheck-disable -->
 
 :::{table} Clang Options
 :name: clang-options
@@ -1440,3 +1442,4 @@ The following table lists the other Clang options and their support status.
  |-x  \<language\>|Supported|Assumes subsequent input files to have the given type  \<language\>|
  |-z  \<arg\>|Supported|Passes -z  \<arg\> to the linker|
 :::
+<!-- spellcheck-enable -->

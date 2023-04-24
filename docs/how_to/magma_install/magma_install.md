@@ -2,7 +2,7 @@
 
 ## MAGMA for ROCm
 
-Matrix Algebra on GPU and Multicore Architectures, abbreviated as MAGMA, is a
+Matrix Algebra on GPU and Multi-core Architectures, abbreviated as MAGMA, is a
 collection of next-generation dense linear algebra libraries that is designed
 for heterogeneous architectures, such as multiple GPUs and multi- or many-core
 CPUs.
@@ -29,7 +29,7 @@ To build MAGMA from the source, follow these steps:
    export PYTORCH_ROCM_ARCH=<uarch>
    ```
 
-   `<uarch>` is the architecture reported by the rocminfo command.
+   `<uarch>` is the architecture reported by the `rocminfo` command.
 
 2. Use the following:
 

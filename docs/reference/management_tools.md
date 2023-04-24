@@ -17,7 +17,7 @@ provided by the AMD E-SMI inband library and the ROCm SMI GPU library to the Pro
 :::
 
 :::{grid-item-card} [ROCm SMI](https://rocmdocs.amd.com/projects/rocmsmi/en/latest/)
-This tool acts as a command line interface for manipulating and monitoring the amdgpu kernel, and is intended to replace and deprecate the existing rocm_smi.py CLI tool. It uses Ctypes to call the rocm_smi_lib API.
+This tool acts as a command line interface for manipulating and monitoring the AMD GPU kernel, and is intended to replace and deprecate the existing `rocm_smi.py` CLI tool. It uses `ctypes` to call the `rocm_smi_lib` API.
 
 - [Documentation](https://rocmdocs.amd.com/projects/rocmsmi/en/latest/)
 - [Examples](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/master/python_smi_tools)
@@ -25,7 +25,7 @@ This tool acts as a command line interface for manipulating and monitoring the a
 :::
 
 :::{grid-item-card} [ROCm Datacenter Tool](https://rocmdocs.amd.com/projects/rdc/en/latest/)
-The ROCm™ Data Center Tool simplifies the administration and addresses key infrastructure challenges in AMD GPUs in cluster and datacenter environments.
+The ROCm™ Data Center Tool simplifies the administration and addresses key infrastructure challenges in AMD GPUs in cluster and data center environments.
 
 - [Documentation](https://rocmdocs.amd.com/projects/rdc/en/latest/)
 - [Examples](https://github.com/RadeonOpenCompute/rdc/tree/master/example)

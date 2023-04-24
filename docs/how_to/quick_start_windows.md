@@ -7,7 +7,6 @@ The steps to install the HIP SDK for Windows are described in this document.
 The HIP SDK is supported on Windows 10 and 11. The HIP SDK may be installed on a
 system without AMD GPUs to use the build toolchains. To run HIP applications, a
 compatible GPU is required. Please see the supported GPU guide for more details.
-TODO: provide link to supported GPU guide.
 
 ## SDK Installation
 
@@ -23,8 +22,6 @@ Installation options are listed in {numref}`installation-components`.
 | **Ray Tracing**          | **Full**         |                    | **Do Not Install**                                                                                                                                                             |
 | **BitCode Profiler**     | **Full**         |                    |                                                                                                                                                                                |
 :::
-
-TODO: describe each installation option.
 
 ## HIP SDK Installer
 

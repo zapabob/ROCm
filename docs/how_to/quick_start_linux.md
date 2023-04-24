@@ -4,7 +4,7 @@
 
 The driver package uses
 [`DKMS`](https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support) to build
-the amdgpu module (driver) for the installed kernels. This requires the linux
+the `amdgpu-dkms` module (driver) for the installed kernels. This requires the Linux
 kernel headers and modules to be installed for each. Usually these are
 automatically installed with the kernel, but if you have multiple kernel
 versions or you have downloaded the kernel images and not the kernel
@@ -251,7 +251,7 @@ sudo zypper ref
 
 ## Install Drivers
 
-Install the amdgpu kernel module, aka driver, on your system.
+Install the `amdgpu-dkms` kernel module, aka driver, on your system.
 
 ::::{tab-set}
 

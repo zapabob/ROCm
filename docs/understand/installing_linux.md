@@ -9,15 +9,15 @@ installation/uninstallation of ROCm on the various Linux distributions.
 
 ```{note}
 The rest of this document refers to _Radeon™ Software for Linux_ as the AMDGPU
-stack and _amdgpu-dkms_ driver as the kernel-mode driver.
+stack and `amdgpu-dkms` driver as the kernel-mode driver.
 ```
 
 The guide provides instructions for the following:
 
 - Kernel-mode driver installation
-- ROCm single-version and multiversion installation
+- ROCm single-version and multi-version installation
 - ROCm and kernel-mode driver version upgrade
-- ROCm single-version and multiversion uninstallation
+- ROCm single-version and multi-version uninstallation
 - Kernel-mode driver uninstallation
 
 ## Installation Methods
@@ -47,12 +47,12 @@ terms of this agreement, do not install, copy or use the AQL Profiler and/or the
 AOCC CPU Optimizations.
 ```
 
-Acces the EULA agreement at: <https://www.amd.com/en/support/gpu-pro-eula>
+Access the EULA agreement at: <https://www.amd.com/en/support/gpu-pro-eula>
 
 For the rest of the ROCm packages, you can find the licensing information at the
 following location: `/opt/rocm/share/doc/<component-name>/`
 
-For example, you can fetch the licensing information of the _amd_comgr_
+For example, you can fetch the licensing information of the `_amd_comgr_`
 component (Code Object Manager) from the `amd_comgr` folder. A file named
 `LICENSE.txt` contains the license details at:
 `/opt/rocm-5.4.3/share/doc/amd_comgr/LICENSE.txt`
@@ -74,11 +74,11 @@ The `amdgpu-install` script streamlines the installation process by:
   the required packages
 - Installing multiple ROCm releases simultaneously on a system
 - Automating updating local repository information through enhanced
-  functionality of the amdgpu-install script
+  functionality of the `amdgpu-install` script
 - Performing post-install checks to verify whether the installation was
   completed successfully
 - Upgrading the installed ROCm release
-- Uninstalling the installed single-version or multiversion ROCm releases
+- Uninstalling the installed single-version or multi-version ROCm releases
 
 ```{tip}
 The installer script is provided for convenience. It doesn't do anything the
@@ -110,7 +110,7 @@ For more information, refer to the How to Install ROCm section in this guide.
 
 ## Installation types
 
-This section discusses the single-version and multiversion installation of the
+This section discusses the single-version and multi-version installation of the
 ROCm software stack.
 
 ### Single-version Installation
@@ -122,7 +122,7 @@ The single-version ROCm installation refers to the following:
 
 ### Multi-version Installation
 
-The multiversion installation refers to the following:
+The multi-version installation refers to the following:
 
 - Installation of multiple instances of the ROCm stack on a system. Extending
   the package name and its dependencies with the release version adds the
@@ -134,7 +134,7 @@ Multiversion install is not available for the AMDGPU stack.
 ```
 
 The following image demonstrates the difference between single-version and
-multiversion ROCm installation types:
+multi-version ROCm installation types:
 
 ```{figure-md} install-types
 

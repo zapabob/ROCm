@@ -7,6 +7,7 @@ additional licenses. Please review individual repositories for more information.
 The table shows ROCm components, the name of license and link to the license terms.
 The table is ordered to follow ROCm's manifest file.
 
+<!-- spellcheck-disable -->
 | Component                                                                                        | License                                                                                                                    |
 |:------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
 | [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/)                   | [GPL 2.0 WITH Linux-syscall-note](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/blob/master/COPYING)             |

@@ -46,11 +46,11 @@ The following sections contain case studies for the Inception v3 model.
 
 Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception v3 [1] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
 
-The implementation uses PyTorch as a framework. This case study utilizes torchvision [2], a repository of popular datasets and model architectures, for obtaining the model. Torchvision also provides pretrained weights as a starting point to develop new models or fine-tune the model for a new task.
+The implementation uses PyTorch as a framework. This case study utilizes `torchvision` [2], a repository of popular datasets and model architectures, for obtaining the model. `torchvision` also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
 
-#### Evaluating a Pretrained Model
+#### Evaluating a Pre-Trained Model
 
-The Inception v3 model introduces a simple image classification task with the pretrained model. This does not involve training but utilizes an already pretrained model from torchvision.
+The Inception v3 model introduces a simple image classification task with the pre-trained model. This does not involve training but utilizes an already pre-trained model from `torchvision`.
 
 This example is adapted from the PyTorch research hub page on Inception v3 [3].
 
@@ -85,7 +85,7 @@ Follow these steps:
     except: urllib.request.urlretrieve(url, filename)
     ```
 
-5. Import torchvision and PIL Image support libraries.
+5. Import `torchvision` and `PIL.Image` support libraries.
 
     ```py
     from PIL import Image
@@ -124,7 +124,7 @@ Follow these steps:
     print(probabilities)
     ```
 
-9. To understand the probabilities, download and examine the Imagenet labels.
+9. To understand the probabilities, download and examine the ImageNet labels.
 
     ```py
     wget https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt
@@ -153,13 +153,13 @@ Follow these steps:
     docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
     ```
 
-2. Download an imagenet database. For this example, the tiny-imagenet-200 [4], a smaller ImageNet variant with 200 image classes and a training dataset with 100,000 images, was downsized to 64x64 color images.
+2. Download an ImageNet database. For this example, the `tiny-imagenet-200` [4], a smaller ImageNet variant with 200 image classes and a training dataset with 100,000 images, was downsized to 64x64 color images.
 
     ```py
     wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
     ```
 
-3. Process the database to set the validation directory to the format expected by PyTorch DataLoader.
+3. Process the database to set the validation directory to the format expected by PyTorch's `DataLoader`.
 
 4. Run the following script:
 
@@ -196,7 +196,7 @@ Follow these steps:
 
 5. Open a Python shell.
 
-6. Import dependencies, including torch, OS, and torchvision.
+6. Import dependencies, including `torch`, `os`, and `torchvision`.
 
     ```py
     import torch
@@ -209,14 +209,14 @@ Follow these steps:
 7. Set parameters to guide the training process.
 
     :::{note}
-    The device is set to "cuda". In PyTorch, "cuda" is a generic keyword to denote a GPU.
+    The device is set to `"cuda"`. In PyTorch, `"cuda"` is a generic keyword to denote a GPU.
     :::
 
     ```py
     device = "cuda"
     ```
 
-8. Set the data_path to the location of the training and validation data. In this case, the tiny-imagenet-200 is present as a subdirectory to the current directory.
+8. Set the data_path to the location of the training and validation data. In this case, the `tiny-imagenet-200` is present as a subdirectory to the current directory.
 
     ```py
     data_path = "tiny-imagenet-200"
@@ -241,7 +241,7 @@ Follow these steps:
     val_resize_size = 342
     ```
 
-    The pretrained Inception v3 model is chosen to be downloaded from torchvision.
+    The pre-trained Inception v3 model is chosen to be downloaded from `torchvision`.
 
     ```py
     model_name = "inception_v3"
@@ -254,13 +254,13 @@ Follow these steps:
     batch_size = 32
     ```
 
-    This refers to the number of CPU threads the data loader uses to perform efficient multiprocess data loading.
+    This refers to the number of CPU threads the data loader uses to perform efficient multi-process data loading.
 
     ```py
     num_workers = 16
     ```
 
-    The PyTorch optim package provides methods to adjust the learning rate as the training progresses. This example uses the StepLR scheduler, which decays the learning rate by lr_gamma at every lr_step_size number of epochs.
+    The `torch.optim` package provides methods to adjust the learning rate as the training progresses. This example uses the `StepLR` scheduler, which decays the learning rate by `lr_gamma` at every `lr_step_size` number of epochs.
 
     ```py
     learning_rate = 0.1
@@ -334,7 +334,7 @@ Follow these steps:
     ```
 
     :::{note}
-    Use torchvision to obtain the Inception v3 model. Use the pretrained model weights to speed up training.
+    Use `torchvision` to obtain the Inception v3 model. Use the pre-trained model weights to speed up training.
     :::
 
     ```py
@@ -343,7 +343,7 @@ Follow these steps:
     model = torchvision.models.__dict__[model_name](pretrained=pretrained)
     ```
 
-11. Adapt Inception v3 for the current dataset. Tiny-imagenet-200 contains only 200 classes, whereas Inception v3 is designed for 1,000-class output. The last layer of Inception v3 is replaced to match the output features required.
+11. Adapt Inception v3 for the current dataset. `tiny-imagenet-200` contains only 200 classes, whereas Inception v3 is designed for 1,000-class output. The last layer of Inception v3 is replaced to match the output features required.
 
     ```py
     model.fc = torch.nn.Linear(model.fc.in_features, len(dataset.classes))
@@ -477,7 +477,7 @@ The CIFAR-10 (Canadian Institute for Advanced Research) dataset is a subset of t
 
 Follow these steps:
 
-1. Import dependencies, including torch, OS, and torchvision.
+1. Import dependencies, including `torch`, `os`, and `torchvision`.
 
     ```py
     import torch
@@ -487,7 +487,7 @@ Follow these steps:
     import numpy as np
     ```
 
-2. The output of torchvision datasets is PILImage images of range [0, 1]. Transform them to Tensors of normalized range [-1, 1].
+2. The output of `torchvision` datasets is `PILImage` images of range [0, 1]. Transform them to Tensors of normalized range [-1, 1].
 
     ```py
     transform = transforms.Compose(
@@ -501,7 +501,7 @@ Follow these steps:
     batch_size = 4
     ```
 
-3. Download the dataset train and test datasets as follows. Specify the batch size, shuffle the dataset once, and specify the number of workers to the number of CPU threads used by the data loader to perform efficient multiprocess data loading.
+3. Download the dataset train and test datasets as follows. Specify the batch size, shuffle the dataset once, and specify the number of workers to the number of CPU threads used by the data loader to perform efficient multi-process data loading.
 
     ```py
     train_set = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
@@ -523,7 +523,7 @@ Follow these steps:
     print("defined classes")
     ```
 
-6. Unnormalize the images and then iterate over them.
+6. Denormalize the images and then iterate over them.
 
     ```py
     global image_number
@@ -544,7 +544,7 @@ Follow these steps:
     print("image created and saved ")
     ```
 
-7. Import the torch.nn for constructing neural networks and torch.nn.functional to use the convolution functions.
+7. Import the `torch.nn` for constructing neural networks and `torch.nn.functional` to use the convolution functions.
 
     ```py
     import torch.nn as nn
@@ -682,7 +682,7 @@ Access the source code from the following repository:
 
 To understand the code step by step, follow these steps:
 
-1. Import libraries like TensorFlow, Numpy, and Matplotlib to train the neural network and calculate and plot graphs.
+1. Import libraries like TensorFlow, NumPy, and Matplotlib to train the neural network and calculate and plot graphs.
 
     ```py
     import tensorflow as tf
@@ -775,7 +775,7 @@ To understand the code step by step, follow these steps:
     ---
     ```
 
-    The basic building block of a neural network is the layer. Layers extract representations from the data fed into them. Deep Learning consists of chaining together simple layers. Most layers, such as tf.keras.layers.Dense, have parameters that are learned during training.
+    The basic building block of a neural network is the layer. Layers extract representations from the data fed into them. Deep Learning consists of chaining together simple layers. Most layers, such as `tf.keras.layers.Dense`, have parameters that are learned during training.
 
     ```py
     model = tf.keras.Sequential([
@@ -785,9 +785,9 @@ To understand the code step by step, follow these steps:
     ])
     ```
 
-    - The first layer in this network tf.keras.layers.Flatten transforms the format of the images from a two-dimensional array (of 28 x 28 pixels) to a one-dimensional array (of 28 * 28 = 784 pixels). Think of this layer as unstacking rows of pixels in the image and lining them up. This layer has no parameters to learn; it only reformats the data.
+    - The first layer in this network `tf.keras.layers.Flatten` transforms the format of the images from a two-dimensional array (of 28 x 28 pixels) to a one-dimensional array (of 28 * 28 = 784 pixels). Think of this layer as unstacking rows of pixels in the image and lining them up. This layer has no parameters to learn; it only reformats the data.
 
-    - After the pixels are flattened, the network consists of a sequence of two tf.keras.layers.Dense layers. These are densely connected or fully connected neural layers. The first Dense layer has 128 nodes (or neurons). The second (and last) layer returns a logits array with a length of 10. Each node contains a score that indicates the current image belongs to one of the 10 classes.
+    - After the pixels are flattened, the network consists of a sequence of two `tf.keras.layers.Dense` layers. These are densely connected or fully connected neural layers. The first Dense layer has 128 nodes (or neurons). The second (and last) layer returns a logits array with a length of 10. Each node contains a score that indicates the current image belongs to one of the 10 classes.
 
 12. You must add the Loss function, Metrics, and Optimizer at the time of model compilation.
 
@@ -883,7 +883,7 @@ To understand the code step by step, follow these steps:
         thisplot[true_label].set_color('blue')
         ```
 
-    9. With the model trained, you can use it to make predictions about some images. Review the 0th image predictions and the prediction array. Correct prediction labels are blue, and incorrect prediction labels are red. The number gives the percentage (out of 100) for the predicted label.
+    9. With the model trained, you can use it to make predictions about some images. Review the 0-th image predictions and the prediction array. Correct prediction labels are blue, and incorrect prediction labels are red. The number gives the percentage (out of 100) for the predicted label.
 
         ```py
         i = 0
@@ -925,7 +925,7 @@ To understand the code step by step, follow these steps:
         print(img.shape)
         ```
 
-    11. tf.keras models are optimized to make predictions on a batch, or collection, of examples at once. Accordingly, even though you are using a single image, you must add it to a list.
+    11. `tf.keras` models are optimized to make predictions on a batch, or collection, of examples at once. Accordingly, even though you are using a single image, you must add it to a list.
 
         ```py
         # Add the image to a batch where it's the only member.
@@ -952,7 +952,7 @@ To understand the code step by step, follow these steps:
         ---
         ```
 
-    13. tf.keras.Model.predict returns a list of lists—one for each image in the batch of data. Grab the predictions for our (only) image in the batch.
+    13. `tf.keras.Model.predict` returns a list of lists—one for each image in the batch of data. Grab the predictions for our (only) image in the batch.
 
         ```py
         np.argmax(predictions_single[0])
@@ -960,7 +960,7 @@ To understand the code step by step, follow these steps:
 
 ### Case Study: TensorFlow with Text Classification
 
-This procedure demonstrates text classification starting from plain text files stored on disk. You will train a binary classifier to perform sentiment analysis on an IMDB dataset. At the end of the notebook, there is an exercise for you to try in which you will train a multiclass classifier to predict the tag for a programming question on Stack Overflow.
+This procedure demonstrates text classification starting from plain text files stored on disk. You will train a binary classifier to perform sentiment analysis on an IMDB dataset. At the end of the notebook, there is an exercise for you to try in which you will train a multi-class classifier to predict the tag for a programming question on Stack Overflow.
 
 Follow these steps:
 
@@ -1042,7 +1042,7 @@ Follow these steps:
     raw_train_ds=tf.keras.utils.text_dataset_from_directory('aclImdb/train',batch_size=batch_size, validation_split=0.2,subset='training', seed=seed)
     ```
 
-8. As you will see in a moment, you can train a model by passing a dataset directly to model.fit. If you are new to tf.data, you can also iterate over the dataset and print a few examples as follows:
+8. As you will see in a moment, you can train a model by passing a dataset directly to `model.fit`. If you are new to `tf.data`, you can also iterate over the dataset and print a few examples as follows:
 
     ```py
     for text_batch, label_batch in raw_train_ds.take(1):
@@ -1072,7 +1072,7 @@ Follow these steps:
 
 To prepare the data for training, follow these steps:
 
-1. Standardize, tokenize, and vectorize the data using the helpful tf.keras.layers.TextVectorization layer.
+1. Standardize, tokenize, and vectorize the data using the helpful `tf.keras.layers.TextVectorization` layer.
 
     ```py
     def custom_standardization(input_data):
@@ -1081,7 +1081,7 @@ To prepare the data for training, follow these steps:
     return tf.strings.regex_replace(stripped_html,                                 '[%s]' % re.escape(string.punctuation),'')
     ```
 
-2. Create a TextVectorization layer. Use this layer to standardize, tokenize, and vectorize our data. Set the output_mode to int to create unique integer indices for each token. Note that we are using the default split function and the custom standardization function you defined above. You will also define some constants for the model, like an explicit maximum sequence_length, which will cause the layer to pad or truncate sequences to exactly sequence_length values.
+2. Create a `TextVectorization` layer. Use this layer to standardize, tokenize, and vectorize our data. Set the output_mode to int to create unique integer indices for each token. Note that we are using the default split function and the custom standardization function you defined above. You will also define some constants for the model, like an explicit maximum sequence_length, which will cause the layer to pad or truncate sequences to exactly sequence_length values.
 
     ```py
     max_features = 10000
@@ -1129,7 +1129,7 @@ To prepare the data for training, follow these steps:
     print('Vocabulary size: {}'.format(len(vectorize_layer.get_vocabulary())))
     ```
 
-6. You are nearly ready to train your model. As a final preprocessing step, apply the TextVectorization layer we created earlier to train, validate, and test the dataset.
+6. You are nearly ready to train your model. As a final preprocessing step, apply the `TextVectorization` layer we created earlier to train, validate, and test the dataset.
 
     ```py
     train_ds = raw_train_ds.map(vectorize_text)
@@ -1137,9 +1137,9 @@ To prepare the data for training, follow these steps:
     test_ds = raw_test_ds.map(vectorize_text)
     ```
 
-    The cache() function keeps data in memory after it is loaded off disk. This ensures the dataset does not become a bottleneck while training your model. If your dataset is too large to fit into memory, you can also use this method to create a performant on-disk cache, which is more efficient to read than many small files.
+    The `cache()` function keeps data in memory after it is loaded off disk. This ensures the dataset does not become a bottleneck while training your model. If your dataset is too large to fit into memory, you can also use this method to create a performant on-disk cache, which is more efficient to read than many small files.
 
-    The prefetch() function overlaps data preprocessing and model execution while training.
+    The `prefetch()` function overlaps data preprocessing and model execution while training.
 
     ```py
     AUTOTUNE = tf.data.AUTOTUNE
@@ -1308,7 +1308,7 @@ MIGraphX provides easy-to-use APIs in C++ and Python to import machine models in
 
 After optimization passes, all these operators get mapped to different kernels on GPUs or CPUs.
 
-After importing a model into MIGraphX, the model is represented as migraphx::program. migraphx::program is made up of migraphx::module. The program can consist of several modules, but it always has one main_module. Modules are made up of migraphx::instruction_ref. Instructions contain the migraphx::op and arguments to the operator.  
+After importing a model into MIGraphX, the model is represented as `migraphx::program`. `migraphx::program` is made up of `migraphx::module`. The program can consist of several modules, but it always has one main_module. Modules are made up of `migraphx::instruction_ref`. Instructions contain the `migraphx::op` and arguments to the operator.  
 
 ### MIGraphX Installation
 
@@ -1322,19 +1322,19 @@ To install MIGraphX on Debian-based systems like Ubuntu, use the following comma
 sudo apt update && sudo apt install -y migraphx
 ```
 
-The header files and libs are installed under /opt/rocm-\<version\>, where \<version\> is the ROCm version.
+The header files and libraries are installed under `/opt/rocm-\<version\>`, where \<version\> is the ROCm version.
 
 #### Option 2: Building from Source
 
 There are two ways to build the MIGraphX sources.
 
-- [Use the ROCm build tool](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses [rbuild](https://github.com/RadeonOpenCompute/rbuild) to install the prerequisites and build the libs with just one command.
+- [Use the ROCm build tool](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses [rbuild](https://github.com/RadeonOpenCompute/rbuild) to install the prerequisites and build the libraries with just one command.
 
  or
 
 - [Use CMake](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-cmake-to-build-migraphx) - This approach uses a script to install the prerequisites, then uses CMake to build the source.
 
-For detailed steps on building from source and installing dependencies, refer to the following README file:
+For detailed steps on building from source and installing dependencies, refer to the following `README` file:
 
 [https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source)
 
@@ -1342,13 +1342,13 @@ For detailed steps on building from source and installing dependencies, refer to
 
 To use Docker, follow these steps:
 
-1. The easiest way to set up the development environment is to use Docker. To build Docker from scratch, first clone the MIGraphX repo by running:
+1. The easiest way to set up the development environment is to use Docker. To build Docker from scratch, first clone the MIGraphX repository by running:
 
     ```bash
     git clone --recursive https://github.com/ROCmSoftwarePlatform/AMDMIGraphX
     ```
 
-2. The repo contains a Dockerfile from which you can build a Docker image as:
+2. The repository contains a Dockerfile from which you can build a Docker image as:
 
     ```bash
     docker build -t migraphx .
@@ -1373,19 +1373,19 @@ inception = models.inception_v3(pretrained=True)
 torch.onnx.export(inception,torch.randn(1,3,299,299), "inceptioni1.onnx")
 ```
 
-This will create inceptioni1.onnx, which can be imported in MIGraphX using C++ or Python API.
+This will create `inceptioni1.onnx`, which can be imported in MIGraphX using C++ or Python API.
 
 ### MIGraphX Python API
 
 Follow these steps:
 
-1. To import the migraphx module in Python script, set PYTHONPATH to migraphx libs installation. If binaries are installed using steps mentioned in [Option 1: Installing Binaries](#option-1-installing-binaries), perform the following action:
+1. To import the MIGraphX module in Python script, set `PYTHONPATH` to the MIGraphX libraries installation. If binaries are installed using steps mentioned in [Option 1: Installing Binaries](#option-1-installing-binaries), perform the following action:
 
     ```py
     export PYTHONPATH=$PYTHONPATH:/opt/rocm/
     ```
 
-2. The following script shows the usage of Python API to import the ONNX model, compile it, and run inference on it. Set LD_LIBRARY_PATH to /opt/rocm/ if required.
+2. The following script shows the usage of Python API to import the ONNX model, compile it, and run inference on it. Set `LD_LIBRARY_PATH` to `/opt/rocm/` if required.
 
     ```py
     # import migraphx and numpy
@@ -1407,13 +1407,13 @@ Follow these steps:
     print(np.argmax(result_np))
     ```
 
-    Find additional examples of Python API in the /examples directory of the MIGraphX repo.
+    Find additional examples of Python API in the /examples directory of the MIGraphX repository.
 
 ### MIGraphX C++ API
 
 Follow these steps:
 
-1. The following is a minimalist example that shows the usage of MIGraphX C++ API to load ONNX file, compile it for the GPU, and run inference on it. To use MIGraphX C++ API, you only need to load the migraphx.hpp file. This example runs inference on the Inception v3 model.
+1. The following is a minimalist example that shows the usage of MIGraphX C++ API to load ONNX file, compile it for the GPU, and run inference on it. To use MIGraphX C++ API, you only need to load the `migraphx.hpp` file. This example runs inference on the Inception v3 model.
 
     ```c++
     #include <vector>
@@ -1461,7 +1461,7 @@ Follow these steps:
     }
     ```
 
-2. To compile this program, you can use CMake and you only need to link the migraphx::c library to use MIGraphX's C++ API. The following is the CMakeLists.txt file that can build the earlier example:
+2. To compile this program, you can use CMake and you only need to link the `migraphx::c` library to use MIGraphX's C++ API. The following is the `CMakeLists.txt` file that can build the earlier example:
 
     ```py
     cmake_minimum_required(VERSION 3.5)
@@ -1479,7 +1479,7 @@ Follow these steps:
     target_link_libraries(${EXAMPLE} migraphx::c)
     ```
 
-3. To build the executable file, run the following from the directory containing the inception_inference.cpp file:
+3. To build the executable file, run the following from the directory containing the `inception_inference.cpp` file:
 
     ```py
     mkdir build
@@ -1490,7 +1490,7 @@ Follow these steps:
     ```
 
 :::{note}
-    Set LD_LIBRARY_PATH to /opt/rocm/lib if required during the build. Additional examples can be found in the MIGraphX repo under the examples/ directory.
+    Set `LD_LIBRARY_PATH` to `/opt/rocm/lib` if required during the build. Additional examples can be found in the MIGraphX repository under the `/examples/` directory.
 :::
 
 ### Tuning MIGraphX
@@ -1577,38 +1577,38 @@ Inference time: 0.004ms
 
 #### YModel
 
-The best inference performance through MIGraphX is conditioned upon having tuned kernel configs stored in a /home local User Database (DB). If a user were to move their model to a different server or allow a different user to use it, they would have to run through the MIOpen tuning process again to populate the next User DB with the best kernel configs and corresponding solvers.
+The best inference performance through MIGraphX is conditioned upon having tuned kernel configurations stored in a /home local User Database (DB). If a user were to move their model to a different server or allow a different user to use it, they would have to run through the MIOpen tuning process again to populate the next User DB with the best kernel configurations and corresponding solvers.
 
 Tuning is time consuming, and if the users have not performed tuning, they would see discrepancies between expected or claimed inference performance and actual inference performance. This has led to repetitive and time-consuming tuning tasks for each user.
 
-MIGraphX introduces a feature, known as YModel, that stores the kernel config parameters found during tuning into a .mxr file. This ensures the same level of expected performance, even when a model is copied to a different user/system.
+MIGraphX introduces a feature, known as YModel, that stores the kernel config parameters found during tuning into a `.mxr` file. This ensures the same level of expected performance, even when a model is copied to a different user/system.
 
 The YModel feature is available starting from ROCm 5.4.1 and UIF 1.1.
 
 ##### YModel Example
 
-Through the \`migraphx-driver\` functionality, you can generate .mxr files with tuning information stored inside it by passing additional --binary --output model.mxr to \`migraphx-driver\` along with the rest of the necessary flags.
+Through the `migraphx-driver` functionality, you can generate `.mxr` files with tuning information stored inside it by passing additional `--binary --output model.mxr` to `migraphx-driver` along with the rest of the necessary flags.
 
-For example, to generate .mxr file from the onnx model, use the following:
+For example, to generate `.mxr` file from the ONNX model, use the following:
 
 ```bash
 ./path/to/migraphx-driver compile --onnx resnet50.onnx --enable-offload-copy --binary --output resnet50.mxr
 ```
 
-To run generated .mxr files through \`migraphx-driver\`, use the following:
+To run generated `.mxr` files through `migraphx-driver`, use the following:
 
 ```bash
 ./path/to/migraphx-driver run --migraphx resnet50.mxr --enable-offload-copy
 ```
 
-Alternatively, you can use MIGraphX’s C++ or Python API to generate .mxr file. Refer to {numref}`image018` for an example.
+Alternatively, you can use MIGraphX's C++ or Python API to generate `.mxr` file. Refer to {numref}`image018` for an example.
 
 ```{figure} ../../data/understand/deep_learning/image.018.png
 :name: image018
 ---
 align: center
 ---
-Generating a .mxr File
+Generating a `.mxr` File
 ```
 
 ## Troubleshooting

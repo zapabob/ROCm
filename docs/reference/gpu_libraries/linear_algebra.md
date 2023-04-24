@@ -15,7 +15,7 @@ rocBLAS is an AMD GPU optimized library for BLAS.
 :::
 
 :::{grid-item-card} [hipBLAS](https://rocmdocs.amd.com/projects/hipBLAS/en/develop/)
-hipBLAS is a compatiblity layer for GPU accelerated BLAS optimized for AMD GPUs
+hipBLAS is a compatibility layer for GPU accelerated BLAS optimized for AMD GPUs
 via rocBLAS and rocSOLVER. hipBLAS allows for a common interface for other GPU
 BLAS libraries.
 
@@ -25,7 +25,7 @@ BLAS libraries.
 :::
 
 :::{grid-item-card} [hipBLASLt](https://rocmdocs.amd.com/projects/hipBLASLt/en/develop/)
-hipBLASLt is a library that provides general matrix-matrix operations with a flexible API and extends funtionalities beyond traditional BLAS library. hipBLASLt is exposed APIs in HIP programming language with an underlying optimized generator as a backend kernel provider.
+hipBLASLt is a library that provides general matrix-matrix operations with a flexible API and extends functionalities beyond traditional BLAS library. hipBLASLt is exposed APIs in HIP programming language with an underlying optimized generator as a back-end kernel provider.
 
 - [Documentation](https://rocmdocs.amd.com/projects/hipBLASLt/en/develop/)
 - [Changelog](https://github.com/ROCmSoftwarePlatform/hipBLASLt/blob/develop/CHANGELOG.md)

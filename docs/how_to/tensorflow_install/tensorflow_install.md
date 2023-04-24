@@ -114,14 +114,14 @@ To install TensorFlow using the wheels package, follow these steps:
    sudo apt install rocm-libs rccl
    ```
 
-6. Update protobuf to 3.19 or lower.
+6. Update `protobuf` to 3.19 or lower.
 
    ```bash
    /usr/bin/python3.7  -m pip install protobuf=3.19.0
    sudo pip3 install tensorflow
    ```
 
-7. Set the environment variable PYTHONPATH.
+7. Set the environment variable `PYTHONPATH`.
 
    ```bash
    export PYTHONPATH="./.local/lib/python[version]/site-packages:$PYTHONPATH"  #Use same python version as in step 2
@@ -140,7 +140,7 @@ To install TensorFlow using the wheels package, follow these steps:
    ```
 
    :::{note}
-   For details on tensorflow-rocm wheels and ROCm version compatibility, see:
+   For details on `tensorflow-rocm` wheels and ROCm version compatibility, see:
    [https://github.com/ROCmSoftwarePlatform/tensorflow-upstream/blob/develop-upstream/rocm_docs/tensorflow-rocm-release.md](https://github.com/ROCmSoftwarePlatform/tensorflow-upstream/blob/develop-upstream/rocm_docs/tensorflow-rocm-release.md)
    :::
 
