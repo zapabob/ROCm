@@ -47,8 +47,6 @@ terms of this agreement, do not install, copy or use the AQL Profiler and/or the
 AOCC CPU Optimizations.
 ```
 
-Access the EULA agreement at: <https://www.amd.com/en/support/gpu-pro-eula>
-
 For the rest of the ROCm packages, you can find the licensing information at the
 following location: `/opt/rocm/share/doc/<component-name>/`
 

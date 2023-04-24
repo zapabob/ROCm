@@ -7,7 +7,6 @@ root: index
 subtrees:
 - caption: Release Info
   entries:
-  - file: release
   - file: release/gpu_os_support
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known Issues
@@ -16,7 +15,6 @@ subtrees:
       - entries:
         - file: release/docker_support_matrix
         - file: reference/framework_compatibility/framework_compatibility
-        - file: reference/kernel_userspace_compatibility/kernel_userspace_comp
   - file: release/licensing
 
 - caption: Deploy ROCm
@@ -33,9 +31,6 @@ subtrees:
   - file: how_to/quick_start_windows
     title: Windows
   - file: deploy/docker
-  - file: deploy/spack
-  - file: deploy/build_source
-
 
 - caption: APIs and Reference
   entries:
@@ -173,7 +168,6 @@ subtrees:
 
 - caption: How to Guides
   entries:
-    - file: how_to/docker_gpu_isolation
     - file: how_to/deep_learning_rocm
       subtrees:
         - entries:

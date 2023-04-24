@@ -63,7 +63,7 @@ and choose the "ROCm" compute platform. {numref}`Installation-Matrix-from-Pytorc
 ---
 align: center
 ---
-Installation Matrix from Pytorch.org
+Installation Matrix from Pytorch
 ```
 
 To install PyTorch using the wheels package, follow these installation steps:

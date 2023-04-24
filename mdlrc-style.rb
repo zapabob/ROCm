@@ -8,7 +8,11 @@ rule 'MD029', :style => :ordered
 # Allow in-line HTML
 exclude_rule 'MD033'
 
+exclude_rule 'MD034'
+
 exclude_rule 'MD041'
+
+
 
 # False positives, see: https://github.com/markdownlint/markdownlint/issues/374
 exclude_rule 'MD005'

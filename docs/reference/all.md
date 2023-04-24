@@ -8,7 +8,7 @@
 :::{grid-item-card} [HIP](./hip)
 HIP is both AMD's GPU programming language extension and the GPU runtime.
 
-- [HIP Runtime API Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/rtd/)
+- [HIP Runtime API Manual](https://rocmdocs.amd.com/projects/hipBLAS/en/latest/)
 - [Examples](https://github.com/amd/rocm-examples/tree/develop/HIP-Basic)
 
 :::
@@ -50,8 +50,8 @@ Libraries related to AI.
 :::{grid-item-card} [Computer Vision](./computer_vision)
 Computer vision related projects.
 
-- [MIVisionX](https://rocmdocs.amd.com/projects/MIVisionX/en/develop)
-- [rocAL](https://rocmdocs.amd.com/projects/rocAL/en/develop)
+- [MIVisionX](https://rocmdocs.amd.com/projects/MIVisionX/en/latest)
+- [rocAL](https://rocmdocs.amd.com/projects/rocAL/en/latest)
 
 :::
 

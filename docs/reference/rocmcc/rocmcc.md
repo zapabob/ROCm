@@ -121,7 +121,7 @@ the same compiler entry point, provided AMD provides high-performance compiler
 optimizations for Zen-based processors in AOCC.
 
 For more information, refer to
-[https://developer.amd.com/amd-aocc/](https://developer.amd.com/amd-aocc/).
+[https://www.amd.com/en/developer/aocc.html](https://www.amd.com/en/developer/aocc.html).
 
 #### `-famd-opt`
 
