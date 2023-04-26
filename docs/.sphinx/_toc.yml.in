@@ -27,8 +27,8 @@ subtrees:
           title: Installation Overview
         - file: deploy/linux/prerequisites
           title: Prerequisites
-        - file: deploy/linux/quick_start
-          title: Quick Start
+#        - file: deploy/linux/quick_start
+#          title: Quick Start
         - file: deploy/linux/install
           title: Installation
         - file: deploy/linux/upgrade
