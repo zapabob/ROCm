@@ -40,7 +40,7 @@ linkcheck_ignore = [
     "http://cs231n.stanford.edu/"
 ]
 
-docs_core = ROCmDocs("ROCm Docs 5.6.0 Alpha")
+docs_core = ROCmDocs("ROCm Docs 5.5.0 beta")
 docs_core.setup()
 docs_core.disable_main_doc_link()
 
