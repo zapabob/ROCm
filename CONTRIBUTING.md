@@ -84,6 +84,10 @@ browser.
 
 ### Command line documentation builds
 
+Python versions known to build documentation:
+
+- 3.8
+
 To build the docs locally using Python Virtual Environment (`venv`), execute the
 following commands from the project root:
 
@@ -96,12 +100,6 @@ python3 -mvenv .venv
 .venv/bin/python     -m pip install -r docs/.sphinx/requirements.txt
 .venv/bin/python     -m sphinx -T -E -b html -d _build/doctrees -D language=en docs _build/html
 ```
-
-Python versions known to build documentation:
-
-- 3.8
-- 3.9
-- 3.10
 
 Then open up `_build/html/index.html` in your favorite browser.
 
