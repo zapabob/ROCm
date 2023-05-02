@@ -2,6 +2,8 @@ all
 # Extend line length
 rule 'MD013', :line_length => 99999
 
+rule 'MD026', :punctuation => '.,;:!'
+
 # Use "1. 2. 3."-style numbered lists instead of "1. 1. 1."
 rule 'MD029', :style => :ordered
 

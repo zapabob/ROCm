@@ -5,6 +5,32 @@ defaults:
   maxdepth: 6
 root: index
 subtrees:
+- entries:
+  - file: rocm
+- caption: Deploy ROCm
+  entries:
+  - file: deploy/linux/index
+    title: Linux
+    subtrees:
+      - entries:
+        - file: deploy/linux/install_overview.md
+          title: Installation Overview
+        - file: deploy/linux/prerequisites
+          title: Prerequisites
+        - file: deploy/linux/quick_start
+          title: Quick Start
+        - file: deploy/linux/install
+          title: Installation
+        - file: deploy/linux/upgrade
+          title: Upgrade
+        - file: deploy/linux/uninstall
+          title: Uninstallation
+        - file: deploy/linux/package_manager_integration
+#  - file: deploy/quick_start_windows
+#    title: Windows
+  - file: deploy/docker
+    title: Docker
+
 - caption: Release Info
   entries:
   - file: release/gpu_os_support
@@ -16,30 +42,6 @@ subtrees:
         - file: release/docker_support_matrix
         - file: reference/framework_compatibility/framework_compatibility
   - file: release/licensing
-
-- caption: Deploy ROCm
-  entries:
-  - file: deploy/linux/index
-    title: Linux
-    subtrees:
-      - entries:
-        - file: deploy/linux/install_overview.md
-          title: Installation Overview
-        - file: deploy/linux/prerequisites
-          title: Prerequisites
-#        - file: deploy/linux/quick_start
-#          title: Quick Start
-        - file: deploy/linux/install
-          title: Installation
-        - file: deploy/linux/upgrade
-          title: Upgrade
-        - file: deploy/linux/uninstall
-          title: Uninstallation
-        - file: deploy/linux/package_manager_integration
-  - file: deploy/quick_start_windows
-    title: Windows
-  - file: deploy/docker
-    title: Docker
 
 
 - caption: APIs and Reference

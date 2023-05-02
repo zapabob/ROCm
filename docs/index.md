@@ -1,9 +1,27 @@
-# AMD ROCm™ Platform Documentation
+# AMD ROCm™ Platform - Powering Your GPU Computational Needs
 
-Welcome to AMD ROCm™ Platform's documentation!
-
-:::::{grid} 1 1 2 2
+:::::{grid} 1 1 3 3
 :gutter: 1
+
+::::{grid-item}
+:::{dropdown} [What is ROCm?](rocm)
+ROCm is an open-source stack for GPU computation. ROCm is primarily
+Open-Source Software (OSS) that allows developers the freedom to customize and
+tailor their GPU software for their own needs while collaborating with a
+community of other developers, and helping each other find solutions in an
+agile, flexible, rapid and secure manner. [more...](rocm)
+
+::::
+
+::::{grid-item}
+:::{dropdown} [Deploy ROCm](deploy)
+
+- {doc}`/deploy/linux/index`
+- {doc}`/deploy/quick_start_windows`
+- {doc}`/deploy/docker`
+
+:::
+::::
 
 ::::{grid-item}
 :::{dropdown} [Release Info](release)
@@ -13,16 +31,6 @@ Welcome to AMD ROCm™ Platform's documentation!
 - [Known Issues](https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue)
 - [Compatibility](release/compatibility)
 - [Licensing](release/licensing)
-
-:::
-::::
-
-::::{grid-item}
-:::{dropdown} [Deploy ROCm](deploy)
-
-- {doc}`/deploy/linux/index`
-- {doc}`/deploy/quick_start_windows`
-- {doc}`/deploy/docker`
 
 :::
 ::::
