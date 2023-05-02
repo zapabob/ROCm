@@ -11,7 +11,7 @@ python3 tag_script.py --help
 To generate the changelog from 5.0.0 up to and including 5.4.3:
 
 ```sh
-python3 tag_script.py -t <GITHUB_TOKEN> --no-release --no-pulls --do-previous --compile_file ../../CHANGELOG.md --branch develop 5.4.3
+python3 tag_script.py -t <GITHUB_TOKEN> --no-release --no-pulls --do-previous --compile_file ../../CHANGELOG.md --branch release/rocm-rel-5.4 5.4.3
 ```
 
 > **Note**
