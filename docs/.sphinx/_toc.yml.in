@@ -187,6 +187,7 @@ subtrees:
           - file: how_to/magma_install/magma_install
           - file: how_to/pytorch_install/pytorch_install
           - file: how_to/tensorflow_install/tensorflow_install
+    - file: how_to/gpu_aware_mpi
     - file: how_to/system_debugging
 
 - caption: Examples
