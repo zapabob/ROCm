@@ -6,6 +6,8 @@
 
 import shutil
 shutil.copy2('../CONTRIBUTING.md','./contributing.md')
+shutil.copy2('../RELEASE.md','./release.md')
+
 
 from rocm_docs import ROCmDocs
 
@@ -40,7 +42,7 @@ linkcheck_ignore = [
     "http://cs231n.stanford.edu/"
 ]
 
-docs_core = ROCmDocs("ROCm Docs 5.5.0 beta")
+docs_core = ROCmDocs("ROCm Docs 5.5.0")
 docs_core.setup()
 docs_core.disable_main_doc_link()
 
