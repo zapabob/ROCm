@@ -56,6 +56,7 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 - [Management Tools](reference/management_tools)
 - [Validation Tools](reference/validation_tools)
 - [GPU Architecture](reference/gpu_arch)
+- [GPU Isolation Techniques](reference/gpu_isolation)
 
 :::
 
@@ -76,7 +77,6 @@ Understand ROCm
 How to Guides
 ^^^
 
-- [How to Isolate GPUs in Docker?](how_to/docker_gpu_isolation)
 - [Setting up for Deep Learning with ROCm](how_to/deep_learning_rocm)
   - [Magma Installation](how_to/magma_install/magma_install)
   - [PyTorch Installation](how_to/pytorch_install/pytorch_install)
