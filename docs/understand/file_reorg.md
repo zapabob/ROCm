@@ -91,7 +91,7 @@ from the new location (`/opt/rocm-xxx/include`) as shown in the example below.
 #include "hip/hip_runtime.h"
 ```
 
-The depreciation plan for backward compatibility wrapper header files is as
+The deprecation plan for backward compatibility wrapper header files is as
 follows
 
 - `#pragma` message announcing deprecation – ROCm v5.2 release.
