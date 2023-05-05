@@ -10,6 +10,7 @@ _templates/
 _toc.yml
 docBin/
 _doxygen/
+_readthedocs/
 
 # avoid duplicating contributing.md due to conf.py
 docs/contributing.md
