@@ -86,7 +86,7 @@ article_pages = [
     {"file":"understand/isv_deployment_win", "os":["windows"]},
 ]
 
-docs_core = ROCmDocs("ROCm Docs 5.6.0")
+docs_core = ROCmDocs("ROCm Docs 5.5.1")
 docs_core.setup()
 docs_core.disable_main_doc_link()
 

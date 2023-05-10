@@ -47,7 +47,7 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 
 - [HIP](reference/hip)
 - [Math Libraries](reference/gpu_libraries/math)
-- [C++ Primitives](reference/gpu_libraries/c++_primitives)
+- [C++ Primitives Libraries](reference/gpu_libraries/c++_primitives)
 - [Communication Libraries](reference/gpu_libraries/communication)
 - [AI Libraries](reference/ai_tools)
 - [Computer Vision](reference/computer_vision)
