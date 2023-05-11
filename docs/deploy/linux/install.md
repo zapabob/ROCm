@@ -899,6 +899,8 @@ but are generally useful. Verification of the install is advised.
    developing these libraries or want to use self-built versions of them.)
    ```
 
+(verifying-kernel-mode-driver-installation)=
+
 ### Verifying Kernel-mode Driver Installation
 
 Check the installation of the kernel-mode driver by typing the command given

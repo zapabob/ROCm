@@ -182,6 +182,14 @@ subtrees:
 
 - caption: How to Guides
   entries:
+    - title: Tuning Guides
+      file: how_to/tuning_guides/index.md
+      subtrees:
+        - entries:
+          - title: MI200
+            file: how_to/tuning_guides/mi200.md
+          - title: MI100
+            file: how_to/tuning_guides/mi100.md
     - file: how_to/deep_learning_rocm
       subtrees:
         - entries:
