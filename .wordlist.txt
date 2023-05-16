@@ -15,3 +15,15 @@ UCX
 ib_core
 # isv_deployment_win
 ABI
+# tuning_guides
+BMC
+DGEMM
+HPCG
+IOPM
+HPL
+# linear algebra
+LAPACK
+MMA
+backends
+cuSOLVER
+cuSPARSE

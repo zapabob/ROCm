@@ -9,16 +9,16 @@ subtrees:
   - file: rocm
 - caption: Deploy ROCm
   entries:
+  - file: deploy/linux/quick_start
+    title: Linux Quick Start
   - file: deploy/linux/index
-    title: Linux
+    title: Linux Overview
     subtrees:
       - entries:
         - file: deploy/linux/install_overview.md
           title: Installation Overview
         - file: deploy/linux/prerequisites
           title: Prerequisites
-        - file: deploy/linux/quick_start
-          title: Quick Start
         - file: deploy/linux/install
           title: Installation
         - file: deploy/linux/upgrade

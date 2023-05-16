@@ -8,6 +8,9 @@
 <!-- markdownlint-disable no-blanks-blockquote              -->
 <!-- markdownlint-disable ul-indent                         -->
 <!-- markdownlint-disable no-trailing-spaces                -->
+
+<!-- spellcheck-disable -->
+
 The release notes for the ROCm platform.
 
 -------------------

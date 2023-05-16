@@ -2,8 +2,13 @@ name: Linting
 
 on:
   push:
+    branches: 
+    - develop
+    - main
   pull_request:
-    branches: [develop, main]
+    branches: 
+    - develop
+    - main
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -30,7 +35,7 @@ jobs:
     - name: Use markdownlint
       uses: actionshub/markdownlint@v3.1.3
       with:
-        filesToIgnoreRegex: "CHANGELOG.md|RELEASE.md|tools\\/autotag\\/templates\\/."
+        filesToIgnoreRegex: CHANGELOG.md|(docs\/)?(RELEASE|release).md|tools\/autotag\/templates\/.
 
   spelling:
     name: "Spelling"

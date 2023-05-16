@@ -33,8 +33,8 @@ sudo yum install kernel-headers kernel-devel
 
 :::
 
-:::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```shell
 sudo zypper install kernel-default-devel
@@ -205,14 +205,14 @@ sudo yum clean all
 
 :::::
 
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ::::{rubric} 1. Add the repositories
 ::::
 
 ::::{tab-set}
-:::{tab-item} Service Pack 4
+:::{tab-item} SLES 15 SP4
 :sync: SLES15-SP4
 
 ```shell
@@ -275,8 +275,8 @@ sudo yum install amdgpu-dkms
 
 :::
 
-:::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```shell
 sudo zypper install amdgpu-dkms
@@ -310,8 +310,8 @@ sudo yum install rocm-hip-libraries
 
 :::
 
-:::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```console shell
 sudo zypper install rocm-hip-libraries

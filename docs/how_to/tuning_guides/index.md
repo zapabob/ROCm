@@ -33,7 +33,7 @@ systems (for example, OEM-specific BIOS settings). This document also provides
 suggestions on items that should be the initial focus of additional,
 application-specific tuning.
 
-This document is based on the AMD EYPC™ 7003-series processor family (former
+This document is based on the AMD EPYC™ 7003-series processor family (former
 codename "Milan").
 
 While this guide is a good starting point, developers are encouraged to perform
