@@ -14,3 +14,4 @@ _readthedocs/
 
 # avoid duplicating contributing.md due to conf.py
 docs/contributing.md
+docs/release.md

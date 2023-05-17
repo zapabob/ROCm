@@ -80,7 +80,7 @@ Computer vision related projects.
 
 :::{grid-item-card} [Validation Tools](validation_tools)
 
-- [ROCm Validation Suite](https://rocmdocs.amd.com/projects/RVS/en/latest/)
+- [ROCm Validation Suite](https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/)
 - [TransferBench](https://rocmdocs.amd.com/projects/TransferBench/en/latest/)
 
 :::

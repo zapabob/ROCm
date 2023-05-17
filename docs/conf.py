@@ -24,16 +24,14 @@ linkcheck_anchors_ignore = [
 linkcheck_ignore = [
     # site to be built
     "https://rocmdocs.amd.com/projects/ROCmCC/en/latest/", 
-    "https://rocmdocs.amd.com/projects/RVS/en/latest/", 
     "https://rocmdocs.amd.com/projects/amdsmi/en/latest/",
     "https://rocmdocs.amd.com/projects/rdc/en/latest/",
     "https://rocmdocs.amd.com/projects/rocmsmi/en/latest/", 
     "https://rocmdocs.amd.com/projects/roctracer/en/latest/",
     "https://rocmdocs.amd.com/projects/MIGraphX/en/latest/",
     "https://rocmdocs.amd.com/projects/rocprofiler/en/latest/",
-    "https://github.com/ROCm-Developer-Tools/HIP-VS/blob/master/README.md",
-    "https://rocmdocs.amd.com/projects/HIPIFY/en/develop/",
     # correct links that linkcheck times out on
+    "https://github.com/ROCm-Developer-Tools/HIP-VS/blob/master/README.md",
     r"https://www.amd.com/system/files/.*.pdf",
     "https://www.amd.com/en/developer/aocc.html",
     "https://www.amd.com/en/support/linux-drivers",
@@ -42,12 +40,9 @@ linkcheck_ignore = [
     "http://cs231n.stanford.edu/"
 ]
 
-html_output_directory = "../_readthedocs/html"
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
-all_article_info_date = "2023-05-05"
-all_article_info_read_time = "5-10 min read"
 
 # pages with specific settings
 article_pages = [
@@ -86,9 +81,10 @@ article_pages = [
     {"file":"understand/isv_deployment_win", "os":["windows"]},
 ]
 
-docs_core = ROCmDocs("ROCm Docs 5.5.1")
+external_toc_path = "./sphinx/_toc.yml"
+
+docs_core = ROCmDocs("ROCm Documentation")
 docs_core.setup()
-docs_core.disable_main_doc_link()
 
 for sphinx_var in ROCmDocs.SPHINX_VARS:
     globals()[sphinx_var] = getattr(docs_core, sphinx_var)

@@ -1,3 +1,5 @@
+# isv_deployment_win
+ABI
 # gpu_aware_mpi
 DMA
 GDR
@@ -13,17 +15,15 @@ PeerDirect
 RDMA
 UCX
 ib_core
-# isv_deployment_win
-ABI
-# tuning_guides
-BMC
-DGEMM
-HPCG
-IOPM
-HPL
 # linear algebra
 LAPACK
 MMA
 backends
 cuSOLVER
 cuSPARSE
+# tuning_guides
+BMC
+DGEMM
+HPCG
+HPL
+IOPM

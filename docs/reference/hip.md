@@ -22,11 +22,11 @@ The HIP Runtime is used to enable GPU acceleration for all HIP language based pr
 :::::{grid} 1 1 1 1
 :gutter: 1
 
-:::{grid-item-card} [HIPify](https://rocmdocs.amd.com/projects/HIPIFY/en/develop/)
+:::{grid-item-card} [HIPify](https://rocm.docs.amd.com/projects/HIPIFY/en/latest/)
 HIPify assists with porting applications from based on CUDA to the HIP Runtime. Supported
 CUDA APIs are documented here as well.
 
-- [Reference Manual](https://rocmdocs.amd.com/projects/HIPIFY/en/develop/)
+- [Reference Manual](https://rocm.docs.amd.com/projects/HIPIFY/en/latest/)
 
 :::
 

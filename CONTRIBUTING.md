@@ -94,10 +94,10 @@ following commands from the project root:
 ```sh
 python3 -mvenv .venv
 # Windows
-.venv/Scripts/python -m pip install -r docs/.sphinx/requirements.txt
+.venv/Scripts/python -m pip install -r docs/sphinx/requirements.txt
 .venv/Scripts/python -m sphinx -T -E -b html -d _build/doctrees -D language=en docs _build/html
 # Linux
-.venv/bin/python     -m pip install -r docs/.sphinx/requirements.txt
+.venv/bin/python     -m pip install -r docs/sphinx/requirements.txt
 .venv/bin/python     -m sphinx -T -E -b html -d _build/doctrees -D language=en docs _build/html
 ```
 
@@ -225,7 +225,7 @@ resulting website show up on a locally serving web server.
 4. Configure Python virtual environment (venv)
 
     - From the Command Palette, run `Python: Create Environment`
-      - Select `venv` environment and the `docs/.sphinx/requriements.txt` file.
+      - Select `venv` environment and the `docs/sphinx/requirements.txt` file.
       _(Simply pressing enter while hovering over the file from the dropdown is
       insufficient, one has to select the radio button with the 'Space' key if
       using the keyboard.)_

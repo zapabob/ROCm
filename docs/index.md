@@ -17,7 +17,6 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 :::{dropdown} [Deploy ROCm](deploy)
 
 - {doc}`/deploy/linux/index`
-- {doc}`/deploy/quick_start_windows`
 - {doc}`/deploy/docker`
 
 :::
