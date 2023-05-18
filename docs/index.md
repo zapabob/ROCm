@@ -63,7 +63,6 @@ Understand ROCm
 ^^^
 
 - [Compiler Disambiguation](understand/compiler_disambiguation)
-- [ISV Deployment Guide (Windows)](understand/isv_deployment_win)
 - [Using CMake](understand/cmake_packages)
 - [ROCm File Reorganization White Paper](understand/file_reorg)
 - [GPU Architecture](understand/gpu_arch)
