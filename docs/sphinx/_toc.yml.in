@@ -186,6 +186,8 @@ subtrees:
             file: how_to/tuning_guides/mi200.md
           - title: MI100
             file: how_to/tuning_guides/mi100.md
+          - title: PRO W6000 & V620
+            file: how_to/tuning_guides/w6000_v620.md
     - file: how_to/deep_learning_rocm
       subtrees:
         - entries:
@@ -204,7 +206,6 @@ subtrees:
       subtrees:
         - entries:
             - file: examples/inception_casestudy/inception_casestudy
-            - file: examples/inception_casestudy_migraphx/inception_casestudy_migraphx
 
 - caption: About 
   entries:

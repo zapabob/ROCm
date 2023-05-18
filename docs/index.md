@@ -66,8 +66,8 @@ Understand ROCm
 - [ISV Deployment Guide (Windows)](understand/isv_deployment_win)
 - [Using CMake](understand/cmake_packages)
 - [ROCm File Reorganization White Paper](understand/file_reorg)
-- [GPU Architecture](reference/gpu_arch)
-- [GPU Isolation Techniques](reference/gpu_isolation)
+- [GPU Architecture](understand/gpu_arch)
+- [GPU Isolation Techniques](understand/gpu_isolation)
 
 :::
 
@@ -76,6 +76,7 @@ Understand ROCm
 How to Guides
 ^^^
 
+- [System Tuning for Various Architectures](how_to/tuning_guides/index)
 - [Setting up for Deep Learning with ROCm](how_to/deep_learning_rocm)
   - [Magma Installation](how_to/magma_install/magma_install)
   - [PyTorch Installation](how_to/pytorch_install/pytorch_install)
