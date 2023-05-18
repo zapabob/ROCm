@@ -1,5 +1,7 @@
 # Deploy ROCm on Linux
 
+Please start with the [Quick Start Linux](quick_start) or follow the detailed instructions below.
+
 ::::{grid} 2 3 3 3
 :gutter: 1
 
@@ -15,14 +17,6 @@ Overview and comparison of the different ways to install ROCm.
 :link-type: doc
 
 The prerequisites page lists the required steps *before* installation.
-:::
-
-:::{grid-item-card} Quick Start
-:link: quick_start
-:link-type: doc
-
-The quick start guide is intended as quick reference for users already familiar
-with installing ROCm.
 :::
 
 :::{grid-item-card} Installation
@@ -55,3 +49,7 @@ Information about (meta-)packages in the ROCm ecosystem.
 :::
 
 ::::
+
+## See Also
+
+- [GPU and OS Support Linux](../../gpu_os_support.md)

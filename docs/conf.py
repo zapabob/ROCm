@@ -41,7 +41,7 @@ linkcheck_ignore = [
 ]
 
 setting_all_article_info = True
-all_article_info_os = ["linux", "windows"]
+all_article_info_os = ["linux"]
 all_article_info_author = ""
 
 # pages with specific settings

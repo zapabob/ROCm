@@ -1,4 +1,4 @@
-# ROCm File Reorganization White Paper
+# Linux Folder Structure Reorganization
 
 ## Introduction
 

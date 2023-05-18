@@ -54,8 +54,6 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 - [Compilers and Tools](reference/compilers)
 - [Management Tools](reference/management_tools)
 - [Validation Tools](reference/validation_tools)
-- [GPU Architecture](reference/gpu_arch)
-- [GPU Isolation Techniques](reference/gpu_isolation)
 
 :::
 
@@ -68,6 +66,8 @@ Understand ROCm
 - [ISV Deployment Guide (Windows)](understand/isv_deployment_win)
 - [Using CMake](understand/cmake_packages)
 - [ROCm File Reorganization White Paper](understand/file_reorg)
+- [GPU Architecture](reference/gpu_arch)
+- [GPU Isolation Techniques](reference/gpu_isolation)
 
 :::
 
@@ -90,7 +90,6 @@ Examples
 ^^^
 
 - [ROCm Examples](https://github.com/amd/rocm-examples)
-- [AMD lab notes](https://github.com/amd/amd-lab-notes)
 - [AI/ML/Inferencing](examples/ai_ml_inferencing)
   - [Inception V3 with PyTorch](examples/inception_casestudy/inception_casestudy)
 

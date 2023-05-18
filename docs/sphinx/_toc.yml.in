@@ -26,8 +26,6 @@ subtrees:
         - file: deploy/linux/uninstall
           title: Uninstallation
         - file: deploy/linux/package_manager_integration
-#  - file: deploy/quick_start_windows
-#    title: Windows
   - file: deploy/docker
     title: Docker
 
@@ -48,6 +46,20 @@ subtrees:
 - caption: APIs and Reference
   entries:
     - file: reference/all
+    - file: reference/compilers
+      title: Compilers and Development Tools
+      subtrees:
+        - entries:
+          - file: reference/rocmcc/rocmcc
+            title: ROCmCC
+          - url: https://rocmdocs.amd.com/projects/ROCmCC/en/{branch}/
+            title: ROCgdb
+          - url: https://rocmdocs.amd.com/projects/ROCgdb/en/hybrid/
+            title: rocprofiler
+          - url: https://rocmdocs.amd.com/projects/rocprofiler/en/{branch}/
+            title: roctracer
+          - url: https://rocmdocs.amd.com/projects/roctracer/en/{branch}/
+            title: ROCdbgapi             
     - file: reference/hip
       subtrees:
         - entries:
@@ -55,6 +67,8 @@ subtrees:
               url: https://rocmdocs.amd.com/projects/HIP/en/{branch}/
             - title: HIPify - Port Your Code
               url: https://advanced-micro-devices-demo--737.com.readthedocs.build/projects/HIPIFY/en/737/
+    - file: reference/openmp/openmp
+      title: OpenMP
     - file: reference/gpu_libraries/math
       title: Math Libraries
       subtrees:
@@ -130,22 +144,6 @@ subtrees:
         - entries:
           - url: https://rocmdocs.amd.com/projects/rocAL/en/{branch}/
             title: rocAL 
-    - file: reference/openmp/openmp
-      title: OpenMP
-    - file: reference/compilers
-      title: Compilers and Tools
-      subtrees:
-        - entries:
-          - file: reference/rocmcc/rocmcc
-            title: ROCmCC
-          - url: https://rocmdocs.amd.com/projects/ROCmCC/en/{branch}/
-            title: ROCgdb
-          - url: https://rocmdocs.amd.com/projects/ROCgdb/en/hybrid/
-            title: rocprofiler
-          - url: https://rocmdocs.amd.com/projects/rocprofiler/en/{branch}/
-            title: roctracer
-          - url: https://rocmdocs.amd.com/projects/roctracer/en/{branch}/
-            title: ROCdbgapi             
     - file: reference/management_tools
       title: Management Tools
       subtrees:
@@ -164,22 +162,20 @@ subtrees:
             title: RVS
           - url: https://rocmdocs.amd.com/projects/TransferBench/en/{branch}/
             title: TransferBench
-    - file: reference/gpu_arch
-      subtrees:
-        - entries:
-            - file: reference/gpu_arch/mi250
-              title: MI250
-            - file: reference/gpu_arch/mi100
-              title: MI100
-    - file: reference/gpu_isolation
 - caption: Understand ROCm
   entries:
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
-    - file: understand/isv_deployment_win
     - file: understand/cmake_packages
     - file: understand/file_reorg
-
+    - file: understand/gpu_isolation
+    - file: understand/gpu_arch
+      subtrees:
+        - entries:
+            - file: understand/gpu_arch/mi250
+              title: MI250
+            - file: understand/gpu_arch/mi100
+              title: MI100
 - caption: How to Guides
   entries:
     - title: Tuning Guides
@@ -203,8 +199,6 @@ subtrees:
   entries:
     - title: ROCm Examples
       url: https://github.com/amd/rocm-examples
-    - title: AMD lab notes
-      url: https://github.com/amd/amd-lab-notes
     - file: examples/ai_ml_inferencing
       title: AI/ML/Inferencing
       subtrees:
