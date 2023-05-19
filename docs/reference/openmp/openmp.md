@@ -1,6 +1,6 @@
 # OpenMP Support in ROCm
 
-## Introduction to OpenMP Support Guide
+## Introduction
 
 The ROCm™ installation includes an LLVM-based implementation that fully supports
 the OpenMP 4.5 standard and a subset of OpenMP 5.0, 5.1, and 5.2 standards.
@@ -97,7 +97,7 @@ code compiled with AOMP:
    ```
 
    The stats option produces timestamps for the kernels. Look into the output
-   CSV file for the field, `Durations`, which is useful in getting an
+   CSV file for the field, `DurationNs`, which is useful in getting an
    understanding of the critical kernels in the code.
 
    Apart from `--stats`, the option `--timestamp` on produces a timestamp for

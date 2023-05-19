@@ -44,14 +44,14 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 [APIs and Reference](reference/all)
 ^^^
 
+- [Compilers and Development Tools](reference/compilers)
 - [HIP](reference/hip)
+- [OpenMP](reference/openmp/openmp)
 - [Math Libraries](reference/gpu_libraries/math)
 - [C++ Primitives Libraries](reference/gpu_libraries/c++_primitives)
 - [Communication Libraries](reference/gpu_libraries/communication)
 - [AI Libraries](reference/ai_tools)
 - [Computer Vision](reference/computer_vision)
-- [OpenMP](reference/openmp/openmp)
-- [Compilers and Tools](reference/compilers)
 - [Management Tools](reference/management_tools)
 - [Validation Tools](reference/validation_tools)
 
@@ -64,9 +64,9 @@ Understand ROCm
 
 - [Compiler Disambiguation](understand/compiler_disambiguation)
 - [Using CMake](understand/cmake_packages)
-- [ROCm File Reorganization White Paper](understand/file_reorg)
-- [GPU Architecture](understand/gpu_arch)
+- [Linux Folder Structure Reorganization](understand/file_reorg)
 - [GPU Isolation Techniques](understand/gpu_isolation)
+- [GPU Architecture](understand/gpu_arch)
 
 :::
 
@@ -76,6 +76,7 @@ How to Guides
 ^^^
 
 - [System Tuning for Various Architectures](how_to/tuning_guides/index)
+- [GPU Aware MPI](how_to/gpu_aware_mpi)
 - [Setting up for Deep Learning with ROCm](how_to/deep_learning_rocm)
   - [Magma Installation](how_to/magma_install/magma_install)
   - [PyTorch Installation](how_to/pytorch_install/pytorch_install)

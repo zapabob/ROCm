@@ -135,7 +135,7 @@ subtrees:
           - title: Composable Kernel
             url: https://rocm.docs.amd.com/projects/composable_kernel/en/{branch}/
           - title: MIGraphX - Graph Optimization
-            url: https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/
+            url: https://rocm.docs.amd.com/projects/AMDMIGraphX/en/{branch}/
     - file: reference/computer_vision
       subtrees:
         - entries:
