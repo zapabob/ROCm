@@ -38,8 +38,8 @@ subtrees:
   - file: release/compatibility
     subtrees:
       - entries:
-        - file: release/docker_support_matrix
-        - file: reference/framework_compatibility/framework_compatibility
+        - file: release/docker_image_support_matrix
+        - file: release/3rd_party_support_matrix
   - file: release/licensing
 
 
