@@ -17,7 +17,7 @@ distributions. Following is the ROCm proposed file structure.
               | -- architecture dependent libraries and binaries used internally by components
          | -- cmake
               | -- <component>
-                   | --<component>.config.cmake
+                   | --<component>-config.cmake
     | -- libexec
          | -- <component>
               | -- non ISA/architecture independent executables used internally by components
@@ -162,7 +162,6 @@ correct header file and use correct search paths.
 
 ## References
 
-ROCm deprecation warning :
-<https://docs.amd.com/bundle/ROCm-Release-Notes-v5.4.3/page/Deprecations_and_Warnings.html>
+[ROCm deprecation warning](https://docs.amd.com/bundle/ROCm-Release-Notes-v5.4.3/page/Deprecations_and_Warnings.html)
 
-Linux File System Standard : <https://refspecs.linuxfoundation.org/fhs.shtml>
+[Linux File System Standard](https://refspecs.linuxfoundation.org/fhs.shtml)
