@@ -179,7 +179,7 @@ This project can then be configured with for eg.
 -  Linux: ``cmake -D CMAKE_CXX_COMPILER:PATH=/opt/rocm/bin/amdclang++``
 
 Which use the device compiler provided from the binary packages of
-`ROCm HIP SDK <https://www.amd.com/en/graphics/servers-solutions-rocm>`_ and
+`ROCm HIP SDK <https://www.amd.com/en/developer/rocm-hub.html>`_ and
 `repo.radeon.com <https://repo.radeon.com>`_ respectively.
 
 When using the CXX language support to compile HIP device code, selecting the
