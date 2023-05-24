@@ -1,5 +1,7 @@
 # Tuning Guides
 
+Use case-specific system setup and tuning guides.
+
 ## High Performance Computing
 
 High Performance Computing (HPC) workloads have unique requirements. The default

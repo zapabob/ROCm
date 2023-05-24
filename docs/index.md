@@ -59,7 +59,7 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 
 :::{grid-item-card}
 :padding: 2
-Understand ROCm
+[Understand ROCm](understand/all)
 ^^^
 
 - [Compiler Disambiguation](understand/compiler_disambiguation)
@@ -72,7 +72,7 @@ Understand ROCm
 
 :::{grid-item-card}
 :padding: 2
-How to Guides
+[How to Guides](how_to/all)
 ^^^
 
 - [System Tuning for Various Architectures](how_to/tuning_guides/index)
@@ -87,7 +87,7 @@ How to Guides
 
 :::{grid-item-card}
 :padding: 2
-Examples
+[Examples](examples/all)
 ^^^
 
 - [ROCm Examples](https://github.com/amd/rocm-examples)

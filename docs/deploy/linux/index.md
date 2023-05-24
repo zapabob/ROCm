@@ -6,7 +6,7 @@ Please start with the [Quick Start Linux](quick_start) or follow the detailed in
 :gutter: 1
 
 :::{grid-item-card} Overview
-:link: install
+:link: install_overview
 :link-type: doc
 
 Overview and comparison of the different ways to install ROCm.
@@ -52,4 +52,4 @@ Information about (meta-)packages in the ROCm ecosystem.
 
 ## See Also
 
-- [GPU and OS Support Linux](../../gpu_os_support.md)
+- [GPU and OS Support Linux](../../release/gpu_os_support.md)

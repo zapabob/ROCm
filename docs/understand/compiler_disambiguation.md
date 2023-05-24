@@ -1,6 +1,7 @@
 # ROCm Compilers Disambiguation
 
-The following table summarizes the widely used terms in this document.
+ROCm ships multiple compilers of varying origins and purposes. This article
+disambiguates compiler naming used throughout the documentation.
 
 ## Compiler Terms
 

@@ -53,14 +53,14 @@ subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
             title: ROCmCC
-          - url: https://rocmdocs.amd.com/projects/ROCmCC/en/{branch}/
-            title: ROCgdb
           - url: https://rocmdocs.amd.com/projects/ROCgdb/en/hybrid/
-            title: rocprofiler
+            title: ROCgdb
           - url: https://rocmdocs.amd.com/projects/rocprofiler/en/{branch}/
-            title: roctracer
+            title: rocprofiler
           - url: https://rocmdocs.amd.com/projects/roctracer/en/{branch}/
-            title: ROCdbgapi             
+            title: roctracer
+          - url: https://rocmdocs.amd.com/projects/ROCdbgapi/en/{branch}/
+            title: ROCdbgapi
     - file: reference/hip
       subtrees:
         - entries:
@@ -165,6 +165,7 @@ subtrees:
             title: TransferBench
 - caption: Understand ROCm
   entries:
+    - file: understand/all.md
     - title: Compiler Disambiguation
       file: understand/compiler_disambiguation
     - file: understand/cmake_packages
@@ -179,6 +180,7 @@ subtrees:
               title: MI100
 - caption: How to Guides
   entries:
+    - file: how_to/all
     - title: Tuning Guides
       file: how_to/tuning_guides/index.md
       subtrees:
@@ -200,6 +202,7 @@ subtrees:
 
 - caption: Examples
   entries:
+    - file: examples/all
     - title: ROCm Examples
       url: https://github.com/amd/rocm-examples
     - file: examples/ai_ml_inferencing
