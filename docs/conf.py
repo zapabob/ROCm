@@ -73,7 +73,7 @@ article_pages = [
     {"file":"how_to/system_debugging", "os":["linux"]},
     {"file":"how_to/tensorflow_install/tensorflow_install", "os":["linux"]},
 
-    {"file":"examples/ai_ml_inferencing", "os":["linux"]},
+    {"file":"examples/machine_learning", "os":["linux"]},
     {"file":"examples/inception_casestudy/inception_casestudy", "os":["linux"]},
     
     {"file":"understand/file_reorg", "os":["linux"]},

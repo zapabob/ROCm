@@ -200,16 +200,17 @@ subtrees:
     - file: how_to/gpu_aware_mpi
     - file: how_to/system_debugging
 
-- caption: Examples
+- caption: Tutorials & Examples
+  file: examples
   entries:
-    - file: examples/all
     - title: ROCm Examples
       url: https://github.com/amd/rocm-examples
-    - file: examples/ai_ml_inferencing
-      title: AI/ML/Inferencing
+    - title: Machine Learning
+      file: examples/machine_learning/all
       subtrees:
-        - entries:
-            - file: examples/inception_casestudy/inception_casestudy
+        - entries: 
+          - file: examples/machine_learning/pytorch_inception
+          - file: examples/machine_learning/migraphx_optimization
 
 - caption: About 
   entries:

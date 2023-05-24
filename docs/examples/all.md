@@ -12,10 +12,13 @@ ROCm-accelerated domain libraries.
 :::
 
 :::{grid-item-card} AI/ML/Inferencing
-:link: ai_ml_inferencing
+:link: machine_learning/all
 :link-type: doc
 Detailed walkthroughs of specific use-cases driven by frameworks using ROCm
 acceleration.
+
+- [Implementing Inception V3 on ROCm with PyTorch](machine_learning/pytorch_inception.md)
+- [Optimizing Inference with MIGraphX](machine_learning/migraphx_optimization.md)
 
 :::
 

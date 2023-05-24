@@ -87,12 +87,13 @@ agile, flexible, rapid and secure manner. [more...](rocm)
 
 :::{grid-item-card}
 :padding: 2
-[Examples](examples/all)
+[Tutorials & Examples](examples/all)
 ^^^
 
-- [ROCm Examples](https://github.com/amd/rocm-examples)
-- [AI/ML/Inferencing](examples/ai_ml_inferencing)
-  - [Inception V3 with PyTorch](examples/inception_casestudy/inception_casestudy)
+- [Examples](https://github.com/amd/rocm-examples)
+- [ML, DL, and AI](examples/machine_learning/all)
+  - [](examples/machine_learning/pytorch_inception)
+  - [](examples/machine_learning/migraphx_optimization)
 
 :::
 ::::
