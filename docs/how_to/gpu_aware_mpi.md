@@ -61,7 +61,7 @@ The next step is to set up UCX by compiling its source code and install it:
 ```shell
 export UCX_DIR=$INSTALL_DIR/ucx
 cd $BUILD_DIR
-git clone https://github.com/openucx/ucx.git -b v1.13.0
+git clone https://github.com/openucx/ucx.git -b v1.14.1
 cd ucx
 ./autogen.sh
 mkdir build
@@ -74,6 +74,10 @@ cd build
 make -j $(nproc)
 make -j $(nproc) install
 ```
+
+The following
+[table](../release/3rd_party_support_matrix.md#communication-libraries)
+documents the compatibility of UCX versions with ROCm versions.
 
 ## Install Open MPI
 
@@ -89,6 +93,7 @@ cd ompi
 mkdir build
 cd build
 ../configure --prefix=$OMPI_DIR --with-ucx=$UCX_DIR \
+    --with-rocm=/opt/rocm \
     --enable-mca-no-build=btl-uct --enable-mpi1-compatibility \
     CC=clang CXX=clang++ FC=flang
 make -j $(nproc)
@@ -97,7 +102,7 @@ make -j $(nproc) install
 
 ## ROCm-enabled OSU
 
-he OSU Micro Benchmarks v5.9 (OMB) can be used to evaluate the performance of
+The OSU Micro Benchmarks v5.9 (OMB) can be used to evaluate the performance of
 various primitives with an AMD GPU device and ROCm support. This functionality
 is exposed when configured with `--enable-rocm` option. We can use the following
 steps to compile OMB:
@@ -118,13 +123,21 @@ make -j $(nproc)
 
 ## Intra-node Run
 
+Before running an Open MPI job, it is essential to set some environment variables to
+ensure that the correct version of Open MPI and UCX is being used.
+
+```shell
+export LD_LIBRARY_PATH=$OMPI_DIR/lib:$UCX_DIR/lib:/opt/rocm/lib
+export PATH=$OMPI_DIR/bin:$PATH
+```
+
 The following command runs the OSU bandwidth benchmark between the first two GPU
 devices (i.e., GPU 0 and GPU 1, same OAM) by default inside the same node. It
 measures the unidirectional bandwidth from the first device to the other.
 
 ```shell
-$OMPI_DIR/bin/mpirun -np 2 --mca btl '^openib' \
-   -x UCX_TLS=sm,self,rocm_copy,rocm_ipc \
+$OMPI_DIR/bin/mpirun -np 2               \
+   -x UCX_TLS=sm,self,rocm               \
    --mca pml ucx mpi/pt2pt/osu_bw -d rocm D D
 ```
 
@@ -146,3 +159,37 @@ connection:
 :alt: OSU execution showing transfer bandwidth increasing alongside payload inc.
 Inter-GPU bandwidth with various payload sizes.
 :::
+
+## Collective Operations
+
+Collective Operations on GPU buffers are best handled through the
+Unified Collective Communication Library (UCC) component in Open MPI.
+For this, the UCC library has to be configured and compiled with ROCm
+support. An example for configuring UCC and Open MPI with ROCm support
+is shown below:
+
+```shell
+export UCC_DIR=$INSTALL_DIR/ucc
+git clone https://github.com/openucx/ucc.git
+cd ucc
+./configure --with-rocm=/opt/rocm \
+            --with-ucx=$UCX_DIR   \
+            --prefix=$UCC_DIR
+make -j && make install
+
+# Configure and compile Open MPI with UCX, UCC, and ROCm support
+cd ompi
+./configure --with-rocm=/opt/rocm  \
+            --with-ucx=$UCX_DIR    \
+            --with-ucc=$UCC_DIR
+            --prefix=$OMPI_DIR
+```
+
+To use the UCC component with an MPI application requires setting some
+additional parameters:
+
+```shell
+mpirun --mca pml ucx --mca osc ucx \
+       --mca coll_ucc_enable 1     \
+       --mca coll_ucc_priority 100 -np 64 ./my_mpi_app
+```
