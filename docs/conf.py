@@ -5,40 +5,12 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import shutil
-shutil.copy2('../CONTRIBUTING.md','./contributing.md')
-shutil.copy2('../RELEASE.md','./release.md')
-
 
 from rocm_docs import ROCmDocs
 
-# working anchors that linkcheck cannot find
-linkcheck_anchors_ignore = [
-    'd90e61', 
-    'd1667e113', 
-    'd2999e60', 
-    'building-from-source', 
-    'use-the-rocm-build-tool-rbuild', 
-    'use-cmake-to-build-migraphx', 
-    'example'
-]
-linkcheck_ignore = [
-    # site to be built
-    "https://rocmdocs.amd.com/projects/ROCmCC/en/latest/", 
-    "https://rocmdocs.amd.com/projects/amdsmi/en/latest/",
-    "https://rocmdocs.amd.com/projects/rdc/en/latest/",
-    "https://rocmdocs.amd.com/projects/rocmsmi/en/latest/", 
-    "https://rocmdocs.amd.com/projects/roctracer/en/latest/",
-    "https://rocmdocs.amd.com/projects/MIGraphX/en/latest/",
-    "https://rocmdocs.amd.com/projects/rocprofiler/en/latest/",
-    # correct links that linkcheck times out on
-    "https://github.com/ROCm-Developer-Tools/HIP-VS/blob/master/README.md",
-    r"https://www.amd.com/system/files/.*.pdf",
-    "https://www.amd.com/en/developer/aocc.html",
-    "https://www.amd.com/en/support/linux-drivers",
-    "https://www.amd.com/en/technologies/infinity-hub",
-    r"https://bitbucket.org/icl/magma/*",
-    "http://cs231n.stanford.edu/"
-]
+
+shutil.copy2('../CONTRIBUTING.md','./contributing.md')
+shutil.copy2('../RELEASE.md','./release.md')
 
 setting_all_article_info = True
 all_article_info_os = ["linux"]

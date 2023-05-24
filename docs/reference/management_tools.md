@@ -3,15 +3,10 @@
 :::::{grid} 1 1 3 3
 :gutter: 1
 
-:::{grid-item-card} [AMD SMI](https://rocmdocs.amd.com/projects/amdsmi/en/latest/)
-GO AMD SMI provides GO binding for [E-SMI In-Band C library](https://github.com/amd/esmi_ib_library),
-[ROCm SMI Library](https://github.com/RadeonOpenCompute/rocm_smi_lib), and any
-GO language application that needs to link with these libraries and call the APIs
-from the GO application. The GO binding are imported in the
-[AMD SMI Exporter](https://github.com/amd/amd_smi_exporter) to export information
-provided by the AMD E-SMI inband library and the ROCm SMI GPU library to the Prometheus server.
+:::{grid-item-card} AMD SMI
+The AMD System Management Interface Library, or AMD SMI library, is a C library for Linux that provides a user space interface for applications to monitor and control AMD devices.
 
-- [Documentation](https://rocmdocs.amd.com/projects/amdsmi/en/latest/)
+- [GitHub](https://github.com/RadeonOpenCompute/amdsmi)
 - [Examples](https://github.com/amd/go_amd_smi#example)
 
 :::
@@ -20,6 +15,7 @@ provided by the AMD E-SMI inband library and the ROCm SMI GPU library to the Pro
 This tool acts as a command line interface for manipulating and monitoring the AMD GPU kernel, and is intended to replace and deprecate the existing `rocm_smi.py` CLI tool. It uses `ctypes` to call the `rocm_smi_lib` API.
 
 - [Documentation](https://rocmdocs.amd.com/projects/rocmsmi/en/latest/)
+- [GitHub](https://github.com/RadeonOpenCompute/rocm_smi_lib)
 - [Examples](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/master/python_smi_tools)
 
 :::
@@ -28,6 +24,7 @@ This tool acts as a command line interface for manipulating and monitoring the A
 The ROCm™ Data Center Tool simplifies the administration and addresses key infrastructure challenges in AMD GPUs in cluster and data center environments.
 
 - [Documentation](https://rocmdocs.amd.com/projects/rdc/en/latest/)
+- [GitHub](https://github.com/RadeonOpenCompute/rdc)
 - [Examples](https://github.com/RadeonOpenCompute/rdc/tree/master/example)
 
 :::
