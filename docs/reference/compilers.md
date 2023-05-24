@@ -4,7 +4,7 @@
 :gutter: 1
 
 :::{grid-item-card} ROCmCC
-:link: https://rocmdocs.amd.com/projects/ROCmCC/en/latest
+:link: rocmcc
 ROCmCC is a Clang/LLVM-based compiler. It is optimized for high-performance
 computing on AMD GPUs and CPUs and supports various heterogeneous programming
 models such as HIP, OpenMP, and OpenCL.
