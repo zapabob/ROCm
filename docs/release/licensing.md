@@ -27,7 +27,7 @@ The table is ordered to follow ROCm's manifest file.
 | [HIPIFY](https://github.com/ROCm-Developer-Tools/HIPIFY/)                                        | [MIT](https://github.com/ROCm-Developer-Tools/HIPIFY/blob/amd-staging/LICENSE.txt)                                         |
 | [HIPCC](https://github.com/ROCm-Developer-Tools/HIPCC/blob/develop/LICENSE.txt)                  | [MIT](https://github.com/ROCm-Developer-Tools/HIPCC/blob/develop/LICENSE.txt)                                              |
 | [llvm-project](https://github.com/ROCm-Developer-Tools/llvm-project/)                            | [Apache](https://github.com/ROCm-Developer-Tools/llvm-project/blob/main/LICENSE.TXT)                                       |
-| rocm-llvm-alt                                                                                    | [AMD Proprietary License]()
+| rocm-llvm-alt                                                                                    | [AMD Proprietary License](https://www.amd.com/en/support/amd-software-eula)
 | [ROCm-Device-Libs](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/)                       | [The University of Illinois/NCSA](https://github.com/RadeonOpenCompute/ROCm-Device-Libs/blob/amd-stg-open/LICENSE.TXT)     |
 | [atmi](https://github.com/RadeonOpenCompute/atmi/)                                               | [MIT](https://github.com/RadeonOpenCompute/atmi/blob/master/LICENSE.txt)                                                   |
 | [ROCm-CompilerSupport](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/)               | [The University of Illinois/NCSA](https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/blob/amd-stg-open/LICENSE.txt) |

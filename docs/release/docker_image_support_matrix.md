@@ -61,7 +61,7 @@ The software support matrices for ROCm container releases is listed.
 
 * [ROCm5.6](https://repo.radeon.com/rocm/apt/latest/)
 * [Python 3.9](https://www.python.org/downloads/release/python-390/)
-* [tensorflow-rocm 2.13.0]()
+* `tensorflow-rocm` 2.13.0
 * [OFED 5.3](https://content.mellanox.com/ofed/MLNX_OFED-5.3-1.0.5.0/MLNX_OFED_LINUX-5.3-1.0.5.0-ubuntu20.04-x86_64.tgz)
 * [OMPI 4.0.7](https://github.com/open-mpi/ompi/tree/v4.0.7)
 * [Horovod 0.27.0](https://github.com/horovod/horovod/tree/v0.27.0)
@@ -71,7 +71,7 @@ The software support matrices for ROCm container releases is listed.
 
 * [ROCm5.6](https://repo.radeon.com/rocm/apt/latest/)
 * [Python 3.9](https://www.python.org/downloads/release/python-390/)
-* [tensorflow-rocm 2.11.0](https://pypi.org/project/tensorflow-rocm/2.11.0.540/)
+* [`tensorflow-rocm` 2.11.0](https://pypi.org/project/tensorflow-rocm/2.11.0.540/)
 * [OFED 5.3](https://content.mellanox.com/ofed/MLNX_OFED-5.3-1.0.5.0/MLNX_OFED_LINUX-5.3-1.0.5.0-ubuntu20.04-x86_64.tgz)
 * [OMPI 4.0.7](https://github.com/open-mpi/ompi/tree/v4.0.7)
 * [Horovod 0.27.0](https://github.com/horovod/horovod/tree/v0.27.0)
@@ -81,7 +81,7 @@ The software support matrices for ROCm container releases is listed.
 
 * [ROCm5.6](https://repo.radeon.com/rocm/apt/latest/)
 * [Python 3.9](https://www.python.org/downloads/release/python-390/)
-* [tensorflow-rocm 2.10.1](https://pypi.org/project/tensorflow-rocm/2.10.1.540/)
+* [`tensorflow-rocm` 2.10.1](https://pypi.org/project/tensorflow-rocm/2.10.1.540/)
 * [OFED 5.3](https://content.mellanox.com/ofed/MLNX_OFED-5.3-1.0.5.0/MLNX_OFED_LINUX-5.3-1.0.5.0-ubuntu20.04-x86_64.tgz)
 * [OMPI 4.0.7](https://github.com/open-mpi/ompi/tree/v4.0.7)
 * [Horovod 0.27.0](https://github.com/horovod/horovod/tree/v0.27.0)

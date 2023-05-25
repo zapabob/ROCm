@@ -32,10 +32,10 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-    - name: Use markdownlint
-      uses: actionshub/markdownlint@v3.1.3
+    - name: Use markdownlint-cli2
+      uses: DavidAnson/markdownlint-cli2-action@v10.0.1
       with:
-        filesToIgnoreRegex: CHANGELOG.md|(docs\/)?(RELEASE|release).md|tools\/autotag\/templates\/.
+        globs: '**/*.md'
 
   spelling:
     name: "Spelling"
