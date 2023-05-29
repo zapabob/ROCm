@@ -65,4 +65,4 @@ Debug messages when developing/debugging base ROCm driver. You could enable the 
 ## PCIe-Debug
 
 Refer to ROCm PCIe Debug, <a href="https://rocmdocs.amd.com/en/latest/Other_Solutions/PCIe-Debug.html#pcie-debug" target="_blank">https://rocmdocs.amd.com/en/latest/Other_Solutions/PCIe-Debug.html#pcie-debug</a>.
-For information on how to debug and profile HIP applications, see <a href="https://rocmdocs.amd.com/projects/HIP/en/latest/how_to_guides/debugging.html" target="_blank">https://rocmdocs.amd.com/projects/HIP/en/latest/how_to_guides/debugging.html</a>
+For information on how to debug and profile HIP applications, see {doc}`hip:how_to_guides/debugging`

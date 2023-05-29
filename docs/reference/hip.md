@@ -8,11 +8,11 @@ page introduces the HIP runtime and other HIP libraries and tools.
 :::::{grid} 1 1 2 2
 :gutter: 1
 
-:::{grid-item-card} [HIP Runtime](https://rocmdocs.amd.com/projects/HIP/en/develop/)
+:::{grid-item-card} {doc}`HIP Runtime <hip:index>`
 The HIP Runtime is used to enable GPU acceleration for all HIP language based
 products.
 
-- [HIP Runtime API Manual](https://rocmdocs.amd.com/projects/HIP/en/develop/)
+- {doc}`hip:.doxygen/docBin/html/index`
 - [Examples](https://github.com/amd/rocm-examples/tree/develop/HIP-Basic)
 
 :::
@@ -24,11 +24,11 @@ products.
 :::::{grid} 1 1 2 2
 :gutter: 1
 
-:::{grid-item-card} [HIPIFY](https://rocm.docs.amd.com/projects/HIPIFY/en/latest/)
+:::{grid-item-card} {doc}`HIPIFY <hipify:index>`
 HIPIFY assists with porting applications from based on CUDA to the HIP Runtime.
 Supported CUDA APIs are documented here as well.
 
-- [Reference Manual](https://rocm.docs.amd.com/projects/HIPIFY/en/latest/)
+- {doc}`Reference Manual <hipify:index>`
 
 :::
 

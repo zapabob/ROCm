@@ -9,7 +9,7 @@ Along with host APIs, the OpenMP compilers support offloading code and data onto
 GPU devices. This document briefly describes the installation location of the
 OpenMP toolchain, example usage of device offloading, and usage of `rocprof`
 with OpenMP applications. The GPUs supported are the same as those supported by
-this ROCm release. See the list of [supported GPUs](../../release/gpu_os_support.md#gpu-support-table).
+this ROCm release. See the list of supported GPUs in {doc}`/release/gpu_os_support`.
 
 ### Installation
 
@@ -109,7 +109,7 @@ code compiled with AOMP:
    an XML file as an input.
 
 For more details on `rocprof`, refer to the ROCm Profiling Tools document on
-<https://docs.amd.com>.
+{doc}`rocprofiler:rocprof`.
 
 ### Using Tracing Options
 
@@ -136,7 +136,7 @@ Navigate to Chrome or Perfetto and load the JSON file to see the timeline of the
 HSA calls.
 
 For more details on tracing, refer to the ROCm Profiling Tools document on
-<https://docs.amd.com>.
+{doc}`rocprofiler:rocprof`.
 
 ### Environment Variables
 

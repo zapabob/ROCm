@@ -12,30 +12,35 @@ vendor libraries as their back-ends. Due to their static dispatch nature, suppor
 at compile-time of the hipLIB in question. For dynamic dispatch between vendor implementations, refer to the
 [Orochi](https://github.com/GPUOpen-LibrariesAndSDKs/Orochi) library.
 
+::::{grid} 1 2 3 3
+:gutter: 1
+
 :::{grid-item-card} [Linear Algebra Libraries](linear_algebra)
 
-- [rocBLAS](https://rocmdocs.amd.com/projects/rocBLAS/en/develop/)
-- [hipBLAS](https://rocmdocs.amd.com/projects/hipBLAS/en/develop/)
-- [hipBLASLt](https://rocmdocs.amd.com/projects/hipBLASLt/en/develop/)
-- [rocALUTION](https://rocmdocs.amd.com/projects/rocALUTION/en/develop/)
-- [rocWMMA](https://rocmdocs.amd.com/projects/rocWMMA/en/develop/)
-- [rocSOLVER](https://rocmdocs.amd.com/projects/rocSOLVER/en/develop/)
-- [hipSOLVER](https://rocmdocs.amd.com/projects/hipSOLVER/en/develop/)
-- [rocSPARSE](https://rocmdocs.amd.com/projects/rocSPARSE/en/develop/)
-- [hipSPARSE](https://rocmdocs.amd.com/projects/hipSPARSE/en/develop/)
+- {doc}`rocBLAS <rocblas:index>`
+- {doc}`hipBLAS <hipblas:index>`
+- {doc}`hipBLASLt <hipblaslt:index>`
+- {doc}`rocALUTION <rocalution:index>`
+- {doc}`rocWMMA <rocwmma:index>`
+- {doc}`rocSOLVER <rocsolver:index>`
+- {doc}`hipSOLVER <hipsolver:index>`
+- {doc}`rocSPARSE <rocsparse:index>`
+- {doc}`hipSPARSE <hipsparse:index>`
 
 :::
 
 :::{grid-item-card} [Fast Fourier Transforms](fft)
 
-- [rocFFT](https://rocmdocs.amd.com/projects/rocFFT/en/develop/)
-- [hipFFT](https://rocmdocs.amd.com/projects/hipFFT/en/develop/)
+- {doc}`rocFFT <rocfft:index>`
+- {doc}`hipFFT <hipfft:index>`
 
 :::
 
 :::{grid-item-card} [Random Numbers](rand)
 
-- [rocRAND](https://rocmdocs.amd.com/projects/rocRAND/en/develop/)
-- [hipRAND](https://rocmdocs.amd.com/projects/hipRAND/en/develop/)
+- {doc}`rocRAND <rocrand:index>`
+- {doc}`hipRAND <hiprand:index>`
 
 :::
+
+::::

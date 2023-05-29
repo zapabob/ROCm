@@ -1,6 +1,7 @@
 # Deploy ROCm on Linux
 
-Please start with the [Quick Start Linux](quick_start) or follow the detailed instructions below.
+Please start with {doc}`/deploy/linux/quick_start` or follow the detailed
+instructions below.
 
 ::::{grid} 2 3 3 3
 :gutter: 1
@@ -52,4 +53,4 @@ Information about (meta-)packages in the ROCm ecosystem.
 
 ## See Also
 
-- [GPU and OS Support Linux](../../release/gpu_os_support.md)
+- {doc}`/release/gpu_os_support`

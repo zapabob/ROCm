@@ -48,26 +48,26 @@ subtrees:
   entries:
     - file: reference/all
     - file: reference/compilers
-      title: Compilers and Development Tools
+      title: Compilers and Tools
       subtrees:
         - entries:
           - file: reference/rocmcc/rocmcc
             title: ROCmCC
-          - url: https://rocmdocs.amd.com/projects/ROCgdb/en/hybrid/
+          - url: ${project:rocgdb}
             title: ROCgdb
-          - url: https://rocmdocs.amd.com/projects/rocprofiler/en/{branch}/
+          - url: ${project:rocprofiler}
             title: rocprofiler
-          - url: https://rocmdocs.amd.com/projects/roctracer/en/{branch}/
+          - url: ${project:roctracer}
             title: roctracer
-          - url: https://rocmdocs.amd.com/projects/ROCdbgapi/en/{branch}/
+          - url: ${project:rocdbgapi}
             title: ROCdbgapi
     - file: reference/hip
       subtrees:
         - entries:
             - title: HIP Runtime API
-              url: https://rocmdocs.amd.com/projects/HIP/en/{branch}/
+              url: ${project:hip}
             - title: HIPify - Port Your Code
-              url: https://advanced-micro-devices-demo--737.com.readthedocs.build/projects/HIPIFY/en/737/
+              url: ${project:hipify}
     - file: reference/openmp/openmp
       title: OpenMP
     - file: reference/gpu_libraries/math
@@ -78,72 +78,72 @@ subtrees:
             subtrees:
             - entries: 
               - title: rocBLAS
-                url: https://rocmdocs.amd.com/projects/rocBLAS/en/{branch}/
+                url: ${project:rocblas}
               - title: hipBLAS
-                url: https://rocmdocs.amd.com/projects/hipBLAS/en/{branch}/
+                url: ${project:hipblas}
               - title: hipBLASLt
-                url: https://rocm.docs.amd.com/projects/hipBLASLt/en/{branch}/
+                url: ${project:hipblaslt}
               - title: rocALUTION
-                url: https://rocm.docs.amd.com/projects/rocALUTION/en/{branch}/
+                url: ${project:rocalution}
               - title: rocWMMA
-                url: https://rocm.docs.amd.com/projects/rocWMMA/en/{branch}/
+                url: ${project:rocwmma}
               - title: rocSOLVER
-                url: https://rocm.docs.amd.com/projects/rocSOLVER/en/{branch}/
+                url: ${project:rocsolver}
               - title: hipSOLVER
-                url: https://rocm.docs.amd.com/projects/hipSOLVER/en/{branch}/
+                url: ${project:hipsolver}
               - title: rocSPARSE
-                url: https://rocm.docs.amd.com/projects/rocSPARSE/en/{branch}/
+                url: ${project:rocsparse}
               - title: hipSPARSE
-                url: https://rocm.docs.amd.com/projects/hipSPARSE/en/{branch}/
+                url: ${project:hipsparse}
           - file: reference/gpu_libraries/fft
             subtrees:
             - entries: 
               - title: rocFFT
-                url: https://rocm.docs.amd.com/projects/rocFFT/en/{branch}/
+                url: ${project:rocfft}
               - title: hipFFT
-                url: https://rocm.docs.amd.com/projects/hipFFT/en/{branch}/
+                url: ${project:hipfft}
           - file: reference/gpu_libraries/rand
             subtrees:
             - entries: 
               - title: rocRAND
-                url: https://rocm.docs.amd.com/projects/rocRAND/en/{branch}/
+                url: ${project:rocrand}
               - title: hipRAND
-                url: https://rocm.docs.amd.com/projects/hipRAND/en/{branch}/
+                url: ${project:hiprand}
     - file: reference/gpu_libraries/c++_primitives
       title: C++ Primitive Libraries
       subtrees:
         - entries:
           - title: rocPRIM
-            url: https://rocm.docs.amd.com/projects/rocPRIM/en/{branch}/
+            url: ${project:rocprim}
         - entries:
           - title: hipCUB 
-            url: https://rocm.docs.amd.com/projects/hipCUB/en/{branch}/
+            url: ${project:hipcub}
         - entries:
           - title: rocThrust
-            url: https://rocm.docs.amd.com/projects/rocThrust/en/{branch}/
+            url: ${project:rocthrust}
     - file: reference/gpu_libraries/communication
       title: Communication Libraries
       subtrees:
         - entries:
           - title: RCCL
-            url: https://rocm.docs.amd.com/projects/rccl/en/{branch}/
+            url: ${project:rccl}
     - file: reference/ai_tools
       title: AI Libraries
       subtrees:
         - entries:
           - title: MIOpen - Machine Intelligence
-            url: https://rocm.docs.amd.com/projects/MIOpen/en/{branch}/
+            url: ${project:miopen}
           - title: Composable Kernel
-            url: https://rocm.docs.amd.com/projects/composable_kernel/en/{branch}/
+            url: ${project:composable-kernel}
           - title: MIGraphX - Graph Optimization
-            url: https://rocm.docs.amd.com/projects/AMDMIGraphX/en/{branch}/
+            url: ${project:migraphx}
     - file: reference/computer_vision
       subtrees:
         - entries:
-          - url: https://rocm.docs.amd.com/projects/MIVisionX/en/{branch}/
+          - url: ${project:mivisionx}
             title: MIVisionX
         - entries:
-          - url: https://rocm.docs.amd.com/projects/rocAL/en/{branch}/
+          - url: ${project:rocal}
             title: rocAL 
     - file: reference/management_tools
       title: Management Tools
@@ -153,15 +153,15 @@ subtrees:
             title: AMD SMI
           - url: https://rocm.docs.amd.com/projects/rocmsmi/en/{branch}/
             title: ROCm SMI
-          - url: https://rocm.docs.amd.com/projects/rdc/en/{branch}/
+          - url: ${project:rdc}
             title: ROCm Datacenter Tool
     - file: reference/validation_tools
       title: Validation Tools
       subtrees:
         - entries:
-          - url: https://rocm.docs.amd.com/projects/rvs/en/{branch}/
+          - url: ${project:rocm-validation-suite}
             title: RVS
-          - url: https://rocm.docs.amd.com/projects/TransferBench/en/{branch}/
+          - url: ${project:transferbench}
             title: TransferBench
 - caption: Understand ROCm
   entries:
