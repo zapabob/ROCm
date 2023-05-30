@@ -152,7 +152,7 @@ Follow these steps:
    cd ~
    git clone https://github.com/pytorch/pytorch.git
    cd pytorch
-   git submodule update --init –recursive
+   git submodule update --init --recursive
    ```
 
 4. Build PyTorch for ROCm.
@@ -194,7 +194,7 @@ Follow these steps:
 
    ```bash
    python3 tools/amd_build/build_amd.py
-   USE_ROCM=1 MAX_JOBS=4 python3 setup.py install ––user
+   USE_ROCM=1 MAX_JOBS=4 python3 setup.py install --user
    ```
 
 #### Option 4: Install Using PyTorch Upstream Docker File
@@ -217,7 +217,7 @@ Follow these steps:
    cd ~
    git clone https://github.com/pytorch/pytorch.git
    cd pytorch
-   git submodule update --init –recursive
+   git submodule update --init --recursive
    ```
 
 2. Build the PyTorch Docker image.

@@ -117,7 +117,7 @@ For more details on `rocprof`, refer to the ROCm Profiling Tools document on
 program with:
 
 ```bash
-    -Wl,–rpath,/opt/rocm-{version}/lib -lamdhip64
+    -Wl,-rpath,/opt/rocm-{version}/lib -lamdhip64
 ```
 
 The following tracing options are widely used to generate useful information:

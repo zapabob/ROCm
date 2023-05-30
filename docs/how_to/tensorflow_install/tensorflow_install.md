@@ -45,7 +45,7 @@ To install TensorFlow using the wheels package, follow these steps:
 1. Check the Python version.
 
    ```bash
-   python3 –version
+   python3 --version
    ```
 
    | If:                                 | Then:                            |
@@ -105,7 +105,7 @@ To install TensorFlow using the wheels package, follow these steps:
 5. Install TensorFlow for the Python version as indicated in Step 2.
 
    ```bash
-   /usr/bin/python[version] -m pip install --user tensorflow-rocm==[wheel-version] –upgrade
+   /usr/bin/python[version] -m pip install --user tensorflow-rocm==[wheel-version] --upgrade
    ```
 
    For a valid wheel version for a ROCm release, refer to the instruction below:

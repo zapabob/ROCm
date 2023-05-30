@@ -106,7 +106,7 @@ sudo apt update
 Your packages can be upgraded now through their meta-packages, for example:
 
 ```shell
-sudo apt install –-only-upgrade rocm-hip-sdk
+sudo apt install --only-upgrade rocm-hip-sdk
 ```
 
 :::::
@@ -206,7 +206,7 @@ sudo yum clean all
 Your packages can be upgraded now through their meta-packages, for example:
 
 ```shell
-sudo apt install –-only-upgrade rocm-hip-sdk
+sudo apt install --only-upgrade rocm-hip-sdk
 ```
 
 :::::

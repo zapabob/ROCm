@@ -52,7 +52,7 @@ Debug messages when developing/debugging base ROCm driver. You could enable the 
 
 ## Turn Off Page Retry on GFX9/Vega Devices
 
-`sudo –s`
+`sudo -s`
 
 `echo 1 > /sys/module/amdkfd/parameters/noretry`
 
