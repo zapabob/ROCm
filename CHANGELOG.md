@@ -8,7 +8,46 @@
 <!-- markdownlint-disable no-blanks-blockquote              -->
 <!-- markdownlint-disable ul-indent                         -->
 <!-- markdownlint-disable no-trailing-spaces                -->
+
+<!-- spellcheck-disable -->
+
 The release notes for the ROCm platform.
+
+-------------------
+
+## ROCm 5.5.1
+<!-- markdownlint-disable first-line-h1 -->
+<!-- markdownlint-disable no-duplicate-header -->
+### What's New in This Release
+
+#### HIP API Change
+
+The following HIP API is updated in the ROCm v5.5.1 release,
+
+##### `hipDeviceSetCacheConfig`
+
+- The return value for `hipDeviceSetCacheConfig` is updated from `hipErrorNotSupported` to `hipSuccess`
+
+### Library Changes in ROCM 5.5.1
+
+| Library | Version |
+|---------|---------|
+| hipBLAS | [0.54.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.5.1) |
+| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.5.1) |
+| hipFFT | [1.0.11](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.5.1) |
+| hipSOLVER | [1.7.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.5.1) |
+| hipSPARSE | [2.3.5](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.5.1) |
+| rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.5.1) |
+| rocALUTION | [2.1.8](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.5.1) |
+| rocBLAS | [2.47.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.5.1) |
+| rocFFT | [1.0.22](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.5.1) |
+| rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.5.1) |
+| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.5.1) |
+| rocSOLVER | [3.21.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.5.1) |
+| rocSPARSE | [2.5.1](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.5.1) |
+| rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.5.1) |
+| rocWMMA | [1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.5.1) |
+| Tensile | [4.36.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.5.1) |
 
 -------------------
 
