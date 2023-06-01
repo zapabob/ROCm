@@ -162,6 +162,6 @@ correct header file and use correct search paths.
 
 ## References
 
-[ROCm deprecation warning](https://docs.amd.com/bundle/ROCm-Release-Notes-v5.4.3/page/Deprecations_and_Warnings.html)
+{ref}`ROCm deprecation warning <5_4_0_filesystem_reorg_deprecation_notice>`
 
 [Linux File System Standard](https://refspecs.linuxfoundation.org/fhs.shtml)

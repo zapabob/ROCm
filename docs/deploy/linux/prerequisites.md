@@ -98,6 +98,8 @@ To verify that your system has a ROCm-capable GPU, use these steps:
 2. Verify from the output that the listed product names match with the Product
    Id given in the table above.
 
+(setting_group_permissions)=
+
 ### Setting Permissions for Groups
 
 This section provides steps to add any current user to a video group to access

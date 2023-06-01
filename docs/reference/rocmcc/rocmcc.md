@@ -666,9 +666,8 @@ The following OpenMP pragma is available on MI200, and it must be executed with
 omp requires unified_shared_memory
 ```
 
-For more details on
-[USM](https://docs.amd.com/bundle/OpenMP-Support-Guide-v5.4/page/OpenMP_Features.html#d90e61),
-refer to the OpenMP Support Guide at [https://docs.amd.com](https://docs.amd.com).
+For more details on USM refer to the {ref}`openmp_usm` section of the OpenMP
+Guide.
 
 ### Support Status of Other Clang Options
 

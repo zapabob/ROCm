@@ -156,6 +156,8 @@ For more details on tracing, refer to the ROCm Profiling Tools document on
 The OpenMP programming model is greatly enhanced with the following new features
 implemented in the past releases.
 
+(openmp_usm)=
+
 ### Unified Shared Memory
 
 Unified Shared Memory (USM) provides a pointer-based approach to memory

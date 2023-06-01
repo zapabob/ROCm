@@ -405,6 +405,8 @@ Users installing multiple versions of the ROCm stack must use the
 release-specific base URL.
 ```
 
+(using-the-package-manager)=
+
 #### Using the Package Manager
 
 ::::::{tab-set}

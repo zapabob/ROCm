@@ -4,6 +4,8 @@ ROCm™ supports various 3rd party libraries and frameworks. Supported versions
 are tested and known to work. Non-supported versions of 3rd parties may also
 work, but aren't tested.
 
+(ml_framework_compat_matrix)=
+
 ## Deep Learning
 
 ROCm releases support the most recent and two prior releases of PyTorch and
