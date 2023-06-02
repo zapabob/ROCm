@@ -19,13 +19,24 @@ subtrees:
           title: Installation Overview
         - file: deploy/linux/prerequisites
           title: Prerequisites
-        - file: deploy/linux/install
-          title: Installation
-        - file: deploy/linux/upgrade
-          title: Upgrade
-        - file: deploy/linux/uninstall
-          title: Uninstallation
-        - file: deploy/linux/package_manager_integration
+        - file: deploy/linux/os-native/index
+          subtrees:
+            - entries:
+              - file: deploy/linux/os-native/install
+                title: Installation
+              - file: deploy/linux/os-native/upgrade
+                title: Upgrade
+              - file: deploy/linux/os-native/uninstall
+                title: Uninstallation
+              - file: deploy/linux/os-native/package_manager_integration
+        - file: deploy/linux/installer/index
+          subtrees:
+            - entries:
+              - file: deploy/linux/installer/install
+                title: Installation
+              - file: deploy/linux/installer/upgrade
+                title: Upgrade
+              - file: deploy/linux/installer/uninstall
   - file: deploy/docker
     title: Docker
 

@@ -59,47 +59,6 @@ Verify the kernel version using the following steps:
    Linux 5.15.0-46-generic #44~20.04.5-Ubuntu SMP Fri Jun 24 13:27:29 UTC 2022 x86_64
    ```
 
-## Confirm the System has a ROCm-Capable GPU
-
-The ROCm platform is designed to support the following GPUs:
-
-```{table} GPU Support for ROCm Programming Models
-:name: gpu-support
-| **Classification** | **GPU Name**              | **GFX ID** | **Product Id** |
-|:------------------:|:-------------------------:|:----------:|:--------------:|
-| **GFX9 GPUs**      | AMD Radeon Instinct™ MI50 | gfx906     | Vega 20        |
-| **GFX9 GPUs**      | AMD Radeon Instinct™ MI60 | gfx906     | Vega 20        |
-| **GFX9 GPUs**      | AMD Radeon™ VII           | gfx906     | Vega 20        |
-| **GFX9 GPUs**      | AMD Radeon™ Pro VII       | gfx906     | Vega 20        |
-| **RDNA GPUs**      | AMD Radeon™ Pro W6800     | gfx1030    | Navi 21 GL-XL  |
-| **RDNA GPUs**      | AMD Radeon™ Pro V620      | gfx1030    | Navi 21 GL-XE  |
-| **CDNA GPUs**      | AMD Instinct™ MI100       | gfx908     | Arcturus       |
-| **CDNA GPUs**      | AMD Instinct™ MI200       | gfx90a     | Aldebaran      |
-```
-
-### Verify Your System Has a ROCm-Capable GPU
-
-To verify that your system has a ROCm-capable GPU, use these steps:
-
-1. Enter the following command:
-
-   ```shell
-   lspci | grep -i display
-   ```
-
-   The command displays the details of detected GPUs on the system in the
-   following format in the case of AMD Instinct™ MI200:
-
-   ```text
-   c1:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Aldebaran
-   c5:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Aldebaran
-   ```
-
-2. Verify from the output that the listed product names match with the Product
-   Id given in the table above.
-
-(setting_group_permissions)=
-
 ### Setting Permissions for Groups
 
 This section provides steps to add any current user to a video group to access
@@ -122,7 +81,8 @@ GPU resources.
 3. Use of the video group is recommended for all ROCm-supported operating
    systems.
 
-   To add all future users to the `video` and `render` groups by default, run the following commands:
+To add all future users to the `video` and `render` groups by default, run
+the following commands:
 
    ```shell
    echo 'ADD_EXTRA_GROUPS=1' | sudo tee -a /etc/adduser.conf

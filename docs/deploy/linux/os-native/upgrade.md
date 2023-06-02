@@ -1,9 +1,7 @@
-# Upgrade (Linux)
+# Upgrade ROCm with Linux Distribution Commands
 
-This section explains how to upgrade the existing kernel-mode driver and ROCm
-packages to the latest version. The assumption is that you already have a
-version of the kernel-mode driver and the ROCm software stack is installed on
-the system.
+This section explains how to upgrade the existing AMDGPU driver and ROCm
+packages to the latest version using your OS's distributed package manager.
 
 ```{note}
 Package upgrade is applicable to single-version packages only. If the preference
@@ -11,38 +9,13 @@ is to install an updated version of the ROCm stack along with the currently
 installed version, refer to the [](install) page.
 ```
 
-You may use the following upgrade methods to upgrade ROCm:
-
-- Package manager method
-- Installer script method
-
-## Package Manager Method
-
-To upgrade the system with the desired ROCm release using the package manager
-method, follow the steps below:
-
-1. **Update the AMDGPU stack repository** – Ensure you have updated the AMDGPU
-   repository.
-
-2. **Upgrade the kernel-mode driver and reboot the system** – Ensure you have
-   upgraded the kernel-mode driver and rebooted the system.
-
-3. **Update the ROCm repository** – Ensure you have updated the ROCm repository
-   with the desired ROCm release.
-
-4. **Upgrade the ROCm meta-packages** – Upgrade the ROCm meta-packages.
-
-5. **Verify the upgrade for the applicable distributions** – Verify if the
-   upgrade is successful.
-
-To upgrade ROCm on different Linux distributions, refer to the sections below
-for specific commands.
+## Upgrade Steps
 
 ::::::{tab-set}
 :::::{tab-item} Ubuntu
 :sync: ubuntu
 
-::::{rubric} Update the AMDGPU Stack Repository
+::::{rubric} Update the AMDGPU Repository
 ::::
 
 ::::{tab-set}
@@ -74,7 +47,7 @@ sudo apt install amdgpu-dkms
 sudo reboot
 ```
 
-::::{rubric} Update the ROCm Stack Repository
+::::{rubric} Update the ROCm Repository
 ::::
 
 ::::{tab-set}
@@ -264,16 +237,6 @@ sudo zypper --gpg-auto-import-keys update -y rocm-hip-sdk
 
 :::::
 ::::::
-
-## Installer Script Method
-
-The installer script method automates the upgrade process for the AMDGPU and
-ROCm stack. The `amdgpu-install` script handles the complete upgrade process for
-ROCm, including updating the required repositories and upgrading the desired
-meta-packages.
-
-The upgrade procedure is exactly the same as installing for 1st time use. Refer
-to the {ref}`install-script-method` section on the exact procedure to follow.
 
 ## Verification Process
 

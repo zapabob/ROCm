@@ -1,396 +1,6 @@
 # Installation (Linux)
 
-Installing can be done in one of two ways, depending on your preference:
-
-- Using an installer script
-- Through your system's package manager
-
-```{attention}
-For information on installing ROCm on devices with NVIDIA GPUs, refer to the HIP
-Installation Guide.
-```
-
-(install-script-method)=
-
-## Installer Script Method
-
-The installer script method automates the installation process for the AMDGPU
-and ROCm stack. The installer script handles the complete installation process
-for ROCm, including setting up the repository, cleaning the system, updating,
-and installing the desired drivers and meta-packages. With this approach, the
-system has more control over the ROCm installation process. Thus, those who are
-less familiar with the Linux standard commands can choose this method for ROCm
-installation.
-
-For AMDGPU and ROCm installation using the installer script method on Linux
-distribution, follow these steps:
-
-1. **Meet prerequisites** – Ensure the Prerequisites are met before downloading
-   and installing the installer using the installer script method.
-
-2. **Download and install the installer script** – Ensure you download and
-   install the installer script from the recommended URL.
-
-   ```{tip}
-   The installer package is updated periodically to resolve known issues and add
-   new features. The links for each Linux distribution always point to the latest
-   available build.
-   ```
-
-3. **Use the installer script on Linux distributions** – Ensure you execute the
-   script for installing use cases.
-
-### Download and Install the Installer Script
-
-::::::{tab-set}
-:::::{tab-item} Ubuntu
-:sync: ubuntu
-
-<!-- markdownlint-disable-next-line MD013 -->
-::::{rubric} To download the amdgpu-install script on the system, use the following commands.
-::::
-
-::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
-
-```shell
-sudo apt update
-wget https://repo.radeon.com/amdgpu-install/5.4.3/ubuntu/focal/amdgpu-install_5.4.50403-1_all.deb
-sudo apt install ./amdgpu-install_5.4.50403-1_all.deb
-```
-
-:::
-:::{tab-item} Ubuntu 22.04
-:sync: ubuntu-22.04
-
-```shell
-sudo apt update
-wget https://repo.radeon.com/amdgpu-install/5.4.3/ubuntu/jammy/amdgpu-install_5.4.50403-1_all.deb
-sudo apt install ./amdgpu-install_5.4.50403-1_all.deb
-```
-
-:::
-::::
-:::::
-:::::{tab-item} Red Hat Enterprise Linux
-:sync: RHEL
-
-<!-- markdownlint-disable-next-line MD013 -->
-::::{rubric} To download the amdgpu-install script on the system, use the following commands.
-::::
-
-::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-
-```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.4.3/rhel/8.6/amdgpu-install-5.4.50403-1.el8.noarch.rpm
-```
-
-:::
-:::{tab-item} RHEL 8.7
-:sync: RHEL-8.7
-
-```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.4.3/rhel/8.7/amdgpu-install-5.4.50403-1.el8.noarch.rpm
-```
-
-:::
-:::{tab-item} RHEL 9.1
-:sync: RHEL-9.1
-
-```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.4.3/rhel/9.1/amdgpu-install-5.4.50403-1.el9.noarch.rpm
-```
-
-:::
-::::
-:::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
-
-<!-- markdownlint-disable-next-line MD013 -->
-::::{rubric} To download the amdgpu-install script on the system, use the following commands.
-::::
-
-::::{tab-set}
-:::{tab-item} Service Pack 4
-:sync: SLES15-SP4
-
-```shell
-sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.4.3/sle/15.4/amdgpu-install-5.4.50403-1.noarch.rpm
-```
-
-:::
-::::
-:::::
-::::::
-
-### Using the Installer Script for Single-version ROCm Installation
-
-To install use cases specific to your requirements, use the installer
-`amdgpu-install` as follows:
-
-- To install a single use case:
-
-  ```shell
-  sudo amdgpu-install --usecase=rocm
-  ```
-
-- To install kernel-mode driver:
-
-  ```shell
-  sudo amdgpu-install --usecase=dkms
-  ```
-
-- To install multiple use cases:
-
-  ```shell
-  sudo amdgpu-install --usecase=hiplibsdk,rocm
-  ```
-
-- To display a list of available use cases:
-
-  ```shell
-  sudo amdgpu-install --list-usecase
-  ```
-
-  Following is a sample of output listed by the command above:
-
-  ```{note}
-  The list in this section represents only a sample of available use cases for ROCm:
-  ```
-
-  ```none
-  If --usecase option is not present, the default selection is "graphics,opencl,hip"
-
-  Available use cases:
-  rocm(for users and developers requiring full ROCm stack)
-  - OpenCL (ROCr/KFD based) runtime
-  - HIP runtimes
-  - Machine learning framework
-  - All ROCm libraries and applications
-  - ROCm Compiler and device libraries
-  - ROCr runtime and thunk
-  lrt(for users of applications requiring ROCm runtime)
-  - ROCm Compiler and device libraries
-  - ROCr runtime and thunk
-  opencl(for users of applications requiring OpenCL on Vega or
-  later products)
-  - ROCr based OpenCL
-  - ROCm Language runtime
-
-  openclsdk (for application developers requiring ROCr based OpenCL)
-  - ROCr based OpenCL
-  - ROCm Language runtime
-  - development and SDK files for ROCr based OpenCL
-
-  hip(for users of HIP runtime on AMD products)
-  - HIP runtimes
-  hiplibsdk (for application developers requiring HIP on AMD products)
-  - HIP runtimes
-  - ROCm math libraries
-  - HIP development libraries
-  ```
-
-```{tip}
-Adding `-y` as a parameter to `amdgpu-install` skips user prompts (for
-automation). Example: `amdgpu-install -y --usecase=rocm`
-```
-
-### Using Installer Script in Docker
-
-When the installation is initiated in Docker, the installer tries to install the
-use case along with the kernel-mode driver. However, you cannot install the
-kernel-mode driver in a Docker container. To skip the installation of the
-kernel-mode driver, proceed with the `--no-dkms` option, as shown below:
-
-```shell
-sudo amdgpu-install --usecase=rocm --no-dkms
-```
-
-### Using the Installer Script for Multi-version ROCm Installation
-
-The multi-version ROCm installation requires you to download and install the
-latest ROCm release installer from the list of ROCm releases you want to install
-simultaneously on your system.
-
-**Example:** If you want to install ROCm releases 4.5.0, 4.5.1, and 5.4.3
-simultaneously, you are required to download the installer from the latest ROCm
-release v5.4.3.
-
-To download and install the installer, refer to the [Download and Install the
-Installer Script](#download-and-install-the-installer-script) section.
-
-```{attention}
-If the existing ROCm release contains non-versioned ROCm packages, uninstall
-those packages before proceeding with the multi-version installation to avoid
-conflicts.
-```
-
-#### Add Required ROCm Repositories
-
-Add the required repositories using the following steps:
-
-```{important}
-Add the AMDGPU and ROCm repositories manually for all ROCm releases you want to
-install except the latest one. The amdgpu-install script automatically adds the
-required repositories for the latest release.
-```
-
-::::::{tab-set}
-:::::{tab-item} Ubuntu
-:sync: ubuntu
-
-::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
-
-```shell
-for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
-echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
-done
-echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
-sudo apt update
-```
-
-:::
-:::{tab-item} Ubuntu 22.04
-:sync: ubuntu-22.04
-
-```shell
-for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
-echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
-done
-echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
-sudo apt update
-```
-
-:::
-::::
-:::::
-:::::{tab-item} Red Hat Enterprise Linux
-:sync: RHEL
-
-```shell
-for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
-sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
-[ROCm-$ver]
-Name=ROCm$ver
-baseurl=https://repo.radeon.com/rocm/$ver/main
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-done
-sudo yum clean all
-```
-
-:::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
-
-```shell
-for ver in 5.0.2 5.1.4 5.2.5 5.3.3; do
-sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
-name=rocm
-baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
-enabled=1
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-done
-sudo zypper ref
-```
-
-:::::
-::::::
-
-#### Use the Installer to Install Multi-version ROCm Meta-packages
-
-Use the installer script as given below:
-
-```none
-sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-1>
-sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-2>
-sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-3>
-```
-
-```{tip}
-If the kernel-mode driver is already present on the system and you do not want
-to upgrade it, use the `--no-dkms` option to skip the installation of the
-kernel-mode driver, as shown in the following samples:
-```
-
-```none
-sudo amdgpu-install --usecase=rocm --rocmrelease=4.5.0 --no-dkms
-sudo amdgpu-install --usecase=rocm --rocmrelease=5.4.3 --no-dkms
-```
-
-Following are examples of ROCm multi-version installation. The kernel-mode
-driver, associated with the ROCm release v5.4.3, will be installed as its latest
-release in the list.
-
-```none
-sudo amdgpu-install --usecase=rocm --rocmrelease=4.5.0
-sudo amdgpu-install --usecase=rocm --rocmrelease=4.5.2
-sudo amdgpu-install --usecase=rocm --rocmrelease=5.4.3
-```
-
-## Package Manager Method
-
-The package manager method involves a manual setup of the repository, which
-includes setting up the repository, updating, and installing/uninstalling
-meta-packages. This involves using standard commands such as yum, apt, and
-others respective to the Linux distribution.
-
-The functions of a package manager installation system are:
-
-- Grouping packages based on function
-- Extracting package archives
-- Ensuring a package is installed with all necessary packages and dependencies
-  are managed
-- From a remote repository, looking up, downloading, installing, or updating
-  existing packages
-- Ensuring the authenticity and integrity of the package
-
-### Installing ROCm on Linux Distributions
-
-For a fresh ROCm installation using the package manager method on a Linux
-distribution, follow the steps below:
-
-1. **Meet prerequisites** – Ensure the Prerequisites are met before the ROCm
-   installation.
-
-2. **Install kernel headers and development packages** – Ensure kernel headers
-   and development packages are installed on the system.
-
-3. **Select the base URLs for AMDGPU and ROCm stack repository** – Ensure the
-   base URLs for AMDGPU and ROCm stack repositories are selected.
-
-4. **Add the AMDGPU stack repository** – Ensure the AMDGPU stack repository is
-   added.
-
-5. **Install the kernel-mode driver and reboot the system** – Ensure the
-   kernel-mode driver is installed and the system is rebooted.
-
-6. **Add ROCm stack repository** – Ensure the ROCm stack repository is added.
-
-7. **Install single-version or multi-version ROCm meta-packages** – Install the
-   desired meta-packages.
-
-8. **Verify installation for the applicable distributions** – Verify if the
-   installation is successful.
-
-```{important}
-You cannot install a kernel-mode driver in a Docker container. Refer to the
-sections below for specific commands to install the AMDGPU and ROCm stack on
-various Linux distributions.
-```
-
-#### Understanding the Release-specific AMDGPU and ROCm Stack Repositories on Linux Distributions
+## Understanding the Release-specific AMDGPU and ROCm Stack Repositories on Linux Distributions
 
 The release-specific repositories consist of packages from a specific release of
 the AMDGPU stack and ROCm stack. The repositories are not updated for the latest
@@ -400,14 +10,12 @@ release to install, update the previously installed single version to the later
 available release, or add the latest version of ROCm along with the currently
 installed version by using the multi-version ROCm packages.
 
+## Step by Step Instructions
+
 ```{note}
 Users installing multiple versions of the ROCm stack must use the
-release-specific base URL.
+release-specific repository URL.
 ```
-
-(using-the-package-manager)=
-
-#### Using the Package Manager
 
 ::::::{tab-set}
 :::::{tab-item} Ubuntu
@@ -532,7 +140,7 @@ follow these steps:
    :sync: ubuntu-20.04
 
    ```shell
-   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
+   for ver in 5.3.3 5.4.3; do
    echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
    done
    echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
@@ -544,8 +152,8 @@ follow these steps:
    :sync: ubuntu-22.04
 
    ```shell
-   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
-   echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
+   for ver in 5.5.1 5.4.3 5.3.3 ; do
+   echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee --append /etc/apt/sources.list.d/rocm.list
    done
    echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
    sudo apt update
@@ -575,7 +183,7 @@ follow these steps:
    ```
 
    ```shell
-   sudo apt install rocm-hip-sdk5.4.3 rocm-hip-sdk5.2.5
+   sudo apt install rocm-hip-sdk5.4.3 rocm-hip-sdk5.3.3
    ```
 
 :::::
@@ -677,7 +285,7 @@ follow these steps:
    sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
    [amdgpu]
    Name=amdgpu
-   baseurl=https://repo.radeon.com/amdgpu/5.4.3/rhel/9.2/main/x86_64/
+   baseurl=https://repo.radeon.com/amdgpu/5.4.3/rhel/9.1/main/x86_64/
    enabled=1
    priority=50
    gpgcheck=1
@@ -702,7 +310,7 @@ follow these steps:
    To add the ROCm repository, use the following steps:
 
    ```shell
-   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
+   for ver in 5.3.3 5.4.3; do
    sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
    [ROCm-$ver]
    Name=ROCm$ver
@@ -737,7 +345,7 @@ follow these steps:
    ```
 
    ```shell
-   sudo yum install rocm-hip-sdk5.4.3 rocm-hip-sdk5.2.5
+   sudo yum install rocm-hip-sdk5.4.3 rocm-hip-sdk5.3.3
    ```
 
 :::::
@@ -815,7 +423,7 @@ these steps:
    To add the ROCm repository, use the following steps:
 
    ```shell
-   for ver in 5.0.2 5.1.4 5.2.5 5.3.3 5.4.3; do
+   for ver in 5.3.3 5.4.3; do
    sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
    name=rocm
    baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
@@ -848,7 +456,7 @@ these steps:
    ```
 
    ```shell
-   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.4.3 rocm-hip-sdk5.2.5
+   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.4.3 rocm-hip-sdk5.3.3
    ```
 
 :::::
