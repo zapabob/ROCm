@@ -21,7 +21,7 @@ packages are installed by this script as the package manager system.
 
 (installation-types)=
 
-## Standard (Single Version) ROCm install versus Multi-Version
+## Single Version ROCm install versus Multi-Version
 
 ROCm packages are versioned with both semantic versioning that is package
 specific and a ROCm release version.
@@ -43,7 +43,7 @@ The multi-version installation refers to the following:
 - Use of versioned ROCm meta-packages.
 
 ```{note}
-Multiversion install is not available for the AMDGPU stack.
+Multiversion install is not available for the kernel driver module, also referred to as AMDGPU.
 ```
 
 The following image demonstrates the difference between single-version and

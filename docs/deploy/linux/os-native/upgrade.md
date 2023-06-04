@@ -5,7 +5,7 @@ packages to the latest version using your OS's distributed package manager.
 
 ```{note}
 Package upgrade is applicable to single-version packages only. If the preference
-is to install an updated version of the ROCm stack along with the currently
+is to install an updated version of the ROCm along with the currently
 installed version, refer to the [](install) page.
 ```
 
@@ -23,7 +23,7 @@ installed version, refer to the [](install) page.
 :sync: ubuntu-20.04
 
 ```shell
-echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/amdgpu/5.4.3/ubuntu focal main' | sudo tee /etc/apt/sources.list.d/amdgpu.list
+echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/amdgpu/5.5.1/ubuntu focal main' | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
 
@@ -32,7 +32,7 @@ sudo apt update
 :sync: ubuntu-22.04
 
 ```shell
-echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/amdgpu/5.4.3/ubuntu jammy main' | sudo tee /etc/apt/sources.list.d/amdgpu.list
+echo 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/amdgpu/5.5.1/ubuntu jammy main' | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
 
@@ -55,7 +55,7 @@ sudo reboot
 :sync: ubuntu-20.04
 
 ```shell
-echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/5.4.3 focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/5.5.1 focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
 sudo apt update
 ```
@@ -65,7 +65,7 @@ sudo apt update
 :sync: ubuntu-22.04
 
 ```shell
-echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/5.4.3 jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/5.5.1 jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
 sudo apt update
 ```
@@ -73,7 +73,7 @@ sudo apt update
 :::
 ::::
 
-::::{rubric} Upgrade the ROCm Meta-packages
+::::{rubric} Upgrade the ROCm meta-packages
 ::::
 
 Your packages can be upgraded now through their meta-packages, for example:
@@ -86,7 +86,7 @@ sudo apt install --only-upgrade rocm-hip-sdk
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
-::::{rubric} Update the AMDGPU Stack Repository
+::::{rubric} Update the AMDGPU repository
 ::::
 
 ::::{tab-set}
@@ -97,7 +97,7 @@ sudo apt install --only-upgrade rocm-hip-sdk
 sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 Name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.4.3/rhel/8.6/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/8.6/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -115,7 +115,7 @@ sudo yum clean all
 sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 Name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.4.3/rhel/8.7/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/8.7/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -133,7 +133,7 @@ sudo yum clean all
 sudo tee --append /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 Name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.4.3/rhel/9.2/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/9.2/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -145,7 +145,7 @@ sudo yum clean all
 :::
 ::::
 
-::::{rubric} Upgrade the Kernel-mode Driver and Reboot the System
+::::{rubric} Upgrade the Kernel-mode driver and reboot the System
 ::::
 
 Upgrade the kernel mode driver and reboot the system using the following
@@ -163,7 +163,7 @@ sudo reboot
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-5.4.3]
 Name=ROCm5.4.3
-baseurl=https://repo.radeon.com/rocm/5.4.3/main
+baseurl=https://repo.radeon.com/rocm/5.5.1/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -186,14 +186,14 @@ sudo apt install --only-upgrade rocm-hip-sdk
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 
-::::{rubric} Update the AMDGPU Stack Repository
+::::{rubric} Update the AMDGPU repository
 ::::
 
 ```shell
 sudo tee --append /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.4.3/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/sle/15.4/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -201,7 +201,7 @@ EOF
 sudo zypper ref
 ```
 
-::::{rubric} Upgrade the Kernel-mode Driver and Reboot the System
+::::{rubric} Upgrade the Kernel-mode driver and reboot the System
 ::::
 
 Upgrade the kernel mode driver and reboot the system using the following
@@ -212,13 +212,13 @@ sudo zypper --gpg-auto-import-keys install amdgpu-dkms
 sudo reboot
 ```
 
-::::{rubric} Update the ROCm Stack Repository
+::::{rubric} Update the ROCm repository
 ::::
 
 ```shell
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 name=rocm
-baseurl=https://repo.radeon.com/amdgpu/5.4.3/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/sle/15.4/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key

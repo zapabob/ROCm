@@ -1,9 +1,9 @@
 # Installation (Linux)
 
-## Understanding the Release-specific AMDGPU and ROCm Stack Repositories on Linux Distributions
+## Understanding the Release-specific AMDGPU and ROCm Repositories on Linux Distributions
 
 The release-specific repositories consist of packages from a specific release of
-the AMDGPU stack and ROCm stack. The repositories are not updated for the latest
+versions of AMDGPU and ROCm. The repositories are not updated for the latest
 packages with subsequent releases. When a new ROCm release is available, the new
 repository, specific to that release, is added. You can select a specific
 release to install, update the previously installed single version to the later
@@ -93,14 +93,14 @@ follow these steps:
    hash: `73f5d8100de6048aa38a8b84cd9a87f05177d208 rocm.gpg.key`
    ```
 
-2. Add the AMDGPU Stack Repository and Install the Kernel-mode Driver
+2. Add the AMDGPU Repository and Install the Kernel-mode Driver
 
    ```{attention}
    If you have a version of the kernel-mode driver installed, you may skip this
    section.
    ```
 
-   To add the AMDGPU stack repository, follow these steps:
+   To add the AMDGPU repository, follow these steps:
 
    ::::{tab-set}
    :::{tab-item} Ubuntu 20.04
@@ -131,7 +131,7 @@ follow these steps:
    sudo reboot
    ```
 
-3. Add the ROCm Stack Repository and Install Meta-packages
+3. Add the ROCm Repository and Install Meta-packages
 
    To add the ROCm repository, use the following steps:
 
@@ -388,10 +388,10 @@ these steps:
    sudo zypper install kernel-default-devel or kernel-default
    ```
 
-::::{rubric} Adding the AMDGPU and ROCm Stack Repositories
+::::{rubric} Adding the AMDGPU and ROCm Repositories
 ::::
 
-1. Add the AMDGPU Stack Repository and Install the Kernel-mode Driver
+1. Add the AMDGPU Repository and Install the Kernel-mode Driver
 
    ```{attention}
    If you have a version of the kernel-mode driver installed, you may skip this
@@ -418,7 +418,7 @@ these steps:
    sudo reboot
    ```
 
-2. Add the ROCm Stack Repository and Install Meta-packages
+2. Add the ROCm Repository and Install Meta-packages
 
    To add the ROCm repository, use the following steps:
 
@@ -555,8 +555,8 @@ sudo yum list installed
 
 :::
 
-:::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```shell
 sudo zypper search --installed-only
