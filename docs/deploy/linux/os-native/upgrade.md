@@ -1,4 +1,4 @@
-# Upgrade ROCm with Linux Distribution Commands
+# Upgrade ROCm with the package manager
 
 This section explains how to upgrade the existing AMDGPU driver and ROCm
 packages to the latest version using your OS's distributed package manager.

@@ -37,6 +37,7 @@ subtrees:
               - file: deploy/linux/installer/upgrade
                 title: Upgrade
               - file: deploy/linux/installer/uninstall
+                title: Uninstallation
   - file: deploy/docker
     title: Docker
 

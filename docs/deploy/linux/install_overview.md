@@ -3,21 +3,29 @@
 Users installing ROCm must choose between various installation options. A new
 user should follow the [Quick Start guide](./quick_start).
 
-## Distro Package Manager Commands versus AMDGPU Installer?
+## Package Manager versus AMDGPU Installer?
 
-Users can install the same packages via two CLI interfaces as follows:
+ROCm supports two methods for installation:
 
-- Linux distro package manager commands.
-- a proprietary installer known as the `amdgpu-install` script
+- Directly using the Linux distribution's package manager
+- The `amdgpu-install` script
 
-There is no difference in the final installation state when choosing either CLI.
+There is no difference in the final installation state when choosing either
+option.
 
-Integrating with the distribution's package manager lets the user install,
+Using the distribution's package manager lets the user install,
 upgrade and uninstall using familiar commands and workflows. Third party
 ecosystem support is the same as your OS package manager.
 
 The `amdgpu-install` script is a wrapper around the package manager. The same
 packages are installed by this script as the package manager system.
+
+The installer automates the installation process for the AMDGPU
+and ROCm stack. It handles the complete installation process
+for ROCm, including setting up the repository, cleaning the system, updating,
+and installing the desired drivers and meta-packages. Users who are
+less familiar with the package manager can choose this method for ROCm
+installation.
 
 (installation-types)=
 

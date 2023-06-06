@@ -19,7 +19,7 @@ The prerequisites page lists the required steps *before* installation.
 :link: install_overview
 :link-type: doc
 
-Distro Commands vs AMDGPU Installer
+Package manager vs AMDGPU Installer
 
 Standard Packages vs Multi-Version Packages
 :::
@@ -31,7 +31,7 @@ Standard Packages vs Multi-Version Packages
 ::::{grid} 1 1 2 2
 :gutter: 1
 
-:::{grid-item-card} Distro Commands
+:::{grid-item-card} Package Manager
 :link: os-native/index
 :link-type: doc
 

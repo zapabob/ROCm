@@ -1,26 +1,16 @@
-# Installation (Scripted)
-
-(install-script-method)=
-
-The installer script method automates the installation process for the AMDGPU
-and ROCm stack. The installer script handles the complete installation process
-for ROCm, including setting up the repository, cleaning the system, updating,
-and installing the desired drivers and meta-packages. Users who are
-less familiar with the Linux standard commands can choose this method for ROCm
-installation.
+# Installation with install script
 
 Prior to beginning, please ensure you have the [prerequisites](../prerequisites)
 installed.
 
-## Download and Install the Installer Script
+## Download the Installer Script
+
+To download and install the `amdgpu-install` script on the system, use the
+following commands based on your distribution.
 
 ::::::{tab-set}
 :::::{tab-item} Ubuntu
 :sync: ubuntu
-
-<!-- markdownlint-disable-next-line MD013 -->
-::::{rubric} To download the amdgpu-install script on the system, use the following commands.
-::::
 
 ::::{tab-set}
 :::{tab-item} Ubuntu 20.04
@@ -47,10 +37,6 @@ sudo apt install ./amdgpu-install_5.5.50501-1_all.deb
 :::::
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
-
-<!-- markdownlint-disable-next-line MD013 -->
-::::{rubric} To download the amdgpu-install script on the system, use the following commands.
-::::
 
 ::::{tab-set}
 :::{tab-item} RHEL 8.6
@@ -98,10 +84,6 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/9.2/amdgpu-in
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
 
-<!-- markdownlint-disable-next-line MD013 -->
-::::{rubric} To download the amdgpu-install script on the system, use the following commands.
-::::
-
 ::::{tab-set}
 :::{tab-item} Service Pack 4
 :sync: SLES15-SP4
@@ -115,117 +97,94 @@ sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.5.1
 :::::
 ::::::
 
-## Using the Installer Script for Single-version ROCm Installation
+## Use cases
+
+Instead of installing individual applications or libraries the installer script
+groups packages into specific use cases, matching typical workflows and runtimes.
+
+To display a list of available use cases execute the command:
+
+```shell
+sudo amdgpu-install --list-usecase
+```
+
+The available use-cases will be printed in a format similar to the example
+output below.
+
+```none
+If --usecase option is not present, the default selection is "graphics,opencl,hip"
+
+Available use cases:
+rocm(for users and developers requiring full ROCm stack)
+- OpenCL (ROCr/KFD based) runtime
+- HIP runtimes
+- Machine learning framework
+- All ROCm libraries and applications
+- ROCm Compiler and device libraries
+- ROCr runtime and thunk
+lrt(for users of applications requiring ROCm runtime)
+- ROCm Compiler and device libraries
+- ROCr runtime and thunk
+opencl(for users of applications requiring OpenCL on Vega or
+later products)
+- ROCr based OpenCL
+- ROCm Language runtime
+
+openclsdk (for application developers requiring ROCr based OpenCL)
+- ROCr based OpenCL
+- ROCm Language runtime
+- development and SDK files for ROCr based OpenCL
+
+hip(for users of HIP runtime on AMD products)
+- HIP runtimes
+hiplibsdk (for application developers requiring HIP on AMD products)
+- HIP runtimes
+- ROCm math libraries
+- HIP development libraries
+```
 
 To install use cases specific to your requirements, use the installer
 `amdgpu-install` as follows:
 
-- To install a single use case:
+- To install a single use case add it with the `--usecase` option:
 
   ```shell
   sudo amdgpu-install --usecase=rocm
   ```
 
-- To install kernel-mode driver:
-
-  ```shell
-  sudo amdgpu-install --usecase=dkms
-  ```
-
-- To install multiple use cases:
+- For multiple use cases separate them with commas:
 
   ```shell
   sudo amdgpu-install --usecase=hiplibsdk,rocm
   ```
 
-- To display a list of available use cases:
+## Single-version ROCm Installation
 
-  ```shell
-  sudo amdgpu-install --list-usecase
-  ```
+By default (without the `--rocmrelease` option)
+the installer script will install packages in the single-version layout.
 
-  Following is a sample of output listed by the command above:
+## Multi-version ROCm Installation
 
-  ```{note}
-  The list in this section represents only a sample of available use cases for ROCm:
-  ```
-
-  ```none
-  If --usecase option is not present, the default selection is "graphics,opencl,hip"
-
-  Available use cases:
-  rocm(for users and developers requiring full ROCm stack)
-  - OpenCL (ROCr/KFD based) runtime
-  - HIP runtimes
-  - Machine learning framework
-  - All ROCm libraries and applications
-  - ROCm Compiler and device libraries
-  - ROCr runtime and thunk
-  lrt(for users of applications requiring ROCm runtime)
-  - ROCm Compiler and device libraries
-  - ROCr runtime and thunk
-  opencl(for users of applications requiring OpenCL on Vega or
-  later products)
-  - ROCr based OpenCL
-  - ROCm Language runtime
-
-  openclsdk (for application developers requiring ROCr based OpenCL)
-  - ROCr based OpenCL
-  - ROCm Language runtime
-  - development and SDK files for ROCr based OpenCL
-
-  hip(for users of HIP runtime on AMD products)
-  - HIP runtimes
-  hiplibsdk (for application developers requiring HIP on AMD products)
-  - HIP runtimes
-  - ROCm math libraries
-  - HIP development libraries
-  ```
-
-```{tip}
-Adding `-y` as a parameter to `amdgpu-install` skips user prompts (for
-automation). Example: `amdgpu-install -y --usecase=rocm`
-```
-
-## Using Installer Script in Docker
-
-When the installation is initiated in Docker, the installer tries to install the
-use case along with the kernel-mode driver. However, you cannot install the
-kernel-mode driver in a Docker container. To skip the installation of the
-kernel-mode driver, proceed with the `--no-dkms` option, as shown below:
-
-```shell
-sudo amdgpu-install --usecase=rocm --no-dkms
-```
-
-## Using the Installer Script for Multi-version ROCm Installation
-
-The multi-version ROCm installation requires you to download and install the
-latest ROCm release installer from the list of ROCm releases you want to install
-simultaneously on your system.
+For the multi-version ROCm installation you must use the installer script from
+the latest release of ROCm that you wish to install.
 
 **Example:** If you want to install ROCm releases 5.3.3 and 5.5.1
 simultaneously, you are required to download the installer from the latest ROCm
 release v5.5.1.
 
-To download and install the installer, refer to the [Download and Install the
-Installer Script](#download-and-install-the-installer-script) section.
-
 ```{attention}
-If the existing ROCm release contains non-versioned ROCm packages, uninstall
-those packages before proceeding with the multi-version installation to avoid
+ROCm packages that were previously installed from a single-version installation
+must be removed before proceeding with the multi-version installation to avoid
 conflicts.
 ```
 
-### Add Required ROCm Repositories
+### Add Required Repositories
 
-Add the required repositories using the following steps:
+You must add the ROCm repositories manually for all ROCm releases
+you want to install except the latest one. The `amdgpu-install` script
+automatically adds the required repositories for the latest release.
 
-```{important}
-Add the AMDGPU and ROCm repositories manually for all ROCm releases you want to
-install except the latest one. The amdgpu-install script automatically adds the
-required repositories for the latest release.
-```
+Run the following commands based on your distribution to add the repositories:
 
 ::::::{tab-set}
 :::::{tab-item} Ubuntu
@@ -236,7 +195,7 @@ required repositories for the latest release.
 :sync: ubuntu-20.04
 
 ```shell
-for ver in 5.3.3 5.5.1; do
+for ver in 5.3.3 5.4.3; do
 echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
@@ -248,7 +207,7 @@ sudo apt update
 :sync: ubuntu-22.04
 
 ```shell
-for ver in 5.3.3 5.5.1; do
+for ver in 5.3.3 5.4.3; do
 echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
@@ -262,7 +221,7 @@ sudo apt update
 :sync: RHEL
 
 ```shell
-for ver in 5.3.3 5.5.1; do
+for ver in 5.3.3 5.4.3; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 Name=ROCm$ver
@@ -281,7 +240,7 @@ sudo yum clean all
 :sync: SLES15
 
 ```shell
-for ver in 5.3.3 5.5.1; do
+for ver in 5.3.3 5.4.3; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 name=rocm
 baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
@@ -296,7 +255,7 @@ sudo zypper ref
 :::::
 ::::::
 
-## Use the Installer to Install Multi-version ROCm Meta-packages
+### Install packages
 
 Use the installer script as given below:
 
@@ -304,17 +263,6 @@ Use the installer script as given below:
 sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-1>
 sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-2>
 sudo amdgpu-install --usecase=rocm --rocmrelease=<release-number-3>
-```
-
-```{tip}
-If the kernel-mode driver is already present on the system and you do not want
-to upgrade it, use the `--no-dkms` option to skip the installation of the
-kernel-mode driver, as shown in the following samples:
-```
-
-```none
-sudo amdgpu-install --usecase=rocm --rocmrelease=5.3.3 --no-dkms
-sudo amdgpu-install --usecase=rocm --rocmrelease=5.5.1 --no-dkms
 ```
 
 Following are examples of ROCm multi-version installation. The kernel-mode
@@ -325,3 +273,21 @@ release in the list.
 sudo amdgpu-install --usecase=rocm --rocmrelease=5.3.3
 sudo amdgpu-install --usecase=rocm --rocmrelease=5.5.1
 ```
+
+## Additional options
+
+### Unattended installation
+
+Adding `-y` as a parameter to `amdgpu-install` skips user prompts (for
+automation). Example: `amdgpu-install -y --usecase=rocm`
+
+### Skipping kernel mode driver installation
+
+The installer script tries to install the kernel mode driver along with the
+requested use cases. This might be unnecessary as in the case of docker
+containers or you may wish to keep a specific version when using multi-version
+installation, and not have the last installed version overwrite the kernel mode
+driver.
+
+To skip the installation of the kernel-mode driver add the `--no-dkms` option
+when calling the installer script.

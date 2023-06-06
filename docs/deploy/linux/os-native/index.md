@@ -1,4 +1,4 @@
-# Distro Command Installation
+# Installation via Package manager
 
 ::::{grid} 2 3 3 3
 :gutter: 1
