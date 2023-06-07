@@ -32,7 +32,13 @@ The default.xml file uses the repo Manifest format.
 The develop branch of this repository contains content for the next
 ROCm release.
 
-## How to build documentation via Sphinx
+## ROCm Documentation
+
+ROCm Documentation is available online at
+[rocm.docs.amd.com](https://rocm.docs.amd.com). Source code for the documenation
+is located in the docs folder of most repositories that are part of ROCm.
+
+### How to build documentation via Sphinx
 
 ```bash
 cd docs

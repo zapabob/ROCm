@@ -192,6 +192,7 @@ subtrees:
               title: MI250
             - file: understand/gpu_arch/mi100
               title: MI100
+    - file: understand/More-about-how-ROCm-uses-PCIe-Atomics
 - caption: How to Guides
   entries:
     - file: how_to/all
