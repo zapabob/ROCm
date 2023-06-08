@@ -59,6 +59,68 @@ Verify the kernel version using the following steps:
 2. Confirm that the obtained kernel version information matches with system
    requirements as listed in {ref}`supported_distributions`.
 
+## Additional package repositories
+
+On some distributions the ROCm packages depend on packages outside the default
+package repositories. These extra repositories need to be enabled before
+installation. Follow the instructions below based on your distributions.
+
+::::::{tab-set}
+
+:::::{tab-item} Ubuntu
+:sync: ubuntu
+
+All packages are available in the default Ubuntu repositories, therefore
+no additional repositories need to be added.
+
+:::::
+:::::{tab-item} Red Hat Enterprise Linux
+:sync: RHEL
+
+::::{rubric} 1. Add the EPEL repository
+::::
+
+::::{tab-set}
+:::{tab-item} RHEL 8
+:sync: RHEL-8
+
+```shell
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo rpm -ivh epel-release-latest-8.noarch.rpm
+```
+
+:::
+:::{tab-item} RHEL 9
+
+```shell
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+sudo rpm -ivh epel-release-latest-9.noarch.rpm
+```
+
+:::
+::::
+
+::::{rubric} 2. Enable the CodeReady Linux Builder repository
+::::
+
+Run the following command and follow the instructions.
+
+```shell
+sudo crb enable
+```
+
+:::::
+:::::{tab-item} SUSE Linux Enterprise Server 15
+
+Add the perl languages repository.
+
+```shell
+zypper addrepo https://download.opensuse.org/repositories/devel:languages:perl/SLE_15_SP4/devel:languages:perl.repo
+```
+
+:::::
+::::::
+
 ## Kernel headers and development packages
 
 The driver package uses
