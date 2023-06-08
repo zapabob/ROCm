@@ -41,6 +41,7 @@ sudo apt install ./amdgpu-install_5.5.50501-1_all.deb
 ::::{tab-set}
 :::{tab-item} RHEL 8.6
 :sync: RHEL-8.6
+:sync: RHEL-8
 
 ```shell
 sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/8.6/amdgpu-install-5.5.50501-1.el8.noarch.rpm
@@ -49,33 +50,19 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/8.6/amdgpu-in
 :::
 :::{tab-item} RHEL 8.7
 :sync: RHEL-8.7
+:sync: RHEL-8
 
 ```shell
 sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/8.7/amdgpu-install-5.5.50501-1.el8.noarch.rpm
 ```
 
 :::
-:::{tab-item} RHEL 8.8
-:sync: RHEL-8.8
-
-```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/8.8/amdgpu-install-5.5.50501-1.el8.noarch.rpm
-```
-
-:::
 :::{tab-item} RHEL 9.1
 :sync: RHEL-9.1
+:sync: RHEL-9
 
 ```shell
 sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/9.1/amdgpu-install-5.5.50501-1.el8.noarch.rpm
-```
-
-:::
-:::{tab-item} RHEL 9.2
-:sync: RHEL-9.2
-
-```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/9.2/amdgpu-install-5.5.50501-1.el8.noarch.rpm
 ```
 
 :::
@@ -172,12 +159,6 @@ the latest release of ROCm that you wish to install.
 simultaneously, you are required to download the installer from the latest ROCm
 release v5.5.1.
 
-```{attention}
-ROCm packages that were previously installed from a single-version installation
-must be removed before proceeding with the multi-version installation to avoid
-conflicts.
-```
-
 ### Add Required Repositories
 
 You must add the ROCm repositories manually for all ROCm releases
@@ -220,12 +201,16 @@ sudo apt update
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
+::::{tab-set}
+:::{tab-item} RHEL 8
+:sync: RHEL-8
+
 ```shell
 for ver in 5.3.3 5.4.3; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
-Name=ROCm$ver
-baseurl=https://repo.radeon.com/rocm/$ver/main
+name=ROCm$ver
+baseurl=https://repo.radeon.com/rocm/rhel8/$ver/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -235,6 +220,27 @@ done
 sudo yum clean all
 ```
 
+:::
+:::{tab-item} RHEL 9
+:sync: RHEL-9
+
+```shell
+for ver in 5.3.3 5.4.3; do
+sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
+[ROCm-$ver]
+name=ROCm$ver
+baseurl=https://repo.radeon.com/rocm/rhel9/$ver/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+done
+sudo yum clean all
+```
+
+:::
+::::
 :::::
 :::::{tab-item} SUSE Linux Enterprise Server 15
 :sync: SLES15
@@ -243,7 +249,7 @@ sudo yum clean all
 for ver in 5.3.3 5.4.3; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 name=rocm
-baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/rocm/$ver/sle/15.4/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
