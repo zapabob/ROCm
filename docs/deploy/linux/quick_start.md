@@ -49,8 +49,9 @@ EOF
 # ROCm repository for jammy
 sudo tee /etc/apt/sources.list.d/rocm.list <<'EOF'
 deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/debian jammy main
-echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
 EOF
+# Prefer packages from the rocm repository over system packages
+echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
 ```
 
 :::
