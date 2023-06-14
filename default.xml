@@ -17,18 +17,18 @@ fetch="https://github.com/KhronosGroup/" />
      sync-c="true"
      sync-j="4" />
 <!--list of projects for ROCM-->
-    <project name="ROCK-Kernel-Driver" />
-    <project name="ROCT-Thunk-Interface" />
-    <project name="ROCR-Runtime" />
-    <project name="rocm_smi_lib" />
-    <project name="rocm-core" />
-    <project name="rocm-cmake" />
-    <project name="rocminfo" />
+    <project name="ROCK-Kernel-Driver" remote="roc-github" />
+    <project name="ROCT-Thunk-Interface" remote="roc-github" />
+    <project name="ROCR-Runtime" remote="roc-github" />
+    <project name="rocm_smi_lib" remote="roc-github" />
+    <project name="rocm-core" remote="roc-github" />
+    <project name="rocm-cmake" remote="roc-github" />
+    <project name="rocminfo" remote="roc-github" />
     <project name="rocprofiler" remote="rocm-devtools" />
     <project name="roctracer" remote="rocm-devtools" />
-    <project name="ROCm-OpenCL-Runtime" />
+    <project name="ROCm-OpenCL-Runtime" remote="roc-github" />
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="6c03f8b58fafd9dd693eaac826749a5cfad515f8" />
-    <project name="clang-ocl" />
+    <project name="clang-ocl" remote="roc-github" />
 <!--HIP Projects-->
     <project name="HIP" remote="rocm-devtools" />
     <project name="hipamd" remote="rocm-devtools" />
@@ -37,19 +37,19 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="HIPIFY" remote="rocm-devtools" />
     <project name="HIPCC" remote="rocm-devtools" />
 <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
-    <project name="llvm-project" />
-    <project name="ROCm-Device-Libs" />
-    <project name="atmi" />
-    <project name="ROCm-CompilerSupport" />
+    <project name="llvm-project" remote="roc-github" />
+    <project name="ROCm-Device-Libs" remote="roc-github" />
+    <project name="atmi" remote="roc-github" />
+    <project name="ROCm-CompilerSupport" remote="roc-github" />
     <project name="rocr_debug_agent" remote="rocm-devtools" />
-    <project name="rocm_bandwidth_test" />
+    <project name="rocm_bandwidth_test" remote="roc-github" />
     <project name="half" remote="rocm-swplat" revision="37742ce15b76b44e4b271c1e66d13d2fa7bd003e" />
     <project name="RCP" remote="gpuopen-tools" revision="3a49405a1500067c49d181844ec90aea606055bb" />
 <!-- gdb projects -->
     <project name="ROCgdb" remote="rocm-devtools" />
     <project name="ROCdbgapi" remote="rocm-devtools" />
 <!-- ROCm Libraries -->
-    <project name="rdc" />
+    <project name="rdc" remote="roc-github" />
     <project groups="mathlibs" name="rocBLAS" remote="rocm-swplat" />
     <project groups="mathlibs" name="Tensile" remote="rocm-swplat" />
     <project groups="mathlibs" name="hipBLAS" remote="rocm-swplat" />
