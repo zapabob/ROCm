@@ -11,19 +11,17 @@ The AMD System Management Interface Library, or AMD SMI library, is a C library 
 
 :::
 
-:::{grid-item-card} [ROCm SMI](https://rocmdocs.amd.com/projects/rocmsmi/en/latest/)
+:::{grid-item-card} ROCm SMI
 This tool acts as a command line interface for manipulating and monitoring the AMD GPU kernel, and is intended to replace and deprecate the existing `rocm_smi.py` CLI tool. It uses `ctypes` to call the `rocm_smi_lib` API.
 
-- [Documentation](https://rocmdocs.amd.com/projects/rocmsmi/en/latest/)
 - [GitHub](https://github.com/RadeonOpenCompute/rocm_smi_lib)
 - [Examples](https://github.com/RadeonOpenCompute/rocm_smi_lib/tree/master/python_smi_tools)
 
 :::
 
-:::{grid-item-card} {doc}`ROCm Datacenter Tool <rdc:index>`
+:::{grid-item-card} ROCm Data Center Tool
 The ROCm™ Data Center Tool simplifies the administration and addresses key infrastructure challenges in AMD GPUs in cluster and data center environments.
 
-- {doc}`Documentation <rdc:index>`
 - [GitHub](https://github.com/RadeonOpenCompute/rdc)
 - [Examples](https://github.com/RadeonOpenCompute/rdc/tree/master/example)
 

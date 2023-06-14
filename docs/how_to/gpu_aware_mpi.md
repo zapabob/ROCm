@@ -22,7 +22,7 @@ MPI project is an open source implementation of the Message Passing Interface
 and industry partners.
 
 Several MPI implementations can be made ROCm-aware by compiling them with
-[Unified Communication Framework](http://www.openucx.org/) (UCX) support. One
+[Unified Communication Framework](https://www.openucx.org/) (UCX) support. One
 notable exception is MVAPICH2: It directly supports AMD GPUs without using UCX,
 and you can download it [here](http://mvapich.cse.ohio-state.edu/downloads/).
 Use the latest version of the MVAPICH2-GDR package.
@@ -32,7 +32,7 @@ whose goal is to provide a common set of communication interfaces that targets a
 broad set of network programming models and interfaces. UCX is ROCm-aware, and
 ROCm technologies are used directly to implement various network operation
 primitives. For more details on the UCX design, refer to it's
-[documentation](http://www.openucx.org/documentation).
+[documentation](https://www.openucx.org/documentation).
 
 ## Building UCX
 
