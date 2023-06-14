@@ -12,7 +12,7 @@ page introduces the HIP runtime and other HIP libraries and tools.
 The HIP Runtime is used to enable GPU acceleration for all HIP language based
 products.
 
-- {doc}`hip:.doxygen/docBin/html/index`
+- {doc}`API Reference Manual <hip:.doxygen/docBin/html/index>`
 - [Examples](https://github.com/amd/rocm-examples/tree/develop/HIP-Basic)
 
 :::
