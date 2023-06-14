@@ -85,6 +85,24 @@ sudo yum clean all
 ```
 
 :::
+:::{tab-item} RHEL 8.8
+:sync: RHEL-8.8
+:sync: RHEL-8
+
+```shell
+sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/8.8/main/x86_64/
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo yum clean all
+```
+
+:::
 :::{tab-item} RHEL 9.1
 :sync: RHEL-9.1
 :sync: RHEL-9
@@ -94,6 +112,24 @@ sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
 baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/9.1/main/x86_64/
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo yum clean all
+```
+
+:::
+:::{tab-item} RHEL 9.2
+:sync: RHEL-9.2
+:sync: RHEL-9
+
+```shell
+sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/9.2/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
