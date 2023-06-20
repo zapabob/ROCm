@@ -21,6 +21,9 @@ MMA
 backends
 cuSOLVER
 cuSPARSE
+# openmp
+ICV
+Multithreaded
 # tuning_guides
 BMC
 DGEMM

@@ -53,11 +53,10 @@ that are required for target offload from an OpenMP program:
 ```
 
 :::{note}
-The Makefile in the example above uses a more classical and verbose set of flags
-which can also be used:
+The compiler also accepts the alternative offloading notation:
 
 ```bash
--fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa
+-fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=<gpu-arch> 
 ```
 
 :::
@@ -158,6 +157,14 @@ implemented in the past releases.
 
 (openmp_usm)=
 
+### Asynchronous Behavior in OpenMP Target Regions
+
+- Multithreaded offloading on the same device
+The `libomptarget` plugin for GPU offloading allows creation of separate configurable HSA queues per chiplet, which enables two or more threads to concurrently offload to the same device.
+
+- Parallel memory copy invocations
+Implicit asynchronous execution of single target region enables parallel memory copy invocations.
+
 ### Unified Shared Memory
 
 Unified Shared Memory (USM) provides a pointer-based approach to memory
@@ -178,39 +185,34 @@ with Xnack capability.
 When enabled, Xnack capability allows GPU threads to access CPU (system) memory,
 allocated with OS-allocators, such as `malloc`, `new`, and `mmap`. Xnack must be
 enabled both at compile- and run-time. To enable Xnack support at compile-time,
-the programmer should use
+use:
 
 ```bash
 --offload-arch=gfx908:xnack+
 ```
 
-Or, equivalently
+Or use another functionally equivalent option Xnack-any:
 
 ```bash
 --offload-arch=gfx908
 ```
 
-:::{note}
-The second case is called Xnack-any and it is functionally equivalent to the
-first case.
-:::
-
-At runtime, programmers enable Xnack functionality on a per-application basis
-using an environment variable:
+To enable Xnack functionality at runtime on a per-application basis,
+use environment variable:
 
 ```bash
 HSA_XNACK=1
 ```
 
-When Xnack support is not needed, then applications can be built to maximize
-resource utilization using:
+When Xnack support is not needed:
+
+- Build the applications to maximize resource utilization using:
 
 ```bash
 --offload-arch=gfx908:xnack-
 ```
 
-At runtime, the `HSA_XNACK` environment variable can be set to 0, as Xnack
-functionality is not needed.
+- At runtime, set the `HSA_XNACK` environment variable to 0.
 
 #### Unified Shared Memory Pragma
 
@@ -430,6 +432,18 @@ for(int i=0; i<N; i++){
 
 See the complete sample code for global buffer overflow
 [here](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/examples/tools/asan/global_buffer_overflow/openmp/vecadd-GBO.cpp).
+
+### Clang Compiler Option for Kernel Optimization
+
+You can use the clang compiler option `-fopenmp-target-fast` for kernel optimization if certain constraints implied by its component options are satisfied. `-fopenmp-target-fast` enables the following options:
+
+- `-fopenmp-target-ignore-env-vars`: It enables code generation of specialized kernels including No-loop and Cross-team reductions.
+
+- `-fopenmp-assume-no-thread-state`: It enables the compiler to assume that no thread in a parallel region modifies an Internal Control Variable (`ICV`), thus potentially reducing the device runtime code execution.
+
+- `-fopenmp-assume-no-nested-parallelism`: It enables the compiler to assume that no thread in a parallel region encounters a parallel region, thus potentially reducing the device runtime code execution.
+
+- `-O3` if no `-O*` is specified by the user.
 
 ### Specialized Kernels
 
