@@ -73,7 +73,7 @@ Computer vision related projects.
 :::{grid-item-card} [Management Tools](management_tools)
 
 - AMD SMI
-- [ROCm SMI](https://rocmdocs.amd.com/projects/rocmsmi/en/latest/)
+- [ROCm SMI](https://rocmdocs.amd.com/projects/rocm_smi_lib/en/latest/)
 - {doc}`ROCm Datacenter Tool <rdc:index>`
 
 :::
