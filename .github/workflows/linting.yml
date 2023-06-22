@@ -5,10 +5,12 @@ on:
     branches: 
     - develop
     - main
+    - 'roc**'    
   pull_request:
     branches: 
     - develop
     - main
+    - 'roc**'
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}

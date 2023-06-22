@@ -27,3 +27,6 @@ DGEMM
 HPCG
 HPL
 IOPM
+# pytorch_install
+kdb
+precompiled
