@@ -225,8 +225,8 @@ sudo yum clean all
 ::::
 
 ::::{tab-set}
-:::{tab-item} SLES 15 SP4
-:sync: SLES15-SP4
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
 
 ```shell
 
@@ -235,6 +235,33 @@ sudo tee /etc/zypp/repos.d/amdgpu.repo <<'EOF'
 [amdgpu]
 name=amdgpu
 baseurl=https://repo.radeon.com/amdgpu/latest/sle/15.4/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+# Add the rocm repository for SLES
+sudo tee /etc/zypp/repos.d/rocm.repo <<'EOF'
+[rocm]
+name=rocm
+baseurl=https://repo.radeon.com/rocm/zyp/zypper
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+```
+
+:::
+:::{tab-item} SLES 15.5
+:sync: SLES-15.5
+
+```shell
+
+# Add the amdgpu module repository for SLES 15.5
+sudo tee /etc/zypp/repos.d/amdgpu.repo <<'EOF'
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/latest/sle/15.5/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key

@@ -141,8 +141,12 @@ sudo yum clean all
 :::
 ::::
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
+
+::::{tab-set}
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
 
 ```shell
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
@@ -156,6 +160,24 @@ EOF
 sudo zypper ref
 ```
 
+:::
+:::{tab-item} SLES 15.5
+:sync: SLES-15.5
+
+```shell
+sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/5.6/sle/15.5/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo zypper ref
+```
+
+:::
+::::
 :::::
 ::::::
 
@@ -183,8 +205,8 @@ sudo reboot
 ```
 
 :::
-:::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```shell
 sudo zypper --gpg-auto-import-keys install amdgpu-dkms
@@ -270,8 +292,8 @@ sudo yum clean all
 :::
 ::::
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```shell
 sudo tee /etc/zypp/repos.d/rocm.repo <<EOF
@@ -311,8 +333,8 @@ sudo yum update rocm-hip-sdk
 ```
 
 :::
-:::{tab-item} Suse Linux Enterprise Server 15
-:sync: SLES15
+:::{tab-item} Suse Linux Enterprise Server
+:sync: SLES
 
 ```shell
 sudo zypper --gpg-auto-import-keys update rocm-hip-sdk

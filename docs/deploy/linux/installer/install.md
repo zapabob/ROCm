@@ -86,15 +86,23 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/9.2/amdgpu-in
 :::
 ::::
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ::::{tab-set}
-:::{tab-item} Service Pack 4
-:sync: SLES15-SP4
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
 
 ```shell
 sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.6/sle/15.4/amdgpu-install-5.6.50600-1.noarch.rpm
+```
+
+:::
+:::{tab-item} SLES 15.5
+:sync: SLES-15.5
+
+```shell
+sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.6/sle/15.5/amdgpu-install-5.6.50600-1.noarch.rpm
 ```
 
 :::
@@ -260,14 +268,14 @@ sudo yum clean all
 :::
 ::::
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```shell
 for ver in 5.3.3 5.4.3; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 name=rocm
-baseurl=https://repo.radeon.com/rocm/$ver/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/rocm/zyp/$ver/main
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
