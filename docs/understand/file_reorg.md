@@ -1,10 +1,12 @@
-# Linux Folder Structure Reorganization
+# ROCm FHS Reorganization
 
 ## Introduction
 
-ROCm™ packages have adopted the Linux foundation file system hierarchy standard
-to ensure ROCm components follow open source conventions for Linux-based
-distributions. Following is the ROCm proposed file structure.
+The ROCm platform has adopted the Linux foundation Filesystem Hierarchy Standard (FHS) [https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to to ensure ROCm is consistent with standard open source conventions. The following sections specify how current and future releases of ROCm adhere to FHS, how the previous ROCm filesystem is supported, and how improved versioning specifications are applied to ROCm.
+
+## Adopting the Linux foundation Filesystem Hierarchy Standard (FHS)
+
+In order to standardize ROCm directory structure and directory content layout ROCm has adopted the [FHS](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html), adhering to open source conventions for Linux-based distribution. FHS ensures internal consistency within the ROCm stack, as well as external consistency with other systems and distributions. The ROCm proposed file structure is outlined below:
 
 ```none
 /opt/rocm-<ver>
@@ -42,14 +44,13 @@ distributions. Following is the ROCm proposed file structure.
               | -- architecture independent misc files
 ```
 
-## Changes from earlier ROCm versions
+## Changes From Earlier ROCm Versions
 
-ROCm with the file reorganization is going to have a lean structure. Following
-table gives the comparison with new and old folder structure.
+The following table provides a brief overview of the new ROCm FHS layout, compared to the layout of earlier ROCm versions. Note that /opt/ is used to denote the default rocm-installation-path and should be replaced in case of a non-standard installation location of the ROCm distribution.
 
 ```none
  ______________________________________________________
-|  New File Structure         |  Old File Structure    |
+|  New ROCm Layout            |  Previous ROCm Layout  |
 |_____________________________|________________________|
 | /opt/rocm-<ver>             | /opt/rocm-<ver>        |
 |     | -- bin                |     | -- bin           |
@@ -72,39 +73,28 @@ table gives the comparison with new and old folder structure.
 |______________________________________________________|
 ```
 
-## ROCm File reorganization transition plan
+## ROCm FHS Reorganization: Backward Compatibility
 
-New file organization for ROCm was first introduced ROCm v5.2 release. Backward
-compatibility was in place to make sure users had a chance to change their
-applications using ROCm. ROCm has moved header files and libraries to its new
-location as indicated in the above structure and included symbolic-link and
-wrapper header files in its old location for backward compatibility.
+The FHS file organization for ROCm was first introduced in the release of ROCm 5.2 . Backward compatibility was implemented to make sure users could still run their ROCm applications while transitioning to the new FHS. ROCm has moved header files and libraries to their new locations as indicated in the above structure, and included symbolic-links and wrapper header files in their old location for backward compatibility. The following sections detail ROCm backward compatibility implementation for wrapper header files, executable files, library files and CMake config files.
 
-### Wrapper header files
+### Wrapper Header Files
 
 Wrapper header files are placed in the old location (
-`/opt/rocm-xxx/<component>/include`) with a warning message to include files
-from the new location (`/opt/rocm-xxx/include`) as shown in the example below.
+`/opt/rocm-<ver>/<component>/include`) with a warning message to include files
+from the new location (`/opt/rocm-<ver>/include`) as shown in the example below.
 
 ```cpp
 #pragma message "This file is deprecated. Use file from include path /opt/rocm-ver/include/ and prefix with hip."
-#include "hip/hip_runtime.h"
+#include <hip/hip_runtime.h>
 ```
 
-The deprecation plan for backward compatibility wrapper header files is as
-follows
+- Starting at ROCm 5.2 release, the deprecation for backward compatibility wrapper header files is: `#pragma` message announcing `#warning`.
+- Starting from ROCm 6.0 (tentatively) backward compatibility for wrapper header files will be removed, and the `#pragma` message will be announcing `#error`.
 
-- `#pragma` message announcing deprecation – ROCm v5.2 release.
-- `#pragma` message changed to `#warning` – Future release, tentatively ROCm
-  v5.5.
-- `#warning` changed to `#error` – Future release, tentatively ROCm v5.6.
-- Backward compatibility wrappers removed – Future release, tentatively ROCm
-  v6.0.
+### Executable Files
 
-### Executable files
-
-Executable files are available in the `/opt/rocm-xxx/bin` folder. For backward
-compatibility, the old library location (`/opt/rocm-xxx/<component>/bin`) has a
+Executable files are available in the `/opt/rocm-<ver>/bin` folder. For backward
+compatibility, the old library location (`/opt/rocm-<ver>/<component>/bin`) has a
 soft link to the library at the new location. Soft links will be removed in a
 future release, tentatively ROCm v6.0.
 
@@ -113,10 +103,10 @@ $ ls -l /opt/rocm/hip/bin/
 lrwxrwxrwx 1 root root   24 Jan 1 23:32 hipcc -> ../../bin/hipcc
 ```
 
-### Library files
+### Library Files
 
-Library files are available in the `/opt/rocm-xxx/lib` folder. For backward
-compatibility, the old library location (`/opt/rocm-xxx/<component>/lib`) has a
+Library files are available in the `/opt/rocm-<ver>/lib` folder. For backward
+compatibility, the old library location (`/opt/rocm-<ver>/<component>/lib`) has a
 soft link to the library at the new location. Soft links will be removed in a
 future release, tentatively ROCm v6.0.
 
@@ -126,11 +116,11 @@ drwxr-xr-x 4 root root 4096 Jan 1 10:45 cmake
 lrwxrwxrwx 1 root root   24 Jan 1 23:32 libamdhip64.so -> ../../lib/libamdhip64.so
 ```
 
-### CMake Config files
+### CMake Config Files
 
 All CMake configuration files are available in the
-`/opt/rocm-xxx/lib/cmake/<component>` folder. For backward compatibility, the
-old CMake locations (`/opt/rocm-xxx/<component>/lib/cmake`) consist of a soft
+`/opt/rocm-<ver>/lib/cmake/<component>` folder. For backward compatibility, the
+old CMake locations (`/opt/rocm-<ver>/<component>/lib/cmake`) consist of a soft
 link to the new CMake config. Soft links will be removed in a future release,
 tentatively ROCm v6.0.
 
@@ -139,10 +129,10 @@ $ ls -l /opt/rocm/hip/lib/cmake/hip/
 lrwxrwxrwx 1 root root 42 Jan 1 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
 ```
 
-## Changes required in applications using ROCm
+## Changes Required in Applications Using ROCm
 
 Applications using ROCm are advised to use the new file paths. As the old files
-will be deprecated in a future release. Application have to make sure to include
+will be deprecated in a future release. Applications have to make sure to include
 correct header file and use correct search paths.
 
 1. `#include<header_file.h>` needs to be changed to
@@ -158,10 +148,18 @@ correct header file and use correct search paths.
    `VAR2=/opt/rocm/hsa` needs to be changed to `VAR2=/opt/rocm`
 
 3. Any reference to `/opt/rocm/<component>/bin` or `/opt/rocm/<component>/lib`
-   needs to be changed to `/opt/rocm/bin` and `/opt/rocm/lib/` respectively.
+   needs to be changed to `/opt/rocm/bin` and `/opt/rocm/lib/`, respectively.
 
-## References
+## Changes in Versioning Specifications
 
-{ref}`ROCm deprecation warning <5_4_0_filesystem_reorg_deprecation_notice>`
+In order to better manage ROCm dependencies specification and allow smoother releases of ROCm while avoiding dependency conflicts, the ROCm platform shall adhere to the following scheme when numbering and incrementing ROCm files versions:
 
-[Linux File System Standard](https://refspecs.linuxfoundation.org/fhs.shtml)
+rocm-\<ver\>, where \<ver\> = \<x.y.z\>
+
+x.y.z denote: MAJOR.MINOR.PATCH
+
+z: PATCH - increment z when implementing backward compatible bug fixes.
+
+y: MINOR - increment y when implementing minor changes that add functionality but are still backward compatible.
+
+x: MAJOR - increment x when implementing major changes that are not backward compatible.
