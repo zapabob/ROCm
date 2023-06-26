@@ -18,20 +18,75 @@ The release notes for the ROCm platform.
 ## ROCm 5.6.0
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
+<!-- markdownlint-disable header-increment -->
+##### HIP 5.6 (For ROCm 5.6)
+
+###### Optimizations
+
+- Consolidation of hipamd, rocclr and OpenCL projects in clr
+- Optimized lock for graph global capture mode
+
+###### Added
+
+- Added hipRTC support for amd_hip_fp16
+- Added hipStreamGetDevice implementation to get the device associated with the stream
+- Added HIP_AD_FORMAT_SIGNED_INT16 in hipArray formats
+- hipArrayGetInfo for getting information about the specified array
+- hipArrayGetDescriptor for getting 1D or 2D array descriptor
+- hipArray3DGetDescriptor to get 3D array descriptor
+
+###### Changed
+
+- hipMallocAsync to return success for zero size allocation to match hipMalloc
+- Separation of hipcc perl binaries from HIP project to hipcc project. hip-devel package depends on newly added hipcc package
+- Consolidation of hipamd, ROCclr, and OpenCL repositories into a single repository called clr. Instructions are updated to build HIP from sources in the HIP Installation guide
+- Removed hipBusBandwidth and hipCommander samples from hip-tests
+
+###### Fixed
+
+- Fixed regression in hipMemCpyParam3D when offset is applied
+
+###### Known Issues
+
+- Limited testing on xnack+ configuration
+  - Multiple HIP tests failures (gpuvm fault or hangs)
+
+###### Upcoming changes in future release
+
+- Removal of gcnarch from hipDeviceProp_t structure
+- Addition of new fields in hipDeviceProp_t structure
+  - maxTexture1D
+  - maxTexture2D
+  - maxTexture1DLayered
+  - maxTexture2DLayered
+  - sharedMemPerMultiprocessor
+  - deviceOverlap
+  - asyncEngineCount
+  - surfaceAlignment
+  - unifiedAddressing
+  - computePreemptionSupported
+  - uuid
+- Removal of deprecated code
+  - hip-hcc codes from hip code tree
+- Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
+- HIPMEMCPY_3D fields correction (unsigned int -> size_t)
+- Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
 
 ### Library Changes in ROCM 5.6.0
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.53.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.0) |
+| hipBLAS | 0.54.0 ⇒ [1.0.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.0) |
 | hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.6.0) |
 | hipFFT | 1.0.11 ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.6.0) |
 | hipSOLVER | 1.7.0 ⇒ [1.8.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.6.0) |
 | hipSPARSE | 2.3.5 ⇒ [2.3.6](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.6.0) |
+| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.6.0) |
 | rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.6.0) |
 | rocALUTION | 2.1.8 ⇒ [2.1.9](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.6.0) |
 | rocBLAS | 2.47.0 ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.6.0) |
 | rocFFT | 1.0.22 ⇒ [1.0.23](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.6.0) |
+| rocm-cmake | 0.8.1 ⇒ [0.9.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.6.0) |
 | rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.6.0) |
 | rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.6.0) |
 | rocSOLVER | 3.21.0 ⇒ [3.22.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.6.0) |
@@ -39,6 +94,43 @@ The release notes for the ROCm platform.
 | rocThrust | 2.17.0 ⇒ [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.6.0) |
 | rocWMMA | 1.0 ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.6.0) |
 | Tensile | 4.36.0 ⇒ [4.37.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.6.0) |
+
+#### hipBLAS 1.0.0
+
+hipBLAS 1.0.0 for ROCm 5.6.0
+
+##### Changed
+
+- added const qualifier to hipBLAS functions (swap, sbmv, spmv, symv, trsm) where missing
+
+##### Removed
+
+- removed support for deprecated hipblasInt8Datatype_t enum
+- removed support for deprecated hipblasSetInt8Datatype and hipblasGetInt8Datatype functions
+
+##### Deprecated
+
+- in-place trmm is deprecated. It will be replaced by trmm which includes both in-place and
+  out-of-place functionality
+
+#### hipCUB 2.13.1
+
+hipCUB 2.13.1 for ROCm 5.6.0
+
+##### Added
+
+- Benchmarks for `BlockShuffle`, `BlockLoad`, and `BlockStore`.
+
+##### Changed
+
+- CUB backend references CUB and Thrust version 1.17.2.
+- Improved benchmark coverage of `BlockScan` by adding `ExclusiveScan`, benchmark coverage of `BlockRadixSort` by adding `SortBlockedToStriped`, and benchmark coverage of `WarpScan` by adding `Broadcast`.
+- Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
+
+##### Known Issues
+
+- `BlockRadixRankMatch` is currently broken under the rocPRIM backend.
+- `BlockRadixRankMatch` with a warp size that does not exactly divide the block size is broken under the CUB backend.
 
 #### hipFFT 1.0.12
 
@@ -71,6 +163,50 @@ hipSPARSE 2.3.6 for ROCm 5.6.0
 ##### Changed
 
 - For hipsparseXbsr2csr and hipsparseXcsr2bsr, blockDim == 0 now returns HIPSPARSE_STATUS_INVALID_SIZE
+
+#### MIOpen 2.19.0
+
+MIOpen 2.19.0 for ROCm 5.6.0
+
+##### Added
+
+- ROCm 5.5 support for gfx1101 (Navi32)
+
+##### Changed
+
+- Tuning results for MLIR on ROCm 5.5
+- Bumping MLIR commit to 5.5.0 release tag
+
+##### Fixed
+
+- Fix 3d convolution Host API bug
+- [HOTFIX][MI200][FP16] Disabled ConvHipImplicitGemmBwdXdlops when FP16_ALT is required.
+
+#### rccl 2.15.5
+
+RCCL 2.15.5 for ROCm 5.6.0
+
+##### Changed
+
+- Compatibility with NCCL 2.15.5
+- Unit test executable renamed to rccl-UnitTests
+
+##### Added
+
+- HW-topology aware binary tree implementation
+- Experimental support for MSCCL
+- New unit tests for hipGraph support
+- NPKit integration
+
+##### Fixed
+
+- rocm-smi ID conversion
+- Support for HIP_VISIBLE_DEVICES for unit tests
+- Support for p2p transfers to non (HIP) visible devices
+
+##### Removed
+
+- Removed TransferBench from tools.  Exists in standalone repo: https://github.com/ROCmSoftwarePlatform/TransferBench
 
 #### rocALUTION 2.1.9
 
@@ -141,6 +277,52 @@ rocFFT 1.0.23 for ROCm 5.6.0
 
 - Fixed over-allocation of LDS in some real-complex kernels, which was resulting in kernel launch failure.
 
+#### rocm-cmake 0.9.0
+
+rocm-cmake 0.9.0 for ROCm 5.6.0
+
+##### Added
+
+- Added the option ROCM_HEADER_WRAPPER_WERROR
+    - Compile-time C macro in the wrapper headers causes errors to be emitted instead of warnings.
+    - Configure-time CMake option sets the default for the C macro.
+
+#### rocPRIM 2.13.0
+
+rocPRIM 2.13.0 for ROCm 5.6.0
+
+##### Added
+
+- New block level `radix_rank` primitive.
+- New block level `radix_rank_match` primitive.
+- Added a stable block sorting implementation. This be used with `block_sort` by using the `block_sort_algorithm::stable_merge_sort` algorithm.
+
+##### Changed
+
+- Improved the performance of `block_radix_sort` and `device_radix_sort`.
+- Improved the performance of `device_merge_sort`.
+- Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core). Contributed by: [v01dXYZ](https://github.com/v01dXYZ).
+
+##### Known Issues
+
+- Disabled GPU error messages relating to incorrect warp operation usage with Navi GPUs on Windows, due to GPU printf performance issues on Windows.
+- When `ROCPRIM_DISABLE_LOOKBACK_SCAN` is set, `device_scan` fails for input sizes bigger than `scan_config::size_limit`, which defaults to `std::numeric_limits&lt;unsigned int&gt;::max()`.
+
+#### rocRAND 2.10.17
+
+rocRAND 2.10.17 for ROCm 5.6.0
+
+##### Added
+
+- MT19937 pseudo random number generator based on M. Matsumoto and T. Nishimura, 1998, Mersenne Twister: A 623-dimensionally equidistributed uniform pseudorandom number generator.
+- New benchmark for the device API using Google Benchmark, `benchmark_rocrand_device_api`, replacing `benchmark_rocrand_kernel`. `benchmark_rocrand_kernel` is deprecated and will be removed in a future version. Likewise, `benchmark_curand_host_api` is added to replace `benchmark_curand_generate` and `benchmark_curand_device_api` is added to replace `benchmark_curand_kernel`.
+- experimental HIP-CPU feature
+- ThreeFry pseudorandom number generator based on Salmon et al., 2011, &#34;Parallel random numbers: as easy as 1, 2, 3&#34;.
+
+##### Changed
+
+- Python 2.7 is no longer officially supported.
+
 #### rocSOLVER 3.22.0
 
 rocSOLVER 3.22.0 for ROCm 5.6.0
@@ -171,6 +353,7 @@ rocSPARSE 2.5.2 for ROCm 5.6.0
 ##### Improved
 
 - Fixed a memory leak in csritsv
+- Fixed a bug in csrsm and bsrsm
 
 #### rocThrust 2.18.0
 
@@ -261,6 +444,7 @@ Tensile 4.37.0 for ROCm 5.6.0
 - Fixed ASEM + GSU + NoTailLoop opt mismatch
 - Fixed AssertSummationElementMultiple + GlobalSplitU issues
 - Fixed ASEM + GSU + TailLoop inner unroll
+
 ## Older versions
 
 The release notes for older versions can be found in [the changelog](./CHANGELOG.md).
