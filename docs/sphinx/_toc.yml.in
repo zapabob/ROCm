@@ -190,6 +190,8 @@ subtrees:
         - entries:
             - file: understand/gpu_arch/mi250
               title: MI250
+            - file: understand/gpu_arch/mi200_performance_counters
+              title: MI200 Performance Counters and Metrics
             - file: understand/gpu_arch/mi100
               title: MI100
     - file: understand/More-about-how-ROCm-uses-PCIe-Atomics
