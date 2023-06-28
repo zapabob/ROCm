@@ -165,7 +165,7 @@ subtrees:
         - entries:
           - url: https://rocm.docs.amd.com/projects/amdsmi/en/{branch}/
             title: AMD SMI
-          - url: https://rocm.docs.amd.com/projects/rocmsmi/en/{branch}/
+          - url: https://rocm.docs.amd.com/projects/rocm_smi_lib/en/{branch}/
             title: ROCm SMI
           - url: ${project:rdc}
             title: ROCm Datacenter Tool
