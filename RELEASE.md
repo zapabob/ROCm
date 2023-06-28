@@ -19,7 +19,7 @@ The release notes for the ROCm platform.
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
 <!-- markdownlint-disable header-increment -->
-##### OS and GPU Support Changes
+#### OS and GPU Support Changes
 
 - SLES15 SP5 support was added this release. SLES15 SP3 support was dropped.
 - AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively referred to as gfx906 GPUs) will be entering the maintenance mode starting Q3 2023. This will be aligned with ROCm 5.7 GA release date.
@@ -29,14 +29,14 @@ The release notes for the ROCm platform.
   - Bug fixes will not be back ported to older ROCm releases for this SKU
   - Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
 
-##### HIP 5.6 (For ROCm 5.6)
+#### HIP 5.6 (For ROCm 5.6)
 
-###### Optimizations
+##### Optimizations
 
 - Consolidation of hipamd, rocclr and OpenCL projects in clr
 - Optimized lock for graph global capture mode
 
-###### Added
+##### Added
 
 - Added hipRTC support for amd_hip_fp16
 - Added hipStreamGetDevice implementation to get the device associated with the stream
@@ -45,23 +45,25 @@ The release notes for the ROCm platform.
 - hipArrayGetDescriptor for getting 1D or 2D array descriptor
 - hipArray3DGetDescriptor to get 3D array descriptor
 
-###### Changed
+##### Changed
 
 - hipMallocAsync to return success for zero size allocation to match hipMalloc
 - Separation of hipcc perl binaries from HIP project to hipcc project. hip-devel package depends on newly added hipcc package
 - Consolidation of hipamd, ROCclr, and OpenCL repositories into a single repository called clr. Instructions are updated to build HIP from sources in the HIP Installation guide
 - Removed hipBusBandwidth and hipCommander samples from hip-tests
 
-###### Fixed
+##### Fixed
 
 - Fixed regression in hipMemCpyParam3D when offset is applied
 
-###### Known Issues
+##### Known Issues
 
 - Limited testing on xnack+ configuration
   - Multiple HIP tests failures (gpuvm fault or hangs)
+- hipSetDevice and hipSetDeviceFlags APIs return hipErrorInvalidDevice instead of hipErrorNoDevice, on a system without GPU
+- Known memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs. Issue will be fixed in ROCm 5.6.1
 
-###### Upcoming changes in future release
+##### Upcoming changes in future release
 
 - Removal of gcnarch from hipDeviceProp_t structure
 - Addition of new fields in hipDeviceProp_t structure
@@ -82,28 +84,124 @@ The release notes for the ROCm platform.
 - HIPMEMCPY_3D fields correction (unsigned int -> size_t)
 - Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
 
+#### ROCgdb (For ROCm 5.6.0)
+
+##### (Unreleased) ROCgdb-13
+
+###### Optimized
+
+- Improved performances when handling the end of a process with a large number of threads.
+
+Known Issues
+
+- On certain configurations, ROCgdb can show the following warning message:
+
+  `warning: Probes-based dynamic linker interface failed. Reverting to original interface.`
+
+  This does not affect ROCgdb's functionalities.
+
+#### ROCprofiler (For ROCm 5.6.0)
+
+In ROCm 5.6 the `rocprofilerv1` and `rocprofilerv2` include and library files of
+ROCm 5.5 are split into separate files. The `rocmtools` files that were
+deprecated in ROCm 5.5 have been removed.
+
+  | ROCm 5.6        | rocprofilerv1                       | rocprofilerv2                          |
+  |-----------------|-------------------------------------|----------------------------------------|
+  | **Tool script** | `bin/rocprof`                       | `bin/rocprofv2`                        |
+  | **API include** | `include/rocprofiler/rocprofiler.h` | `include/rocprofiler/v2/rocprofiler.h` |
+  | **API library** | `lib/librocprofiler.so.1`           | `lib/librocprofiler.so.2`              |
+
+The ROCm Profiler Tool that uses `rocprofilerV1` can be invoked using the
+following command:
+
+```sh
+$ rocprof …
+```
+
+To write a custom tool based on the `rocprofilerV1` API do the following:
+
+```C
+main.c:
+#include <rocprofiler/rocprofiler.h> // Use the rocprofilerV1 API
+int main() {
+  // Use the rocprofilerV1 API
+  return 0;
+}
+```
+
+This can be built in the following manner:
+
+```sh
+$ gcc main.c -I/opt/rocm-5.6.0/include -L/opt/rocm-5.6.0/lib -lrocprofiler64
+```
+
+The resulting `a.out` will depend on
+`/opt/rocm-5.6.0/lib/librocprofiler64.so.1`.
+
+The ROCm Profiler that uses `rocprofilerV2` API can be invoked using the
+following command:
+
+```sh
+$ rocprofv2 …
+```
+
+To write a custom tool based on the `rocprofilerV2` API do the following:
+
+```C
+main.c:
+#include <rocprofiler/v2/rocprofiler.h> // Use the rocprofilerV2 API
+int main() {
+  // Use the rocprofilerV2 API
+  return 0;
+}
+```
+
+This can be built in the following manner:
+
+```sh
+$ gcc main.c -I/opt/rocm-5.6.0/include -L/opt/rocm-5.6.0/lib -lrocprofiler64-v2
+```
+
+The resulting `a.out` will depend on
+`/opt/rocm-5.6.0/lib/librocprofiler64.so.2`.
+
+##### Optimized
+
+- Improved Test Suite
+
+##### Added
+
+- 'end_time' need to be disabled in roctx_trace.txt
+
+##### Fixed
+
+- rocprof in ROcm/5.4.0 gpu selector broken.
+- rocprof in ROCm/5.4.1 fails to generate kernel info.
+- rocprof clobbers LD_PRELOAD.
+
 ### Library Changes in ROCM 5.6.0
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | 0.54.0 ⇒ [1.0.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.0) |
-| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.6.0) |
-| hipFFT | 1.0.11 ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.6.0) |
-| hipSOLVER | 1.7.0 ⇒ [1.8.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.6.0) |
-| hipSPARSE | 2.3.5 ⇒ [2.3.6](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.6.0) |
-| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.6.0) |
-| rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.6.0) |
-| rocALUTION | 2.1.8 ⇒ [2.1.9](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.6.0) |
-| rocBLAS | 2.47.0 ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.6.0) |
-| rocFFT | 1.0.22 ⇒ [1.0.23](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.6.0) |
-| rocm-cmake | 0.8.1 ⇒ [0.9.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.6.0) |
-| rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.6.0) |
-| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.6.0) |
-| rocSOLVER | 3.21.0 ⇒ [3.22.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.6.0) |
-| rocSPARSE | 2.5.1 ⇒ [2.5.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.6.0) |
-| rocThrust | 2.17.0 ⇒ [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.6.0) |
-| rocWMMA | 1.0 ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.6.0) |
-| Tensile | 4.36.0 ⇒ [4.37.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.6.0) |
+| hipBLAS |  ⇒ [1.0.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.0) |
+| hipCUB |  ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.6.0) |
+| hipFFT |  ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.6.0) |
+| hipSOLVER |  ⇒ [1.8.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.6.0) |
+| hipSPARSE |  ⇒ [2.3.6](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.6.0) |
+| MIOpen |  ⇒ [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.6.0) |
+| rccl |  ⇒ [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.6.0) |
+| rocALUTION |  ⇒ [2.1.9](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.6.0) |
+| rocBLAS |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.6.0) |
+| rocFFT |  ⇒ [1.0.23](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.6.0) |
+| rocm-cmake |  ⇒ [0.9.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.6.0) |
+| rocPRIM |  ⇒ [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.6.0) |
+| rocRAND |  ⇒ [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.6.0) |
+| rocSOLVER |  ⇒ [3.22.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.6.0) |
+| rocSPARSE |  ⇒ [2.5.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.6.0) |
+| rocThrust |  ⇒ [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.6.0) |
+| rocWMMA |  ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.6.0) |
+| Tensile |  ⇒ [4.37.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.6.0) |
 
 #### hipBLAS 1.0.0
 
