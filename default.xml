@@ -39,7 +39,6 @@ fetch="https://github.com/KhronosGroup/" />
 <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
     <project name="llvm-project" remote="roc-github" />
     <project name="ROCm-Device-Libs" remote="roc-github" />
-    <project name="atmi" remote="roc-github" />
     <project name="ROCm-CompilerSupport" remote="roc-github" />
     <project name="rocr_debug_agent" remote="rocm-devtools" />
     <project name="rocm_bandwidth_test" remote="roc-github" />
@@ -61,7 +60,6 @@ fetch="https://github.com/KhronosGroup/" />
     <project groups="mathlibs" name="hipSOLVER" remote="rocm-swplat" />
     <project groups="mathlibs" name="hipSPARSE" remote="rocm-swplat" />
     <project groups="mathlibs" name="rocALUTION" remote="rocm-swplat" />
-    <project name="MIOpenGEMM" remote="rocm-swplat" />
     <project name="MIOpen" remote="rocm-swplat" />
     <project groups="mathlibs" name="rccl" remote="rocm-swplat" />
     <project name="MIVisionX" remote="gpuopen-libs" />
