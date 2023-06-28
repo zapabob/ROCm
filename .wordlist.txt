@@ -39,3 +39,6 @@ IOPM
 # pytorch_install
 kdb
 precompiled
+# gpu_os_support
+HWE
+el
