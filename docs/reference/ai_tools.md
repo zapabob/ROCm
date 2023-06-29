@@ -10,10 +10,10 @@ AMD's library for high performance machine learning primitives.
 
 :::
 
-:::{grid-item-card} {doc}`Composable Kernel <composable-kernel:index>`
+:::{grid-item-card} {doc}`Composable Kernel <composable_kernel:index>`
 Composable Kernel: Performance Portable Programming Model for Machine Learning Tensor Operators
 
-- {doc}`Documentation <composable-kernel:index>`
+- {doc}`Documentation <composable_kernel:index>`
 
 :::
 
