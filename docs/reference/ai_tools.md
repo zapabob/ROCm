@@ -17,10 +17,10 @@ Composable Kernel: Performance Portable Programming Model for Machine Learning T
 
 :::
 
-:::{grid-item-card} {doc}`MIGraphX <migraphx:index>`
+:::{grid-item-card} {doc}`MIGraphX <amdmigraphx:index>`
 AMD MIGraphX is AMD's graph inference engine that accelerates machine learning model inference.
 
-- {doc}`Documentation <migraphx:index>`
+- {doc}`Documentation <amdmigraphx:index>`
 
 :::
 
