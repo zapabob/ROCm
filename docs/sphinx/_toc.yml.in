@@ -148,9 +148,9 @@ subtrees:
           - title: MIOpen - Machine Intelligence
             url: ${project:miopen}
           - title: Composable Kernel
-            url: ${project:composable-kernel}
+            url: ${project:composable_kernel}
           - title: MIGraphX - Graph Optimization
-            url: ${project:migraphx}
+            url: ${project:amdmigraphx}
     - file: reference/computer_vision
       subtrees:
         - entries:
@@ -173,7 +173,7 @@ subtrees:
       title: Validation Tools
       subtrees:
         - entries:
-          - url: ${project:rocm-validation-suite}
+          - url: ${project:rocmvalidationsuite}
             title: RVS
           - url: ${project:transferbench}
             title: TransferBench
