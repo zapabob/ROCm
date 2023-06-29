@@ -26,14 +26,12 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="rocminfo" remote="roc-github" />
     <project name="rocprofiler" remote="rocm-devtools" />
     <project name="roctracer" remote="rocm-devtools" />
-    <project name="ROCm-OpenCL-Runtime" remote="roc-github" />
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="6c03f8b58fafd9dd693eaac826749a5cfad515f8" />
     <project name="clang-ocl" remote="roc-github" />
 <!--HIP Projects-->
     <project name="HIP" remote="rocm-devtools" />
-    <project name="hipamd" remote="rocm-devtools" />
+    <project name="clr" remote="rocm-devtools" />
     <project name="HIP-Examples" remote="rocm-devtools" />
-    <project name="ROCclr" remote="rocm-devtools" />
     <project name="HIPIFY" remote="rocm-devtools" />
     <project name="HIPCC" remote="rocm-devtools" />
 <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
