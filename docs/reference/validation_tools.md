@@ -3,10 +3,10 @@
 :::::{grid} 1 1 2 2
 :gutter: 1
 
-:::{grid-item-card} {doc}`RVS <rocm-validation-suite:index>`
+:::{grid-item-card} {doc}`RVS <rocmvalidationsuite:index>`
 The ROCm Validation Suite is a system administrator’s and cluster manager's tool for detecting and troubleshooting common problems affecting AMD GPU(s) running in a high-performance computing environment, enabled using the ROCm software stack on a compatible platform.
 
-- {doc}`Documentation <rocm-validation-suite:index>`
+- {doc}`Documentation <rocmvalidationsuite:index>`
 
 :::
 
