@@ -77,7 +77,7 @@ ROCm 5.6 consists of several AI software ecosystem improvements to our fast-grow
 - Limited testing on xnack+ configuration
   - Multiple HIP tests failures (gpuvm fault or hangs)
 - hipSetDevice and hipSetDeviceFlags APIs return hipErrorInvalidDevice instead of hipErrorNoDevice, on a system without GPU
-- Known memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs. Issue will be fixed in ROCm 5.6.1
+- Known memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs. Issue will be fixed in a future ROCm release
 
 ##### Upcoming changes in future release
 
