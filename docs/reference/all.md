@@ -43,7 +43,7 @@ Libraries related to AI.
 
 - {doc}`MIOpen <miopen:index>`
 - {doc}`Composable Kernel <composable_kernel:index>`
-- {doc}`MIGraphX <migraphx:index>`
+- {doc}`MIGraphX <amdmigraphx:index>`
 
 :::
 
