@@ -7,6 +7,7 @@
 rocRAND is an AMD GPU optimized library for pseudo-random number generators (PRNG).
 
 - {doc}`Documentation <rocrand:index>`
+- [GitHub](https://github.com/ROCmSoftwarePlatform/rocRAND/)
 - [Changelog](https://github.com/ROCmSoftwarePlatform/rocRAND/blob/develop/CHANGELOG.md)
 - [Examples](https://github.com/amd/rocm-examples/tree/develop/Libraries/rocRAND)
 
@@ -18,6 +19,7 @@ generation (PRNG) optimized for AMD GPUs using rocRAND. hipRAND allows for a
 common interface for other non AMD GPU PRNG libraries.
 
 - {doc}`Documentation <hiprand:index>`
+- [GitHub](https://github.com/ROCmSoftwarePlatform/hipRAND/)
 - [Changelog](https://github.com/ROCmSoftwarePlatform/hipRAND/blob/develop/CHANGELOG.md)
 
 :::
