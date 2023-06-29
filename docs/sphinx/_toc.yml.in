@@ -61,20 +61,6 @@ subtrees:
 - caption: APIs and Reference
   entries:
     - file: reference/all
-    - file: reference/compilers
-      title: Compilers and Tools
-      subtrees:
-        - entries:
-          - file: reference/rocmcc/rocmcc
-            title: ROCmCC
-          - url: ${project:rocgdb}
-            title: ROCgdb
-          - url: ${project:rocprofiler}
-            title: rocprofiler
-          - url: ${project:roctracer}
-            title: roctracer
-          - url: ${project:rocdbgapi}
-            title: ROCdbgapi
     - file: reference/hip
       subtrees:
         - entries:
@@ -82,8 +68,6 @@ subtrees:
               url: ${project:hip}
             - title: HIPify - Port Your Code
               url: ${project:hipify}
-    - file: reference/openmp/openmp
-      title: OpenMP
     - file: reference/gpu_libraries/math
       title: Math Libraries
       subtrees:
@@ -159,6 +143,22 @@ subtrees:
         - entries:
           - url: ${project:rocal}
             title: rocAL 
+    - file: reference/openmp/openmp
+      title: OpenMP
+    - file: reference/compilers
+      title: Compilers and Tools
+      subtrees:
+        - entries:
+          - file: reference/rocmcc/rocmcc
+            title: ROCmCC
+          - url: ${project:rocgdb}
+            title: ROCgdb
+          - url: ${project:rocprofiler}
+            title: rocprofiler
+          - url: ${project:roctracer}
+            title: roctracer
+          - url: ${project:rocdbgapi}
+            title: ROCdbgapi
     - file: reference/management_tools
       title: Management Tools
       subtrees:
