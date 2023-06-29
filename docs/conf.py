@@ -20,6 +20,12 @@ all_article_info_author = ""
 
 # pages with specific settings
 article_pages = [
+    {
+        "file":"release",
+        "os":["linux"],
+        "date":"2023-06-28"
+    },
+
     {"file":"deploy/linux/index", "os":["linux"]},
     {"file":"deploy/linux/install_overview", "os":["linux"]},
     {"file":"deploy/linux/prerequisites", "os":["linux"]},
