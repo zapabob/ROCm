@@ -95,7 +95,7 @@ Use Driver Shipped with ROCm
 
 :::
 
-:::{tab-item} Radeon Pro™
+:::{tab-item} Radeon™
 :sync: radeonpro
 
 [Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
