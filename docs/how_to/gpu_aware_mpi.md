@@ -66,11 +66,8 @@ cd ucx
 ./autogen.sh
 mkdir build
 cd build
-../contrib/configure-release -prefix=$UCX_DIR \
-    --with-rocm=/opt/rocm \
-    --without-cuda -enable-optimizations -disable-logging \
-    --disable-debug -disable-assertions \
-    --disable-params-check -without-java
+../configure -prefix=$UCX_DIR \
+    --with-rocm=/opt/rocm
 make -j $(nproc)
 make -j $(nproc) install
 ```
@@ -93,9 +90,7 @@ cd ompi
 mkdir build
 cd build
 ../configure --prefix=$OMPI_DIR --with-ucx=$UCX_DIR \
-    --with-rocm=/opt/rocm \
-    --enable-mca-no-build=btl-uct --enable-mpi1-compatibility \
-    CC=clang CXX=clang++ FC=flang
+    --with-rocm=/opt/rocm
 make -j $(nproc)
 make -j $(nproc) install
 ```
@@ -165,7 +160,12 @@ Inter-GPU bandwidth with various payload sizes.
 Collective Operations on GPU buffers are best handled through the
 Unified Collective Communication Library (UCC) component in Open MPI.
 For this, the UCC library has to be configured and compiled with ROCm
-support. An example for configuring UCC and Open MPI with ROCm support
+support.
+
+Please note the compatibility [table](../release/3rd_party_support_matrix.md#communication-libraries)
+for UCC versions with the various ROCm versions.
+
+An example for configuring UCC and Open MPI with ROCm support
 is shown below:
 
 ```shell
