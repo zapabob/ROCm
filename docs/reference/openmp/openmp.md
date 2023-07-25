@@ -11,6 +11,16 @@ OpenMP toolchain, example usage of device offloading, and usage of `rocprof`
 with OpenMP applications. The GPUs supported are the same as those supported by
 this ROCm release. See the list of supported GPUs in {doc}`/release/gpu_os_support`.
 
+The ROCm OpenMP compiler is implemented using LLVM compiler technology.
+{numref}`openmp-toolchain` illustrates the internal steps taken to translate a user’s application into an executable that can offload computation to the AMDGPU. The compilation is a two-pass process. Pass 1 compiles the application to generate the CPU code and Pass 2 links the CPU code to the AMDGPU device code.
+
+```{figure-md} openmp-toolchain
+
+<img src="/data/reference/openmp/openmp_toolchain.svg" alt="">
+
+OpenMP Toolchain
+```
+
 ### Installation
 
 The OpenMP toolchain is automatically installed as part of the standard ROCm
