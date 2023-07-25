@@ -1,5 +1,11 @@
-# isv_deployment_win
-ABI
+# building
+matchers
+# file_reorg
+FHS
+incrementing
+Filesystem
+filesystem
+rocm
 # gpu_aware_mpi
 DMA
 GDR
@@ -15,6 +21,8 @@ PeerDirect
 RDMA
 UCX
 ib_core
+# isv_deployment_win
+ABI
 # linear algebra
 LAPACK
 MMA
@@ -95,9 +103,3 @@ DGEMM
 HPCG
 HPL
 IOPM
-# file_reorg
-FHS
-incrementing
-Filesystem
-filesystem
-rocm

@@ -233,3 +233,7 @@ subtrees:
   entries:
     - file: about
     - file: contributing
+      subtrees:
+        - entries: 
+          - file: contribute/building.md
+          - file: contribute/feedback.md
