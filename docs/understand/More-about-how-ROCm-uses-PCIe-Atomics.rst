@@ -39,14 +39,14 @@ There are also a number of papers which talk about these new capabilities:
   * `Atomic Read Modify Write Primitives by Intel <https://www.intel.es/content/dam/doc/white-paper/atomic-read-modify-write-primitives-i-o-devices-paper.pdf>`_
   * `PCI express 3 Accelerator Whitepaper by Intel <https://www.intel.sg/content/dam/doc/white-paper/pci-express3-accelerator-white-paper.pdf>`_
   * `Intel PCIe Generation 3 Hotchips Paper <https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.131.Ajanovic-Intel-PCIeGen3.pdf>`_
-  * `PCIe Generation 4 Base Specification includes Atomics Operation <http://composter.com.ua/documents/PCI_Express_Base_Specification_Revision_4.0.Ver.0.3.pdf>`_
+  * `PCIe Generation 4 Base Specification includes Atomics Operation <https://astralvx.com/storage/2020/11/PCI_Express_Base_4.0_Rev0.3_February19-2014.pdf>`_
 
 Other I/O devices with PCIe Atomics support
 
    * `Mellanox ConnectX-5 InfiniBand Card <http://www.mellanox.com/related-docs/prod_adapter_cards/PB_ConnectX-5_VPI_Card.pdf>`_
    * `Cray Aries Interconnect <http://www.hoti.org/hoti20/slides/Bob_Alverson.pdf>`_
-   * `Xilinx PCIe Ultrascale Whitepaper <https://www.xilinx.com/support/documentation/white_papers/wp464-PCIe-ultrascale.pdf>`_
-   * `Xilinx 7 Series Devices <https://www.xilinx.com/support/documentation/ip_documentation/pcie_7x/v3_1/pg054-7series-pcie.pdf>`_
+   * `Xilinx PCIe Ultrascale Whitepaper <https://docs.xilinx.com/v/u/8OZSA2V1b1LLU2rRCDVGQw>`_
+   * `Xilinx 7 Series Devices <https://docs.xilinx.com/v/u/1nfXeFNnGpA0ywyykvWHWQ>`_
 
 Future bus technology with richer I/O Atomics Operation Support
 
@@ -54,8 +54,8 @@ Future bus technology with richer I/O Atomics Operation Support
 
 New PCIe Endpoints with support beyond AMD Ryzen and EPYC CPU; Intel Haswell or newer CPU’s with PCIe Generation 3.0 support.
 
-  * `Mellanox Bluefield SOC <http://www.mellanox.com/related-docs/npu-multicore-processors/PB_Bluefield_SoC.pdf>`_
-  * `Cavium Thunder X2 <http://www.cavium.com/ThunderX2_ARM_Processors.html>`_
+  * `Mellanox Bluefield SOC <https://docs.nvidia.com/networking/display/BlueFieldSWv25111213/BlueField+Software+Overview>`_
+  * `Cavium Thunder X2 <https://en.wikichip.org/wiki/cavium/thunderx2>`_
 
 In ROCm, we also take advantage of PCIe ID based ordering technology for P2P when the GPU originates two writes to two different targets:  
 
@@ -145,5 +145,3 @@ Improve performance by avoiding stalls caused by ordering rules. For example, po
 This only has meaning for memory requests, and is reserved for Configuration or IO requests. Completers are not required to copy this bit into a completion, and only use the bit if their enable bit is set for this operation.
 
 To read more on PCIe Gen 3 new options https://www.mindshare.com/files/resources/PCIe%203-0.pdf
-
-

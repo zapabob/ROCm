@@ -14,6 +14,8 @@ shutil.copy2('../RELEASE.md','./release.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
 shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
+latex_engine = "xelatex"
+
 # configurations for PDF output by Read the Docs
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."

@@ -20,10 +20,9 @@ This tool acts as a command line interface for manipulating and monitoring the A
 
 :::
 
-:::{grid-item-card} {doc}`ROCm Datacenter Tool <rdc:index>`
+:::{grid-item-card} ROCm Data Center Tool
 The ROCm™ Data Center Tool simplifies the administration and addresses key infrastructure challenges in AMD GPUs in cluster and data center environments.
 
-- {doc}`Documentation <rdc:index>`
 - [GitHub](https://github.com/RadeonOpenCompute/rdc)
 - [Examples](https://github.com/RadeonOpenCompute/rdc/tree/master/example)
 
