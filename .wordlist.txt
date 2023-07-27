@@ -36,6 +36,11 @@ DGEMM
 HPCG
 HPL
 IOPM
+# windows
+SKU
+SKUs
+PowerShell
+UAC
 # pytorch_install
 kdb
 precompiled

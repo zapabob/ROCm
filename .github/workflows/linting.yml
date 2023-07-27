@@ -5,11 +5,13 @@ on:
     branches: 
     - develop
     - main
+    - 'docs/*'
     - 'roc**'    
   pull_request:
     branches: 
     - develop
     - main
+    - 'docs/*'
     - 'roc**'
 
 concurrency:
