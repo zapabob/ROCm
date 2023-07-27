@@ -29,7 +29,7 @@ Starting with ROCm 5.5, the HIP SDK brings a subset of ROCm to developers on Win
 The collection of features enabled on Windows is referred to as the HIP SDK.
 These features allow developers to use the HIP runtime, HIP math libraries
 and HIP Primitive libraries. The following table shows the differences
-between Windows and Linux releases. 
+between Windows and Linux releases.
 
 |Component|Linux|Windows|
 |---------|-----|-------|
@@ -56,10 +56,12 @@ features in subsequent revisions.
 The 5.5 Windows Installer collectively groups the Math and Primitives
 libraries.
 ```
+
 ```{note}
 GPU support on Windows and Linux may differ. You must refer to
 Windows and Linux GPU support tables separately.
 ```
+
 ```{note}
 HIP Ray Tracing is not distributed via ROCm in Linux.
 ```

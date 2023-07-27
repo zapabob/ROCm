@@ -20,9 +20,22 @@ The release notes for the ROCm platform.
 <!-- markdownlint-disable no-duplicate-header -->
 ### What's New in This Release
 
+#### HIP SDK for Windows
+
+AMD is pleased to announce the availability of the HIP SDK for Windows as part
+of the ROCm platform. The
+[HIP SDK OS and GPU support page](https://rocm.docs.amd.com/en/docs-5.5.1/release/windows_support.html)
+lists the versions of Windows and GPUs validated by AMD. HIP SDK features on
+Windows are described in detail in our
+[What is ROCm?](https://rocm.docs.amd.com/en/docs-5.5.1/rocm.html#rocm-on-windows)
+page and differs from the Linux feature set. Visit
+[Quick Start](https://rocm.docs.amd.com/en/docs-5.5.1/deploy/windows/quick_start.html#)
+page to get started. Known issues are tracked on
+[GitHub](https://github.com/RadeonOpenCompute/ROCm/issues?q=is%3Aopen+label%3A5.5.1+label%3A%22Verified+Issue%22+label%3AWindows).
+
 #### HIP API Change
 
-The following HIP API is updated in the ROCm v5.5.1 release,
+The following HIP API is updated in the ROCm 5.5.1 release:
 
 ##### `hipDeviceSetCacheConfig`
 
@@ -1158,6 +1171,8 @@ The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, co
 >
 > There will be a transition period where the Perl scripts and compiled binaries are available  before the scripts are removed. There will be no functional difference between the Perl scripts and their compiled binary counterpart. No user action is required. Once these are available, users can optionally switch to `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
 
+(5_4_0_filesystem_reorg_deprecation_notice)=
+
 ##### Linux Filesystem Hierarchy Standard for ROCm
 
 ROCm packages have adopted the Linux foundation filesystem hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new filesystem hierarchy, ROCm ensures backward compatibility with its 5.1 version or older filesystem hierarchy. See below for a detailed explanation of the new filesystem hierarchy and backward compatibility.
@@ -1268,9 +1283,8 @@ The test was incorrectly using the `hipDeviceAttributePageableMemoryAccess` devi
 
 `hipHostMalloc()` allocates memory with fine-grained access by default when the environment variable `HIP_HOST_COHERENT=1` is used.
 
-For more information, refer to the HIP Programming Guide at
+For more information, refer to {doc}`hip:.doxygen/docBin/html/index`.
 
-<https://docs.amd.com/bundle/HIP-Programming-Guide-v5.4/page/Introduction_to_HIP_Programming_Guide.html>
 
 #### SoftHang with `hipStreamWithCUMask` test on AMD Instinct™
 
@@ -2584,7 +2598,8 @@ The new APIs for virtual memory management are as follows:
   hipError_t hipMemUnmap(void* ptr, size_t size);
   ```
 
-For more information, refer to the HIP API documentation at <https://docs.amd.com/bundle/HIP_API_Guide/page/modules.html>
+For more information, refer to the HIP API documentation at
+{doc}`hip:.doxygen/docBin/html/modules`.
 
 ##### Planned HIP Changes in Future Releases
 
@@ -2600,7 +2615,8 @@ This release introduces a new ROCm C++ library for accelerating mixed precision 
 
 rocWMMA is released as a header library and includes test and sample projects to validate and illustrate example usages of the C++ API. GEMM matrix multiplication is used as primary validation given the heavy precedent for the library. However, the usage portfolio is growing significantly and demonstrates different ways rocWMMA may be consumed.
 
-For more information, refer to <https://docs.amd.com/category/libraries>.
+For more information, refer to
+[Communication Libraries](../../../../docs/reference/gpu_libraries/communication.md).
 
 #### OpenMP Enhancements in This Release
 
@@ -3194,7 +3210,8 @@ ROCDebugger Machine Interface (MI) extends support to lanes. The following enhan
 
 - MI varobjs are now lane-aware.
 
-For more information, refer to the ROC Debugger User Guide at <https://docs.amd.com>.
+For more information, refer to the ROC Debugger User Guide at
+{doc}`ROCgdb <rocgdb:index>`.
 
 ##### Enhanced - clone-inferior Command
 
@@ -3216,7 +3233,7 @@ This release includes support for AMD Radeon™ Pro W6800, in addition to other 
 
 - Various other bug fixes and performance improvements
 
-For more information, see <https://docs.amd.com/bundle/MIOpen_gh-pages/page/releasenotes.html>
+For more information, see {doc}`Documentation <miopen:index>`.
 
 #### Checkpoint Restore Support With CRIU
 

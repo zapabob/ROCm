@@ -28,7 +28,6 @@ AMD ROCm™ Platform supports the following Windows SKU.
 | AMD Radeon™ Pro W5500   | RDNA1  | gfx1012 | ❌ | ❌ |
 | AMD Radeon™ Pro VII     | GCN5.1 | gfx906  | ❌ | ❌ |
 
-
 :::
 
 :::{tab-item} Radeon™
@@ -44,7 +43,6 @@ AMD ROCm™ Platform supports the following Windows SKU.
 | AMD Radeon™ RX 6700 XT  | RDNA2  | gfx1032 | ✅ | ❌ |
 | AMD Radeon™ RX 6700     | RDNA2  | gfx1032 | ✅ | ❌ |
 | AMD Radeon™ RX 6600     | RDNA2  | gfx1032 | ❌ | ❌ |
-
 
 :::
 
