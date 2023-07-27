@@ -49,7 +49,6 @@ AMD ROCm™ Platform supports the following Windows SKU.
 | AMD Radeon™ RX 6600 XT  | RDNA2  | gfx1032 | ✅ | ❌ |
 | AMD Radeon™ RX 6600     | RDNA2  | gfx1032 | ✅ | ❌ |
 
-
 :::
 
 ::::
