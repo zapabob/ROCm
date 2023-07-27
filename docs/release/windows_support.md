@@ -49,6 +49,7 @@ AMD ROCm™ Platform supports the following Windows SKU.
 ::::
 
 ### Component Support
+
 ROCm components are described in the [reference](../reference/all) page. Support
 on Windows is provided with two levels on enablement.
 

@@ -11,7 +11,9 @@ compatible GPU is required. Please see the supported GPU guide for more details.
 ## HIP SDK Installation
 
 The command line installer is the same executable which is used by the graphical
-front-end. The options supported by the command line interface are summarized in
+front-end. Download the installer from the
+[HIP-SDK download page](https://www.amd.com/en/developer/rocm-hub/hip-sdk.html).
+The options supported by the command line interface are summarized in
 {numref}`hip-sdk-cli-options`.
 
 ```{table} HIP SDK Command Line Options
@@ -33,7 +35,7 @@ selectively installing parts of the SDK bundle. It's all or nothing.
 
 ### Launching the Installer From the Command Line
 
-The installer is still a graphical application with a `WinMain` entrypoint, even
+The installer is still a graphical application with a `WinMain` entry point, even
 when called on the command line. This means that the application lifetime is
 tied to a window, even on headless systems where that window may not be visible.
 To launch the installer from PowerShell that will block until the installer

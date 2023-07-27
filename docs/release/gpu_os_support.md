@@ -1,8 +1,8 @@
-# GPU Support and OS Compatibility (Linux)
+# GPU and OS Support (Linux)
 
 (supported_distributions)=
 
-## Supported Linux Distributions
+## Supported Distributions
 
 AMD ROCm™ Platform supports the following Linux distributions.
 
@@ -26,9 +26,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 (supported_gpus)=
 
-## Supported GPUs
-
-The following table shows the list of GPUs supported on Linux distributions:
+## GPU Support Table
 
 ::::{tab-set}
 
