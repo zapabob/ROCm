@@ -28,7 +28,6 @@ AMD MIGraphX is AMD's graph inference engine that accelerates machine learning m
 - [GitHub](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX)
 - [Changelog](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/blob/develop/CHANGELOG.md)
 
-
 :::
 
 :::::
