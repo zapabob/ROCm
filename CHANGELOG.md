@@ -39,6 +39,20 @@ ROCm 5.6 consists of several AI software ecosystem improvements to our fast-grow
   - Bug fixes will not be back ported to older ROCm releases for this SKU
   - Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
 
+#### AMDSMI CLI 23.0.0.4
+
+##### Added
+
+- AMDSMI CLI tool enabled for Linux Bare Metal & Guest
+
+- Package: amd-smi-lib
+ 
+##### Known Issues
+
+- not all Error Correction Code (ECC) fields are currently supported
+
+- RHEL 8 & SLES 15 have extra install steps
+
 #### Kernel Modules (DKMS)
 
 ##### Fixes
@@ -77,7 +91,7 @@ ROCm 5.6 consists of several AI software ecosystem improvements to our fast-grow
 - Limited testing on xnack+ configuration
   - Multiple HIP tests failures (gpuvm fault or hangs)
 - hipSetDevice and hipSetDeviceFlags APIs return hipErrorInvalidDevice instead of hipErrorNoDevice, on a system without GPU
-- Known memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs. Issue will be fixed in ROCm 5.6.1
+- Known memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs. Issue will be fixed in a future ROCm release
 
 ##### Upcoming changes in future release
 
@@ -636,6 +650,29 @@ The following hipcc changes are implemented in this release:
   - `hipCommander` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/hipCommander>
 
   Note that the samples will continue to be available in previous release branches.
+- Removal of gcnarch from hipDeviceProp_t structure
+- Addition of new fields in hipDeviceProp_t structure
+  - maxTexture1D
+  - maxTexture2D
+  - maxTexture1DLayered
+  - maxTexture2DLayered
+  - sharedMemPerMultiprocessor
+  - deviceOverlap
+  - asyncEngineCount
+  - surfaceAlignment
+  - unifiedAddressing
+  - computePreemptionSupported
+  - hostRegisterSupported
+  - uuid
+- Removal of deprecated code
+  - hip-hcc codes from hip code tree
+- Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
+- HIPMEMCPY_3D fields correction to avoid truncation of "size_t" to "unsigned int" inside hipMemcpy3D()
+- Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
+- Correct hipGetLastError to return the last error instead of last API call's return code
+- Update hipExternalSemaphoreHandleDesc to add "unsigned int reserved[16]"
+- Correct handling of flag values in hipIpcOpenMemHandle for hipIpcMemLazyEnablePeerAccess
+- Remove hiparray* and make it opaque with hipArray_t
 
 ##### New HIP APIs in This Release
 

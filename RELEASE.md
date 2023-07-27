@@ -39,6 +39,20 @@ ROCm 5.6 consists of several AI software ecosystem improvements to our fast-grow
   - Bug fixes will not be back ported to older ROCm releases for this SKU
   - Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
 
+#### AMDSMI CLI 23.0.0.4
+
+##### Added
+
+- AMDSMI CLI tool enabled for Linux Bare Metal & Guest
+
+- Package: amd-smi-lib
+ 
+##### Known Issues
+
+- not all Error Correction Code (ECC) fields are currently supported
+
+- RHEL 8 & SLES 15 have extra install steps
+
 #### Kernel Modules (DKMS)
 
 ##### Fixes
@@ -77,7 +91,7 @@ ROCm 5.6 consists of several AI software ecosystem improvements to our fast-grow
 - Limited testing on xnack+ configuration
   - Multiple HIP tests failures (gpuvm fault or hangs)
 - hipSetDevice and hipSetDeviceFlags APIs return hipErrorInvalidDevice instead of hipErrorNoDevice, on a system without GPU
-- Known memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs. Issue will be fixed in ROCm 5.6.1
+- Known memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs. Issue will be fixed in a future ROCm release
 
 ##### Upcoming changes in future release
 
@@ -566,7 +580,3 @@ Tensile 4.37.0 for ROCm 5.6.0
 - Fixed ASEM + GSU + NoTailLoop opt mismatch
 - Fixed AssertSummationElementMultiple + GlobalSplitU issues
 - Fixed ASEM + GSU + TailLoop inner unroll
-
-## Older versions
-
-The release notes for older versions can be found in [the changelog](./CHANGELOG.md).

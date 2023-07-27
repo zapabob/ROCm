@@ -8,8 +8,9 @@
 :::{grid-item-card} [HIP](./hip)
 HIP is both AMD's GPU programming language extension and the GPU runtime.
 
-- {doc}`hip:.doxygen/docBin/html/index`
-- [Examples](https://github.com/amd/rocm-examples/tree/develop/HIP-Basic)
+- {doc}`HIP <hip:index>`
+- [HIP Examples](https://github.com/amd/rocm-examples/tree/develop/HIP-Basic)
+- {doc}`HIPIFY <hipify:index>`
 
 :::
 
@@ -42,8 +43,8 @@ Inter and intra-node communication is supported by the following projects:
 Libraries related to AI.
 
 - {doc}`MIOpen <miopen:index>`
-- {doc}`Composable Kernel <composable-kernel:index>`
-- {doc}`MIGraphX <migraphx:index>`
+- {doc}`Composable Kernel <composable_kernel:index>`
+- {doc}`MIGraphX <amdmigraphx:index>`
 
 :::
 
@@ -64,6 +65,7 @@ Computer vision related projects.
 :::{grid-item-card} [Compilers and Tools](compilers)
 
 - [ROCmCC](/reference/rocmcc/rocmcc)
+- {doc}`ROCdbgapi <rocdbgapi:index>`
 - {doc}`ROCgdb <rocgdb:index>`
 - {doc}`ROCProfiler <rocprofiler:rocprof>`
 - {doc}`ROCTracer <roctracer:index>`
@@ -72,15 +74,15 @@ Computer vision related projects.
 
 :::{grid-item-card} [Management Tools](management_tools)
 
-- AMD SMI
-- ROCm SMI
-- ROCm Data Center Tool
+- {doc}`AMD SMI <amdsmi:index>`
+- {doc}`ROCm SMI <rocm_smi_lib:index>`
+- {doc}`ROCm Data Center Tool <rdc:index>`
 
 :::
 
 :::{grid-item-card} [Validation Tools](validation_tools)
 
-- {doc}`ROCm Validation Suite <rocm-validation-suite:index>`
+- {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
 - {doc}`TransferBench <transferbench:index>`
 
 :::

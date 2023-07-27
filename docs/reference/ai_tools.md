@@ -7,20 +7,26 @@
 AMD's library for high performance machine learning primitives.
 
 - {doc}`Documentation <miopen:index>`
+- [GitHub](https://github.com/ROCmSoftwarePlatform/MIOpen)
+- [Changelog](https://github.com/ROCmSoftwarePlatform/MIOpen/blob/develop/CHANGELOG.md)
 
 :::
 
-:::{grid-item-card} {doc}`Composable Kernel <composable-kernel:index>`
+:::{grid-item-card} {doc}`Composable Kernel <composable_kernel:index>`
 Composable Kernel: Performance Portable Programming Model for Machine Learning Tensor Operators
 
-- {doc}`Documentation <composable-kernel:index>`
+- {doc}`Documentation <composable_kernel:index>`
+- [GitHub](https://github.com/ROCmSoftwarePlatform/composable_kernel)
+- [Changelog](https://github.com/ROCmSoftwarePlatform/composable_kernel/blob/develop/CHANGELOG.md)
 
 :::
 
-:::{grid-item-card} {doc}`MIGraphX <migraphx:index>`
+:::{grid-item-card} {doc}`MIGraphX <amdmigraphx:index>`
 AMD MIGraphX is AMD's graph inference engine that accelerates machine learning model inference.
 
-- {doc}`Documentation <migraphx:index>`
+- {doc}`Documentation <amdmigraphx:index>`
+- [GitHub](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX)
+- [Changelog](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/blob/develop/CHANGELOG.md)
 
 :::
 
