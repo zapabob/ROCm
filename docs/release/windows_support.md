@@ -12,18 +12,12 @@ AMD ROCm™ Platform supports the following Windows SKU.
 | Windows 11          | x86-64                | 22H2 (GA)          |
 | Windows Server 2022 | x86-64                |                    |
 
-For more information on Windows versions, refer to
-[Windows release health](https://learn.microsoft.com/en-us/windows/release-health/)
-.
-
 ## GPU Support Table
 
 ::::{tab-set}
 
 :::{tab-item} Radeon Pro™
 :sync: radeonpro
-
-[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
 
 | Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Runtime | HIP SDK |
 |:----:|:------------:|:--------------------------------------------------------------------:|:-------:|:----------------:|
@@ -39,8 +33,6 @@ For more information on Windows versions, refer to
 
 :::{tab-item} Radeon™
 :sync: radeon
-
-[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
 
 | Name | Architecture | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Runtime | HIP SDK |
 |:----:|:------------:|:--------------------------------------------------------------------:|:-------:|:----------------:|
@@ -59,13 +51,14 @@ For more information on Windows versions, refer to
 ::::
 
 ### Component Support
+ROCm components are described in the [reference](../reference/all) page. Support
+on Windows is provided with two levels on enablement.
 
 - **Runtime**: Runtime enables the use of the HIP/OpenCL runtimes only.
-  [reference](../reference/all) for details on ROCm.
 - **HIP SDK**: Runtime plus additional components refer to libraries found under
   [Math Libraries](../reference/gpu_libraries/math.md) and
   [C++ Primitive Libraries](../reference/gpu_libraries/c%2B%2B_primitives.md).
-  Some Math Libraries](../reference/gpu_libraries/math.md) are Linux exclusive,
+  Some [Math Libraries](../reference/gpu_libraries/math.md) are Linux exclusive,
   please check the library details.
 
 ### Support Status
