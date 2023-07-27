@@ -60,9 +60,11 @@ ROCm supports virtualization for select GPUs only as shown below.
 
 (supported_gpus)=
 
-## Supported GPUs
+## Linux Supported GPUs
 
-The following table shows the list of GPUs supported on Linux distributions:
+The table below shows supported GPUs for Instinct™, Radeon Pro™ and Radeon™
+GPUs. Please click the tabs below to switch between GPU product lines. If a GPU
+is not listed on this table, the GPU is not officially supported by AMD.
 
 ::::{tab-set}
 
