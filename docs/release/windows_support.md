@@ -12,7 +12,11 @@ AMD ROCm™ Platform supports the following Windows SKU.
 | Windows 11          | x86-64                | 22H2 (GA)          |
 | Windows Server 2022 | x86-64                |                    |
 
-## GPU Support Table
+## Windows Supported GPUs
+
+The table below shows supported GPUs for Radeon Pro™ and Radeon™ GPUs. Please
+click the tabs below to switch between GPU product lines. If a GPU is not listed
+on this table, the GPU is not officially supported by AMD.
 
 ::::{tab-set}
 
@@ -21,12 +25,12 @@ AMD ROCm™ Platform supports the following Windows SKU.
 
 | Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Runtime | HIP SDK |
 |:----:|:------------:|:--------------------------------------------------------------------:|:-------:|:----------------:|
-| AMD Radeon™ Pro W7900   | RDNA3  | gfx1100 | ✅ | ✅ |
-| AMD Radeon™ Pro W7800   | RDNA3  | gfx1100 | ✅ | ✅ |
-| AMD Radeon™ Pro W6800   | RDNA2  | gfx1030 | ✅ | ✅ |
-| AMD Radeon™ Pro W6600   | RDNA2  | gfx1032 | ✅ | ❌ |
-| AMD Radeon™ Pro W5500   | RDNA1  | gfx1012 | ❌ | ❌ |
-| AMD Radeon™ Pro VII     | GCN5.1 | gfx906  | ❌ | ❌ |
+| AMD Radeon Pro™ W7900   | RDNA3  | gfx1100 | ✅ | ✅ |
+| AMD Radeon Pro™ W7800   | RDNA3  | gfx1100 | ✅ | ✅ |
+| AMD Radeon Pro™ W6800   | RDNA2  | gfx1030 | ✅ | ✅ |
+| AMD Radeon Pro™ W6600   | RDNA2  | gfx1032 | ✅ | ❌ |
+| AMD Radeon Pro™ W5500   | RDNA1  | gfx1012 | ❌ | ❌ |
+| AMD Radeon Pro™ VII     | GCN5.1 | gfx906  | ❌ | ❌ |
 
 :::
 
