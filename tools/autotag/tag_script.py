@@ -81,7 +81,6 @@ class TaggingArgs(argparse.Namespace):
     def exclude(self) -> List[str]:
         """Get the excluded libraries plus defaults."""
         defaults = [
-            "AMDMIGraphX",
             "MIOpenGEMM",
             "MIOpenKernels",
             "MIOpenTensile",
@@ -236,9 +235,21 @@ def run_tagging():
     )
 
     # Find all the math libraries and their remotes.
-    names_and_remotes = list(
-        (entry.get("name"), entry.get("remote")) for entry in manifest_tree.findall(".//project[@groups='mathlibs']")
-    )
+    included_names = [
+        "rocm-cmake",
+        "MIOpen",
+        "AMDMIGraphX",
+        "rocprofiler"
+    ]
+    included_groups = [
+        "mathlibs"
+    ]
+    projects = [ ]
+    for project in manifest_tree.iterfind(".//project"):
+        include = str(project.get("name")) in included_names
+        if (project.get("name") in included_names) or (project.get("groups") in included_groups):
+            projects.append(project)
+    names_and_remotes = list((entry.get("name"), entry.get("remote")) for entry in projects)
 
     # Get all the relevant ROCm releases, and only the last version if not doing previous.
     minimum_version = "5.0.0" if args.previous else args.version
@@ -249,12 +260,17 @@ def run_tagging():
     for (version, release) in releases.items():
         for (_, library) in release.libraries.items():
             # Parse the changelog for each library and each version
-            success = PROCESSORS[library.name](
-                library,
-                TEMPLATES[library.name],
-                args.previous,
-                Version(version) < Version(args.version)
-            )
+            try:
+                success = PROCESSORS[library.name](
+                    library,
+                    TEMPLATES[library.name],
+                    args.previous,
+                    Version(version) < Version(args.version)
+                )
+            except Exception as e:
+                success = False
+                print(f"Exception parsing {library.name} for ROCm {version}")
+                print(e)
             if not success:
                 print(f"Error processing {library.name} for ROCm {version}")
                 failed.append((version, library.name))

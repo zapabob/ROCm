@@ -114,8 +114,8 @@ sudo yum autoremove amdgpu-dkms
    ```
 
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ::::{rubric} Uninstalling Specific Meta-packages
 ::::

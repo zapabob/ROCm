@@ -8,8 +8,9 @@
 :::{grid-item-card} [HIP](./hip)
 HIP is both AMD's GPU programming language extension and the GPU runtime.
 
-- {doc}`hip:.doxygen/docBin/html/index`
-- [Examples](https://github.com/amd/rocm-examples/tree/develop/HIP-Basic)
+- {doc}`HIP <hip:index>`
+- [HIP Examples](https://github.com/amd/rocm-examples/tree/develop/HIP-Basic)
+- {doc}`HIPIFY <hipify:index>`
 
 :::
 
@@ -64,6 +65,7 @@ Computer vision related projects.
 :::{grid-item-card} [Compilers and Tools](compilers)
 
 - [ROCmCC](/reference/rocmcc/rocmcc)
+- {doc}`ROCdbgapi <rocdbgapi:index>`
 - {doc}`ROCgdb <rocgdb:index>`
 - {doc}`ROCProfiler <rocprofiler:rocprof>`
 - {doc}`ROCTracer <roctracer:index>`
@@ -72,9 +74,9 @@ Computer vision related projects.
 
 :::{grid-item-card} [Management Tools](management_tools)
 
-- AMD SMI
-- [ROCm SMI](https://rocmdocs.amd.com/projects/rocm_smi_lib/en/latest/)
-- {doc}`ROCm Datacenter Tool <rdc:index>`
+- {doc}`AMD SMI <amdsmi:index>`
+- {doc}`ROCm SMI <rocm_smi_lib:index>`
+- {doc}`ROCm Data Center Tool <rdc:index>`
 
 :::
 

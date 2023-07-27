@@ -19,6 +19,7 @@ TensorFlow
 | 5.3.x | 1.10.1, 1.11, 1.12.1, 1.13 | 2.8, 2.9, 2.10       |       |
 | 5.4.x | 1.10.1, 1.11, 1.12.1, 1.13 | 2.8, 2.9, 2.10, 2.11 | 2.5.4 |
 | 5.5.x | 1.10.1, 1.11, 1.12.1, 1.13 | 2.10, 2.11           | 2.5.4 |
+| 5.6   | 1.11, 1.12.1, 1.13.1       | 2.12                 | 2.5.4 |
 
 ## Communication libraries
 
@@ -47,6 +48,7 @@ contemporary CUDA / NVIDIA HPC SDK alternatives.
 | 5.3.x | 1.16         | 22.7       |
 | 5.4.x | 1.16         | 22.9       |
 | 5.5.x | 1.17         | 22.9       |
+| 5.6   | 1.17.2       | 22.9       |
 
 For the latest documentation of these libraries, refer to the
 [associated documentation](../reference/gpu_libraries/c%2B%2B_primitives.md).

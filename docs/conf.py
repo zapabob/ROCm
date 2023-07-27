@@ -20,8 +20,9 @@ latex_engine = "xelatex"
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved."
-version = "5.5.1"
-release = "5.5.1"
+version = "5.6.0"
+release = "5.6.0"
+
 
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
