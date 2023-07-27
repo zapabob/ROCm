@@ -1,4 +1,4 @@
-# AMDGPU Install Script
+# Command Line Installation
 
 ::::{grid} 2 3 3 3
 :gutter: 1
@@ -21,7 +21,7 @@ Instructions for upgrading an existing ROCm installation.
 :link: uninstall
 :link-type: doc
 
-Steps for removing ROCm packages, libraries and tools.
+Steps for removing ROCm packages and libraries.
 :::
 
 ::::
