@@ -48,6 +48,7 @@ subtrees:
     title: Changelog
   - file: release/gpu_os_support
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
+  - file: release/versions
     title: Known Issues
   - file: release/compatibility
     subtrees:
