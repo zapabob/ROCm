@@ -86,7 +86,7 @@ article_pages = [
 
 external_toc_path = "./sphinx/_toc.yml"
 
-docs_core = ROCmDocs("ROCm Documentation Home")
+docs_core = ROCmDocs("ROCm 5.6.0 Documentation Home")
 docs_core.setup()
 
 external_projects_current_project = "rocm"
