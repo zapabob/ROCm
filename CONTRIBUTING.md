@@ -13,15 +13,19 @@ itself, refer to
 [discussions](https://github.com/RadeonOpenCompute/ROCm/discussions) on the
 GitHub repository.
 
+For additional information on documentation functionalities,
+see the user and developer guides for rocm-docs-core
+at {doc}`rocm-docs-core documentation <rocm-docs-core:index>`.
+
 ## Supported Formats
 
 Our documentation includes both Markdown and RST files. Markdown is encouraged
-over RST due to the lower barrier to participation. GitHub flavored Markdown is preferred
+over RST due to the lower barrier to participation. GitHub-flavored Markdown is preferred
 for all submissions as it renders accurately on our GitHub repositories. For existing documentation,
 [MyST](https://myst-parser.readthedocs.io/en/latest/intro.html) Markdown
 is used to implement certain features unsupported in GitHub Markdown. This is
 not encouraged for new documentation. AMD will transition
-to stricter use of GitHub flavored Markdown with a few caveats. ROCm documentation
+to stricter use of GitHub-flavored Markdown with a few caveats. ROCm documentation
 also uses [Sphinx Design](https://sphinx-design.readthedocs.io/en/latest/index.html)
 in our Markdown and RST files. We also use Breathe syntax for Doxygen documentation
 in our Markdown files. See
@@ -35,33 +39,16 @@ as follows:
   1 header per file for both Markdown and Restructured Text.
 - Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via
   our automated GitHub action on a Pull Request (PR).
+  See the {doc}`rocm-docs-core linting user guide <rocm-docs-core:user_guide/linting>` for more details.
 
 ## Filenames and folder structure
 
 Please use snake case (all lower case letters and underscores instead of spaces)
 for file names. For example, `example_file_name.md`.
-Our documentation follows pitchfork for folder structure.
+Our documentation follows Pitchfork for folder structure.
 All documentation is in `/docs` except for special files like
 the contributing guide in the `/` folder. All images used in the documentation are
-place in the /docs/data folder.
-
-## How to provide feedback for ROCm documentation
-
-There are three standard ways to provide feedback for this repository.
-
-### Pull Request
-
-All contributions to ROCm documentation should arrive via the
-[GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
-targetting the develop branch of the repository. If you are unable to contribute
-via the GitHub Flow, feel free to email us. TODO, confirm email address.
-
-### GitHub Issue
-
-Issues on existing or absent docs can be filed as [GitHub issues
-](https://github.com/RadeonOpenCompute/ROCm/issues).
-
-### Email Feedback
+placed in the `/docs/data` folder.
 
 ## Language and Style
 

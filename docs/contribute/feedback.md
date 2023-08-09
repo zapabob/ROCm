@@ -1,4 +1,4 @@
-# How to provide feedback for for ROCm documentation
+# How to provide feedback for ROCm documentation
 
 There are four standard ways to provide feedback for this repository.
 

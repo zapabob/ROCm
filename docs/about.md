@@ -12,6 +12,8 @@ project that applies customization for our documentation. This
 project is the tool most ROCm repositories use as part of the documentation
 build. It is also available as a [pip package on PyPI](https://pypi.org/project/rocm-docs-core/).
 
+See the user and developer guides for rocm-docs-core at {doc}`rocm-docs-core documentation <rocm-docs-core:index>`.
+
 ## Sphinx
 
 [Sphinx](https://www.sphinx-doc.org/en/master/) is a documentation generator
