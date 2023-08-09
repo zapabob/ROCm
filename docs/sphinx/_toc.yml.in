@@ -195,6 +195,8 @@ subtrees:
               title: MI200 Performance Counters and Metrics
             - file: understand/gpu_arch/mi100
               title: MI100
+    - file: understand/using_gpu_sanitizer
+      title: Using GPU Sanitizer
     - file: understand/More-about-how-ROCm-uses-PCIe-Atomics
 - caption: How to Guides
   entries:

@@ -103,3 +103,9 @@ DGEMM
 HPCG
 HPL
 IOPM
+# using_gpu_sanitizer
+LSAN
+deallocation
+detections
+tracebacks
+workgroup
