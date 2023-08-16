@@ -1,4 +1,4 @@
-# Deploy ROCm on Windows
+# Install ROCm (HIP SDK) on Windows
 
 Start with {doc}`/deploy/windows/quick_start` or follow the detailed
 instructions below.
@@ -35,6 +35,27 @@ Use the graphical front-end of the installer.
 :link-type: doc
 
 Use the command line front-end of the installer.
+:::
+
+::::
+
+## Post Installation
+
+::::{grid} 1 1 2 2
+:gutter: 1
+
+:::{grid-item-card} ROCm-Examples
+:link: https://github.com/amd/rocm-examples
+:link-type: url
+
+Learn how to use ROCm with descriptive examples for novice to intermediate users.
+:::
+
+:::{grid-item-card} Windows App Deployment Guidelines
+:link: ../../understand/windows-app-deployment-guidelines
+:link-type: doc
+
+Discusses strategies on how to bundle HIP libraries with an end user application.
 :::
 
 ::::
