@@ -38,7 +38,7 @@ ROCm release.
 ## ROCm Documentation
 
 ROCm Documentation is available online at
-[rocm.docs.amd.com](https://rocm.docs.amd.com). Source code for the documenation
+[rocm.docs.amd.com](https://rocm.docs.amd.com). Source code for the documentation
 is located in the docs folder of most repositories that are part of ROCm.
 
 ### How to build documentation via Sphinx
