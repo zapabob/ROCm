@@ -62,7 +62,7 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.6/rhel/8.7/amdgpu-inst
 :sync: RHEL-8
 
 ```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/8.8/amdgpu-install-5.5.50501-1.el8.noarch.rpm
+sudo yum install https://repo.radeon.com/amdgpu-install/5.6/rhel/8.8/amdgpu-install-5.6.50600-1.el8.noarch.rpm
 ```
 
 :::
@@ -80,7 +80,7 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.6/rhel/9.1/amdgpu-inst
 :sync: RHEL-9
 
 ```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.5.1/rhel/9.2/amdgpu-install-5.5.50501-1.el8.noarch.rpm
+sudo yum install https://repo.radeon.com/amdgpu-install/5.6/rhel/9.2/amdgpu-install-5.6.50600-1.el8.noarch.rpm
 ```
 
 :::
