@@ -1,16 +1,12 @@
 name: Linting
 
 on:
-  push:
-    branches: 
-    - develop
-    - main
-    - 'docs/*'
   pull_request:
     branches: 
     - develop
     - main
     - 'docs/*'
+    - 'roc**'
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
