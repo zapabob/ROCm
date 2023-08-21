@@ -14,21 +14,26 @@ shutil.copy2('../RELEASE.md','./release.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
 shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
 
-# for PDF output on Read the Docs
+latex_engine = "xelatex"
+
+# configurations for PDF output by Read the Docs
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved."
+version = "5.7.0"
+release = "5.7.0"
+
 
 setting_all_article_info = True
-all_article_info_os = ["linux"]
+all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
 
 # pages with specific settings
 article_pages = [
     {
         "file":"release",
-        "os":["linux"],
-        "date":"2023"
+        "os":["linux", "windows"],
+        "date":"2023-07-27"
     },
 
     {"file":"deploy/linux/index", "os":["linux"]},
@@ -41,7 +46,20 @@ article_pages = [
     {"file":"deploy/linux/package_manager_integration", "os":["linux"]},
     {"file":"deploy/docker", "os":["linux"]},
     
+    {"file":"deploy/windows/cli/index", "os":["windows"]},
+    {"file":"deploy/windows/cli/install", "os":["windows"]},
+    {"file":"deploy/windows/cli/uninstall", "os":["windows"]},
+    {"file":"deploy/windows/cli/upgrade", "os":["windows"]},
+    {"file":"deploy/windows/gui/index", "os":["windows"]},
+    {"file":"deploy/windows/gui/install", "os":["windows"]},
+    {"file":"deploy/windows/gui/uninstall", "os":["windows"]},
+    {"file":"deploy/windows/gui/upgrade", "os":["windows"]},
+    {"file":"deploy/windows/index", "os":["windows"]},
+    {"file":"deploy/windows/prerequisites", "os":["windows"]},
+    {"file":"deploy/windows/quick_start", "os":["windows"]},
+
     {"file":"release/gpu_os_support", "os":["linux"]},
+    {"file":"release/windows_support", "os":["windows"]},
     {"file":"release/docker_support_matrix", "os":["linux"]},
     
     {"file":"reference/gpu_libraries/communication", "os":["linux"]},

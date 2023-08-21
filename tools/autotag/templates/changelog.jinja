@@ -32,15 +32,15 @@ The release notes for the ROCm platform.
 | Library | Version |
 |---------|---------|
 {%- for lib_name, lib in release.libraries | dictsort %}
-{%- if rocm_ver_by_lib_ver[lib_name][lib.lib_version] == version %}
+{%- if rocm_ver_by_lib_ver[lib_name][lib.lib_version] == version and lib.lib_version %}
 | {{ lib_name }} | {{prev_lib_ver[lib_name][lib.lib_version]}} ⇒ [{{ lib.lib_version }}]({{ lib.release_url }}) |
-{%- else %}
+{%- elif lib.lib_version %}
 | {{ lib_name }} | [{{ lib.lib_version }}]({{ lib.release_url }}) |
 {%- endif %}
 {%- endfor %}
 
 {%- for lib_name, lib in release.libraries | dictsort %}
-{%- if rocm_ver_by_lib_ver[lib_name][lib.lib_version] == version %}
+{%- if rocm_ver_by_lib_ver[lib_name][lib.lib_version] == version and lib.lib_version%}
 
 #### {{lib_name}} {{lib.lib_version}}
 

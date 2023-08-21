@@ -25,8 +25,11 @@ repository to the new release.
 :sync: ubuntu-20.04
 
 ```shell
+# version
+version=5.6
+
 # amdgpu repository for focal
-echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/5.5.1/ubuntu focal main' \
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$version/ubuntu focal main" \
     | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
@@ -36,8 +39,11 @@ sudo apt update
 :sync: ubuntu-22.04
 
 ```shell
+# version
+version=5.6
+
 # amdgpu repository for jammy
-echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/5.5.1/ubuntu jammy main' \
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$version/ubuntu jammy main" \
     | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
@@ -54,10 +60,13 @@ sudo apt update
 :sync: RHEL-8
 
 ```shell
+# version
+version=5.6
+
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/8.6/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.6/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -72,10 +81,34 @@ sudo yum clean all
 :sync: RHEL-8
 
 ```shell
+# version
+version=5.6
+
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/8.7/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.7/main/x86_64/
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo yum clean all
+```
+
+:::
+:::{tab-item} RHEL 8.8
+:sync: RHEL-8.8
+:sync: RHEL-8
+
+```shell
+# version
+version=5.6
+
+sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.8/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -90,10 +123,34 @@ sudo yum clean all
 :sync: RHEL-9
 
 ```shell
+# version
+version=5.6
+
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.5.1/rhel/9.1/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/9.1/main/x86_64/
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo yum clean all
+```
+
+:::
+:::{tab-item} RHEL 9.2
+:sync: RHEL-9.2
+:sync: RHEL-9
+
+```shell
+# version
+version=5.6
+
+sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/9.2/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -105,14 +162,21 @@ sudo yum clean all
 :::
 ::::
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
+
+::::{tab-set}
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
 
 ```shell
+# version
+version=5.6
+
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/5.5.1/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/$version/sle/15.4/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -120,6 +184,24 @@ EOF
 sudo zypper ref
 ```
 
+:::
+:::{tab-item} SLES 15.5
+:sync: SLES-15.5
+
+```shell
+sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/5.6/sle/15.5/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo zypper ref
+```
+
+:::
+::::
 :::::
 ::::::
 
@@ -147,8 +229,8 @@ sudo reboot
 ```
 
 :::
-:::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```shell
 sudo zypper --gpg-auto-import-keys install amdgpu-dkms
@@ -172,7 +254,10 @@ repository to the new release.
 :sync: ubuntu-20.04
 
 ```shell
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/5.5.1 focal main" \
+# version
+version=5.6
+
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$version focal main" \
     | sudo tee /etc/apt/sources.list.d/rocm.list
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
     | sudo tee /etc/apt/preferences.d/rocm-pin-600
@@ -184,7 +269,10 @@ sudo apt update
 :sync: ubuntu-22.04
 
 ```shell
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/5.5.1 jammy main" \
+# version
+version=5.6
+
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$version jammy main" \
     | sudo tee /etc/apt/sources.list.d/rocm.list
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
     | sudo tee /etc/apt/preferences.d/rocm-pin-600
@@ -202,10 +290,13 @@ sudo apt update
 :sync: RHEL-8
 
 ```shell
+# version
+version=5.6
+
 sudo tee /etc/yum.repos.d/rocm.repo <<EOF
-[ROCm-5.5.1]
-name=ROCm5.5.1
-baseurl=https://repo.radeon.com/rocm/rhel8/5.5.1/main
+[ROCm-$ver]
+name=ROCm$ver
+baseurl=https://repo.radeon.com/rocm/rhel8/$version/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -219,10 +310,13 @@ sudo yum clean all
 :sync: RHEL-9
 
 ```shell
+# version
+version=5.6
+
 sudo tee /etc/yum.repos.d/rocm.repo <<EOF
-[ROCm-5.5.1]
-name=ROCm5.5.1
-baseurl=https://repo.radeon.com/rocm/rhel9/5.5.1/main
+[ROCm-$ver]
+name=ROCm$ver
+baseurl=https://repo.radeon.com/rocm/rhel9/$version/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -234,15 +328,18 @@ sudo yum clean all
 :::
 ::::
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
-:sync: SLES15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 ```shell
+# version
+version=5.6
+
 sudo tee /etc/zypp/repos.d/rocm.repo <<EOF
-[ROCm-5.5.1]
-name=ROCm5.5.1
+[ROCm-$ver]
+name=ROCm$ver
 name=rocm
-baseurl=https://repo.radeon.com/rocm/zyp/5.5.1/main
+baseurl=https://repo.radeon.com/rocm/zyp/$version/main
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -275,8 +372,8 @@ sudo yum update rocm-hip-sdk
 ```
 
 :::
-:::{tab-item} Suse Linux Enterprise Server 15
-:sync: SLES15
+:::{tab-item} Suse Linux Enterprise Server
+:sync: SLES
 
 ```shell
 sudo zypper --gpg-auto-import-keys update rocm-hip-sdk

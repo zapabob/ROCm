@@ -38,12 +38,13 @@ There are also a number of papers which talk about these new capabilities:
 
   * `Atomic Read Modify Write Primitives by Intel <https://www.intel.es/content/dam/doc/white-paper/atomic-read-modify-write-primitives-i-o-devices-paper.pdf>`_
   * `PCI express 3 Accelerator Whitepaper by Intel <https://www.intel.sg/content/dam/doc/white-paper/pci-express3-accelerator-white-paper.pdf>`_
+  * `Intel PCIe Generation 3 Hotchips Paper <https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.131.Ajanovic-Intel-PCIeGen3.pdf>`_
   * `PCIe Generation 4 Base Specification includes Atomics Operation <https://astralvx.com/storage/2020/11/PCI_Express_Base_4.0_Rev0.3_February19-2014.pdf>`_
 
 Other I/O devices with PCIe Atomics support
 
    * `Mellanox ConnectX-5 InfiniBand Card <http://www.mellanox.com/related-docs/prod_adapter_cards/PB_ConnectX-5_VPI_Card.pdf>`_
-   * Cray Aries Interconnect
+   * `Cray Aries Interconnect <http://www.hoti.org/hoti20/slides/Bob_Alverson.pdf>`_
    * `Xilinx PCIe Ultrascale Whitepaper <https://docs.xilinx.com/v/u/8OZSA2V1b1LLU2rRCDVGQw>`_
    * `Xilinx 7 Series Devices <https://docs.xilinx.com/v/u/1nfXeFNnGpA0ywyykvWHWQ>`_
 

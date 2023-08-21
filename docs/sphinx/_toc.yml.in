@@ -38,6 +38,32 @@ subtrees:
                 title: Upgrade
               - file: deploy/linux/installer/uninstall
                 title: Uninstallation
+  - file: deploy/windows/quick_start
+    title: Windows Quick Start
+  - file: deploy/windows/index
+    title: Windows Overview
+    subtrees:
+      - entries:
+        - file: deploy/windows/prerequisites
+          title: Prerequisites
+        - file: deploy/windows/gui/index
+          subtrees:
+            - entries:
+              - file: deploy/windows/gui/install
+                title: Installation
+              - file: deploy/windows/gui/upgrade
+                title: Upgrade
+              - file: deploy/windows/gui/uninstall
+                title: Uninstallation
+        - file: deploy/windows/cli/index
+          subtrees:
+            - entries:
+              - file: deploy/windows/cli/install
+                title: Installation
+              - file: deploy/windows/cli/upgrade
+                title: Upgrade
+              - file: deploy/windows/cli/uninstall
+                title: Uninstallation
   - file: deploy/docker
     title: Docker
 
@@ -47,6 +73,7 @@ subtrees:
   - file: CHANGELOG
     title: Changelog
   - file: release/gpu_os_support
+  - file: release/windows_support
   - file: release/versions
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known Issues

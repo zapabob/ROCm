@@ -588,9 +588,22 @@ Tensile 4.37.0 for ROCm 5.6.0
 <!-- markdownlint-disable no-duplicate-header -->
 ### What's New in This Release
 
+#### HIP SDK for Windows
+
+AMD is pleased to announce the availability of the HIP SDK for Windows as part
+of the ROCm platform. The
+[HIP SDK OS and GPU support page](https://rocm.docs.amd.com/en/docs-5.5.1/release/windows_support.html)
+lists the versions of Windows and GPUs validated by AMD. HIP SDK features on
+Windows are described in detail in our
+[What is ROCm?](https://rocm.docs.amd.com/en/docs-5.5.1/rocm.html#rocm-on-windows)
+page and differs from the Linux feature set. Visit
+[Quick Start](https://rocm.docs.amd.com/en/docs-5.5.1/deploy/windows/quick_start.html#)
+page to get started. Known issues are tracked on
+[GitHub](https://github.com/RadeonOpenCompute/ROCm/issues?q=is%3Aopen+label%3A5.5.1+label%3A%22Verified+Issue%22+label%3AWindows).
+
 #### HIP API Change
 
-The following HIP API is updated in the ROCm v5.5.1 release,
+The following HIP API is updated in the ROCm 5.5.1 release:
 
 ##### `hipDeviceSetCacheConfig`
 
@@ -605,10 +618,12 @@ The following HIP API is updated in the ROCm v5.5.1 release,
 | hipFFT | [1.0.11](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.5.1) |
 | hipSOLVER | [1.7.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.5.1) |
 | hipSPARSE | [2.3.5](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.5.1) |
+| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.5.1) |
 | rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.5.1) |
 | rocALUTION | [2.1.8](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.5.1) |
 | rocBLAS | [2.47.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.5.1) |
 | rocFFT | [1.0.22](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.5.1) |
+| rocm-cmake | [0.8.1](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.5.1) |
 | rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.5.1) |
 | rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.5.1) |
 | rocSOLVER | [3.21.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.5.1) |
@@ -939,10 +954,12 @@ Multiple HIP directed tests fail.
 | hipFFT | 1.0.10 ⇒ [1.0.11](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.5.0) |
 | hipSOLVER | 1.6.0 ⇒ [1.7.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.5.0) |
 | hipSPARSE | 2.3.3 ⇒ [2.3.5](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.5.0) |
+| MIOpen |  ⇒ [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.5.0) |
 | rccl | 2.13.4 ⇒ [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.5.0) |
 | rocALUTION | 2.1.3 ⇒ [2.1.8](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.5.0) |
 | rocBLAS | 2.46.0 ⇒ [2.47.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.5.0) |
 | rocFFT | 1.0.21 ⇒ [1.0.22](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.5.0) |
+| rocm-cmake | 0.8.0 ⇒ [0.8.1](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.5.0) |
 | rocPRIM | 2.12.0 ⇒ [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.5.0) |
 | rocRAND | 2.10.16 ⇒ [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.5.0) |
 | rocSOLVER | 3.20.0 ⇒ [3.21.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.5.0) |
@@ -1031,6 +1048,24 @@ hipSPARSE 2.3.5 for ROCm 5.5.0
 - Added more detailed messages on unit test failures due to missing input data
 - Improved documentation
 - Fixed a bug with deprecation messages when using gcc9 (Thanks @Maetveis)
+
+#### MIOpen 2.19.0
+
+MIOpen 2.19.0 for ROCm 5.5.0
+
+##### Added
+
+- ROCm 5.5 support for gfx1101 (Navi32)
+
+##### Changed
+
+- Tuning results for MLIR on ROCm 5.5
+- Bumping MLIR commit to 5.5.0 release tag
+
+##### Fixed
+
+- Fix 3d convolution Host API bug
+- [HOTFIX][MI200][FP16] Disabled ConvHipImplicitGemmBwdXdlops when FP16_ALT is required.
 
 #### rccl 2.15.5
 
@@ -1142,6 +1177,18 @@ rocFFT 1.0.22 for ROCm 5.5.0
 
 - Removed zero-length twiddle table allocations, which fixes errors from hipMallocManaged.
 - Fixed incorrect freeing of HIP stream handles during twiddle computation when multiple devices are present.
+
+#### rocm-cmake 0.8.1
+
+rocm-cmake 0.8.1 for ROCm 5.5.0
+
+##### Fixed
+
+- ROCMInstallTargets: Added compatibility symlinks for included cmake files in `&lt;ROCM&gt;/lib/cmake/&lt;PACKAGE&gt;`.
+
+##### Changed
+
+- ROCMHeaderWrapper: The wrapper header deprecation message is now a deprecation warning.
 
 #### rocPRIM 2.13.0
 
@@ -1458,6 +1505,7 @@ This issue is under investigation, and the known workaround is not to use -save-
 | rocALUTION | [2.1.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.4.3) |
 | rocBLAS | [2.46.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.4.3) |
 | rocFFT | 1.0.20 ⇒ [1.0.21](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.4.3) |
+| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.4.3) |
 | rocPRIM | [2.12.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.4.3) |
 | rocRAND | [2.10.16](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.4.3) |
 | rocSOLVER | [3.20.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.4.3) |
@@ -1521,6 +1569,7 @@ This is a known issue and will be fixed in a future release.
 | rocALUTION | [2.1.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.4.2) |
 | rocBLAS | [2.46.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.4.2) |
 | rocFFT | [1.0.20](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.4.2) |
+| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.4.2) |
 | rocPRIM | [2.12.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.4.2) |
 | rocRAND | [2.10.16](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.4.2) |
 | rocSOLVER | [3.20.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.4.2) |
@@ -1610,6 +1659,7 @@ Maintenance update #3, combined with ROCm 5.4.1, now provides SRIOV virtualizati
 | rocALUTION | [2.1.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.4.1) |
 | rocBLAS | [2.46.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.4.1) |
 | rocFFT | 1.0.19 ⇒ [1.0.20](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.4.1) |
+| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.4.1) |
 | rocPRIM | [2.12.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.4.1) |
 | rocRAND | [2.10.16](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.4.1) |
 | rocSOLVER | [3.20.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.4.1) |
@@ -1725,6 +1775,8 @@ The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, co
 > **Note**
 >
 > There will be a transition period where the Perl scripts and compiled binaries are available  before the scripts are removed. There will be no functional difference between the Perl scripts and their compiled binary counterpart. No user action is required. Once these are available, users can optionally switch to `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
+
+(5_4_0_filesystem_reorg_deprecation_notice)=
 
 ##### Linux Filesystem Hierarchy Standard for ROCm
 
@@ -1868,6 +1920,7 @@ GPU IDs reported by ROCTracer and ROCProfiler or ROCm Tools are HSA Driver Node 
 | rocALUTION | 2.1.0 ⇒ [2.1.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.4.0) |
 | rocBLAS | 2.45.0 ⇒ [2.46.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.4.0) |
 | rocFFT | 1.0.18 ⇒ [1.0.19](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.4.0) |
+| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.4.0) |
 | rocPRIM | 2.11.0 ⇒ [2.12.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.4.0) |
 | rocRAND | 2.10.15 ⇒ [2.10.16](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.4.0) |
 | rocSOLVER | 3.19.0 ⇒ [3.20.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.4.0) |
@@ -2195,6 +2248,7 @@ This issue is resolved with the following fixes to compilation failures:
 | rocALUTION | [2.1.0](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.3.3) |
 | rocBLAS | [2.45.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.3.3) |
 | rocFFT | [1.0.18](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.3.3) |
+| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.3.3) |
 | rocPRIM | [2.11.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.3.3) |
 | rocRAND | [2.10.15](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.3.3) |
 | rocSOLVER | [3.19.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.3.3) |
@@ -2264,6 +2318,7 @@ This issue is currently under investigation and will be resolved in a future rel
 | rocALUTION | [2.1.0](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.3.2) |
 | rocBLAS | [2.45.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.3.2) |
 | rocFFT | [1.0.18](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.3.2) |
+| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.3.2) |
 | rocPRIM | [2.11.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.3.2) |
 | rocRAND | [2.10.15](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.3.2) |
 | rocSOLVER | [3.19.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.3.2) |
@@ -2447,6 +2502,7 @@ Workaround: To avoid the system crash, add `amd_iommu=on iommu=pt` as the kernel
 | rocALUTION | 2.0.3 ⇒ [2.1.0](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.3.0) |
 | rocBLAS | 2.44.0 ⇒ [2.45.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.3.0) |
 | rocFFT | 1.0.17 ⇒ [1.0.18](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.3.0) |
+| rocm-cmake |  ⇒ [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.3.0) |
 | rocPRIM | 2.10.14 ⇒ [2.11.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.3.0) |
 | rocRAND | 2.10.14 ⇒ [2.10.15](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.3.0) |
 | rocSOLVER | 3.18.0 ⇒ [3.19.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.3.0) |
@@ -2628,6 +2684,21 @@ rocFFT 1.0.18 for ROCm 5.3.0
 - Fixed failures of some R2C 3D transforms that use the unsupported TILE_UNALGNED SBRC kernels.
   An example is 98^3 R2C out-of-place.
 - Fixed bugs in SBRC_ERC type.
+
+#### rocm-cmake 0.8.0
+
+rocm-cmake 0.8.0 for ROCm 5.3.0
+
+##### Fixed
+
+- Fixed error in prerm scripts created by `rocm_create_package` that could break uninstall for packages using the `PTH` option.
+
+##### Changed
+
+- `ROCM_USE_DEV_COMPONENT` set to on by default for all platforms. This means that Windows will now generate runtime and devel packages by default
+- ROCMInstallTargets now defaults `CMAKE_INSTALL_LIBDIR` to `lib` if not otherwise specified.
+- Changed default Debian compression type to xz and enabled multi-threaded package compression.
+- `rocm_create_package` will no longer warn upon failure to determine version of program rpmbuild.
 
 #### rocPRIM 2.11.0
 

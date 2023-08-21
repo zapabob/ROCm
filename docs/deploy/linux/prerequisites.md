@@ -91,6 +91,7 @@ sudo rpm -ivh epel-release-latest-8.noarch.rpm
 
 :::
 :::{tab-item} RHEL 9
+:sync: RHEL-9
 
 ```shell
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
@@ -110,14 +111,29 @@ sudo crb enable
 ```
 
 :::::
-:::::{tab-item} SUSE Linux Enterprise Server 15
+:::::{tab-item} SUSE Linux Enterprise Server
+:sync: SLES
 
 Add the perl languages repository.
+
+::::{tab-set}
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
 
 ```shell
 zypper addrepo https://download.opensuse.org/repositories/devel:languages:perl/SLE_15_SP4/devel:languages:perl.repo
 ```
 
+:::
+:::{tab-item} SLES 15.5
+:sync: SLES-15.5
+
+```shell
+zypper addrepo https://download.opensuse.org/repositories/devel:/languages:/perl/15.5/devel:languages:perl.repo
+```
+
+:::
+::::
 :::::
 ::::::
 
