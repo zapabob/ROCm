@@ -59,7 +59,6 @@ ROCm supports virtualization for select GPUs only as shown below.
 | VMWare         | ESXi 7   | MI210 | Ubuntu 20.04 (`5.15.0-56-generic`), SLES 15 SP4 (`5.14.21-150400.24.18-default`) |
 
 (supported_gpus)=
-
 ## Linux Supported GPUs
 
 The table below shows supported GPUs for Instinct™, Radeon Pro™ and Radeon™

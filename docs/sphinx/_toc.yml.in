@@ -74,6 +74,7 @@ subtrees:
     title: Changelog
   - file: release/gpu_os_support
   - file: release/windows_support
+  - file: release/versions
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known Issues
   - file: release/compatibility
@@ -217,8 +218,12 @@ subtrees:
         - entries:
             - file: understand/gpu_arch/mi250
               title: MI250
+            - file: understand/gpu_arch/mi200_performance_counters
+              title: MI200 Performance Counters and Metrics
             - file: understand/gpu_arch/mi100
               title: MI100
+    - file: understand/using_gpu_sanitizer
+      title: Using GPU Sanitizer
     - file: understand/More-about-how-ROCm-uses-PCIe-Atomics
 - caption: How to Guides
   entries:
@@ -258,3 +263,8 @@ subtrees:
   entries:
     - file: about
     - file: contributing
+      subtrees:
+        - entries: 
+          - file: contribute/building.md
+          - file: contribute/feedback.md
+    - file: license.md
