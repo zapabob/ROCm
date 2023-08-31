@@ -1109,7 +1109,7 @@ The following table lists the other Clang options and their support status.
  |-ftime-trace|Supported|Turns on time profiler. Generates JSON file based on output filename|
  |-ftrap-function= \<value\>|Unsupported|Issues call to specified function rather than a trap instruction|
  |-ftrapv-handler= \<function name\>|Unsupported|Specifies the function to be called on overflow|
- |-ftrapv|Unsupported|Traps on integer overflow|
+ |-ftrapv|Supported|Traps on integer overflow|
  |-ftrigraphs|Supported|Processes trigraph sequences|
  |-ftrivial-auto-var-init-stop-after= \<value\>|Supported|Stops initializing trivial automatic stack variables after the specified number of instances|
  |-ftrivial-auto-var-init= \<value\>|Supported|Initializes trivial automatic stack variables. Values: uninitialized (default) / pattern|
