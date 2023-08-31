@@ -35,8 +35,7 @@ There are a few options if the compile time becomes unacceptable:
 
 ### Use AMD Supplied Address Sanitizer Instrumented Libraries
 
-ROCm releases have optional packages containing additional address sanitizer instrumented builds of the ROCm libraries usually found in `/opt/rocm-<version>/lib`. The instrumented libraries have identical names as the regular uninstrumented libraries and are located in `/opt/rocm-<version>/lib/asan`.
-These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used, but, as descibed above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
+ROCm releases provide optional packages containing address sanitizer instrumented builds of a subset of those ROCm libraries usually found in `/opt/rocm-<version>/lib`. These optional packages are typically named <library>-asan. However, the instrumented libraries themselves have identical names as the regular uninstrumented libraries and are located in `/opt/rocm-<version>/lib/asan`. It is expected that the subset of address sanitizer instrumented ROCm libraries will be expanded in future releases. They are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used, but, as described above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
 
 These additional libraries avoid additional developer effort to locate repositories, identify the correct branch, check out the correct tags, and other efforts needed to build the libraries from the source. And they extend the ability of the process to detect addressing errors into the ROCm libraries themselves.
 
