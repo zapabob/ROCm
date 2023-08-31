@@ -40,4 +40,14 @@ interface. It's back-end is rocPRIM.
 
 :::
 
+:::{grid-item-card} {doc}`hipTensor <hiptensor:index>`
+hipTensor is AMD's C++ library for accelerating tensor primitives
+based on the composable kernel library,
+through general purpose kernel languages, like HIP C++.
+
+- {doc}`Documentation <hiptensor:index>`
+- [GitHub](https://github.com/ROCmSoftwarePlatform/hipTensor)
+
+:::
+
 :::::
