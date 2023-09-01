@@ -112,8 +112,7 @@ code compiled with AOMP:
    options --list-basic and --list-derived. `rocprof` accepts either a text or
    an XML file as an input.
 
-For more details on `rocprof`, refer to the ROCm Profiling Tools document on
-{doc}`rocprofiler:rocprof`.
+For more details on `rocprof`, refer to the {doc}`ROCProfilerV1 User Manual <rocprofiler:rocprofv1>`.
 
 ### Using Tracing Options
 
@@ -139,20 +138,21 @@ Google Chrome at chrome://tracing/ or [Perfetto](https://perfetto.dev/).
 Navigate to Chrome or Perfetto and load the JSON file to see the timeline of the
 HSA calls.
 
-For more details on tracing, refer to the ROCm Profiling Tools document on
-{doc}`rocprofiler:rocprof`.
+For more details on tracing, refer to the {doc}`ROCProfilerV1 User Manual <rocprofiler:rocprofv1>`.
 
 ### Environment Variables
 
 :::{table}
 :widths: auto
-| Environment Variable        | Description                  |
+| Environment Variable        | Purpose                  |
 | --------------------------- | ---------------------------- |
-| `OMP_NUM_TEAMS`             | The implementation chooses the number of teams for kernel launch. The user can change this number for performance tuning using this environment variable, subject to implementation limits. |
-| `LIBOMPTARGET_KERNEL_TRACE` | This environment variable is used to print useful statistics for device operations. Setting it to 1 and running the program emits the name of every kernel launched, the number of teams and threads used, and the corresponding register usage. Setting it to 2 additionally emits timing information for kernel launches and data transfer operations between the host and the device. |
-| `LIBOMPTARGET_INFO`         | This environment variable is used to print informational messages from the device runtime as the program executes. Users can request fine-grain information by setting it to the value of 1 or higher and can set the value of -1 for complete information. |
-| `LIBOMPTARGET_DEBUG`        | If a debug version of the device library is present, setting this environment variable to 1 and using that library emits further detailed debugging information about data transfer operations and kernel launch. |
-| `GPU_MAX_HW_QUEUES`         | This environment variable is used to set the number of HSA queues in the OpenMP runtime. |
+| `OMP_NUM_TEAMS`             | To set the number of teams for kernel launch, which is otherwise chosen by the implementation by default. You can set this number (subject to implementation limits) for performance tuning. |
+| `LIBOMPTARGET_KERNEL_TRACE` | To print useful statistics for device operations. Setting it to 1 and running the program emits the name of every kernel launched, the number of teams and threads used, and the corresponding register usage. Setting it to 2 additionally emits timing information for kernel launches and data transfer operations between the host and the device. |
+| `LIBOMPTARGET_INFO`         | To print informational messages from the device runtime as the program executes. Setting it to a value of 1 or higher, prints fine-grain information and setting it to -1 prints complete information. |
+| `LIBOMPTARGET_DEBUG`        | To get detailed debugging information about data transfer operations and kernel launch when using a debug version of the device library. Set this environment variable to 1 to get the detailed information from the library. |
+| `GPU_MAX_HW_QUEUES`         | To set the number of HSA queues in the OpenMP runtime. The HSA queues are created on demand up to the maximum value as supplied here. The queue creation starts with a single initialized queue to avoid unnecessary allocation of resources. The provided value is capped if it exceeds the recommended, device-specific value. |
+| `LIBOMPTARGET_AMDGPU_MAX_ASYNC_COPY_BYTES` | To set the threshold size up to which data transfers are initiated asynchronously. The default threshold size is 1*1024*1024 bytes (1MB). |
+| `OMPX_FORCE_SYNC_REGIONS` | To force the runtime to execute all operations synchronously, i.e., wait for an operation to complete immediately. This affects data transfers and kernel execution. While it is mainly designed for debugging, it may have a minor positive effect on performance in certain situations. |
 :::
 
 ## OpenMP: Features
@@ -164,10 +164,17 @@ implemented in the past releases.
 
 ### Asynchronous Behavior in OpenMP Target Regions
 
-- Multithreaded offloading on the same device
+- Controlling Asynchronous Behavior
+
+The OpenMP offloading runtime executes in an asynchronous fashion by default, allowing multiple data transfers to start concurrently. However, if the data to be transferred becomes larger than the default threshold of 1MB, the runtime falls back to a synchronous data transfer. The buffers that have been locked already are always executed asynchronously.
+You can overrule this default behavior by setting `LIBOMPTARGET_AMDGPU_MAX_ASYNC_COPY_BYTES` and `OMPX_FORCE_SYNC_REGIONS`. See the [Environment Variables](#environment-variables) table for details.
+
+- Multithreaded Offloading on the Same Device
+
 The `libomptarget` plugin for GPU offloading allows creation of separate configurable HSA queues per chiplet, which enables two or more threads to concurrently offload to the same device.
 
-- Parallel memory copy invocations
+- Parallel Memory Copy Invocations
+
 Implicit asynchronous execution of single target region enables parallel memory copy invocations.
 
 ### Unified Shared Memory
@@ -322,8 +329,10 @@ double a = 0.0;
 a = a + 1.0;
 ```
 
-NOTE `AMD_unsafe_fp_atomics` is an alias for `AMD_fast_fp_atomics`, and
+:::{note}
+`AMD_unsafe_fp_atomics` is an alias for `AMD_fast_fp_atomics`, and
 `AMD_safe_fp_atomics` is implemented with a compare-and-swap loop.
+:::
 
 To disable the generation of fast floating-point atomic instructions at the file
 level, build using the option `-msafe-fp-atomics` or use a hint clause on a

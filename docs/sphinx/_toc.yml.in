@@ -182,9 +182,9 @@ subtrees:
           - url: ${project:rocgdb}
             title: ROCgdb
           - url: ${project:rocprofiler}
-            title: rocprofiler
+            title: ROCProfiler
           - url: ${project:roctracer}
-            title: roctracer
+            title: ROCTracer
           - url: ${project:rocdbgapi}
             title: ROCdbgapi
     - file: reference/management_tools
