@@ -57,6 +57,7 @@ fetch="https://github.com/KhronosGroup/" />
     <project groups="mathlibs" name="rocSOLVER" remote="rocm-swplat" />
     <project groups="mathlibs" name="hipSOLVER" remote="rocm-swplat" />
     <project groups="mathlibs" name="hipSPARSE" remote="rocm-swplat" />
+    <project groups="mathlibs" name="hipSPARSELt" remote="rocm-swplat" />
     <project groups="mathlibs" name="rocALUTION" remote="rocm-swplat" />
     <project name="MIOpen" remote="rocm-swplat" />
     <project groups="mathlibs" name="rccl" remote="rocm-swplat" />

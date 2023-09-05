@@ -121,6 +121,8 @@ subtrees:
                 url: ${project:rocsparse}
               - title: hipSPARSE
                 url: ${project:hipsparse}
+              - title: hipSPARSELt
+                url: ${project:hipsparselt}
           - file: reference/gpu_libraries/fft
             subtrees:
             - entries: 
@@ -142,11 +144,14 @@ subtrees:
           - title: rocPRIM
             url: ${project:rocprim}
         - entries:
+          - title: rocThrust
+            url: ${project:rocthrust}
+        - entries:
           - title: hipCUB 
             url: ${project:hipcub}
         - entries:
-          - title: rocThrust
-            url: ${project:rocthrust}
+          - title: hipTensor 
+            url: ${project:hiptensor}
     - file: reference/gpu_libraries/communication
       title: Communication Libraries
       subtrees:

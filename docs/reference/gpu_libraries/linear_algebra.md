@@ -97,4 +97,13 @@ supporting both `rocSPARSE` and `cuSPARSE` as backends.
 
 :::
 
+:::{grid-item-card} {doc}`hipSPARSELt <hipsparselt:index>`
+`hipSPARSE` is a marshalling library to provide sparse BLAS functionality,
+supporting both `rocSPARSELt` and `cuSPARSELt` as backends.
+
+- {doc}`Documentation <hipsparselt:index>`
+- [GitHub](https://github.com/ROCmSoftwarePlatform/hipSPARSELt)
+
+:::
+
 :::::
