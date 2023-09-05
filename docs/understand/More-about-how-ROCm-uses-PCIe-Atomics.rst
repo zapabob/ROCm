@@ -30,9 +30,9 @@ If your system has a PCIe Express Switch it needs to support AtomicsOp routing. 
 
 Atomic Operation is a Non-Posted transaction supporting 32-bit and 64-bit address formats, there must be a response for Completion containing the result of the operation. Errors associated with the operation (uncorrectable error accessing the target location or carrying out the Atomic operation) are signaled to the requester by setting the Completion Status field in the completion descriptor, they are set to to Completer Abort (CA) or Unsupported Request (UR).
 
-To understand more about how PCIe Atomic operations work `PCIe Atomics <https://pcisig.com/sites/default/files/specification_documents/ECN_Atomic_Ops_080417.pdf>`_
+To understand more about how PCIe Atomic operations work `PCIe Atomics <https://pcisig.com/specifications/pciexpress/specifications/ECN_Atomic_Ops_080417.pdf>`_
 
-`Linux Kernel Patch to pci_enable_atomic_request <https://patchwork.kernel.org/patch/7261731/>`_
+`Linux Kernel Patch to pci_enable_atomic_request <https://patchwork.kernel.org/project/linux-pci/patch/1443110390-4080-1-git-send-email-jay@jcornwall.me/>`_
 
 There are also a number of papers which talk about these new capabilities:
 
@@ -50,7 +50,7 @@ Other I/O devices with PCIe Atomics support
 
 Future bus technology with richer I/O Atomics Operation Support
 
-  * `GenZ <http://genzconsortium.org/faq/gen-z-technology/#33/>`_
+  * GenZ
 
 New PCIe Endpoints with support beyond AMD Ryzen and EPYC CPU; Intel Haswell or newer CPU’s with PCIe Generation 3.0 support.
 
@@ -64,8 +64,6 @@ In ROCm, we also take advantage of PCIe ID based ordering technology for P2P whe
   | 2. then write to system memory to indicate transfer complete.
 
 They are routed off to different ends of the computer but we want to make sure the write to system memory to indicate transfer complete occurs AFTER P2P write to GPU has complete.
-
-`Good Paper on Understanding PCIe Generation 3 Throughput <https://www.altera.com/en_US/pdfs/literature/an/an690.pdf>`_
 
 BAR Memory Overview
 *******************

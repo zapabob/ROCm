@@ -166,6 +166,7 @@ section.
 # version
 ver=5.6.1
 
+
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
@@ -364,6 +365,7 @@ section.
 # version
 ver=5.6.1
 
+
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
@@ -481,6 +483,7 @@ but are generally useful. Verification of the install is advised.
 
    ```shell
    export PATH=$PATH:/opt/rocm-5.6.1/bin:/opt/rocm-5.6.1/opencl/bin
+
    ```
 
    ```{attention}

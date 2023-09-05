@@ -74,6 +74,7 @@ subtrees:
     title: Changelog
   - file: release/gpu_os_support
   - file: release/windows_support
+  - file: release/versions
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known Issues
   - file: release/compatibility
@@ -120,6 +121,8 @@ subtrees:
                 url: ${project:rocsparse}
               - title: hipSPARSE
                 url: ${project:hipsparse}
+              - title: hipSPARSELt
+                url: ${project:hipsparselt}
           - file: reference/gpu_libraries/fft
             subtrees:
             - entries: 
@@ -141,11 +144,14 @@ subtrees:
           - title: rocPRIM
             url: ${project:rocprim}
         - entries:
+          - title: rocThrust
+            url: ${project:rocthrust}
+        - entries:
           - title: hipCUB 
             url: ${project:hipcub}
         - entries:
-          - title: rocThrust
-            url: ${project:rocthrust}
+          - title: hipTensor 
+            url: ${project:hiptensor}
     - file: reference/gpu_libraries/communication
       title: Communication Libraries
       subtrees:
@@ -181,9 +187,9 @@ subtrees:
           - url: ${project:rocgdb}
             title: ROCgdb
           - url: ${project:rocprofiler}
-            title: rocprofiler
+            title: ROCProfiler
           - url: ${project:roctracer}
-            title: roctracer
+            title: ROCTracer
           - url: ${project:rocdbgapi}
             title: ROCdbgapi
     - file: reference/management_tools
@@ -217,8 +223,12 @@ subtrees:
         - entries:
             - file: understand/gpu_arch/mi250
               title: MI250
+            - file: understand/gpu_arch/mi200_performance_counters
+              title: MI200 Performance Counters and Metrics
             - file: understand/gpu_arch/mi100
               title: MI100
+    - file: understand/using_gpu_sanitizer
+      title: Using GPU Sanitizer
     - file: understand/More-about-how-ROCm-uses-PCIe-Atomics
 - caption: How to Guides
   entries:
@@ -258,3 +268,8 @@ subtrees:
   entries:
     - file: about
     - file: contributing
+      subtrees:
+        - entries: 
+          - file: contribute/building.md
+          - file: contribute/feedback.md
+    - file: license.md

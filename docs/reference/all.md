@@ -29,6 +29,7 @@ ROCm template libraries for C++ primitives and algorithms are as follows:
 - {doc}`rocPRIM <rocprim:index>`
 - {doc}`rocThrust <rocthrust:index>`
 - {doc}`hipCUB <hipcub:index>`
+- {doc}`hipTensor <hiptensor:index>`
 
 :::
 

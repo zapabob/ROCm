@@ -32,6 +32,14 @@ UCX version | ROCm 5.4 and older | ROCm 5.5 and newer |
 | -1.14.0   | COMPATIBLE         | INCOMPATIBLE       |
 |  1.14.1+  | COMPATIBLE         | COMPATIBLE         |
 
+The Unified Collective Communication Library [UCC](https://https://github.com/openucx/ucc)
+also has support for ROCm devices.
+
+UCC version | ROCm 5.5 and older | ROCm 5.6 and newer |
+|:----------|:------------------:|:------------------:|
+| -1.1.0    | COMPATIBLE         | INCOMPATIBLE       |
+|  1.2.0+   | COMPATIBLE         | COMPATIBLE         |
+
 ## Algorithm libraries
 
 ROCm releases provide algorithm libraries with interfaces compatible with

@@ -1,6 +1,6 @@
 # Math Libraries
 
-AMD provides various math domain and support libraries as part of the ROCm.
+AMD provides various math domain and support libraries as part of ROCm.
 
 ## rocLIB vs. hipLIB
 
@@ -26,6 +26,7 @@ at compile-time of the hipLIB in question. For dynamic dispatch between vendor i
 - {doc}`hipSOLVER <hipsolver:index>`
 - {doc}`rocSPARSE <rocsparse:index>`
 - {doc}`hipSPARSE <hipsparse:index>`
+- {doc}`hipSPARSELt <hipsparselt:index>`
 
 :::
 

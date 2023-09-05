@@ -6,16 +6,16 @@ system meets all the requirements to proceed with the installation.
 ## Confirm the System Is Supported
 
 The ROCm installation is supported only on specific host architectures, Windows
-SKUs and update versions.
+Editions and update versions.
 
-### Check the Windows SKU and Update Version on Your System
+### Check the Windows Editions and Update Version on Your System
 
 This section discusses obtaining information about the host architecture,
-Windows SKU and update version.
+Windows Edition and update version.
 
 #### Command Line Check
 
-Verify the Windows SKU using the following steps:
+Verify the Windows Edition using the following steps:
 
 1. To obtain the Linux distribution information, type the following command on
    your system from a PowerShell Command Line Interface (CLI):
