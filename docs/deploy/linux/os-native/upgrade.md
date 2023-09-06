@@ -26,7 +26,8 @@ repository to the new release.
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 # amdgpu repository for focal
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$version/ubuntu focal main" \
@@ -40,7 +41,8 @@ sudo apt update
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 # amdgpu repository for jammy
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$version/ubuntu jammy main" \
@@ -61,7 +63,8 @@ sudo apt update
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
@@ -82,7 +85,8 @@ sudo yum clean all
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
@@ -103,7 +107,8 @@ sudo yum clean all
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
@@ -124,7 +129,8 @@ sudo yum clean all
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
@@ -145,7 +151,8 @@ sudo yum clean all
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
@@ -171,7 +178,8 @@ sudo yum clean all
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
@@ -255,7 +263,8 @@ repository to the new release.
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$version focal main" \
     | sudo tee /etc/apt/sources.list.d/rocm.list
@@ -270,7 +279,8 @@ sudo apt update
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$version jammy main" \
     | sudo tee /etc/apt/sources.list.d/rocm.list
@@ -291,7 +301,8 @@ sudo apt update
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 sudo tee /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
@@ -311,7 +322,8 @@ sudo yum clean all
 
 ```shell
 # version
-version=5.6
+version=5.6.1
+
 
 sudo tee /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
@@ -333,7 +345,7 @@ sudo yum clean all
 
 ```shell
 # version
-version=5.6
+version=5.6.1
 
 sudo tee /etc/zypp/repos.d/rocm.repo <<EOF
 [ROCm-$ver]

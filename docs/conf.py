@@ -23,7 +23,6 @@ copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved
 version = "5.7.0"
 release = "5.7.0"
 
-
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
@@ -86,7 +85,7 @@ article_pages = [
 
 external_toc_path = "./sphinx/_toc.yml"
 
-docs_core = ROCmDocs("ROCm Documentation Home")
+docs_core = ROCmDocs("ROCm 5.6.1 Documentation Home")
 docs_core.setup()
 
 external_projects_current_project = "rocm"
