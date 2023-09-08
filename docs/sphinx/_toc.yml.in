@@ -6,270 +6,60 @@ defaults:
 root: index
 subtrees:
 - entries:
-  - file: rocm
-- caption: Deploy ROCm
-  entries:
-  - file: deploy/linux/quick_start
-    title: Linux Quick Start
-  - file: deploy/linux/index
-    title: Linux Overview
+  - file: what_is_rocm
+    title: What is ROCm?
     subtrees:
-      - entries:
-        - file: deploy/linux/install_overview.md
-          title: Installation Overview
-        - file: deploy/linux/prerequisites
-          title: Prerequisites
-        - file: deploy/linux/os-native/index
-          subtrees:
-            - entries:
-              - file: deploy/linux/os-native/install
-                title: Installation
-              - file: deploy/linux/os-native/upgrade
-                title: Upgrade
-              - file: deploy/linux/os-native/uninstall
-                title: Uninstallation
-              - file: deploy/linux/os-native/package_manager_integration
-        - file: deploy/linux/installer/index
-          subtrees:
-            - entries:
-              - file: deploy/linux/installer/install
-                title: Installation
-              - file: deploy/linux/installer/upgrade
-                title: Upgrade
-              - file: deploy/linux/installer/uninstall
-                title: Uninstallation
-  - file: deploy/windows/quick_start
-    title: Windows Quick Start
-  - file: deploy/windows/index
-    title: Windows Overview
+    - entries:
+      - file: rocm_ai/rocm_ai.md
+        title: ROCm & AI
+  - file: tutorials/quick_start/index.md
+    title: Quick start
     subtrees:
-      - entries:
-        - file: deploy/windows/prerequisites
-          title: Prerequisites
-        - file: deploy/windows/gui/index
-          subtrees:
-            - entries:
-              - file: deploy/windows/gui/install
-                title: Installation
-              - file: deploy/windows/gui/upgrade
-                title: Upgrade
-              - file: deploy/windows/gui/uninstall
-                title: Uninstallation
-        - file: deploy/windows/cli/index
-          subtrees:
-            - entries:
-              - file: deploy/windows/cli/install
-                title: Installation
-              - file: deploy/windows/cli/upgrade
-                title: Upgrade
-              - file: deploy/windows/cli/uninstall
-                title: Uninstallation
-  - file: deploy/docker
-    title: Docker
-
-- caption: Release Info
-  entries:
-  - file: release
-  - file: CHANGELOG
-    title: Changelog
-  - file: release/gpu_os_support
-  - file: release/windows_support
-  - file: release/versions
-  - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
-    title: Known Issues
-  - file: release/compatibility
+    - entries:
+      - file: tutorials/quick_start/linux.md
+        title: Linux
+      - file: tutorials/quick_start/windows.md
+        title: Windows
+  - file: about/compatibility/index.md
+    title: Compatibility & support
+  - file: CHANGELOG.md
+    title: Release information
     subtrees:
-      - entries:
-        - file: release/user_kernel_space_compat_matrix
-        - file: release/docker_image_support_matrix
-        - file: release/3rd_party_support_matrix
-  - file: release/licensing
+    - entries:
+      - file: whats_new/whats_new.md
+        title: What's new?
+      - file: about/release/release_history.md
+        title: Release history
+      - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
+        title: Known issues
+  - file: tutorials/index.md
+    title: Tutorials
+    subtrees:
+    - entries:
+      - file: tutorials/install/linux/index.md
+        title: Install ROCm (Linux)
+      - file: tutorials/install/windows/index.md
+        title: Install ROCm (Windows)
+  - file: how_to/index.md
+    title: How-to guides
+  - file: reference/index.md
+    title: Reference guides
+  - file: conceptual/index.md
+    title: Conceptual documentation
+  - file: rocm_a-z.md
+    title: ROCm A-Z
+  - file: contribute/index.md
+    title: Contributing
+    subtrees:
+    - entries:
+      - file: contribute/toolchain.md
+        title: Documentation tools
+      - file: contribute/building.md
+        title: Building documentation
+      - file: contribute/feedback.md
+        title: Providing feedback
+  - file: about/license.md
+    title: ROCm licensing
 
 
-- caption: APIs and Reference
-  entries:
-    - file: reference/all
-    - file: reference/hip
-      subtrees:
-        - entries:
-            - title: HIP Runtime API
-              url: ${project:hip}
-            - title: HIPify - Port Your Code
-              url: ${project:hipify}
-    - file: reference/gpu_libraries/math
-      title: Math Libraries
-      subtrees:
-        - entries:
-          - file: reference/gpu_libraries/linear_algebra
-            subtrees:
-            - entries: 
-              - title: rocBLAS
-                url: ${project:rocblas}
-              - title: hipBLAS
-                url: ${project:hipblas}
-              - title: hipBLASLt
-                url: ${project:hipblaslt}
-              - title: rocALUTION
-                url: ${project:rocalution}
-              - title: rocWMMA
-                url: ${project:rocwmma}
-              - title: rocSOLVER
-                url: ${project:rocsolver}
-              - title: hipSOLVER
-                url: ${project:hipsolver}
-              - title: rocSPARSE
-                url: ${project:rocsparse}
-              - title: hipSPARSE
-                url: ${project:hipsparse}
-              - title: hipSPARSELt
-                url: ${project:hipsparselt}
-          - file: reference/gpu_libraries/fft
-            subtrees:
-            - entries: 
-              - title: rocFFT
-                url: ${project:rocfft}
-              - title: hipFFT
-                url: ${project:hipfft}
-          - file: reference/gpu_libraries/rand
-            subtrees:
-            - entries: 
-              - title: rocRAND
-                url: ${project:rocrand}
-              - title: hipRAND
-                url: ${project:hiprand}
-    - file: reference/gpu_libraries/c++_primitives
-      title: C++ Primitive Libraries
-      subtrees:
-        - entries:
-          - title: rocPRIM
-            url: ${project:rocprim}
-        - entries:
-          - title: rocThrust
-            url: ${project:rocthrust}
-        - entries:
-          - title: hipCUB 
-            url: ${project:hipcub}
-        - entries:
-          - title: hipTensor 
-            url: ${project:hiptensor}
-    - file: reference/gpu_libraries/communication
-      title: Communication Libraries
-      subtrees:
-        - entries:
-          - title: RCCL
-            url: ${project:rccl}
-    - file: reference/ai_tools
-      title: AI Libraries
-      subtrees:
-        - entries:
-          - title: MIOpen - Machine Intelligence
-            url: ${project:miopen}
-          - title: Composable Kernel
-            url: ${project:composable_kernel}
-          - title: MIGraphX - Graph Optimization
-            url: ${project:amdmigraphx}
-    - file: reference/computer_vision
-      subtrees:
-        - entries:
-          - url: ${project:mivisionx}
-            title: MIVisionX
-        - entries:
-          - url: ${project:rocal}
-            title: rocAL 
-    - file: reference/openmp/openmp
-      title: OpenMP
-    - file: reference/compilers
-      title: Compilers and Tools
-      subtrees:
-        - entries:
-          - file: reference/rocmcc/rocmcc
-            title: ROCmCC
-          - url: ${project:rocgdb}
-            title: ROCgdb
-          - url: ${project:rocprofiler}
-            title: ROCProfiler
-          - url: ${project:roctracer}
-            title: ROCTracer
-          - url: ${project:rocdbgapi}
-            title: ROCdbgapi
-    - file: reference/management_tools
-      title: Management Tools
-      subtrees:
-        - entries:
-          - url: https://rocm.docs.amd.com/projects/amdsmi/en/{branch}/
-            title: AMD SMI
-          - url: https://rocm.docs.amd.com/projects/rocm_smi_lib/en/{branch}/
-            title: ROCm SMI
-          - url: ${project:rdc}
-            title: ROCm Datacenter Tool
-    - file: reference/validation_tools
-      title: Validation Tools
-      subtrees:
-        - entries:
-          - url: ${project:rocmvalidationsuite}
-            title: RVS
-          - url: ${project:transferbench}
-            title: TransferBench
-- caption: Understand ROCm
-  entries:
-    - file: understand/all.md
-    - title: Compiler Disambiguation
-      file: understand/compiler_disambiguation
-    - file: understand/cmake_packages
-    - file: understand/file_reorg
-    - file: understand/gpu_isolation
-    - file: understand/gpu_arch
-      subtrees:
-        - entries:
-            - file: understand/gpu_arch/mi250
-              title: MI250
-            - file: understand/gpu_arch/mi200_performance_counters
-              title: MI200 Performance Counters and Metrics
-            - file: understand/gpu_arch/mi100
-              title: MI100
-    - file: understand/using_gpu_sanitizer
-      title: Using GPU Sanitizer
-    - file: understand/More-about-how-ROCm-uses-PCIe-Atomics
-- caption: How to Guides
-  entries:
-    - file: how_to/all
-    - title: Tuning Guides
-      file: how_to/tuning_guides/index.md
-      subtrees:
-        - entries:
-          - title: MI200
-            file: how_to/tuning_guides/mi200.md
-          - title: MI100
-            file: how_to/tuning_guides/mi100.md
-          - title: PRO W6000 & V620
-            file: how_to/tuning_guides/w6000_v620.md
-    - file: how_to/deep_learning_rocm
-      subtrees:
-        - entries:
-          - file: how_to/magma_install/magma_install
-          - file: how_to/pytorch_install/pytorch_install
-          - file: how_to/tensorflow_install/tensorflow_install
-    - file: how_to/gpu_aware_mpi
-    - file: how_to/system_debugging
 
-- caption: Tutorials & Examples
-  file: examples
-  entries:
-    - title: ROCm Examples
-      url: https://github.com/amd/rocm-examples
-    - title: Machine Learning
-      file: examples/machine_learning/all
-      subtrees:
-        - entries: 
-          - file: examples/machine_learning/pytorch_inception
-          - file: examples/machine_learning/migraphx_optimization
-
-- caption: About 
-  entries:
-    - file: about
-    - file: contributing
-      subtrees:
-        - entries: 
-          - file: contribute/building.md
-          - file: contribute/feedback.md
-    - file: license.md

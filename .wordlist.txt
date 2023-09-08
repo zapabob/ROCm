@@ -1,3 +1,7 @@
+ROCProfiler
+ROCTracer
+ROCdbgapi
+hipify
 # building
 matchers
 # file_reorg

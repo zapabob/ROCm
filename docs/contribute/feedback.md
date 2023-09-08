@@ -24,4 +24,4 @@ Issues on existing or absent docs can be filed as
 
 ## Email
 
-Send other feedback or questions to [rocm-feedback@amd.com](rocm-feedback@amd.com)
+Send other feedback or questions to [rocm-feedback@amd.com](mailto:rocm-feedback\@amd.com?subject=Documentation Feedback)

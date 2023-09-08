@@ -52,7 +52,7 @@ compute nodes to get the best performance out of them.
 
 - [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
 - [Whitepaper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
-- [Guide](./mi200.md)
+- [Guide](./mi200)
 
 :::
 
@@ -62,7 +62,7 @@ accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs
 
 - [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf)
 - [Whitepaper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
-- [Guide](./mi100.md)
+- [Guide](./mi100)
 
 :::
 
@@ -90,7 +90,7 @@ PRO W6800 and AMD Radeon PRO V620
 
 - [AMD RDNA2 Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/rdna2-shader-instruction-set-architecture.pdf)
 - [Whitepaper](https://www.amd.com/system/files/documents/rdna2-explained-radeon-pro-W6000.pdf)
-- [Guide](./w6000_v620.md)
+- [Guide](./w6000_v620)
 
 :::
 

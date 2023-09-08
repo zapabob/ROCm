@@ -35,57 +35,42 @@ article_pages = [
         "date":"2023-07-27"
     },
 
-    {"file":"deploy/linux/index", "os":["linux"]},
-    {"file":"deploy/linux/install_overview", "os":["linux"]},
-    {"file":"deploy/linux/prerequisites", "os":["linux"]},
-    {"file":"deploy/linux/quick_start", "os":["linux"]},
-    {"file":"deploy/linux/install", "os":["linux"]},
-    {"file":"deploy/linux/upgrade", "os":["linux"]},
-    {"file":"deploy/linux/uninstall", "os":["linux"]},
-    {"file":"deploy/linux/package_manager_integration", "os":["linux"]},
-    {"file":"deploy/docker", "os":["linux"]},
-    
-    {"file":"deploy/windows/cli/index", "os":["windows"]},
-    {"file":"deploy/windows/cli/install", "os":["windows"]},
-    {"file":"deploy/windows/cli/uninstall", "os":["windows"]},
-    {"file":"deploy/windows/cli/upgrade", "os":["windows"]},
-    {"file":"deploy/windows/gui/index", "os":["windows"]},
-    {"file":"deploy/windows/gui/install", "os":["windows"]},
-    {"file":"deploy/windows/gui/uninstall", "os":["windows"]},
-    {"file":"deploy/windows/gui/upgrade", "os":["windows"]},
-    {"file":"deploy/windows/index", "os":["windows"]},
-    {"file":"deploy/windows/prerequisites", "os":["windows"]},
-    {"file":"deploy/windows/quick_start", "os":["windows"]},
+    {"file":"tutorials/quick_start/windows", "os":["windows"]},
+    {"file":"tutorials/quick_start/linux", "os":["linux"]},
 
-    {"file":"release/gpu_os_support", "os":["linux"]},
-    {"file":"release/windows_support", "os":["windows"]},
-    {"file":"release/docker_support_matrix", "os":["linux"]},
-    
-    {"file":"reference/gpu_libraries/communication", "os":["linux"]},
-    {"file":"reference/ai_tools", "os":["linux"]},
-    {"file":"reference/management_tools", "os":["linux"]},
-    {"file":"reference/validation_tools", "os":["linux"]},
-    {"file":"reference/framework_compatibility/framework_compatibility", "os":["linux"]},
+    {"file":"tutorials/install/linux/index", "os":["linux"]},
+    {"file":"tutorials/install/linux/install_overview", "os":["linux"]},
+    {"file":"tutorials/install/linux/prerequisites", "os":["linux"]},
+
+    {"file":"tutorials/install/docker", "os":["linux"]},
+    {"file":"tutorials/install/magma_install", "os":["linux"]},
+    {"file":"tutorials/install/pytorch_install", "os":["linux"]},
+    {"file":"tutorials/install/tensorflow_install", "os":["linux"]},
+
+    {"file":"tutorials/install/windows/index", "os":["windows"]},
+    {"file":"tutorials/install/windows/prerequisites", "os":["windows"]},
+    {"file":"tutorials/install/windows/cli/index", "os":["windows"]},
+    {"file":"tutorials/install/windows/gui/index", "os":["windows"]},
+
+    {"file":"about/release/linux_support", "os":["linux"]},
+    {"file":"about/release/windows_support", "os":["windows"]},
+
+    {"file":"about/compatibility/docker_image_support_matrix", "os":["linux"]},
+
+    {"file":"reference/libraries/gpu_libraries/communication", "os":["linux"]},
+    {"file":"reference/compilers_tools/index", "os":["linux"]},
     {"file":"reference/computer_vision", "os":["linux"]},
-    
+
     {"file":"how_to/deep_learning_rocm", "os":["linux"]},
     {"file":"how_to/gpu_aware_mpi", "os":["linux"]},
-    {"file":"how_to/magma_install/magma_install", "os":["linux"]},
-    {"file":"how_to/pytorch_install/pytorch_install", "os":["linux"]},
     {"file":"how_to/system_debugging", "os":["linux"]},
-    {"file":"how_to/tensorflow_install/tensorflow_install", "os":["linux"]},
 
-    {"file":"examples/machine_learning", "os":["linux"]},
-    {"file":"examples/inception_casestudy/inception_casestudy", "os":["linux"]},
-    
-    {"file":"understand/file_reorg", "os":["linux"]},
-
-    {"file":"understand/isv_deployment_win", "os":["windows"]},
+    {"file":"rocm_ai/rocm_ai", "os":["linux"]},
 ]
 
 external_toc_path = "./sphinx/_toc.yml"
 
-docs_core = ROCmDocs("ROCm 5.6.1 Documentation Home")
+docs_core = ROCmDocs("ROCm Documentation")
 docs_core.setup()
 
 external_projects_current_project = "rocm"
