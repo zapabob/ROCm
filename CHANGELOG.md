@@ -15,6 +15,295 @@ The release notes for the ROCm platform.
 
 -------------------
 
+## ROCm 5.7.0
+
+
+### Library Changes in ROCM 5.7.0
+
+| Library | Version |
+|---------|---------|
+| hipBLAS |  ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.7.0) |
+| hipCUB |  ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.7.0) |
+| hipFFT |  ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.7.0) |
+| hipSOLVER |  ⇒ [1.8.1](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.7.0) |
+| hipSPARSE |  ⇒ [2.3.8](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.7.0) |
+| rccl |  ⇒ [2.17.1-1](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.7.0) |
+| rocALUTION |  ⇒ [2.1.11](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.7.0) |
+| rocBLAS |  ⇒ [3.1.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.7.0) |
+| rocFFT |  ⇒ [1.0.24](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.7.0) |
+| rocPRIM |  ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.7.0) |
+| rocRAND |  ⇒ [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.7.0) |
+| rocSOLVER |  ⇒ [3.23.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.7.0) |
+| rocSPARSE |  ⇒ [2.5.4](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.7.0) |
+| rocThrust |  ⇒ [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.7.0) |
+| rocWMMA |  ⇒ [1.2.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.7.0) |
+| Tensile |  ⇒ [4.38.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.7.0) |
+
+#### hipBLAS 1.1.0
+
+hipBLAS 1.1.0 for ROCm 5.7.0
+
+##### Changed
+
+- updated documentation requirements
+
+##### Dependencies
+
+- dependency rocSOLVER now depends on rocSPARSE
+
+#### hipCUB 2.13.1
+
+hipCUB 2.13.1 for ROCm 5.7.0
+
+##### Changed
+
+- CUB backend references CUB and Thrust version 2.0.1.
+- Fixed `DeviceSegmentedReduce::ArgMin` and `DeviceSegmentedReduce::ArgMax` by returning the segment-relative index instead of the absolute one.
+- Fixed `DeviceSegmentedReduce::ArgMin` for inputs where the segment minimum is smaller than the value returned for empty segments. An equivalent fix is applied to `DeviceSegmentedReduce::ArgMax`.
+
+##### Known Issues
+
+- `debug_synchronous` no longer works on CUDA platform. `CUB_DEBUG_SYNC` should be used to enable those checks.
+- `DeviceReduce::Sum` does not compile on CUDA platform for mixed extended-floating-point/floating-point InputT and OutputT types.
+- `DeviceHistogram::HistogramEven` fails on CUDA platform for `[LevelT, SampleIteratorT] = [int, int]`.
+- `DeviceHistogram::MultiHistogramEven` fails on CUDA platform for `[LevelT, SampleIteratorT] = [int, int/unsigned short/float/double]` and `[LevelT, SampleIteratorT] = [float, double]`.
+
+#### hipFFT 1.0.12
+
+hipFFT 1.0.12 for ROCm 5.7.0
+
+##### Added
+
+- Implemented the hipfftXtMakePlanMany, hipfftXtGetSizeMany, hipfftXtExec APIs, to allow requesting half-precision transforms.
+
+##### Changed
+
+- Added --precision argument to benchmark/test clients.  --double is still accepted but is deprecated as a method to request a double-precision transform.
+
+#### hipSOLVER 1.8.1
+
+hipSOLVER 1.8.1 for ROCm 5.7.0
+
+##### Changed
+
+- Changed hipsolver-test sparse input data search paths to be relative to the test executable
+
+#### hipSPARSE 2.3.8
+
+hipSPARSE 2.3.8 for ROCm 5.7.0
+
+##### Improved
+
+- Fix compilation failures when using cusparse 12.1.0 backend
+- Fix compilation failures when using cusparse 12.0.0 backend
+- Fix compilation failures when using cusparse 10.1 (non-update versions) as backend
+- Minor improvements
+
+#### RCCL 2.17.1-1
+
+RCCL 2.17.1-1 for ROCm 5.7.0
+
+##### Changed
+
+- Compatibility with NCCL 2.17.1-1
+- Performance tuning for some collective operations
+
+##### Added
+
+- Minor improvements to MSCCL codepath
+- NCCL_NCHANNELS_PER_PEER support
+- Improved compilation performance
+- Support for gfx94x
+
+##### Fixed
+
+- Potential race-condition during ncclSocketClose()
+
+#### rocALUTION 2.1.11
+
+rocALUTION 2.1.11 for ROCm 5.7.0
+
+##### Added
+
+- Added support for gfx940, gfx941 and gfx942
+
+##### Improved
+
+- Fixed OpenMP runtime issue with Windows toolchain
+
+#### rocBLAS 3.1.0
+
+rocBLAS 3.1.0 for ROCm 5.7.0
+
+##### Added
+
+- yaml lock step argument scanning for rocblas-bench and rocblas-test clients. See Programmers Guide for details.
+- rocblas-gemm-tune is used to find the best performing GEMM kernel for each of a given set of GEMM problems.
+
+##### Fixed
+
+- make offset calculations for rocBLAS functions 64 bit safe.  Fixes for very large leading dimensions or increments potentially causing overflow:
+  - Level 1: axpy, copy, rot, rotm, scal, swap, asum, dot, iamax, iamin, nrm2
+  - Level 2: gemv, symv, hemv, trmv, ger, syr, her, syr2, her2, trsv
+  - Level 3: gemm, symm, hemm, trmm, syrk, herk, syr2k, her2k, syrkx, herkx, trsm, trtri, dgmm, geam
+  - General: set_vector, get_vector, set_matrix, get_matrix
+  - Related fixes: internal scalar loads with &gt; 32bit offsets
+  - fix in-place functionality for all trtri sizes
+
+##### Changed
+
+- dot when using rocblas_pointer_mode_host is now synchronous to match legacy BLAS as it stores results in host memory
+- enhanced reporting of installation issues caused by runtime libraries (Tensile)
+- standardized internal rocblas C++ interface across most functions
+
+##### Deprecated
+
+- Removal of __STDC_WANT_IEC_60559_TYPES_EXT__ define in future release
+
+##### Dependencies
+
+- optional use of AOCL BLIS 4.0 on Linux for clients
+- optional build tool only dependency on python psutil
+
+#### rocFFT 1.0.24
+
+rocFFT 1.0.24 for ROCm 5.7.0
+
+##### Optimizations
+
+- Improved performance of complex forward/inverse 1D FFTs (2049 &lt;= length &lt;= 131071) that use Bluestein&#39;s algorithm.
+
+##### Added
+
+- Implemented a solution map version converter and finish the first conversion from ver.0 to ver.1. Where version 1 removes some incorrect kernels (sbrc/sbcr using half_lds)
+
+##### Changed
+
+- Moved rocfft_rtc_helper executable to lib/rocFFT directory on Linux.
+- Moved library kernel cache to lib/rocFFT directory.
+
+#### rocPRIM 2.13.1
+
+rocPRIM 2.13.1 for ROCm 5.7.0
+
+##### Changed
+
+- Deprecated configuration `radix_sort_config` for device-level radix sort as it no longer matches the algorithm&#39;s parameters. New configuration `radix_sort_config_v2` is preferred instead.
+- Removed erroneous implementation of device-level `inclusive_scan` and `exclusive_scan`. The prior default implementation using lookback-scan now is the only available implementation.
+- The benchmark metric indicating the bytes processed for `exclusive_scan_by_key` and `inclusive_scan_by_key` has been changed to incorporate the key type. Furthermore, the benchmark log has been changed such that these algorithms are reported as `scan` and `scan_by_key` instead of `scan_exclusive` and `scan_inclusive`.
+- Deprecated configurations `scan_config` and `scan_by_key_config` for device-level scans, as they no longer match the algorithm&#39;s parameters. New configurations `scan_config_v2` and `scan_by_key_config_v2` are preferred instead.
+
+##### Fixed
+
+- Fixed build issue caused by missing header in `thread/thread_search.hpp`.
+
+#### rocRAND 2.10.17
+
+rocRAND 2.10.17 for ROCm 5.7.0
+
+##### Added
+
+- MT19937 pseudo random number generator based on M. Matsumoto and T. Nishimura, 1998, Mersenne Twister: A 623-dimensionally equidistributed uniform pseudorandom number generator.
+- New benchmark for the device API using Google Benchmark, `benchmark_rocrand_device_api`, replacing `benchmark_rocrand_kernel`. `benchmark_rocrand_kernel` is deprecated and will be removed in a future version. Likewise, `benchmark_curand_host_api` is added to replace `benchmark_curand_generate` and `benchmark_curand_device_api` is added to replace `benchmark_curand_kernel`.
+- experimental HIP-CPU feature
+- ThreeFry pseudorandom number generator based on Salmon et al., 2011, &#34;Parallel random numbers: as easy as 1, 2, 3&#34;.
+
+##### Changed
+
+- Python 2.7 is no longer officially supported.
+
+#### rocSOLVER 3.23.0
+
+rocSOLVER 3.23.0 for ROCm 5.7.0
+
+##### Added
+
+- LU factorization without pivoting for block tridiagonal matrices:
+    - GEBLTTRF_NPVT now supports interleaved\_batched format
+- Linear system solver without pivoting for block tridiagonal matrices:
+    - GEBLTTRS_NPVT now supports interleaved\_batched format
+
+##### Fixed
+
+- Fixed stack overflow in sparse tests on Windows
+
+##### Changed
+
+- Changed rocsolver-test sparse input data search paths to be relative to the test executable
+- Changed build scripts to default to compressed debug symbols in Debug builds
+
+#### rocSPARSE 2.5.4
+
+rocSPARSE 2.5.4 for ROCm 5.7.0
+
+##### Added
+
+- Added more mixed precisions for SpMV, (matrix: float, vectors: double, calculation: double) and (matrix: rocsparse_float_complex, vectors: rocsparse_double_complex, calculation: rocsparse_double_complex)
+- Added support for gfx940, gfx941 and gfx942
+
+##### Improved
+
+- Fixed a bug in csrsm and bsrsm
+
+##### Known Issues
+
+In csritlu0, the algorithm rocsparse_itilu0_alg_sync_split_fusion has some accuracy issues to investigate with XNACK enabled. The fallback is rocsparse_itilu0_alg_sync_split.
+
+#### rocThrust 2.18.0
+
+rocThrust 2.18.0 for ROCm 5.7.0
+
+##### Fixed 
+
+- `lower_bound`, `upper_bound`, and `binary_search` failed to compile for certain types.
+- Fixed issue where `transform_iterator` would not compile with `__device__`-only operators.
+
+##### Changed
+
+- Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
+- Removed references to and workarounds for deprecated hcc
+
+#### rocWMMA 1.2.0
+
+rocWMMA 1.2.0 for ROCm 5.7.0
+
+##### Changed
+
+- Fixed a bug with synchronization
+- Updated rocWMMA cmake versioning
+
+#### Tensile 4.38.0
+
+Tensile 4.38.0 for ROCm 5.7.0
+
+##### Added
+
+- Added support for FP16 Alt Round Near Zero Mode (this feature allows the generation of alternate kernels with intermediate rounding instead of truncation)
+- Added user-driven solution selection feature
+
+##### Optimizations
+
+- Enabled LocalSplitU with MFMA for I8 data type
+- Optimized K mask code in mfmaIter
+- Enabled TailLoop code in NoLoadLoop to prefetch global/local read
+- Enabled DirectToVgpr in TailLoop for NN, TN, and TT matrix orientations
+- Optimized DirectToLds test cases to reduce the test duration
+
+##### Changed
+
+- Removed DGEMM NT custom kernels and related test cases
+- Changed noTailLoop logic to apply noTailLoop only for NT
+- Changed the range of AssertFree0ElementMultiple and Free1
+- Unified aStr, bStr generation code in mfmaIter
+
+##### Fixed
+
+- Fixed LocalSplitU mismatch issue for SGEMM
+- Fixed BufferStore=0 and Ldc != Ldd case
+- Fixed mismatch issue with TailLoop + MatrixInstB &gt; 1
+
+-------------------
+
 ## ROCm 5.6.1
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
@@ -23,9 +312,9 @@ The release notes for the ROCm platform.
 
 ROCm 5.6.1 is a point release with several bug fixes in the HIP runtime.
 
-## HIP 5.6.1 (for ROCm 5.6.1)
+#### HIP 5.6.1 (for ROCm 5.6.1)
 
-### Fixed Defects
+##### Fixed Defects
 
 - *hipMemcpy* device-to-device (intra device) is now asynchronous with respect to the host
 - Enabled xnack+ check in HIP catch2 tests hang when executing tests
