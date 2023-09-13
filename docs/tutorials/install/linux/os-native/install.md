@@ -133,13 +133,13 @@ single/multi-version installations are, refer to {ref}`installation-types`.
 For a comprehensive list of meta-packages, refer to
 {ref}`meta-package-desc`.
 
-- Sample Single-version installation
+* Sample Single-version installation
 
    ```shell
    sudo apt install rocm-hip-sdk
    ```
 
-- Sample Multi-version installation
+* Sample Multi-version installation
 
    ```shell
    sudo apt install rocm-hip-sdk5.6.1 rocm-hip-sdk5.5.3
@@ -333,13 +333,13 @@ single/multi-version installations are, refer to {ref}`installation-types`.
 For a comprehensive list of meta-packages, refer to
 {ref}`meta-package-desc`.
 
-- Sample Single-version installation
+* Sample Single-version installation
 
    ```shell
    sudo yum install rocm-hip-sdk
    ```
 
-- Sample Multi-version installation
+* Sample Multi-version installation
 
    ```shell
    sudo yum install rocm-hip-sdk5.6.1 rocm-hip-sdk5.5.3
@@ -436,13 +436,13 @@ single/multi-version installations are, refer to {ref}`installation-types`.
 For a comprehensive list of meta-packages, refer to
 {ref}`meta-package-desc`.
 
-- Sample Single-version installation
+* Sample Single-version installation
 
    ```shell
    sudo zypper --gpg-auto-import-keys install rocm-hip-sdk
    ```
 
-- Sample Multi-version installation
+* Sample Multi-version installation
 
    ```shell
    sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.6.1 rocm-hip-sdk5.5.3

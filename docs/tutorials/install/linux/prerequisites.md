@@ -24,7 +24,7 @@ Verify the Linux distribution using the following steps:
    uname -m && cat /etc/*release
    ```
 
-2. Confirm that the obtained Linux distribution information matches with those listed in {ref}`linux_support`.
+2. Confirm that the obtained Linux distribution information matches with those listed in {ref}`linux-support`.
 
    **Example:** Running the command above on an Ubuntu system results in the
    following output:
@@ -57,7 +57,7 @@ Verify the kernel version using the following steps:
    ```
 
 2. Confirm that the obtained kernel version information matches with system
-   requirements as listed in {ref}`linux_support`.
+   requirements as listed in {ref}`linux-support`.
 
 ## Additional package repositories
 

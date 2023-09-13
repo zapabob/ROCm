@@ -19,15 +19,15 @@ The differences are listed in [the table below](rocm-llvm-vs-alt).
 
 For more details, see:
 
-- AMD GPU usage: [llvm.org/docs/AMDGPUUsage.html](https://llvm.org/docs/AMDGPUUsage.html)
-- Releases and source: <https://github.com/RadeonOpenCompute/llvm-project>
+* AMD GPU usage: [llvm.org/docs/AMDGPUUsage.html](https://llvm.org/docs/AMDGPUUsage.html)
+* Releases and source: <https://github.com/RadeonOpenCompute/llvm-project>
 
 ### ROCm Compiler Interfaces
 
 ROCm currently provides two compiler interfaces for compiling HIP programs:
 
-- `/opt/rocm/bin/hipcc`
-- `/opt/rocm/bin/amdclang++`
+* `/opt/rocm/bin/hipcc`
+* `/opt/rocm/bin/amdclang++`
 
 Both leverage the same LLVM compiler technology with the AMD GCN GPU support;
 however, they offer a slightly different user experience. The `hipcc` command-line
@@ -237,8 +237,8 @@ minimized if the hoisted condition is executed more often. This heuristic
 prioritizes the conditions based on the number of times they are used within the
 loop. The heuristic can be controlled with the following options:
 
-- `-unswitch-identical-branches-min-count=<n>`
-  - Enables unswitching of a loop with respect to a branch conditional value
+* `-unswitch-identical-branches-min-count=<n>`
+  * Enables unswitching of a loop with respect to a branch conditional value
     (B), where B appears in at least `<n>` compares in the loop. This option is
     enabled with `-aggressive-loop-unswitch`. The default value is 3.
 
@@ -246,8 +246,8 @@ loop. The heuristic can be controlled with the following options:
 
   Where, `n` is a positive integer and lower value of `<n>` facilitates more
   unswitching.
-- `-unswitch-identical-branches-max-count=<n>`
-  - Enables unswitching of a loop with respect to a branch conditional value
+* `-unswitch-identical-branches-max-count=<n>`
+  * Enables unswitching of a loop with respect to a branch conditional value
     (B), where B appears in at most `<n>` compares in the loop. This option is
     enabled with `-aggressive-loop-unswitch`. The default value is 6.
 
@@ -436,19 +436,19 @@ Inline assembly (ASM) statements allow a developer to include assembly
 instructions directly in either host or device code. While the ROCm compiler
 supports ASM statements, their use is not recommended for the following reasons:
 
-- The compiler's ability to produce both correct code and to optimize
+* The compiler's ability to produce both correct code and to optimize
   surrounding code is impeded.
-- The compiler does not parse the content of the ASM statements and so
+* The compiler does not parse the content of the ASM statements and so
   cannot "see" its contents.
-- The compiler must make conservative assumptions in an effort to retain
+* The compiler must make conservative assumptions in an effort to retain
   correctness.
-- The conservative assumptions may yield code that, on the whole, is less
+* The conservative assumptions may yield code that, on the whole, is less
   performant compared to code without ASM statements. It is possible that a
   syntactically correct ASM statement may cause incorrect runtime behavior.
-- ASM statements are often ASIC-specific; code containing them is less portable
+* ASM statements are often ASIC-specific; code containing them is less portable
   and adds a maintenance burden to the developer if different ASICs are
   targeted.
-- Writing correct ASM statements is often difficult; we strongly recommend
+* Writing correct ASM statements is often difficult; we strongly recommend
   thorough testing of any use of ASM statements.
 
 :::{note}
@@ -608,9 +608,9 @@ architectures.
 The ROCmCC compiler is enhanced to generate binaries that can contain
 heterogenous images. This heterogeneity could be in terms of:
 
-- Images of different architectures, like AMD GCN and NVPTX
-- Images of same architectures but for different GPUs, like gfx906 and gfx908
-- Images of same architecture and same GPU but for different target features,
+* Images of different architectures, like AMD GCN and NVPTX
+* Images of same architectures but for different GPUs, like gfx906 and gfx908
+* Images of same architecture and same GPU but for different target features,
   like `gfx908:xnack+` and `gfx908:xnack-`
 
 An appropriate image is selected by the OpenMP device runtime for execution

@@ -1,5 +1,7 @@
 config:
   default: true
+  MD004:
+    style: asterisk
   MD013: false
   MD026:
     punctuation: '.,;:!'
@@ -11,6 +13,6 @@ config:
   MD051: false
 ignores:
   - CHANGELOG.md
+  - docs/CHANGELOG.md
   - "{,docs/}{RELEASE,release}.md"
-  - docs/about/release/release_notes.md
   - tools/autotag/templates/**/*.md

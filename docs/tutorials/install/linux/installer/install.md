@@ -159,13 +159,13 @@ hiplibsdk (for application developers requiring HIP on AMD products)
 To install use cases specific to your requirements, use the installer
 `amdgpu-install` as follows:
 
-- To install a single use case add it with the `--usecase` option:
+* To install a single use case add it with the `--usecase` option:
 
   ```shell
   sudo amdgpu-install --usecase=rocm
   ```
 
-- For multiple use cases separate them with commas:
+* For multiple use cases separate them with commas:
 
   ```shell
   sudo amdgpu-install --usecase=hiplibsdk,rocm

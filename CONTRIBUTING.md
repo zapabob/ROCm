@@ -35,16 +35,16 @@ guide on writing and formatting on GitHub as a starting point.
 ROCm documentation adds additional requirements to Markdown and RST based files
 as follows:
 
-- Level one headers are only used for page titles. There must be only one level
+* Level one headers are only used for page titles. There must be only one level
   1 header per file for both Markdown and Restructured Text.
-- Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via
+* Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via
   our automated GitHub action on a Pull Request (PR).
   See the {doc}`rocm-docs-core linting user guide <rocm-docs-core:user_guide/linting>` for more details.
 
 ## Filenames and folder structure
 
-Please use snake case (all lower case letters and underscores instead of spaces)
-for file names. For example, `example_file_name.md`.
+Please use kebab-case (all lower case letters and dashes instead of spaces)
+for file names. For example, `example-file-name.md`.
 Our documentation follows Pitchfork for folder structure.
 All documentation is in `/docs` except for special files like
 the contributing guide in the `/` folder. All images used in the documentation are

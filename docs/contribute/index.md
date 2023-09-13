@@ -35,16 +35,16 @@ guide on writing and formatting on GitHub as a starting point.
 ROCm documentation adds additional requirements to Markdown and RST based files
 as follows:
 
-- Level one headers are only used for page titles. There must be only one level
+* Level one headers are only used for page titles. There must be only one level
   1 header per file for both Markdown and Restructured Text.
-- Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via
+* Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via
   our automated GitHub action on a Pull Request (PR).
   See the {doc}`rocm-docs-core linting user guide <rocm-docs-core:user_guide/linting>` for more details.
 
 ## Filenames and folder structure
 
-Please use snake case (all lower case letters and underscores instead of spaces)
-for file names. For example, `example_file_name.md`.
+Please use kebab-case (all lower case letters and dashes instead of spaces)
+for file names. For example, `example-file-name.md`.
 Our documentation follows Pitchfork for folder structure.
 All documentation is in `/docs` except for special files like
 the contributing guide in the `/` folder. All images used in the documentation are
@@ -52,8 +52,8 @@ placed in the `/docs/data` folder.
 
 ## Language and Style
 
-Adopt Microsoft C++ docs guidelines for
-[Voice and tone](https://github.com/MicrosoftDocs/cpp-docs/blob/main/styleguide/voice-tone.md).
+Adopt Microsoft CPP-Docs guidelines for
+[Voice and Tone](https://github.com/MicrosoftDocs/cpp-docs/blob/main/styleguide/voice-tone.md).
 
 ROCm documentation templates to be made public shortly. ROCm templates dictate
 the recommended structure and flow of the documentation. Guidelines on how to
@@ -69,5 +69,3 @@ Raise issues in `rocm-docs-core` for any formatting concerns and changes request
 For more topics, such as submitting feedback and ways to build documentation,
 see the [Contributing Section](https://rocm.docs.amd.com/en/latest/contributing.html)
 at [rocm.docs.amd.com](https://rocm.docs.amd.com)
-
-To learn more about how our documentation is built, refer to the [ROCm toolchain](toolchain.md).

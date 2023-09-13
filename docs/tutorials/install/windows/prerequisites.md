@@ -25,7 +25,7 @@ Verify the Windows Edition using the following steps:
    ```
 
 2. Confirm that the obtained information matches with those listed in
-   {ref}`supported_skus`.
+   {ref}`windows-support`.
 
    **Example:** Running the command above on a Windows system may result in the
    following output:
@@ -71,4 +71,4 @@ Verify the Windows Edition using the following steps:
    ```
 
 3. Confirm that the obtained information matches with those listed in
-   {ref}`supported_skus`.
+   {ref}`windows-support`.

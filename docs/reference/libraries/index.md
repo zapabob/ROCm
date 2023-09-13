@@ -1,8 +1,20 @@
 # ROCm libraries
 
-add links...
+::::{grid} 1 1 2 2
+:gutter: 1
 
-* Math
-* C++ primitive
-* Communication
-* Artificial intelligence
+:::{grid-item-card}
+**[AI libraries](./ai-libraries.md)**
+
+:::
+
+:::{grid-item-card}
+**[Math libraries](./gpu-libraries/math.md)**
+
+:::
+
+:::{grid-item-card}
+**[Communication libraries](./gpu-libraries/communication.md)**
+
+:::
+::::
