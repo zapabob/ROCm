@@ -1,5 +1,12 @@
 # Installation (Linux)
 
+```{warning}
+ROCm currently doesn't support integrated graphics. Should your system have an
+AMD IGP installed, disable it in the BIOS prior to using ROCm. If the driver can
+enumerate the IGP, the ROCm runtime may crash the system, even if told to omit
+it via {ref}`hip_visible_devices`.
+```
+
 ## Understanding the Release-specific AMDGPU and ROCm Repositories on Linux Distributions
 
 The release-specific repositories consist of packages from a specific release of
@@ -53,7 +60,7 @@ To add the AMDGPU repository, follow these steps:
 
 ```shell
 # version
-ver=5.6.1
+ver=5.7
 
 # amdgpu repository for focal
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$ver/ubuntu focal main" \
@@ -67,12 +74,14 @@ sudo apt update
 
 ```shell
 # version
-ver=5.6.1
+ver=5.7
 
 # amdgpu repository for jammy
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$ver/ubuntu jammy main" \
     | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
+# Prefer packages from the rocm repository over system packages
+echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
 ```
 
 :::
@@ -97,7 +106,7 @@ To add the ROCm repository, use the following steps:
 
 ```shell
 # ROCm repositories for focal
-for ver in 5.3.3 5.4.6 5.5.3 5.6.1; do
+for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" \
     | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
@@ -112,7 +121,7 @@ sudo apt update
 
 ```shell
 # ROCm repositories for jammy
-for ver in 5.3.3 5.4.6 5.5.3 5.6.1; do
+for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" \
     | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
@@ -142,7 +151,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo apt install rocm-hip-sdk5.6.1 rocm-hip-sdk5.5.3
+   sudo apt install rocm-hip-sdk5.7 rocm-hip-sdk5.6.1 rocm-hip-sdk5.5.3
    ```
 
 :::::
@@ -164,7 +173,7 @@ section.
 
 ```shell
 # version
-ver=5.6.1
+ver=5.7
 
 
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
@@ -187,7 +196,7 @@ sudo yum clean all
 
 ```shell
 # version
-ver=5.6.1
+ver=5.7
 
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
@@ -209,7 +218,7 @@ sudo yum clean all
 
 ```shell
 # version
-ver=5.6.1
+ver=5.7
 
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
@@ -231,7 +240,7 @@ sudo yum clean all
 
 ```shell
 # version
-ver=5.6.1
+ver=5.7
 
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
@@ -253,7 +262,7 @@ sudo yum clean all
 
 ```shell
 # version
-ver=5.6.1
+ver=5.7
 
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
@@ -288,7 +297,7 @@ To add the ROCm repository, use the following steps, based on your distribution:
 :sync: RHEL-8
 
 ```shell
-for ver in 5.3.3 5.4.6 5.5.3 5.6.1; do
+for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -307,7 +316,7 @@ sudo yum clean all
 :sync: RHEL-9
 
 ```shell
-for ver in 5.3.3 5.4.6 5.5.3 5.6.1; do
+for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -342,7 +351,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo yum install rocm-hip-sdk5.6.1 rocm-hip-sdk5.5.3
+   sudo yum install rocm-hip-sdk5.7 rocm-hip-sdk5.6.1
    ```
 
 :::::
@@ -363,7 +372,7 @@ section.
 
 ```shell
 # version
-ver=5.6.1
+ver=5.7
 
 
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
@@ -383,7 +392,7 @@ sudo zypper ref
 
 ```shell
 # version
-ver=5.6.1
+ver=5.7
 
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
@@ -413,7 +422,7 @@ sudo reboot
 To add the ROCm repository, use the following steps:
 
 ```shell
-for ver in 5.3.3 5.4.6 5.5.3 5.6.1; do
+for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -445,7 +454,7 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.6.1 rocm-hip-sdk5.5.3
+   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.7 rocm-hip-sdk5.6.1
    ```
 
 :::::
@@ -482,7 +491,7 @@ but are generally useful. Verification of the install is advised.
 2. Add binary paths to the `PATH` environment variable.
 
    ```shell
-   export PATH=$PATH:/opt/rocm-5.6.1/bin:/opt/rocm-5.6.1/opencl/bin
+   export PATH=$PATH:/opt/rocm-5.7/bin:/opt/rocm-5.7/opencl/bin
 
    ```
 
