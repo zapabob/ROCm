@@ -12,14 +12,18 @@ AMD ROCm™ Platform supports the following Linux distributions.
 
 | Distribution | Processor Architectures | Validated Kernel | Support |
 | :----------- | :---------------------: | :--------------: | ------: |
-| RHEL 9.2       | x86-64 | 5.14 (5.14.0-284.11.1.el9_2.x86_64)        | ✅ |
-| RHEL 9.1       | x86-64 | 5.14.0-284.11.1.el9_2.x86_64             | ✅ |
-| RHEL 8.8       | x86-64 | 4.18.0-477.el8.x86_64        | ✅ |
-| RHEL 8.7       | x86-64 | 4.18.0-425.10.1.el8_7.x86_64              | ✅ |
-| SLES 15 SP5    | x86-64 |  5.14.21-150500.53-default       | ✅ |
-| SLES 15 SP4    | x86-64 | 5.14.21-150400.24.63-default               | ✅ |
-| Ubuntu 22.04.2 | x86-64 | 5.19.0-45-generic | ✅ |
-| Ubuntu 20.04.5 | x86-64 | 5.15.0-75-generic          | ✅ |
+| CentOS 7.9     | x86-64 | 3.10    | ✅ |
+| RHEL 7.9       | x86-64 | 3.10    | ✅ |
+| RHEL 8.7       | x86-64 | 4.18    | ✅ |
+| RHEL 8.8       | x86-64 | 4.18    | ✅ |
+| RHEL 9.1       | x86-64 | 5.14    | ✅ |
+| RHEL 9.2       | x86-64 | 5.14    | ✅ |
+| SLES 15 SP4    | x86-64 | 5.14.21 | ✅ |
+| SLES 15 SP5    | x86-64 | 5.14.21 | ✅ |
+| Ubuntu 20.04.5 | x86-64 | 5.15    | ✅ |
+| Ubuntu 20.04.6 | x86-64 | 5.15    | ✅ |
+| Ubuntu 22.04.2 | x86-64 | 5.19    | ✅ |
+| Ubuntu 22.04.3 | x86-64 | 6.2     | ✅ |
 
 :::{versionadded} 5.6
 
@@ -92,7 +96,6 @@ Use Driver Shipped with ROCm
 | AMD Radeon™ Pro W6800   | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro V620    | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro VII     | GCN5.1 | gfx906  | ✅ |
-
 :::
 
 :::{tab-item} Radeon™
@@ -100,9 +103,9 @@ Use Driver Shipped with ROCm
 
 [Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
 
-| Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
-|:----:|:------------:|:--------------------------------------------------------------------:|:-------:|
-| AMD Radeon™ VII     | GCN5.1 | gfx906  | ✅ |
+| Name | Architecture    |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
+|:----:|:---------------:|:--------------------------------------------------------------------:|:-------:|
+| AMD Radeon™ VII        | GCN5.1 | gfx906  | ✅ |
 
 :::
 
