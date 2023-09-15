@@ -16,7 +16,77 @@ The release notes for the ROCm platform.
 -------------------
 
 ## ROCm 5.7.0
+<!-- markdownlint-disable first-line-h1 -->
+<!-- markdownlint-disable no-duplicate-header -->
 
+### Release Highlights for ROCm v5.7
+
+#### AMD Instinct™ MI50 End of Support Notice (add links)
+
+AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) will enter maintenance mode starting Q3 2023.
+
+As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 will be the final release for gfx906 GPUs to be in a fully supported state.
+
+- ROCm 6.0 release will show MI50s as "under maintenance" mode for [Linux](./about/release/linux_support) and [Windows](./about/release/windows_support)
+
+- No new features and performance optimizations will be supported for the gfx906 GPUs beyond this major release (ROCm 5.7).
+
+- Bug fixes / critical security patches will continue to be supported for the gfx906 GPUs till Q2 2024 (EOM (End of Maintenance) will be aligned with the closest ROCm release).
+
+- Bug fixes during the maintenance will be made to the next ROCm point release.
+
+- Bug fixes will not be backported to older ROCm releases for gfx906.
+
+- Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
+
+#### Feature Updates
+
+##### Non-hostcall HIP Printf
+
+**Current behavior**
+
+The current version of HIP printf relies on hostcalls, which, in turn, rely on PCIe atomics. However, PCle atomics are unavailable in some environments, and, as a result, HIP-printf does not work in those environments. Users may see the following error from runtime (with AMD_LOG_LEVEL 1 and above), 
+
+```
+    Pcie atomics not enabled, hostcall not supported
+```
+**Workaround**
+
+The ROCm 5.7 release introduces an alternative to the current hostcall-based implementation that leverages an older OpenCL-based printf scheme, which does not rely on hostcalls/PCIe atomics. 
+Note: This option is less robust than hostcall-based implementation and is intended to be a workaround when hostcalls do not work.	
+
+The printf variant is now controlled via a new compiler option -mprintf-kind=<value>. This is supported only for HIP programs and takes the following values,
+
+- “hostcall” – This currently available implementation relies on hostcalls, which require the system to support PCIe atomics. It is the default scheme.
+
+- “buffered” – This implementation leverages the older printf scheme used by OpenCL; it relies on a memory buffer where printf arguments are stored during the kernel execution, and then the runtime handles the actual printing once the kernel finishes execution. 
+
+**NOTE**: With the new workaround,
+
+- The printf buffer is fixed size and non-circular.  After the buffer is filled, calls to printf will not result in additional output.
+
+- The printf call returns either 0 (on success) or -1 (on failure, due to full buffer), unlike the hostcall scheme that returns the number of characters printed.
+
+##### Beta Release of LLVM Address Sanitizer (ASAN) with the GPU (add link)
+
+The ROCm v5.7 release introduces the beta release of LLVM Address Sanitizer (ASAN) with the GPU. The LLVM Address Sanitizer provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
+Until now, the LLVM Address Sanitizer process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
+
+See (add link) for the LLVM Address Sanitizer User Guide.
+
+**Note**: The beta release of LLVM Address Sanitizer for ROCm is currently tested and validated on Ubuntu 20.04.
+
+#### Fixed Defects
+
+The following defects are fixed in ROCm v5.7,
+
+- Test hangs observed in HMM RCCL
+
+- NoGpuTst test of Catch2 fails with Docker
+
+- Failures observed with non-HMM HIP directed catch2 tests with XNACK+
+
+- Multiple test failures and test hangs observed in hip-directed catch2 tests with xnack+
 
 ### Library Changes in ROCM 5.7.0
 
@@ -27,10 +97,12 @@ The release notes for the ROCm platform.
 | hipFFT |  ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.7.0) |
 | hipSOLVER |  ⇒ [1.8.1](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.7.0) |
 | hipSPARSE |  ⇒ [2.3.8](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.7.0) |
+| MIOpen |  ⇒ [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.7.0) |
 | rccl |  ⇒ [2.17.1-1](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.7.0) |
 | rocALUTION |  ⇒ [2.1.11](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.7.0) |
 | rocBLAS |  ⇒ [3.1.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.7.0) |
 | rocFFT |  ⇒ [1.0.24](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.7.0) |
+| rocm-cmake |  ⇒ [0.10.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.7.0) |
 | rocPRIM |  ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.7.0) |
 | rocRAND |  ⇒ [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.7.0) |
 | rocSOLVER |  ⇒ [3.23.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.7.0) |
@@ -98,6 +170,24 @@ hipSPARSE 2.3.8 for ROCm 5.7.0
 - Fix compilation failures when using cusparse 12.0.0 backend
 - Fix compilation failures when using cusparse 10.1 (non-update versions) as backend
 - Minor improvements
+
+#### MIOpen 2.19.0
+
+MIOpen 2.19.0 for ROCm 5.7.0
+
+##### Added
+
+- ROCm 5.5 support for gfx1101 (Navi32)
+
+##### Changed
+
+- Tuning results for MLIR on ROCm 5.5
+- Bumping MLIR commit to 5.5.0 release tag
+
+##### Fixed
+
+- Fix 3d convolution Host API bug
+- [HOTFIX][MI200][FP16] Disabled ConvHipImplicitGemmBwdXdlops when FP16_ALT is required.
 
 #### RCCL 2.17.1-1
 
@@ -181,6 +271,15 @@ rocFFT 1.0.24 for ROCm 5.7.0
 
 - Moved rocfft_rtc_helper executable to lib/rocFFT directory on Linux.
 - Moved library kernel cache to lib/rocFFT directory.
+
+#### rocm-cmake 0.10.0
+
+rocm-cmake 0.10.0 for ROCm 5.7.0
+
+##### Added
+
+- Added ROCMTest module
+- ROCMCreatePackage: Added support for ASAN packages
 
 #### rocPRIM 2.13.1
 
