@@ -1,13 +1,15 @@
-# Using the LLVM Address Sanitizer (ASAN) on the GPU
+### Using the LLVM Address Sanitizer (ASAN) with the GPU (Beta Release)
 
-The LLVM Address Sanitizer provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
+The beta release LLVM Address Sanitizer provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
 
-Until now, the LLVM Address Sanitizer process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications exactly like pure CPU applications. However, this simplicity has not been achieved yet.
+Until now, the LLVM Address Sanitizer process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
 
 This document provides documentation on using ROCm Address Sanitizer.
 For information about LLVM Address Sanitizer, see [the LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
-## Compile for Address Sanitizer
+**Note**: The beta release of LLVM Address Sanitizer for ROCm is currently tested and validated on Ubuntu 20.04.
+
+### Compiling for Address Sanitizer
 
 The address sanitizer process begins by compiling the application of interest with the address sanitizer instrumentation.
 
@@ -23,7 +25,7 @@ Other architectures are allowed, but their device code will not be instrumented 
 
 It is not an error to compile some files without address sanitizer instrumentation, but doing so reduces the ability of the process to detect addressing errors. However, if the main program "`a.out`" does not directly depend on the Address Sanitizer runtime (`libclang_rt.asan-x86_64.so`) after the build completes (check by running `ldd` (List Dynamic Dependencies) or `readelf`), the application will immediately report an error at runtime as described in the next section.
 
-### About Compilation Time
+#### About Compilation Time
 
 When `-fsanitize=address` is used, the LLVM compiler adds instrumentation code around every memory operation. This added code must be handled by all of the downstream components of the compiler toolchain and results in increased overall compilation time. This increase is especially evident in the AMDGPU device compiler and has in a few instances raised the compile time to an unacceptable level.
 
@@ -33,17 +35,36 @@ There are a few options if the compile time becomes unacceptable:
 * Add the option `-fsanitize-recover=address` to the compiles with the worst compile times. This option simplifies the added instrumentation resulting in faster compilation. See below for more information.
 * Disable instrumentation on a per-function basis by adding `__attribute__`((no_sanitize("address"))) to functions found to be responsible for the large compile time. Again, this will reduce the effectiveness of the process.
 
-## Use AMD Supplied Address Sanitizer Instrumented Libraries
+### Installing ROCm GPU Address Sanitizer Packages
 
-ROCm releases provide optional packages containing address sanitizer instrumented builds of a subset of those ROCm libraries usually found in `/opt/rocm-<version>/lib`. These optional packages are typically named <library>-asan. However, the instrumented libraries themselves have identical names as the regular uninstrumented libraries and are located in `/opt/rocm-<version>/lib/asan`. It is expected that the subset of address sanitizer instrumented ROCm libraries will be expanded in future releases. They are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used, but, as described above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
+For a complete ROCm GPU Sanitizer installation, the following  must be installed,
+
+* For instrumented HSA and HIP runtimes, and tools (required)
+
+```bash
+    sudo apt-get install amd-smi-lib-asan comgr-asan hip-runtime-amd-asan hsa-rocr-asan hsakmt-roct-asan hsa-amd-aqlprofile-asan rocm-core-asan rocm-dbgapi-asan rocm-debug-agent-asan rocm-opencl-asan rocm-smi-lib-asan rocprofiler-asan roctracer-asan
+```
+
+* For instrumented math libraries (optional)
+  
+```bash
+    sudo apt-get install hipfft-asan hipsparse-asan migraphx-asan miopen-hip-asan rocalution-asan rocblas-asan rocfft-asan rocm-core-asan rocsparse-asan hipblaslt-asan mivisionx-asan rocsolver-asan 
+```
+
+**Note**: It is recommended to install all address sanitizer packages. If the optional instrumented math libraries are not installed, the address sanitizer cannot find issues within those libraries.
+
+### Using AMD Supplied Address Sanitizer Instrumented Libraries
+
+ROCm releases have optional packages containing additional address sanitizer instrumented builds of the ROCm libraries usually found in `/opt/rocm-<version>/lib`. The instrumented libraries have identical names as the regular uninstrumented libraries and are located in `/opt/rocm-<version>/lib/asan`.
+These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used, but, as descibed above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
 
 These additional libraries avoid additional developer effort to locate repositories, identify the correct branch, check out the correct tags, and other efforts needed to build the libraries from the source. And they extend the ability of the process to detect addressing errors into the ROCm libraries themselves.
 
 When adjusting an application build to add instrumentation, linking against these instrumented libraries is unnecessary. For example, any `-L` `/opt/rocm-<version>/lib` compiler options need not be changed. However, the instrumented libraries should be used when the application is run. It is particularly important that the instrumented language runtimes, like `libamdhip64.so` and `librocm-core.so`, are used; otherwise, device invalid access detections may not be reported.
 
-## Running Address Sanitizer Instrumented Applications
+### Running Address Sanitizer Instrumented Applications
 
-### Preparing to Run an Instrumented Application
+#### Preparing to Run an Instrumented Application
 
 Here are a few recommendations to consider before running an address sanitizer instrumented heterogeneous application.
 
@@ -76,13 +97,13 @@ This tells the ASAN runtime to halt the application immediately after detecting 
 * `detect_leaks=0/1 default 1`.
 This option directs the address sanitizer runtime to enable the [Leak Sanitizer](https://clang.llvm.org/docs/LeakSanitizer.html) (LSAN). Unfortunately, for heterogeneous applications, this default will result in significant output from the leak sanitizer when the application exits due to allocations made by the language runtime which are not considered to be to be leaks. This output can be avoided by adding `detect_leaks=0` to the `ASAN_OPTIONS`, or alternatively by producing an LSAN suppression file (syntax described [here](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer)) and activating it with environment variable `LSAN_OPTIONS=suppressions=/path/to/suppression/file`. When using a suppression file, a suppression report is printed by default. The suppression report can be disabled by using the `LSAN_OPTIONS` flag `print_suppressions=0`.
 
-## Runtime Overhead
+### Runtime Overhead
 
 Running an address sanitizer instrumented application incurs
 overheads which may result in unacceptably long runtimes
 or failure to run at all.
 
-### Higher Execution Time
+#### Higher Execution Time
 
 Address sanitizer detection works by checking each address at runtime
 before the address is actually accessed by a load, store, or atomic
@@ -98,7 +119,7 @@ For heterogeneous applications, the shadow memory must be accessible by all devi
 and this can mean that shadow accesses from some devices may be more costly
 than non-shadow accesses.
 
-### Higher Memory Use
+#### Higher Memory Use
 
 The address checking described above relies on the compiler to surround
 each program variable with a red zone and on address sanitizer
@@ -111,7 +132,7 @@ Applications which consume most one or more available memory pools when
 run normally are likely to encounter allocation failures when run with
 instrumentation.
 
-## Runtime Reporting
+### Runtime Reporting
 
 It is not the intention of this document to provide a detailed explanation of all of the types of reports that can be output by the address sanitizer runtime. Instead, the focus is on the differences between the standard reports for CPU issues, and reports for GPU issues.
 
@@ -160,7 +181,7 @@ or
 
 currently may include one or two surprising CPU side tracebacks mentioning :`hostcall`". This is due to how `malloc` and `free` are implemented for GPU code and these call stacks can be ignored.
 
-## Running with `rocgdb`
+### Running with `rocgdb`
 
 `rocgdb` can be used to further investigate address sanitizer detected errors, with some preparation.
 
@@ -212,9 +233,13 @@ $ rocgdb <path to application>
 (gdb) c
 ```
 
-## Using Address Sanitizer with a Short HIP Application (LINK NEEDED HERE)
+### Using Address Sanitizer with a Short HIP Application
 
-## Known Issues with Using GPU Sanitizer
+Refer to the following example to use address sanitizer with a short HIP application,
+
+https://github.com/Rmalavally/rocm-examples/blob/Rmalavally-patch-1/LLVM_ASAN/Using-Address-Sanitizer-with-a-Short-HIP-Application.md
+
+### Known Issues with Using GPU Sanitizer
 
 * Red zones must have limited size and it is possible for an invalid access to completely miss a red zone and not be detected.
 
