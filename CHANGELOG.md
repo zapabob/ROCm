@@ -21,9 +21,9 @@ The release notes for the ROCm platform.
 
 ### Release Highlights for ROCm 5.7
 
-ROCm 5.7.0 is the last major release in the ROCm 5 series. This release is Linux-only. New features include: a new library (hipTensor), debugger (ROCgdb) support for Fortran and OMPD, and optimizations for rocRAND and MIVisionX. Address sanitizer for host and device code (GPU) is now available as a beta. Note that ROCm 5.7.0 is EOS for MI50.
+ROCm 5.7.0 includes many new features. These include: a new library (hipTensor), debugger (ROCgdb) support for Fortran and OMPD, and optimizations for rocRAND and MIVisionX. Address sanitizer for host and device code (GPU) is now available as a beta. Note that ROCm 5.7.0 is EOS for MI50. 5.7 versions of ROCm are the last major release in the ROCm 5 series. This release is Linux-only.
 
-Important: The next major ROCm release (ROCm 6.0) will not be backward compatible with the ROCm 5 series. Changes will include: splitting LLVM packages into more manageable sizes, major changes to the HIP runtime, splitting rocRAND and hipRAND into separate packages, and reorganizing our file structure.
+Important: The next major ROCm release (ROCm 6.0) will not be backward compatible with the ROCm 5 series. Changes will include: splitting LLVM packages into more manageable sizes, changes to the HIP runtime API, splitting rocRAND and hipRAND into separate packages, and reorganizing our file structure.
 
 #### AMD Instinct™ MI50 End of Support Notice
 
