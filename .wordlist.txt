@@ -129,3 +129,19 @@ deallocation
 detections
 tracebacks
 workgroup
+# memory
+allocator
+blit
+cacheability
+cacheable
+dataspace
+deallocator
+GDDR
+malloc
+pageable
+prefetching
+SDMA
+SDRAM
+storages
+VRAM
+unhandled

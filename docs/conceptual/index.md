@@ -44,4 +44,11 @@ product lines.
 
 :::
 
+:::{grid-item-card} GPU Memory
+:link: gpu_memory
+:link-type: doc
+Learn about the different types of memory allocations.
+
+:::
+
 :::::
