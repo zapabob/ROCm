@@ -2,20 +2,20 @@
 
 ## Pre-requisites
 
-- Create a GitHub Personal Access Token.
-  - Tested with all the read-only permissions, but public_repo, read:project read:user, and repo:status should be enough.
-  - Copy the token somewhere safe.
-- Configure SSO for this token by authorizing it for the following organizations:
-  - ROCm-Developer-Tools
-  - RadeonOpenCompute
-  - ROCmSoftwarePlatform
+* Create a GitHub Personal Access Token.
+  * Tested with all the read-only permissions, but public_repo, read:project read:user, and repo:status should be enough.
+  * Copy the token somewhere safe.
+* Configure SSO for this token by authorizing it for the following organizations:
+  * ROCm-Developer-Tools
+  * RadeonOpenCompute
+  * ROCmSoftwarePlatform
 
 ## Updating the changelog
 
-- Add or update the release specific notes in `tools/autotag/templates/rocm_changes`
-- Ensure the all the repositories have their release specific branch with the updated changelogs.
-- Run this for 5.6.0 (change for whatever version you require)
-- `GITHUB_ACCESS_TOKEN=my_token_here`
+* Add or update the release specific notes in `tools/autotag/templates/rocm_changes`
+* Ensure the all the repositories have their release specific branch with the updated changelogs.
+* Run this for 5.6.0 (change for whatever version you require)
+* `GITHUB_ACCESS_TOKEN=my_token_here`
 
 To generate the changelog from 5.0.0 up to and including 5.6.0:
 
@@ -37,11 +37,11 @@ python3 tag_script.py -t $GITHUB_ACCESS_TOKEN --no-release --no-pulls --compile_
 > Compiling the changelog without the `--do-previous`-flag will always think that all libraries are new since no previous version of said library has been parsed.
 > Trying to run without a token is possible but GitHub enforces stricter rate limits and is therefore not advised.
 
-- Copy over the first part of the changelog and replace the old release notes in RELEASE.md.
+* Copy over the first part of the changelog and replace the old release notes in RELEASE.md.
 
 ## Adding new libraries/repositories
 
-- Add the name or group of the repository (retrieved in default.xml in the ROCm project root) to: included_names or included_groups to auto_tag.py.
-- At the moment of writing, this is only in the 5.6 branch and not the develop branch.
-- Re-run the command specified in the steps above.
-- Some libraries do not have the changelog for every point release. The tool will give out warnings, but it is okay to ignore them.
+* Add the name or group of the repository (retrieved in default.xml in the ROCm project root) to: included_names or included_groups to auto_tag.py.
+* At the moment of writing, this is only in the 5.6 branch and not the develop branch.
+* Re-run the command specified in the steps above.
+* Some libraries do not have the changelog for every point release. The tool will give out warnings, but it is okay to ignore them.
