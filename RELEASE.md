@@ -15,15 +15,15 @@ The release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.6.1
+## ROCm 5.7.0
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
 
 ### What's new in this release
 
-ROCm 5.6.1 is a point release with several bug fixes in the HIP runtime.
+ROCm 5.7.0 includes many new features. These include: a new library (hipTensor), debugger (ROCgdb) support for Fortran and OMPD, and optimizations for rocRAND and MIVisionX. Address sanitizer for host and device code (GPU) is now available as a beta. Note that ROCm 5.7.0 is EOS for MI50. 5.7 versions of ROCm are the last major release in the ROCm 5 series. This release is Linux-only.
 
-## HIP 5.6.1 (for ROCm 5.6.1)
+Important: The next major ROCm release (ROCm 6.0) will not be backward compatible with the ROCm 5 series. Changes will include: splitting LLVM packages into more manageable sizes, changes to the HIP runtime API, splitting rocRAND and hipRAND into separate packages, and reorganizing our file structure.
 
 ### Fixed defects
 

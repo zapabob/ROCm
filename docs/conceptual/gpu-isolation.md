@@ -43,6 +43,8 @@ Runtime
 export GPU_DEVICE_ORDINAL="0,2"
 ```
 
+(hip_visible_devices)=
+
 ### `HIP_VISIBLE_DEVICES`
 
 Device indices exposed to HIP applications.

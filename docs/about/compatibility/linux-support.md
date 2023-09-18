@@ -92,7 +92,6 @@ Use Driver Shipped with ROCm
 | AMD Radeon™ Pro W6800   | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro V620    | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro VII     | GCN5.1 | gfx906  | ✅ |
-
 :::
 
 :::{tab-item} Radeon™
@@ -100,9 +99,9 @@ Use Driver Shipped with ROCm
 
 [Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
 
-| Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
-|:----:|:------------:|:--------------------------------------------------------------------:|:-------:|
-| AMD Radeon™ VII     | GCN5.1 | gfx906  | ✅ |
+| Name | Architecture    |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
+|:----:|:---------------:|:--------------------------------------------------------------------:|:-------:|
+| AMD Radeon™ VII        | GCN5.1 | gfx906  | ✅ |
 
 :::
 
