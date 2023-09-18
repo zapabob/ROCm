@@ -1,6 +1,6 @@
-# Inference Optimization with MIGraphX
+# Inference optimization with MIGraphX
 
-The following sections cover inferencing and introduces MIGraphX.
+The following sections cover inferencing and introduces [MIGraphX](https://rocm.docs.amd.com/projects/AMDMIGraphX/en/latest/).
 
 ## Inference
 
@@ -8,7 +8,7 @@ The inference is where capabilities learned during deep-learning training are pu
 
 Taking our previous example of MNIST, the DNN can be fed new images of handwritten digit images, allowing the neural network to classify digits. A fully trained DNN should make accurate predictions about what an image represents, and inference cannot happen without training.
 
-## MIGraphX Introduction
+## MIGraphX introduction
 
 MIGraphX is a graph compiler focused on accelerating the machine-learning inference that can target AMD GPUs and CPUs. MIGraphX accelerates the machine-learning models by leveraging several graph-level transformations and optimizations. These optimizations include:
 
@@ -34,7 +34,7 @@ After importing a model into MIGraphX, the model is represented as `migraphx::pr
 
 There are three options to get started with MIGraphX installation. MIGraphX depends on ROCm libraries; assume that the machine has ROCm installed.
 
-### Option 1: Installing Binaries
+### Option 1: installing binaries
 
 To install MIGraphX on Debian-based systems like Ubuntu, use the following command:
 
@@ -44,11 +44,11 @@ sudo apt update && sudo apt install -y migraphx
 
 The header files and libraries are installed under `/opt/rocm-\<version\>`, where \<version\> is the ROCm version.
 
-### Option 2: Building from Source
+### Option 2: building from source
 
 There are two ways to build the MIGraphX sources.
 
-* [Use the ROCm build tool](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses [rbuild](https://github.com/RadeonOpenCompute/rbuild) to install the prerequisites and build the libraries with just one command.
+* [Use the ROCm build tool](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#use-the-rocm-build-tool-rbuild) - This approach uses `[rbuild](https://github.com/RadeonOpenCompute/rbuild)` to install the prerequisites and build the libraries with just one command.
 
   or
 
@@ -58,7 +58,7 @@ For detailed steps on building from source and installing dependencies, refer to
 
 [https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX#building-from-source)
 
-### Option 3: Use Docker
+### Option 3: use docker
 
 To use Docker, follow these steps:
 
@@ -82,7 +82,7 @@ To use Docker, follow these steps:
 
 The Docker image contains all the prerequisites required for the installation, so users can go to the folder `/code/AMDMIGraphX` and follow the steps mentioned in [Option 2: Building from Source](#option-2-building-from-source).
 
-## MIGraphX Example
+## MIGraphX example
 
 MIGraphX provides both C++ and Python APIs. The following sections show examples of both using the Inception v3 model. To walk through the examples, fetch the Inception v3 ONNX model by running the following:
 
@@ -209,23 +209,23 @@ Follow these steps:
     ./inception_inference
     ```
 
-:::{note}
+```{note}
     Set `LD_LIBRARY_PATH` to `/opt/rocm/lib` if required during the build. Additional examples can be found in the MIGraphX repository under the `/examples/` directory.
-:::
+```
 
 ## Tuning MIGraphX
 
 MIGraphX uses MIOpen kernels to target AMD GPU. For the model compiled with MIGraphX, tune MIOpen to pick the best possible kernel implementation. The MIOpen tuning results in a significant performance boost. Tuning can be done by setting the environment variable `MIOPEN_FIND_ENFORCE=3`.
 
-:::{note}
+```{note}
     The tuning process can take a long time to finish.
-:::
+```
 
 **Example:** The average inference time of the inception model example shown previously over 100 iterations using untuned kernels is 0.01383ms. After tuning, it reduces to 0.00459ms, which is a 3x improvement. This result is from ROCm v4.5 on a MI100 GPU.
 
-:::{note}
+```{note}
     The results may vary depending on the system configurations.
-:::
+```
 
 For reference, the following code snippet shows inference runs for only the first 10 iterations for both tuned and untuned kernels:
 
@@ -305,7 +305,7 @@ MIGraphX introduces a feature, known as YModel, that stores the kernel config pa
 
 The YModel feature is available starting from ROCm 5.4.1 and UIF 1.1.
 
-#### YModel Example
+#### YModel example
 
 Through the `migraphx-driver` functionality, you can generate `.mxr` files with tuning information stored inside it by passing additional `--binary --output model.mxr` to `migraphx-driver` along with the rest of the necessary flags.
 
@@ -323,9 +323,4 @@ To run generated `.mxr` files through `migraphx-driver`, use the following:
 
 Alternatively, you can use MIGraphX's C++ or Python API to generate `.mxr` file.
 
-```{figure} ../data/rocm-ai/image018.png
-:name: image018
-:align: center
-
-Generating a `.mxr` File
-```
+![Generating an MXR file](../data/conceptual/image018.png "Generating an MXR file")

@@ -9,7 +9,7 @@ is to install an updated version of the ROCm along with the currently
 installed version, refer to the [](install) page.
 ```
 
-## Upgrade Steps
+## Upgrade steps
 
 ### Update the AMDGPU repository
 
@@ -213,7 +213,7 @@ sudo zypper ref
 :::::
 ::::::
 
-### Upgrade the kernel-mode driver & reboot
+### Upgrade the kernel-mode driver and reboot
 
 Upgrade the kernel mode driver and reboot the system using the following
 commands based on your distribution:
@@ -394,7 +394,7 @@ sudo zypper --gpg-auto-import-keys update rocm-hip-sdk
 :::
 ::::
 
-## Verification Process
+## Verification process
 
 To verify if the upgrade is successful, refer to the
 {ref}`post-install-actions-linux` given in the

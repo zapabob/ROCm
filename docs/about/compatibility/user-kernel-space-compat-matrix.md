@@ -1,4 +1,4 @@
-# User/Kernel-Space Support Matrix
+# User/kernel-space support matrix
 
 ROCm™ provides forward and backward compatibility between the Kernel Fusion
 Driver (KFD) and its user space software for +/- 2 releases. This table shows

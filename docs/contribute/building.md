@@ -1,10 +1,10 @@
-# Building Documentation
+# Building documentation
 
-While contributing, one may build the documentation locally on the command-line
+While contributing, one may build the documentation locally on the command line
 or rely on Continuous Integration for previewing the resulting HTML pages in a
 browser.
 
-## Pull Request documentation builds
+## Pull request documentation builds
 
 When opening a PR to the `develop` branch on GitHub, the page corresponding to
 the PR (`https://github.com/RadeonOpenCompute/ROCm/pull/<pr_number>`) will have
@@ -20,7 +20,7 @@ a summary at the bottom. This requires the user be logged in to GitHub.
   a URL of the form
   `https://advanced-micro-devices-demo--<pr_number>.com.readthedocs.build/projects/alpha/en/<pr_number>/`.
 
-## Build documentation from the Command Line
+## Build documentation from the command line
 
 Python versions known to build documentation:
 

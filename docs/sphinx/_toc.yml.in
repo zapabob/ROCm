@@ -107,7 +107,7 @@ subtrees:
                   - file: tutorials/install/windows/gui/uninstall.md
                     title: Uninstall
               - file: tutorials/install/windows/cli/index.md
-                title: Command line installation
+                title: Command-line installation
                 subtrees:
                 - entries:
                   - file: tutorials/install/windows/cli/install.md
@@ -123,7 +123,7 @@ subtrees:
       - file: tutorials/install/tensorflow-install.md
         title: Tensorflow for ROCm
       - file: tutorials/install/magma-install.md
-        title: Magma for ROCm
+        title: MAGMA for ROCm
 
   - file: how-to/index.md
     title: How-to
@@ -131,7 +131,7 @@ subtrees:
     - entries:
       - file: how-to/deep-learning-rocm.md
         title: Deep learning
-      - file: how-to/gpu-aware-mpi.md
+      - file: how-to/gpu-enabled-mpi.md
         title: Using MPI
       - file: how-to/system-debugging.md
         title: Debugging
@@ -212,9 +212,9 @@ subtrees:
       - file: conceptual/cmake-packages.rst
         title: Using CMake
       - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
-        title: ROCm & PCIe Atomics
+        title: ROCm & PCIe atomics
       - file: conceptual/ai-pytorch-inception.md
-        title: Inception V3 with Pytorch
+        title: Inception v3 with Pytorch
       - file: conceptual/ai-migraphx-optimization.md
         title: Inference optimization with MIGraphX
 

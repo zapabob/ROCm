@@ -9,34 +9,34 @@ used for uninstallation too, refer to {doc}`../installer/uninstall`.
 :::::{tab-item} Ubuntu
 :sync: ubuntu
 
-::::{rubric} Uninstalling Specific Meta-packages
+::::{rubric} Uninstalling specific meta-packages
 ::::
 
 ```shell
 # Uninstall single-version ROCm packages
 sudo apt autoremove <package-name>
-# Uninstall multiversion ROCm packages
+# Uninstall multi-version ROCm packages
 sudo apt autoremove <package-name with release version>
 ```
 
-::::{rubric} Complete Uninstallation of ROCm Packages
+::::{rubric} Complete uninstallation of ROCm packages
 ::::
 
 ```shell
 # Uninstall single-version ROCm packages
 sudo apt autoremove rocm-core
-# Uninstall multiversion ROCm packages
+# Uninstall multi-version ROCm packages
 sudo apt autoremove rocm-core<release version>
 ```
 
-::::{rubric} Uninstall Kernel-mode Driver
+::::{rubric} Uninstall kernel-mode driver
 ::::
 
 ```shell
 sudo apt autoremove amdgpu-dkms
 ```
 
-::::{rubric} Remove ROCm and AMDGPU Repositories
+::::{rubric} Remove ROCm and AMDGPU repositories
 ::::
 
 1. Execute these commands:
@@ -63,34 +63,34 @@ sudo apt autoremove amdgpu-dkms
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
-::::{rubric} Uninstalling Specific Meta-packages
+::::{rubric} Uninstalling specific meta-packages
 ::::
 
 ```shell
 # Uninstall single-version ROCm packages
 sudo yum remove <package-name>
-# Uninstall multiversion ROCm packages
+# Uninstall multi-version ROCm packages
 sudo yum remove <package-name with release version>
 ```
 
-::::{rubric} Complete Uninstallation of ROCm Packages
+::::{rubric} Complete uninstallation of ROCm packages
 ::::
 
 ```shell
 # Uninstall single-version ROCm packages
 sudo yum remove rocm-core
-# Uninstall multiversion ROCm packages
+# Uninstall multi-version ROCm packages
 sudo yum remove rocm-core<release version>
 ```
 
-::::{rubric} Uninstall Kernel-mode Driver
+::::{rubric} Uninstall kernel-mode driver
 ::::
 
 ```shell
 sudo yum autoremove amdgpu-dkms
 ```
 
-::::{rubric} Remove ROCm and AMDGPU Repositories
+::::{rubric} Remove ROCm and AMDGPU repositories
 ::::
 
 1. Execute these commands:
@@ -117,34 +117,34 @@ sudo yum autoremove amdgpu-dkms
 :::::{tab-item} SUSE Linux Enterprise Server
 :sync: SLES
 
-::::{rubric} Uninstalling Specific Meta-packages
+::::{rubric} Uninstalling specific meta-packages
 ::::
 
 ```shell
 # Uninstall all single-version ROCm packages
 sudo zypper remove <package-name>
-# Uninstall all multiversion ROCm packages
+# Uninstall all multi-version ROCm packages
 sudo zypper remove <package-name with release version>
 ```
 
-::::{rubric} Complete Uninstallation of ROCm Packages
+::::{rubric} Complete uninstallation of ROCm packages
 ::::
 
 ```shell
 # Uninstall all single-version ROCm packages
 sudo zypper remove rocm-core
-# Uninstall all multiversion ROCm packages
+# Uninstall all multi-version ROCm packages
 sudo zypper remove rocm-core<release version>
 ```
 
-::::{rubric} Uninstall Kernel-mode Driver
+::::{rubric} Uninstall kernel-mode driver
 ::::
 
 ```shell
 sudo zypper remove --clean-deps amdgpu-dkms
 ```
 
-::::{rubric} Remove ROCm and AMDGPU Repositories
+::::{rubric} Remove ROCm and AMDGPU repositories
 ::::
 
 1. Execute these commands:

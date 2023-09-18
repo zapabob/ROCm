@@ -1,6 +1,6 @@
-# GPU Architectures
+# GPU architectures
 
-## Architecture Guides
+## Architecture guides
 
 :::::{grid} 1 1 2 2
 :gutter: 1
@@ -12,7 +12,7 @@ Review hardware aspects of the AMD Instinct™ MI250
 accelerators and the CDNA™ 2 architecture that is the foundation of these GPUs.
 
 * [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
-* [Whitepaper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
+* [White paper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
 
 :::
 
@@ -23,13 +23,13 @@ Review hardware aspects of the AMD Instinct™ MI100
 accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs.
 
 * [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf)
-* [Whitepaper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
+* [White paper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
 
 :::
 
 :::::
 
-## ISA Documentation
+## ISA documentation
 
 * [AMD Instinct MI200/CDNA2 Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
 * [AMD Instinct MI100/CDNA1 Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf)
@@ -40,7 +40,7 @@ accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs
 * [AMD RDNA Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/rdna-shader-instruction-set-architecture.pdf)
 * [AMD GCN3 Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/gcn3-instruction-set-architecture.pdf)
 
-## White Papers
+## White papers
 
 * [AMD CDNA™ 2 Architecture White Paper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
 * [AMD CDNA Architecture White Paper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)

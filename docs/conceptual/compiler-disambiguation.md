@@ -1,9 +1,9 @@
-# ROCm Compilers Disambiguation
+# ROCm compilers disambiguation
 
 ROCm ships multiple compilers of varying origins and purposes. This article
 disambiguates compiler naming used throughout the documentation.
 
-## Compiler Terms
+## Compiler terms
 
 | Term | Description |
 | - | - |

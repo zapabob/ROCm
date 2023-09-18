@@ -1,4 +1,4 @@
-# OpenMP Support in ROCm
+# OpenMP support in ROCm
 
 ## Introduction
 
@@ -14,9 +14,7 @@ this ROCm release. See the list of supported GPUs for [Linux](../../about/compat
 The ROCm OpenMP compiler is implemented using LLVM compiler technology.
 The following image illustrates the internal steps taken to translate a user’s application into an executable that can offload computation to the AMDGPU. The compilation is a two-pass process. Pass 1 compiles the application to generate the CPU code and Pass 2 links the CPU code to the AMDGPU device code.
 
-```{figure} ../../data/reference/openmp/openmp-toolchain.svg
-:name: openmp-toolchain
-```
+![OpenMP toolchain](../../data/reference/openmp/openmp-toolchain.svg "OpenMP toolchain")
 
 ### Installation
 
@@ -31,7 +29,7 @@ bin: Compilers (`flang` and `clang`) and other binaries.
 * lib: Libraries including those required for target offload.
 * lib-debug: Debug versions of the above libraries.
 
-## OpenMP: Usage
+## OpenMP: usage
 
 The example programs can be compiled and run by pointing the environment
 variable `ROCM_PATH` to the ROCm install directory.
@@ -44,10 +42,10 @@ cd $ROCM_PATH/share/openmp-extras/examples/openmp/veccopy
 sudo make run
 ```
 
-:::{note}
+```{note}
 `sudo` is required since we are building inside the `/opt` directory.
 Alternatively, copy the files to your home directory first.
-:::
+```
 
 The above invocation of Make compiles and runs the program. Note the options
 that are required for target offload from an OpenMP program:
@@ -56,14 +54,12 @@ that are required for target offload from an OpenMP program:
 -fopenmp --offload-arch=<gpu-arch>
 ```
 
-:::{note}
+```{note}
 The compiler also accepts the alternative offloading notation:
 
 ```bash
--fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=<gpu-arch> 
+-fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=<gpu-arch>
 ```
-
-:::
 
 Obtain the value of `gpu-arch` by running the following command:
 
@@ -113,7 +109,7 @@ code compiled with AOMP:
 
 For more details on `rocprof`, refer to the {doc}`ROCProfilerV1 User Manual <rocprofiler:rocprofv1>`.
 
-### Using Tracing Options
+### Using tracing options
 
 **Prerequisite:** When using the `--sys-trace` option, compile the OpenMP
 program with:
@@ -139,7 +135,7 @@ HSA calls.
 
 For more details on tracing, refer to the {doc}`ROCProfilerV1 User Manual <rocprofiler:rocprofv1>`.
 
-### Environment Variables
+### Environment variables
 
 :::{table}
 :widths: auto
@@ -154,14 +150,14 @@ For more details on tracing, refer to the {doc}`ROCProfilerV1 User Manual <rocpr
 | `OMPX_FORCE_SYNC_REGIONS` | To force the runtime to execute all operations synchronously, i.e., wait for an operation to complete immediately. This affects data transfers and kernel execution. While it is mainly designed for debugging, it may have a minor positive effect on performance in certain situations. |
 :::
 
-## OpenMP: Features
+## OpenMP: features
 
 The OpenMP programming model is greatly enhanced with the following new features
 implemented in the past releases.
 
 (openmp_usm)=
 
-### Asynchronous Behavior in OpenMP Target Regions
+### Asynchronous behavior in OpenMP target regions
 
 * Controlling Asynchronous Behavior
 
@@ -176,7 +172,7 @@ The `libomptarget` plugin for GPU offloading allows creation of separate configu
 
 Implicit asynchronous execution of single target region enables parallel memory copy invocations.
 
-### Unified Shared Memory
+### Unified shared memory
 
 Unified Shared Memory (USM) provides a pointer-based approach to memory
 management. To implement USM, fulfill the following system requirements along
@@ -189,7 +185,7 @@ with Xnack capability.
 * Xnack, as USM support can only be tested with applications compiled with Xnack
   capability
 
-#### Xnack Capability
+#### Xnack capability
 
 When enabled, Xnack capability allows GPU threads to access CPU (system) memory,
 allocated with OS-allocators, such as `malloc`, `new`, and `mmap`. Xnack must be
@@ -223,7 +219,7 @@ When Xnack support is not needed:
 
 * At runtime, set the `HSA_XNACK` environment variable to 0.
 
-#### Unified Shared Memory Pragma
+#### Unified shared memory pragma
 
 This OpenMP pragma is available on MI200 through `xnack+` support.
 
@@ -277,7 +273,7 @@ to by “b” are in coarse-grain memory during and after the execution of the
 target region. This is accomplished in the OpenMP runtime library with calls to
 the ROCr runtime to set the pages pointed by “b” as coarse grain.
 
-### OMPT Target Support
+### OMPT target support
 
 The OpenMP runtime in ROCm implements a subset of the OMPT device APIs, as
 described in the OpenMP specification document. These APIs allow first-party
@@ -302,7 +298,7 @@ The file `veccopy-ompt-target-tracing.c` simulates how a tool initiates device
 activity tracing. The file `callbacks.h` shows the callbacks registered and
 implemented by the tool.
 
-### Floating Point Atomic Operations
+### Floating point atomic operations
 
 The MI200-series GPUs support the generation of hardware floating-point atomics
 using the OpenMP atomic pragma. The support includes single- and
@@ -326,10 +322,10 @@ double a = 0.0;
 a = a + 1.0;
 ```
 
-:::{note}
+```{note}
 `AMD_unsafe_fp_atomics` is an alias for `AMD_fast_fp_atomics`, and
 `AMD_safe_fp_atomics` is implemented with a compare-and-swap loop.
-:::
+```
 
 To disable the generation of fast floating-point atomic instructions at the file
 level, build using the option `-msafe-fp-atomics` or use a hint clause on a
@@ -362,14 +358,14 @@ double b = 0.0;
 b = b + 1.0;
 ```
 
-### Address Sanitizer (ASan) Tool
+### AddressSanitizer tool
 
-Address Sanitizer is a memory error detector tool utilized by applications to
+AddressSanitizer (ASan) is a memory error detector tool utilized by applications to
 detect various errors ranging from spatial issues such as out-of-bound access to
 temporal issues such as use-after-free. The AOMP compiler supports ASan for AMD
 GPUs with applications written in both HIP and OpenMP.
 
-**Features Supported on Host Platform (Target x86_64):**
+**Features supported on host platform (Target x86_64):**
 
 * Use-after-free
 * Buffer overflows
@@ -380,12 +376,12 @@ GPUs with applications written in both HIP and OpenMP.
 * Use-after-scope
 * Initialization order bugs
 
-**Features Supported on AMDGPU Platform (`amdgcn-amd-amdhsa`):**
+**Features supported on AMDGPU platform (`amdgcn-amd-amdhsa`):**
 
 * Heap buffer overflow
 * Global buffer overflow
 
-**Software (Kernel/OS) Requirements:** Unified Shared Memory support with Xnack
+**Software (kernel/OS) requirements:** Unified Shared Memory support with Xnack
 capability. See the section on [Unified Shared Memory](#unified-shared-memory)
 for prerequisites and details on Xnack.
 
@@ -436,7 +432,7 @@ for(int i=0; i<N; i++){
 See the complete sample code for global buffer overflow
 [here](https://github.com/ROCm-Developer-Tools/aomp/blob/aomp-dev/examples/tools/asan/global_buffer_overflow/openmp/vecadd-GBO.cpp).
 
-### Clang Compiler Option for Kernel Optimization
+### Clang compiler option for kernel optimization
 
 You can use the clang compiler option `-fopenmp-target-fast` for kernel optimization if certain constraints implied by its component options are satisfied. `-fopenmp-target-fast` enables the following options:
 
@@ -448,7 +444,7 @@ You can use the clang compiler option `-fopenmp-target-fast` for kernel optimiza
 
 * `-O3` if no `-O*` is specified by the user.
 
-### Specialized Kernels
+### Specialized kernels
 
 Clang will attempt to generate specialized kernels based on compiler options and OpenMP constructs. The following specialized kernels are supported:
 
@@ -466,14 +462,14 @@ To enable the generation of specialized kernels, follow these guidelines:
 
 * To disable specialized kernel generation, use `-fno-openmp-target-ignore-env-vars`.
 
-#### No-Loop Kernel Generation
+#### No-loop kernel generation
 
 The No-loop kernel generation feature optimizes the compiler performance by generating a specialized kernel for certain OpenMP target constructs such as target teams distribute parallel for. The specialized kernel generation feature assumes every thread executes a single iteration of the user loop, which leads the runtime to launch a total number of GPU threads equal to or greater than the iteration space size of the target region loop. This allows the compiler to generate code for the loop body without an enclosing loop, resulting in reduced control-flow complexity and potentially better performance.
 
-#### Big-Jump-Loop Kernel Generation
+#### Big-jump-loop kernel generation
 
-A No-Loop kernel is not generated if the OpenMP teams construct uses a `num_teams` clause. Instead, the compiler attempts to generate a different specialized kernel called the Big-Jump-Loop kernel. The compiler launches the kernel with a grid size determined by the number of teams specified by the OpenMP `num_teams` clause and the `blocksize` chosen either by the compiler or specified by the corresponding OpenMP clause.
+A No-loop kernel is not generated if the OpenMP teams construct uses a `num_teams` clause. Instead, the compiler attempts to generate a different specialized kernel called the Big-Jump-Loop kernel. The compiler launches the kernel with a grid size determined by the number of teams specified by the OpenMP `num_teams` clause and the `blocksize` chosen either by the compiler or specified by the corresponding OpenMP clause.
 
-#### Xteam Optimized Reduction Kernel Generation
+#### Cross-team optimized reduction kernel generation
 
-If the OpenMP construct has a reduction clause, the compiler attempts to generate optimized code by utilizing efficient Xteam communication. New APIs for Xteam reduction are implemented in the device runtime and are automatically generated by clang.
+If the OpenMP construct has a reduction clause, the compiler attempts to generate optimized code by utilizing efficient cross-team communication. New APIs for cross-team reduction are implemented in the device runtime and are automatically generated by clang.

@@ -21,11 +21,10 @@ Instructional material
 ^^^
 
 * [Installing ROCm](./tutorials/install/index.md)
-* [Installing Magma](./tutorials/install/magma-install.md)
+* [Installing MAGMA](./tutorials/install/magma-install.md)
 * [Installing PyTorch](./tutorials/install/pytorch-install.md)
 * [Installing TensorFlow](./tutorials/install/tensorflow-install.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
-* [Artificial intelligence](./rocm-ai.md)
 
 :::
 
@@ -36,10 +35,10 @@ Instructional material
 Task-oriented walkthroughs
 ^^^
 
-* [System Tuning for Various Architectures](./how-to/tuning-guides/index.md)
-* [GPU Aware MPI](./how-to/gpu-aware-mpi.md)
+* [System tuning for various architectures](./how-to/tuning-guides/index.md)
+* [GPU-enabled MPI](./how-to/gpu-enabled-mpi.md)
 * [Setting up for deep learning with ROCm](./how-to/deep-learning-rocm.md)
-* [System Level Debugging](./how-to/system-debugging.md)
+* [System level debugging](./how-to/system-debugging.md)
 
 :::
 
@@ -52,11 +51,11 @@ Collated information
 
 * [Libraries](./reference/libraries/index.md)
   * [Math libraries](./reference/libraries/gpu-libraries/math.md)
-  * [C++ Primitives libraries](./reference/libraries/gpu-libraries/c++primitives.md)
+  * [C++ primitives libraries](./reference/libraries/gpu-libraries/c++primitives.md)
   * [Communication libraries](./reference/libraries/gpu-libraries/communication.md)
 * [Compilers & tools](./reference/compilers-tools/index.md)
-  * [Management Tools](./reference/compilers-tools/management-tools.md)
-  * [Validation Tools](./reference/compilers-tools/validation-tools.md)
+  * [Management tools](./reference/compilers-tools/management-tools.md)
+  * [Validation tools](./reference/compilers-tools/validation-tools.md)
 * [HIP](./reference/hip.md)
 * [OpenMP](./reference/openmp/openmp.md)
 
@@ -69,12 +68,11 @@ Collated information
 Topic overviews & background information
 ^^^
 
-* [Compiler Disambiguation](./conceptual/compiler-disambiguation.md)
+* [Compiler disambiguation](./conceptual/compiler-disambiguation.md)
 * [Using CMake](./conceptual/cmake-packages.rst)
-* [Linux Folder Structure Reorganization](./conceptual/file-reorg.md)
-* [GPU Isolation Techniques](./conceptual/gpu-isolation.md)
-* [GPU Architecture](./conceptual/gpu-arch.md)
-* [ROCm & AI](./rocm-ai.md)
+* [Linux folder structure reorganization](./conceptual/file-reorg.md)
+* [GPU isolation techniques](./conceptual/gpu-isolation.md)
+* [GPU architecture](./conceptual/gpu-arch.md)
 
 :::
 

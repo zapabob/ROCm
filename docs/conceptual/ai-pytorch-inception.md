@@ -1,4 +1,4 @@
-# Inception V3 with PyTorch
+# Deep learning: Inception V3 with PyTorch
 
 ## Deep learning training
 
@@ -8,7 +8,7 @@ The training data consists of input features in supervised learning, similar to 
 
 Training also includes the choice of an optimization algorithm that reduces the loss by adjusting the model's parameters. Training is an iterative process where training data is fed in, usually split into different batches, with the entirety of the training data passed during one training epoch. Training usually is run for multiple epochs.
 
-## Training Phases
+## Training phases
 
 Training occurs in multiple phases for every batch of training data. the following table provides an explanation of the types of training phases.
 
@@ -38,21 +38,21 @@ Training is different from inference, particularly from the hardware perspective
 
 Different quantization data types are typically chosen between training (FP32, BF16) and inference (FP16, INT8). The computation hardware has different specializations from other datatypes, leading to improvement in performance if a faster datatype can be selected for the corresponding task.
 
-## Case Studies
+## Case studies
 
-The following sections contain case studies for the Inception v3 model.
+The following sections contain case studies for the Inception V3 model.
 
-### Inception v3 with PyTorch
+### Inception V3 with PyTorch
 
-Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception v3[^inception_arch] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
+Convolution Neural Networks are forms of artificial neural networks commonly used for image processing. One of the core layers of such a network is the convolutional layer, which convolves the input with a weight tensor and passes the result to the next layer. Inception V3[^inception_arch] is an architectural development over the ImageNet competition-winning entry, AlexNet, using more profound and broader networks while attempting to meet computational and memory budgets.
 
-The implementation uses PyTorch as a framework. This case study utilizes `torchvision`[^torch_vision], a repository of popular datasets and model architectures, for obtaining the model. `torchvision` also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
+The implementation uses PyTorch as a framework. This case study utilizes [TorchVision](https://pytorch.org/vision/stable/index.html), a repository of popular datasets and model architectures, for obtaining the model. TorchVision also provides pre-trained weights as a starting point to develop new models or fine-tune the model for a new task.
 
-#### Evaluating a Pre-Trained Model
+#### Evaluating a pre-trained model
 
-The Inception v3 model introduces a simple image classification task with the pre-trained model. This does not involve training but utilizes an already pre-trained model from `torchvision`.
+The Inception V3 model introduces a simple image classification task with the pre-trained model. This does not involve training but utilizes an already pre-trained model from TorchVision.
 
-This example is adapted from the PyTorch research hub page on Inception v3[^torch_vision_inception].
+This example is adapted from the PyTorch research hub page on [Inception V3](https://pytorch.org/vision/master/models/inception.html).
 
 Follow these steps:
 
@@ -85,7 +85,7 @@ Follow these steps:
     except: urllib.request.urlretrieve(url, filename)
     ```
 
-5. Import `torchvision` and `PIL.Image` support libraries.
+5. Import torchvision and PILImage support libraries.
 
     ```py
     from PIL import Image
@@ -140,9 +140,9 @@ Follow these steps:
         print(categories[top5_catid[i]], top5_prob[i].item())
     ```
 
-#### Training Inception v3
+#### Training Inception V3
 
-The previous section focused on downloading and using the Inception v3 model for a simple image classification task. This section walks through training the model on a new dataset.
+The previous section focused on downloading and using the Inception V3 model for a simple image classification task. This section walks through training the model on a new dataset.
 
 Follow these steps:
 
@@ -196,7 +196,7 @@ Follow these steps:
 
 5. Open a Python shell.
 
-6. Import dependencies, including `torch`, `os`, and `torchvision`.
+6. Import dependencies, including Torch, OS, and [TorchVision](https://github.com/pytorch/vision).
 
     ```py
     import torch
@@ -208,9 +208,9 @@ Follow these steps:
 
 7. Set parameters to guide the training process.
 
-    :::{note}
+    ```{note}
     The device is set to `"cuda"`. In PyTorch, `"cuda"` is a generic keyword to denote a GPU.
-    :::
+    ```
 
     ```py
     device = "cuda"
@@ -222,7 +222,7 @@ Follow these steps:
     data_path = "tiny-imagenet-200"
     ```
 
-    The training image size is cropped for input into Inception v3.
+    The training image size is cropped for input into Inception V3.
 
     ```py
     train_crop_size = 299
@@ -241,7 +241,7 @@ Follow these steps:
     val_resize_size = 342
     ```
 
-    The pre-trained Inception v3 model is chosen to be downloaded from `torchvision`.
+    The pre-trained Inception V3 model is chosen to be downloaded from torchvision.
 
     ```py
     model_name = "inception_v3"
@@ -270,9 +270,9 @@ Follow these steps:
     lr_gamma = 0.1
     ```
 
-    :::{note}
+    ```{note}
     One training epoch is when the neural network passes an entire dataset forward and backward.
-    :::
+    ```
 
     ```py
     epochs = 90
@@ -333,9 +333,9 @@ Follow these steps:
     )
     ```
 
-    :::{note}
-    Use `torchvision` to obtain the Inception v3 model. Use the pre-trained model weights to speed up training.
-    :::
+    ```{note}
+    Use torchvision to obtain the Inception V3 model. Use the pre-trained model weights to speed up training.
+    ```
 
     ```py
     print("Creating model")
@@ -343,7 +343,7 @@ Follow these steps:
     model = torchvision.models.__dict__[model_name](pretrained=pretrained)
     ```
 
-11. Adapt Inception v3 for the current dataset. `tiny-imagenet-200` contains only 200 classes, whereas Inception v3 is designed for 1,000-class output. The last layer of Inception v3 is replaced to match the output features required.
+11. Adapt Inception V3 for the current dataset. `tiny-imagenet-200` contains only 200 classes, whereas Inception V3 is designed for 1,000-class output. The last layer of Inception V3 is replaced to match the output features required.
 
     ```py
     model.fc = torch.nn.Linear(model.fc.in_features, len(dataset.classes))
@@ -463,21 +463,15 @@ torch.save(model.state_dict(), "trained_inception_v3.pt")
 
 Plotting the train and test loss shows both metrics reducing over training epochs. This is demonstrated in the following image.
 
-```{figure} ../data/rocm-ai/inception-v3.png
-:name: inception-v3
----
-align: center
----
-Inception v3 Train and Loss Graph
-```
+![Inception V3 train and loss graph](../data/conceptual/inception-v3.png "Inception V3 train and loss")
 
-### Custom Model with CIFAR-10 on PyTorch
+### Custom model with CIFAR-10 on PyTorch
 
 The CIFAR-10 (Canadian Institute for Advanced Research) dataset is a subset of the Tiny Images dataset (which contains 80 million images of 32x32 collected from the Internet) and consists of 60,000 32x32 color images. The images are labeled with one of 10 mutually exclusive classes: airplane, motor car, bird, cat, deer, dog, frog, cruise ship, stallion, and truck (but not pickup truck). There are 6,000 images per class, with 5,000 training and 1,000 testing images per class. Let us prepare a custom model for classifying these images using the PyTorch framework and go step-by-step as illustrated below.
 
 Follow these steps:
 
-1. Import dependencies, including `torch`, `os`, and `torchvision`.
+1. Import dependencies, including torch, os, and [torchvision](https://github.com/pytorch/vision).
 
     ```py
     import torch
@@ -487,7 +481,7 @@ Follow these steps:
     import numpy as np
     ```
 
-2. The output of `torchvision` datasets is `PILImage` images of range [0, 1]. Transform them to Tensors of normalized range [-1, 1].
+2. The output of torchvision datasets is `PILImage` images of range [0, 1]. Transform them to Tensors of normalized range [-1, 1].
 
     ```py
     transform = transforms.Compose(
@@ -668,7 +662,7 @@ Follow these steps:
         print("Accuracy for class {:5s} is: {:.1f} %".format(classname,accuracy))
     ```
 
-### Case Study: TensorFlow with Fashion MNIST
+### Case study: TensorFlow with Fashion MNIST
 
 Fashion MNIST is a dataset that contains 70,000 grayscale images in 10 categories.
 
@@ -741,11 +735,7 @@ To understand the code step by step, follow these steps:
     plt.show()
     ```
 
-    ```{figure} ../data/rocm-ai/mnist-1.png
-    ---
-    align: center
-    ---
-    ```
+    ![ ](../data/conceptual/mnist-1.png)
 
 10. From the above picture, you can see that values are from zero to 255. Before training this on the neural network, you must bring them in the range of zero to one. Hence, divide the values by 255.
 
@@ -769,11 +759,7 @@ To understand the code step by step, follow these steps:
     plt.show()
     ```
 
-    ```{figure} ../data/rocm-ai/mnist-2.png
-    ---
-    align: center
-    ---
-    ```
+    ![ ](../data/conceptual/mnist-2.png)
 
     The basic building block of a neural network is the layer. Layers extract representations from the data fed into them. Deep learning consists of chaining together simple layers. Most layers, such as `tf.keras.layers.Dense`, have parameters that are learned during training.
 
@@ -895,13 +881,9 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/rocm-ai/mnist-3.png
-        ---
-        align: center
-        ---
-        ```
+     ![ ](../data/conceptual/mnist-3.png)
 
-        ```py
+     ```py
         i = 12
         plt.figure(figsize=(6,3))
         plt.subplot(1,2,1)
@@ -911,11 +893,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/rocm-ai/mnist-4.png
-        ---
-        align: center
-        ---
-        ```
+        ![ ](../data/conceptual/mnist-4.png)
 
     10. Use the trained model to predict a single image.
 
@@ -946,11 +924,7 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-        ```{figure} ../data/rocm-ai/mnist-5.png
-        ---
-        align: center
-        ---
-        ```
+        ![ ](../data/conceptual/mnist-5.png)
 
     13. `tf.keras.Model.predict` returns a list of lists—one for each image in the batch of data. Grab the predictions for our (only) image in the batch.
 
@@ -958,7 +932,7 @@ To understand the code step by step, follow these steps:
         np.argmax(predictions_single[0])
         ```
 
-### Case Study: TensorFlow with Text Classification
+### Case study: TensorFlow with text classification
 
 This procedure demonstrates text classification starting from plain text files stored on disk. You will train a binary classifier to perform sentiment analysis on an IMDB dataset. At the end of the notebook, there is an exercise for you to try in which you will train a multi-class classifier to predict the tag for a programming question on Stack Overflow.
 
@@ -1115,11 +1089,7 @@ To prepare the data for training, follow these steps:
     print("Vectorized review", vectorize_text(first_review, first_label))
     ```
 
-    ```{figure} ../data/rocm-ai/TextClassification-3.png
-    ---
-    align: center
-    ---
-    ```
+    ![ ](../data/conceptual/TextClassification-3.png)
 
 5. As you can see above, each token has been replaced by an integer. Look up the token (string) that each integer corresponds to by calling get_vocabulary() on the layer.
 
@@ -1158,11 +1128,7 @@ To prepare the data for training, follow these steps:
     model.summary()
     ```
 
-    ```{figure} ../data/rocm-ai/TextClassification-4.png
-    ---
-    align: center
-    ---
-    ```
+    ![ ](../data/conceptual/TextClassification-4.png)
 
 8. A model needs a loss function and an optimizer for training. Since this is a binary classification problem and the model outputs a probability (a single-unit layer with a sigmoid activation), use [`losses.BinaryCrossentropy`](https://www.tensorflow.org/api_docs/python/tf/keras/losses/BinaryCrossentropy) loss function.
 
@@ -1178,11 +1144,7 @@ To prepare the data for training, follow these steps:
     history = model.fit(train_ds,validation_data=val_ds,epochs=epochs)
     ```
 
-    ```{figure} ../data/rocm-ai/TextClassification-5.png
-    ---
-    align: center
-    ---
-    ```
+    ![ ](../data/conceptual/TextClassification-5.png)
 
 10. See how the model performs. Two values are returned: loss (a number representing our error; lower values are better) and accuracy.
 
@@ -1193,9 +1155,9 @@ To prepare the data for training, follow these steps:
     print("Accuracy: ", accuracy)
     ```
 
-    :::{note}
+    ```{note}
     model.fit() returns a History object that contains a dictionary with everything that happened during training.
-    :::
+    ```
 
     ```py
     history_dict = history.history
@@ -1226,21 +1188,9 @@ To prepare the data for training, follow these steps:
 
     The following images illustrate the training and validation loss and the training and validation accuracy.
 
-    ```{figure} ../data/rocm-ai/TextClassification-6.png
-    :name: TextClassification6
-    ---
-    align: center
-    ---
-    Training and Validation Loss
-    ```
+    ![Training and validation loss](../data/conceptual/TextClassification-6.png "Training and validation loss")
 
-    ```{figure} ../data/rocm-ai/TextClassification-7.png
-    :name: TextClassification7
-    ---
-    align: center
-    ---
-    Training and Validation Accuracy
-    ```
+    ![Training and validation accuracy](../data/conceptual/TextClassification-7.png "Training and validation accuracy")
 
 12. Export the model.
 

@@ -1,4 +1,4 @@
-# Command Line Installation
+# Command-line installation
 
 ::::{grid} 2 3 3 3
 :gutter: 1
@@ -23,6 +23,6 @@ Instructions for removing ROCm packages, libraries and tools.
 
 ::::
 
-## See Also
+## See also
 
 [Windows Support](../../../../about/compatibility/windows-support.md)

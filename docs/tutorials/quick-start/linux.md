@@ -3,7 +3,7 @@
 For a quick summary on installing ROCm on Linux, follow the steps listed on this page. If you
 want a more in-depth installation guide, see [Installing ROCm on Linux](../install/linux/index.md).
 
-## Add Repositories
+## Add repositories
 
 ::::::{tab-set}
 :::::{tab-item} Ubuntu
@@ -294,7 +294,7 @@ sudo zypper ref
 :::::
 ::::::
 
-## Install Drivers
+## Install drivers
 
 Install the `amdgpu-dkms` kernel module, aka driver, on your system.
 
@@ -329,7 +329,7 @@ sudo zypper install amdgpu-dkms
 
 ::::
 
-## Install ROCm Runtimes
+## Install ROCm runtimes
 
 Install the `rocm-hip-libraries` meta-package. This contains dependencies for most
 common ROCm applications.

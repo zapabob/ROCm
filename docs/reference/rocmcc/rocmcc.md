@@ -1,6 +1,6 @@
-# Compiler Reference Guide
+# Compiler reference guide
 
-## Introduction to Compiler Reference Guide
+## Introduction to compiler reference guide
 
 ROCmCC is a Clang/LLVM-based compiler. It is optimized for high-performance
 computing on AMD GPUs and CPUs and supports various heterogeneous programming
@@ -22,7 +22,7 @@ For more details, see:
 * AMD GPU usage: [llvm.org/docs/AMDGPUUsage.html](https://llvm.org/docs/AMDGPUUsage.html)
 * Releases and source: <https://github.com/RadeonOpenCompute/llvm-project>
 
-### ROCm Compiler Interfaces
+### ROCm compiler interfaces
 
 ROCm currently provides two compiler interfaces for compiling HIP programs:
 
@@ -52,11 +52,11 @@ The major differences between `hipcc` and `amdclang++` are listed below:
 | Source code location               | <https://github.com/ROCm-Developer-Tools/HIPCC>                                                                          | <https://github.com/RadeonOpenCompute/llvm-project> |
 ::::
 
-## Compiler Options and Features
+## Compiler options and features
 
 This chapter discusses compiler options and features.
 
-### AMD GPU Compilation
+### AMD GPU compilation
 
 This section outlines commonly used compiler flags for `hipcc` and `amdclang++`.
 :::{option} -x hip
@@ -111,7 +111,7 @@ This section outlines commonly used compiler flags for `hipcc` and `amdclang++`.
   Generates relocatable device code, also known as separate compilation mode.
 :::
 
-### AMD Optimizations for Zen Architectures
+### AMD optimizations for zen architectures
 
 The CPU compiler optimizations described in this chapter originate from the AMD
 Optimizing C/C++ Compiler (AOCC) compiler. They are available in ROCmCC if the
@@ -134,12 +134,12 @@ The `-famd-opt` flag is useful when a user wants to build with the proprietary
 optimization compiler and not have to depend on setting any of the other
 proprietary optimization flags.
 
-:::{note}
+```{note}
 `-famd-opt` can be used in addition to the other proprietary CPU optimization
 flags. The table of optimizations below implicitly enables the invocation of the
 AMD proprietary optimizations compiler, whereas the `-famd-opt` flag requires
 this to be handled explicitly.
-:::
+```
 
 #### `-fstruct-layout=[1,2,3,4,5,6,7]`
 
@@ -213,7 +213,7 @@ This is an experimental option to generate non-temporal store instruction for
 array accesses in a loop, whose iteration count cannot be determined at compile
 time. In this case, the compiler assumes the iteration count to be huge.
 
-#### Optimizations Through Driver `-mllvm <options>`
+#### Optimizations through driver `-mllvm <options>`
 
 The following optimization options must be invoked through driver
 `-mllvm <options>`:
@@ -255,12 +255,12 @@ loop. The heuristic can be controlled with the following options:
 
   Where, `n` is a positive integer and higher value of `<n>` facilitates more unswitching.
 
-   :::{note}
+   ```{note}
    These options may facilitate more unswitching under some workloads. Since
    loop-unswitching inherently leads to code bloat, facilitating more
    unswitching may significantly increase the code size. Hence, it may also lead
    to longer compilation times.
-   :::
+   ```
 
 ##### `-enable-strided-vectorization`
 
@@ -430,7 +430,7 @@ such as loop transformations and other optimizations requiring de-linearized
 index expressions should use the Hz option. This option has no impact on any
 other aspects of the Flang front end.
 
-### Inline ASM Statements
+### Inline ASM statements
 
 Inline assembly (ASM) statements allow a developer to include assembly
 instructions directly in either host or device code. While the ROCm compiler
@@ -451,18 +451,18 @@ supports ASM statements, their use is not recommended for the following reasons:
 * Writing correct ASM statements is often difficult; we strongly recommend
   thorough testing of any use of ASM statements.
 
-:::{note}
+```{note}
 For developers who choose to include ASM statements in the code, AMD is
 interested in understanding the use case and appreciates feedback at
 [https://github.com/RadeonOpenCompute/ROCm/issues](https://github.com/RadeonOpenCompute/ROCm/issues)
-:::
+```
 
-### Miscellaneous OpenMP Compiler Features
+### Miscellaneous OpenMP compiler features
 
 This section discusses features that have been added or enhanced in the OpenMP
 compiler.
 
-#### Offload-arch Tool
+#### Offload-arch tool
 
 An LLVM library and tool that is used to query the execution capability of the
 current system as well as to query requirements of a binary file. It is used by
@@ -534,7 +534,7 @@ There are symbolic link aliases `amdgpu-offload-arch` and `nvidia-arch` for
 These aliases are useful in determining whether architecture-specific tests
 should be run or to conditionally load architecture-specific software.
 
-#### Command-Line Simplification Using `offload-arch` Flag
+#### Command-line simplification using `offload-arch` flag
 
 Legacy mechanism of specifying offloading target for OpenMP involves using three
 flags, `-fopenmp-targets`, `-Xopenmp-target`, and `-march`. The first two flags
@@ -563,7 +563,7 @@ clang -fopenmp -target x86_64-linux-gnu \
 To ensure backward compatibility, both styles are supported. This option is
 compatible with target ID support and multi-image fat binaries.
 
-#### Target ID Support for OpenMP
+#### Target ID support for OpenMP
 
 The ROCmCC compiler supports specification of target features along with the GPU
 name while specifying a target offload device in the command line, using
@@ -603,7 +603,7 @@ to linker using `-plugin-opt=-mattr` flag. This feature is compatible with
 offload-arch command-line option and multi-image binaries for multiple
 architectures.
 
-#### Multi-image Fat Binary for OpenMP
+#### Multi-image fat binary for OpenMP
 
 The ROCmCC compiler is enhanced to generate binaries that can contain
 heterogenous images. This heterogeneity could be in terms of:
@@ -656,7 +656,7 @@ of target triple and the target GPU (along with the associated target features).
 modified to query this structure to identify a compatible image based on the
 capability of the current system.
 
-#### Unified Shared Memory (USM)
+#### Unified shared memory (USM)
 
 The following OpenMP pragma is available on MI200, and it must be executed with
 `xnack+` support.
@@ -668,7 +668,7 @@ omp requires unified_shared_memory
 For more details on USM refer to the {ref}`openmp_usm` section of the OpenMP
 Guide.
 
-### Support Status of Other Clang Options
+### Support status of other Clang options
 
 The following table lists the other Clang options and their support status.
 
@@ -679,8 +679,8 @@ The following table lists the other Clang options and their support status.
 :widths: auto
 :align: center
 
-| **Option**                               | **Support Status** | **Description**                                                                                                                |
-|------------------------------------------|:------------------:|--------------------------------------------------------------------------------------------------------------------------------|
+| **Option** | **Support Status** | **Description** |
+|--------------|:-----------------------:|-------------------------|
 | `-###`                                   | Supported          | Prints (but does not run) the commands to run for this compilation                                                             |
 | `--analyzer-output <value>`              | Supported          | "Static analyzer report output format (`html|plist|plist-multi-file|plist-html|sarif|text`)"                                   |
 | `--analyze`                              | Supported          | Runs the static analyzer                                                                                                       |
@@ -1184,7 +1184,7 @@ The following table lists the other Clang options and their support status.
  |-isysroot  \<dir\>|Supported|Sets the system root directory (usually /)|
  |-isystem-after  \<directory\>|Supported|Adds the directory to end of the SYSTEM include search path|
  |-isystem  \<directory\>|Supported|Adds the directory to SYSTEM include search path|
- |-ivfsoverlay  \<value\>|Supported|Overlays the virtual filesystem described by the specified file over the real file system|
+ |-ivfsoverlay  \<value\>|Supported|Overlays the virtual file system described by the specified file over the real file system|
  |-iwithprefixbefore  \<dir\>|Supported|Sets the directory to include search path with prefix|
  |-iwithprefix  \<dir\>|Supported|Sets the directory to SYSTEM include search path with prefix|
  |-iwithsysroot  \<directory\>|Supported|Adds directory to SYSTEM include search path; absolute paths are relative to -isysroot|

@@ -1,14 +1,14 @@
-# Installation Using the Graphical Interface
+# Installation using the graphical interface
 
 The steps to install the HIP SDK for Windows are described in this document.
 
-## System Requirements
+## System requirements
 
 The HIP SDK is supported on Windows 10 and 11. The HIP SDK may be installed on a
 system without AMD GPUs to use the build toolchains. To run HIP applications, a
 compatible GPU is required. Please see the supported GPU guide for more details.
 
-## HIP SDK Installation
+## HIP SDK installation
 
 ### Download the installer
 
@@ -19,47 +19,25 @@ Download the installer from the
 
 To launch the AMD HIP SDK Installer, click the **Setup** icon shown in the following image.
 
-```{figure} ../../../../data/tutorials/install/windows/000-setup-icon.png
-:name: setup-icon-install
-:alt: Icon with AMD arrow logo and User Access Control Shield overlayed.
-Setup Icon
-```
+![Icon with AMD arrow logo and User Access Control Shield overlay](../../../../data/tutorials/install/windows/000-setup-icon.png "Setup Icon")
 
 The installer requires Administrator Privileges, so you may be greeted with a
 User Access Control (UAC) pop-up. Click Yes.
 
-```{figure} ../../../../data/tutorials/install/windows/001-uac-dark.png
-:name: uac-dark-install
-:class: only-dark
-:alt: User Access Control pop-up
-User Access Control pop-up
-```
+![User Access Control pop-up](../../../../data/tutorials/install/windows/001-uac-dark.png "User Access Control pop-up")
 
-```{figure} ../../../../data/tutorials/install/windows/001-uac-light.png
-:name: uac-light-install
-:class: only-light
-:alt: User Access Control pop-up
-User Access Control pop-up
-```
+![User Access Control pop-up](../../../../data/tutorials/install/windows/001-uac-light.png "User Access Control pop-up")
 
 The installer executable will temporarily extract installer packages to `C:\AMD`
 which it will remove after installation completes. This extraction is signified
 by the "Initializing install" window in the following image.
 
-```{figure} ../../../../data/tutorials/install/windows/002-initializing.png
-:name: init-install
-:alt: Window with AMD arrow logo, futuristic background and progress counter.
-Installer initialization window
-```
+![Window with AMD arrow logo, futuristic background and progress counter](../../../../data/tutorials/install/windows/002-initializing.png "Installer initialization window")
 
 The installer will then detect your system configuration to determine which installable components
 are applicable to your system.
 
-```{figure} ../../../../data/tutorials/install/windows/003-detecting-system-config.png
-:name: detect-sys-components
-:alt: Window with AMD arrow logo, futuristic background and activity indicator.
-Installer initialization window.
-```
+![Window with AMD arrow logo, futuristic background and activity indicator](../../../../data/tutorials/install/windows/003-detecting-system-config.png "Installer initialization window")
 
 ### Customizing the install
 
@@ -68,13 +46,9 @@ the installation. By default, all components are selected for installation.
 Refer to the following image for an instance when the Select All option
 is turned on.
 
-```{figure} ../../../../data/tutorials/install/windows/004-installer-window.png
-:name: installer-window
-:alt: Window with AMD arrow logo, futuristic background and activity indicator.
-Installer initialization window.
-```
+![Window with AMD arrow logo, futuristic background and activity indicator](../../../../data/tutorials/install/windows/004-installer-window.png "Installer initialization window")
 
-#### HIP SDK Installer
+#### HIP SDK installer
 
 The HIP SDK installation options are listed in the following table.
 
@@ -101,7 +75,7 @@ DeSelecting All and then picking the individual components may be more
 convenient.
 ```
 
-#### AMD Display Driver
+#### AMD display driver
 
 The HIP SDK installer bundles an AMD Radeon Software PRO 23.10 installer. The
 supported install options are summarized in the following table:
@@ -129,29 +103,21 @@ You must perform a system restart for a complete installation of the
 Display Driver.
 ```
 
-### Installing Components
+### Installing components
 
 Please wait for the installation to complete during as shown in the following image.
 
-```{figure} ../../../../data/tutorials/install/windows/012-install-progress.png
-:name: install-progress
-:alt: Window with AMD arrow logo, futuristic background and progress meter.
-Installation Progress
-```
+![Window with AMD arrow logo, futuristic background and progress meter](../../../../data/tutorials/install/windows/012-install-progress.png "Installation progress")
 
-### Installation Complete
+### Installation complete
 
 Once the installation is complete, the installer window may prompt you for a
 system restart. Click **Restart** at the lower right corner, shown in the following image.
 
-```{figure} ../../../../data/tutorials/install/windows/013-install-complete.png
-:name: install-complete
-:alt: Window with AMD arrow logo, futuristic background and completion notice.
-Installation Complete
-```
+![Window with AMD arrow logo, futuristic background and completion notice](../../../../data/tutorials/install/windows/013-install-complete.png "Installation complete")
 
 ```{error}
-Should the installer terminate due to unexpcted circumstances, or the user
+Should the installer terminate due to unexpected circumstances, or the user
 forcibly terminates the installer, the temporary directory created under
 `C:\AMD` may be safely removed. Installed components will not depend on this
 folder (unless the user specifies `C:\AMD` as an install folder explicitly).

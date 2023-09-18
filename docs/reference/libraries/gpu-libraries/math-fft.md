@@ -1,6 +1,6 @@
 # Fast Fourier transforms
 
-ROCm libraries for FFT are as follows:
+ROCm libraries for fast Fourier transforms (FFTs) are as follows:
 
 :::::{grid} 1 1 2 2
 :gutter: 1

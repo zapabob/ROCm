@@ -3,7 +3,7 @@
 Prior to beginning, please ensure you have the [prerequisites](../prerequisites)
 installed.
 
-## Download the Installer Script
+## Download the installer script
 
 To download and install the `amdgpu-install` script on the system, use the
 following commands based on your distribution.
@@ -148,7 +148,7 @@ openclsdk (for application developers requiring ROCr based OpenCL)
 - ROCm Language runtime
 - development and SDK files for ROCr based OpenCL
 
-hip(for users of HIP runtime on AMD products)
+hip (for users of HIP runtime on AMD products)
 - HIP runtimes
 hiplibsdk (for application developers requiring HIP on AMD products)
 - HIP runtimes
@@ -171,12 +171,12 @@ To install use cases specific to your requirements, use the installer
   sudo amdgpu-install --usecase=hiplibsdk,rocm
   ```
 
-## Single-version ROCm Installation
+## Single-version ROCm installation
 
 By default (without the `--rocmrelease` option)
 the installer script will install packages in the single-version layout.
 
-## Multi-version ROCm Installation
+## Multi-version ROCm installation
 
 For the multi-version ROCm installation you must use the installer script from
 the latest release of ROCm that you wish to install.
@@ -185,7 +185,7 @@ the latest release of ROCm that you wish to install.
 simultaneously, you are required to download the installer from the latest ROCm
 release v5.4.3.
 
-### Add Required Repositories
+### Add required repositories
 
 You must add the ROCm repositories manually for all ROCm releases
 you want to install except the latest one. The `amdgpu-install` script

@@ -1,4 +1,4 @@
-# GPU Isolation Techniques
+# GPU isolation techniques
 
 Restricting the access of applications to a subset of GPUs, aka isolating
 GPUs allows users to hide GPU resources from programs. The programs by default
@@ -8,7 +8,7 @@ There are multiple ways to achieve isolation of GPUs in the ROCm software stack,
 differing in which applications they apply to and the security they provide.
 This page serves as an overview of the techniques.
 
-## Environment Variables
+## Environment variables
 
 The runtimes in the ROCm software stack read these environment variables to
 select the exposed or default device to present to applications using them.
@@ -47,8 +47,7 @@ export GPU_DEVICE_ORDINAL="0,2"
 
 Device indices exposed to HIP applications.
 
-Runtime
-: HIP Runtime. Applies only to applications using HIP on the AMD platform.
+Runtime: HIP runtime. Applies only to applications using HIP on the AMD platform.
 
 ```{code-block} shell
 :caption: Example to expose the 1. and 3. devices in the system.
@@ -90,7 +89,7 @@ to all programs that use the `amdgpu` kernel module interfaces.
 Even programs that don't use the ROCm runtime, like graphics applications
 using OpenGL or Vulkan, can only access the GPUs exposed to the container.
 
-## GPU Passthrough to Virtual Machines
+## GPU passthrough to virtual machines
 
 Virtual machines achieve the highest level of isolation, because even the kernel
 of the virtual machine is isolated from the host. Devices physically installed

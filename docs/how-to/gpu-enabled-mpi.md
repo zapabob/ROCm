@@ -1,4 +1,4 @@
-# GPU-Enabled MPI
+# GPU-enabled MPI
 
 The Message Passing Interface ([MPI](https://www.mpi-forum.org)) is a standard
 API for distributed and parallel application development that can scale to
@@ -115,7 +115,7 @@ cd osu-micro-benchmarks-5.9
 make -j $(nproc)
 ```
 
-## Intra-node Run
+## Intra-node run
 
 Before running an Open MPI job, it is essential to set some environment variables to
 ensure that the correct version of Open MPI and UCX is being used.
@@ -148,13 +148,9 @@ larger than 67MB, an effective utilization of about 150GB/sec is achieved, which
 corresponds to 75% of the peak transfer bandwidth of 200GB/sec for that
 connection:
 
-:::{figure} ../data/how-to/gpu-enabled-mpi-1.png
-:name: mpi-bandwidth
-:alt: OSU execution showing transfer bandwidth increasing alongside payload inc.
-Inter-GPU bandwidth with various payload sizes.
-:::
+![OSU execution showing transfer bandwidth increasing alongside payload increase](../data/how-to/gpu-enabled-mpi-1.png "Inter-GPU bandwidth with various payload sizes")
 
-## Collective Operations
+## Collective operations
 
 Collective Operations on GPU buffers are best handled through the
 Unified Collective Communication Library (UCC) component in Open MPI.

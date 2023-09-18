@@ -1,24 +1,24 @@
-# Installation Prerequisites (Linux)
+# Installation prerequisites (Linux)
 
 You must perform the following steps before installing ROCm and check if the
 system meets all the requirements to proceed with the installation.
 
-## Confirm the System Has a Supported Linux Distribution Version
+## Confirm the system has a supported Linux distribution version
 
 The ROCm installation is supported only on specific Linux distributions and
 kernel versions.
 
-### Check the Linux Distribution and Kernel Version on Your System
+### Check the Linux distribution and kernel version on your system
 
 This section discusses obtaining information about the Linux distribution and
 kernel version.
 
-#### Linux Distribution Information
+#### Linux distribution information
 
 Verify the Linux distribution using the following steps:
 
 1. To obtain the Linux distribution information, type the following command on
-   your system from the Command Line Interface (CLI):
+   your system from the command-line interface (CLI):
 
    ```shell
    uname -m && cat /etc/*release
@@ -39,7 +39,7 @@ Verify the Linux distribution using the following steps:
 
 (check-kernel-info)=
 
-#### Kernel Information
+#### Kernel information
 
 Verify the kernel version using the following steps:
 
@@ -183,7 +183,7 @@ sudo zypper install kernel-default-devel
 
 (linux_group_permissions)=
 
-## Setting Permissions for Groups
+## Setting permissions for groups
 
 This section provides steps to add any current user to a video group to access
 GPU resources.

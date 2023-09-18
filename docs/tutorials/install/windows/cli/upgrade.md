@@ -1,8 +1,8 @@
-# Upgrading Using the Graphical Interface
+# Upgrading using the graphical interface
 
 The steps to uninstall the HIP SDK for Windows are described in this document.
 
-## HIP SDK Upgrade
+## HIP SDK upgrade
 
 To upgrade an existing installation of the HIP SDK without preserving the
 previous version, first uninstall it, then install the new version following the

@@ -55,7 +55,7 @@ like:
 docker run --device /dev/kfd --device /dev/dri/renderD128 --device /dev/dri/renderD130 <image>
 ```
 
-### Additional Options
+### Additional options
 
 The performance of an application can vary depending on the assignment of GPUs
 and CPUs to the task. Typically, `numactl` is installed as part of many HPC

@@ -1,6 +1,6 @@
 # Installation (Linux)
 
-## Understanding the Release-specific AMDGPU and ROCm Repositories on Linux Distributions
+## Understanding the release-specific AMDGPU and ROCm repositories on Linux distributions
 
 The release-specific repositories consist of packages from a specific release of
 versions of AMDGPU and ROCm. The repositories are not updated for the latest
@@ -10,7 +10,7 @@ release to install, update the previously installed single version to the later
 available release, or add the latest version of ROCm along with the currently
 installed version by using the multi-version ROCm packages.
 
-## Step by Step Instructions
+## Step-by-step instructions
 
 ::::::{tab-set}
 :::::{tab-item} Ubuntu
@@ -37,7 +37,7 @@ available in a standard key ring distribution but has the following SHA1 sum
 hash: `73f5d8100de6048aa38a8b84cd9a87f05177d208 rocm.gpg.key`
 ```
 
-::::{rubric} 2. Add the AMDGPU Repository and Install the Kernel-mode Driver
+::::{rubric} 2. Add the AMDGPU repository and install the kernel-mode driver
 ::::
 
 ```{tip}
@@ -86,7 +86,7 @@ sudo apt install amdgpu-dkms
 sudo reboot
 ```
 
-::::{rubric} 3. Add the ROCm Repository
+::::{rubric} 3. Add the ROCm repository
 ::::
 
 To add the ROCm repository, use the following steps:
@@ -149,7 +149,7 @@ For a comprehensive list of meta-packages, refer to
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
-::::{rubric} 1. Add the AMDGPU Stack Repository and Install the Kernel-mode Driver
+::::{rubric} 1. Add the AMDGPU stack repository and install the kernel-mode driver
 ::::
 
 ```{tip}
@@ -278,7 +278,7 @@ sudo yum install amdgpu-dkms
 sudo reboot
 ```
 
-::::{rubric} 2. Add the ROCm Stack Repository
+::::{rubric} 2. Add the ROCm stack repository
 ::::
 
 To add the ROCm repository, use the following steps, based on your distribution:
@@ -349,7 +349,7 @@ For a comprehensive list of meta-packages, refer to
 :::::{tab-item} SUSE Linux Enterprise Server
 :sync: SLES
 
-::::{rubric} 1. Add the AMDGPU Repository and Install the Kernel-mode Driver
+::::{rubric} 1. Add the AMDGPU repository and install the kernel-mode driver
 ::::
 
 ```{tip}
@@ -407,7 +407,7 @@ sudo zypper --gpg-auto-import-keys install amdgpu-dkms
 sudo reboot
 ```
 
-::::{rubric} 2. Add the ROCm Stack Repository
+::::{rubric} 2. Add the ROCm stack repository
 ::::
 
 To add the ROCm repository, use the following steps:
@@ -453,12 +453,12 @@ For a comprehensive list of meta-packages, refer to
 
 (post-install-actions-linux)=
 
-## Post-install Actions and Verification Process
+## Post-install actions and verification process
 
 The post-install actions listed here are optional and depend on your use case,
 but are generally useful. Verification of the install is advised.
 
-### Post-install Actions
+### Post-install actions
 
 1. Instruct the system linker where to find the shared objects (`.so` files) for
    ROCm applications.
@@ -501,7 +501,7 @@ but are generally useful. Verification of the install is advised.
 
 (verifying-kernel-mode-driver-installation)=
 
-### Verifying Kernel-mode Driver Installation
+### Verifying kernel-mode driver installation
 
 Check the installation of the kernel-mode driver by typing the command given
 below:
@@ -510,7 +510,7 @@ below:
 dkms status
 ```
 
-### Verifying ROCm Installation
+### Verifying ROCm installation
 
 After completing the ROCm installation, execute the following commands on the
 system to verify if the installation is successful. If you see your GPUs listed
@@ -522,7 +522,7 @@ by both commands, the installation is considered successful:
 /opt/rocm/opencl/bin/clinfo
 ```
 
-### Verifying Package Installation
+### Verifying package installation
 
 To ensure the packages are installed successfully, use the following commands:
 

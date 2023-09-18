@@ -1,4 +1,4 @@
-# Contributing to ROCm Docs
+# Contributing to ROCm documentation
 
 AMD values and encourages the ROCm community to contribute to our code and
 documentation. This repository is focused on ROCm documentation and this
@@ -17,7 +17,7 @@ For additional information on documentation functionalities,
 see the user and developer guides for rocm-docs-core
 at {doc}`rocm-docs-core documentation <rocm-docs-core:index>`.
 
-## Supported Formats
+## Supported formats
 
 Our documentation includes both Markdown and RST files. Markdown is encouraged
 over RST due to the lower barrier to participation. GitHub-flavored Markdown is preferred
@@ -38,7 +38,7 @@ as follows:
 * Level one headers are only used for page titles. There must be only one level
   1 header per file for both Markdown and Restructured Text.
 * Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via
-  our automated GitHub action on a Pull Request (PR).
+  our automated GitHub action on a pull request (PR).
   See the {doc}`rocm-docs-core linting user guide <rocm-docs-core:user_guide/linting>` for more details.
 
 ## Filenames and folder structure
@@ -50,7 +50,7 @@ All documentation is in `/docs` except for special files like
 the contributing guide in the `/` folder. All images used in the documentation are
 placed in the `/docs/data` folder.
 
-## Language and Style
+## Language and style
 
 Adopt Microsoft CPP-Docs guidelines for
 [Voice and Tone](https://github.com/MicrosoftDocs/cpp-docs/blob/main/styleguide/voice-tone.md).
@@ -66,6 +66,4 @@ Raise issues in `rocm-docs-core` for any formatting concerns and changes request
 
 ## More
 
-For more topics, such as submitting feedback and ways to build documentation,
-see the [Contributing Section](https://rocm.docs.amd.com/en/latest/contributing.html)
-at [rocm.docs.amd.com](https://rocm.docs.amd.com)
+For more topics, such as submitting feedback and ways to build documentation, refer to [Building documentation](./building.md) and [How to provide feedback for ROCm documentation](./feedback.md).

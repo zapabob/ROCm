@@ -2,7 +2,7 @@
 
 (linux-support)=
 
-## Supported Linux Distributions
+## Supported Linux distributions
 
 AMD ROCm™ Platform supports the following Linux distributions.
 
@@ -48,7 +48,7 @@ AMD ROCm™ Platform supports the following Linux distributions.
 ❌: **Unsupported** - AMD no longer performs builds and testing on these
   previously supported distro GA images.
 
-## Virtualization Support
+## Virtualization support
 
 ROCm supports virtualization for select GPUs only as shown below.
 
@@ -58,7 +58,7 @@ ROCm supports virtualization for select GPUs only as shown below.
 | VMWare         | ESXi 8   | MI210 | Ubuntu 20.04 (`5.15.0-56-generic`), SLES 15 SP4 (`5.14.21-150400.24.18-default`) |
 | VMWare         | ESXi 7   | MI210 | Ubuntu 20.04 (`5.15.0-56-generic`), SLES 15 SP4 (`5.14.21-150400.24.18-default`) |
 
-## Linux Supported GPUs
+## Linux-supported GPUs
 
 The table below shows supported GPUs for Instinct™, Radeon Pro™ and Radeon™
 GPUs. Please click the tabs below to switch between GPU product lines. If a GPU
@@ -108,7 +108,7 @@ Use Driver Shipped with ROCm
 
 ::::
 
-### Support Status
+### Support status
 
 ✅: **Supported** - AMD enables these GPUs in our software distributions for
   the corresponding ROCm product.
@@ -116,7 +116,7 @@ Use Driver Shipped with ROCm
 ❌: **Unsupported** - This configuration is not enabled in our software
   distributions.
 
-## CPU Support
+## CPU support
 
-ROCm requires CPUs that support PCIe™ Atomics. Modern CPUs after the release of
-1st generation AMD Zen CPU and Intel™ Haswell support PCIe Atomics.
+ROCm requires CPUs that support PCIe™ atomics. Modern CPUs after the release of
+1st generation AMD Zen CPU and Intel™ Haswell support PCIe atomics.

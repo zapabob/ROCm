@@ -67,7 +67,7 @@ In general, Windows releases will trail Linux releases. Software developers that
 wish to support both Linux and Windows using a single ROCm version should
 refrain from upgrading ROCm unless there is a joint release.
 
-## Windows Documentation implications
+## Windows documentation implications
 
 The ROCm documentation website contains both Windows and Linux documentation.
 Just below each article title, a convenient article information section states
@@ -83,7 +83,7 @@ The software developer must read all the previous ROCm release notes (including)
 skipped ROCm versions on Windows for information on all the changes present in
 the Windows release.
 
-## Windows Builds from Source
+## Windows builds from source
 
 Not all source code required to build Windows from source is available under a
 permissive open source license. Build instructions on Windows is only provided

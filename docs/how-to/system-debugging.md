@@ -1,10 +1,10 @@
-# System Debugging Guide
+# System debugging guide
 
-## ROCm Language and System Level Debug, Flags, and Environment Variables
+## ROCm language and system level debug, flags, and environment variables
 
 Kernel options to avoid: the Ethernet port getting renamed every time you change graphics cards, `net.ifnames=0 biosdevname=0`
 
-## ROCr Error Code
+## ROCr error code
 
 * 2 Invalid Dimension
 * 4 Invalid Group Memory
@@ -14,13 +14,13 @@ Kernel options to avoid: the Ethernet port getting renamed every time you change
 * 128 Out of VGPRs
 * 0x80000000 Debug Options
 
-## Command to Dump Firmware Version and Get Linux Kernel Version
+## Command to dump firmware version and get Linux kernel version
 
 `sudo cat /sys/kernel/debug/dri/1/amdgpu_firmware_info`
 
 `uname -a`
 
-## Debug Flags
+## Debug flags
 
 Debug messages when developing/debugging base ROCm driver. You could enable the printing from `libhsakmt.so` by setting an environment variable, `HSAKMT_DEBUG_LEVEL`. Available debug levels are 3-7. The higher level you set, the more messages will print.
 
@@ -34,7 +34,7 @@ Debug messages when developing/debugging base ROCm driver. You could enable the 
 
 * `export HSAKMT_DEBUG_LEVEL=7` : Everything including pr_debug prints.
 
-## ROCr Level Environment Variables for Debug
+## ROCr level environment variables for debug
 
 `HSA_ENABLE_SDMA=0`
 
@@ -44,18 +44,18 @@ Debug messages when developing/debugging base ROCm driver. You could enable the 
 
 `HSA_DISABLE_CACHE=1`
 
-## Turn Off Page Retry on GFX9/Vega Devices
+## Turn off page retry on GFX9/Vega devices
 
 `sudo -s`
 
 `echo 1 > /sys/module/amdkfd/parameters/noretry`
 
-## HIP Environment Variables 3.x
+## HIP environment variables 3.x
 
-### OpenCL Debug Flags
+### OpenCL debug flags
 
 `AMD_OCL_WAIT_COMMAND=1 (0 = OFF, 1 = On)`
 
-## PCIe-Debug
+## PCIe-debug
 
 For information on how to debug and profile HIP applications, see {doc}`hip:how_to_guides/debugging`

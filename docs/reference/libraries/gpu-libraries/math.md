@@ -16,7 +16,7 @@ at compile-time of the hipLIB in question. For dynamic dispatch between vendor i
 :gutter: 1
 
 :::{grid-item-card}
-**[Linear Algebra Libraries](./math-linear-algebra.md)**
+**[Linear algebra libraries](./math-linear-algebra.md)**
 
 * {doc}`rocBLAS <rocblas:index>`
 * {doc}`hipBLAS <hipblas:index>`
@@ -40,7 +40,7 @@ at compile-time of the hipLIB in question. For dynamic dispatch between vendor i
 :::
 
 :::{grid-item-card}
-**[Random Numbers](./rand.md)**
+**[Random numbers](./rand.md)**
 
 * {doc}`rocRAND <rocrand:index>`
 * {doc}`hipRAND <hiprand:index>`

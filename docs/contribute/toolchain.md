@@ -47,9 +47,9 @@ It is integrated into ROCm documentation by the Sphinx extension [`myst-parser`]
 A cheat sheet that showcases how to use the MyST syntax is available over at
 the [Jupyter reference](https://jupyterbook.org/en/stable/reference/cheatsheet.html).
 
-### Sphinx External TOC
+### Sphinx External ToC
 
-[Sphinx External Table of Contents (TOC)](https://sphinx-external-toc.readthedocs.io/en/latest/intro.html)
+[Sphinx External ToC](https://sphinx-external-toc.readthedocs.io/en/latest/intro.html)
 is a Sphinx extension used for ROCm documentation navigation. This tool generates a navigation menu on the left
 based on a YAML file that specifies the table of contents.
 It was selected due to its flexibility that allows scripts to operate on the
@@ -57,15 +57,15 @@ YAML file. Please transition to this file for the project's navigation. You can
 see the `_toc.yml.in` file in this repository in the `docs/sphinx` folder for an
 example.
 
-### Sphinx Book Theme
+### Sphinx-book-theme
 
-[Sphinx Book Theme](https://sphinx-book-theme.readthedocs.io/en/latest/) is a Sphinx theme
+[Sphinx-book-theme](https://sphinx-book-theme.readthedocs.io/en/latest/) is a Sphinx theme
 that defines the base appearance for ROCm documentation.
 ROCm documentation applies some customization,
 such as a custom header and footer on top of the Sphinx Book Theme.
 
-### Sphinx Design
+### Sphinx design
 
-[Sphinx Design](https://sphinx-design.readthedocs.io/en/latest/index.html) is a Sphinx extension that adds design
+[Sphinx design](https://sphinx-design.readthedocs.io/en/latest/index.html) is a Sphinx extension that adds design
 functionality.
 ROCm documentation uses Sphinx Design for grids, cards, and synchronized tabs.

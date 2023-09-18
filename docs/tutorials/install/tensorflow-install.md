@@ -1,4 +1,4 @@
-# TensorFlow Installation for ROCm
+# Installing TensorFlow for ROCm
 
 ## TensorFlow
 
@@ -13,7 +13,7 @@ development.
 
 The following sections contain options for installing TensorFlow.
 
-#### Option 1: Install TensorFlow Using Docker Image
+#### Option 1: Using a Docker image
 
 To install ROCm on bare metal, follow the section
 [Installation (Linux)](../../tutorials/install/linux/os-native/install). The recommended option to
@@ -38,7 +38,7 @@ Follow these steps:
    --security-opt seccomp=unconfined rocm/tensorflow:latest
    ```
 
-#### Option 2: Install TensorFlow Using Wheels Package
+#### Option 2: using a wheels package
 
 To install TensorFlow using the wheels package, follow these steps:
 
@@ -53,14 +53,14 @@ To install TensorFlow using the wheels package, follow these steps:
    | The Python version is less than 3.7 | Upgrade Python.                  |
    | The Python version is more than 3.7 | Skip this step and go to Step 3. |
 
-   :::{note}
+   ```{note}
    The supported Python versions are:
 
    * 3.7
    * 3.8
    * 3.9
    * 3.10
-   :::
+   ```
 
    ```bash
    sudo apt-get install python3.7 # or python3.8 or python 3.9 or python 3.10
@@ -74,9 +74,9 @@ To install TensorFlow using the wheels package, follow these steps:
    /usr/bin/python3 python3 /usr/bin/python[version] [priority]
    ```
 
-   :::{note}
+   ```{note}
    Follow the instruction in Step 2 for incompatible Python versions.
-   :::
+   ```
 
    ```bash
    sudo update-alternatives --config python3
@@ -139,12 +139,12 @@ To install TensorFlow using the wheels package, follow these steps:
    python3 -c 'import tensorflow' 2> /dev/null && echo 'Success' || echo 'Failure'
    ```
 
-   :::{note}
+   ```{note}
    For details on `tensorflow-rocm` wheels and ROCm version compatibility, see:
    [https://github.com/ROCmSoftwarePlatform/tensorflow-upstream/blob/develop-upstream/rocm_docs/tensorflow-rocm-release.md](https://github.com/ROCmSoftwarePlatform/tensorflow-upstream/blob/develop-upstream/rocm_docs/tensorflow-rocm-release.md)
-   :::
+   ```
 
-### Test the TensorFlow Installation
+### Test the TensorFlow installation
 
 To test the installation of TensorFlow, run the container image as specified in
 the previous section Installing TensorFlow. Ensure you have access to the Python
@@ -154,7 +154,7 @@ shell in the Docker container.
 python3 -c 'import tensorflow' 2> /dev/null && echo ‘Success’ || echo ‘Failure’
 ```
 
-### Run a Basic TensorFlow Example
+### Run a basic TensorFlow example
 
 The TensorFlow examples repository provides basic examples that exercise the
 framework's functionality. The MNIST database is a collection of handwritten
@@ -176,31 +176,3 @@ Follow these steps:
    #pip3 install requirement.txt
    #python mnist_tf.py
    ```
-
-## References
-
-C. Szegedy, V. Vanhoucke, S. Ioffe, J. Shlens and Z. Wojna, "Rethinking the Inception Architecture for Computer Vision," CoRR, p. abs/1512.00567, 2015
-
-PyTorch, \[Online\]. Available: [https://pytorch.org/vision/stable/index.html](https://pytorch.org/vision/stable/index.html)
-
-PyTorch, \[Online\]. Available: [https://pytorch.org/hub/pytorch_vision_inception_v3/](https://pytorch.org/hub/pytorch_vision_inception_v3/)
-
-Stanford, \[Online\]. Available: [http://cs231n.stanford.edu/](http://cs231n.stanford.edu/)
-
-Wikipedia, \[Online\]. Available: [https://en.wikipedia.org/wiki/Cross_entropy](https://en.wikipedia.org/wiki/Cross_entropy)
-
-AMD, "ROCm issues," \[Online\]. Available: [https://github.com/RadeonOpenCompute/ROCm/issues](https://github.com/RadeonOpenCompute/ROCm/issues)
-
-PyTorch, \[Online image\]. [https://pytorch.org/assets/brand-guidelines/PyTorch-Brand-Guidelines.pdf](https://pytorch.org/assets/brand-guidelines/PyTorch-Brand-Guidelines.pdf)
-
-TensorFlow, \[Online image\]. [https://www.tensorflow.org/extras/tensorflow_brand_guidelines.pdf](https://www.tensorflow.org/extras/tensorflow_brand_guidelines.pdf)
-
-MAGMA, \[Online image\]. [https://bitbucket.org/icl/magma/src/master/docs/](https://bitbucket.org/icl/magma/src/master/docs/)
-
-Advanced Micro Devices, Inc., \[Online\]. Available: [https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/](https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/)
-
-Advanced Micro Devices, Inc., \[Online\]. Available: [https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/wiki](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/wiki)
-
-Docker, \[Online\]. [https://docs.docker.com/get-started/overview/](https://docs.docker.com/get-started/overview/)
-
-Torchvision, \[Online\]. Available [https://pytorch.org/vision/master/index.html?highlight=torchvision#module-torchvision](https://pytorch.org/vision/master/index.html?highlight=torchvision#module-torchvision)

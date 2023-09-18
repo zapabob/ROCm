@@ -105,7 +105,7 @@ Advanced Micro Devices, Inc. Other product names used in this publication are
 for identification purposes only and may be trademarks of their respective
 companies.
 
-## Package Licensing
+## Package licensing
 
 ```{attention}
 AQL Profiler and AOCC CPU optimization are both provided in binary form, each

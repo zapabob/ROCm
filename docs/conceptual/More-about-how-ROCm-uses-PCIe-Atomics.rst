@@ -1,10 +1,10 @@
 ===========================
-How ROCm uses PCIe Atomics
+How ROCm uses PCIe atomics
 ===========================
 
 
-ROCm PCIe Feature and Overview BAR Memory
-==========================================
+ROCm PCIe feature and overview base address register (BAR) memory
+======================================================================
 
 
 ROCm is an extension of HSA platform architecture, so it shares the queueing model, memory model, signaling and synchronization protocols. Platform atomics are integral to perform queuing and signaling memory operations where there may be multiple-writers across CPU and GPU agents.
@@ -22,33 +22,33 @@ For ROCm the Platform atomics are used in ROCm in the following ways:
    * Update HSA queue’s write_dispatch_id: 64 bit atomic add used by the CPU and GPU agent to support multi-writer queue insertions.
    * Update HSA Signals – 64bit atomic ops are used for CPU & GPU synchronization.
 
-The PCIe 3.0 AtomicOp feature allows atomic transactions to be requested by, routed through and completed by PCIe components. Routing and completion does not require software support. Component support for each is detectable via the DEVCAP2 register. Upstream bridges need to have AtomicOp routing enabled or the Atomic Operations will fail even though PCIe endpoint and PCIe I/O Devices has the capability to Atomics Operations.
+The PCIe 3.0 AtomicOp feature allows atomic transactions to be requested by, routed through and completed by PCIe components. Routing and completion does not require software support. Component support for each is detectable via the DEVCAP2 register. Upstream bridges need to have AtomicOp routing enabled or the Atomic Operations will fail even though PCIe endpoint and PCIe I/O devices has the capability to Atomics Operations.
 
-To do AtomicOp routing capability between two or more Root Ports, each associated Root Port must indicate that capability via the AtomicOp Routing Supported bit in the Device Capabilities 2 register.
+To do AtomicOp routing capability between two or more Root Ports, each associated Root Port must indicate that capability via the AtomicOp routing supported bit in the Device Capabilities 2 register.
 
-If your system has a PCIe Express Switch it needs to support AtomicsOp routing. Again AtomicOp requests are permitted only if a component’s ``DEVCTL2.ATOMICOP_REQUESTER_ENABLE`` field is set. These requests can only be serviced if the upstream components support AtomicOp completion and/or routing to a component which does. AtomicOp Routing Support=1 Routing is supported, AtomicOp Routing Support=0 routing is not supported.
+If your system has a PCIe Express Switch it needs to support AtomicsOp routing. AtomicOp requests are permitted only if a component’s ``DEVCTL2.ATOMICOP_REQUESTER_ENABLE`` field is set. These requests can only be serviced if the upstream components support AtomicOp completion and/or routing to a component which does. AtomicOp Routing Support=1 Routing is supported, AtomicOp Routing Support=0 routing is not supported.
 
-Atomic Operation is a Non-Posted transaction supporting 32-bit and 64-bit address formats, there must be a response for Completion containing the result of the operation. Errors associated with the operation (uncorrectable error accessing the target location or carrying out the Atomic operation) are signaled to the requester by setting the Completion Status field in the completion descriptor, they are set to to Completer Abort (CA) or Unsupported Request (UR).
+An atomic operation is a non-posted transaction supporting 32-bit and 64-bit address formats, there must be a response for Completion containing the result of the operation. Errors associated with the operation (uncorrectable error accessing the target location or carrying out the Atomic operation) are signaled to the requester by setting the Completion Status field in the completion descriptor, they are set to to Completer Abort (CA) or Unsupported Request (UR).
 
-To understand more about how PCIe Atomic operations work `PCIe Atomics <https://pcisig.com/specifications/pciexpress/specifications/ECN_Atomic_Ops_080417.pdf>`_
+To understand more about how PCIe atomic operations work, see `PCIe atomics <https://pcisig.com/specifications/pciexpress/specifications/ECN_Atomic_Ops_080417.pdf>`_
 
 `Linux Kernel Patch to pci_enable_atomic_request <https://patchwork.kernel.org/project/linux-pci/patch/1443110390-4080-1-git-send-email-jay@jcornwall.me/>`_
 
 There are also a number of papers which talk about these new capabilities:
 
   * `Atomic Read Modify Write Primitives by Intel <https://www.intel.es/content/dam/doc/white-paper/atomic-read-modify-write-primitives-i-o-devices-paper.pdf>`_
-  * `PCI express 3 Accelerator Whitepaper by Intel <https://www.intel.sg/content/dam/doc/white-paper/pci-express3-accelerator-white-paper.pdf>`_
+  * `PCI express 3 Accelerator White paper by Intel <https://www.intel.sg/content/dam/doc/white-paper/pci-express3-accelerator-white-paper.pdf>`_
   * `Intel PCIe Generation 3 Hotchips Paper <https://www.hotchips.org/wp-content/uploads/hc_archives/hc21/1_sun/HC21.23.1.SystemInterconnectTutorial-Epub/HC21.23.131.Ajanovic-Intel-PCIeGen3.pdf>`_
   * `PCIe Generation 4 Base Specification includes Atomics Operation <https://astralvx.com/storage/2020/11/PCI_Express_Base_4.0_Rev0.3_February19-2014.pdf>`_
 
-Other I/O devices with PCIe Atomics support
+Other I/O devices with PCIe atomics support
 
    * `Mellanox ConnectX-5 InfiniBand Card <http://www.mellanox.com/related-docs/prod_adapter_cards/PB_ConnectX-5_VPI_Card.pdf>`_
    * `Cray Aries Interconnect <http://www.hoti.org/hoti20/slides/Bob_Alverson.pdf>`_
-   * `Xilinx PCIe Ultrascale Whitepaper <https://docs.xilinx.com/v/u/8OZSA2V1b1LLU2rRCDVGQw>`_
+   * `Xilinx PCIe Ultrascale White paper <https://docs.xilinx.com/v/u/8OZSA2V1b1LLU2rRCDVGQw>`_
    * `Xilinx 7 Series Devices <https://docs.xilinx.com/v/u/1nfXeFNnGpA0ywyykvWHWQ>`_
 
-Future bus technology with richer I/O Atomics Operation Support
+Future bus technology with richer I/O atomics operation Support
 
   * GenZ
 
@@ -60,19 +60,19 @@ New PCIe Endpoints with support beyond AMD Ryzen and EPYC CPU; Intel Haswell or 
 In ROCm, we also take advantage of PCIe ID based ordering technology for P2P when the GPU originates two writes to two different targets:  
 
   | 1. write to another GPU memory,
-  
+
   | 2. then write to system memory to indicate transfer complete.
 
 They are routed off to different ends of the computer but we want to make sure the write to system memory to indicate transfer complete occurs AFTER P2P write to GPU has complete.
 
-BAR Memory Overview
-*******************
+BAR memory overview
+***************************************************************************************************
 On a Xeon E5 based system in the BIOS we can turn on above 4GB PCIe addressing, if so he need to set MMIO Base address ( MMIOH Base) and Range ( MMIO High Size) in the BIOS.
 
 In SuperMicro system in the system bios you need to see the following
 
    * Advanced->PCIe/PCI/PnP configuration-> Above 4G Decoding = Enabled
-  
+
    * Advanced->PCIe/PCI/PnP Configuration->MMIOH Base = 512G
 
    * Advanced->PCIe/PCI/PnP Configuration->MMIO High Size = 256G
@@ -91,17 +91,17 @@ Here is how our BAR works on GFX 8 GPU’s with 40 bit Physical Address Limit ::
   11:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Fiji [Radeon R9 FURY / NANO Series] (rev c1)
 
   Subsystem: Advanced Micro Devices, Inc. [AMD/ATI] Device 0b35
-    
+
   Flags: bus master, fast devsel, latency 0, IRQ 119
-    
+
   Memory at bf40000000 (64-bit, prefetchable) [size=256M]
-   
+
   Memory at bf50000000 (64-bit, prefetchable) [size=2M]
-   
+
   I/O ports at 3000 [size=256]
-   
+
   Memory at c7400000 (32-bit, non-prefetchable) [size=256K]
-   
+
   Expansion ROM at c7440000 [disabled] [size=128K]
 
 Legend:
@@ -116,12 +116,12 @@ Legend:
 
 5 : Expansion ROM – This is required for the AMD Driver SW to access the GPU’s video-bios. This is currently fixed at 128KB.
 
-Excepts form Overview of Changes to PCI Express 3.0
-===================================================
+Excerpts from 'Overview of Changes to PCI Express 3.0'
+================================================================
 By Mike Jackson, Senior Staff Architect, MindShare, Inc.
-********************************************************
-Atomic Operations – Goal:
-*************************
+***************************************************************************************************
+Atomic operations – goal:
+***************************************************************************************************
 Support SMP-type operations across a PCIe network to allow for things like offloading tasks between CPU cores and accelerators like a GPU. The spec says this enables advanced synchronization mechanisms that are particularly useful with multiple producers or consumers that need to be synchronized in a non-blocking fashion. Three new atomic non-posted requests were added, plus the corresponding completion (the address must be naturally aligned with the operand size or the TLP is malformed):
 
   * Fetch and Add – uses one operand as the “add” value. Reads the target location, adds the operand, and then writes the result back 	  to the original location.
@@ -132,12 +132,12 @@ Support SMP-type operations across a PCIe network to allow for things like offlo
 
   * AtomicOpCompletion – new completion to give the result so far atomic request and indicate that the atomicity of the transaction 	has been maintained.
 
-Since AtomicOps are not locked they don't have the performance downsides of the PCI locked protocol. Compared to locked cycles, they provide “lower latency, higher scalability, advanced synchronization algorithms, and dramatically lower impact on other PCIe traffic.” The lock mechanism can still be used across a bridge to PCI or PCI-X to achieve the desired operation.
+Since atomic operations are not locked they don't have the performance downsides of the PCI locked protocol. Compared to locked cycles, they provide “lower latency, higher scalability, advanced synchronization algorithms, and dramatically lower impact on other PCIe traffic.” The lock mechanism can still be used across a bridge to PCI or PCI-X to achieve the desired operation.
 
-AtomicOps can go from device to device, device to host, or host to device. Each completer indicates whether it supports this capability and guarantees atomic access if it does. The ability to route AtomicOps is also indicated in the registers for a given port.
+Atomic operations can go from device to device, device to host, or host to device. Each completer indicates whether it supports this capability and guarantees atomic access if it does. The ability to route atomic operations is also indicated in the registers for a given port.
 
-ID-based Ordering – Goal:
-*************************
+ID-based ordering – goal:
+***************************************************************************************************
 Improve performance by avoiding stalls caused by ordering rules. For example, posted writes are never normally allowed to pass each other in a queue, but if they are requested by different functions, we can have some confidence that the requests are not dependent on each other. The previously reserved Attribute bit [2] is now combined with the RO bit to indicate ID ordering with or without relaxed ordering.
 
 This only has meaning for memory requests, and is reserved for Configuration or IO requests. Completers are not required to copy this bit into a completion, and only use the bit if their enable bit is set for this operation.

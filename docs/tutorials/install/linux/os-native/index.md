@@ -1,4 +1,4 @@
-# Installation via Package manager
+# Installation via package manager
 
 ::::{grid} 1 1 2 2
 :gutter: 1
@@ -22,13 +22,13 @@ Instructions for removing ROCm packages, libraries and tools.
 :::
 
 :::{grid-item-card}
-**[Package Manager Integration](./package-manager-integration.md)**
+**[Package manager integration](./package-manager-integration.md)**
 
 Information about packages.
 :::
 
 ::::
 
-## See Also
+## See also
 
 [Linux support](../../../../about/compatibility/linux-support.md)

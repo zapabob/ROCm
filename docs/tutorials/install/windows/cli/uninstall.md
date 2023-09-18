@@ -1,14 +1,14 @@
-# Uninstallation Using the Command Line Interface
+# Uninstallation using the command-line interface (CLI)
 
 The steps to uninstall the HIP SDK for Windows are described in this document.
 
-## HIP SDK Uninstallation
+## HIP SDK uninstallation
 
-The command line installer is the same executable which is used by the graphical
-front-end. The options supported by the command line interface are summarized in
+The command-line installer is the same executable which is used by the graphical
+front-end. The options supported by the command-line interface (CLI) are summarized in
 the following table.
 
-```{table} HIP SDK Command Line Options
+```{table} HIP SDK Command-line Options
 :name: hip-sdk-cli-uninstall
 | **Install Option** | **Description** |
 |:------------------:|:---------------:|
@@ -21,11 +21,11 @@ the following table.
 ```
 
 ```{note}
-Unlike the graphical installer, the command line interface doesn't support
+Unlike the graphical installer, the CLI doesn't support
 selectively installing parts of the SDK bundle. It's all or nothing.
 ```
 
-### Launching the Installer From the Command Line
+### Launching the installer from the command line
 
 The installer is still a graphical application with a `WinMain` entry point, even
 when called on the command line. This means that the application lifetime is

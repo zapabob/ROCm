@@ -38,6 +38,7 @@
 | [rocBLAS](https://rocm.docs.amd.com/projects/rocBLAS/en/latest/)| A BLAS implementation (in the HIP programming language) on ROCm's runtime and toolchains |
 | [rocFFT](https://rocm.docs.amd.com/projects/rocFFT/en/latest/) | A software library for computing fast Fourier transforms (FFTs) written in HIP |
 | [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/) | An AMDGPU Driver with KFD that is used by ROCm |
+| [ROCm Augmentation Library (rocAL)](https://rocm.docs.amd.com/projects/rocAL/en/latest/doxygen/html/index.html) | An augmentation library designed to decode and process images and videos |
 | [ROCmCC](https://rocm.docs.amd.com/en/latest/reference/rocmcc/rocmcc.html) | A Clang/LLVM-based compiler |
 | [ROCm cmake](https://github.com/RadeonOpenCompute/rocm-cmake) | A collection of CMake modules for common build and development tasks |
 | [ROCm Data Center Tool](https://rocm.docs.amd.com/projects/rdc/en/latest/) | Simplifies administration and addresses key infrastructure challenges in AMD GPUs in cluster and data-center environments |
@@ -49,7 +50,7 @@
 | [ROCm Validation Suite](https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/) | A tool for detecting and troubleshooting common problems affecting AMD GPUs running in a high-performance computing environment |
 | [rocPRIM](https://rocm.docs.amd.com/projects/rocPRIM/en/latest/) | A header-only library for HIP parallel primitives |
 | [ROCProfiler](https://rocm.docs.amd.com/projects/rocprofiler/en/latest/profiler_home_page.html) | A profiling tool for HIP applications |
-| [rocRAND](https://rocm.docs.amd.com/projects/rocRAND/en/latest/) | Provides functions that generate pseudo-random and quasi-random numbers |
+| [rocRAND](https://rocm.docs.amd.com/projects/rocRAND/en/latest/) | Provides functions that generate pseudorandom and quasirandom numbers |
 | [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/) | User-mode API interfaces and libraries necessary for host applications to launch compute kernels on available HSA ROCm kernel agents |
 | [rocSOLVER](https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/) | An implementation of LAPACK routines on the ROCm platform, implemented in the HIP programming language and optimized for AMD’s latest discrete GPUs |
 | [rocSPARSE](https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/) | Exposes a common interface that provides BLAS for sparse computation implemented on ROCm runtime and toolchains (in the HIP programming language) |

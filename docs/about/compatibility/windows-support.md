@@ -1,4 +1,4 @@
-# GPU and OS Support (Windows)
+# GPU and OS support (Windows)
 
 (windows-support)=
 
@@ -12,7 +12,7 @@ AMD ROCm™ Platform supports the following Windows SKU.
 | Windows 11          | x86-64                | 22H2 (GA)          |
 | Windows Server 2022 | x86-64                |                    |
 
-## Windows Supported GPUs
+## Windows-supported GPUs
 
 The table below shows supported GPUs for Radeon Pro™ and Radeon™ GPUs. Please
 click the tabs below to switch between GPU product lines. If a GPU is not listed
@@ -57,7 +57,7 @@ on this table, the GPU is not officially supported by AMD.
 
 ::::
 
-### Component Support
+### Component support
 
 ROCm components are described in the [Reference material](../../reference/index). Support
 on Windows is provided with two levels on enablement.
@@ -66,7 +66,7 @@ on Windows is provided with two levels on enablement.
 * **HIP SDK**: Runtime plus additional components refer to [Libraries](../../reference/libraries/index).
   Some [math libraries](../../reference/libraries/gpu-libraries/math) are Linux exclusive, please check the library details.
 
-### Support Status
+### Support status
 
 ✅: **Supported** - AMD enables these GPUs in our software distributions for
   the corresponding ROCm product.
@@ -74,7 +74,7 @@ on Windows is provided with two levels on enablement.
 ❌: **Unsupported** - This configuration is not enabled in our software
   distributions.
 
-## CPU Support
+## CPU support
 
-ROCm requires CPUs that support PCIe™ Atomics. Modern CPUs after the release of
-1st generation AMD Zen CPU and Intel™ Haswell support PCIe Atomics.
+ROCm requires CPUs that support PCIe™ atomics. Modern CPUs after the release of
+1st generation AMD Zen CPU and Intel™ Haswell support PCIe atomics.

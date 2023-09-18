@@ -1,4 +1,4 @@
-# Installer Script Uninstallation (Linux)
+# Installer script uninstallation (Linux)
 
 To uninstall all ROCm packages and the kernel-mode driver the following commands
 can be used.

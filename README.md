@@ -1,4 +1,4 @@
-# AMD ROCm™ Platform
+# AMD ROCm™ platform
 
 ROCm is an open-source stack, composed primarily of open-source software, designed for graphics
 processing unit (GPU) computation. ROCm consists of a collection of drivers, development tools, and
@@ -19,7 +19,7 @@ ROCm supports programming models, such as OpenMP and OpenCL, and includes all ne
 source software compilers, debuggers, and libraries. ROCm is fully integrated into machine learning
 (ML) frameworks, such as PyTorch and TensorFlow.
 
-## ROCm Documentation
+## ROCm documentation
 
 The ROCm Documentation site is [rocm.docs.amd.com](https://rocm.docs.amd.com).
 
@@ -44,7 +44,7 @@ pip3 install -r sphinx/requirements.txt
 python3 -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
 ```
 
-## Older ROCm Releases
+## Older ROCm releases
 
 For release information for older ROCm releases, refer to
 [`CHANGELOG`](./CHANGELOG.md).

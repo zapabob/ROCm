@@ -6,7 +6,7 @@ Most components in ROCm support CMake. Projects depending on header-only or
 library components typically require CMake 3.5 or higher whereas those wanting
 to make use of CMake's HIP language support will require CMake 3.21 or higher.
 
-Finding Dependencies
+Finding dependencies
 ====================
 
 .. note::
@@ -31,12 +31,12 @@ ROCm predominantly relies on Config mode, one notable exception being the Module
 driving the compilation of HIP programs on Nvidia runtimes. As such, when
 dependencies are not found in standard system locations, one either has to
 instruct CMake to search for package config files in additional folders using
-the ``CMAKE_PREFIX_PATH`` variable (a semi-colon separated list of filesystem
+the ``CMAKE_PREFIX_PATH`` variable (a semi-colon separated list of file system
 paths), or using ``<PackageName>_ROOT`` variable on a project-specific basis.
 
 There are nearly a dozen ways to set these variables. One may be more convenient
 over the other depending on your workflow. Conceptually the simplest is adding
-it to your CMake configuration command on the command-line via
+it to your CMake configuration command on the command line via
 ``-D CMAKE_PREFIX_PATH=....`` . AMD packaged ROCm installs can typically be
 added to the config file search paths such as:
 
@@ -101,7 +101,7 @@ via ``CMAKE_HIP_ARCHITECTURES``, CMake will select some sensible default. It is
 advised though that if a user knows what devices they wish to target, then set
 this variable explicitly.
 
-Consuming ROCm C/C++ Libraries
+Consuming ROCm C/C++ libraries
 ------------------------------
 
 Libraries such as rocBLAS, rocFFT, MIOpen, etc. behave as C/C++ libraries.
@@ -188,7 +188,7 @@ target GPU architectures is done via setting the ``GPU_TARGETS`` variable.
 default, this is set to some subset of the currently supported architectures of
 AMD ROCm. It can be set to eg. ``-D GPU_TARGETS="gfx1032;gfx1035"``.
 
-ROCm CMake Packages
+ROCm CMake packages
 -------------------
 
 +-----------+----------+--------------------------------------------------------+
@@ -229,10 +229,10 @@ ROCm CMake Packages
 |           |          | ``migraphx::migraphx_onnx``, ``migraphx::migraphx_tf`` |
 +-----------+----------+--------------------------------------------------------+
 
-Using CMake Presets
+Using CMake presets
 ===================
 
-CMake command-lines depending on how specific users like to be when compiling
+CMake command lines depending on how specific users like to be when compiling
 code can grow to unwieldy lengths. This is the primary reason why projects tend
 to bake script snippets into their build definitions controlling compiler
 warning levels, changing CMake defaults (``CMAKE_BUILD_TYPE`` or
@@ -255,7 +255,7 @@ a setup'n'forget fashion for quick assembly using graphical front-ends. This is
 all nice, but configurations aren't portable, nor can they be reused in
 Continuous Intergration (CI) pipelines. CMake has condensed existing practice
 into a portable JSON format that works in all IDEs and can be invoked from any
-command-line. This is
+command line. This is
 `CMake Presets <https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html>`_
 .
 
@@ -376,7 +376,7 @@ applications on a typical ROCm installation:
 
 .. note::
     Getting presets to work reliably on Windows requires some CMake improvements
-    and/or support from compiler vendors. (Refer to 
+    and/or support from compiler vendors. (Refer to
     `Add support to the Visual Studio generators <https://gitlab.kitware.com/cmake/cmake/-/issues/24245>`_
     and `Sourcing environment scripts <https://gitlab.kitware.com/cmake/cmake/-/issues/21619>`_
     .)

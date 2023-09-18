@@ -1,4 +1,4 @@
-# AMDGPU Install Script
+# AMDGPU install script
 
 ::::{grid} 2 3 3 3
 :gutter: 1
@@ -23,6 +23,6 @@ Instructions for removing ROCm packages, libraries and tools.
 
 ::::
 
-## See Also
+## See also
 
 [Linux support](../../../../about/compatibility/linux-support.md)

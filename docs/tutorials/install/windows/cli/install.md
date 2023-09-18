@@ -1,19 +1,19 @@
-# Installation Using the Command Line Interface
+# Installation using the command-line interface (CLI)
 
 The steps to install the HIP SDK for Windows are described in this document.
 
-## System Requirements
+## System requirements
 
 The HIP SDK is supported on Windows 10 and 11. The HIP SDK may be installed on a
 system without AMD GPUs to use the build toolchains. To run HIP applications, a
 compatible GPU is required. Please see the supported GPU guide for more details.
 
-## HIP SDK Installation
+## HIP SDK installation
 
-The command line installer is the same executable which is used by the graphical
+The command-line installer is the same executable which is used by the graphical
 front-end. Download the installer from the
 [HIP-SDK download page](https://www.amd.com/en/developer/rocm-hub/hip-sdk.html).
-The options supported by the command line interface are summarized in the following table.
+The options supported by the command-line interface (CLI) are summarized in the following table.
 
 ```{table} HIP SDK Command Line Options
 :name: hip-sdk-cli-install
@@ -28,11 +28,11 @@ The options supported by the command line interface are summarized in the follow
 ```
 
 ```{note}
-Unlike the graphical installer, the command line interface doesn't support
+Unlike the graphical installer, the CLI doesn't support
 selectively installing parts of the SDK bundle. It's all or nothing.
 ```
 
-### Launching the Installer From the Command Line
+### Launching the installer from the command line
 
 The installer is still a graphical application with a `WinMain` entry point, even
 when called on the command line. This means that the application lifetime is

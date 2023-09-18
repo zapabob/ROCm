@@ -29,7 +29,7 @@ The following API calls with result in these allocations:
 ### Pageable memory
 
 Pageable memory is usually gotten when calling `malloc` or `new` in a C++ application.
-It is unique in that it exists on "pages" (blocks of memory), which can be migrated to other memory storages.
+It is unique in that it exists on "pages" (blocks of memory), which can be migrated to other memory storage.
 For example, migrating memory between CPU sockets on a motherboard, or a system that runs out of space in RAM and starts dumping pages of RAM into the swap partition of your hard drive.
 
 ### Pinned memory
