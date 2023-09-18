@@ -2072,7 +2072,7 @@ rocBLAS 2.46.0 for ROCm 5.4.0
 
 ##### Fixed
 
-- FORTRAN interfaces generalized for FORTRAN compilers other than gfortran
+- Fortran interfaces generalized for Fortran compilers other than gfortran
 - fix for trsm_strided_batched rocblas-bench performance gathering
 - Fix for rocm-smi path in commandrunner.py script to match ROCm 5.2 and above
 

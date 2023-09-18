@@ -1,4 +1,4 @@
-# Fast Fourier Transforms
+# Fast Fourier transforms
 
 ROCm libraries for FFT are as follows:
 

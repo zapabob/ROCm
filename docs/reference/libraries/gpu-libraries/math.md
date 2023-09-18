@@ -32,7 +32,7 @@ at compile-time of the hipLIB in question. For dynamic dispatch between vendor i
 :::
 
 :::{grid-item-card}
-**[Fast Fourier Transforms](./math-fft.md)**
+**[Fast Fourier transforms (FFTs)](./math-fft.md)**
 
 * {doc}`rocFFT <rocfft:index>`
 * {doc}`hipFFT <hipfft:index>`

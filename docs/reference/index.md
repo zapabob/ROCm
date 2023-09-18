@@ -22,7 +22,7 @@ HIP is both AMD's GPU programming language extension and the GPU runtime.
 HIP Math Libraries support the following domains:
 
 * [Linear Algebra Libraries](./libraries/gpu-libraries/math-linear-algebra.md)
-* [Fast Fourier Transforms](./libraries/gpu-libraries/math-fft.md)
+* [Fast Fourier transforms (FFTs)](./libraries/gpu-libraries/math-fft.md)
 * [Random Numbers](./libraries/gpu-libraries/rand.md)
 
 :::

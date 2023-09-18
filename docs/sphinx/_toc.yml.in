@@ -10,8 +10,8 @@ subtrees:
     title: What is ROCm?
     subtrees:
     - entries:
-      - file: rocm-ai.md
-        title: ROCm & AI
+      - file: rocm-a-z.md
+        title: ROCm A-Z
   - file: about/whats-new/whats-new.md
     title: What's new?
 
@@ -217,9 +217,6 @@ subtrees:
         title: Inception V3 with Pytorch
       - file: conceptual/ai-migraphx-optimization.md
         title: Inference optimization with MIGraphX
-
-  - file: rocm-a-z.md
-    title: ROCm A-Z
 
   - file: contribute/index.md
     title: Contributing
