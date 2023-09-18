@@ -76,7 +76,7 @@ The printf variant is now controlled via a new compiler option -mprintf-kind=<va
 The ROCm v5.7 release introduces the beta release of LLVM Address Sanitizer (ASAN) with the GPU. The LLVM Address Sanitizer provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
 Until now, the LLVM Address Sanitizer process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
 
-Refer to the documentation on LLVM Address Sanitizer with the GPU at [LLVM Address Sanitizer User Guide](./docs/understand/using_gpu_sanitizer.md).
+Refer to the documentation on LLVM Address Sanitizer with the GPU at [LLVM Address Sanitizer User Guide](understand/using_gpu_sanitizer.md).
 
 **Note**: The beta release of LLVM Address Sanitizer for ROCm is currently tested and validated on Ubuntu 20.04.
 
