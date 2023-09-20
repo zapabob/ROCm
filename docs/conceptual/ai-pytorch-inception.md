@@ -467,11 +467,11 @@ Plotting the train and test loss shows both metrics reducing over training epoch
 
 ### Custom model with CIFAR-10 on PyTorch
 
-The CIFAR-10 (Canadian Institute for Advanced Research) dataset is a subset of the Tiny Images dataset (which contains 80 million images of 32x32 collected from the Internet) and consists of 60,000 32x32 color images. The images are labeled with one of 10 mutually exclusive classes: airplane, motor car, bird, cat, deer, dog, frog, cruise ship, stallion, and truck (but not pickup truck). There are 6,000 images per class, with 5,000 training and 1,000 testing images per class. Let us prepare a custom model for classifying these images using the PyTorch framework and go step-by-step as illustrated below.
+The Canadian Institute for Advanced Research (CIFAR)-10 dataset is a subset of the Tiny Images dataset (which contains 80 million images of 32x32 collected from the Internet) and consists of 60,000 32x32 color images. The images are labeled with one of 10 mutually exclusive classes: airplane, motor car, bird, cat, deer, dog, frog, cruise ship, stallion, and truck (but not pickup truck). There are 6,000 images per class, with 5,000 training and 1,000 testing images per class. Let us prepare a custom model for classifying these images using the PyTorch framework and go step-by-step as illustrated below.
 
 Follow these steps:
 
-1. Import dependencies, including torch, os, and [torchvision](https://github.com/pytorch/vision).
+1. Import dependencies, including Torch, OS, and [TorchVision](https://github.com/pytorch/vision).
 
     ```py
     import torch
@@ -662,13 +662,13 @@ Follow these steps:
         print("Accuracy for class {:5s} is: {:.1f} %".format(classname,accuracy))
     ```
 
-### Case study: TensorFlow with Fashion MNIST
+### Case study: TensorFlow with Fashion-MNIST
 
-Fashion MNIST is a dataset that contains 70,000 grayscale images in 10 categories.
+Fashion-MNIST is a dataset that contains 70,000 grayscale images in 10 categories.
 
 Implement and train a neural network model using the TensorFlow framework to classify images of clothing, like sneakers and shirts.
 
-The dataset has 60,000 images you will use to train the network and 10,000 to evaluate how accurately the network learned to classify images. The Fashion MNIST dataset can be accessed via TensorFlow internal libraries.
+The dataset has 60,000 images you will use to train the network and 10,000 to evaluate how accurately the network learned to classify images. The Fashion-MNIST dataset can be accessed via TensorFlow internal libraries.
 
 Access the source code from the following repository:
 
@@ -690,7 +690,7 @@ To understand the code step by step, follow these steps:
     print(tf._version__) r
     ```
 
-3. Load the dataset from the available internal libraries to analyze and train a neural network upon the MNIST Fashion Dataset. Loading the dataset returns four NumPy arrays. The model uses the training set arrays, train_images and train_labels, to learn.
+3. Load the dataset from the available internal libraries to analyze and train a neural network upon the Fashion-MNIST dataset. Loading the dataset returns four NumPy arrays. The model uses the training set arrays, train_images and train_labels, to learn.
 
 4. The model is tested against the test set, test_images, and test_labels arrays.
 

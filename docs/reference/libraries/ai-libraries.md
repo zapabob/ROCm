@@ -1,4 +1,4 @@
-# AI libraries
+# Artificial intelligence libraries
 
 ::::{grid} 1 1 2 2
 :gutter: 1

@@ -656,7 +656,7 @@ of target triple and the target GPU (along with the associated target features).
 modified to query this structure to identify a compatible image based on the
 capability of the current system.
 
-#### Unified shared memory (USM)
+#### Unified shared memory
 
 The following OpenMP pragma is available on MI200, and it must be executed with
 `xnack+` support.
@@ -665,7 +665,7 @@ The following OpenMP pragma is available on MI200, and it must be executed with
 omp requires unified_shared_memory
 ```
 
-For more details on USM refer to the {ref}`openmp_usm` section of the OpenMP
+For more details on unified shared memory refer to the {ref}`openmp_usm` section of the OpenMP
 Guide.
 
 ### Support status of other Clang options

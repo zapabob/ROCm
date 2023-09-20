@@ -1,4 +1,4 @@
-# Installation using the command-line interface (CLI)
+# Installation using the CLI
 
 The steps to install the HIP SDK for Windows are described in this document.
 

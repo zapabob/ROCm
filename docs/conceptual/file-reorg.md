@@ -1,4 +1,4 @@
-# ROCm Linux Filesystem Hierarchy Standard (FHS) reorganization
+# ROCm Linux Filesystem Hierarchy Standard reorganization
 
 ## Introduction
 

@@ -1,4 +1,4 @@
-# GPU Memory
+# GPU memory
 
 For the HIP reference documentation, see:
 

@@ -3,7 +3,7 @@ How ROCm uses PCIe atomics
 ===========================
 
 
-ROCm PCIe feature and overview base address register (BAR) memory
+ROCm PCIe feature and overview of BAR memory
 ======================================================================
 
 
@@ -57,7 +57,7 @@ New PCIe Endpoints with support beyond AMD Ryzen and EPYC CPU; Intel Haswell or 
   * `Mellanox Bluefield SOC <https://docs.nvidia.com/networking/display/BlueFieldSWv25111213/BlueField+Software+Overview>`_
   * `Cavium Thunder X2 <https://en.wikichip.org/wiki/cavium/thunderx2>`_
 
-In ROCm, we also take advantage of PCIe ID based ordering technology for P2P when the GPU originates two writes to two different targets:  
+In ROCm, we also take advantage of PCIe ID based ordering technology for P2P when the GPU originates two writes to two different targets:
 
   | 1. write to another GPU memory,
 
@@ -86,7 +86,7 @@ For GFX9 and Vega10 which have Physical Address up 44 bit and 48 bit Virtual add
    * BAR4 register: Optional, not a boot device.
    * BAR5 register: 32bit, non-prefetchable, MMIO. Must be placed < 4GB.
 
-Here is how our BAR works on GFX 8 GPU’s with 40 bit Physical Address Limit ::
+Here is how our base address register (BAR) works on GFX 8 GPU’s with 40 bit Physical Address Limit ::
 
   11:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Fiji [Radeon R9 FURY / NANO Series] (rev c1)
 

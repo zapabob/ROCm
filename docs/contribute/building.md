@@ -41,10 +41,10 @@ python3 -mvenv .venv
 
 Then open up `_build/html/index.html` in your favorite browser.
 
-## Build documentation using Visual Studio (VS) Code
+## Build documentation using Visual Studio Code
 
 One can put together a productive environment to author documentation and also
-test it locally using VS Code with only a handful of extensions. Even though the
+test it locally using Visual Studio (VS) Code with only a handful of extensions. Even though the
 extension landscape of VS Code is ever changing, here is one example setup that
 proved useful at the time of writing. In it, one can change/add content, build a
 new version of the docs using a single VS Code Task (or hotkey), see all errors/

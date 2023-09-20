@@ -1,4 +1,4 @@
-# Using the LLVM AddressSanitizer (ASan) on a GPU (beta release)
+# Using the LLVM ASan on a GPU (beta release)
 
 The LLVM AddressSanitizer (ASan) provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
 
@@ -7,7 +7,7 @@ Until now, the LLVM ASan process was only available for traditional purely CPU a
 This document provides documentation on using ROCm ASan.
 For information about LLVM ASan, see [the LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
-**Note**: The beta release of LLVM Address Sanitizer for ROCm is currently tested and validated on Ubuntu 20.04.
+**Note**: The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
 
 ## Compiling for ASan
 
@@ -51,11 +51,11 @@ For a complete ROCm GPU Sanitizer installation, the following  must be installed
     sudo apt-get install hipfft-asan hipsparse-asan migraphx-asan miopen-hip-asan rocalution-asan rocblas-asan rocfft-asan rocm-core-asan rocsparse-asan hipblaslt-asan mivisionx-asan rocsolver-asan 
 ```
 
-**Note**: It is recommended to install all address sanitizer packages. If the optional instrumented math libraries are not installed, the address sanitizer cannot find issues within those libraries.
+**Note**: It is recommended to install all ASan packages. If the optional instrumented math libraries are not installed, the address sanitizer cannot find issues within those libraries.
 
 ## Using AMD-supplied ASan instrumented libraries
 
-ROCm releases have optional packages containing additional address sanitizer instrumented builds of the ROCm libraries usually found in `/opt/rocm-<version>/lib`. The instrumented libraries have identical names as the regular uninstrumented libraries and are located in `/opt/rocm-<version>/lib/asan`.
+ROCm releases have optional packages containing additional ASan instrumented builds of the ROCm libraries usually found in `/opt/rocm-<version>/lib`. The instrumented libraries have identical names as the regular uninstrumented libraries and are located in `/opt/rocm-<version>/lib/asan`.
 These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used, but, as descibed above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
 
 These additional libraries avoid additional developer effort to locate repositories, identify the correct branch, check out the correct tags, and other efforts needed to build the libraries from the source. And they extend the ability of the process to detect addressing errors into the ROCm libraries themselves.
@@ -235,7 +235,7 @@ $ rocgdb <path to application>
 
 ### Using ASan with a short HIP application
 
-Refer to the following example to use address sanitizer with a short HIP application,
+Refer to the following example to use ASan with a short HIP application,
 
 https://github.com/Rmalavally/rocm-examples/blob/Rmalavally-patch-1/LLVM_ASAN/Using-Address-Sanitizer-with-a-Short-HIP-Application.md
 

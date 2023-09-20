@@ -9,7 +9,7 @@ This document lists and describes the hardware performance counters and the deri
 Preliminary validation of all MI200 performance counters is in progress. Those with “[*]” appended to the names require further evaluation.
 ```
 
-### Graphics register bus management (GRBM)
+### GRBM
 
 #### GRBM counters
 
@@ -30,7 +30,7 @@ Preliminary validation of all MI200 performance counters is in progress. Those w
 
 The command processor counters are further classified into fetcher and compute.
 
-#### Command processor - fetcher (CPF)
+#### CPF
 
 ##### CPF counters
 
@@ -43,7 +43,7 @@ The command processor counters are further classified into fetcher and compute.
 | `cpf_cpf_tciu_idle`                  | Cycles | CPF TCIU interface idle                                    |
 | `cpf_cpf_tciu_stall[∗]`              | Cycles | CPF TCIU interface is stalled waiting on free tags.        |
 
-#### Command processor - compute (CPC)
+#### CPC
 
 ##### CPC counters
 
@@ -61,7 +61,7 @@ The command processor counters are further classified into fetcher and compute.
 | `cpc_cpc_utcl2iu_stall[∗]`       | Cycles | CPC UTCL2 interface stalled waiting                 |
 | `cpc_me1_dci0_spi_busy`          | Cycles | CPC ME1 Processor busy                              |
 
-### Shader processor input (SPI)
+### SPI
 
 #### SPI counters
 
@@ -325,7 +325,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `tcp_tcc_cc_atomic_req`               | Req    | Number of CC atomic requests to L2 cache                   |
 | `tcp_tcc_rw_atomic_req`               | Req    | Number of RW atomic requests to L2 cache                   |
 
-#### Texture cache arbiter (TCA)
+#### TCA
 
 | Hardware Counter | Unit   | Definition                                  |
 | :----------------| :------| ------------------------------------------: |
@@ -400,9 +400,7 @@ The vector L1 cache subsystem counters are further classified into texture addre
 | `WriteUnitStalled` | The percentage of GPU time the write unit is stalled. Value range: 0% to 100% (bad)      |
 | `LDSBankConflict`  | The percentage of GPU time LDS is stalled by bank conflicts. Value range: 0% (optimal) to 100% (bad) |
 
-## Abbreviations
-
-### MI200 abbreviations
+## MI200 acronyms
 
 | Abbreviation | Meaning                                                                           |
 | :------------| --------------------------------------------------------------------------------: |

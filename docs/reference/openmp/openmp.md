@@ -436,7 +436,7 @@ See the complete sample code for global buffer overflow
 
 You can use the clang compiler option `-fopenmp-target-fast` for kernel optimization if certain constraints implied by its component options are satisfied. `-fopenmp-target-fast` enables the following options:
 
-* `-fopenmp-target-ignore-env-vars`: It enables code generation of specialized kernels including No-loop and Cross-team reductions.
+* `-fopenmp-target-ignore-env-vars`: It enables code generation of specialized kernels including no-loop and Cross-team reductions.
 
 * `-fopenmp-assume-no-thread-state`: It enables the compiler to assume that no thread in a parallel region modifies an Internal Control Variable (`ICV`), thus potentially reducing the device runtime code execution.
 
@@ -448,13 +448,13 @@ You can use the clang compiler option `-fopenmp-target-fast` for kernel optimiza
 
 Clang will attempt to generate specialized kernels based on compiler options and OpenMP constructs. The following specialized kernels are supported:
 
-* No-Loop
-* Big-Jump-Loop
-* Cross-Team (Xteam) Reductions
+* No-loop
+* Big-jump-loop
+* Cross-team reductions
 
 To enable the generation of specialized kernels, follow these guidelines:
 
-* Do not specify teams, threads, and schedule-related environment variables. The `num_teams` clause in an OpenMP target construct acts as an override and prevents the generation of the No-Loop kernel. If the specification of `num_teams` clause is a user requirement then clang tries to generate the Big-Jump-Loop kernel instead of the No-Loop kernel.
+* Do not specify teams, threads, and schedule-related environment variables. The `num_teams` clause in an OpenMP target construct acts as an override and prevents the generation of the no-loop kernel. If the specification of `num_teams` clause is a user requirement then clang tries to generate the big-jump-loop kernel instead of the no-loop kernel.
 
 * Assert the absence of the teams, threads, and schedule-related environment variables by adding the command-line option `-fopenmp-target-ignore-env-vars`.
 
@@ -464,11 +464,11 @@ To enable the generation of specialized kernels, follow these guidelines:
 
 #### No-loop kernel generation
 
-The No-loop kernel generation feature optimizes the compiler performance by generating a specialized kernel for certain OpenMP target constructs such as target teams distribute parallel for. The specialized kernel generation feature assumes every thread executes a single iteration of the user loop, which leads the runtime to launch a total number of GPU threads equal to or greater than the iteration space size of the target region loop. This allows the compiler to generate code for the loop body without an enclosing loop, resulting in reduced control-flow complexity and potentially better performance.
+The no-loop kernel generation feature optimizes the compiler performance by generating a specialized kernel for certain OpenMP target constructs such as target teams distribute parallel for. The specialized kernel generation feature assumes every thread executes a single iteration of the user loop, which leads the runtime to launch a total number of GPU threads equal to or greater than the iteration space size of the target region loop. This allows the compiler to generate code for the loop body without an enclosing loop, resulting in reduced control-flow complexity and potentially better performance.
 
 #### Big-jump-loop kernel generation
 
-A No-loop kernel is not generated if the OpenMP teams construct uses a `num_teams` clause. Instead, the compiler attempts to generate a different specialized kernel called the Big-Jump-Loop kernel. The compiler launches the kernel with a grid size determined by the number of teams specified by the OpenMP `num_teams` clause and the `blocksize` chosen either by the compiler or specified by the corresponding OpenMP clause.
+A no-loop kernel is not generated if the OpenMP teams construct uses a `num_teams` clause. Instead, the compiler attempts to generate a different specialized kernel called the big-jump-loop kernel. The compiler launches the kernel with a grid size determined by the number of teams specified by the OpenMP `num_teams` clause and the `blocksize` chosen either by the compiler or specified by the corresponding OpenMP clause.
 
 #### Cross-team optimized reduction kernel generation
 

@@ -1,370 +1,399 @@
-# PyTorch Installation for ROCm
+# Installing PyTorch for ROCm
 
-## PyTorch
+[PyTorch](https://pytorch.org/) is an open-source tensor library designed for deep learning. PyTorch on
+ROCm provides mixed-precision and large-scale training using our
+[MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen) and
+[RCCL](https://github.com/ROCmSoftwarePlatform/rccl) libraries.
 
-PyTorch is an open-source machine learning Python library, primarily
-differentiated by Tensor computing with GPU acceleration and a type-based
-automatic differentiation. Other advanced features include:
+To install [PyTorch for ROCm](https://pytorch.org/blog/pytorch-for-amd-rocm-platform-now-available-as-python-package/), you have the following options:
 
-* Support for distributed training
-* Native ONNX support
-* C++ front-end
-* The ability to deploy at scale using TorchServe
-* A production-ready deployment mechanism through TorchScript
+* [Use a Docker image with PyTorch pre-installed](#using-a-docker-image-with-pytorch-pre-installed)
+  (recommended)
+* [Use a wheels package](#using-a-wheels-package)
+* [Use the PyTorch ROCm base Docker image](#using-the-pytorch-rocm-base-docker-image)
+* [Use the PyTorch upstream Docker file](#using-the-pytorch-upstream-docker-file)
 
-### Installing PyTorch
+For hardware, software, and third-party framework compatibility between ROCm and PyTorch, refer to:
 
-To install ROCm on bare metal, refer to the sections
-[GPU and OS Support (Linux)](../../about/compatibility/linux-support.md) and
-[Compatibility](../../about/compatibility/index.md) for hardware, software and
-3rd-party framework compatibility between ROCm and PyTorch. The recommended
-option to get a PyTorch environment is through Docker. However, installing the
-PyTorch wheels package on bare metal is also supported.
+* [GPU and OS support (Linux)](../../about/compatibility/linux-support.md)
+* [Compatibility](../../about/compatibility/3rd-party-support-matrix.md)
 
-#### Option 1 (Recommended): Use Docker Image with PyTorch Pre-Installed
+## Using a Docker image with PyTorch pre-installed
 
-Using Docker gives you portability and access to a prebuilt Docker container
-that has been rigorously tested within AMD. This might also save on the
-compilation time and should perform as it did when tested without facing
-potential installation issues.
-
-Follow these steps:
-
-1. Pull the latest public PyTorch Docker image.
+1. Download the latest public PyTorch Docker image
+   ([https://hub.docker.com/r/rocm/pytorch](https://hub.docker.com/r/rocm/pytorch)).
 
    ```bash
    docker pull rocm/pytorch:latest
    ```
 
-   Optionally, you may download a specific and supported configuration with
-   different user-space ROCm versions, PyTorch versions, and supported operating
-   systems. To download the PyTorch Docker image, refer to
-   [https://hub.docker.com/r/rocm/pytorch](https://hub.docker.com/r/rocm/pytorch).
+   You can also download a specific and supported configuration with different user-space ROCm
+   versions, PyTorch versions, and operating systems.
 
-2. Start a Docker container using the downloaded image.
+2. Start a Docker container using the image.
 
    ```bash
-   docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
+   docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
+   --device=/dev/kfd --device=/dev/dri --group-add video \
+   --ipc=host --shm-size 8G rocm/pytorch:latest
    ```
 
-   ```{note}
-   This will automatically download the image if it does not exist on the host.
-   You can also pass the -v argument to mount any data directories from the host
-   onto the container.
+   :::{note}
+   This will automatically download the image if it does not exist on the host. You can also pass the `-v`
+   argument to mount any data directories from the host onto the container.
+   :::
+
+(install_pytorch_wheels)=
+
+## Using a wheels package
+
+PyTorch supports the ROCm platform by providing tested wheels packages. To access this feature, go
+to [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). In the interactive
+table, choose ROCm from the _Compute Platform_ row.
+
+1. Choose one of the following three options:
+
+   **Option 1:**
+
+   a. Download a base Docker image with the correct user-space ROCm version.
+   | Base OS         | Docker image                   | Link to Docker image|
+   |----------------|-----------------------------|----------------|
+   | Ubuntu 20.04 | `rocm/dev-ubuntu-20.04` | [https://hub.docker.com/r/rocm/dev-ubuntu-20.04](https://hub.docker.com/r/rocm/dev-ubuntu-20.04)
+   | Ubuntu 22.04 | `rocm/dev-ubuntu-22.04` | [https://hub.docker.com/r/rocm/dev-ubuntu-22.04](https://hub.docker.com/r/rocm/dev-ubuntu-22.04)
+   | CentOS 7        | `rocm/dev-centos-7` | [https://hub.docker.com/r/rocm/dev-centos-7](https://hub.docker.com/r/rocm/dev-centos-7)
+
+   b. Pull the selected image.
+
+   ```bash
+   docker pull rocm/dev-ubuntu-20.04:latest
    ```
 
-(install-pytorch-using-wheels)=
+   c. Start a Docker container using the downloaded image.
 
-#### Option 2: Install PyTorch Using Wheels Package
-
-PyTorch supports the ROCm platform by providing tested wheels packages. To
-access this feature, refer to
-[https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/)
-and choose the "ROCm" compute platform. The following image is a matrix from <https://pytorch.org/> that illustrates the installation compatibility between ROCm and the PyTorch build.
-
-![Pytorch installation matrix](../../data/tutorials/install/magma-install/magma006.png "Pytorch installation matrix")
-
-To install PyTorch using the wheels package, follow these installation steps:
-
-1. Choose one of the following options:
-   a. Obtain a base Docker image with the correct user-space ROCm version
-      installed from
-      [https://hub.docker.com/repository/docker/rocm/dev-ubuntu-20.04](https://hub.docker.com/repository/docker/rocm/dev-ubuntu-20.04).
-
-   or
-
-   b. Download a base OS Docker image and install ROCm following the
-      installation directions in the [Installation](../../tutorials/install/linux/index) section. ROCm 5.2 is installed in
-      this example, as supported by the installation matrix from
-      <https://pytorch.org/>.
-
-   or
-
-   c. Install on bare metal. Skip to Step 3.
-
-      ```bash
-      docker run -it --device=/dev/kfd --device=/dev/dri --group-add video rocm/dev-ubuntu-20.04:latest
-      ```
-
-2. Start the Docker container, if not installing on bare metal.
-
-   ```dockerfile
+   ```bash
    docker run -it --device=/dev/kfd --device=/dev/dri --group-add video rocm/dev-ubuntu-20.04:latest
    ```
 
-3. Install any dependencies needed for installing the wheels package.
+   **Option 2:**
+
+   Select a base OS Docker image (Check [OS compatibility](../../about/compatibility/linux-support.md))
+
+   Pull selected base OS image (Ubuntu 20.04 for example)
+
+   ```docker
+   docker pull ubuntu:20.04
+   ```
+
+   Start a Docker container using the downloaded image
+
+   ```docker
+   docker run -it --device=/dev/kfd --device=/dev/dri --group-add video ubuntu:20.04
+   ```
+
+   Install ROCm using the directions in the [Installation section](../install/linux/install-options.md).
+
+   **Option 3:**
+
+   Install on bare metal. Check [OS compatibility](../../about/compatibility/linux-support.md) and install ROCm using the
+   directions in the [Installation section](../install/linux/install-options.md).
+
+2. Install the required dependencies for the wheels package.
 
    ```bash
    sudo apt update
-   sudo apt install libjpeg-dev python3-dev
+   sudo apt install libjpeg-dev python3-dev python3-pip
    pip3 install wheel setuptools
    ```
 
-4. Install Torch, TorchVision, and TorchAudio as specified by the installation
-   matrix.
+3. Install `torch`, `torchvision`, and `torchaudio`, as specified in the [installation matrix](https://pytorch.org/get-started/locally/).
 
-   ```{note}
-   ROCm 5.2 PyTorch wheel in the command below is shown for reference.
-   ```
+   :::{note}
+   The following command uses the ROCm 5.6 PyTorch wheel. If you want a different version of ROCm,
+   modify the command accordingly.
+   :::
 
    ```bash
-   pip3 install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/rocm5.2/
+   pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.6/
    ```
 
-#### Option 3: Install PyTorch Using PyTorch ROCm Base Docker Image
+4. (Optional) Use MIOpen kdb files with ROCm PyTorch wheels.
 
-A prebuilt base Docker image is used to build PyTorch in this option. The base
-Docker has all dependencies installed, including:
+   PyTorch uses [MIOpen](https://github.com/ROCmSoftwarePlatform/MIOpen) for machine learning
+   primitives, which are compiled into kernels at runtime. Runtime compilation causes a small warm-up
+   phase when starting PyTorch, and MIOpen kdb files contain precompiled kernels that can speed up
+   application warm-up phases. For more information, refer to the
+   {doc}`MIOpen installation page <miopen:install>`.
+
+   MIOpen kdb files can be used with ROCm PyTorch wheels. However, the kdb files need to be placed in
+   a specific location with respect to the PyTorch installation path. A helper script simplifies this task by
+   taking the ROCm version and GPU architecture as inputs. This works for Ubuntu and CentOS.
+
+   You can download the helper script here:
+   [install_kdb_files_for_pytorch_wheels.sh](https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/files/    install_kdb_files_for_pytorch_wheels.sh), or use:
+
+   `wget https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/files/install_kdb_files_for_pytorch_wheels.sh`
+
+   After installing ROCm PyTorch wheels, run the following code:
+
+   ```bash
+   #Optional; replace 'gfx90a' with your architecture
+   export GFX_ARCH=gfx90a
+
+   #Optional
+   export ROCM_VERSION=5.5
+
+   ./install_kdb_files_for_pytorch_wheels.sh
+   ```
+
+## Using the PyTorch ROCm base Docker image
+
+The pre-built base Docker image has all dependencies installed, including:
 
 * ROCm
 * Torchvision
 * Conda packages
-* Compiler toolchain
+* The compiler toolchain
 
-Additionally, a particular environment flag (`BUILD_ENVIRONMENT`) is set, and
-the build scripts utilize that to determine the build environment configuration.
+Additionally, a particular environment flag (`BUILD_ENVIRONMENT`) is set, which is used by the build
+scripts to determine the configuration of the build environment.
 
-Follow these steps:
-
-1. Obtain the Docker image.
+1. Download the Docker image. This is the base image, which does not contain PyTorch.
 
    ```bash
    docker pull rocm/pytorch:latest-base
    ```
 
-   The above will download the base container, which does not contain PyTorch.
-
-2. Start a Docker container using the image.
+2. Start a Docker container using the downloaded image.
 
    ```bash
    docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest-base
    ```
 
-   You can also pass the -v argument to mount any data directories from the host
-   onto the container.
+   You can also pass the `-v` argument to mount any data directories from the host onto the container.
 
 3. Clone the PyTorch repository.
 
    ```bash
    cd ~
    git clone https://github.com/pytorch/pytorch.git
-   cd pytorch
+   cd /pytorch
    git submodule update --init --recursive
    ```
 
-4. Build PyTorch for ROCm.
+4. Set ROCm architecture (optional). The Docker image tag is `rocm/pytorch:latest-base`.
 
-   ```{note}
-   By default in the `rocm/pytorch:latest-base`, PyTorch builds for these
-   architectures simultaneously:
+   :::{note}
+   By default in the `rocm/pytorch:latest-base` image, PyTorch builds simultaneously for the following
+   architectures:
    * gfx900
    * gfx906
    * gfx908
    * gfx90a
    * gfx1030
-   ```
+   :::
 
-5. To determine your AMD uarch, run:
-
-   ```bash
-   rocminfo | grep gfx
-   ```
-
-6. In the event you want to compile only for your uarch, use:
+   If you want to compile _only_ for your microarchitecture (uarch), run:
 
    ```bash
    export PYTORCH_ROCM_ARCH=<uarch>
    ```
 
-   `<uarch>` is the architecture reported by the `rocminfo` command.
+   Where `<uarch>` is the architecture reported by the `rocminfo` command.
 
-7. Build PyTorch using the following command:
+   To find your uarch, run:
 
    ```bash
-   ./.jenkins/pytorch/build.sh
+   rocminfo | grep gfx
    ```
 
-   This will first convert PyTorch sources for HIP compatibility and build the
+5. Build PyTorch.
+
+   ```bash
+   ./.ci/pytorch/build.sh
+   ```
+
+   This converts PyTorch sources for
+   [HIP compatibility](https://www.amd.com/en/developer/rocm-hub/hip-sdk.html) and builds the
    PyTorch framework.
 
-8. Alternatively, build PyTorch by issuing the following commands:
+   To check if your build is successful, run:
 
    ```bash
-   python3 tools/amd_build/build_amd.py
-   USE_ROCM=1 MAX_JOBS=4 python3 setup.py install --user
+   echo $? # should return 0 if success
    ```
 
-#### Option 4: Install Using PyTorch Upstream Docker File
+## Using the PyTorch upstream Docker file
 
-Instead of using a prebuilt base Docker image, you can build a custom base
-Docker image using scripts from the PyTorch repository. This will utilize a
-standard Docker image from operating system maintainers and install all the
-dependencies required to build PyTorch, including
+If you don't want to use a prebuilt base Docker image, you can build a custom base Docker image
+using scripts from the PyTorch repository. This uses a standard Docker image from operating system
+maintainers and installs all the required dependencies, including:
 
 * ROCm
 * Torchvision
 * Conda packages
-* Compiler toolchain
+* The compiler toolchain
 
-Follow these steps:
-
-1. Clone the PyTorch repository on the host.
+1. Clone the PyTorch repository.
 
    ```bash
    cd ~
    git clone https://github.com/pytorch/pytorch.git
-   cd pytorch
+   cd /pytorch
    git submodule update --init --recursive
    ```
 
 2. Build the PyTorch Docker image.
 
    ```bash
-   cd.circleci/docker
-   ./build.sh pytorch-linux-bionic-rocm<version>-py3.7
-   # eg. ./build.sh pytorch-linux-bionic-rocm3.10-py3.7
+   cd .ci/docker
+   ./build.sh pytorch-linux-<os-version>-rocm<rocm-version>-py<python-version> -t rocm/pytorch:build_from_dockerfile
    ```
 
-   This should be complete with a message "Successfully build `<image_id>`."
+   Where:
+   * `<os-version>`: `ubuntu20.04` (or `focal`), `ubuntu22.04` (or `jammy`), `centos7.5`, or `centos9`
+   * `<rocm-version>`: `5.4`, `5.5`, or `5.6`
+   * `<python-version>`: `3.8`-`3.11`
 
-3. Start a Docker container using the image:
+   To verify that your image was successfully created, run:
+
+   `docker image ls rocm/pytorch:build_from_dockerfile`
+
+   If successful, the output looks like this:
 
    ```bash
-   docker run -it --cap-add=SYS_PTRACE --security-opt
-   seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add
-   video --ipc=host --shm-size 8G <image_id>
+   REPOSITORY    TAG                       IMAGE ID         CREATED           SIZE
+   rocm/pytorch  build_from_dockerfile     17071499be47     2 minutes ago     32.8GB
    ```
 
-   You can also pass -v argument to mount any data directories from the host
-   onto the container.
-
-4. Clone the PyTorch repository.
+3. Start a Docker container using the image with the mounted PyTorch folder.
 
    ```bash
-   cd ~
-   git clone https://github.com/pytorch/pytorch.git
+   docker run -it --cap-add=SYS_PTRACE --security-opt --user root \
+   seccomp=unconfined --device=/dev/kfd --device=/dev/dri \
+   --group-add video --ipc=host --shm-size 8G \
+   -v ~/pytorch:/pytorch rocm/pytorch:build_from_dockerfile
+   ```
+
+   You can also pass the `-v` argument to mount any data directories from the host onto the container.
+
+4. Go to the PyTorch directory.
+
+   ```bash
    cd pytorch
-   git submodule update --init --recursive
    ```
 
-5. Build PyTorch for ROCm.
+5. Set ROCm architecture.
 
-   ```{note}
-   By default in the `rocm/pytorch:latest-base`, PyTorch builds for these
-   architectures simultaneously:
-   * gfx900
-   * gfx906
-   * gfx908
-   * gfx90a
-   * gfx1030
-   ```
-
-6. To determine your AMD uarch, run:
+   To determine your AMD architecture, run:
 
    ```bash
    rocminfo | grep gfx
    ```
 
-7. If you want to compile only for your uarch:
+   The result looks like this (for `gfx1030` architecture):
+
+   ```bash
+   Name:                    gfx1030
+   Name:                    amdgcn-amd-amdhsa--gfx1030
+   ```
+
+   Set the `PYTORCH_ROCM_ARCH` environment variable to specify the architectures you want to
+   build PyTorch for.
 
    ```bash
    export PYTORCH_ROCM_ARCH=<uarch>
    ```
 
-   `<uarch>` is the architecture reported by the `rocminfo` command.
+   where `<uarch>` is the architecture reported by the `rocminfo` command.
 
-8. Build PyTorch using:
+6. Build PyTorch.
 
    ```bash
-   ./.jenkins/pytorch/build.sh
+   ./.ci/pytorch/build.sh
    ```
 
-This will first convert PyTorch sources to be HIP compatible and then build the
-PyTorch framework.
+   This converts PyTorch sources for
+   [HIP compatibility](https://www.amd.com/en/developer/rocm-hub/hip-sdk.html) and builds the
+   PyTorch framework.
 
-Alternatively, build PyTorch by issuing the following commands:
+   To check if your build is successful, run:
 
-```bash
-python3 tools/amd_build/build_amd.py
-USE_ROCM=1 MAX_JOBS=4 python3 setup.py install --user
-```
-
-### Test the PyTorch Installation
-
-You can use PyTorch unit tests to validate a PyTorch installation. If using a
-prebuilt PyTorch Docker image from AMD ROCm DockerHub or installing an official
-wheels package, these tests are already run on those configurations.
-Alternatively, you can manually run the unit tests to validate the PyTorch
-installation fully.
-
-Follow these steps:
-
-1. Test if PyTorch is installed and accessible by importing the torch package in
-   Python.
-
-   ```{note}
-   Do not run in the PyTorch git folder.
+   ```bash
+   echo $? # should return 0 if success
    ```
+
+## Testing the PyTorch installation
+
+You can use PyTorch unit tests to validate your PyTorch installation. If you used a
+**prebuilt PyTorch Docker image from AMD ROCm DockerHub** or installed an
+**official wheels package**, validation tests are not necessary.
+
+If you want to manually run unit tests to validate your PyTorch installation fully, follow these steps:
+
+1. Import the torch package in Python to test if PyTorch is installed and accessible.
+
+   :::{note}
+   Do not run the following command in the PyTorch git folder.
+   :::
 
    ```bash
    python3 -c 'import torch' 2> /dev/null && echo 'Success' || echo 'Failure'
    ```
 
-2. Test if the GPU is accessible from PyTorch. In the PyTorch framework,
-   `torch.cuda` is a generic mechanism to access the GPU; it will access an AMD
-   GPU only if available.
+2. Check if the GPU is accessible from PyTorch. In the PyTorch framework, `torch.cuda` is a generic way
+   to access the GPU. This can only access an AMD GPU if one is available.
 
    ```bash
    python3 -c 'import torch; print(torch.cuda.is_available())'
    ```
 
-3. Run the unit tests to validate the PyTorch installation fully. Run the
-   following command from the PyTorch home directory:
+3. Run unit tests to validate the PyTorch installation fully.
+
+   :::{note}
+   You must run the following command from the PyTorch home directory.
+   :::
 
    ```bash
-   BUILD_ENVIRONMENT=${BUILD_ENVIRONMENT:-rocm} ./.jenkins/pytorch/test.sh
+   PYTORCH_TEST_WITH_ROCM=1 python3 test/run_test.py --verbose \
+   --include test_nn test_torch test_cuda test_ops \
+   test_unary_ufuncs test_binary_ufuncs test_autograd
    ```
 
-   This ensures that even for wheel installs in a non-controlled environment,
-   the required environment variable will be set to skip certain unit tests for
-   ROCm.
+   This command ensures that the required environment variable is set to skip certain unit tests for
+   ROCm. This also applies to wheel installs in a non-controlled environment.
 
-   ```{note}
-   Make sure the PyTorch source code is corresponding to the PyTorch wheel or
-   installation in the Docker image. Incompatible PyTorch source code might give
-   errors when running the unit tests.
-   ```
+   :::{note}
+   Make sure your PyTorch source code corresponds to the PyTorch wheel or the installation in the
+   Docker image. Incompatible PyTorch source code can give errors when running unit tests.
+   :::
 
-   This will first install some dependencies, such as a supported [torchvision](https://pytorch.org/vision/stable/index.html)
-   version for PyTorch. Torchvision is used in some PyTorch tests for loading
-   models. Next, this will run all the unit tests.
+   Some tests may be skipped, as appropriate, based on your system configuration. ROCm doesn't
+   support all PyTorch features; tests that evaluate unsupported features are skipped. Other tests might
+   be skipped, depending on the host or GPU memory and the number of available GPUs.
 
-   ```{note}
-   Some tests may be skipped, as appropriate, based on your system
-   configuration. All features of PyTorch are not supported on ROCm, and the
-   tests that evaluate these features are skipped. In addition, depending on the
-   host memory, or the number of available GPUs, other tests may be skipped. No
-   test should fail if the compilation and installation are correct.
-   ```
+   If the compilation and installation are correct, all tests will pass.
 
-4. Run individual unit tests with the following command:
+4. Run individual unit tests.
 
    ```bash
    PYTORCH_TEST_WITH_ROCM=1 python3 test/test_nn.py --verbose
    ```
 
-   `test_nn.py` can be replaced with any other test set.
+   You can replace `test_nn.py` with any other test set.
 
-### Run a Basic PyTorch Example
+## Running a basic PyTorch example
 
-The PyTorch examples repository provides basic examples that exercise the
-functionality of the framework. MNIST (Modified National Institute of Standards
-and Technology) database is a collection of handwritten digits that may be used
-to train a Convolutional Neural Network for handwriting recognition.
-Alternatively, ImageNet is a database of images used to train a network for
-visual object recognition.
+The PyTorch examples repository provides basic examples that exercise the functionality of your
+framework.
 
-Follow these steps:
+Two of our favorite testing databases are:
+
+* **MNIST** (Modified National Institute of Standards and Technology): A database of handwritten
+  digits that can be used to train a Convolutional Neural Network for **handwriting recognition**.
+* **ImageNet**: A database of images that can be used to train a network for
+  **visual object recognition**.
+
+### MNIST PyTorch example
 
 1. Clone the PyTorch examples repository.
 
@@ -372,44 +401,45 @@ Follow these steps:
    git clone https://github.com/pytorch/examples.git
    ```
 
-2. Run the MNIST example.
+2. Go to the MNIST example folder.
 
    ```bash
    cd examples/mnist
    ```
 
-3. Follow the instructions in the `README` file in this folder. In this case:
+3. Follow the instructions in the `README.md`` file in this folder to install the requirements. Then run:
 
    ```bash
-   pip3 install -r requirements.txt
    python3 main.py
    ```
 
-4. Run the ImageNet example.
+   This generates the following output:
+
+   ```bash
+   ...
+   Train Epoch: 14 [58240/60000 (97%)]     Loss: 0.010128
+   Train Epoch: 14 [58880/60000 (98%)]     Loss: 0.001348
+   Train Epoch: 14 [59520/60000 (99%)]     Loss: 0.005261
+
+   Test set: Average loss: 0.0252, Accuracy: 9921/10000 (99%)
+   ```
+
+### ImageNet PyTorch example
+
+1. Clone the PyTorch examples repository (if you didn't already do this step in the preceding MNIST example).
+
+   ```bash
+   git clone https://github.com/pytorch/examples.git
+   ```
+
+2. Go to the ImageNet example folder.
 
    ```bash
    cd examples/imagenet
    ```
 
-5. Follow the instructions in the `README` file in this folder. In this case:
+3. Follow the instructions in the `README.md` file in this folder to install the Requirements. Then run:
 
    ```bash
-   pip3 install -r requirements.txt
    python3 main.py
    ```
-
-## Using MIOpen kdb files with ROCm PyTorch wheels
-
-PyTorch uses MIOpen for machine learning primitives. These primitives are compiled into kernels at runtime. Runtime compilation causes a small warm-up phase when starting PyTorch. MIOpen kdb files contain precompiled kernels that can speed up the warm-up phase of an application. More information is available in the {doc}`MIOpeninstallation page <miopen:install>`.
-
-MIOpen kdb files can be used with ROCm PyTorch wheels. However, the kdb files need to be placed in a specific location with respect to the PyTorch installation path. A helper script simplifies this task for the user. The script takes in the ROCm version and user's GPU architecture as inputs, and works for Ubuntu and CentOS.
-
-Helper script: [install_kdb_files_for_pytorch_wheels.sh](https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/files/install_kdb_files_for_pytorch_wheels.sh)
-
-Usage:
-
-After installing ROCm PyTorch wheels:
-
-1. [Optional] `export GFX_ARCH=gfx90a`
-2. [Optional] `export ROCM_VERSION=5.5`
-3. `./install_kdb_files_for_pytorch_wheels.sh`

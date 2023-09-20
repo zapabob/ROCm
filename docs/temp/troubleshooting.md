@@ -43,8 +43,7 @@ described in the ROCm Installation Guide at {ref}`linux_group_permissions`.
 **Q: Can I install PyTorch directly on bare metal?**
 
 Ans: Bare-metal installation of PyTorch is supported through wheels. Refer to
-Option 2: Install PyTorch Using Wheels Package in the section
-{ref}`install-pytorch-using-wheels` of this guide for more information.
+Option 2: Install PyTorch Using Wheels Package. See [Installing PyTorch](../tutorials/install/pytorch-install.md) for more information.
 
 **Q: How do I profile PyTorch workloads?**
 

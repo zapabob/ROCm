@@ -17,8 +17,7 @@ memory with RDMA capabilities. These interfaces are currently registered as a
 These interfaces are used to optimize inter-node MPI message communication.
 
 This chapter exemplifies how to set up Open MPI with the ROCm platform. The Open
-MPI project is an open source implementation of the Message Passing Interface
-(MPI) that is developed and maintained by a consortium of academic, research,
+MPI project is an open source implementation of the MPI that is developed and maintained by a consortium of academic, research,
 and industry partners.
 
 Several MPI implementations can be made ROCm-aware by compiling them with
@@ -72,7 +71,7 @@ make -j $(nproc)
 make -j $(nproc) install
 ```
 
-The [communication libraries tables](#communication-libraries)
+The [communication libraries tables](../reference/libraries/gpu-libraries/communication.md)
 documents the compatibility of UCX versions with ROCm versions.
 
 ## Install Open MPI
@@ -157,7 +156,7 @@ Unified Collective Communication Library (UCC) component in Open MPI.
 For this, the UCC library has to be configured and compiled with ROCm
 support.
 
-Please note the compatibility [tables](#communication-libraries)
+Please note the compatibility tables in the [communication libraries](../reference/libraries/gpu-libraries/communication.md)
 for UCC versions with the various ROCm versions.
 
 An example for configuring UCC and Open MPI with ROCm support

@@ -1,4 +1,4 @@
-# Uninstallation using the command-line interface (CLI)
+# Uninstallation using the CLI
 
 The steps to uninstall the HIP SDK for Windows are described in this document.
 
