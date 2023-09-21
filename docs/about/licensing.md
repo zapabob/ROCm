@@ -7,6 +7,7 @@ additional licenses. Please review individual repositories for more information.
 The table shows ROCm components, license name, and link to the license terms.
 The table is ordered to follow ROCm's manifest file.
 
+<!-- spellcheck-disable -->
 | Component | License |
 |:------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
 | [AMDMIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/) | [MIT](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/blob/develop/LICENSE) |
