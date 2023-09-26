@@ -13,16 +13,6 @@ following commands based on your distribution.
 :sync: ubuntu
 
 ::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
-
-```shell
-sudo apt update
-wget https://repo.radeon.com/amdgpu-install/5.7/ubuntu/focal/amdgpu-install_5.7.50700-1_all.deb
-sudo apt install ./amdgpu-install_5.7.50700-1_all.deb
-```
-
-:::
 :::{tab-item} Ubuntu 22.04
 :sync: ubuntu-22.04
 
@@ -33,36 +23,28 @@ sudo apt install ./amdgpu-install_5.7.50700-1_all.deb
 ```
 
 :::
+:::{tab-item} Ubuntu 20.04
+:sync: ubuntu-20.04
+
+```shell
+sudo apt update
+wget https://repo.radeon.com/amdgpu-install/5.7/ubuntu/focal/amdgpu-install_5.7.50700-1_all.deb
+sudo apt install ./amdgpu-install_5.7.50700-1_all.deb
+```
+
+:::
 ::::
 :::::
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
 ::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-:sync: RHEL-8
+:::{tab-item} RHEL 9.2
+:sync: RHEL-9.2
+:sync: RHEL-9
 
 ```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/8.6/amdgpu-install-5.7.50700-1.el8.noarch.rpm
-```
-
-:::
-:::{tab-item} RHEL 8.7
-:sync: RHEL-8.7
-:sync: RHEL-8
-
-```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/8.7/amdgpu-install-5.7.50700-1.el8.noarch.rpm
-```
-
-:::
-:::{tab-item} RHEL 8.8
-:sync: RHEL-8.8
-:sync: RHEL-8
-
-```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/8.8/amdgpu-install-5.7.50700-1.el8.noarch.rpm
+sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/9.2/amdgpu-install-5.7.50700-1.el9.noarch.rpm
 ```
 
 :::
@@ -75,12 +57,30 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/9.1/amdgpu-inst
 ```
 
 :::
-:::{tab-item} RHEL 9.2
-:sync: RHEL-9.2
-:sync: RHEL-9
+:::{tab-item} RHEL 8.8
+:sync: RHEL-8.8
+:sync: RHEL-8
 
 ```shell
-sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/9.2/amdgpu-install-5.7.50700-1.el9.noarch.rpm
+sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/8.8/amdgpu-install-5.7.50700-1.el8.noarch.rpm
+```
+
+:::
+:::{tab-item} RHEL 8.7
+:sync: RHEL-8.7
+:sync: RHEL-8
+
+```shell
+sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/8.7/amdgpu-install-5.7.50700-1.el8.noarch.rpm
+```
+
+:::
+:::{tab-item} RHEL 8.6
+:sync: RHEL-8.6
+:sync: RHEL-8
+
+```shell
+sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/8.6/amdgpu-install-5.7.50700-1.el8.noarch.rpm
 ```
 
 :::
@@ -90,19 +90,19 @@ sudo yum install https://repo.radeon.com/amdgpu-install/5.7/rhel/9.2/amdgpu-inst
 :sync: SLES
 
 ::::{tab-set}
-:::{tab-item} SLES 15.4
-:sync: SLES-15.4
-
-```shell
-sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.7/sle/15.4/amdgpu-install-5.7.50700-1.noarch.rpm
-```
-
-:::
 :::{tab-item} SLES 15.5
 :sync: SLES-15.5
 
 ```shell
 sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.7/sle/15.5/amdgpu-install-5.7.50700-1.noarch.rpm
+```
+
+:::
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
+
+```shell
+sudo zypper --no-gpg-checks install https://repo.radeon.com/amdgpu-install/5.7/sle/15.4/amdgpu-install-5.7.50700-1.noarch.rpm
 ```
 
 :::
@@ -198,18 +198,6 @@ Run the following commands based on your distribution to add the repositories:
 :sync: ubuntu
 
 ::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
-
-```shell
-for ver in 5.5.3 5.6.1 5.7; do
-echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
-done
-echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
-sudo apt update
-```
-
-:::
 :::{tab-item} Ubuntu 22.04
 :sync: ubuntu-22.04
 
@@ -222,21 +210,33 @@ sudo apt update
 ```
 
 :::
+:::{tab-item} Ubuntu 20.04
+:sync: ubuntu-20.04
+
+```shell
+for ver in 5.5.3 5.6.1 5.7; do
+echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/rocm-keyring.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" | sudo tee /etc/apt/sources.list.d/rocm.list
+done
+echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+sudo apt update
+```
+
+:::
 ::::
 :::::
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
 ::::{tab-set}
-:::{tab-item} RHEL 8
-:sync: RHEL-8
+:::{tab-item} RHEL 9
+:sync: RHEL-9
 
 ```shell
 for ver in 5.5.3 5.6.1 5.7; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
-baseurl=https://repo.radeon.com/rocm/rhel8/$ver/main
+baseurl=https://repo.radeon.com/rocm/rhel9/$ver/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -247,15 +247,15 @@ sudo yum clean all
 ```
 
 :::
-:::{tab-item} RHEL 9
-:sync: RHEL-9
+:::{tab-item} RHEL 8
+:sync: RHEL-8
 
 ```shell
 for ver in 5.5.3 5.6.1 5.7; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
-baseurl=https://repo.radeon.com/rocm/rhel9/$ver/main
+baseurl=https://repo.radeon.com/rocm/rhel8/$ver/main
 enabled=1
 priority=50
 gpgcheck=1

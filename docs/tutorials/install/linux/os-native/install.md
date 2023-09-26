@@ -48,20 +48,6 @@ section.
 To add the AMDGPU repository, follow these steps:
 
 ::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
-
-```shell
-# version
-ver=5.7
-
-# amdgpu repository for focal
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$ver/ubuntu focal main" \
-    | sudo tee /etc/apt/sources.list.d/amdgpu.list
-sudo apt update
-```
-
-:::
 :::{tab-item} Ubuntu 22.04
 :sync: ubuntu-22.04
 
@@ -75,6 +61,20 @@ echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.
 sudo apt update
 # Prefer packages from the rocm repository over system packages
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
+```
+
+:::
+:::{tab-item} Ubuntu 20.04
+:sync: ubuntu-20.04
+
+```shell
+# version
+ver=5.7
+
+# amdgpu repository for focal
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$ver/ubuntu focal main" \
+    | sudo tee /etc/apt/sources.list.d/amdgpu.list
+sudo apt update
 ```
 
 :::
@@ -94,13 +94,13 @@ sudo reboot
 To add the ROCm repository, use the following steps:
 
 ::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
+:::{tab-item} Ubuntu 22.04
+:sync: ubuntu-22.04
 
 ```shell
-# ROCm repositories for focal
+# ROCm repositories for jammy
 for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" \
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" \
     | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
@@ -109,13 +109,13 @@ sudo apt update
 ```
 
 :::
-:::{tab-item} Ubuntu 22.04
-:sync: ubuntu-22.04
+:::{tab-item} Ubuntu 20.04
+:sync: ubuntu-20.04
 
 ```shell
-# ROCm repositories for jammy
+# ROCm repositories for focal
 for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" \
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" \
     | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
@@ -160,32 +160,9 @@ section.
 ```
 
 ::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-:sync: RHEL-8
-
-```shell
-# version
-ver=5.7
-
-
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/8.6/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
-
-:::{tab-item} RHEL 8.7
-:sync: RHEL-8.7
-:sync: RHEL-8
+:::{tab-item} RHEL 9.2
+:sync: RHEL-9.2
+:sync: RHEL-9
 
 ```shell
 # version
@@ -194,29 +171,7 @@ ver=5.7
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/8.7/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
-
-:::{tab-item} RHEL 8.8
-:sync: RHEL-8.8
-:sync: RHEL-8
-
-```shell
-# version
-ver=5.7
-
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/8.8/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/9.2/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -249,9 +204,9 @@ sudo yum clean all
 
 :::
 
-:::{tab-item} RHEL 9.2
-:sync: RHEL-9.2
-:sync: RHEL-9
+:::{tab-item} RHEL 8.8
+:sync: RHEL-8.8
+:sync: RHEL-8
 
 ```shell
 # version
@@ -260,7 +215,52 @@ ver=5.7
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/9.2/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/8.8/main/x86_64/
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo yum clean all
+```
+
+:::
+
+:::{tab-item} RHEL 8.7
+:sync: RHEL-8.7
+:sync: RHEL-8
+
+```shell
+# version
+ver=5.7
+
+sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/8.7/main/x86_64/
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo yum clean all
+```
+
+:::
+
+:::{tab-item} RHEL 8.6
+:sync: RHEL-8.6
+:sync: RHEL-8
+
+```shell
+# version
+ver=5.7
+
+
+sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/8.6/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -286,15 +286,15 @@ sudo reboot
 To add the ROCm repository, use the following steps, based on your distribution:
 
 ::::{tab-set}
-:::{tab-item} RHEL 8
-:sync: RHEL-8
+:::{tab-item} RHEL 9
+:sync: RHEL-9
 
 ```shell
 for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
-baseurl=https://repo.radeon.com/rocm/rhel8/$ver/main
+baseurl=https://repo.radeon.com/rocm/rhel9/$ver/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -305,15 +305,15 @@ sudo yum clean all
 ```
 
 :::
-:::{tab-item} RHEL 9
-:sync: RHEL-9
+:::{tab-item} RHEL 8
+:sync: RHEL-8
 
 ```shell
 for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
-baseurl=https://repo.radeon.com/rocm/rhel9/$ver/main
+baseurl=https://repo.radeon.com/rocm/rhel8/$ver/main
 enabled=1
 priority=50
 gpgcheck=1
@@ -360,6 +360,25 @@ section.
 ```
 
 ::::{tab-set}
+:::{tab-item} SLES 15.5
+:sync: SLES-15.5
+
+```shell
+# version
+ver=5.7
+
+sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.5/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo zypper ref
+```
+
+:::
 :::{tab-item} SLES 15.4
 :sync: SLES-15.4
 
@@ -372,25 +391,6 @@ sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
 baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
-enabled=1
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo zypper ref
-```
-
-:::
-:::{tab-item} SLES 15.5
-:sync: SLES-15.5
-
-```shell
-# version
-ver=5.7
-
-sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.5/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key

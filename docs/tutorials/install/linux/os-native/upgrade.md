@@ -21,21 +21,6 @@ repository to the new release.
 :sync: ubuntu
 
 ::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
-
-```shell
-# version
-version=5.7
-
-
-# amdgpu repository for focal
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$version/ubuntu focal main" \
-    | sudo tee /etc/apt/sources.list.d/amdgpu.list
-sudo apt update
-```
-
-:::
 :::{tab-item} Ubuntu 22.04
 :sync: ubuntu-22.04
 
@@ -51,15 +36,30 @@ sudo apt update
 ```
 
 :::
+:::{tab-item} Ubuntu 20.04
+:sync: ubuntu-20.04
+
+```shell
+# version
+version=5.7
+
+
+# amdgpu repository for focal
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$version/ubuntu focal main" \
+    | sudo tee /etc/apt/sources.list.d/amdgpu.list
+sudo apt update
+```
+
+:::
 ::::
 :::::
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
 ::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-:sync: RHEL-8
+:::{tab-item} RHEL 9.2
+:sync: RHEL-9.2
+:sync: RHEL-9
 
 ```shell
 # version
@@ -69,51 +69,7 @@ version=5.7
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.6/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
-:::{tab-item} RHEL 8.7
-:sync: RHEL-8.7
-:sync: RHEL-8
-
-```shell
-# version
-version=5.7
-
-
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.7/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
-:::{tab-item} RHEL 8.8
-:sync: RHEL-8.8
-:sync: RHEL-8
-
-```shell
-# version
-version=5.7
-
-
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.8/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/9.2/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -145,9 +101,9 @@ sudo yum clean all
 ```
 
 :::
-:::{tab-item} RHEL 9.2
-:sync: RHEL-9.2
-:sync: RHEL-9
+:::{tab-item} RHEL 8.8
+:sync: RHEL-8.8
+:sync: RHEL-8
 
 ```shell
 # version
@@ -157,7 +113,51 @@ version=5.7
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$version/rhel/9.2/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.8/main/x86_64/
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo yum clean all
+```
+
+:::
+:::{tab-item} RHEL 8.7
+:sync: RHEL-8.7
+:sync: RHEL-8
+
+```shell
+# version
+version=5.7
+
+
+sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.7/main/x86_64/
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo yum clean all
+```
+
+:::
+:::{tab-item} RHEL 8.6
+:sync: RHEL-8.6
+:sync: RHEL-8
+
+```shell
+# version
+version=5.7
+
+
+sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/$version/rhel/8.6/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -173,26 +173,6 @@ sudo yum clean all
 :sync: SLES
 
 ::::{tab-set}
-:::{tab-item} SLES 15.4
-:sync: SLES-15.4
-
-```shell
-# version
-version=5.7
-
-
-sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$version/sle/15.4/main/x86_64
-enabled=1
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo zypper ref
-```
-
-:::
 :::{tab-item} SLES 15.5
 :sync: SLES-15.5
 
@@ -205,6 +185,26 @@ sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
 baseurl=https://repo.radeon.com/amdgpu/$version/sle/15.5/main/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo zypper ref
+```
+
+:::
+:::{tab-item} SLES 15.4
+:sync: SLES-15.4
+
+```shell
+# version
+version=5.7
+
+
+sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
+[amdgpu]
+name=amdgpu
+baseurl=https://repo.radeon.com/amdgpu/$version/sle/15.4/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
@@ -262,22 +262,6 @@ repository to the new release.
 :sync: ubuntu
 
 ::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
-
-```shell
-# version
-version=5.7
-
-
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$version focal main" \
-    | sudo tee /etc/apt/sources.list.d/rocm.list
-echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
-    | sudo tee /etc/apt/preferences.d/rocm-pin-600
-sudo apt update
-```
-
-:::
 :::{tab-item} Ubuntu 22.04
 :sync: ubuntu-22.04
 
@@ -294,33 +278,28 @@ sudo apt update
 ```
 
 :::
-::::
-:::::
-:::::{tab-item} Red Hat Enterprise Linux
-:sync: RHEL
-
-::::{tab-set}
-:::{tab-item} RHEL 8
-:sync: RHEL-8
+:::{tab-item} Ubuntu 20.04
+:sync: ubuntu-20.04
 
 ```shell
 # version
 version=5.7
 
 
-sudo tee /etc/yum.repos.d/rocm.repo <<EOF
-[ROCm-$ver]
-name=ROCm$ver
-baseurl=https://repo.radeon.com/rocm/rhel8/$version/main
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$version focal main" \
+    | sudo tee /etc/apt/sources.list.d/rocm.list
+echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
+    | sudo tee /etc/apt/preferences.d/rocm-pin-600
+sudo apt update
 ```
 
 :::
+::::
+:::::
+:::::{tab-item} Red Hat Enterprise Linux
+:sync: RHEL
+
+::::{tab-set}
 :::{tab-item} RHEL 9
 :sync: RHEL-9
 
@@ -333,6 +312,27 @@ sudo tee /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
 baseurl=https://repo.radeon.com/rocm/rhel9/$version/main
+enabled=1
+priority=50
+gpgcheck=1
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
+EOF
+sudo yum clean all
+```
+
+:::
+:::{tab-item} RHEL 8
+:sync: RHEL-8
+
+```shell
+# version
+version=5.7
+
+
+sudo tee /etc/yum.repos.d/rocm.repo <<EOF
+[ROCm-$ver]
+name=ROCm$ver
+baseurl=https://repo.radeon.com/rocm/rhel8/$version/main
 enabled=1
 priority=50
 gpgcheck=1
