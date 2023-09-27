@@ -12,8 +12,6 @@ following AMD ROCm programming models:
 A meta-package is a grouping of related packages and dependencies used to
 support a specific use case.
 
-**Example:** Running HIP applications
-
 All meta-packages exist in both versioned and non-versioned forms.
 
 - Non-versioned packages – For a single-version installation of the ROCm stack
