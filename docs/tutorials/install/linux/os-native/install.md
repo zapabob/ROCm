@@ -484,7 +484,7 @@ but are generally useful. Verification of the install is advised.
 2. Add binary paths to the `PATH` environment variable.
 
    ```shell
-   export PATH=$PATH:/opt/rocm-5.7/bin:/opt/rocm-5.7/opencl/bin
+   export PATH=$PATH:/opt/rocm-5.7.0/bin:/opt/rocm-5.7.0/opencl/bin
 
    ```
 
