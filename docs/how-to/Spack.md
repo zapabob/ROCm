@@ -85,8 +85,8 @@ spack help will list the commands available.
 
 root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack help
 
-## Using Spack to install ROCm components 
- 
+## Using Spack to install ROCm components  
+
 ## rocm-cmake  
 
 Below command will install the default variants and latest version of rocm-cmake.
@@ -169,7 +169,7 @@ Run Dependencies:
   
 root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack)
 
-## Installing variants for ROCm components 
+## Installing variants for ROCm components  
 
 Variants listed above indicates that mivisionx package is built with **build_type=Release,** backend **hip**  and without backend **opencl** by default.  
 But it also supports build_type=**Debug** and **RelWithDebInfo** , with **opencl** and without **hip** as backend.
@@ -194,7 +194,7 @@ Concretized
 \--------------------------------  
 mivisionx@5.3.0%gcc@9.4.0+hip\~ipo\~opencl build_type=Release arch=linux-ubuntu20.04-skylake_avx512  
   
-## Creating environment   
+## Creating environment  
 
 You can create an environment with all the components of required version, install them collectively and work in the environment.
 
