@@ -63,7 +63,7 @@ One need to install all the pre-requisites before performing the SPACK installat
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Install some essential utilities: yum update yum install make yum install patch bash tar yum install gzip unzip bzip2 xz file gnupg2 git gawk yum group install "Development Tools" yum install vim Install python : yum install python3 pip3 install --upgrade pip Install compilers: yum install gcc yum install gcc-gfortran yum install gcc-c++ | Installing some essential utilities: zypper update zypper install make patch bash tar gzip unzip bzip xz file gnupg2 git awk zypper in -t pattern zypper install vim Installing python: zypper install python3 zypper install python3-pip Installing Compilers: zypper install gcc zypper install gcc-fortran zypper install gcc-c++ | Installing some essential utilities: apt-get update apt-get install make patch bash tar gzip unzip bzip2 file gnupg2 git gawk apt-get update -y apt-get install -y xz-utils apt-get build-essential apt-get install vim Installing python: apt-get install python3 apt-get upgrade python3-pip Installing Compilers: apt-get install gcc apt-get install gfortran |
 
-## Steps to build ROCm Components using Spack :
+## Steps to build ROCm Components using Spack
 
 ## Clone Spack project
 
@@ -85,8 +85,8 @@ spack help will list the commands available.
 
 root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack help
 
-## Using Spack to install ROCm components
-## rocm-cmake
+## Using Spack to install ROCm components 
+## rocm-cmake 
 
 Below command will install the default variants and latest version of rocm-cmake.
 
@@ -191,7 +191,7 @@ Concretized
 \--------------------------------  
 mivisionx@5.3.0%gcc@9.4.0+hip\~ipo\~opencl build_type=Release arch=linux-ubuntu20.04-skylake_avx512  
   
-**Creating environment**
+## Creating environment 
 
 You can create an environment with all the components of required version, install them collectively and work in the environment.
 
