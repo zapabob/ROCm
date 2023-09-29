@@ -1,4 +1,4 @@
-**Introduction to Spack**
+# Introduction to Spack
 
 Spack is a package management tool designed to support multiple versions and configurations of software on a wide variety of platforms and environments. It was designed for large supercomputing centers, where many users and application teams share common installations of software on clusters with exotic architectures, using libraries that do not have a standard ABI. Spack is non-destructive: installing a new version does not break existing installations, so many configurations can coexist on the same system.
 
@@ -6,7 +6,7 @@ Most importantly, Spack is *simple*. It offers a simple *spec* syntax so that us
 
 Reference: <https://spack-tutorial.readthedocs.io/en/latest/>
 
-**ROCM packages in Spack**
+# ROCM packages in Spack
 
 | **Component**             | **Spack Package Name** |
 |---------------------------|------------------------|
@@ -63,15 +63,15 @@ One need to install all the pre-requisites before performing the SPACK installat
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Install some essential utilities: yum update yum install make yum install patch bash tar yum install gzip unzip bzip2 xz file gnupg2 git gawk yum group install "Development Tools" yum install vim Install python : yum install python3 pip3 install --upgrade pip Install compilers: yum install gcc yum install gcc-gfortran yum install gcc-c++ | Installing some essential utilities: zypper update zypper install make patch bash tar gzip unzip bzip xz file gnupg2 git awk zypper in -t pattern zypper install vim Installing python: zypper install python3 zypper install python3-pip Installing Compilers: zypper install gcc zypper install gcc-fortran zypper install gcc-c++ | Installing some essential utilities: apt-get update apt-get install make patch bash tar gzip unzip bzip2 file gnupg2 git gawk apt-get update -y apt-get install -y xz-utils apt-get build-essential apt-get install vim Installing python: apt-get install python3 apt-get upgrade python3-pip Installing Compilers: apt-get install gcc apt-get install gfortran |
 
-Steps to build ROCm Components using Spack :
+# Steps to build ROCm Components using Spack :
 
-**Clone Spack project**
+# Clone Spack project
 
 Clone the Spack project from github in order to use the spack package manager.
 
 git clone <https://github.com/spack/spack>
 
-**Initialize Spack**
+# Initialize Spack
 
 The script setup-env.sh will initialize spack environment.
 
@@ -85,8 +85,8 @@ spack help will list the commands available.
 
 root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack help
 
-**Using Spack to install ROCm components  
-rocm-cmake:**
+# Using Spack to install ROCm components
+# rocm-cmake:
 
 Below command will install the default variants and latest version of rocm-cmake.
 
@@ -100,7 +100,7 @@ Example:
 
 spack install rocm-cmake@5.2.0
 
-**Using info  
+# Using info  
 info** command will display basic information of the package. It shows the Preferred, Safe and Deprecated versions and different Variants available.
 
 It also shows the Dependencies with other packages. as shown below.
@@ -167,20 +167,20 @@ Run Dependencies:
   
 root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack)
 
-**Installing variants for ROCm components  
-**Variants listed above indicates that mivisionx package is built with **build_type=Release,** backend **hip**  and without backend **opencl** by default.  
+# Installing variants for ROCm components  
+Variants listed above indicates that mivisionx package is built with **build_type=Release,** backend **hip**  and without backend **opencl** by default.  
 But it also supports build_type=**Debug** and **RelWithDebInfo** , with **opencl** and without **hip** as backend.
 
-**Example:**
+Example:
 
 spack install mivisionx build_type=Debug (Backend will be hip since it is the default one)  
 spack install mivisionx+opencl build_type=Debug (Backend will be opencl and hip will be disabled as per the conflict defined in recipe)
 
-**spack spec command**
+# spack spec command
 
 In order to display the dependency tree spack spec command can be used with the same format.
 
-**Example:**
+# Example:
 
 root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack spec mivisionx  
 Input spec  
@@ -197,53 +197,53 @@ You can create an environment with all the components of required version, insta
 
 1\. In the root folder make a folder to create a .yaml file with which we can create an environment.
 
--   mkdir /localscratch
--   cd /localscratch
--   vi sample.yaml
+*   mkdir /localscratch
+*   cd /localscratch
+*   vi sample.yaml
 
 2.Add all the required components on sample.yaml file, as shown below,
 
--   spack:
--   concretization: separately
--   packages:
--   all:
--   compiler: [gcc@8.5.0]
--   specs:
--   \- matrix:
--   \- ['%gcc@8.5.0\^cmake@3.19.7']
--   \- [rocm-cmake@5.3.2, rocm-dbgapi@5.3.2, rocm-debug-agent@5.3.2, rocm-gdb@5.3.2,
--   rocminfo@5.3.2, rocm-opencl@5.3.2, rocm-smi-lib@5.3.2, rocm-tensile@5.3.2, rocm-validation-suite@4.3.1,
--   rocprim@5.3.2, rocprofiler-dev@5.3.2, rocrand@5.3.2, rocsolver@5.3.2, rocsparse@5.3.2,
--   rocthrust@5.3.2, roctracer-dev@5.3.2]
--   view: true
+*   spack:
+*   concretization: separately
+*   packages:
+*   all:
+*   compiler: [gcc@8.5.0]
+*   specs:
+*   \- matrix:
+*   \- ['%gcc@8.5.0\^cmake@3.19.7']
+*   \- [rocm-cmake@5.3.2, rocm-dbgapi@5.3.2, rocm-debug-agent@5.3.2, rocm-gdb@5.3.2,
+*   rocminfo@5.3.2, rocm-opencl@5.3.2, rocm-smi-lib@5.3.2, rocm-tensile@5.3.2, rocm-validation-suite@4.3.1,
+*   rocprim@5.3.2, rocprofiler-dev@5.3.2, rocrand@5.3.2, rocsolver@5.3.2, rocsparse@5.3.2,
+*   rocthrust@5.3.2, roctracer-dev@5.3.2]
+*   view: true
 
 3\. Once you got .yaml file, using it create an environment as shown below,
 
--   spack env create -d /localscratch/MyEnvironment /localscratch/sample.yaml
+*   spack env create -d /localscratch/MyEnvironment /localscratch/sample.yaml
 
 4\. Activate the created environment as shown below,
 
--   spack env activate /localscratch/MyEnvironment
+*   spack env activate /localscratch/MyEnvironment
 
 5.Before installing all components using next step, verify whether versions mentioned for all components are desired or not as shown below,
 
--   spack find - this command will list out all components been in the environment (and 0 installed )
+*   spack find - this command will list out all components been in the environment (and 0 installed )
 
 6.Install all the components in the .yaml after activating the environment as shown below by entering the created environment.
 
--   cd /localscratch/MyEnvironment
--   spack install -j 50
+*   cd /localscratch/MyEnvironment
+*   spack install -j 50
 
 7.Check all the components installation are successful or not.
 
--   spack find
+*   spack find
 
 8.If any modification is done to the .yaml file, to reflect those changes one needs to deactivate the existing environment and create a new one again using steps 3 and 4.
 
--   To deactivate use below command,
--   spack env deactivate
+*   To deactivate use below command,
+*   spack env deactivate
 
-**Create and apply patch for a package before installation**
+# Create and apply patch for a package before installation
 
 Spack will install rocm packages after pulling the source code from git hub and building locally.  
 In order to build a component with any modification in source code we would need to generate a patch and apply before the build phase by making changes in the spack recipe of the corresponding package.
