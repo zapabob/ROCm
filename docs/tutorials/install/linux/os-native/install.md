@@ -520,8 +520,6 @@ by both commands, the installation is considered successful:
 
 ```shell
 /opt/rocm/bin/rocminfo
-# OR
-/opt/rocm/opencl/bin/clinfo
 ```
 
 ### Verifying package installation
