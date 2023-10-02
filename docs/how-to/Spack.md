@@ -198,7 +198,7 @@ mivisionx@5.3.0%gcc@9.4.0+hip\~ipo\~opencl build_type=Release arch=linux-ubuntu2
 
 You can create an environment with all the components of required version, install them collectively and work in the environment.
 
-1\. In the root folder create a folder to create a .yaml file with which we can create an environment.
+1\. In the root folder make a folder to create a .yaml file with which we can create an environment.
 
 * mkdir /localscratch
 * cd /localscratch
