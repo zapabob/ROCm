@@ -234,5 +234,7 @@ subtrees:
   - file: about/license.md
     title: ROCm licensing
 
+  - file: how-to/Spack.md
+    title: Introduction to Spack
 
 
