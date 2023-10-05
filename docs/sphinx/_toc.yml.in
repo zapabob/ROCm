@@ -145,6 +145,8 @@ subtrees:
             title: MI200
           - file: how-to/tuning-guides/w6000-v620.md
             title: RDNA2
+      - file: how-to/Spack.md
+        title: Spack
 
   - file: reference/index.md
     title: Reference guides
@@ -233,12 +235,3 @@ subtrees:
 
   - file: about/license.md
     title: ROCm licensing
-
-  - file: how-to/index.md
-    title: How-to
-    subtrees:
-    - entries:
-      - file: how-to/Spack.md
-        title: Spack
-
-
