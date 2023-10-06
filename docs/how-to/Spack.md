@@ -141,7 +141,7 @@ Spack commands will be available once the above steps are executed successfully.
 
 spack help will list the commands available.
 
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack help
+root@[abc:/spack\#](http://abc/spack) spack help
 
 ## Using Spack to install ROCm components  
 
@@ -169,7 +169,7 @@ spack info mivisionx
 
 Example:
 
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack info mivisionx  
+root@[abc:/spack\#](http://abc/spack) spack info mivisionx  
 CMakePackage: mivisionx  
   
 Description:  
@@ -225,7 +225,7 @@ Link Dependencies:
 Run Dependencies:  
  None  
   
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack)
+root@[abc:/spack\#](http://abc/spack)
 
 ## Installing variants for ROCm components  
 
@@ -243,7 +243,7 @@ In order to display the dependency tree spack spec command can be used with the 
 
 ## Example
 
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack spec mivisionx  
+root@[abc:/spack\#](http://abc/spack) spack spec mivisionx  
 Input spec  
 \--------------------------------  
 mivisionx  
@@ -315,7 +315,7 @@ Below the procedure to generate a patch and build with the changes.
 
 spack stage hip@5.2.0 (This will pull the 5.2.0 release version source code of hip and display the path to spack-src directory where entire source code is available)  
   
-root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack stage hip@5.2.0  
+root@[abc:/spack\#](http://abc/spack) spack stage hip@5.2.0  
 ==\> Fetching <https://github.com/ROCm-Developer-Tools/HIP/archive/rocm-5.2.0.tar.gz>  
 ==\> Fetching <https://github.com/ROCm-Developer-Tools/hipamd/archive/rocm-5.2.0.tar.gz>  
 ==\> Fetching <https://github.com/ROCm-Developer-Tools/ROCclr/archive/rocm-5.2.0.tar.gz>  
@@ -332,28 +332,28 @@ root@[ixt-rack-104:/spack\#](http://ixt-rack-104/spack) spack stage hip@5.2.0
 
 2\. **Change directory to spack-src inside the staged directory**
 
-root@[ixt-rack-104:/spack\#cd /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7](http://ixt-rack-104/spack)  
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7) cd spack-src/
+root@[abc:/spack\#cd /tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7](http://abc/spack)  
+root@[abc:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7\#](http://abc/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7) cd spack-src/
 
 3\. **Creates a new Git repository**
 
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git init
+root@[abc:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://abc/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git init
 
 4\. **Add the entire directory to the repository**
 
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git add .
+root@[abc:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://abc/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git add .
 
 5\. **Make the required changes in the source code**
 
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) vi hipamd/CMakeLists.txt (Make required changes in the source code)
+root@[abc:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://abc/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) vi hipamd/CMakeLists.txt (Make required changes in the source code)
 
 6\. **Generate the patch using "git diff" command**
 
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git diff \> /spack/var/spack/repos/builtin/packages/hip/0001-modifications.patch
+root@[abc:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://abc/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) git diff \> /spack/var/spack/repos/builtin/packages/hip/0001-modifications.patch
 
 7\. **Update the recipe with the patch file name and conditions to apply**
 
-root@[ixt-rack-104:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://ixt-rack-104/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) spack edit hip  
+root@[abc:/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src\#](http://abc/tmp/root/spack-stage/spack-stage-hip-5.2.0-wzo5y6ysvmadyb5mvffr35galb6vjxb7/spack-src) spack edit hip  
   
 Provide the patch file name and the conditions for the patch to be applied in the hip recipe as below,  
   
@@ -363,4 +363,4 @@ Spack will apply 0001-modifications.patch on the 5.2.0 release code before start
 
 **Note**: After each modification we need to make sure the recipe is also updated. If there is no change in the recipe do touch /spack/var/spack/repos/builtin/packages/hip/package.py
 
-**Note:** Spack latest release is 5.5.1
+**Note:** Spack latest release is 5.6.0
