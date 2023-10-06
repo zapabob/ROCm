@@ -363,4 +363,4 @@ Spack will apply 0001-modifications.patch on the 5.2.0 release code before start
 
 **Note**: After each modification we need to make sure the recipe is also updated. If there is no change in the recipe do touch /spack/var/spack/repos/builtin/packages/hip/package.py
 
-**Note:** Spack latest release is 5.5.1
+**Note:** Spack latest release is 5.6.0
