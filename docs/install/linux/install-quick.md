@@ -1,7 +1,7 @@
 # Linux quick-start installation guide
 
 For a quick summary on installing ROCm on Linux, follow the steps listed on this page. If you
-want a more in-depth installation guide, see [Installing ROCm on Linux](../install/linux/index.md).
+want a more in-depth installation guide, see [Installing ROCm on Linux](./install.md).
 
 ## Add repositories
 
@@ -9,7 +9,7 @@ want a more in-depth installation guide, see [Installing ROCm on Linux](../insta
 :::::{tab-item} Ubuntu
 :sync: ubuntu
 
-::::{rubric} 1. Download and convert the package signing key
+::::{rubric} 1. Download and convert the package signing key.
 ::::
 
 ```shell
@@ -22,7 +22,7 @@ wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | \
     gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
 ```
 
-::::{rubric} 2. Add the repositories
+::::{rubric} 2. Add the repositories.
 ::::
 
 ::::{tab-set}
@@ -60,7 +60,7 @@ EOF
 :::
 ::::
 
-::::{rubric} 3. Update the list of packages
+::::{rubric} 3. Update the list of packages.
 ::::
 
 ```shell
@@ -72,7 +72,7 @@ sudo apt update
 :::::{tab-item} Red Hat Enterprise Linux
 :sync: RHEL
 
-::::{rubric} 1. Add the repositories
+::::{rubric} 1. Add the repositories.
 ::::
 
 ::::{tab-set}
@@ -212,7 +212,7 @@ EOF
 :::
 ::::
 
-::::{rubric} 2. Clean cached files from enabled repositories
+::::{rubric} 2. Clean cached files from enabled repositories.
 ::::
 
 ```shell
@@ -224,7 +224,7 @@ sudo yum clean all
 :::::{tab-item} SUSE Linux Enterprise Server
 :sync: SLES
 
-::::{rubric} 1. Add the repositories
+::::{rubric} 1. Add the repositories.
 ::::
 
 ::::{tab-set}
@@ -284,7 +284,7 @@ EOF
 :::
 ::::
 
-::::{rubric} 2. Update the new repository
+::::{rubric} 2. Update the new repository.
 ::::
 
 ```shell
@@ -365,7 +365,7 @@ sudo zypper install rocm-hip-libraries
 
 ## Reboot the system
 
-Loading the new driver requires a reboot of the system.
+Loading the new driver requires a system reboot.
 
 ```shell
 sudo reboot

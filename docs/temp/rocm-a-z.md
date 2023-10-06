@@ -35,7 +35,7 @@
 | [rocAL](https://rocm.docs.amd.com/projects/rocAL/en/latest/doxygen/html/index.html) | An augmentation library designed to decode and process images and videos |
 | [rocALUTION](https://rocm.docs.amd.com/projects/rocALUTION/en/latest/) | A sparse linear algebra library for exploring fine-grained parallelism on ROCm runtime and toolchains |
 | [RocBandwidthTest](https://github.com/RadeonOpenCompute/rocm_bandwidth_test/) | Captures the performance characteristics of buffer copying and kernel read/write operations |
-| [rocBLAS](https://rocm.docs.amd.com/projects/rocBLAS/en/latest/)| A BLAS implementation (in the HIP programming language) on ROCm's runtime and toolchains |
+| [rocBLAS](https://rocm.docs.amd.com/projects/rocBLAS/en/latest/)| A BLAS implementation (in the HIP programming language) on the ROCm runtime and toolchains |
 | [rocFFT](https://rocm.docs.amd.com/projects/rocFFT/en/latest/) | A software library for computing fast Fourier transforms (FFTs) written in HIP |
 | [ROCK-Kernel-Driver](https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver/) | An AMDGPU Driver with KFD that is used by ROCm |
 | [ROCm Augmentation Library (rocAL)](https://rocm.docs.amd.com/projects/rocAL/en/latest/doxygen/html/index.html) | An augmentation library designed to decode and process images and videos |

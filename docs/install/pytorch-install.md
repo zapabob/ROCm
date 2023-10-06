@@ -15,8 +15,8 @@ To install [PyTorch for ROCm](https://pytorch.org/blog/pytorch-for-amd-rocm-plat
 
 For hardware, software, and third-party framework compatibility between ROCm and PyTorch, refer to:
 
-* [GPU and OS support (Linux)](../../about/compatibility/linux-support.md)
-* [Compatibility](../../about/compatibility/3rd-party-support-matrix.md)
+* [GPU and OS support (Linux)](../about/compatibility/linux-support.md)
+* [Compatibility](../about/compatibility/3rd-party-support-matrix.md)
 
 ## Using a Docker image with PyTorch pre-installed
 
@@ -76,7 +76,7 @@ table, choose ROCm from the _Compute Platform_ row.
 
    **Option 2:**
 
-   Select a base OS Docker image (Check [OS compatibility](../../about/compatibility/linux-support.md))
+   Select a base OS Docker image (Check [OS compatibility](../about/compatibility/linux-support.md))
 
    Pull selected base OS image (Ubuntu 20.04 for example)
 
@@ -90,12 +90,12 @@ table, choose ROCm from the _Compute Platform_ row.
    docker run -it --device=/dev/kfd --device=/dev/dri --group-add video ubuntu:20.04
    ```
 
-   Install ROCm using the directions in the [Installation section](../install/linux/install-options.md).
+   Install ROCm using the directions in the [Installation section](./linux/install.md).
 
    **Option 3:**
 
-   Install on bare metal. Check [OS compatibility](../../about/compatibility/linux-support.md) and install ROCm using the
-   directions in the [Installation section](../install/linux/install-options.md).
+   Install on bare metal. Check [OS compatibility](../about/compatibility/linux-support.md) and install ROCm using the
+   directions in the [Installation section](./linux/install.md).
 
 2. Install the required dependencies for the wheels package.
 

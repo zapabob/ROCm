@@ -71,7 +71,7 @@ make -j $(nproc)
 make -j $(nproc) install
 ```
 
-The [communication libraries tables](../reference/libraries/gpu-libraries/communication.md)
+The [communication libraries tables](../reference/library-index.md)
 documents the compatibility of UCX versions with ROCm versions.
 
 ## Install Open MPI
@@ -156,7 +156,7 @@ Unified Collective Communication Library (UCC) component in Open MPI.
 For this, the UCC library has to be configured and compiled with ROCm
 support.
 
-Please note the compatibility tables in the [communication libraries](../reference/libraries/gpu-libraries/communication.md)
+Please note the compatibility tables in the [communication libraries](../reference/library-index.md)
 for UCC versions with the various ROCm versions.
 
 An example for configuring UCC and Open MPI with ROCm support

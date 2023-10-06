@@ -29,7 +29,7 @@ The following sections contain options for installing TensorFlow.
 #### Option 1: using a Docker image
 
 To install ROCm on bare metal, follow the section
-[Installation (Linux)](../../tutorials/install/linux/os-native/install). The recommended option to
+[Linux installation guide](../install/linux/install.md). The recommended option to
 get a TensorFlow environment is through Docker.
 
 Using Docker provides portability and access to a prebuilt Docker container that

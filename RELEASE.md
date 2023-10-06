@@ -27,7 +27,7 @@ Important: The next major ROCm release (ROCm 6.0) will not be backward compatibl
 
 ### Fixed defects
 
-* *hipMemcpy* device-to-device (intra device) is now asynchronous with respect to the host
+* *hipMemcpy* device-to-device (inter-device) is now asynchronous with respect to the host
 * Enabled xnack+ check in HIP catch2 tests hang when executing tests
 * Memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs
 * Using *hipGraphAddMemFreeNode* no longer results in a crash

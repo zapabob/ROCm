@@ -59,12 +59,12 @@ on this table, the GPU is not officially supported by AMD.
 
 ### Component support
 
-ROCm components are described in the [Reference material](../../reference/index). Support
+ROCm components are described in [What is ROCm?](../../what-is-rocm.md) Support
 on Windows is provided with two levels on enablement.
 
 * **Runtime**: Runtime enables the use of the HIP and OpenCL runtimes only.
-* **HIP SDK**: Runtime plus additional components refer to [Libraries](../../reference/libraries/index).
-  Some [math libraries](../../reference/libraries/gpu-libraries/math) are Linux exclusive, please check the library details.
+* **HIP SDK**: Runtime plus additional components are listed in [Libraries](../../reference/library-index.md).
+ Note that some math libraries are Linux exclusive.
 
 ### Support status
 

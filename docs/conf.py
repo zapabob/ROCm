@@ -35,36 +35,35 @@ article_pages = [
         "date":"2023-07-27"
     },
 
-    {"file":"tutorials/quick-start/windows", "os":["windows"]},
-    {"file":"tutorials/quick-start/linux", "os":["linux"]},
+    {"file":"install/windows/install-quick", "os":["windows"]},
+    {"file":"install/linux/install-quick", "os":["linux"]},
 
-    {"file":"tutorials/install/linux/index", "os":["linux"]},
-    {"file":"tutorials/install/linux/install-options", "os":["linux"]},
-    {"file":"tutorials/install/linux/prerequisites", "os":["linux"]},
+    {"file":"install/linux/install", "os":["linux"]},
+    {"file":"install/linux/install-options", "os":["linux"]},
+    {"file":"install/linux/prerequisites", "os":["linux"]},
 
-    {"file":"tutorials/install/docker", "os":["linux"]},
-    {"file":"tutorials/install/magma-install", "os":["linux"]},
-    {"file":"tutorials/install/pytorch-install", "os":["linux"]},
-    {"file":"tutorials/install/tensorflow-install", "os":["linux"]},
+    {"file":"install/docker", "os":["linux"]},
+    {"file":"install/magma-install", "os":["linux"]},
+    {"file":"install/pytorch-install", "os":["linux"]},
+    {"file":"install/tensorflow-install", "os":["linux"]},
 
-    {"file":"tutorials/install/windows/index", "os":["windows"]},
-    {"file":"tutorials/install/windows/prerequisites", "os":["windows"]},
-    {"file":"tutorials/install/windows/cli/index", "os":["windows"]},
-    {"file":"tutorials/install/windows/gui/index", "os":["windows"]},
+    {"file":"install/windows/install", "os":["windows"]},
+    {"file":"install/windows/prerequisites", "os":["windows"]},
+    {"file":"install/windows/cli/index", "os":["windows"]},
+    {"file":"install/windows/gui/index", "os":["windows"]},
 
     {"file":"about/compatibility/linux-support", "os":["linux"]},
     {"file":"about/compatibility/windows-support", "os":["windows"]},
 
     {"file":"about/compatibility/docker-image-support-matrix", "os":["linux"]},
+    {"file":"about/compatibility/user-kernel-space-compat-matrix", "os":["linux"]},
 
-    {"file":"reference/libraries/gpu-libraries/index", "os":["linux"]},
-    {"file":"reference/compilers-tools/index", "os":["linux"]},
-    {"file":"reference/index", "os":["linux"]},
+    {"file":"reference/library-index", "os":["linux"]},
 
     {"file":"how-to/deep-learning-rocm", "os":["linux"]},
     {"file":"how-to/gpu-enabled-mpi", "os":["linux"]},
     {"file":"how-to/system-debugging", "os":["linux"]},
-    {"file":"how-to/index", "os":["linux", "windows"]},
+    {"file":"how-to/tuning-guides", "os":["linux", "windows"]},
 
     {"file":"rocm-a-z", "os":["linux", "windows"]},
 

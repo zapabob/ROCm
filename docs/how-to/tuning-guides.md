@@ -47,23 +47,23 @@ their own performance testing for additional tuning.
 :gutter: 1
 
 :::{grid-item-card}
-**[AMD Instinct™ MI200](./mi200)**
+**[AMD Instinct™ MI200](./tuning-guides/mi200)**
 
 This chapter goes through how to configure your AMD Instinct™ MI200 accelerated
 compute nodes to get the best performance out of them.
 
-* [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
+* [Instruction Set Architecture (ISA)](https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf)
 * [White paper](https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf)
 
 :::
 
 :::{grid-item-card}
-**[AMD Instinct™ MI100](./mi100)**
+**[AMD Instinct™ MI100](./tuning-guides/mi100)**
 
 This chapter briefly reviews hardware aspects of the AMD Instinct™ MI100
 accelerators and the CDNA™ 1 architecture that is the foundation of these GPUs.
 
-* [Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf)
+* [ISA](https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf)
 * [White paper](https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf)
 
 :::
@@ -87,12 +87,12 @@ their full potential.
 :gutter: 1
 
 :::{grid-item-card}
-**[AMD Radeon™ PRO W6000 and V620](./w6000-v620)**
+**[AMD Radeon™ PRO W6000 and V620](./tuning-guides/w6000-v620)**
 
 This chapter describes the AMD GPUs with RDNA™ 2 architecture, namely AMD Radeon
 PRO W6800 and AMD Radeon PRO V620
 
-* [AMD RDNA2 Instruction Set Architecture](https://www.amd.com/system/files/TechDocs/rdna2-shader-instruction-set-architecture.pdf)
+* [AMD RDNA2 ISA](https://www.amd.com/system/files/TechDocs/rdna2-shader-instruction-set-architecture.pdf)
 * [White paper](https://www.amd.com/system/files/documents/rdna2-explained-radeon-pro-W6000.pdf)
 
 :::

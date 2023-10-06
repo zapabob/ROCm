@@ -21,7 +21,7 @@ The release notes for the ROCm platform.
 
 ### Release Highlights for ROCm 5.7
 
-ROCm 5.7.0 includes many new features. These include: a new library (hipTensor), debugger (ROCgdb) support for Fortran and OMPD, and optimizations for rocRAND and MIVisionX. AddressSanitizer for host and device code (GPU) is now available as a beta. Note that ROCm 5.7.0 is EOS for MI50. 5.7 versions of ROCm are the last major release in the ROCm 5 series. This release is Linux-only.
+ROCm 5.7.0 includes many new features. These include: a new library (hipTensor), and optimizations for rocRAND and MIVisionX. Address sanitizer for host and device code (GPU) is now available as a beta. Note that ROCm 5.7.0 is EOS for MI50. 5.7 versions of ROCm are the last major release in the ROCm 5 series. This release is Linux-only.
 
 Important: The next major ROCm release (ROCm 6.0) will not be backward compatible with the ROCm 5 series. Changes will include: splitting LLVM packages into more manageable sizes, changes to the HIP runtime API, splitting rocRAND and hipRAND into separate packages, and reorganizing our file structure.
 
@@ -498,7 +498,7 @@ ROCm 5.6.1 is a point release with several bug fixes in the HIP runtime.
 
 ### Fixed defects
 
-* *hipMemcpy* device-to-device (intra device) is now asynchronous with respect to the host
+* *hipMemcpy* device-to-device (inter-device) is now asynchronous with respect to the host
 * Enabled xnack+ check in HIP catch2 tests hang when executing tests
 * Memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs
 * Using *hipGraphAddMemFreeNode* no longer results in a crash
@@ -3761,7 +3761,7 @@ This release introduces a new ROCm C++ library for accelerating mixed precision 
 rocWMMA is released as a header library and includes test and sample projects to validate and illustrate example usages of the C++ API. GEMM matrix multiplication is used as primary validation given the heavy precedent for the library. However, the usage portfolio is growing significantly and demonstrates different ways rocWMMA may be consumed.
 
 For more information, refer to
-[Communication Libraries](./reference/libraries/gpu-libraries/communication.md).
+[Communication Libraries](./reference/library-index.md).
 
 #### OpenMP enhancements in this release
 

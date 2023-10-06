@@ -50,12 +50,13 @@ the *config-file* packages are shipped with the upstream projects, such as
 rocPRIM and other ROCm libraries.
 
 For a complete guide on where and how ROCm may be installed on a system, refer
-to the installation guides in these docs (`Linux <../tutorials/install/index.html>`_).
+to the installation guides for `Linux <../install/linux/install.html>`_ and
+`Windows <../install/windows/install.html>`_.
 
 Using HIP in CMake
 ==================
 
-ROCm componenents providing a C/C++ interface support being consumed using any
+ROCm components providing a C/C++ interface support consumption via any
 C/C++ toolchain that CMake knows how to drive. ROCm also supports CMake's HIP
 language features, allowing users to program using the HIP single-source
 programming model. When a program (or translation-unit) uses the HIP API without

@@ -2,228 +2,230 @@
 # These comments will also be removed.
 defaults:
   numbered: False
-  maxdepth: 7
+  maxdepth: 6
 root: index
 subtrees:
 - entries:
   - file: what-is-rocm.md
-    title: What is ROCm?
-    subtrees:
-    - entries:
-      - file: rocm-a-z.md
-        title: ROCm A-Z
   - file: about/whats-new/whats-new.md
-    title: What's new?
 
-  - file: tutorials/quick-start/index.md
-    title: Quick start
+- caption: Installation
+  entries:
+  - file: install/linux/install-quick.md
+    title: Quick start (Linux)
+  - file: install/windows/install-quick.md
+    title: Quick start (Windows)
+  - file: install/linux/install.md
+    title: Linux install guide
     subtrees:
     - entries:
-      - file: tutorials/quick-start/linux.md
-        title: Linux
-      - file: tutorials/quick-start/windows.md
-        title: Windows
-
-  - file: about/compatibility/index.md
-    title: Compatibility & support
+      - file: install/linux/package-manager-integration.md
+        title: Package manager integration
+  - file: install/windows/install.md
+    title: Windows install guide
     subtrees:
     - entries:
-      - file: about/compatibility/linux-support.md
-        title: Linux (GPU & OS)
-      - file: about/compatibility/windows-support.md
-        title: Windows (GPU & OS)
-      - file: about/compatibility/3rd-party-support-matrix.md
-        title: Third-party
-      - file: about/compatibility/user-kernel-space-compat-matrix.md
-        title: User/kernel space support
-      - file: about/compatibility/docker-image-support-matrix.md
-        title: Docker
+      - file: install/windows/windows-app-deployment-guidelines.md
+        title: Application deployment guidelines
+  - file: install/docker.md
+    title: ROCm Docker containers
+  - file: install/pytorch-install.md
+    title: PyTorch for ROCm
+  - file: install/tensorflow-install.md
+    title: Tensorflow for ROCm
+  - file: install/magma-install.md
+    title: MAGMA for ROCm
 
+- caption: Compatibility & support
+  entries:
+  - file: about/compatibility/linux-support.md
+    title: Linux (GPU & OS)
+  - file: about/compatibility/windows-support.md
+    title: Windows (GPU & OS)
+  - file: about/compatibility/3rd-party-support-matrix.md
+    title: Third-party
+  - file: about/compatibility/user-kernel-space-compat-matrix.md
+    title: User/kernel space support
+  - file: about/compatibility/docker-image-support-matrix.md
+    title: Docker
+  - file: about/compatibility/openmp.md
+    title: OpenMP
+
+- caption: Release information
+  entries:
   - file: about/release-notes.md
-    title: Release information
-    subtrees:
-    - entries:
-      - file: CHANGELOG.md
-        title: Changelog
-      - file: about/release-history.md
-        title: Release history
-      - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
-        title: Known issues
+    title: Release notes
+  - file: CHANGELOG.md
+    title: Changelog
+  - file: about/release-history.md
+    title: Release history
+  - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
+    title: Known issues
 
-  - file: tutorials/index.md
-    title: Tutorials
+- caption: How-to
+  entries:
+  - file: how-to/deep-learning-rocm.md
+    title: Deep learning
+  - file: how-to/gpu-enabled-mpi.md
+    title: Using MPI
+  - file: how-to/system-debugging.md
+    title: Debugging
+  - file: how-to/tuning-guides.md
+    title: Tuning guides
     subtrees:
     - entries:
-      - file: tutorials/install/index.md
-        title: Installing ROCm
-        subtrees:
-        - entries:
-          - file: tutorials/install/linux/index.md
-            title: Linux
-            subtrees:
-            - entries:
-              - file: tutorials/install/linux/prerequisites.md
-                title: Prerequisites
-              - file: tutorials/install/linux/install-options.md
-                title: Installation options
-                subtrees:
-                - entries:
-                  - file: tutorials/install/linux/installer/index.md
-                    title: AMDGPU install script
-                    subtrees:
-                    - entries:
-                      - file: tutorials/install/linux/installer/install.md
-                        title: Install
-                      - file: tutorials/install/linux/installer/upgrade.md
-                        title: Upgrade
-                      - file: tutorials/install/linux/installer/uninstall.md
-                        title: Uninstall
-                  - file: tutorials/install/linux/os-native/index.md
-                    title: Package manager
-                    subtrees:
-                    - entries:
-                      - file: tutorials/install/linux/os-native/package-manager-integration.md
-                        title: Package manager integration
-                      - file: tutorials/install/linux/os-native/install.md
-                        title: Install
-                      - file: tutorials/install/linux/os-native/upgrade.md
-                        title: Upgrade
-                      - file: tutorials/install/linux/os-native/uninstall.md
-                        title: Uninstall
-          - file: tutorials/install/windows/index.md
-            title: Windows
-            subtrees:
-            - entries:
-              - file: tutorials/install/windows/prerequisites.md
-                title: Prerequisites
-              - file: tutorials/install/windows/gui/index.md
-                title: Graphical installation
-                subtrees:
-                - entries:
-                  - file: tutorials/install/windows/gui/install.md
-                    title: Install
-                  - file: tutorials/install/windows/gui/upgrade.md
-                    title: Upgrade
-                  - file: tutorials/install/windows/gui/uninstall.md
-                    title: Uninstall
-              - file: tutorials/install/windows/cli/index.md
-                title: Command-line installation
-                subtrees:
-                - entries:
-                  - file: tutorials/install/windows/cli/install.md
-                    title: Install
-                  - file: tutorials/install/windows/cli/upgrade.md
-                    title: Upgrade
-                  - file: tutorials/install/windows/cli/uninstall.md
-                    title: Uninstall
-      - file: tutorials/install/docker.md
-        title: ROCm Docker containers
-      - file: tutorials/install/pytorch-install.md
-        title: PyTorch for ROCm
-      - file: tutorials/install/tensorflow-install.md
-        title: Tensorflow for ROCm
-      - file: tutorials/install/magma-install.md
-        title: MAGMA for ROCm
+      - file: how-to/tuning-guides/mi100.md
+        title: MI100
+      - file: how-to/tuning-guides/mi200.md
+        title: MI200
+      - file: how-to/tuning-guides/w6000-v620.md
+        title: RDNA2
+  - file: how-to/spack-intro.md
+    title: ROCm & Spack
+  - url: https://github.com/amd/rocm-examples
+    title: GitHub examples
 
-  - file: how-to/index.md
-    title: How-to
-    subtrees:
-    - entries:
-      - file: how-to/deep-learning-rocm.md
-        title: Deep learning
-      - file: how-to/gpu-enabled-mpi.md
-        title: Using MPI
-      - file: how-to/system-debugging.md
-        title: Debugging
-      - file: how-to/tuning-guides/index.md
-        title: Tuning guides
-        subtrees:
-        - entries:
-          - file: how-to/tuning-guides/mi100.md
-            title: MI100
-          - file: how-to/tuning-guides/mi200.md
-            title: MI200
-          - file: how-to/tuning-guides/w6000-v620.md
-            title: RDNA2
-      - file: how-to/Spack.md
-        title: Spack
+- caption: Reference
+  entries:
+    - file: reference/library-index.md
+      title: Library APIs
+      subtrees:
+      - caption: Artificial intelligence
+        entries:
+        - url: https://rocm.docs.amd.com/projects/composable_kernel/en/latest/index.html
+          title: Composable kernel
+        - url: https://rocm.docs.amd.com/projects/MIOpen/en/latest/index.html
+          title: MIOpen
+        - url: https://rocm.docs.amd.com/projects/AMDMIGraphX/en/latest/index.html
+          title: MIGraphX
+      - caption: C++ primitives
+        entries:
+        - url: https://rocm.docs.amd.com/projects/hipCUB/en/latest/index.html
+          title: hipCUB
+        - url: https://rocm.docs.amd.com/projects/hipTensor/en/latest/index.html
+          title: hipTensor
+        - url: https://rocm.docs.amd.com/projects/rocPRIM/en/latest/index.html
+          title: rocPRIM
+        - url: https://rocm.docs.amd.com/projects/rocThrust/en/latest/index.html
+          title: rocThrust
+      - caption: Communication
+        entries:
+        - url: https://rocm.docs.amd.com/projects/rccl/en/latest/index.html
+          title: RCCL
+      - caption: Fast Fourier transforms (FFTs)
+        entries:
+        - url: https://rocm.docs.amd.com/projects/hipFFT/en/latest/index.html
+          title: hipFFT
+        - url: https://rocm.docs.amd.com/projects/rocFFT/en/latest/index.html
+          title: rocFFT
+      - caption: HIP
+        entries:
+        - url: https://rocm.docs.amd.com/projects/HIP/en/develop/.doxygen/docBin/html/index.html
+          title: HIP runtime
+        - url: https://rocm.docs.amd.com/projects/HIPIFY/en/latest/index.html
+          title: HIPIFY
+      - caption: Linear algebra
+        entries:
+        - url: https://rocm.docs.amd.com/projects/hipBLAS/en/latest/index.html
+          title: hipBLAS
+        - url: https://rocm.docs.amd.com/projects/hipBLASLt/en/latest/index.html
+          title: hipBLASLt
+        - url: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/index.html
+          title: hipSOLVER
+        - url: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/index.html
+          title: hipSPARSE
+        - url: https://rocm.docs.amd.com/projects/hipSPARSELt/en/latest/index.html
+          title: hipSPARSELt
+        - url: https://rocm.docs.amd.com/projects/rocALUTION/en/latest/index.html
+          title: rocALUTION
+        - url: https://rocm.docs.amd.com/projects/rocBLAS/en/latest/index.html
+          title: rocBLAS
+        - url: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/index.html
+          title: rocSOLVER
+        - url: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/index.html
+          title: rocSPARSE
+      - caption: Matrix multiply
+        entries:
+        - url: https://rocm.docs.amd.com/projects/rocWMMA/en/latest/index.html
+          title: rocWMMA
+      - caption: Performance analysis
+        entries:
+        - url: https://rocm.docs.amd.com/projects/rocprofiler/en/latest/rocprof.html
+          title: ROCProfiler
+        - url: https://github.com/ROCm-Developer-Tools/roctracer
+          title: Performance tracing
+      - caption: Random number generators
+        entries:
+        - url: https://rocm.docs.amd.com/projects/hipRAND/en/latest/index.html
+          title: hipRAND
+        - url: https://rocm.docs.amd.com/projects/rocRAND/en/latest/index.html
+          title: rocRAND
+      - caption: Tools
+        entries:
+        - url: https://rocm.docs.amd.com/projects/ROCdbgapi/en/latest/index.html
+          title: AMD debugger API
+        - file: reference/rocmcc.md
+          title: ROCmCC
+        - url: https://rocm.docs.amd.com/projects/rdc/en/latest/
+          title: ROCm Data Center Tool
+        - url: https://rocm.docs.amd.com/projects/ROCgdb/en/latest/index.html
+          title: ROCm debugger AP
+        - url: https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/
+          title: ROCm SMI LIB
+        - url: https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/
+          title: ROCm validation suite
+        - url: https://rocm.docs.amd.com/projects/roctracer/en/latest/index.html
+          title: ROCTracer
+        - url: https://rocm.docs.amd.com/projects/TransferBench/en/latest/
+          title: TransferBench
 
-  - file: reference/index.md
-    title: Reference guides
+- caption: Conceptual
+  entries:
+  - file: conceptual/gpu-arch.md
+    title: GPU architectures
     subtrees:
     - entries:
-      - file: reference/hip.md
-        title: HIP
-      - file: reference/compilers-tools/index.md
-        title: Compilers & tools
+      - file: conceptual/gpu-arch/mi250.md
+        title: MI250 microarchitecture
         subtrees:
         - entries:
-          - file: reference/compilers-tools/validation-tools.md
-            title: Validation tools
-          - file: reference/compilers-tools/management-tools.md
-            title: Management tools
-      - file: reference/libraries/index.md
-        title: Libraries
-        subtrees:
-        - entries:
-          - file: reference/libraries/ai-libraries.md
-            title: AI
-          - file: reference/libraries/gpu-libraries/communication.md
-            title: Communication
-          - file: reference/libraries/gpu-libraries/math.md
-            title: Math
-            subtrees:
-            - entries:
-              - file: reference/libraries/gpu-libraries/math-linear-algebra.md
-                title: Linear algebra
-              - file: reference/libraries/gpu-libraries/math-fft.md
-                title: Fast Fourier transforms
-          - file: reference/libraries/gpu-libraries/rand.md
-            title: Random numbers
-          - file: reference/libraries/gpu-libraries/c++primitives.md
-            title: C++ primitives
-      - file: reference/openmp/openmp.md
-        title: OpenMP
-      - file: reference/rocmcc/rocmcc.md
-        title: ROCmCC
-
-  - file: conceptual/index.md
-    title: Conceptual documentation
-    subtrees:
-    - entries:
-      - file: conceptual/gpu-arch.md
-        title: GPU architectures
-        subtrees:
-        - entries:
-          - file: conceptual/gpu-arch/mi100.md
-            title: MI100
+          - url: https://www.amd.com/system/files/TechDocs/instinct-mi200-cdna2-instruction-set-architecture.pdf
+            title: AMD Instinct MI200/CDNA2 ISA
+          - url: https://www.amd.com/system/files/documents/amd-cdna2-white-paper.pdf
+            title: White paper
           - file: conceptual/gpu-arch/mi200-performance-counters.md
-            title: MI200
-          - file: conceptual/gpu-arch/mi250.md
-            title: MI250
-      - file: conceptual/gpu-memory.md
-        title: GPU memory
-      - file: conceptual/compiler-disambiguation.md
-        title: Compiler disambiguation
-      - file: conceptual/file-reorg.md
-        title: File structure (Linux FHS)
-      - file: conceptual/windows-app-deployment-guidelines.md
-        title: Windows deployment guidelines
-      - file: conceptual/gpu-isolation.md
-        title: GPU isolation techniques
-      - file: conceptual/using-gpu-sanitizer.md
-        title: LLVN ASan
-      - file: conceptual/cmake-packages.rst
-        title: Using CMake
-      - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
-        title: ROCm & PCIe atomics
-      - file: conceptual/ai-pytorch-inception.md
-        title: Inception v3 with PyTorch
-      - file: conceptual/ai-migraphx-optimization.md
-        title: Inference optimization with MIGraphX
+            title: Performance counter
+      - file: conceptual/gpu-arch/mi100.md
+        title: MI100 microarchitecture
+        subtrees:
+        - entries:
+          - url: https://www.amd.com/system/files/TechDocs/instinct-mi100-cdna1-shader-instruction-set-architecture%C2%A0.pdf
+            title: AMD Instinct MI100/CDNA1 ISA
+          - url: https://www.amd.com/system/files/documents/amd-cdna-whitepaper.pdf
+            title: White paper
+  - file: conceptual/gpu-memory.md
+    title: GPU memory
+  - file: conceptual/compiler-disambiguation.md
+    title: Compiler disambiguation
+  - file: conceptual/file-reorg.md
+    title: File structure (Linux FHS)
+  - file: conceptual/gpu-isolation.md
+    title: GPU isolation techniques
+  - file: conceptual/using-gpu-sanitizer.md
+    title: LLVN ASan
+  - file: conceptual/cmake-packages.rst
+    title: Using CMake
+  - file: conceptual/More-about-how-ROCm-uses-PCIe-Atomics.rst
+    title: ROCm & PCIe atomics
+  - file: conceptual/ai-pytorch-inception.md
+    title: Inception v3 with PyTorch
+  - file: conceptual/ai-migraphx-optimization.md
+    title: Inference optimization with MIGraphX
 
+- caption: Contribute
+  entries:
   - file: contribute/index.md
-    title: Contributing
+    title: Contribute to ROCm docs
     subtrees:
     - entries:
       - file: contribute/toolchain.md
@@ -232,6 +234,5 @@ subtrees:
         title: Building documentation
       - file: contribute/feedback.md
         title: Providing feedback
-
   - file: about/license.md
-    title: ROCm licensing
+    title: ROCm license
