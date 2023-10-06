@@ -57,11 +57,69 @@ Reference: <https://spack-tutorial.readthedocs.io/en/latest/>
 | **hipsolver**             | hipsolver              |
 | **mlirmiopen**            | mlirmiopen             |
 
-One need to install all the pre-requisites before performing the SPACK installation.
+Install all prerequisites before performing the SPACK installation.
 
-| **CentOS-8:**                                                                                                                                                                                                                                                                                                                                       | **SLES:**                                                                                                                                                                                                                                                                                                                            | **Ubuntu:**                                                                                                                                                                                                                                                                                                                                                       |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Install some essential utilities: yum update yum install make yum install patch bash tar yum install gzip unzip bzip2 xz file gnupg2 git gawk yum group install "Development Tools" yum install vim Install python : yum install python3 pip3 install --upgrade pip Install compilers: yum install gcc yum install gcc-gfortran yum install gcc-c++ | Installing some essential utilities: zypper update zypper install make patch bash tar gzip unzip bzip xz file gnupg2 git awk zypper in -t pattern zypper install vim Installing python: zypper install python3 zypper install python3-pip Installing Compilers: zypper install gcc zypper install gcc-fortran zypper install gcc-c++ | Installing some essential utilities: apt-get update apt-get install make patch bash tar gzip unzip bzip2 file gnupg2 git gawk apt-get update -y apt-get install -y xz-utils apt-get build-essential apt-get install vim Installing python: apt-get install python3 apt-get upgrade python3-pip Installing Compilers: apt-get install gcc apt-get install gfortran |
+::::{tab-set}
+:::{tab-item} Ubuntu
+:sync: Ubuntu
+
+```shell
+# Install some essential utilities:
+apt-get update
+apt-get install make patch bash tar gzip unzip bzip2 file gnupg2 git gawk
+apt-get update -y
+apt-get install -y xz-utils
+apt-get build-essential
+apt-get install vim
+# Install Python:
+apt-get install python3
+apt-get upgrade python3-pip
+# Install Compilers:
+apt-get install gcc
+apt-get install gfortran
+```
+
+:::
+:::{tab-item} SLES
+:sync: SLES
+
+```shell
+# Install some essential utilities:
+zypper update
+zypper install make patch bash tar gzip unzip bzip xz file gnupg2 git awk
+zypper in -t pattern
+zypper install vim
+# Install Python:
+zypper install python3
+zypper install python3-pip
+# Install Compilers:
+zypper install gcc
+zypper install gcc-fortran
+zypper install gcc-c++
+```
+
+:::
+:::{tab-item} CentOS
+:sync: CentOS
+
+```shell
+# Install some essential utilities:
+yum update
+yum install make
+yum install patch bash tar yum install gzip unzip bzip2 xz file gnupg2 git gawk
+yum group install "Development Tools"
+yum install vim
+# Install Python:
+yum install python3
+pip3 install --upgrade pip 
+# Install compilers:
+yum install gcc
+yum install gcc-gfortran
+yum install gcc-c++
+```
+
+:::
+::::
 
 ## Steps to build ROCm Components using Spack
 
