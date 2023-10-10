@@ -36,9 +36,6 @@ def processor_factory():
             lib_version  = match["lib_version"]
             rocm_version = match["rocm_version"]
 
-            if lib_name.lower() != data.name.lower():
-                continue
-
             if not rocm_version:
                 print(match[0])
                 if ignore_unreleased:
