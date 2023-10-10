@@ -48,8 +48,8 @@ For hardware, software, and third-party framework compatibility between ROCm and
 ## Using a wheels package
 
 PyTorch supports the ROCm platform by providing tested wheels packages. To access this feature, go
-to [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). In the interactive
-table, choose ROCm from the _Compute Platform_ row.
+to [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/). For the correct
+wheels command, you must select 'Linux', 'Python', 'pip', and 'ROCm' in the matrix.
 
 1. Choose one of the following three options:
 
@@ -105,7 +105,8 @@ table, choose ROCm from the _Compute Platform_ row.
    pip3 install wheel setuptools
    ```
 
-3. Install `torch`, `torchvision`, and `torchaudio`, as specified in the [installation matrix](https://pytorch.org/get-started/locally/).
+3. Install `torch`, `torchvision`, and `torchaudio`, as specified in the
+   [installation matrix](https://pytorch.org/get-started/locally/).
 
    :::{note}
    The following command uses the ROCm 5.6 PyTorch wheel. If you want a different version of ROCm,
@@ -136,11 +137,11 @@ table, choose ROCm from the _Compute Platform_ row.
    After installing ROCm PyTorch wheels, run the following code:
 
    ```bash
-   #Optional; replace 'gfx90a' with your architecture
+   #Optional; replace 'gfx90a' with your architecture and 5.6 with your preferred ROCm version
    export GFX_ARCH=gfx90a
 
    #Optional
-   export ROCM_VERSION=5.5
+   export ROCM_VERSION=5.6
 
    ./install_kdb_files_for_pytorch_wheels.sh
    ```

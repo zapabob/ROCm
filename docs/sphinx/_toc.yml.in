@@ -35,6 +35,8 @@ subtrees:
     title: Tensorflow for ROCm
   - file: install/magma-install.md
     title: MAGMA for ROCm
+  - file: how-to/spack-intro.md
+    title: ROCm & Spack
 
 - caption: Compatibility & support
   entries:
@@ -80,8 +82,6 @@ subtrees:
         title: MI200
       - file: how-to/tuning-guides/w6000-v620.md
         title: RDNA2
-  - file: how-to/spack-intro.md
-    title: ROCm & Spack
   - url: https://github.com/amd/rocm-examples
     title: GitHub examples
 

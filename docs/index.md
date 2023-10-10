@@ -31,6 +31,7 @@ Installation guides
 * [PyTorch for ROCm](./install/pytorch-install.md)
 * [TensorFlow for ROCm](./install/tensorflow-install.md)
 * [MAGMA for ROCm](./install/magma-install.md)
+* [ROCm & Spack](./install/spack-intro.md)
 
 :::
 
@@ -64,7 +65,6 @@ Task-oriented walkthroughs
 * [Setting up for deep learning with ROCm](./how-to/deep-learning-rocm.md)
 * [GPU-enabled MPI](./how-to/gpu-enabled-mpi.md)
 * [System level debugging](./how-to/system-debugging.md)
-* [ROCm & Spack](./how-to/spack-intro.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
 
 :::
