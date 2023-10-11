@@ -83,6 +83,7 @@ subtrees:
         - file: release/user_kernel_space_compat_matrix
         - file: release/docker_image_support_matrix
         - file: release/3rd_party_support_matrix
+        - file: release/docker_image_support_matrix.rst
   - file: release/licensing
 
 
@@ -102,7 +103,7 @@ subtrees:
         - entries:
           - file: reference/gpu_libraries/linear_algebra
             subtrees:
-            - entries: 
+            - entries:
               - title: rocBLAS
                 url: ${project:rocblas}
               - title: hipBLAS
