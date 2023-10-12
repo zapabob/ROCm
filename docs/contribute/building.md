@@ -1,138 +1,125 @@
 # Building documentation
 
-While contributing, one may build the documentation locally on the command line
-or rely on Continuous Integration for previewing the resulting HTML pages in a
-browser.
+You can build our documentation via GitHub (in a pull request) or locally (using the command line or
+Visual Studio (VS) Code.
 
-## Pull request documentation builds
+## GitHub
 
-When opening a PR to the `develop` branch on GitHub, the page corresponding to
-the PR (`https://github.com/RadeonOpenCompute/ROCm/pull/<pr_number>`) will have
-a summary at the bottom. This requires the user be logged in to GitHub.
+If you open a pull request on the `develop` branch of a ROCm repository and scroll to the bottom of
+the page, there is a summary panel. Next to the line
+`docs/readthedocs.com:advanced-micro-devices-demo`, there is a `Details` link. If you click this, it takes
+you to the Read the Docs build for your pull request.
 
-* There, click `Show all checks` and `Details` of the Read the Docs pipeline. It
-  will take you to a URL of the form
-  `https://readthedocs.com/projects/advanced-micro-devices-rocm/builds/<some_build_num>/`
-  * The list of commands shown are the exact ones used by CI to produce a render
-    of the documentation.
-* There, click on the small blue link `View docs` (which is not the same as the
-  bigger button with the same text). It will take you to the built HTML site with
-  a URL of the form
-  `https://advanced-micro-devices-demo--<pr_number>.com.readthedocs.build/projects/alpha/en/<pr_number>/`.
+![Screenshot of the GitHub documentation build link](../data/contribute/github-docs-build.png)
 
-## Build documentation from the command line
+If you don't see this line, click `Show all checks` to get an itemized view.
 
-Python versions known to build documentation:
+## Command line
 
-* 3.8
+You can build our documentation via the command line using Python. We use Python 3.8; other
+versions may not support the build.
 
-To build the docs locally using Python Virtual Environment (`venv`), execute the
-following commands from the project root:
+Use the Python Virtual Environment (`venv`) and run the following commands from the project root:
 
 ```sh
 python3 -mvenv .venv
+
 # Windows
 .venv/Scripts/python -m pip install -r docs/sphinx/requirements.txt
 .venv/Scripts/python -m sphinx -T -E -b html -d _build/doctrees -D language=en docs _build/html
+
 # Linux
 .venv/bin/python     -m pip install -r docs/sphinx/requirements.txt
 .venv/bin/python     -m sphinx -T -E -b html -d _build/doctrees -D language=en docs _build/html
 ```
 
-Then open up `_build/html/index.html` in your favorite browser.
+Navigate to `_build/html/index.html` and open this file in a web browser.
 
-## Build documentation using Visual Studio Code
+## Visual Studio Code
 
-One can put together a productive environment to author documentation and also
-test it locally using Visual Studio (VS) Code with only a handful of extensions. Even though the
-extension landscape of VS Code is ever changing, here is one example setup that
-proved useful at the time of writing. In it, one can change/add content, build a
-new version of the docs using a single VS Code Task (or hotkey), see all errors/
-warnings emitted by Sphinx in the Problems pane and immediately see the
-resulting website show up on a locally-served web server.
+With the help of a few extensions, you can create a productive environment to author and test
+documentation locally using Visual Studio (VS) Code. Follow these steps to configure VS Code:
 
-### Configuring VS Code
+1. Install the required extensions:
 
-1. Install the following extensions:
-   * Python `(ms-python.python)`
-   * Live Server `(ritwickdey.LiveServer)`
+   * Python: `(ms-python.python)`
+   * Live Server: `(ritwickdey.LiveServer)`
 
-2. Add the following entries in `.vscode/settings.json`
+2. Add the following entries to `.vscode/settings.json`.
 
     ```json
-    {
-      "liveServer.settings.root": "/.vscode/build/html",
-      "liveServer.settings.wait": 1000,
-      "python.terminal.activateEnvInCurrentTerminal": true
-    }
+      {
+        "liveServer.settings.root": "/.vscode/build/html",
+        "liveServer.settings.wait": 1000,
+        "python.terminal.activateEnvInCurrentTerminal": true
+      }
     ```
 
-    The settings above are used for the following reasons:
     * `liveServer.settings.root`: Sets the root of the output website for live previews. Must be changed
       alongside the `tasks.json` command.
-    * `liveServer.settings.wait`: Tells live server to wait with the update to give time for Sphinx to
-      regenerate site contents and not refresh before all is done. (Empirical value)
-    * `python.terminal.activateEnvInCurrentTerminal`: Automatic virtual environment activation is a nice touch,
-      should you want to build the site from the integrated terminal.
+    * `liveServer.settings.wait`: Tells the live server to wait with the update in order to give Sphinx time to
+      regenerate the site contents and not refresh before the build is complete.
+    * `python.terminal.activateEnvInCurrentTerminal`: Activates the automatic virtual environment, so you
+      can build the site from the integrated terminal.
 
-3. Add the following tasks in `.vscode/tasks.json`
+3. Add the following tasks to `.vscode/tasks.json`.
 
     ```json
-    {
-      "version": "2.0.0",
-      "tasks": [
-        {
-          "label": "Build Docs",
-          "type": "process",
-          "windows": {
-            "command": "${workspaceFolder}/.venv/Scripts/python.exe"
-          },
-          "command": "${workspaceFolder}/.venv/bin/python3",
-          "args": [
-            "-m",
-            "sphinx",
-            "-j",
-            "auto",
-            "-T",
-            "-b",
-            "html",
-            "-d",
-            "${workspaceFolder}/.vscode/build/doctrees",
-            "-D",
-            "language=en",
-            "${workspaceFolder}/docs",
-            "${workspaceFolder}/.vscode/build/html"
-          ],
-          "problemMatcher": [
-            {
-              "owner": "sphinx",
-              "fileLocation": "absolute",
-              "pattern": {
-                "regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):(\\d+):\\s+(WARNING|ERROR):\\s+(.*)$",
-                "file": 1,
-                "line": 2,
-                "severity": 3,
-                "message": 4
-              },
+      {
+        "version": "2.0.0",
+        "tasks": [
+          {
+            "label": "Build Docs",
+            "type": "process",
+            "windows": {
+              "command": "${workspaceFolder}/.venv/Scripts/python.exe"
             },
-            {
+            "command": "${workspaceFolder}/.venv/bin/python3",
+            "args": [
+              "-m",
+              "sphinx",
+              "-j",
+              "auto",
+              "-T",
+              "-b",
+              "html",
+              "-d",
+              "${workspaceFolder}/.vscode/build/doctrees",
+              "-D",
+              "language=en",
+              "${workspaceFolder}/docs",
+              "${workspaceFolder}/.vscode/build/html"
+            ],
+            "problemMatcher": [
+              {
+                "owner": "sphinx",
+                "fileLocation": "absolute",
+                "pattern": {
+                  "regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):(\\d+):\\s+(WARNING|ERROR):\\s+(.*)$",
+                  "file": 1,
+                  "line": 2,
+                  "severity": 3,
+                  "message": 4
+                }
+              },
+              {
               "owner": "sphinx",
-              "fileLocation": "absolute",
-              "pattern": {
-                "regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):{1,2}\\s+(WARNING|ERROR):\\s+(.*)$",
-                "file": 1,
-                "severity": 2,
-                "message": 3
+                "fileLocation": "absolute",
+                "pattern": {
+                  "regexp": "^(?:.*\\.{3}\\s+)?(\\/[^:]*|[a-zA-Z]:\\\\[^:]*):{1,2}\\s+(WARNING|ERROR):\\s+(.*)$",
+                  "file": 1,
+                  "severity": 2,
+                  "message": 3
+                }
               }
+            ],
+            "group": {
+              "kind": "build",
+              "isDefault": true
             }
-          ],
-          "group": {
-            "kind": "build",
-            "isDefault": true
           }
-        },
-      ],
-    }
+        ]
+      }
     ```
 
     > (Implementation detail: two problem matchers were needed to be defined,
@@ -142,23 +129,20 @@ resulting website show up on a locally-served web server.
     > messages) but the `pattern` references said empty capture group, VS Code
     > discards the message completely.)
 
-4. Configure Python virtual environment (`venv`)
+4. Configure the Python virtual environment (`venv`).
 
-    * From the Command Palette, run `Python: Create Environment`
-      * Select `venv` environment and the `docs/sphinx/requirements.txt` file.
-      _(Simply pressing enter while hovering over the file from the drop down is
-      insufficient, one has to select the radio button with the 'Space' key if
-      using the keyboard.)_
+    From the Command Palette, run `Python: Create Environment`. Select `venv` environment and
+    `docs/sphinx/requirements.txt`.
 
-5. Build the docs
+5. Build the docs.
 
-    * Launch the default build Task using either:
-      * a hotkey _(default is `Ctrl+Shift+B`)_ or
-      * by issuing the `Tasks: Run Build Task` from the Command Palette.
+    Launch the default build task using one of the following options:
 
-6. Open the live preview
+    * A hotkey (the default is `Ctrl+Shift+B`)
+    * Issuing the `Tasks: Run Build Task` from the Command Palette
 
-    * Navigate to the output of the site within VS Code, right-click on
-    `.vscode/build/html/index.html` and select `Open with Live Server`. The
-    contents should update on every rebuild without having to refresh the
-    browser.
+6. Open the live preview.
+
+    Navigate to the site output within VS Code: right-click on `.vscode/build/html/index.html` and
+    select `Open with Live Server`. The contents should update on every rebuild without having to
+    refresh the browser.

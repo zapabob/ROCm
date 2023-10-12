@@ -11,7 +11,7 @@
 
 <!-- spellcheck-disable -->
 
-The release notes for the ROCm platform.
+Welcome to the release notes for the ROCm platform.
 
 -------------------
 

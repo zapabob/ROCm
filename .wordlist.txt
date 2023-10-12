@@ -46,6 +46,7 @@ cd
 CDNA
 CentOS
 centric
+changelog
 chiplet
 CIFAR
 CLI
@@ -361,6 +362,7 @@ repos
 Req
 req
 resampling
+RST
 reStructuredText
 RHEL
 Rickle

@@ -1,69 +1,228 @@
 # Contributing to ROCm documentation
 
-AMD values and encourages the ROCm community to contribute to our code and
-documentation. This repository is focused on ROCm documentation and this
-contribution guide describes the recommended method for creating and modifying our
-documentation.
+AMD values and encourages contributions to our code and documentation. If you choose to
+contribute, we encourage you to be polite and respectful. Improving documentation is a long-term
+process, to which we are dedicated.
 
-While interacting with ROCm Documentation, we encourage you to be polite and
-respectful in your contributions, content or otherwise. Authors, maintainers of
-these docs act on good intentions and to the best of their knowledge.
-Keep that in mind while you engage. Should you have issues with contributing
-itself, refer to
-[discussions](https://github.com/RadeonOpenCompute/ROCm/discussions) on the
-GitHub repository.
+If you have issues when trying to contribute, refer to the
+[discussions](https://github.com/RadeonOpenCompute/ROCm/discussions) page in our GitHub
+repository.
 
-For additional information on documentation functionalities,
-see the user and developer guides for rocm-docs-core
-at {doc}`rocm-docs-core documentation <rocm-docs-core:index>`.
+## Folder structure and naming convention
 
-## Supported formats
+Our documentation follows the Pitchfork folder structure. Most documentation files are stored in the
+`/docs` folder. Some special files (such as release, contributing, and changelog) are stored in the root
+(`/`) folder.
 
-Our documentation includes both Markdown and RST files. Markdown is encouraged
-over RST due to the lower barrier to participation. GitHub-flavored Markdown is preferred
-for all submissions as it renders accurately on our GitHub repositories. For existing documentation,
-[MyST](https://myst-parser.readthedocs.io/en/latest/intro.html) Markdown
-is used to implement certain features unsupported in GitHub Markdown. This is
-not encouraged for new documentation. AMD will transition
-to stricter use of GitHub-flavored Markdown with a few caveats. ROCm documentation
-also uses [Sphinx Design](https://sphinx-design.readthedocs.io/en/latest/index.html)
-in our Markdown and RST files. We also use Breathe syntax for Doxygen documentation
-in our Markdown files. See
-[GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github)'s
-guide on writing and formatting on GitHub as a starting point.
+All images are stored in the `/docs/data` folder. An image's file path mirrors that of the documentation
+file where it is used.
 
-ROCm documentation adds additional requirements to Markdown and RST based files
-as follows:
+Our naming structure uses kebab case; for example, `my-file-name.rst`.
 
-* Level one headers are only used for page titles. There must be only one level
-  1 header per file for both Markdown and Restructured Text.
-* Pass [markdownlint](https://github.com/markdownlint/markdownlint) check via
-  our automated GitHub action on a pull request (PR).
-  See the {doc}`rocm-docs-core linting user guide <rocm-docs-core:user_guide/linting>` for more details.
+## Supported formats and syntax
 
-## Filenames and folder structure
+Our documentation includes both Markdown and RST files. We are gradually transitioning existing
+Markdown to RST in order to more effectively meet our documentation needs. When contributing,
+RST is preferred; if you must use Markdown, use GitHub-flavored Markdown.
 
-Please use kebab-case (all lower case letters and dashes instead of spaces)
-for file names. For example, `example-file-name.md`.
-Our documentation follows Pitchfork for folder structure.
-All documentation is in `/docs` except for special files like
-the contributing guide in the `/` folder. All images used in the documentation are
-placed in the `/docs/data` folder.
+We use [Sphinx Design](https://sphinx-design.readthedocs.io/en/latest/index.html) syntax and compile
+our API references using [Doxygen](https://www.doxygen.nl/).
+
+The following table shows some common documentation components and the syntax convention we
+use for each:
+
+<table>
+<tr>
+<th>Component</th>
+<th>RST syntax</th>
+</tr>
+<tr>
+<td>Code blocks</td>
+<td>
+
+```rst
+
+.. code-block:: language-name
+
+  My code block.
+
+
+```
+
+</td>
+</tr>
+<tr>
+<td>Cross-referencing internal files</td>
+<td>
+
+```rst
+
+:doc:`Title <../path/to/file/filename>`
+
+```
+
+</td>
+</tr>
+<tr>
+<td>External links</td>
+<td>
+
+```rst
+
+`link name  <URL>`_
+
+```
+
+</td>
+</tr>
+<tr>
+<tr>
+<td>Headings</td>
+<td>
+
+```rst
+
+******************
+Chapter title (H1)
+******************
+
+Section title (H2)
+===============
+
+Subsection title (H3)
+---------------------
+
+Sub-subsection title (H4)
+^^^^^^^^^^^^^^^^^^^^
+
+
+```
+
+</td>
+</tr>
+<tr>
+<td>Images</td>
+<td>
+
+```rst
+
+.. image:: image1.png
+
+```
+
+</td>
+</tr>
+<tr>
+<td>Internal links</td>
+<td>
+
+```rst
+
+1. Add a tag to the section you want to reference:
+
+.. _my-section-tag: section-1
+
+Section 1
+==========
+
+2. Link to your tag:
+
+As shown in :ref:`section-1`.
+
+```
+
+</td>
+</tr>
+<tr>
+<tr>
+<td>Lists</td>
+<td>
+
+```rst
+
+# Ordered (numbered) list item
+
+* Unordered (bulleted) list item
+
+```
+
+</td>
+</tr>
+<tr>
+<tr>
+<td>Math (block)</td>
+<td>
+
+```rst
+
+.. math::
+
+  A = \begin{pmatrix}
+          0.0 & 1.0 & 1.0 & 3.0 \\
+          4.0 & 5.0 & 6.0 & 7.0 \\
+        \end{pmatrix}
+
+```
+
+</td>
+</tr>
+<tr>
+<td>Math (inline)</td>
+<td>
+
+```rst
+
+:math:`2 \times 2 `
+
+```
+
+</td>
+</tr>
+<tr>
+<td>Notes</td>
+<td>
+
+```rst
+
+.. note::
+
+  My note here.
+
+```
+
+</td>
+</tr>
+<tr>
+<td>Tables</td>
+<td>
+
+```rst
+
+.. csv-table::  Optional title here
+  :widths: 30, 70  #optional column widths
+  :header: "entry1 header", "entry2 header"
+
+   "entry1", "entry2"
+
+```
+
+</td>
+</tr>
+</table>
 
 ## Language and style
 
-Adopt Microsoft CPP-Docs guidelines for
-[Voice and Tone](https://github.com/MicrosoftDocs/cpp-docs/blob/main/styleguide/voice-tone.md).
+We use the
+[Google developer documentation style guide](https://developers.google.com/style/highlights) to
+guide our content.
 
-ROCm documentation templates to be made public shortly. ROCm templates dictate
-the recommended structure and flow of the documentation. Guidelines on how to
-integrate figures, equations, and tables are all based off
-[MyST](https://myst-parser.readthedocs.io/en/latest/intro.html).
+Font size and type, page layout, white space control, and other formatting
+details are controlled via
+[rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core). If you want to notify us
+of any formatting issues, create a pull request in our
+[rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core) GitHub repository.
 
-Font size and selection, page layout, white space control, and other formatting
-details are controlled via [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
-Raise issues in `rocm-docs-core` for any formatting concerns and changes requested.
+## Building our documentation
 
-## More
-
-For more topics, such as submitting feedback and ways to build documentation, refer to [Building documentation](./building.md) and [How to provide feedback for ROCm documentation](./feedback.md).
+To learn how to build our documentation, refer to
+[Building documentation](./docs/contribute/building.md).

@@ -21,20 +21,20 @@ source software compilers, debuggers, and libraries. ROCm is fully integrated in
 
 ## ROCm documentation
 
-The ROCm Documentation site is [rocm.docs.amd.com](https://rocm.docs.amd.com).
-
-Source code for the documentation is located in the docs folder of most repositories that are part of
-ROCm.
-
 This repository contains the manifest file for ROCm releases, changelogs, and release information.
-The file `default.xml` contains information for all repositories and the associated commit used to build
-the current ROCm release.
 
-The `default.xml` file uses the repo Manifest Format.
+The `default.xml` file contains information for all repositories and the associated commit used to build
+the current ROCm release; `default.xml` uses the Manifest Format repository.
 
-The develop branch of this repository contains content for the next ROCm release.
+Source code for our documentation is located in the `/docs` folder of most ROCm repositories. The
+`develop` branch of our repositories contains content for the next ROCm release.
 
-### How to build documentation via Sphinx
+The ROCm documentation homepage is [rocm.docs.amd.com](https://rocm.docs.amd.com).
+
+### Building our documentation
+
+For a quick-start build, use the following code. For more options and detail, refer to
+[Building documentation](./docs/contribute/building.md).
 
 ```bash
 cd docs
