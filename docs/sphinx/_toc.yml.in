@@ -81,9 +81,8 @@ subtrees:
     subtrees:
       - entries:
         - file: release/user_kernel_space_compat_matrix
-        - file: release/docker_image_support_matrix
-        - file: release/3rd_party_support_matrix
         - file: release/docker_image_support_matrix.rst
+        - file: release/3rd_party_support_matrix
   - file: release/licensing
 
 
