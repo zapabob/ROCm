@@ -21,14 +21,6 @@ The changelog for the ROCm platform.
 
 ### What's New in This Release
 
-#### Installing all GPU Address sanitizer packages with a single command
-
-ROCm 5.7.1 simplifies the installation steps for the optional Address Sanitizer (ASan) packages. This release provides the meta package *rocm-ml-sdk-asan* for ease of ASan installation. The following command can be used to install all ASan packages rather than installing each package separately,
-
-        sudo apt-get install rocm-ml-sdk-asan
-
-For more detailed information about using the GPU AddressSanitizer, refer to the [user guide](https://rocm.docs.amd.com/en/docs-5.7.1/understand/using_gpu_sanitizer.html) 
-
 ### ROCm Libraries
 
 #### rocBLAS
