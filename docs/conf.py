@@ -5,9 +5,27 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import shutil
+import jinja2
+import os
 
 from rocm_docs import ROCmDocs
 
+# Environement to process Jinja templates.
+jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader("."))
+
+# Jinja templates to render out.
+templates = [
+    "./deploy/linux/quick_start.md.jinja",
+    "./deploy/linux/installer/install.md.jinja",
+    "./deploy/linux/os-native/install.md.jinja"
+]
+
+# Render templates and output files without the last extension.
+# For example: 'install.md.jinja' becomes 'install.md'.
+for template in templates:
+    rendered = jinja_env.get_template(template).render()
+    with open(os.path.splitext(template)[0], 'w') as file:
+        file.write(rendered)
 
 shutil.copy2('../CONTRIBUTING.md','./contributing.md')
 shutil.copy2('../RELEASE.md','./release.md')

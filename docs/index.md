@@ -17,6 +17,7 @@ tools, and APIs that enable GPU programming from low-level kernel to end-user ap
 
 - {doc}`/deploy/linux/index`
 - {doc}`/deploy/docker`
+- {doc}`Deploy ROCm using Radeon <radeon:index>`
 
 :::
 ::::

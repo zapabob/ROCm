@@ -1,3 +1,5 @@
+{%- import "deploy/linux/linux.template.jinja" as linux %}
+<!-- markdownlint-disable no-duplicate-header blanks-around-headings no-multiple-blanks -->
 # Installation (Linux)
 
 ```{warning}
@@ -19,10 +21,9 @@ installed version by using the multi-version ROCm packages.
 
 ## Step by Step Instructions
 
-::::::{tab-set}
-:::::{tab-item} Ubuntu
-:sync: ubuntu
+{%- call(os) linux.for_os_in(linux.supported_os) %}
 
+{%- if os.tag == "ubuntu" %}
 ::::{rubric} 1. Download and convert the package signing key
 ::::
 
@@ -53,39 +54,22 @@ section.
 ```
 
 To add the AMDGPU repository, follow these steps:
+{% call(version) linux.for_version_in(os) %}
 
-::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
+```{important}
+Instructions for {{ os.name }} {{ version.number }}
+```
 
 ```shell
 # version
-ver=5.7
+ver={{ linux.supported_family[0].amdgpu_version }}
 
 # amdgpu repository for focal
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$ver/ubuntu focal main" \
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$ver/ubuntu {{ version.release }} main" \
     | sudo tee /etc/apt/sources.list.d/amdgpu.list
 sudo apt update
 ```
-
-:::
-:::{tab-item} Ubuntu 22.04
-:sync: ubuntu-22.04
-
-```shell
-# version
-ver=5.7
-
-# amdgpu repository for jammy
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/amdgpu/$ver/ubuntu jammy main" \
-    | sudo tee /etc/apt/sources.list.d/amdgpu.list
-sudo apt update
-# Prefer packages from the rocm repository over system packages
-echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
-```
-
-:::
-::::
+{%- endcall %}
 
 Install the kernel mode driver and reboot the system using the following
 commands:
@@ -100,38 +84,23 @@ sudo reboot
 
 To add the ROCm repository, use the following steps:
 
-::::{tab-set}
-:::{tab-item} Ubuntu 20.04
-:sync: ubuntu-20.04
+{%- call(version) linux.for_version_in(os) %}
+
+```{important}
+Instructions for {{ os.name }} {{ version.number }}
+```
 
 ```shell
-# ROCm repositories for focal
-for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver focal main" \
+# ROCm repositories for {{ version.release }}
+for ver in 5.3.3 5.4.6 5.5.3 5.6.1 {{ linux.supported_family[0].rocm_version }}; do
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver {{ version.release }} main" \
     | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
 echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
     | sudo tee /etc/apt/preferences.d/rocm-pin-600
 sudo apt update
 ```
-
-:::
-:::{tab-item} Ubuntu 22.04
-:sync: ubuntu-22.04
-
-```shell
-# ROCm repositories for jammy
-for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/$ver jammy main" \
-    | sudo tee --append /etc/apt/sources.list.d/rocm.list
-done
-echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' \
-    | sudo tee /etc/apt/preferences.d/rocm-pin-600
-sudo apt update
-```
-
-:::
-::::
+{%- endcall %}
 
 ::::{rubric} 4. Install packages
 ::::
@@ -151,13 +120,9 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo apt install rocm-hip-sdk5.7 rocm-hip-sdk5.6.1 rocm-hip-sdk5.5.3
+   sudo apt install rocm-hip-sdk{{ linux.supported_family[0].rocm_version }} rocm-hip-sdk5.6.1 rocm-hip-sdk5.5.3
    ```
-
-:::::
-:::::{tab-item} Red Hat Enterprise Linux
-:sync: RHEL
-
+{%- elif os.tag == "rhel" %}
 ::::{rubric} 1. Add the AMDGPU Stack Repository and Install the Kernel-mode Driver
 ::::
 
@@ -165,21 +130,20 @@ For a comprehensive list of meta-packages, refer to
 If you have a version of the kernel-mode driver installed, you may skip this
 section.
 ```
+{% call(version) linux.for_version_in(os) %}
 
-::::{tab-set}
-:::{tab-item} RHEL 8.6
-:sync: RHEL-8.6
-:sync: RHEL-8
+```{important}
+Instructions for {{ os.name }} {{ version.number }}
+```
 
 ```shell
 # version
-ver=5.7
-
+ver={{ linux.supported_family[0].amdgpu_version }}
 
 sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/8.6/main/x86_64/
+baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/{{ version.number }}/main/x86_64/
 enabled=1
 priority=50
 gpgcheck=1
@@ -187,98 +151,7 @@ gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
 EOF
 sudo yum clean all
 ```
-
-:::
-
-:::{tab-item} RHEL 8.7
-:sync: RHEL-8.7
-:sync: RHEL-8
-
-```shell
-# version
-ver=5.7
-
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/8.7/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
-
-:::{tab-item} RHEL 8.8
-:sync: RHEL-8.8
-:sync: RHEL-8
-
-```shell
-# version
-ver=5.7
-
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/8.8/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
-
-:::{tab-item} RHEL 9.1
-:sync: RHEL-9.1
-:sync: RHEL-9
-
-```shell
-# version
-ver=5.7
-
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/9.1/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
-
-:::{tab-item} RHEL 9.2
-:sync: RHEL-9.2
-:sync: RHEL-9
-
-```shell
-# version
-ver=5.7
-
-sudo tee /etc/yum.repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/rhel/9.2/main/x86_64/
-enabled=1
-priority=50
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo yum clean all
-```
-
-:::
-::::
-
+{%- endcall %}
 Install the kernel mode driver and reboot the system using the following
 commands:
 
@@ -297,7 +170,7 @@ To add the ROCm repository, use the following steps, based on your distribution:
 :sync: RHEL-8
 
 ```shell
-for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
+for ver in 5.3.3 5.4.6 5.5.3 5.6.1 {{ linux.supported_family[0].rocm_version }}; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -308,6 +181,7 @@ gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
 EOF
 done
+
 sudo yum clean all
 ```
 
@@ -316,7 +190,7 @@ sudo yum clean all
 :sync: RHEL-9
 
 ```shell
-for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
+for ver in 5.3.3 5.4.6 5.5.3 5.6.1 {{ linux.supported_family[0].rocm_version }}; do
 sudo tee --append /etc/yum.repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -351,13 +225,9 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo yum install rocm-hip-sdk5.7 rocm-hip-sdk5.6.1
+   sudo yum install rocm-hip-sdk{{ linux.supported_family[0].rocm_version }} rocm-hip-sdk5.6.1
    ```
-
-:::::
-:::::{tab-item} SUSE Linux Enterprise Server
-:sync: SLES
-
+{%- elif os.tag == "sle" %}
 ::::{rubric} 1. Add the AMDGPU Repository and Install the Kernel-mode Driver
 ::::
 
@@ -365,48 +235,27 @@ For a comprehensive list of meta-packages, refer to
 If you have a version of the kernel-mode driver installed, you may skip this
 section.
 ```
+{% call(version) linux.for_version_in(os) %}
 
-::::{tab-set}
-:::{tab-item} SLES 15.4
-:sync: SLES-15.4
+```{important}
+Instructions for {{ os.name }} {{ version.number }}
+```
 
 ```shell
 # version
-ver=5.7
-
+ver={{ linux.supported_family[0].amdgpu_version }}
 
 sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
 [amdgpu]
 name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.4/main/x86_64
+baseurl=https://repo.radeon.com/amdgpu/$ver/sle/{{ version.number }}/main/x86_64
 enabled=1
 gpgcheck=1
 gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
 EOF
 sudo zypper ref
 ```
-
-:::
-:::{tab-item} SLES 15.5
-:sync: SLES-15.5
-
-```shell
-# version
-ver=5.7
-
-sudo tee /etc/zypp/repos.d/amdgpu.repo <<EOF
-[amdgpu]
-name=amdgpu
-baseurl=https://repo.radeon.com/amdgpu/$ver/sle/15.5/main/x86_64
-enabled=1
-gpgcheck=1
-gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key
-EOF
-sudo zypper ref
-```
-
-:::
-::::
+{%- endcall %}
 
 Install the kernel mode driver and reboot the system using the following
 commands:
@@ -422,7 +271,7 @@ sudo reboot
 To add the ROCm repository, use the following steps:
 
 ```shell
-for ver in 5.3.3 5.4.6 5.5.3 5.6.1 5.7; do
+for ver in 5.3.3 5.4.6 5.5.3 5.6.1 {{ linux.supported_family[0].rocm_version }}; do
 sudo tee --append /etc/zypp/repos.d/rocm.repo <<EOF
 [ROCm-$ver]
 name=ROCm$ver
@@ -454,14 +303,12 @@ For a comprehensive list of meta-packages, refer to
 - Sample Multi-version installation
 
    ```shell
-   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk5.7 rocm-hip-sdk5.6.1
+   sudo zypper --gpg-auto-import-keys install rocm-hip-sdk{{ linux.supported_family[0].rocm_version }} rocm-hip-sdk5.6.1
    ```
-
-:::::
-::::::
+{%- endif %}
+{%- endcall %}
 
 (post-install-actions-linux)=
-
 ## Post-install Actions and Verification Process
 
 The post-install actions listed here are optional and depend on your use case,
@@ -491,7 +338,7 @@ but are generally useful. Verification of the install is advised.
 2. Add binary paths to the `PATH` environment variable.
 
    ```shell
-   export PATH=$PATH:/opt/rocm-5.7/bin:/opt/rocm-5.7/opencl/bin
+   export PATH=$PATH:/opt/rocm-{{ linux.supported_family[0].rocm_version }}/bin:/opt/rocm-{{ linux.supported_family[0].rocm_version }}/opencl/bin
 
    ```
 
@@ -535,31 +382,18 @@ by both commands, the installation is considered successful:
 
 To ensure the packages are installed successfully, use the following commands:
 
-::::{tab-set}
-:::{tab-item} Ubuntu
-:sync: ubuntu
-
+{%- call(os) linux.for_os_in(linux.supported_os) %}
+{%- if os.tag == "ubuntu" %}
 ```shell
 sudo apt list --installed
 ```
-
-:::
-
-:::{tab-item} Red Hat Enterprise Linux
-:sync: RHEL
-
+{%- elif os.tag == "rhel" %}
 ```shell
 sudo yum list installed
 ```
-
-:::
-
-:::{tab-item} SUSE Linux Enterprise Server
-:sync: SLES
-
+{%- elif os.tag == "sle" %}
 ```shell
 sudo zypper search --installed-only
 ```
-
-:::
-::::
+{%- endif %}
+{%- endcall %}

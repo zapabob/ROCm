@@ -1,0 +1,120 @@
+{%- set supported_family = ([
+    {
+        "tag": "instinct",
+        "name": "Select OS",
+        "amdgpu_version": "5.7.1",
+        "amdgpu_install_version": "5.7.50701-1",
+        "rocm_version":  "5.7.1",
+        "rocm_install_version": "5.7.50701-1",
+    }
+]) -%}
+
+{%- set supported_os = ([
+    {
+        "tag": "ubuntu",
+        "name": "Ubuntu",
+        "shortname" : "Ubuntu",
+        "version": [
+            {
+                "number": "22.04",
+                "release": "jammy"
+            },
+            {
+                "number": "20.04",
+                "release": "focal"
+            }
+        ]
+    },
+    {
+        "tag": "rhel",
+        "name": "Red Hat Enterprise Linux",
+        "shortname" : "RHEL",
+        "version": [
+            {
+                "number": "8.8",
+                "release": "rhel8"
+            },
+            {
+                "number": "8.7",
+                "release": "rhel8"
+            },
+            {
+                "number": "8.6",
+                "release": "rhel8"
+            },
+            {
+                "number": "9.2",
+                "release": "rhel9"
+            },
+            {
+                "number": "9.1",
+                "release": "rhel9"
+            },
+        ]
+    },
+    {
+        "tag": "sle",
+        "name": "SUSE Linux Enterprise Server",
+        "shortname" : "SLES",
+        "version": [
+            {
+                "number": "15.5"
+            },
+            {
+                "number": "15.4"
+            },
+        ]
+    }
+]) -%}
+
+{%- macro for_family_in(supported_family) %}
+::::::::{tab-set}
+{%- for family in supported_family %}
+:::::::{tab-item} {{ family.name }}
+:sync: {{ family.tag }}
+{{ caller(family) }}
+
+:::::::
+{%- endfor %}
+::::::::
+{%- endmacro -%}
+
+{%- macro for_os_in(supported_os) %}
+::::::{tab-set}
+{%- for os in supported_os %}
+:::::{tab-item} {{ os.name }}
+:sync: {{ os.tag }}
+{{ caller(os) }}
+
+:::::
+{%- endfor %}
+::::::
+{%- endmacro -%}
+
+{%- macro for_version_in(os) %}
+::::{tab-set}
+{%- for version in os.version %}
+:::{tab-item} {{ os.shortname }} {{ version.number }}
+:sync: {{ os.tag }}-{{ version.number }}
+{{ caller(version) }}
+
+:::
+{%- endfor %}
+::::
+{%- endmacro -%}
+
+{%- macro install(os, argument) %}
+```shell
+{%- if os.tag == "ubuntu" %}
+sudo apt install {{ argument }}
+{%- elif os.tag == "rhel" %}
+sudo yum install {{ argument }}
+{%- elif os.tag == "sle" %}
+sudo zypper install {{ argument }}
+{%- endif %}
+```
+{%- endmacro -%}
+
+{%- macro header_anchor(family, os) -%}
+({{ caller() | lower | replace('#', '') | trim | replace(' ', '-')}}-{{ family.tag }}-{{ os.tag }})= {{ caller() }}
+{%- endmacro -%}

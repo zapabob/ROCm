@@ -16,3 +16,8 @@ _readthedocs/
 docs/contributing.md
 docs/release.md
 docs/CHANGELOG.md
+
+# auto-generated files
+docs/deploy/linux/installer/install.md
+docs/deploy/linux/os-native/install.md
+docs/deploy/linux/quick_start.md

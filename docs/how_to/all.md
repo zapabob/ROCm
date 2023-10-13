@@ -3,6 +3,14 @@
 :::::{grid} 1 1 2 2
 :gutter: 1
 
+:::{grid-item-card} ROCm using Radeon
+:link: {doc}`ROCm using Radeon <radeon:index>`
+:link-type: url
+ROCm and PyTorch installation processes to pair with the Radeon RX 7900 XTX GPU or the Radeon PRO W7900 GPU,
+and get started on a fully-functional environment for AI and ML development.
+
+:::
+
 :::{grid-item-card} Tuning Guides
 :link: tuning_guides/index
 :link-type: doc
