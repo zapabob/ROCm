@@ -45,8 +45,8 @@ latex_elements = {
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved."
-version = "5.7.0"
-release = "5.7.0"
+version = "5.7.1"
+release = "5.7.1"
 
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
@@ -110,7 +110,7 @@ article_pages = [
 
 external_toc_path = "./sphinx/_toc.yml"
 
-docs_core = ROCmDocs("ROCm 5.7.0 Documentation Home")
+docs_core = ROCmDocs("ROCm 5.7.1 Documentation Home")
 docs_core.setup()
 
 external_projects_current_project = "rocm"
