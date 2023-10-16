@@ -19,13 +19,13 @@ ROCm supports programming models, such as OpenMP and OpenCL, and includes all ne
 compilers, debuggers, and libraries. ROCm is fully integrated into machine learning (ML) frameworks,
 such as PyTorch and TensorFlow.
 
-## ROCm on Radeon
+## Radeon Software for Linux with ROCm
 
-Starting with ROCm™ 5.7 on Linux®, researchers and developers working with Machine Learning (ML) models and algorithms can tap into the parallel computing power of the AMD desktop GPUs based on the RDNA™ 3 architecture.
+Starting with Radeon Software for Linux® 23.20.00.48 with ROCm 5.7, researchers and developers working with Machine Learning (ML) models and algorithms can tap into the parallel computing power of the AMD desktop GPUs based on the RDNA™ 3 architecture.
 
 A client solution built on powerful high-end AMD GPUs provides a local, private and often cost-effective workflow to develop ROCm and train ML (PyTorch) for the users who previously relied solely on cloud-based solutions.
 
-For information about how to install ROCm on AMD desktop GPUs based on the RDNA™ 3 architecture, see {doc}`Use ROCm on Radeon <radeon:index>`. For more information about supported AMD Radeon™ desktop GPUs, see {doc}`Radeon Compatibility Matrices <radeon:compatibility>`.
+For information about how to install ROCm on AMD desktop GPUs based on the RDNA™ 3 architecture, see {doc}`Use ROCm on Radeon GPUs<radeon:index>`. For more information about supported AMD Radeon™ desktop GPUs, see {doc}`Radeon Compatibility Matrices <radeon:docs/compatibility>`.
 
 ## ROCm on Windows
 
