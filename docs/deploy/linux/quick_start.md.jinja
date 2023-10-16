@@ -2,10 +2,13 @@
 <!-- markdownlint-disable no-duplicate-header blanks-around-headings no-multiple-blanks -->
 # Quick Start (Linux)
 
-## Add Repositories
-{% call(family) linux.for_family_in(linux.supported_family) %}
+:::{note}
+See {doc}`Radeon Software for Linux installation instructions <radeon:install/install-radeon>`
+for those using select RDNA™ 3 GPU with graphical applications and ROCm.
+:::
 
-{%- if family.tag == "instinct" %}
+## Add Repositories
+{% set family = linux.supported_family[0] %}
 
 {%- call(os) linux.for_os_in(linux.supported_os) %}
 
@@ -132,8 +135,6 @@ sudo zypper ref
 ```
 {%- endif %}
 {%- endcall -%}
-{%- endif %}
-{%- endcall %}
 
 ## Install drivers
 
