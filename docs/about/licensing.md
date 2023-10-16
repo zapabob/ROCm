@@ -9,7 +9,7 @@ The table is ordered to follow the ROCm manifest file.
 
 <!-- spellcheck-disable -->
 | Component | License |
-|:------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
+|:---------------------|:-------------------------|
 | [AMDMIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/) | [MIT](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/blob/develop/LICENSE) |
 | [HIPCC](https://github.com/ROCm-Developer-Tools/HIPCC/blob/develop/LICENSE.txt) | [MIT](https://github.com/ROCm-Developer-Tools/HIPCC/blob/develop/LICENSE.txt) |
 | [HIPIFY](https://github.com/ROCm-Developer-Tools/HIPIFY/) | [MIT](https://github.com/ROCm-Developer-Tools/HIPIFY/blob/amd-staging/LICENSE.txt) |

@@ -1,4 +1,4 @@
-# ROCm API libraries
+# ROCm API libraries & tools
 
 ::::{grid} 1 2 2 2
 :class-container: rocm-doc-grid
@@ -35,6 +35,20 @@
 ^^^
 
 * {doc}`RCCL <rccl:index>`
+
+:::
+
+:::{grid-item-card}
+:padding: 2
+**Development tools**
+
+^^^
+
+* {doc}`hipCC <hipcc:index>`
+* {doc}`ROCdbgapi <rocdbgapi:index>`
+* [ROCmCC](./rocmcc.md)
+* {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
+* {doc}`ROCTracer <roctracer:index>`
 
 :::
 
@@ -94,8 +108,8 @@
 
 ^^^
 
-* [Performance tracing](https://github.com/ROCm-Developer-Tools/roctracer)
 * {doc}`ROCProfiler <rocprofiler:rocprof>`
+* {doc}`ROCTracer <roctracer:index>`
 
 :::
 
@@ -112,17 +126,13 @@
 
 :::{grid-item-card}
 :padding: 2
-**Tools**
+**System tools**
 
 ^^^
 
-* {doc}`AMD debugger (ROCdbgapi) <rocdbgapi:index>`
-* [ROCmCC](./rocmcc.md)
 * {doc}`ROCm Data Center Tool <rdc:index>`
-* {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
 * {doc}`ROCm SMI LIB <rocm_smi_lib:index>`
 * {doc}`ROCm Validation Suite <rocmvalidationsuite:index>`
-* {doc}`ROCTracer <roctracer:index>`
 * {doc}`TransferBench <transferbench:index>`
 
 :::

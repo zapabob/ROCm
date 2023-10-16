@@ -35,7 +35,7 @@ subtrees:
     title: Tensorflow for ROCm
   - file: install/magma-install.md
     title: MAGMA for ROCm
-  - file: how-to/spack-intro.md
+  - file: install/spack-intro.md
     title: ROCm & Spack
 
 - caption: Compatibility & support
@@ -88,95 +88,74 @@ subtrees:
 - caption: Reference
   entries:
     - file: reference/library-index.md
-      title: Library APIs
+      title: API libraries & tools
       subtrees:
-      - caption: Artificial intelligence
-        entries:
-        - url: https://rocm.docs.amd.com/projects/composable_kernel/en/latest/index.html
+      - entries:
+        - url: ${project:composable_kernel}
           title: Composable kernel
-        - url: https://rocm.docs.amd.com/projects/MIOpen/en/latest/index.html
-          title: MIOpen
-        - url: https://rocm.docs.amd.com/projects/AMDMIGraphX/en/latest/index.html
-          title: MIGraphX
-      - caption: C++ primitives
-        entries:
-        - url: https://rocm.docs.amd.com/projects/hipCUB/en/latest/index.html
-          title: hipCUB
-        - url: https://rocm.docs.amd.com/projects/hipTensor/en/latest/index.html
-          title: hipTensor
-        - url: https://rocm.docs.amd.com/projects/rocPRIM/en/latest/index.html
-          title: rocPRIM
-        - url: https://rocm.docs.amd.com/projects/rocThrust/en/latest/index.html
-          title: rocThrust
-      - caption: Communication
-        entries:
-        - url: https://rocm.docs.amd.com/projects/rccl/en/latest/index.html
-          title: RCCL
-      - caption: Fast Fourier transforms (FFTs)
-        entries:
-        - url: https://rocm.docs.amd.com/projects/hipFFT/en/latest/index.html
-          title: hipFFT
-        - url: https://rocm.docs.amd.com/projects/rocFFT/en/latest/index.html
-          title: rocFFT
-      - caption: HIP
-        entries:
-        - url: https://rocm.docs.amd.com/projects/HIP/en/develop/.doxygen/docBin/html/index.html
-          title: HIP runtime
-        - url: https://rocm.docs.amd.com/projects/HIPIFY/en/latest/index.html
-          title: HIPIFY
-      - caption: Linear algebra
-        entries:
-        - url: https://rocm.docs.amd.com/projects/hipBLAS/en/latest/index.html
+        - url: ${project:hipblas}
           title: hipBLAS
-        - url: https://rocm.docs.amd.com/projects/hipBLASLt/en/latest/index.html
+        - url: ${project:hipblaslt}
           title: hipBLASLt
-        - url: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/index.html
-          title: hipSOLVER
-        - url: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/index.html
-          title: hipSPARSE
-        - url: https://rocm.docs.amd.com/projects/hipSPARSELt/en/latest/index.html
-          title: hipSPARSELt
-        - url: https://rocm.docs.amd.com/projects/rocALUTION/en/latest/index.html
-          title: rocALUTION
-        - url: https://rocm.docs.amd.com/projects/rocBLAS/en/latest/index.html
-          title: rocBLAS
-        - url: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/index.html
-          title: rocSOLVER
-        - url: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/index.html
-          title: rocSPARSE
-      - caption: Matrix multiply
-        entries:
-        - url: https://rocm.docs.amd.com/projects/rocWMMA/en/latest/index.html
-          title: rocWMMA
-      - caption: Performance analysis
-        entries:
-        - url: https://rocm.docs.amd.com/projects/rocprofiler/en/latest/rocprof.html
-          title: ROCProfiler
-        - url: https://github.com/ROCm-Developer-Tools/roctracer
-          title: Performance tracing
-      - caption: Random number generators
-        entries:
-        - url: https://rocm.docs.amd.com/projects/hipRAND/en/latest/index.html
+        - url: ${project:hipcc}
+          title: hipCC
+        - url: ${project:hipcub}
+          title: hipCUB
+        - url: ${project:hipfft}
+          title: hipFFT
+        - url: ${project:hipify}
+          title: HIPIFY
+        - url: ${project:hiprand}
           title: hipRAND
-        - url: https://rocm.docs.amd.com/projects/rocRAND/en/latest/index.html
-          title: rocRAND
-      - caption: Tools
-        entries:
-        - url: https://rocm.docs.amd.com/projects/ROCdbgapi/en/latest/index.html
-          title: AMD debugger API
+        - url: ${project:hip}
+          title: HIP runtime
+        - url: ${project:hipsolver}
+          title: hipSOLVER
+        - url: ${project:hipsparse}
+          title: hipSPARSE
+        - url: ${project:hipsparselt}
+          title: hipSPARSELt
+        - url: ${project:hiptensor}
+          title: hipTensor
+        - url: ${project:miopen}
+          title: MIOpen
+        - url: ${project:amdmigraphx}
+          title: MIGraphX
+        - url: ${project:rccl}
+          title: RCCL
+        - url: ${project:rocalution}
+          title: rocALUTION
+        - url: ${project:rocblas}
+          title: rocBLAS
+        - url: ${project:rocdbgapi}
+          title: ROCdbgapi
+        - url: ${project:rocfft}
+          title: rocFFT
         - file: reference/rocmcc.md
           title: ROCmCC
-        - url: https://rocm.docs.amd.com/projects/rdc/en/latest/
+        - url: ${project:rdc}
           title: ROCm Data Center Tool
-        - url: https://rocm.docs.amd.com/projects/ROCgdb/en/latest/index.html
-          title: ROCm debugger AP
-        - url: https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/
+        - url: ${project:rocm_smi_lib}
           title: ROCm SMI LIB
-        - url: https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/
+        - url: ${project:rocmvalidationsuite}
           title: ROCm validation suite
-        - url: https://rocm.docs.amd.com/projects/roctracer/en/latest/index.html
-          title: ROCTracer
-        - url: https://rocm.docs.amd.com/projects/TransferBench/en/latest/
+        - url: ${project:rocprim}
+          title: rocPRIM
+        - url: ${project:rocprofiler}
+          title: ROCProfiler
+        - url: ${project:rocrand}
+          title: rocRAND
+        - url: ${project:rocsolver}
+          title: rocSOLVER
+        - url: ${project:rocsparse}
+          title: rocSPARSE
+        - url: ${project:rocthrust}
+          title: rocThrust
+        - url: ${project:roctracer}
+          title: rocTracer
+        - url: ${project:rocwmma}
+          title: rocWMMA
+        - url: ${project:transferbench}
           title: TransferBench
 
 - caption: Conceptual
