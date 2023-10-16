@@ -136,11 +136,11 @@ sudo zypper ref
 {%- endif %}
 {%- endcall -%}
 
+{%- call(os) linux.for_os_in(linux.supported_os) %}
 ## Install drivers
 
 Install the `amdgpu-dkms` kernel module, aka driver, on your system.
 
-{%- call(os) linux.for_os_in(linux.supported_os) %}
 {{ linux.install(os, "amdgpu-dkms")}}
 {%- endcall %}
 
