@@ -11,6 +11,25 @@ containers on dockerhub. The following tags, and associated inventories, are val
 
         .. tab-set::
 
+            .. tab-item:: Ubuntu 22.04
+
+                Tag: `rocm/pytorch:rocm5.7_ubuntu22.04_py3.10_pytorch_2.0.1 <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu22.04_py3.10_pytorch_2.0.1/images/sha256-21df283b1712f3d73884b9bc4733919374344ceacb694e8fbc2c50bdd3e767ee>`_
+
+                * Inventory:
+
+                    * `ROCm 5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
+                    * `Python 3.10 <https://www.python.org/downloads/release/python-31013/>`_
+                    * `Torch 2.0.1 <https://github.com/ROCmSoftwarePlatform/pytorch/tree/release/2.0>`_
+                    * `Apex 0.1 <https://github.com/ROCmSoftwarePlatform/apex/tree/v0.1>`_
+                    * `Torchvision 0.15.0 <https://github.com/pytorch/vision/tree/release/0.15>`_
+                    * `Tensorboard 2.14.0 <https://github.com/tensorflow/tensorboard/tree/2.14>`_
+                    * `MAGMA <https://bitbucket.org/icl/magma/src/master/>`_
+                    * `UCX 1.10.0 <https://github.com/openucx/ucx/tree/v1.10.0>`_
+                    * `OMPI 4.0.3 <https://github.com/open-mpi/ompi/tree/v4.0.3>`_
+                    * `OFED 5.4.3 <https://content.mellanox.com/ofed/MLNX_OFED-5.3-1.0.5.0/MLNX_OFED_LINUX-5.3-1.0.5.0-ubuntu20.04-x86_64.tgz>`_
+
+
+
             .. tab-item:: Ubuntu 20.04
 
                 Tag: `rocm/pytorch:rocm5.7_ubuntu20.04_py3.9_pytorch_staging <https://hub.docker.com/layers/rocm/pytorch/rocm5.7_ubuntu20.04_py3.9_pytorch_2.0.1/images/sha256-4dd86046e5f777f53ae40a75ecfc76a5e819f01f3b2d40eacbb2db95c2f971d4)>`_
