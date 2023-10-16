@@ -82,78 +82,80 @@ hipSOLVER 1.8.2 for ROCm 5.7.1
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
 
-### Release Highlights for ROCm 5.7
+### Release highlights for ROCm 5.7
 
 ROCm 5.7.0 includes many new features. These include: a new library (hipTensor), and optimizations for rocRAND and MIVisionX. Address sanitizer for host and device code (GPU) is now available as a beta. Note that ROCm 5.7.0 is EOS for MI50. 5.7 versions of ROCm are the last major release in the ROCm 5 series. This release is Linux-only.
 
 Important: The next major ROCm release (ROCm 6.0) will not be backward compatible with the ROCm 5 series. Changes will include: splitting LLVM packages into more manageable sizes, changes to the HIP runtime API, splitting rocRAND and hipRAND into separate packages, and reorganizing our file structure.
 
-#### AMD Instinct™ MI50 End of Support Notice
+#### AMD Instinct™ MI50 end-of-support notice
 
 AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) will enter maintenance mode starting Q3 2023.
 
 As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 will be the final release for gfx906 GPUs to be in a fully supported state.
 
-- ROCm 6.0 release will show MI50s as "under maintenance" mode for [Linux](./about/release/linux_support) and [Windows](./about/release/windows_support)
+* ROCm 6.0 release will show MI50s as "under maintenance" mode for [Linux](./about/compatibility/linux-support.md) and [Windows](./about/compatibility/windows-support.md)
 
-- No new features and performance optimizations will be supported for the gfx906 GPUs beyond this major release (ROCm 5.7).
+* No new features and performance optimizations will be supported for the gfx906 GPUs beyond this major release (ROCm 5.7).
 
-- Bug fixes / critical security patches will continue to be supported for the gfx906 GPUs till Q2 2024 (EOM (End of Maintenance) will be aligned with the closest ROCm release).
+* Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs till Q2 2024 (EOM (End of Maintenance) will be aligned with the closest ROCm release).
 
-- Bug fixes during the maintenance will be made to the next ROCm point release.
+* Bug fixes during the maintenance will be made to the next ROCm point release.
 
-- Bug fixes will not be backported to older ROCm releases for gfx906.
+* Bug fixes will not be backported to older ROCm releases for gfx906.
 
-- Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
+* Distribution and operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
 
-#### Feature Updates
+#### Feature updates
 
-##### Non-hostcall HIP Printf
+##### Non-hostcall HIP printf
 
 **Current behavior**
 
-The current version of HIP printf relies on hostcalls, which, in turn, rely on PCIe atomics. However, PCle atomics are unavailable in some environments, and, as a result, HIP-printf does not work in those environments. Users may see the following error from runtime (with AMD_LOG_LEVEL 1 and above), 
+The current version of HIP printf relies on hostcalls, which, in turn, rely on PCIe atomics. However, PCle atomics are unavailable in some environments, and, as a result, HIP-printf does not work in those environments. Users may see the following error from runtime (with AMD_LOG_LEVEL 1 and above):
 
 ```
     Pcie atomics not enabled, hostcall not supported
 ```
 **Workaround**
 
-The ROCm 5.7 release introduces an alternative to the current hostcall-based implementation that leverages an older OpenCL-based printf scheme, which does not rely on hostcalls/PCIe atomics. 
-Note: This option is less robust than hostcall-based implementation and is intended to be a workaround when hostcalls do not work.	
+The ROCm 5.7 release introduces an alternative to the current hostcall-based implementation that leverages an older OpenCL-based printf scheme, which does not rely on hostcalls/PCIe atomics.
+
+Note: This option is less robust than hostcall-based implementation and is intended to be a workaround when hostcalls do not work.
 
 The printf variant is now controlled via a new compiler option -mprintf-kind=<value>. This is supported only for HIP programs and takes the following values,
 
-- “hostcall” – This currently available implementation relies on hostcalls, which require the system to support PCIe atomics. It is the default scheme.
+* “hostcall” – This currently available implementation relies on hostcalls, which require the system to support PCIe atomics. It is the default scheme.
 
-- “buffered” – This implementation leverages the older printf scheme used by OpenCL; it relies on a memory buffer where printf arguments are stored during the kernel execution, and then the runtime handles the actual printing once the kernel finishes execution. 
+* “buffered” – This implementation leverages the older printf scheme used by OpenCL; it relies on a memory buffer where printf arguments are stored during the kernel execution, and then the runtime handles the actual printing once the kernel finishes execution.
 
-**NOTE**: With the new workaround,
+**NOTE**: With the new workaround:
 
-- The printf buffer is fixed size and non-circular.  After the buffer is filled, calls to printf will not result in additional output.
+* The printf buffer is fixed size and non-circular.  After the buffer is filled, calls to printf will not result in additional output.
 
-- The printf call returns either 0 (on success) or -1 (on failure, due to full buffer), unlike the hostcall scheme that returns the number of characters printed.
+* The printf call returns either 0 (on success) or -1 (on failure, due to full buffer), unlike the hostcall scheme that returns the number of characters printed.
 
-##### Beta Release of LLVM Address Sanitizer (ASAN) with the GPU
+##### Beta release of LLVM AddressSanitizer (ASan) with the GPU
 
-The ROCm v5.7 release introduces the beta release of LLVM Address Sanitizer (ASAN) with the GPU. The LLVM Address Sanitizer provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
-Until now, the LLVM Address Sanitizer process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
+The ROCm 5.7 release introduces the beta release of LLVM AddressSanitizer (ASan) with the GPU. The LLVM ASan provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
 
-Refer to the documentation on LLVM Address Sanitizer with the GPU at [LLVM Address Sanitizer User Guide](understand/using_gpu_sanitizer.md).
+Until now, the LLVM ASan process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
 
-**Note**: The beta release of LLVM Address Sanitizer for ROCm is currently tested and validated on Ubuntu 20.04.
+Refer to the documentation on LLVM ASan with the GPU at [LLVM AddressSanitizer User Guide](./docs/conceptual/using_gpu_sanitizer.md).
 
-#### Fixed Defects
+**Note**: The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
 
-The following defects are fixed in ROCm v5.7,
+#### Fixed defects
 
-- Test hangs observed in HMM RCCL
+The following defects are fixed in ROCm v5.7:
 
-- NoGpuTst test of Catch2 fails with Docker
+* Test hangs observed in HMM RCCL
 
-- Failures observed with non-HMM HIP directed catch2 tests with XNACK+
+* NoGpuTst test of Catch2 fails with Docker
 
-- Multiple test failures and test hangs observed in hip-directed catch2 tests with xnack+
+* Failures observed with non-HMM HIP directed catch2 tests with XNACK+
+
+* Multiple test failures and test hangs observed in hip-directed catch2 tests with xnack+
 
 #### HIP 5.7.0
 
@@ -161,82 +163,82 @@ The following defects are fixed in ROCm v5.7,
 
 ##### Added
 
-- Added `meta_group_size`/`rank` for getting the number of tiles and rank of a tile in the partition
+* Added `meta_group_size`/`rank` for getting the number of tiles and rank of a tile in the partition
 
-- Added new APIs supporting Windows only, under development on Linux
+* Added new APIs supporting Windows only, under development on Linux
 
-    - `hipMallocMipmappedArray` for allocating a mipmapped array on the device
+    * `hipMallocMipmappedArray` for allocating a mipmapped array on the device
 
-    - `hipFreeMipmappedArray` for freeing a mipmapped array on the device
+    * `hipFreeMipmappedArray` for freeing a mipmapped array on the device
 
-    - `hipGetMipmappedArrayLevel` for getting a mipmap level of a HIP mipmapped array
+    * `hipGetMipmappedArrayLevel` for getting a mipmap level of a HIP mipmapped array
 
-    - `hipMipmappedArrayCreate` for creating a mipmapped array
+    * `hipMipmappedArrayCreate` for creating a mipmapped array
 
-    - `hipMipmappedArrayDestroy` for destroy a mipmapped array
+    * `hipMipmappedArrayDestroy` for destroy a mipmapped array
 
-    - `hipMipmappedArrayGetLevel` for getting a mipmapped array on a mipmapped level
+    * `hipMipmappedArrayGetLevel` for getting a mipmapped array on a mipmapped level
 
 ##### Changed
 
 ##### Fixed
 
-##### Known Issues
+##### Known issues
 
-- HIP memory type enum values currently don't support equivalent value to `cudaMemoryTypeUnregistered`, due to HIP functionality backward compatibility.
-- HIP API `hipPointerGetAttributes` could return invalid value in case the input memory pointer was not allocated through any HIP API on device or host.
+* HIP memory type enum values currently don't support equivalent value to `cudaMemoryTypeUnregistered`, due to HIP functionality backward compatibility.
+* HIP API `hipPointerGetAttributes` could return invalid value in case the input memory pointer was not allocated through any HIP API on device or host.
 
 ##### Upcoming changes for HIP in ROCm 6.0 release
 
-- Removal of gcnarch from hipDeviceProp_t structure
+* Removal of `gcnarch` from hipDeviceProp_t structure
 
-- Addition of new fields in hipDeviceProp_t structure
+* Addition of new fields in hipDeviceProp_t structure
 
-    - maxTexture1D
+    * maxTexture1D
 
-    - maxTexture2D
+    * maxTexture2D
 
-    - maxTexture1DLayered
+    * maxTexture1DLayered
 
-    - maxTexture2DLayered
-    
-    - sharedMemPerMultiprocessor
-    
-    - deviceOverlap
-    
-    - asyncEngineCount
-    
-    - surfaceAlignment
-    
-    - unifiedAddressing
-    
-    - computePreemptionSupported
-    
-    - hostRegisterSupported
-    
-    - uuid
-    
-- Removal of deprecated code -hip-hcc codes from hip code tree
+    * maxTexture2DLayered
 
-- Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
+    * sharedMemPerMultiprocessor
 
-- HIPMEMCPY_3D fields correction to avoid truncation of "size_t" to "unsigned int" inside hipMemcpy3D()
+    * deviceOverlap
 
-- Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
+    * asyncEngineCount
 
-- Correct hipGetLastError to return the last error instead of last API call's return code
+    * surfaceAlignment
 
-- Update hipExternalSemaphoreHandleDesc to add "unsigned int reserved[16]"
+    * unifiedAddressing
 
-- Correct handling of flag values in hipIpcOpenMemHandle for hipIpcMemLazyEnablePeerAccess
+    * computePreemptionSupported
 
-- Remove hiparray* and make it opaque with hipArray_t
+    * hostRegisterSupported
 
+    * uuid
+
+* Removal of deprecated code -hip-hcc codes from hip code tree
+
+* Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
+
+* HIPMEMCPY_3D fields correction to avoid truncation of "size_t" to "unsigned int" inside hipMemcpy3D()
+
+* Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
+
+* Correct hipGetLastError to return the last error instead of last API call's return code
+
+* Update hipExternalSemaphoreHandleDesc to add "unsigned int reserved[16]"
+
+* Correct handling of flag values in hipIpcOpenMemHandle for hipIpcMemLazyEnablePeerAccess
+
+* Remove hiparray* and make it opaque with hipArray_t
 
 ### Library Changes in ROCM 5.7.0
 
 | Library | Version |
 |---------|---------|
+| AMDMIGraphX | 2.5 ⇒ [2.7](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.7.0) |
 | hipBLAS | 0.54.0 ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.7.0) |
 | hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.7.0) |
 | hipFFT | [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.7.0) |
@@ -253,8 +255,61 @@ The following defects are fixed in ROCm v5.7,
 | rocSOLVER | 3.22.0 ⇒ [3.23.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.7.0) |
 | rocSPARSE | 2.5.2 ⇒ [2.5.4](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.7.0) |
 | rocThrust | [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.7.0) |
-| rocWMMA | [1.2.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.7.0) |
+| rocWMMA | 1.1.0 ⇒ [1.2.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.7.0) |
 | Tensile | 4.37.0 ⇒ [4.38.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.7.0) |
+
+#### AMDMIGraphX 2.7
+
+MIGraphX 2.7 for ROCm 5.7.0
+
+##### Added
+
+- Enabled hipRTC to not require dev packages for migraphx runtime and allow the ROCm install to be in a different directory than it was during build time
+- Add support for multi-target execution
+- Added Dynamic Batch support with C++/Python APIs
+- Add migraphx.create_argument to python API
+- Added dockerfile example for Ubuntu 22.04
+- Add TensorFlow supported ops in driver similar to exist onnx operator list
+- Add a MIGRAPHX_TRACE_MATCHES_FOR env variable to filter the matcher trace
+- Improved debugging by printing max,min,mean and stddev values for TRACE_EVAL = 2
+- use fast_math flag instead of ENV flag for GELU
+- Print message from driver if offload copy is set for compiled program
+
+##### Optimizations
+
+- Optimized for ONNX Runtime 1.14.0
+- Improved compile times by only building for the GPU on the system
+- Improve performance of pointwise/reduction kernels when using NHWC layouts
+- Load specific version of the migraphx_py library
+- Annotate functions with the block size so the compiler can do a better job of optimizing 
+- Enable reshape on nonstandard shapes
+- Use half HIP APIs to compute max and min
+- Added support for broadcasted scalars to unsqueeze operator
+- Improved multiplies with dot operator
+- Handle broadcasts across dot and concat
+- Add verify namespace for better symbol resolution
+
+##### Fixed
+
+- Resolved accuracy issues with FP16 resnet50
+- Update cpp generator to handle inf from  float
+- Fix assertion error during verify and make DCE work with tuples
+- Fix convert operation for NaNs
+- Fix shape typo in API test
+- Fix compile warnings for shadowing variable names
+- Add missing specialization for the `nullptr` for the hash function
+
+##### Changed
+
+- Bumped version of half library to 5.6.0
+- Bumped CI to support rocm 5.6
+- Make building tests optional
+- replace np.bool with bool as per numpy request
+
+##### Removed
+
+- Removed int8x4 rocBlas calls due to deprecation
+- removed std::reduce usage since not all OS&#39; support it
 
 #### hipBLAS 1.1.0
 
@@ -267,35 +322,6 @@ hipBLAS 1.1.0 for ROCm 5.7.0
 ##### Dependencies
 
 - dependency rocSOLVER now depends on rocSPARSE
-
-#### hipCUB 2.13.1
-
-hipCUB 2.13.1 for ROCm 5.7.0
-
-##### Changed
-
-- CUB backend references CUB and Thrust version 2.0.1.
-- Fixed `DeviceSegmentedReduce::ArgMin` and `DeviceSegmentedReduce::ArgMax` by returning the segment-relative index instead of the absolute one.
-- Fixed `DeviceSegmentedReduce::ArgMin` for inputs where the segment minimum is smaller than the value returned for empty segments. An equivalent fix is applied to `DeviceSegmentedReduce::ArgMax`.
-
-##### Known Issues
-
-- `debug_synchronous` no longer works on CUDA platform. `CUB_DEBUG_SYNC` should be used to enable those checks.
-- `DeviceReduce::Sum` does not compile on CUDA platform for mixed extended-floating-point/floating-point InputT and OutputT types.
-- `DeviceHistogram::HistogramEven` fails on CUDA platform for `[LevelT, SampleIteratorT] = [int, int]`.
-- `DeviceHistogram::MultiHistogramEven` fails on CUDA platform for `[LevelT, SampleIteratorT] = [int, int/unsigned short/float/double]` and `[LevelT, SampleIteratorT] = [float, double]`.
-
-#### hipFFT 1.0.12
-
-hipFFT 1.0.12 for ROCm 5.7.0
-
-##### Added
-
-- Implemented the hipfftXtMakePlanMany, hipfftXtGetSizeMany, hipfftXtExec APIs, to allow requesting half-precision transforms.
-
-##### Changed
-
-- Added --precision argument to benchmark/test clients.  --double is still accepted but is deprecated as a method to request a double-precision transform.
 
 #### hipSOLVER 1.8.1
 
@@ -316,43 +342,25 @@ hipSPARSE 2.3.8 for ROCm 5.7.0
 - Fix compilation failures when using cusparse 10.1 (non-update versions) as backend
 - Minor improvements
 
-#### MIOpen 2.19.0
-
-MIOpen 2.19.0 for ROCm 5.7.0
-
-##### Added
-
-- ROCm 5.5 support for gfx1101 (Navi32)
-
-##### Changed
-
-- Tuning results for MLIR on ROCm 5.5
-- Bumping MLIR commit to 5.5.0 release tag
-
-##### Fixed
-
-- Fix 3d convolution Host API bug
-- [HOTFIX][MI200][FP16] Disabled ConvHipImplicitGemmBwdXdlops when FP16_ALT is required.
-
 #### RCCL 2.17.1-1
 
 RCCL 2.17.1-1 for ROCm 5.7.0
 
 ##### Changed
 
-- Compatibility with NCCL 2.17.1-1
-- Performance tuning for some collective operations
+* Compatibility with NCCL 2.17.1-1
+* Performance tuning for some collective operations
 
 ##### Added
 
-- Minor improvements to MSCCL codepath
-- NCCL_NCHANNELS_PER_PEER support
-- Improved compilation performance
-- Support for gfx94x
+* Minor improvements to MSCCL codepath
+* NCCL_NCHANNELS_PER_PEER support
+* Improved compilation performance
+* Support for gfx94x
 
 ##### Fixed
 
-- Potential race-condition during ncclSocketClose()
+* Potential race-condition during ncclSocketClose()
 
 #### rocALUTION 2.1.11
 
@@ -441,21 +449,6 @@ rocPRIM 2.13.1 for ROCm 5.7.0
 
 - Fixed build issue caused by missing header in `thread/thread_search.hpp`.
 
-#### rocRAND 2.10.17
-
-rocRAND 2.10.17 for ROCm 5.7.0
-
-##### Added
-
-- MT19937 pseudo random number generator based on M. Matsumoto and T. Nishimura, 1998, Mersenne Twister: A 623-dimensionally equidistributed uniform pseudorandom number generator.
-- New benchmark for the device API using Google Benchmark, `benchmark_rocrand_device_api`, replacing `benchmark_rocrand_kernel`. `benchmark_rocrand_kernel` is deprecated and will be removed in a future version. Likewise, `benchmark_curand_host_api` is added to replace `benchmark_curand_generate` and `benchmark_curand_device_api` is added to replace `benchmark_curand_kernel`.
-- experimental HIP-CPU feature
-- ThreeFry pseudorandom number generator based on Salmon et al., 2011, &#34;Parallel random numbers: as easy as 1, 2, 3&#34;.
-
-##### Changed
-
-- Python 2.7 is no longer officially supported.
-
 #### rocSOLVER 3.23.0
 
 rocSOLVER 3.23.0 for ROCm 5.7.0
@@ -492,20 +485,6 @@ rocSPARSE 2.5.4 for ROCm 5.7.0
 ##### Known Issues
 
 In csritlu0, the algorithm rocsparse_itilu0_alg_sync_split_fusion has some accuracy issues to investigate with XNACK enabled. The fallback is rocsparse_itilu0_alg_sync_split.
-
-#### rocThrust 2.18.0
-
-rocThrust 2.18.0 for ROCm 5.7.0
-
-##### Fixed 
-
-- `lower_bound`, `upper_bound`, and `binary_search` failed to compile for certain types.
-- Fixed issue where `transform_iterator` would not compile with `__device__`-only operators.
-
-##### Changed
-
-- Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
-- Removed references to and workarounds for deprecated hcc
 
 #### rocWMMA 1.2.0
 
@@ -552,23 +531,24 @@ Tensile 4.38.0 for ROCm 5.7.0
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
 
-### What's New in This Release
+### What's new in this release
 
 ROCm 5.6.1 is a point release with several bug fixes in the HIP runtime.
 
-## HIP 5.6.1 (for ROCm 5.6.1)
+#### HIP 5.6.1 (for ROCm 5.6.1)
 
-### Fixed Defects
+### Fixed defects
 
-- *hipMemcpy* device-to-device (intra device) is now asynchronous with respect to the host
-- Enabled xnack+ check in HIP catch2 tests hang when executing tests
-- Memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs
-- Using *hipGraphAddMemFreeNode* no longer results in a crash
+* *hipMemcpy* device-to-device (inter-device) is now asynchronous with respect to the host
+* Enabled xnack+ check in HIP catch2 tests hang when executing tests
+* Memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs
+* Using *hipGraphAddMemFreeNode* no longer results in a crash
 
 ### Library Changes in ROCM 5.6.1
 
 | Library | Version |
 |---------|---------|
+| AMDMIGraphX | [2.5](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.6.1) |
 | hipBLAS | [0.53.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.1) |
 | hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.6.1) |
 | hipFFT | [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.6.1) |
@@ -585,6 +565,7 @@ ROCm 5.6.1 is a point release with several bug fixes in the HIP runtime.
 | rocSOLVER | [3.22.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.6.1) |
 | rocSPARSE | [2.5.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.6.1) |
 | rocThrust | [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.6.1) |
+| rocWMMA | [1.1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.6.1) |
 | Tensile | [4.37.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.6.1) |
 
 #### hipSPARSE 2.3.7
@@ -593,7 +574,7 @@ hipSPARSE 2.3.7 for ROCm 5.6.1
 
 ##### Bugfix
 
-* Reverted an undocumented API change in hipSPARSE 2.3.6 that affected hipsparseSpSV_solve function
+- Reverted an undocumented API change in hipSPARSE 2.3.6 that affected hipsparseSpSV_solve function
 
 -------------------
 
@@ -601,116 +582,116 @@ hipSPARSE 2.3.7 for ROCm 5.6.1
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
 <!-- markdownlint-disable header-increment -->
-#### Release Highlights
+### Release highlights
 
 ROCm 5.6 consists of several AI software ecosystem improvements to our fast-growing user base. A few examples include:
 
-- New documentation portal at https://rocm.docs.amd.com
-- Ongoing software enhancements for LLMs, ensuring full compliance with the HuggingFace unit test suite
-- OpenAI Triton, CuPy, HIP Graph support, and many other library performance enhancements
-- Improved ROCm deployment and development tools, including CPU-GPU (rocGDB) debugger, profiler, and docker containers
-- New pseudorandom generators are available in rocRAND.  Added support for half-precision transforms in hipFFT/rocFFT.  Added LU refactorization and linear system solver for sparse matrices in rocSOLVER.  
+* New documentation portal at https://rocm.docs.amd.com
+* Ongoing software enhancements for LLMs, ensuring full compliance with the HuggingFace unit test suite
+* OpenAI Triton, CuPy, HIP Graph support, and many other library performance enhancements
+* Improved ROCm deployment and development tools, including CPU-GPU (rocGDB) debugger, profiler, and docker containers
+* New pseudorandom generators are available in rocRAND.  Added support for half-precision transforms in hipFFT/rocFFT.  Added LU refactorization and linear system solver for sparse matrices in rocSOLVER.  
 
-#### OS and GPU Support Changes
+### OS and GPU support changes
 
-- SLES15 SP5 support was added this release. SLES15 SP3 support was dropped.
-- AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively referred to as gfx906 GPUs) will be entering the maintenance mode starting Q3 2023. This will be aligned with ROCm 5.7 GA release date.
-  - No new features and performance optimizations will be supported for the gfx906 GPUs beyond ROCm 5.7
-  - Bug fixes / critical security patches will continue to be supported for the gfx906 GPUs till Q2 2024 (End of Maintenance [EOM])(will be aligned with the closest ROCm release)
-  - Bug fixes during the maintenance will be made to the next ROCm point release
-  - Bug fixes will not be back ported to older ROCm releases for this SKU
-  - Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
+* SLES15 SP5 support was added this release. SLES15 SP3 support was dropped.
+* AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively referred to as gfx906 GPUs) will be entering the maintenance mode starting Q3 2023. This will be aligned with ROCm 5.7 GA release date.
+  * No new features and performance optimizations will be supported for the gfx906 GPUs beyond ROCm 5.7
+  * Bug fixes / critical security patches will continue to be supported for the gfx906 GPUs till Q2 2024 (End of Maintenance \[EOM])(will be aligned with the closest ROCm release)
+  * Bug fixes during the maintenance will be made to the next ROCm point release
+  * Bug fixes will not be back ported to older ROCm releases for this SKU
+  * Distro / Operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
 
-#### AMDSMI CLI 23.0.0.4
+### AMDSMI CLI 23.0.0.4
 
-##### Added
+#### Added
 
-- AMDSMI CLI tool enabled for Linux Bare Metal & Guest
+* AMDSMI CLI tool enabled for Linux Bare Metal & Guest
 
-- Package: amd-smi-lib
- 
-##### Known Issues
+* Package: amd-smi-lib
 
-- not all Error Correction Code (ECC) fields are currently supported
+#### Known issues
 
-- RHEL 8 & SLES 15 have extra install steps
+* not all Error Correction Code (ECC) fields are currently supported
 
-#### Kernel Modules (DKMS)
+* RHEL 8 & SLES 15 have extra install steps
 
-##### Fixes
+### Kernel modules (DKMS)
 
-- Stability fix for multi GPU system reproducilble via ROCm_Bandwidth_Test as reported in [Issue 2198](https://github.com/RadeonOpenCompute/ROCm/issues/2198).
+#### Fixes
 
-#### HIP 5.6 (For ROCm 5.6)
+* Stability fix for multi GPU system reproducible via ROCm_Bandwidth_Test as reported in [Issue 2198](https://github.com/RadeonOpenCompute/ROCm/issues/2198).
 
-##### Optimizations
+### HIP 5.6 (for ROCm 5.6)
 
-- Consolidation of hipamd, rocclr and OpenCL projects in clr
-- Optimized lock for graph global capture mode
+#### Optimizations
 
-##### Added
+* Consolidation of hipamd, rocclr and OpenCL projects in clr
+* Optimized lock for graph global capture mode
 
-- Added hipRTC support for amd_hip_fp16
-- Added hipStreamGetDevice implementation to get the device associated with the stream
-- Added HIP_AD_FORMAT_SIGNED_INT16 in hipArray formats
-- hipArrayGetInfo for getting information about the specified array
-- hipArrayGetDescriptor for getting 1D or 2D array descriptor
-- hipArray3DGetDescriptor to get 3D array descriptor
+#### Added
 
-##### Changed
+* Added hipRTC support for amd_hip_fp16
+* Added hipStreamGetDevice implementation to get the device associated with the stream
+* Added HIP_AD_FORMAT_SIGNED_INT16 in hipArray formats
+* hipArrayGetInfo for getting information about the specified array
+* hipArrayGetDescriptor for getting 1D or 2D array descriptor
+* hipArray3DGetDescriptor to get 3D array descriptor
 
-- hipMallocAsync to return success for zero size allocation to match hipMalloc
-- Separation of hipcc perl binaries from HIP project to hipcc project. hip-devel package depends on newly added hipcc package
-- Consolidation of hipamd, ROCclr, and OpenCL repositories into a single repository called clr. Instructions are updated to build HIP from sources in the HIP Installation guide
-- Removed hipBusBandwidth and hipCommander samples from hip-tests
+#### Changed
 
-##### Fixed
+* hipMallocAsync to return success for zero size allocation to match hipMalloc
+* Separation of hipcc perl binaries from HIP project to hipcc project. hip-devel package depends on newly added hipcc package
+* Consolidation of hipamd, ROCclr, and OpenCL repositories into a single repository called clr. Instructions are updated to build HIP from sources in the HIP Installation guide
+* Removed hipBusBandwidth and hipCommander samples from hip-tests
 
-- Fixed regression in hipMemCpyParam3D when offset is applied
+#### Fixed
 
-##### Known Issues
+* Fixed regression in hipMemCpyParam3D when offset is applied
 
-- Limited testing on xnack+ configuration
-  - Multiple HIP tests failures (gpuvm fault or hangs)
-- hipSetDevice and hipSetDeviceFlags APIs return hipErrorInvalidDevice instead of hipErrorNoDevice, on a system without GPU
-- Known memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs. Issue will be fixed in a future ROCm release
+#### Known issues
 
-##### Upcoming changes in future release
+* Limited testing on xnack+ configuration
+  * Multiple HIP tests failures (gpuvm fault or hangs)
+* hipSetDevice and hipSetDeviceFlags APIs return hipErrorInvalidDevice instead of hipErrorNoDevice, on a system without GPU
+* Known memory leak when code object files are loaded/unloaded via hipModuleLoad/hipModuleUnload APIs. Issue will be fixed in a future ROCm release
 
-- Removal of gcnarch from hipDeviceProp_t structure
-- Addition of new fields in hipDeviceProp_t structure
-  - maxTexture1D
-  - maxTexture2D
-  - maxTexture1DLayered
-  - maxTexture2DLayered
-  - sharedMemPerMultiprocessor
-  - deviceOverlap
-  - asyncEngineCount
-  - surfaceAlignment
-  - unifiedAddressing
-  - computePreemptionSupported
-  - uuid
-- Removal of deprecated code
-  - hip-hcc codes from hip code tree
-- Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
-- HIPMEMCPY_3D fields correction (unsigned int -> size_t)
-- Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
+#### Upcoming changes in future release
 
-#### ROCgdb-13 (For ROCm 5.6.0)
+* Removal of gcnarch from hipDeviceProp_t structure
+* Addition of new fields in hipDeviceProp_t structure
+  * maxTexture1D
+  * maxTexture2D
+  * maxTexture1DLayered
+  * maxTexture2DLayered
+  * sharedMemPerMultiprocessor
+  * deviceOverlap
+  * asyncEngineCount
+  * surfaceAlignment
+  * unifiedAddressing
+  * computePreemptionSupported
+  * uuid
+* Removal of deprecated code
+  * hip-hcc codes from hip code tree
+* Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
+* HIPMEMCPY_3D fields correction (unsigned int -> size_t)
+* Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
 
-##### Optimized
+### ROCgdb-13 (For ROCm 5.6.0)
 
-- Improved performances when handling the end of a process with a large number of threads.
+#### Optimized
+
+* Improved performances when handling the end of a process with a large number of threads.
 
 Known Issues
 
-- On certain configurations, ROCgdb can show the following warning message:
+* On certain configurations, ROCgdb can show the following warning message:
 
   `warning: Probes-based dynamic linker interface failed. Reverting to original interface.`
 
   This does not affect ROCgdb's functionalities.
 
-#### ROCprofiler (For ROCm 5.6.0)
+### ROCprofiler (for ROCm 5.6.0)
 
 In ROCm 5.6 the `rocprofilerv1` and `rocprofilerv2` include and library files of
 ROCm 5.5 are split into separate files. The `rocmtools` files that were
@@ -726,7 +707,7 @@ The ROCm Profiler Tool that uses `rocprofilerV1` can be invoked using the
 following command:
 
 ```sh
-$ rocprof …
+rocprof …
 ```
 
 To write a custom tool based on the `rocprofilerV1` API do the following:
@@ -743,7 +724,7 @@ int main() {
 This can be built in the following manner:
 
 ```sh
-$ gcc main.c -I/opt/rocm-5.6.0/include -L/opt/rocm-5.6.0/lib -lrocprofiler64
+gcc main.c -I/opt/rocm-5.6.0/include -L/opt/rocm-5.6.0/lib -lrocprofiler64
 ```
 
 The resulting `a.out` will depend on
@@ -753,7 +734,7 @@ The ROCm Profiler that uses `rocprofilerV2` API can be invoked using the
 following command:
 
 ```sh
-$ rocprofv2 …
+rocprofv2 …
 ```
 
 To write a custom tool based on the `rocprofilerV2` API do the following:
@@ -770,85 +751,49 @@ int main() {
 This can be built in the following manner:
 
 ```sh
-$ gcc main.c -I/opt/rocm-5.6.0/include -L/opt/rocm-5.6.0/lib -lrocprofiler64-v2
+gcc main.c -I/opt/rocm-5.6.0/include -L/opt/rocm-5.6.0/lib -lrocprofiler64-v2
 ```
 
 The resulting `a.out` will depend on
 `/opt/rocm-5.6.0/lib/librocprofiler64.so.2`.
 
-##### Optimized
+#### Optimized
 
-- Improved Test Suite
+* Improved Test Suite
 
-##### Added
+#### Added
 
-- 'end_time' need to be disabled in roctx_trace.txt
+* 'end_time' need to be disabled in roctx_trace.txt
 
-##### Fixed
+#### Fixed
 
-- rocprof in ROcm/5.4.0 gpu selector broken.
-- rocprof in ROCm/5.4.1 fails to generate kernel info.
-- rocprof clobbers LD_PRELOAD.
+* rocprof in ROcm/5.4.0 gpu selector broken.
+* rocprof in ROCm/5.4.1 fails to generate kernel info.
+* rocprof clobbers LD_PRELOAD.
 
 ### Library Changes in ROCM 5.6.0
 
 | Library | Version |
 |---------|---------|
-| hipBLAS |  ⇒ [1.0.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.0) |
-| hipCUB |  ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.6.0) |
-| hipFFT |  ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.6.0) |
-| hipSOLVER |  ⇒ [1.8.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.6.0) |
-| hipSPARSE |  ⇒ [2.3.6](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.6.0) |
-| MIOpen |  ⇒ [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.6.0) |
-| rccl |  ⇒ [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.6.0) |
-| rocALUTION |  ⇒ [2.1.9](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.6.0) |
-| rocBLAS |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.6.0) |
-| rocFFT |  ⇒ [1.0.23](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.6.0) |
-| rocm-cmake |  ⇒ [0.9.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.6.0) |
-| rocPRIM |  ⇒ [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.6.0) |
-| rocRAND |  ⇒ [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.6.0) |
-| rocSOLVER |  ⇒ [3.22.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.6.0) |
-| rocSPARSE |  ⇒ [2.5.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.6.0) |
-| rocThrust |  ⇒ [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.6.0) |
-| rocWMMA |  ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.6.0) |
-| Tensile |  ⇒ [4.37.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.6.0) |
-
-#### hipBLAS 1.0.0
-
-hipBLAS 1.0.0 for ROCm 5.6.0
-
-##### Changed
-
-- added const qualifier to hipBLAS functions (swap, sbmv, spmv, symv, trsm) where missing
-
-##### Removed
-
-- removed support for deprecated hipblasInt8Datatype_t enum
-- removed support for deprecated hipblasSetInt8Datatype and hipblasGetInt8Datatype functions
-
-##### Deprecated
-
-- in-place trmm is deprecated. It will be replaced by trmm which includes both in-place and
-  out-of-place functionality
-
-#### hipCUB 2.13.1
-
-hipCUB 2.13.1 for ROCm 5.6.0
-
-##### Added
-
-- Benchmarks for `BlockShuffle`, `BlockLoad`, and `BlockStore`.
-
-##### Changed
-
-- CUB backend references CUB and Thrust version 1.17.2.
-- Improved benchmark coverage of `BlockScan` by adding `ExclusiveScan`, benchmark coverage of `BlockRadixSort` by adding `SortBlockedToStriped`, and benchmark coverage of `WarpScan` by adding `Broadcast`.
-- Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core).
-
-##### Known Issues
-
-- `BlockRadixRankMatch` is currently broken under the rocPRIM backend.
-- `BlockRadixRankMatch` with a warp size that does not exactly divide the block size is broken under the CUB backend.
+| AMDMIGraphX | [2.5](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.6.0) |
+| hipBLAS | [0.53.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.0) |
+| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.6.0) |
+| hipFFT | 1.0.11 ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.6.0) |
+| hipSOLVER | 1.7.0 ⇒ [1.8.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.6.0) |
+| hipSPARSE | 2.3.5 ⇒ [2.3.6](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.6.0) |
+| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.6.0) |
+| rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.6.0) |
+| rocALUTION | 2.1.8 ⇒ [2.1.9](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.6.0) |
+| rocBLAS | 2.47.0 ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.6.0) |
+| rocFFT | 1.0.22 ⇒ [1.0.23](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.6.0) |
+| rocm-cmake | 0.8.1 ⇒ [0.9.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.6.0) |
+| rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.6.0) |
+| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.6.0) |
+| rocSOLVER | 3.21.0 ⇒ [3.22.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.6.0) |
+| rocSPARSE | 2.5.1 ⇒ [2.5.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.6.0) |
+| rocThrust | 2.17.0 ⇒ [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.6.0) |
+| rocWMMA | 1.0 ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.6.0) |
+| Tensile | 4.36.0 ⇒ [4.37.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.6.0) |
 
 #### hipFFT 1.0.12
 
@@ -881,50 +826,6 @@ hipSPARSE 2.3.6 for ROCm 5.6.0
 ##### Changed
 
 - For hipsparseXbsr2csr and hipsparseXcsr2bsr, blockDim == 0 now returns HIPSPARSE_STATUS_INVALID_SIZE
-
-#### MIOpen 2.19.0
-
-MIOpen 2.19.0 for ROCm 5.6.0
-
-##### Added
-
-- ROCm 5.5 support for gfx1101 (Navi32)
-
-##### Changed
-
-- Tuning results for MLIR on ROCm 5.5
-- Bumping MLIR commit to 5.5.0 release tag
-
-##### Fixed
-
-- Fix 3d convolution Host API bug
-- [HOTFIX][MI200][FP16] Disabled ConvHipImplicitGemmBwdXdlops when FP16_ALT is required.
-
-#### rccl 2.15.5
-
-RCCL 2.15.5 for ROCm 5.6.0
-
-##### Changed
-
-- Compatibility with NCCL 2.15.5
-- Unit test executable renamed to rccl-UnitTests
-
-##### Added
-
-- HW-topology aware binary tree implementation
-- Experimental support for MSCCL
-- New unit tests for hipGraph support
-- NPKit integration
-
-##### Fixed
-
-- rocm-smi ID conversion
-- Support for HIP_VISIBLE_DEVICES for unit tests
-- Support for p2p transfers to non (HIP) visible devices
-
-##### Removed
-
-- Removed TransferBench from tools.  Exists in standalone repo: https://github.com/ROCmSoftwarePlatform/TransferBench
 
 #### rocALUTION 2.1.9
 
@@ -1004,42 +905,6 @@ rocm-cmake 0.9.0 for ROCm 5.6.0
 - Added the option ROCM_HEADER_WRAPPER_WERROR
     - Compile-time C macro in the wrapper headers causes errors to be emitted instead of warnings.
     - Configure-time CMake option sets the default for the C macro.
-
-#### rocPRIM 2.13.0
-
-rocPRIM 2.13.0 for ROCm 5.6.0
-
-##### Added
-
-- New block level `radix_rank` primitive.
-- New block level `radix_rank_match` primitive.
-- Added a stable block sorting implementation. This be used with `block_sort` by using the `block_sort_algorithm::stable_merge_sort` algorithm.
-
-##### Changed
-
-- Improved the performance of `block_radix_sort` and `device_radix_sort`.
-- Improved the performance of `device_merge_sort`.
-- Updated `docs` directory structure to match the standard of [rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core). Contributed by: [v01dXYZ](https://github.com/v01dXYZ).
-
-##### Known Issues
-
-- Disabled GPU error messages relating to incorrect warp operation usage with Navi GPUs on Windows, due to GPU printf performance issues on Windows.
-- When `ROCPRIM_DISABLE_LOOKBACK_SCAN` is set, `device_scan` fails for input sizes bigger than `scan_config::size_limit`, which defaults to `std::numeric_limits&lt;unsigned int&gt;::max()`.
-
-#### rocRAND 2.10.17
-
-rocRAND 2.10.17 for ROCm 5.6.0
-
-##### Added
-
-- MT19937 pseudo random number generator based on M. Matsumoto and T. Nishimura, 1998, Mersenne Twister: A 623-dimensionally equidistributed uniform pseudorandom number generator.
-- New benchmark for the device API using Google Benchmark, `benchmark_rocrand_device_api`, replacing `benchmark_rocrand_kernel`. `benchmark_rocrand_kernel` is deprecated and will be removed in a future version. Likewise, `benchmark_curand_host_api` is added to replace `benchmark_curand_generate` and `benchmark_curand_device_api` is added to replace `benchmark_curand_kernel`.
-- experimental HIP-CPU feature
-- ThreeFry pseudorandom number generator based on Salmon et al., 2011, &#34;Parallel random numbers: as easy as 1, 2, 3&#34;.
-
-##### Changed
-
-- Python 2.7 is no longer officially supported.
 
 #### rocSOLVER 3.22.0
 
@@ -1168,7 +1033,7 @@ Tensile 4.37.0 for ROCm 5.6.0
 ## ROCm 5.5.1
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
-### What's New in This Release
+### What's new in this release
 
 #### HIP SDK for Windows
 
@@ -1183,18 +1048,19 @@ page and differs from the Linux feature set. Visit
 page to get started. Known issues are tracked on
 [GitHub](https://github.com/RadeonOpenCompute/ROCm/issues?q=is%3Aopen+label%3A5.5.1+label%3A%22Verified+Issue%22+label%3AWindows).
 
-#### HIP API Change
+#### HIP API change
 
 The following HIP API is updated in the ROCm 5.5.1 release:
 
 ##### `hipDeviceSetCacheConfig`
 
-- The return value for `hipDeviceSetCacheConfig` is updated from `hipErrorNotSupported` to `hipSuccess`
+* The return value for `hipDeviceSetCacheConfig` is updated from `hipErrorNotSupported` to `hipSuccess`
 
 ### Library Changes in ROCM 5.5.1
 
 | Library | Version |
 |---------|---------|
+| AMDMIGraphX | [2.5](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.5.1) |
 | hipBLAS | [0.54.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.5.1) |
 | hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.5.1) |
 | hipFFT | [1.0.11](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.5.1) |
@@ -1219,85 +1085,86 @@ The following HIP API is updated in the ROCm 5.5.1 release:
 ## ROCm 5.5.0
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
-### What's New in This Release
+### What's new in this release
 
-#### HIP Enhancements
+#### HIP enhancements
 
 The ROCm v5.5 release consists of the following HIP enhancements:
 
-##### Enhanced Stack Size Limit
+##### Enhanced stack size limit
 
 In this release, the stack size limit is increased from 16k to 131056 bytes (or 128K - 16).
 Applications requiring to update the stack size can use hipDeviceSetLimit API.
 
-##### `hipcc` Changes
+##### `hipcc` changes
 
 The following hipcc changes are implemented in this release:
 
-- `hipcc` will not implicitly link to `libpthread` and `librt`, as they are no longer a link time dependence for HIP programs.  Applications that depend on these libraries must explicitly link to them.
-- `-use-staticlib` and `-use-sharedlib` options are deprecated.
+* `hipcc` will not implicitly link to `libpthread` and `librt`, as they are no longer a link time dependence for HIP programs.  Applications that depend on these libraries must explicitly link to them.
+* `-use-staticlib` and `-use-sharedlib` options are deprecated.
 
-##### Future Changes
+##### Future changes
 
-- Separation of `hipcc` binaries (Perl scripts) from HIP to `hipcc` project. Users will access separate `hipcc` package for installing `hipcc` binaries in future ROCm releases.
-- In a future ROCm release, the following samples will be removed from the `hip-tests` project.
-  - `hipBusbandWidth` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/shipBusBandwidth>
-  - `hipCommander` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/hipCommander>
+* Separation of `hipcc` binaries (Perl scripts) from HIP to `hipcc` project. Users will access separate `hipcc` package for installing `hipcc` binaries in future ROCm releases.
+
+* In a future ROCm release, the following samples will be removed from the `hip-tests` project.
+  * `hipBusbandWidth` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/shipBusBandwidth>
+  * `hipCommander` at <https://github.com/ROCm-Developer-Tools/hip-tests/tree/develop/samples/1_Utils/hipCommander>
 
   Note that the samples will continue to be available in previous release branches.
-- Removal of gcnarch from hipDeviceProp_t structure
-- Addition of new fields in hipDeviceProp_t structure
-  - maxTexture1D
-  - maxTexture2D
-  - maxTexture1DLayered
-  - maxTexture2DLayered
-  - sharedMemPerMultiprocessor
-  - deviceOverlap
-  - asyncEngineCount
-  - surfaceAlignment
-  - unifiedAddressing
-  - computePreemptionSupported
-  - hostRegisterSupported
-  - uuid
-- Removal of deprecated code
-  - hip-hcc codes from hip code tree
-- Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
-- HIPMEMCPY_3D fields correction to avoid truncation of "size_t" to "unsigned int" inside hipMemcpy3D()
-- Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
-- Correct hipGetLastError to return the last error instead of last API call's return code
-- Update hipExternalSemaphoreHandleDesc to add "unsigned int reserved[16]"
-- Correct handling of flag values in hipIpcOpenMemHandle for hipIpcMemLazyEnablePeerAccess
-- Remove hiparray* and make it opaque with hipArray_t
+* Removal of gcnarch from hipDeviceProp_t structure
+* Addition of new fields in hipDeviceProp_t structure
+  * maxTexture1D
+  * maxTexture2D
+  * maxTexture1DLayered
+  * maxTexture2DLayered
+  * sharedMemPerMultiprocessor
+  * deviceOverlap
+  * asyncEngineCount
+  * surfaceAlignment
+  * unifiedAddressing
+  * computePreemptionSupported
+  * hostRegisterSupported
+  * uuid
+* Removal of deprecated code
+  * hip-hcc codes from hip code tree
+* Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
+* HIPMEMCPY_3D fields correction to avoid truncation of "size_t" to "unsigned int" inside hipMemcpy3D()
+* Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
+* Correct hipGetLastError to return the last error instead of last API call's return code
+* Update hipExternalSemaphoreHandleDesc to add "unsigned int reserved\[16]"
+* Correct handling of flag values in hipIpcOpenMemHandle for hipIpcMemLazyEnablePeerAccess
+* Remove hiparray* and make it opaque with hipArray_t
 
-##### New HIP APIs in This Release
+##### New HIP APIs in this release
 
 > **Note**
 >
 > This is a pre-official version (beta) release of the new APIs and may contain unresolved issues.
 
-###### Memory Management HIP APIs
+###### Memory management HIP APIs
 
 The new memory management HIP API is as follows:
 
-- Sets information on the specified pointer [BETA].
+* Sets information on the specified pointer \[BETA].
 
-  ```h
+  ```cpp
   hipError_t hipPointerSetAttribute(const void* value, hipPointer_attribute attribute, hipDeviceptr_t ptr);
   ```
 
-###### Module Management HIP APIs
+###### Module management HIP APIs
 
 The new module management HIP APIs are as follows:
 
-- Launches kernel $f$ with launch parameters and shared memory on stream with arguments passed to `kernelParams`, where thread blocks can cooperate and synchronize as they execute.
+* Launches kernel $f$ with launch parameters and shared memory on stream with arguments passed to `kernelParams`, where thread blocks can cooperate and synchronize as they execute.
 
-  ```h
+  ```cpp
   hipError_t hipModuleLaunchCooperativeKernel(hipFunction_t f, unsigned int gridDimX, unsigned int gridDimY, unsigned int gridDimZ, unsigned int blockDimX, unsigned int blockDimY, unsigned int blockDimZ, unsigned int sharedMemBytes, hipStream_t stream, void** kernelParams);
   ```
 
-- Launches kernels on multiple devices where thread blocks can cooperate and synchronize as they execute.
+* Launches kernels on multiple devices where thread blocks can cooperate and synchronize as they execute.
 
-  ```h
+  ```cpp
   hipError_t hipModuleLaunchCooperativeKernelMultiDevice(hipFunctionLaunchParams* launchParamsList, unsigned int numDevices, unsigned int flags);
   ```
 
@@ -1305,64 +1172,64 @@ The new module management HIP APIs are as follows:
 
 The new HIP Graph Management APIs are as follows:
 
-- Creates a memory allocation node and adds it to a graph [BETA]
+* Creates a memory allocation node and adds it to a graph \[BETA]
 
-  ```h
+  ```cpp
   hipError_t hipGraphAddMemAllocNode(hipGraphNode_t* pGraphNode, hipGraph_t graph, const hipGraphNode_t* pDependencies, size_t numDependencies, hipMemAllocNodeParams* pNodeParams);
   ```
 
-- Return parameters for memory allocation node [BETA]
+* Return parameters for memory allocation node \[BETA]
 
-  ```h
+  ```cpp
   hipError_t hipGraphMemAllocNodeGetParams(hipGraphNode_t node, hipMemAllocNodeParams* pNodeParams);
   ```
 
-- Creates a memory free node and adds it to a graph [BETA]
+* Creates a memory free node and adds it to a graph \[BETA]
 
-  ```h
+  ```cpp
   hipError_t hipGraphAddMemFreeNode(hipGraphNode_t* pGraphNode, hipGraph_t graph, const hipGraphNode_t* pDependencies, size_t numDependencies, void* dev_ptr);
   ```
 
-- Returns parameters for memory free node [BETA].
+* Returns parameters for memory free node \[BETA].
 
-  ```h
+  ```cpp
   hipError_t hipGraphMemFreeNodeGetParams(hipGraphNode_t node, void* dev_ptr);
   ```
 
-- Write a DOT file describing graph structure [BETA].
+* Write a DOT file describing graph structure \[BETA].
 
-  ```h
+  ```cpp
   hipError_t hipGraphDebugDotPrint(hipGraph_t graph, const char* path, unsigned int flags);
   ```
 
-- Copies attributes from source node to destination node [BETA].
+* Copies attributes from source node to destination node \[BETA].
 
-  ```h
+  ```cpp
   hipError_t hipGraphKernelNodeCopyAttributes(hipGraphNode_t hSrc, hipGraphNode_t hDst);
   ```
 
-- Enables or disables the specified node in the given graphExec [BETA]
+* Enables or disables the specified node in the given graphExec \[BETA]
 
-  ```h
+  ```cpp
   hipError_t hipGraphNodeSetEnabled(hipGraphExec_t hGraphExec, hipGraphNode_t hNode, unsigned int isEnabled);
   ```
 
-- Query whether a node in the given graphExec is enabled [BETA]
+* Query whether a node in the given graphExec is enabled \[BETA]
 
-  ```h
+  ```cpp
   hipError_t hipGraphNodeGetEnabled(hipGraphExec_t hGraphExec, hipGraphNode_t hNode, unsigned int* isEnabled);
   ```
 
-##### OpenMP Enhancements
+##### OpenMP enhancements
 This release consists of the following OpenMP enhancements:
 
-- Additional support for OMPT functions `get_device_time` and `get_record_type`.
-- Add support for min/max fast fp atomics on AMD GPUs.
-- Fix the use of the abs function in C device regions.
+* Additional support for OMPT functions `get_device_time` and `get_record_type`.
+* Add support for min/max fast fp atomics on AMD GPUs.
+ Fix the use of the abs function in C device regions.
 
-### Deprecations and Warnings
+### Deprecations and warnings
 
-#### HIP Deprecation
+#### HIP deprecation
 
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
@@ -1370,13 +1237,13 @@ The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, co
 >
 > There will be a transition period where the Perl scripts and compiled binaries are available  before the scripts are removed. There will be no functional difference between the Perl scripts and their compiled binary counterpart. No user action is required. Once these are available, users can optionally switch to `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
 
-##### Linux Filesystem Hierarchy Standard for ROCm
+##### Linux file system hierarchy standard for ROCm
 
-ROCm packages have adopted the Linux foundation filesystem hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new filesystem hierarchy, ROCm ensures backward compatibility with its 5.1 version or older filesystem hierarchy. See below for a detailed explanation of the new filesystem hierarchy and backward compatibility.
+ROCm packages have adopted the Linux foundation file system hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new file system hierarchy, ROCm ensures backward compatibility with its 5.1 version or older file system hierarchy. See below for a detailed explanation of the new file system hierarchy and backward compatibility.
 
-##### New Filesystem Hierarchy
+##### New file system hierarchy
 
-The following is the new filesystem hierarchy:4
+The following is the new file system hierarchy:4
 
 ```text
 /opt/rocm-<ver>
@@ -1414,7 +1281,7 @@ The following is the new filesystem hierarchy:4
 
 For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 
-##### Backward Compatibility with Older Filesystems
+##### Backward compatibility with older file systems
 
 ROCm has moved header files and libraries to its new location as indicated in the above structure and included symbolic-link and wrapper header files in its old location for backward compatibility.
 
@@ -1426,7 +1293,7 @@ ROCm has moved header files and libraries to its new location as indicated in th
 
 Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/include`) with a warning message to include files from the new location (`/opt/rocm-xxx/include`) as shown in the example below:
 
-```h
+```cpp
 // Code snippet from hip_runtime.h
 #pragma message “This file is deprecated. Use file from include path /opt/rocm-ver/include/ and prefix with hip”.
 #include "hip/hip_runtime.h"
@@ -1434,10 +1301,10 @@ Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/
 
 The wrapper header files’ backward compatibility deprecation is as follows:
 
-- `#pragma` message announcing deprecation -- ROCm v5.2 release
-- `#pragma` message changed to `#warning` -- Future release
-- `#warning` changed to `#error` -- Future release
-- Backward compatibility wrappers removed -- Future release
+* `#pragma` message announcing deprecation -- ROCm v5.2 release
+* `#pragma` message changed to `#warning` -- Future release
+* `#warning` changed to `#error` -- Future release
+* Backward compatibility wrappers removed -- Future release
 
 ##### Library files
 
@@ -1445,92 +1312,89 @@ Library files are available in the `/opt/rocm-xxx/lib` folder. For backward comp
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/
 total 4
 drwxr-xr-x 4 root root 4096 May 12 10:45 cmake
 lrwxrwxrwx 1 root root   24 May 10 23:32 libamdhip64.so -> ../../lib/libamdhip64.so
 ```
 
-##### CMake Config files
+##### CMake config files
 
 All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<component>` folder.
 For backward compatibility, the old CMake locations (`/opt/rocm-xxx/<component>/lib/cmake`) consist of a soft link to the new CMake config.
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/cmake/hip/
 total 0
 lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
 ```
 
-#### ROCm Support For Code Object V3 Deprecated
+#### ROCm support for Code Object V3 deprecated
 
 Support for Code Object v3 is deprecated and will be removed in a future release.
 
-#### Comgr V3.0 Changes
+#### Comgr V3.0 changes
 
 The following APIs and macros have been marked as deprecated. These are expected to be removed in a future ROCm release and coincides with the release of Comgr v3.0.
 
-##### API Changes
+##### API changes
 
-- `amd_comgr_action_info_set_options()`
-- `amd_comgr_action_info_get_options()`
+* `amd_comgr_action_info_set_options()`
+* `amd_comgr_action_info_get_options()`
 
-##### Actions and Data Types
+##### Actions and data types
 
-- `AMD_COMGR_ACTION_ADD_DEVICE_LIBRARIES`
-- `AMD_COMGR_ACTION_COMPILE_SOURCE_TO_FATBIN`
+* `AMD_COMGR_ACTION_ADD_DEVICE_LIBRARIES`
+* `AMD_COMGR_ACTION_COMPILE_SOURCE_TO_FATBIN`
 
 For replacements, see the `AMD_COMGR_ACTION_INFO_GET`/`SET_OPTION_LIST APIs`, and the `AMD_COMGR_ACTION_COMPILE_SOURCE_(WITH_DEVICE_LIBS)_TO_BC` macros.
 
-#### Deprecated Environment Variables
+#### Deprecated environment variables
 
 The following environment variables are removed in this ROCm release:
 
-- `GPU_MAX_COMMAND_QUEUES`
-- `GPU_MAX_WORKGROUP_SIZE_2D_X`
-- `GPU_MAX_WORKGROUP_SIZE_2D_Y`
-- `GPU_MAX_WORKGROUP_SIZE_3D_X`
-- `GPU_MAX_WORKGROUP_SIZE_3D_Y`
-- `GPU_MAX_WORKGROUP_SIZE_3D_Z`
-- `GPU_BLIT_ENGINE_TYPE`
-- `GPU_USE_SYNC_OBJECTS`
-- `AMD_OCL_SC_LIB`
-- `AMD_OCL_ENABLE_MESSAGE_BOX`
-- `GPU_FORCE_64BIT_PTR`
-- `GPU_FORCE_OCL20_32BIT`
-- `GPU_RAW_TIMESTAMP`
-- `GPU_SELECT_COMPUTE_RINGS_ID`
-- `GPU_USE_SINGLE_SCRATCH`
-- `GPU_ENABLE_LARGE_ALLOCATION`
-- `HSA_LOCAL_MEMORY_ENABLE`
-- `HSA_ENABLE_COARSE_GRAIN_SVM`
-- `GPU_IFH_MODE`
-- `OCL_SYSMEM_REQUIREMENT`
-- `OCL_CODE_CACHE_ENABLE`
-- `OCL_CODE_CACHE_RESET`
+* `GPU_MAX_COMMAND_QUEUES`
+* `GPU_MAX_WORKGROUP_SIZE_2D_X`
+* `GPU_MAX_WORKGROUP_SIZE_2D_Y`
+* `GPU_MAX_WORKGROUP_SIZE_3D_X`
+* `GPU_MAX_WORKGROUP_SIZE_3D_Y`
+* `GPU_MAX_WORKGROUP_SIZE_3D_Z`
+* `GPU_BLIT_ENGINE_TYPE`
+* `GPU_USE_SYNC_OBJECTS`
+* `AMD_OCL_SC_LIB`
+* `AMD_OCL_ENABLE_MESSAGE_BOX`
+* `GPU_FORCE_64BIT_PTR`
+* `GPU_FORCE_OCL20_32BIT`
+* `GPU_RAW_TIMESTAMP`
+* `GPU_SELECT_COMPUTE_RINGS_ID`
+* `GPU_USE_SINGLE_SCRATCH`
+* `GPU_ENABLE_LARGE_ALLOCATION`
+* `HSA_LOCAL_MEMORY_ENABLE`
+* `HSA_ENABLE_COARSE_GRAIN_SVM`
+* `GPU_IFH_MODE`
+* `OCL_SYSMEM_REQUIREMENT`
+* `OCL_CODE_CACHE_ENABLE`
+* `OCL_CODE_CACHE_RESET`
 
-### Known Issues In This Release
+### Known issues in this release
 
 The following are the known issues in this release.
 
-#### `DISTRIBUTED`/`TEST_DISTRIBUTED_SPAWN` Fails
+#### `DISTRIBUTED`/`TEST_DISTRIBUTED_SPAWN` fails
 
 When user applications call `ncclCommAbort` to destruct communicators and then create new
 communicators repeatedly, subsequent communicators may fail to initialize.
 
 This issue is under investigation and will be resolved in a future release.
 
-#### Failures In HIP Directed Tests
-
-Multiple HIP directed tests fail.
-
 ### Library Changes in ROCM 5.5.0
 
 | Library | Version |
 |---------|---------|
+| AMDMIGraphX |  ⇒ [2.5](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.5.0) |
 | hipBLAS | 0.53.0 ⇒ [0.54.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.5.0) |
 | hipCUB | 2.13.0 ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.5.0) |
 | hipFFT | 1.0.10 ⇒ [1.0.11](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.5.0) |
@@ -1549,6 +1413,41 @@ Multiple HIP directed tests fail.
 | rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.5.0) |
 | rocWMMA | 0.9 ⇒ [1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.5.0) |
 | Tensile | 4.35.0 ⇒ [4.36.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.5.0) |
+
+#### AMDMIGraphX 2.5
+
+MIGraphX 2.5 for ROCm 5.5.0
+
+##### Added
+
+- Y-Model feature to store tuning information with the optimized model
+- Added Python 3.10 bindings 
+- Accuracy checker tool based on ONNX Runtime
+- ONNX Operators parse_split, and Trilu 
+- Build support for ROCm MLIR
+- Added migraphx-driver flag to print optimizations in python (--python)
+- Added JIT implementation of the Gather and Pad operator which results in better handling of larger tensor sizes.
+
+##### Optimizations
+
+- Improved performance of Transformer based models
+- Improved performance of the Pad, Concat, Gather, and Pointwise operators
+- Improved onnx/pb file loading speed
+- Added general optimize pass which runs several passes such as simplify_reshapes/algebra and DCE in loop.
+
+##### Fixed
+
+- Improved parsing Tensorflow Protobuf files 
+- Resolved various accuracy issues with some onnx models
+- Resolved a gcc-12 issue with mivisionx
+- Improved support for larger sized models and batches
+- Use --offload-arch instead of --cuda-gpu-arch for the HIP compiler
+- Changes inside JIT to use float accumulator for large reduce ops of half type to avoid overflow.
+- Changes inside JIT to temporarily use cosine to compute sine function.
+
+##### Changed
+
+- Changed version/location of 3rd party build dependencies to pick up fixes
 
 #### hipBLAS 0.54.0
 
@@ -1952,9 +1851,9 @@ Tensile 4.36.0 for ROCm 5.5.0
 
 ## ROCm 5.4.3
 <!-- markdownlint-disable first-line-h1 -->
-### Deprecations and Warnings
+### Deprecations and warnings
 
-#### HIP Perl Scripts Deprecation
+#### HIP Perl scripts deprecation
 
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
@@ -1962,13 +1861,13 @@ The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, co
 >
 > There will be a transition period where the Perl scripts and compiled binaries are available  before the scripts are removed. There will be no functional difference between the Perl scripts and their compiled binary counterpart. No user action is required. Once these are available, users can optionally switch to `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
 
-##### Linux Filesystem Hierarchy Standard for ROCm
+##### Linux file system hierarchy standard for ROCm
 
-ROCm packages have adopted the Linux foundation filesystem hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new filesystem hierarchy, ROCm ensures backward compatibility with its 5.1 version or older filesystem hierarchy. See below for a detailed explanation of the new filesystem hierarchy and backward compatibility.
+ROCm packages have adopted the Linux foundation file system hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new file system hierarchy, ROCm ensures backward compatibility with its 5.1 version or older file system hierarchy. See below for a detailed explanation of the new file system hierarchy and backward compatibility.
 
-##### New Filesystem Hierarchy
+##### New file system hierarchy
 
-The following is the new filesystem hierarchy:4
+The following is the new file system hierarchy:4
 
 ```text
 /opt/rocm-<ver>
@@ -2006,7 +1905,7 @@ The following is the new filesystem hierarchy:4
 
 For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 
-##### Backward Compatibility with Older Filesystems
+##### Backward compatibility with older file systems
 
 ROCm has moved header files and libraries to its new location as indicated in the above structure and included symbolic-link and wrapper header files in its old location for backward compatibility.
 
@@ -2018,7 +1917,7 @@ ROCm has moved header files and libraries to its new location as indicated in th
 
 Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/include`) with a warning message to include files from the new location (`/opt/rocm-xxx/include`) as shown in the example below:
 
-```h
+```cpp
 // Code snippet from hip_runtime.h
 #pragma message “This file is deprecated. Use file from include path /opt/rocm-ver/include/ and prefix with hip”.
 #include "hip/hip_runtime.h"
@@ -2026,10 +1925,10 @@ Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/
 
 The wrapper header files’ backward compatibility deprecation is as follows:
 
-- `#pragma` message announcing deprecation -- ROCm v5.2 release
-- `#pragma` message changed to `#warning` -- Future release
-- `#warning` changed to `#error` -- Future release
-- Backward compatibility wrappers removed -- Future release
+* `#pragma` message announcing deprecation -- ROCm v5.2 release
+* `#pragma` message changed to `#warning` -- Future release
+* `#warning` changed to `#error` -- Future release
+* Backward compatibility wrappers removed -- Future release
 
 ##### Library files
 
@@ -2037,42 +1936,42 @@ Library files are available in the `/opt/rocm-xxx/lib` folder. For backward comp
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/
 total 4
 drwxr-xr-x 4 root root 4096 May 12 10:45 cmake
 lrwxrwxrwx 1 root root   24 May 10 23:32 libamdhip64.so -> ../../lib/libamdhip64.so
 ```
 
-##### CMake Config files
+##### CMake config files
 
 All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<component>` folder. For backward compatibility, the old CMake locations (`/opt/rocm-xxx/<component>/lib/cmake`) consist of a soft link to the new CMake config.
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/cmake/hip/
 total 0
 lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
 ```
 
-### Fixed Defects
+### Fixed defects
 
-#### Compiler Improvements
+#### Compiler improvements
 
 In ROCm v5.4.3, improvements to the compiler address errors with the following signatures:
 
-- "error: unhandled SGPR spill to memory"
-- "cannot scavenge register without an emergency spill slot!"
-- "error: ran out of registers during register allocation"
+* "error: unhandled SGPR spill to memory"
+* "cannot scavenge register without an emergency spill slot!"
+* "error: ran out of registers during register allocation"
 
-### Known Issues
+### Known issues
 
-#### Compiler Option Error at Runtime
+#### Compiler option error at runtime
 
-Some users may encounter a “Cannot find Symbol” error at runtime when using -save-temps. While most -save-temps use cases work correctly, this error may appear occasionally.
+Some users may encounter a “Cannot find Symbol” error at runtime when using `-save-temps`. While most `-save-temps` use cases work correctly, this error may appear occasionally.
 
-This issue is under investigation, and the known workaround is not to use -save-temps when the error appears.
+This issue is under investigation, and the known workaround is not to use `-save-temps` when the error appears.
 
 ### Library Changes in ROCM 5.4.3
 
@@ -2108,9 +2007,9 @@ rocFFT 1.0.21 for ROCm 5.4.3
 
 ## ROCm 5.4.2
 <!-- markdownlint-disable first-line-h1 -->
-### Deprecations and Warnings
+### Deprecations and warnings
 
-#### HIP Perl Scripts Deprecation
+#### HIP Perl scripts deprecation
 
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
@@ -2118,23 +2017,23 @@ The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, co
 >
 > There will be a transition period where the Perl scripts and compiled binaries are available  before the scripts are removed. There will be no functional difference between the Perl scripts and their compiled binary counterpart. No user action is required. Once these are available, users can optionally switch to `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
 
-#### `hipcc` Options Deprecation
+#### `hipcc` options deprecation
 
 The following hipcc options are being deprecated and will be removed in a future release:
 
-- The `--amdgpu-target` option is being deprecated, and user must use the `–offload-arch` option to specify the GPU architecture.
-- The `--amdhsa-code-object-version` option is being deprecated.  Users can use the Clang/LLVM option `-mllvm -mcode-object-version` to debug issues related to code object versions.
-- The `--hipcc-func-supp`/`--hipcc-no-func-supp` options are being deprecated, as the function calls are already supported in production on AMD GPUs.
+* The `--amdgpu-target` option is being deprecated, and user must use the `–offload-arch` option to specify the GPU architecture.
+* The `--amdhsa-code-object-version` option is being deprecated.  Users can use the Clang/LLVM option `-mllvm -mcode-object-version` to debug issues related to code object versions.
+* The `--hipcc-func-supp`/`--hipcc-no-func-supp` options are being deprecated, as the function calls are already supported in production on AMD GPUs.
 
-### Known Issues
+### Known issues
 
 Under certain circumstances typified by high register pressure, users may encounter a compiler abort with one of the following error messages:
 
-- > `error: unhandled SGPR spill to memory`
+* > `error: unhandled SGPR spill to memory`
 
-- > `cannot scavenge register without an emergency spill slot!`
+* > `cannot scavenge register without an emergency spill slot!`
 
-- > `error: ran out of registers during register allocation`
+* > `error: ran out of registers during register allocation`
 
 This is a known issue and will be fixed in a future release.
 
@@ -2164,9 +2063,9 @@ This is a known issue and will be fixed in a future release.
 
 ## ROCm 5.4.1
 <!-- markdownlint-disable first-line-h1 -->
-### What's New in This Release
+### What's new in this release
 
-#### HIP Enhancements
+#### HIP enhancements
 
 The ROCm v5.4.1 release consists of the following new HIP API:
 
@@ -2178,7 +2077,7 @@ The following new HIP API is introduced in the ROCm v5.4.1 release.
 >
 > This is a pre-official version (beta) release of the new APIs.
 
-```h
+```cpp
 hipError_t hipLaunchHostFunc(hipStream_t stream, hipHostFn_t fn, void* userData);
 ```
 
@@ -2192,9 +2091,9 @@ This parameter returns `#hipSuccess`, `#hipErrorInvalidValue`.
 
 For more information, refer to the HIP API documentation at /bundle/HIP_API_Guide/page/modules.html.
 
-### Deprecations and Warnings
+### Deprecations and warnings
 
-#### HIP Perl Scripts Deprecation
+#### HIP Perl scripts deprecation
 
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
@@ -2202,7 +2101,7 @@ The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, co
 >
 > There will be a transition period where the Perl scripts and compiled binaries are available  before the scripts are removed. There will be no functional difference between the Perl scripts and their compiled binary counterpart. No user action is required. Once these are available, users can optionally switch to `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
 
-### IFWI Fixes
+### IFWI fixes
 
 These defects were identified and documented as known issues in previous ROCm releases and are fixed in this release.
 AMD Instinct™ MI200 Firmware IFWI Maintenance Update #3
@@ -2224,7 +2123,7 @@ Instructions on how to download and apply MI200 maintenance updates are availabl
 
 <https://www.amd.com/en/support/server-accelerators/amd-instinct/amd-instinct-mi-series/amd-instinct-mi210>
 
-#### AMD Instinct™ MI200 SRIOV Virtualization Support
+#### AMD Instinct™ MI200 SRIOV virtualization support
 
 Maintenance update #3, combined with ROCm 5.4.1, now provides SRIOV virtualization support for all AMD Instinct™ MI200 devices.
 
@@ -2263,17 +2162,17 @@ rocFFT 1.0.20 for ROCm 5.4.1
 ## ROCm 5.4.0
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
-### What's New in This Release
+### What's new in this release
 
-#### HIP Enhancements
+#### HIP enhancements
 
 The ROCm v5.4 release consists of the following HIP enhancements:
 
-##### Support for Wall Clock64
+##### Support for wall_clock64
 
 A new timer function wall_clock64() is supported, which returns wall clock count at a constant frequency on the device.
 
-```h
+```cpp
 long long int wall_clock64();
 ```
 
@@ -2281,7 +2180,7 @@ It returns wall clock count at a constant frequency on the device, which can be 
 
 Example:
 
-```h
+```cpp
 int wallClkRate = 0; //in kilohertz
 +HIPCHECK(hipDeviceGetAttribute(&wallClkRate, hipDeviceAttributeWallClockRate, deviceId));
 ```
@@ -2292,7 +2191,7 @@ Where hipDeviceAttributeWallClockRate is a device attribute.
 >
 > The wall clock frequency is a per-device attribute.
 
-##### New Registry Added for GPU_MAX_HW_QUEUES
+##### New registry added for GPU_MAX_HW_QUEUES
 
 The GPU_MAX_HW_QUEUES registry defines the maximum number of independent hardware queues allocated per process per device.
 
@@ -2304,7 +2203,7 @@ The environment variable controls how many independent hardware queues HIP runti
 
 For more details, refer to the HIP Programming Guide.
 
-#### New HIP APIs in This Release
+#### New HIP APIs in this release
 
 The following new HIP APIs are available in the ROCm v5.4 release.
 
@@ -2312,15 +2211,15 @@ The following new HIP APIs are available in the ROCm v5.4 release.
 >
 > This is a pre-official version (beta) release of the new APIs.
 
-##### Error Handling
+##### Error handling
 
-```h
+```cpp
 hipError_t hipDrvGetErrorName(hipError_t hipError, const char** errorString);
 ```
 
 This returns HIP errors in the text string format.
 
-```h
+```cpp
 hipError_t hipDrvGetErrorString(hipError_t hipError, const char** errorString);
 ```
 
@@ -2328,7 +2227,7 @@ This returns text string messages with more details about the error.
 
 For more information, refer to the HIP API Guide.
 
-##### HIP Tests Source Separation
+##### HIP tests source separation
 
 With ROCm v5.4, a separate GitHub project is created at
 
@@ -2338,19 +2237,19 @@ This contains HIP catch2 tests and samples, and new tests will continue to devel
 
 In future ROCm releases, catch2 tests and samples will be removed from the HIP project.
 
-### OpenMP Enhancements
+### OpenMP enhancements
 
 This release consists of the following OpenMP enhancements:
 
-- Enable new device RTL in libomptarget as default.
-- New flag `-fopenmp-target-fast` to imply `-fopenmp-target-ignore-env-vars -fopenmp-assume-no-thread-state -fopenmp-assume-no-nested-parallelism`.
-- Support for the collapse clause and non-unit stride in cases where the No-Loop specialized kernel is generated.
-- Initial implementation of optimized cross-team sum reduction for float and double type scalars.
-- Pool-based optimization in the OpenMP runtime to reduce locking during data transfer.
+* Enable new device RTL in libomptarget as default.
+* New flag `-fopenmp-target-fast` to imply `-fopenmp-target-ignore-env-vars -fopenmp-assume-no-thread-state -fopenmp-assume-no-nested-parallelism`.
+* Support for the collapse clause and non-unit stride in cases where the no-loop specialized kernel is generated.
+* Initial implementation of optimized cross-team sum reduction for float and double type scalars.
+* Pool-based optimization in the OpenMP runtime to reduce locking during data transfer.
 
-### Deprecations and Warnings
+### Deprecations and warnings
 
-#### HIP Perl Scripts Deprecation
+#### HIP Perl scripts deprecation
 
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
@@ -2358,15 +2257,13 @@ The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, co
 >
 > There will be a transition period where the Perl scripts and compiled binaries are available  before the scripts are removed. There will be no functional difference between the Perl scripts and their compiled binary counterpart. No user action is required. Once these are available, users can optionally switch to `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
 
-(5_4_0_filesystem_reorg_deprecation_notice)=
+##### Linux file system hierarchy standard for ROCm
 
-##### Linux Filesystem Hierarchy Standard for ROCm
+ROCm packages have adopted the Linux foundation file system hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new file system hierarchy, ROCm ensures backward compatibility with its 5.1 version or older file system hierarchy. See below for a detailed explanation of the new file system hierarchy and backward compatibility.
 
-ROCm packages have adopted the Linux foundation filesystem hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new filesystem hierarchy, ROCm ensures backward compatibility with its 5.1 version or older filesystem hierarchy. See below for a detailed explanation of the new filesystem hierarchy and backward compatibility.
+##### New file system hierarchy
 
-##### New Filesystem Hierarchy
-
-The following is the new filesystem hierarchy:
+The following is the new file system hierarchy:
 
 ```text
 /opt/rocm-<ver>
@@ -2404,7 +2301,7 @@ The following is the new filesystem hierarchy:
 
 For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 
-##### Backward Compatibility with Older Filesystems
+##### Backward compatibility with older file systems
 
 ROCm has moved header files and libraries to its new location as indicated in the above structure and included symbolic-link and wrapper header files in its old location for backward compatibility.
 
@@ -2416,7 +2313,7 @@ ROCm has moved header files and libraries to its new location as indicated in th
 
 Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/include`) with a warning message to include files from the new location (`/opt/rocm-xxx/include`) as shown in the example below:
 
-```h
+```cpp
 // Code snippet from hip_runtime.h
 #pragma message “This file is deprecated. Use file from include path /opt/rocm-ver/include/ and prefix with hip”.
 #include "hip/hip_runtime.h"
@@ -2424,10 +2321,10 @@ Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/
 
 The wrapper header files’ backward compatibility deprecation is as follows:
 
-- `#pragma` message announcing deprecation -- ROCm v5.2 release
-- `#pragma` message changed to `#warning` -- Future release
-- `#warning` changed to `#error` -- Future release
-- Backward compatibility wrappers removed -- Future release
+* `#pragma` message announcing deprecation -- ROCm v5.2 release
+* `#pragma` message changed to `#warning` -- Future release
+* `#warning` changed to `#error` -- Future release
+* Backward compatibility wrappers removed -- Future release
 
 ##### Library files
 
@@ -2435,32 +2332,32 @@ Library files are available in the `/opt/rocm-xxx/lib` folder. For backward comp
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/
 total 4
 drwxr-xr-x 4 root root 4096 May 12 10:45 cmake
 lrwxrwxrwx 1 root root   24 May 10 23:32 libamdhip64.so -> ../../lib/libamdhip64.so
 ```
 
-##### CMake Config files
+##### CMake config files
 
 All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<component>` folder. For backward compatibility, the old CMake locations (`/opt/rocm-xxx/<component>/lib/cmake`) consist of a soft link to the new CMake config.
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/cmake/hip/
 total 0
 lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
 ```
 
-### Fixed Defects
+### Fixed defects
 
 The following defects are fixed in this release.
 
 These defects were identified and documented as known issues in previous ROCm releases and are fixed in this release.
 
-#### Memory Allocated Using hipHostMalloc() with Flags Did Not Exhibit Fine-Grain Behavior
+#### Memory allocated using hipHostMalloc() with flags didn't exhibit fine-grain behavior
 
 ##### Issue
 
@@ -2483,7 +2380,7 @@ On GFX10 GPUs, kernel execution hangs when it is launched on streams created usi
 
 On GFX10 GPUs, each workgroup processor encompasses two compute units, and the compute units must be enabled as a pair. The `hipStreamWithCUMask` API unit test cases are updated to set compute unit mask (cuMask) in pairs for GFX10 GPUs.
 
-#### ROCm Tools GPU IDs
+#### ROCm tools GPU IDs
 
 The HIP language device IDs are not the same as the GPU IDs reported by the tools. GPU IDs are globally unique and guaranteed to be consistent across APIs and processes.
 
@@ -2803,19 +2700,19 @@ Tensile 4.35.0 for ROCm 5.4.0
 
 ## ROCm 5.3.3
 <!-- markdownlint-disable first-line-h1 -->
-### Fixed Defects
+### Fixed defects
 
-#### Issue with rocTHRUST and rocPRIM Libraries
+#### Issue with rocTHRUST and rocPRIM libraries
 
 There was a known issue with rocTHRUST and rocPRIM libraries supporting iterator and types in ROCm v5.3.x releases.
 
-- `thrust::merge` no longer correctly supports different iterator types for `keys_input1` and `keys_input2`.
-- `rocprim::device_merge` no longer correctly supports using different types for `keys_input1` and `keys_input2`.
+* `thrust::merge` no longer correctly supports different iterator types for `keys_input1` and `keys_input2`.
+* `rocprim::device_merge` no longer correctly supports using different types for `keys_input1` and `keys_input2`.
 
 This issue is resolved with the following fixes to compilation failures:
 
-- rocPRIM: in device_merge if the two key iterators do not match.
-- rocTHRUST: in thrust::merge if the two key iterators do not match.
+* rocPRIM: in device_merge if the two key iterators do not match.
+* rocTHRUST: in thrust::merge if the two key iterators do not match.
 
 ### Library Changes in ROCM 5.3.3
 
@@ -2843,47 +2740,47 @@ This issue is resolved with the following fixes to compilation failures:
 
 ## ROCm 5.3.2
 <!-- markdownlint-disable first-line-h1 -->
-### Fixed Defects
+### Fixed defects
 
 The following known issues in ROCm v5.3.2 are fixed in this release.
 
-#### Peer-to-Peer DMA Mapping Errors with SLES and RHEL
+#### Peer-to-peer DMA mapping errors with SLES and RHEL
 
 Peer-to-Peer Direct Memory Access (DMA) mapping errors on Dell systems (R7525 and R750XA) with SLES 15 SP3/SP4 and RHEL 9.0 are fixed in this release.
 
 Previously, running rocminfo resulted in Peer-to-Peer DMA mapping errors.
 
-#### RCCL Tuning Table
+#### RCCL tuning table
 
 The RCCL tuning table is updated for supported platforms.
 
-#### SGEMM (F32 GEMM) Routines in rocBLAS
+#### SGEMM (F32 GEMM) routines in rocBLAS
 
 Functional correctness failures in SGEMM (F32 GEMM) routines in rocBLAS for certain problem sizes and ranges are fixed in this release.
 
-### Known Issues
+### Known issues
 
 This section consists of known issues in this release.
 
-#### AMD Instinct™ MI200 SRIOV Virtualization Issue
+#### AMD Instinct™ MI200 SRIOV virtualization issue
 
 There is a known issue in this ROCm v5.3 release with all AMD Instinct™ MI200 devices running within a virtual function (VF) under SRIOV virtualization. This issue will likely impact the functionality of SRIOV-based workloads but does not impact Discrete Device Assignment (DDA) or bare metal.
 
 Until a fix is provided, users should rely on ROCm v5.2.3 to support their SRIOV workloads.
 
-#### AMD Instinct™ MI200 Firmware Updates
+#### AMD Instinct™ MI200 firmware updates
 
 Customers cannot update the Integrated Firmware Image (IFWI) for AMD Instinct™ MI200 accelerators.
 
 An updated firmware maintenance bundle consisting of an installation tool and images specific to AMD Instinct™ MI200 accelerators is under planning and will be available soon.
 
-#### Known Issue with rocThrust and rocPRIM Libraries
+#### Known issue with rocThrust and rocPRIM libraries
 
 There is a known known issue with rocThrust and rocPRIM libraries supporting iterator and types in ROCm v5.3.x releases.
 
-- thrust::merge no longer correctly supports different iterator types for `keys_input1` and `keys_input2`.
+* thrust::merge no longer correctly supports different iterator types for `keys_input1` and `keys_input2`.
 
-- rocprim::device_merge no longer correctly supports using different types for `keys_input1` and `keys_input2`.
+* rocprim::device_merge no longer correctly supports using different types for `keys_input1` and `keys_input2`.
 
 This issue is currently under investigation and will be resolved in a future release.
 
@@ -2913,9 +2810,9 @@ This issue is currently under investigation and will be resolved in a future rel
 
 ## ROCm 5.3.0
 <!-- markdownlint-disable first-line-h1 -->
-### Deprecations and Warnings
+### Deprecations and warnings
 
-#### HIP Perl Scripts Deprecation
+#### HIP Perl scripts deprecation
 
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
@@ -2923,13 +2820,13 @@ The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, co
 >
 > There will be a transition period where the Perl scripts and compiled binaries are available  before the scripts are removed. There will be no functional difference between the Perl scripts and their compiled binary counterpart. No user action is required. Once these are available, users can optionally switch to `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
 
-#### Linux Filesystem Hierarchy Standard for ROCm
+#### Linux file system hierarchy standard for ROCm
 
-ROCm packages have adopted the Linux foundation filesystem hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new filesystem hierarchy, ROCm ensures backward compatibility with its 5.1 version or older filesystem hierarchy. See below for a detailed explanation of the new filesystem hierarchy and backward compatibility.
+ROCm packages have adopted the Linux foundation file system hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new file system hierarchy, ROCm ensures backward compatibility with its 5.1 version or older file system hierarchy. See below for a detailed explanation of the new file system hierarchy and backward compatibility.
 
-##### New Filesystem Hierarchy
+##### New file system hierarchy
 
-The following is the new filesystem hierarchy:
+The following is the new file system hierarchy:
 
 ```text
 /opt/rocm-<ver>
@@ -2967,7 +2864,7 @@ The following is the new filesystem hierarchy:
 
 For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 
-##### Backward Compatibility with Older Filesystems
+##### Backward compatibility with older file systems
 
 ROCm has moved header files and libraries to its new location as indicated in the above structure and included symbolic-link and wrapper header files in its old location for backward compatibility.
 
@@ -2979,7 +2876,7 @@ ROCm has moved header files and libraries to its new location as indicated in th
 
 Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/include`) with a warning message to include files from the new location (`/opt/rocm-xxx/include`) as shown in the example below:
 
-```h
+```cpp
 // Code snippet from hip_runtime.h
 #pragma message “This file is deprecated. Use file from include path /opt/rocm-ver/include/ and prefix with hip”.
 #include "hip/hip_runtime.h"
@@ -2987,10 +2884,10 @@ Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/
 
 The wrapper header files’ backward compatibility deprecation is as follows:
 
-- `#pragma` message announcing deprecation -- ROCm v5.2 release
-- `#pragma` message changed to `#warning` -- Future release
-- `#warning` changed to `#error` -- Future release
-- Backward compatibility wrappers removed -- Future release
+* `#pragma` message announcing deprecation -- ROCm v5.2 release
+* `#pragma` message changed to `#warning` -- Future release
+* `#warning` changed to `#error` -- Future release
+* Backward compatibility wrappers removed -- Future release
 
 ##### Library files
 
@@ -2998,26 +2895,26 @@ Library files are available in the `/opt/rocm-xxx/lib` folder. For backward comp
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/
 total 4
 drwxr-xr-x 4 root root 4096 May 12 10:45 cmake
 lrwxrwxrwx 1 root root   24 May 10 23:32 libamdhip64.so -> ../../lib/libamdhip64.so
 ```
 
-##### CMake Config files
+##### CMake config files
 
 All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<component>` folder. For backward compatibility, the old CMake locations (`/opt/rocm-xxx/<component>/lib/cmake`) consist of a soft link to the new CMake config.
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/cmake/hip/
 total 0
 lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
 ```
 
-### Fixed Defects
+### Fixed defects
 
 The following defects are fixed in this release.
 
@@ -3029,17 +2926,17 @@ User code did not initialize certain data constructs, leading to a correctness i
 
 The compiler fix consists of the following patches:
 
-- A new `noundef` attribute is added. This attribute denotes when a function call argument or return val may never contain uninitialized bits.
+* A new `noundef` attribute is added. This attribute denotes when a function call argument or return val may never contain uninitialized bits.
 For more information, see <https://reviews.llvm.org/D81678>
-- The application of this attribute was refined such that it was not added to a specific compiler builtin where the compiler knows that inactive lanes do not impact program execution.
+* The application of this attribute was refined such that it was not added to a specific compiler builtin where the compiler knows that inactive lanes do not impact program execution.
 
 For more information, see <https://github.com/RadeonOpenCompute/llvm-project/commit/accf36c58409268ca1f216cdf5ad812ba97ceccd>.
 
-### Known Issues
+### Known issues
 
 This section consists of known issues in this release.
 
-#### Issue with OpenMP-Extras Package Upgrade
+#### Issue with OpenMP-extras package upgrade
 
 The `openmp-extras` package has been split into runtime (`openmp-extras-runtime`) and dev (`openmp-extras-devel`) packages. This change has broken the upgrade support for the `openmp-extras` package in RHEL/SLES.
 An available workaround in RHEL is to use the following command for upgrades:
@@ -3055,19 +2952,19 @@ An available workaround in SLES is to use the following command for upgrades:
 zypper update --force-resolution <meta-package>
 ```
 
-#### AMD Instinct™ MI200 SRIOV Virtualization Issue
+#### AMD Instinct™ MI200 SRIOV virtualization issue
 
 There is a known issue in this ROCm v5.3 release with all AMD Instinct™ MI200 devices running within a virtual function (VF) under SRIOV virtualization. This issue will likely impact the functionality of SRIOV-based workloads, but does not impact Discrete Device Assignment (DDA) or Bare Metal.
 
 Until a fix is provided, users should rely on ROCm v5.2.3 to support their SRIOV workloads.
 
-#### System Crash when IMMOU is Enabled
+#### System crash when IMMOU is enabled
 
-If IOMMU is enabled in SBIOS and ROCm is installed, the system may report the following failure or errors when running workloads such as bandwidth test, clinfo, and HelloWord.cl and cause a system crash.
+If input-output memory management unit (IOMMU) is enabled in SBIOS and ROCm is installed, the system may report the following failure or errors when running workloads such as bandwidth test, clinfo, and HelloWord.cl and cause a system crash.
 
-- IO PAGE FAULT
-- IRQ remapping does not support X2APIC mode
-- NMI error
+* IO PAGE FAULT
+* IRQ remapping does not support X2APIC mode
+* NMI error
 
 Workaround: To avoid the system crash, add `amd_iommu=on iommu=pt` as the kernel bootparam, as indicated in the warning message.
 
@@ -3396,9 +3293,9 @@ Tensile 4.34.0 for ROCm 5.3.0
 
 ## ROCm 5.2.3
 <!-- markdownlint-disable first-line-h1 -->
-### Changes in This Release
+### Changes in this release
 
-#### Ubuntu 18.04 End of Life Announcement
+#### Ubuntu 18.04 end-of-life announcement
 
 Support for Ubuntu 18.04 ends in this release. Future releases of ROCm will not provide prebuilt packages for Ubuntu 18.04.
 HIP and Other Runtimes
@@ -3407,9 +3304,9 @@ HIP and Other Runtimes
 
 ##### Fixes
 
-- A bug was discovered in the HIP graph capture implementation in the ROCm v5.2.0 release. If the same kernel is called twice (with different argument values) in a graph capture, the implementation only kept the argument values for the second kernel call.
+* A bug was discovered in the HIP graph capture implementation in the ROCm v5.2.0 release. If the same kernel is called twice (with different argument values) in a graph capture, the implementation only kept the argument values for the second kernel call.
 
-- A bug was introduced in the hiprtc implementation in the ROCm v5.2.0 release. This bug caused the `hiprtcGetLoweredName` call to fail for named expressions with whitespace in it.
+* A bug was introduced in the hiprtc implementation in the ROCm v5.2.0 release. This bug caused the `hiprtcGetLoweredName` call to fail for named expressions with whitespace in it.
 
 Example:
 
@@ -3422,35 +3319,35 @@ ROCm Libraries
 
 Compatibility with NCCL 2.12.10
 
-- Packages for test and benchmark executables on all supported OSes using CPack
+* Packages for test and benchmark executables on all supported OSes using CPack
 
-- Added custom signal handler - opt-in with RCCL_ENABLE_SIGNALHANDLER=1
+* Added custom signal handler - opt-in with RCCL_ENABLE_SIGNALHANDLER=1
 
-  - Additional details provided if Binary File Descriptor library (BFD) is pre-installed.
+  * Additional details provided if Binary File Descriptor library (BFD) is pre-installed.
 
-- Added experimental support for using multiple ranks per device
+* Added experimental support for using multiple ranks per device
 
-  - Requires using a new interface to create communicator (ncclCommInitRankMulti), refer to the interface documentation for details.
+  * Requires using a new interface to create communicator (ncclCommInitRankMulti), refer to the interface documentation for details.
 
-  - To avoid potential deadlocks, user might have to set an environment variables increasing    the number of hardware queues. For example,
+  * To avoid potential deadlocks, user might have to set an environment variables increasing    the number of hardware queues. For example,
 
 ```sh
 export GPU_MAX_HW_QUEUES=16
 ```
 
-- Added support for reusing ports in NET/IB channels
+* Added support for reusing ports in NET/IB channels
 
-  - Opt-in with NCCL_IB_SOCK_CLIENT_PORT_REUSE=1 and NCCL_IB_SOCK_SERVER_PORT_REUSE=1
+  * Opt-in with NCCL_IB_SOCK_CLIENT_PORT_REUSE=1 and NCCL_IB_SOCK_SERVER_PORT_REUSE=1
 
-  - When "Call to bind failed: Address already in use" error happens in large-scale AlltoAll(for example, >=64 MI200 nodes), users are suggested to opt-in either one or both of the options to resolve the massive port usage issue
+  * When "Call to bind failed: Address already in use" error happens in large-scale AlltoAll(for example, >=64 MI200 nodes), users are suggested to opt-in either one or both of the options to resolve the massive port usage issue
 
-  - Avoid using NCCL_IB_SOCK_SERVER_PORT_REUSE when NCCL_NCHANNELS_PER_NET_PEER is tuned >1
+  * Avoid using NCCL_IB_SOCK_SERVER_PORT_REUSE when NCCL_NCHANNELS_PER_NET_PEER is tuned >1
 
 ##### Removed
 
-- Removed experimental clique-based kernels
+* Removed experimental clique-based kernels
 
-#### Development Tools
+#### Development tools
 
 No notable changes in this release for development tools, including the compiler, profiler, and debugger
 Deployment and Management Tools
@@ -3533,13 +3430,13 @@ RCCL 2.12.10 for ROCm 5.2.3
 ## ROCm 5.2.0
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
-### What's New in This Release
+### What's new in this release
 
-#### HIP Enhancements
+#### HIP enhancements
 
 The ROCm v5.2 release consists of the following HIP enhancements:
 
-##### HIP Installation Guide Updates
+##### HIP installation guide updates
 
 The HIP Installation Guide is updated to include building HIP tests from source on the AMD and NVIDIA platforms.
 
@@ -3553,7 +3450,7 @@ The test codes at the following link show how to implement applications using ma
 
 <https://github.com/ROCm-Developer-Tools/HIP/blob/develop/tests/src/deviceLib/hipDeviceMalloc.cpp>
 
-##### New HIP APIs in This Release
+##### New HIP APIs in this release
 
 The following new HIP APIs are available in the ROCm v5.2 release. Note that this is a pre-official version (beta) release of the new APIs:
 
@@ -3561,9 +3458,9 @@ The following new HIP APIs are available in the ROCm v5.2 release. Note that thi
 
 The new device management HIP APIs are as follows:
 
-- Gets a UUID for the device. This API returns a UUID for the device.
+* Gets a UUID for the device. This API returns a UUID for the device.
 
-  ```h
+  ```cpp
   hipError_t hipDeviceGetUuid(hipUUID* uuid, hipDevice_t device);
   ```
 
@@ -3571,95 +3468,95 @@ The new device management HIP APIs are as follows:
   >
   > This new API corresponds to the following CUDA API:
   >
-  > ```h
+  > ```cpp
   > CUresult cuDeviceGetUuid(CUuuid* uuid, CUdevice dev);
   > ```
 
-- Gets default memory pool of the specified device
+* Gets default memory pool of the specified device
 
-  ```h
+  ```cpp
   hipError_t hipDeviceGetDefaultMemPool(hipMemPool_t* mem_pool, int device);
   ```
 
-- Sets the current memory pool of a device
+* Sets the current memory pool of a device
 
-  ```h
+  ```cpp
   hipError_t hipDeviceSetMemPool(int device, hipMemPool_t mem_pool);
   ```
 
-- Gets the current memory pool for the specified device
+* Gets the current memory pool for the specified device
 
-  ```h
+  ```cpp
   hipError_t hipDeviceGetMemPool(hipMemPool_t* mem_pool, int device);
   ```
 
-###### New HIP Runtime APIs in Memory Management
+###### New HIP runtime APIs in memory management
 
 The new Stream Ordered Memory Allocator functions of HIP runtime APIs in memory management are as follows:
 
-- Allocates memory with stream ordered semantics
+* Allocates memory with stream ordered semantics
 
-  ```h
+  ```cpp
   hipError_t hipMallocAsync(void** dev_ptr, size_t size, hipStream_t stream);
   ```
 
-- Frees memory with stream ordered semantics
+* Frees memory with stream ordered semantics
 
-  ```h
+  ```cpp
   hipError_t hipFreeAsync(void* dev_ptr, hipStream_t stream);
   ```
 
-- Releases freed memory back to the OS
+* Releases freed memory back to the OS
 
-  ```h
+  ```cpp
   hipError_t hipMemPoolTrimTo(hipMemPool_t mem_pool, size_t min_bytes_to_hold);
   ```
 
-- Sets attributes of a memory pool
+* Sets attributes of a memory pool
 
-  ```h
+  ```cpp
   hipError_t hipMemPoolSetAttribute(hipMemPool_t mem_pool, hipMemPoolAttr attr, void* value);
   ```
 
-- Gets attributes of a memory pool
+* Gets attributes of a memory pool
 
-  ```h
+  ```cpp
   hipError_t hipMemPoolGetAttribute(hipMemPool_t mem_pool, hipMemPoolAttr attr, void* value);
   ```
 
-- Controls visibility of the specified pool between devices
+* Controls visibility of the specified pool between devices
 
-  ```h
+  ```cpp
   hipError_t hipMemPoolSetAccess(hipMemPool_t mem_pool, const hipMemAccessDesc* desc_list, size_t count);
   ```
 
-- Returns the accessibility of a pool from a device
+* Returns the accessibility of a pool from a device
 
-  ```h
+  ```cpp
   hipError_t hipMemPoolGetAccess(hipMemAccessFlags* flags, hipMemPool_t mem_pool, hipMemLocation* location);
   ```
 
-- Creates a memory pool
+* Creates a memory pool
 
-  ```h
+  ```cpp
   hipError_t hipMemPoolCreate(hipMemPool_t* mem_pool, const hipMemPoolProps* pool_props);
   ```
 
-- Destroys the specified memory pool
+* Destroys the specified memory pool
 
-  ```h
+  ```cpp
   hipError_t hipMemPoolDestroy(hipMemPool_t mem_pool);
   ```
 
-- Allocates memory from a specified pool with stream ordered semantics
+* Allocates memory from a specified pool with stream ordered semantics
 
-  ```h
+  ```cpp
   hipError_t hipMallocFromPoolAsync(void** dev_ptr, size_t size, hipMemPool_t mem_pool, hipStream_t stream);
   ```
 
-- Exports a memory pool to the requested handle type
+* Exports a memory pool to the requested handle type
 
-  ```h
+  ```cpp
   hipError_t hipMemPoolExportToShareableHandle(
       void*                      shared_handle,
       hipMemPool_t               mem_pool,
@@ -3667,9 +3564,9 @@ The new Stream Ordered Memory Allocator functions of HIP runtime APIs in memory 
       unsigned int               flags);
   ```
 
-- Imports a memory pool from a shared handle
+* Imports a memory pool from a shared handle
 
-  ```h
+  ```cpp
   hipError_t hipMemPoolImportFromShareableHandle(
       hipMemPool_t*              mem_pool,
       void*                      shared_handle,
@@ -3677,9 +3574,9 @@ The new Stream Ordered Memory Allocator functions of HIP runtime APIs in memory 
       unsigned int               flags);
   ```
 
-- Exports data to share a memory pool allocation between processes
+* Exports data to share a memory pool allocation between processes
 
-  ```h
+  ```cpp
   hipError_t hipMemPoolExportPointer(hipMemPoolPtrExportData* export_data, void* dev_ptr);
   Import a memory pool allocation from another process.t
   hipError_t hipMemPoolImportPointer(
@@ -3688,126 +3585,126 @@ The new Stream Ordered Memory Allocator functions of HIP runtime APIs in memory 
       hipMemPoolPtrExportData* export_data);
   ```
 
-###### HIP Graph Management APIs
+###### HIP graph management APIs
 
 The new HIP Graph Management APIs are as follows:
 
-- Enqueues a host function call in a stream
+* Enqueues a host function call in a stream
 
-  ```h
+  ```cpp
   hipError_t hipLaunchHostFunc(hipStream_t stream, hipHostFn_t fn, void* userData);
   ```
 
-- Swaps the stream capture mode of a thread
+* Swaps the stream capture mode of a thread
 
-  ```h
+  ```cpp
   hipError_t hipThreadExchangeStreamCaptureMode(hipStreamCaptureMode* mode);
   ```
 
-- Sets a node attribute
+* Sets a node attribute
 
-  ```h
+  ```cpp
   hipError_t hipGraphKernelNodeSetAttribute(hipGraphNode_t hNode, hipKernelNodeAttrID attr, const hipKernelNodeAttrValue* value);
   ```
 
-- Gets a node attribute
+* Gets a node attribute
 
-  ```h
+  ```cpp
   hipError_t hipGraphKernelNodeGetAttribute(hipGraphNode_t hNode, hipKernelNodeAttrID attr,                                          hipKernelNodeAttrValue* value);
   ```
 
-###### Support for Virtual Memory Management APIs
+###### Support for virtual memory management APIs
 
 The new APIs for virtual memory management are as follows:
 
-- Frees an address range reservation made via hipMemAddressReserve
+* Frees an address range reservation made via hipMemAddressReserve
 
-  ```h
+  ```cpp
   hipError_t hipMemAddressFree(void* devPtr, size_t size);
   ```
 
-- Reserves an address range
+* Reserves an address range
 
-  ```h
+  ```cpp
   hipError_t hipMemAddressReserve(void** ptr, size_t size, size_t alignment, void* addr, unsigned long long flags);
   ```
 
-- Creates a memory allocation described by the properties and size
+* Creates a memory allocation described by the properties and size
 
-  ```h
+  ```cpp
   hipError_t hipMemCreate(hipMemGenericAllocationHandle_t* handle, size_t size, const hipMemAllocationProp* prop, unsigned long long flags);
   ```
 
-- Exports an allocation to a requested shareable handle type
+* Exports an allocation to a requested shareable handle type
 
-  ```h
+  ```cpp
   hipError_t hipMemExportToShareableHandle(void* shareableHandle, hipMemGenericAllocationHandle_t handle, hipMemAllocationHandleType handleType, unsigned long long flags);
   ```
 
-- Gets the access flags set for the given location and ptr
+* Gets the access flags set for the given location and ptr
 
-  ```h
+  ```cpp
   hipError_t hipMemGetAccess(unsigned long long* flags, const hipMemLocation* location, void* ptr);
   ```
 
-- Calculates either the minimal or recommended granularity
+* Calculates either the minimal or recommended granularity
 
-  ```h
+  ```cpp
   hipError_t hipMemGetAllocationGranularity(size_t* granularity, const hipMemAllocationProp* prop, hipMemAllocationGranularity_flags option);
   ```
 
-- Retrieves the property structure of the given handle
+* Retrieves the property structure of the given handle
 
-  ```h
+  ```cpp
   hipError_t hipMemGetAllocationPropertiesFromHandle(hipMemAllocationProp* prop, hipMemGenericAllocationHandle_t handle);
   ```
 
-- Imports an allocation from a requested shareable handle type
+* Imports an allocation from a requested shareable handle type
 
-  ```h
+  ```cpp
   hipError_t hipMemImportFromShareableHandle(hipMemGenericAllocationHandle_t* handle, void* osHandle, hipMemAllocationHandleType shHandleType);
   ```
 
-- Maps an allocation handle to a reserved virtual address range
+* Maps an allocation handle to a reserved virtual address range
 
-  ```h
+  ```cpp
   hipError_t hipMemMap(void* ptr, size_t size, size_t offset, hipMemGenericAllocationHandle_t handle, unsigned long long flags);
   ```
 
-- Maps or unmaps subregions of sparse HIP arrays and sparse HIP mipmapped arrays
+* Maps or unmaps subregions of sparse HIP arrays and sparse HIP mipmapped arrays
 
-  ```h
+  ```cpp
   hipError_t hipMemMapArrayAsync(hipArrayMapInfo* mapInfoList, unsigned int  count, hipStream_t stream);
   ```
 
-- Release a memory handle representing a memory allocation, that  was previously allocated through hipMemCreate
+* Release a memory handle representing a memory allocation, that  was previously allocated through hipMemCreate
 
-  ```h
+  ```cpp
   hipError_t hipMemRelease(hipMemGenericAllocationHandle_t handle);
   ```
 
-- Returns the allocation handle of the backing memory allocation given the address
+* Returns the allocation handle of the backing memory allocation given the address
 
-  ```h
+  ```cpp
   hipError_t hipMemRetainAllocationHandle(hipMemGenericAllocationHandle_t* handle, void* addr);
   ```
 
-- Sets the access flags for each location specified in desc for the given virtual address range
+* Sets the access flags for each location specified in desc for the given virtual address range
 
-  ```h
+  ```cpp
   hipError_t hipMemSetAccess(void* ptr, size_t size, const hipMemAccessDesc* desc, size_t count);
   ```
 
-- Unmaps memory allocation of a given address range
+* Unmaps memory allocation of a given address range
 
-  ```h
+  ```cpp
   hipError_t hipMemUnmap(void* ptr, size_t size);
   ```
 
 For more information, refer to the HIP API documentation at
 {doc}`hip:.doxygen/docBin/html/modules`.
 
-##### Planned HIP Changes in Future Releases
+##### Planned HIP changes in future releases
 
 Changes to `hipDeviceProp_t`, `HIPMEMCPY_3D`, and `hipArray` structures (and related HIP APIs) are planned in the next major release. These changes may impact backward compatibility.
 
@@ -3817,16 +3714,16 @@ ROCm Math and Communication Libraries
 In this release, ROCm Math and Communication Libraries consist of the following enhancements and fixes:
 New rocWMMA for Matrix Multiplication and Accumulation Operations Acceleration
 
-This release introduces a new ROCm C++ library for accelerating mixed precision matrix multiplication and accumulation (MFMA) operations leveraging specialized GPU matrix cores. rocWMMA provides a C++ API to facilitate breaking down matrix multiply accumulate problems into fragments and using them in block-wise operations that are distributed in parallel across GPU wavefronts. The API is a header library of GPU device code, meaning matrix core acceleration may be compiled directly into your kernel device code. This can benefit from compiler optimization in the generation of kernel assembly and does not incur additional overhead costs of linking to external runtime libraries or having to launch separate kernels.
+This release introduces a new ROCm C++ library for accelerating mixed-precision matrix multiplication and accumulation (MFMA) operations leveraging specialized GPU matrix cores. rocWMMA provides a C++ API to facilitate breaking down matrix multiply accumulate problems into fragments and using them in block-wise operations that are distributed in parallel across GPU wavefronts. The API is a header library of GPU device code, meaning matrix core acceleration may be compiled directly into your kernel device code. This can benefit from compiler optimization in the generation of kernel assembly and does not incur additional overhead costs of linking to external runtime libraries or having to launch separate kernels.
 
 rocWMMA is released as a header library and includes test and sample projects to validate and illustrate example usages of the C++ API. GEMM matrix multiplication is used as primary validation given the heavy precedent for the library. However, the usage portfolio is growing significantly and demonstrates different ways rocWMMA may be consumed.
 
 For more information, refer to
-[Communication Libraries](../../../../docs/reference/gpu_libraries/communication.md).
+[Communication Libraries](../../../../docs/reference//library-index.md)
 
-#### OpenMP Enhancements in This Release
+#### OpenMP enhancements in this release
 
-##### OMPT Target Support
+##### OMPT target support
 
 The OpenMP runtime in ROCm implements a subset of the OMPT device APIs, as described in the OpenMP specification document. These are APIs that allow first-party tools to examine the profile and traces for kernels that execute on a device. A tool may register callbacks for data transfer and kernel dispatch entry points. A tool may use APIs to start and stop tracing for device-related activities such as data transfer and kernel dispatch timings and associated metadata. If device tracing is enabled, trace records for device activities are collected during program execution and returned to the tool using the APIs described in the specification.
 
@@ -3839,15 +3736,15 @@ make run
 
 The file `veccopy-ompt-target-tracing.c` simulates how a tool would initiate device activity tracing. The file `callbacks.h` shows the callbacks that may be registered and implemented by the tool.
 
-### Deprecations and Warnings
+### Deprecations and warnings
 
-#### Linux Filesystem Hierarchy Standard for ROCm
+#### Linux file system hierarchy standard for ROCm
 
-ROCm packages have adopted the Linux foundation filesystem hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new filesystem hierarchy, ROCm ensures backward compatibility with its 5.1 version or older filesystem hierarchy. See below for a detailed explanation of the new filesystem hierarchy and backward compatibility.
+ROCm packages have adopted the Linux foundation file system hierarchy standard in this release to ensure ROCm components follow open source conventions for Linux-based distributions. While moving to a new file system hierarchy, ROCm ensures backward compatibility with its 5.1 version or older file system hierarchy. See below for a detailed explanation of the new file system hierarchy and backward compatibility.
 
-##### New Filesystem Hierarchy
+##### New file system hierarchy
 
-The following is the new filesystem hierarchy:
+The following is the new file system hierarchy:
 
 ```text
 /opt/rocm-<ver>
@@ -3885,7 +3782,7 @@ The following is the new filesystem hierarchy:
 
 For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 
-##### Backward Compatibility with Older Filesystems
+##### Backward compatibility with older file systems
 
 ROCm has moved header files and libraries to its new location as indicated in the above structure and included symbolic-link and wrapper header files in its old location for backward compatibility.
 
@@ -3897,7 +3794,7 @@ ROCm has moved header files and libraries to its new location as indicated in th
 
 Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/include`) with a warning message to include files from the new location (`/opt/rocm-xxx/include`) as shown in the example below:
 
-```h
+```cpp
 // Code snippet from hip_runtime.h
 #pragma message “This file is deprecated. Use file from include path /opt/rocm-ver/include/ and prefix with hip”.
 #include "hip/hip_runtime.h"
@@ -3905,10 +3802,10 @@ Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/
 
 The wrapper header files’ backward compatibility deprecation is as follows:
 
-- `#pragma` message announcing deprecation -- ROCm v5.2 release
-- `#pragma` message changed to `#warning` -- Future release
-- `#warning` changed to `#error` -- Future release
-- Backward compatibility wrappers removed -- Future release
+* `#pragma` message announcing deprecation -- ROCm v5.2 release
+* `#pragma` message changed to `#warning` -- Future release
+* `#warning` changed to `#error` -- Future release
+* Backward compatibility wrappers removed -- Future release
 
 ##### Library files
 
@@ -3916,20 +3813,20 @@ Library files are available in the `/opt/rocm-xxx/lib` folder. For backward comp
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/
 total 4
 drwxr-xr-x 4 root root 4096 May 12 10:45 cmake
 lrwxrwxrwx 1 root root   24 May 10 23:32 libamdhip64.so -> ../../lib/libamdhip64.so
 ```
 
-##### CMake Config files
+##### CMake config files
 
 All CMake configuration files are available in the `/opt/rocm-xxx/lib/cmake/<component>` folder. For backward compatibility, the old CMake locations (`/opt/rocm-xxx/<component>/lib/cmake`) consist of a soft link to the new CMake config.
 
 Example:
 
-```log
+```bash
 $ ls -l /opt/rocm/hip/lib/cmake/hip/
 total 0
 lrwxrwxrwx 1 root root 42 May 10 23:32 hip-config.cmake -> ../../../../lib/cmake/hip/hip-config.cmake
@@ -3944,7 +3841,7 @@ Deprecation of Integrated HIP Directed Tests
 
 The integrated HIP directed tests, which are currently built by default, are deprecated in this release. The default building and execution support through CMake will be removed in future release.
 
-### Fixed Defects
+### Fixed defects
 
 | Fixed Defect                                                                 |  Fix     |
 |------------------------------------------------------------------------------|----------|
@@ -3952,11 +3849,11 @@ The integrated HIP directed tests, which are currently built by default, are dep
 | Hang observed while restoring cooperative group samples                      | Code fix |
 | ROCM-SMI over SRIOV: Unsupported commands do not return proper error message | Code fix |
 
-### Known Issues
+### Known issues
 
 This section consists of known issues in this release.
 
-#### Compiler Error on gfx1030 When Compiling at -O0
+#### Compiler error on gfx1030 when compiling at -O0
 
 ##### Issue
 
@@ -3966,7 +3863,7 @@ A compiler error occurs when using -O0 flag to compile code for gfx1030 that cal
 
 The workaround is not to use the -O0 flag for this case. For higher optimization levels, the compiler does not generate an invalid instruction.
 
-#### System Freeze Observed During CUDA Memtest Checkpoint
+#### System freeze observed during CUDA memtest checkpoint
 
 ##### Issue
 
@@ -4012,15 +3909,15 @@ So, the function argument that is potentially undef (because it is not intialize
 
 ##### Workaround
 
-- Skip adding `noundef` attribute to functions tagged with convergent  attribute. Refer to <https://reviews.llvm.org/D124158> for more information.
+* Skip adding `noundef` attribute to functions tagged with convergent  attribute. Refer to <https://reviews.llvm.org/D124158> for more information.
 
-- Introduce shuffle attribute and add it to `__shfl` like APIs at hip headers. Clang can skip adding noundef attribute, if it finds that argument is tagged with shuffle attribute. Refer to <https://reviews.llvm.org/D125378> for more information.
+* Introduce shuffle attribute and add it to `__shfl` like APIs at hip headers. Clang can skip adding noundef attribute, if it finds that argument is tagged with shuffle attribute. Refer to <https://reviews.llvm.org/D125378> for more information.
 
-- Introduce clang builtin for `__shfl` to identify it and skip adding `noundef` attribute.
+* Introduce clang builtin for `__shfl` to identify it and skip adding `noundef` attribute.
 
-- Introduce `__builtin_freeze` to use on the relevant arguments in library wrappers. The library/header need to insert freezes on the relevant inputs.
+* Introduce `__builtin_freeze` to use on the relevant arguments in library wrappers. The library/header need to insert freezes on the relevant inputs.
 
-#### Issue with Applications Triggering Oversubscription
+#### Issue with applications triggering oversubscription
 
 There is a known issue with applications that trigger oversubscription. A hardware hang occurs when ROCgdb is used on AMD Instinct™ MI50 and MI100 systems.
 
@@ -4356,35 +4253,35 @@ Tensile 4.33.0 for ROCm 5.2.0
 ## ROCm 5.1.0
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-blanks-blockquote -->
-### What's New in This Release
+### What's new in this release
 
-#### HIP Enhancements
+#### HIP enhancements
 
 The ROCm v5.1 release consists of the following HIP enhancements.
 
-##### HIP Installation Guide Updates
+##### HIP installation guide updates
 
 The HIP Installation Guide is updated to include installation and building HIP from source on the AMD and NVIDIA platforms.
 
 Refer to the HIP Installation Guide v5.1 for more details.
 
-##### Support for HIP Graph
+##### Support for HIP graph
 
 ROCm v5.1 extends support for HIP Graph.
 
-##### Planned Changes for HIP in Future Releases
+##### Planned changes for HIP in future releases
 
 ###### Separation of hiprtc (libhiprtc) library from hip runtime (amdhip64)
 
 On ROCm/Linux, to maintain backward compatibility, the hipruntime library (amdhip64) will continue to include hiprtc symbols in future releases. The backward compatible support may be discontinued by removing hiprtc symbols from the hipruntime library (amdhip64) in the next major release.
 
-###### hipDeviceProp_t Structure Enhancements
+###### hipDeviceProp_t structure enhancements
 
 Changes to the hipDeviceProp_t structure in the next major release may result in backward incompatibility.  More details on these changes will be provided in subsequent releases.
 
-#### ROCDebugger Enhancements
+#### ROCDebugger enhancements
 
-##### Multi-language Source Level Debugger
+##### Multi-language source-level debugger
 
 The compiler now generates a source-level variable and function argument debug information.
 
@@ -4396,52 +4293,52 @@ This enhancement enables ROCDebugger users to interact with the HIP source-level
 >
 > The newly-suggested compiler -g option must be used instead of the previously-suggested `-ggdb` option. Although the effect of these two options is currently equivalent, this is not guaranteed for the future and might get changed by the upstream LLVM community.
 
-##### Machine Interface Lanes Support
+##### Machine interface lanes support
 
 ROCDebugger Machine Interface (MI) extends support to lanes. The following enhancements are made:
 
-- Added a new -lane-info command, listing the current thread's lanes.
+* Added a new -lane-info command, listing the current thread's lanes.
 
-- The -thread-select command now supports a lane switch to switch to a specific lane of a thread:
+* The -thread-select command now supports a lane switch to switch to a specific lane of a thread:
 
   ```sh
   -thread-select -l LANE THREAD
   ```
 
-- The =thread-selected notification gained a lane-id attribute. This enables the frontend to know which lane of the thread was selected.
+* The =thread-selected notification gained a lane-id attribute. This enables the frontend to know which lane of the thread was selected.
 
-- The *stopped asynchronous record gained lane-id and hit-lanes attributes.  The former indicates which lane is selected, and the latter indicates which lanes explain the stop.
+* The *stopped asynchronous record gained lane-id and hit-lanes attributes.  The former indicates which lane is selected, and the latter indicates which lanes explain the stop.
 
-- MI commands now accept a global --lane option, similar to the global --thread and --frame options.
+* MI commands now accept a global --lane option, similar to the global --thread and --frame options.
 
-- MI varobjs are now lane-aware.
+* MI varobjs are now lane-aware.
 
 For more information, refer to the ROC Debugger User Guide at
 {doc}`ROCgdb <rocgdb:index>`.
 
-##### Enhanced - clone-inferior Command
+##### Enhanced - clone-inferior command
 
 The clone-inferior command now ensures that the TTY, CMD, ARGS, and AMDGPU PRECISE-MEMORY settings are copied from the original inferior to the new one.  All modifications to the environment variables done using the 'set environment' or 'unset environment' commands are also copied to the new inferior.
 
-#### MIOpen Support for RDNA GPUs
+#### MIOpen support for RDNA GPUs
 
 This release includes support for AMD Radeon™ Pro W6800, in addition to other bug fixes and performance improvements as listed below:
 
-- MIOpen now supports RDNA GPUs!! (via MIOpen PRs 973, 780, 764, 740, 739, 677, 660, 653, 493, 498)
+* MIOpen now supports RDNA GPUs!! (via MIOpen PRs 973, 780, 764, 740, 739, 677, 660, 653, 493, 498)
 
-- Fixed a correctness issue with ImplicitGemm algorithm
+* Fixed a correctness issue with ImplicitGemm algorithm
 
-- Updated the performance data for new kernel versions
+* Updated the performance data for new kernel versions
 
-- Improved MIOpen build time by splitting large kernel header files
+* Improved MIOpen build time by splitting large kernel header files
 
-- Fixed an issue in reduction kernels for padded tensors
+* Fixed an issue in reduction kernels for padded tensors
 
-- Various other bug fixes and performance improvements
+* Various other bug fixes and performance improvements
 
 For more information, see {doc}`Documentation <miopen:index>`.
 
-#### Checkpoint Restore Support With CRIU
+#### Checkpoint restore support with CRIU
 
 The new Checkpoint Restore in Userspace (CRIU) functionality is implemented to support AMD GPU and ROCm applications.
 
@@ -4449,17 +4346,12 @@ CRIU is a userspace tool to Checkpoint and Restore an application.
 
 CRIU lacked the support for checkpoint restore applications that used device files such as a GPU. With this ROCm release, CRIU is enhanced with a new plugin to support AMD GPUs, which includes:
 
-- Single and Multi GPU systems (Gfx9)
-
-- Checkpoint / Restore on a different system
-
-- Checkpoint / Restore inside a docker container
-
-- PyTorch
-
-- Tensorflow
-
-- Using CRIU Image Streamer
+* Single and Multi GPU systems (Gfx9)
+* Checkpoint / Restore on a different system
+* Checkpoint / Restore inside a docker container
+* PyTorch
+* TensorFlow
+* Using CRIU Image Streamer
 
 For more information, refer to <https://github.com/checkpoint-restore/criu/tree/criu-dev/plugins/amdgpu>
 
@@ -4473,29 +4365,29 @@ For more information, refer to <https://github.com/checkpoint-restore/criu/tree/
 
 For more information, refer to the following websites:
 
-- <https://github.com/RadeonOpenCompute/criu/blob/amdgpu_plugin-03252022/Documentation/amdgpu_plugin.txt>
+* <https://github.com/RadeonOpenCompute/criu/blob/amdgpu_plugin-03252022/Documentation/amdgpu_plugin.txt>
 
-- <https://criu.org/Main_Page>
+* <https://criu.org/Main_Page>
 
-### Fixed Defects
+### Fixed defects
 
 The following defects are fixed in this release.
 
-#### Driver Fails To Load after Installation
+#### Driver fails to load after installation
 
 The issue with the driver failing to load after ROCm installation is now fixed.
 
 The driver installs successfully, and the server reboots with working rocminfo and clinfo.
 
-#### ROCDebugger Fixed Defects
+#### ROCDebugger fixed defects
 
-##### Breakpoints in GPU kernel code Before Kernel Is Loaded
+##### Breakpoints in GPU kernel code before kernel is loaded
 
 Previously, setting a breakpoint in device code by line number before the device code was loaded into the program resulted in ROCgdb incorrectly moving the breakpoint to the first following line that contains host code.
 
 Now, the breakpoint is left pending.  When the GPU kernel gets loaded, the breakpoint resolves to a location in the kernel.
 
-##### Registers Invalidated After Write
+##### Registers invalidated after write
 
 Previously, the stale just-written value was presented as a current value.
 
@@ -4503,19 +4395,19 @@ ROCgdb now invalidates the cached values of registers whose content might differ
 
 ROCgdb also invalidates all volatile registers when a volatile register is written.  For example, writing VCC invalidates the content of STATUS as STATUS.VCCZ may change.
 
-##### Scheduler-locking and GPU Wavefronts
+##### Scheduler-locking and GPU wavefronts
 
 When scheduler-locking is in effect, new wavefronts created by a resumed thread, CPU, or GPU wavefront, are held in the halt state. For example, the "set scheduler-locking" command.
 
-##### ROCDebugger Fails Before Completion of Kernel Execution
+##### ROCDebugger fails before completion of kernel execution
 
 It was possible (although erroneous) for a debugger to load GPU code in memory, send it to the device, start executing a kernel on the device, and dispose of the original code before the kernel had finished execution.  If a breakpoint was hit after this point, the debugger failed with an internal error while trying to access the debug information.
 
 This issue is now fixed by ensuring that the debugger keeps a local copy of the original code and debug information.
 
-### Known Issues
+### Known issues
 
-#### Random Memory Access Fault Errors Observed While Running Math Libraries Unit Tests
+#### Random memory access fault errors observed while running math libraries unit tests
 
 **Issue:** Random memory access fault issues are observed while running Math libraries unit tests. This issue is encountered in ROCm v5.0, ROCm v5.0.1, and ROCm v5.0.2.
 
@@ -4537,13 +4429,13 @@ cat /sys/module/amdgpu/parameters/vm_update_mode 0
 
 Where expectation is 0.
 
-#### CU Masking Causes Application to Freeze
+#### CU masking causes application to freeze
 
 Using CU Masking results in an application freeze or runs exceptionally slowly. This issue is noticed only in the GFX10 suite of products. Note, this issue is observed only in GFX10 suite of products.
 
 This issue is under active investigation at this time.
 
-#### Failed Checkpoint in Docker Containers
+#### Failed checkpoint in Docker containers
 
 A defect with Ubuntu images kernel-5.13-30-generic and kernel-5.13-35-generic with Overlay FS results in incorrect reporting of the mount ID.
 
@@ -4551,20 +4443,20 @@ This issue with Ubuntu causes CRIU checkpointing to fail in Docker containers.
 
 As a workaround, use an older version of the kernel. For example, Ubuntu 5.11.0-46-generic.
 
-#### Issue with Restoring Workloads Using Cooperative Groups Feature
+#### Issue with restoring workloads using cooperative groups feature
 
 Workloads that use the cooperative groups function to ensure all waves can be resident at the same time may fail to restore correctly.
 This issue is under investigation and will be fixed in a future release.
 
-#### Radeon Pro V620 and W6800 Workstation GPUs
+#### Radeon Pro V620 and W6800 workstation GPUs
 
-##### No Support for ROCDebugger on SRIOV
+##### No support for ROCDebugger on SRIOV
 
 ROCDebugger is not supported in the SRIOV environment on any GPU.
 
 This is a known issue and will be fixed in a future release.
 
-#### Random Error Messages in ROCm SMI for SR-IOV
+#### Random error messages in ROCm SMI for SR-IOV
 
 Random error messages are generated by unsupported functions or commands.
 
@@ -4909,11 +4801,11 @@ Tensile 4.32.0 for ROCm 5.1.0
 
 ## ROCm 5.0.2
 <!-- markdownlint-disable first-line-h1 -->
-### Fixed Defects
+### Fixed defects
 
 The following defects are fixed in the ROCm v5.0.2 release.
 
-#### Issue with hostcall Facility in HIP Runtime
+#### Issue with hostcall facility in HIP runtime
 
 In ROCm v5.0, when using the “assert()” call in a HIP kernel, the compiler may sometimes fail to emit kernel metadata related to the hostcall facility, which results in incomplete initialization of the hostcall facility in the HIP runtime. This can cause the HIP kernel to crash when it attempts to execute the “assert()” call.
 
@@ -4923,9 +4815,9 @@ The resolution includes a compiler change, which emits the required metadata by 
 
 Note:
 This fix may lead to breakage in some OpenMP offload use cases, which use print inside a target region and result in an abort in device code. The issue will be fixed in a future release.
-Compatibility Matrix Updates to ROCm Deep Learning Guide
+Compatibility Matrix Updates to the [Deep-learning guide](../../../../docs/how-to/deep-learning-rocm.md)
 
-The compatibility matrix in the AMD Deep Learning Guide is updated for ROCm v5.0.2.
+The compatibility matrix in the [Deep-learning guide](../../../../docs/how-to/deep-learning-rocm.md) is updated for ROCm v5.0.2.
 
 ### Library Changes in ROCM 5.0.2
 
@@ -4951,7 +4843,7 @@ The compatibility matrix in the AMD Deep Learning Guide is updated for ROCm v5.0
 
 ## ROCm 5.0.1
 <!-- markdownlint-disable first-line-h1 -->
-### Deprecations and Warnings
+### Deprecations and warnings
 
 #### Refactor of HIPCC/HIPCONFIG
 
@@ -4988,19 +4880,19 @@ Subsequently, Perl scripts will no longer be available in ROCm in a future relea
 ## ROCm 5.0.0
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-blanks-blockquote -->
-### What's New in This Release
+### What's new in this release
 
-#### HIP Enhancements
+#### HIP enhancements
 
 The ROCm v5.0 release consists of the following HIP enhancements.
 
-##### HIP Installation Guide Updates
+##### HIP installation guide updates
 
 The HIP Installation Guide is updated to include building HIP from source on the NVIDIA platform.
 
 Refer to the HIP Installation Guide v5.0 for more details.
 
-##### Managed Memory Allocation
+##### Managed memory allocation
 
 Managed memory, including the `__managed__` keyword, is now supported in the HIP combined host/device compilation. Through unified memory allocation, managed memory allows data to be shared and accessible to both the CPU and GPU using a single pointer. The allocation is managed by the AMD GPU driver using the Linux Heterogeneous Memory Management (HMM) mechanism. The user can call managed memory API hipMallocManaged to allocate a large chunk of HMM memory, execute kernels on a device, and fetch data between the host and device as needed.
 
@@ -5032,7 +4924,7 @@ For the application, see
 
 <https://github.com/ROCm-Developer-Tools/HIP/blob/rocm-4.5.x/tests/src/runtimeApi/memory/hipMallocManaged.cpp>
 
-#### New Environment Variable
+#### New environment variable
 
 The following new environment variable is added in this release:
 
@@ -5040,9 +4932,9 @@ The following new environment variable is added in this release:
 |----------------------|-----------------------|-------------|
 | HSA_COOP_CU_COUNT    | 0 or 1 (default is 0) | Some processors support more CUs than can reliably be used in a cooperative dispatch. Setting the environment variable HSA_COOP_CU_COUNT to 1 will cause ROCr to return the correct CU count for cooperative groups through the HSA_AMD_AGENT_INFO_COOPERATIVE_COMPUTE_UNIT_COUNT attribute of hsa_agent_get_info(). Setting HSA_COOP_CU_COUNT to other values, or leaving it unset, will cause ROCr to return the same CU count for the attributes HSA_AMD_AGENT_INFO_COOPERATIVE_COMPUTE_UNIT_COUNT and HSA_AMD_AGENT_INFO_COMPUTE_UNIT_COUNT. Future ROCm releases will make HSA_COOP_CU_COUNT=1 the default. |
 
-### Breaking Changes
+### Breaking changes
 
-#### Runtime Breaking Change
+#### Runtime breaking change
 
 Re-ordering of the enumerated type in hip_runtime_api.h to better match NV.  See below for the difference in enumerated types.
 
@@ -5248,25 +5140,22 @@ typedef enum hipDeviceAttribute_t {
  enum hipComputeMode {
 ```
 
-### Known Issues
+### Known issues
 
-#### Incorrect dGPU Behavior When Using AMDVBFlash Tool
+#### Incorrect dGPU behavior when using AMDVBFlash tool
 
 The AMDVBFlash tool, used for flashing the VBIOS image to dGPU, does not communicate with the ROM Controller specifically when the driver is present. This is because the driver, as part of its runtime power management feature, puts the dGPU to a sleep state.
 
 As a workaround, users can run amdgpu.runpm=0, which temporarily disables the runtime power management feature from the driver and dynamically changes some power control-related sysfs files.
 
-#### Issue with START Timestamp in ROCProfiler
+#### Issue with START timestamp in ROCProfiler
 
 Users may encounter an issue with the enabled timestamp functionality for monitoring one or multiple counters. ROCProfiler outputs the following four timestamps for each kernel:
 
-- Dispatch
-
-- Start
-
-- End
-
-- Complete
+* Dispatch
+* Start
+* End
+* Complete
 
 ##### Issue
 
@@ -5294,7 +5183,7 @@ Dispatch < Start < End < Complete
 
 Users cannot use ROCProfiler to measure the time spent on each kernel because of the incorrect timestamp with counter collection enabled.
 
-##### Recommended Workaround
+##### Recommended workaround
 
 Users are recommended to collect kernel execution timestamps without monitoring counters, as follows:
 
@@ -5305,28 +5194,28 @@ Users are recommended to collect kernel execution timestamps without monitoring 
 3. Check the output result file from step 1.
 
 4. The order of timestamps correctly displays as:
-  DispathNS < BeginNS < EndNS < CompleteNS
+  DispatchNS < BeginNS < EndNS < CompleteNS
 
 5. Users can find the values of the collected counters in the output file generated in step 2.
 
-#### Radeon Pro V620 and W6800 Workstation GPUs
+#### Radeon Pro V620 and W6800 workstation GPUs
 
-##### No Support for SMI and ROCDebugger on SRIOV
+##### No support for SMI and ROCDebugger on SRIOV
 
 System Management Interface (SMI) and ROCDebugger are not supported in the SRIOV environment on any GPU. For more information, refer to the Systems Management Interface documentation.
 
-### Deprecations and Warnings
+### Deprecations and warnings
 
-#### ROCm Libraries Changes – Deprecations and Deprecation Removal
+#### ROCm libraries changes – deprecations and deprecation removal
 
-- The hipFFT.h header is now provided only by the hipFFT package.  Up to ROCm 5.0, users would get hipFFT.h in the rocFFT package too.
+* The hipFFT.h header is now provided only by the hipFFT package.  Up to ROCm 5.0, users would get hipFFT.h in the rocFFT package too.
 
-- The GlobalPairwiseAMG class is now entirely removed, users should use the PairwiseAMG class instead.
+* The GlobalPairwiseAMG class is now entirely removed, users should use the PairwiseAMG class instead.
 
-- The rocsparse_spmm signature in 5.0 was changed to match that of rocsparse_spmm_ex.  In 5.0, rocsparse_spmm_ex is still present, but deprecated. Signature diff for rocsparse_spmm
+* The rocsparse_spmm signature in 5.0 was changed to match that of rocsparse_spmm_ex.  In 5.0, rocsparse_spmm_ex is still present, but deprecated. Signature diff for rocsparse_spmm
   rocsparse_spmm in 5.0
 
-  ```h
+  ```cpp
   rocsparse_status rocsparse_spmm(rocsparse_handle            handle,
                                   rocsparse_operation         trans_A,
                                   rocsparse_operation         trans_B,
@@ -5344,7 +5233,7 @@ System Management Interface (SMI) and ROCDebugger are not supported in the SRIOV
 
   rocSPARSE_spmm in 4.0
 
-  ```h
+  ```cpp
   rocsparse_status rocsparse_spmm(rocsparse_handle            handle,
                                   rocsparse_operation         trans_A,
                                   rocsparse_operation         trans_B,
@@ -5359,15 +5248,15 @@ System Management Interface (SMI) and ROCDebugger are not supported in the SRIOV
                                   void*                       temp_buffer);
   ```
 
-#### HIP API Deprecations and Warnings
+#### HIP API deprecations and warnings
 
-##### Warning - Arithmetic Operators of HIP Complex and Vector Types
+##### Warning - arithmetic operators of HIP complex and vector types
 
 In this release, arithmetic operators of HIP complex and vector types are deprecated.
 
-- As alternatives to arithmetic operators of HIP complex types, users can use arithmetic operators of `std::complex` types.
+* As alternatives to arithmetic operators of HIP complex types, users can use arithmetic operators of `std::complex` types.
 
-- As alternatives to arithmetic operators of HIP vector types, users can use the operators of the native clang vector type associated with the data member of HIP vector types.
+* As alternatives to arithmetic operators of HIP vector types, users can use the operators of the native clang vector type associated with the data member of HIP vector types.
 
 During the deprecation, two macros `_HIP_ENABLE_COMPLEX_OPERATORS` and `_HIP_ENABLE_VECTOR_OPERATORS` are provided to allow users to conditionally enable arithmetic operators of HIP complex or vector types.
 
@@ -5377,13 +5266,13 @@ The arithmetic operators of HIP complex and vector types will be removed in a fu
 
 Refer to the HIP API Guide for more information.
 
-#### Warning - Compiler-Generated Code Object Version 4 Deprecation
+#### Warning - compiler-generated code object version 4 deprecation
 
 Support for loading compiler-generated code object version 4 will be deprecated in a future release with no release announcement and replaced with code object 5 as the default version.
 
 The current default is code object version 4.
 
-#### Warning - MIOpenTensile Deprecation
+#### Warning - MIOpenTensile deprecation
 
 MIOpenTensile will be deprecated in a future release.
 
