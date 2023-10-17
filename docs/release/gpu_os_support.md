@@ -67,12 +67,10 @@ The table below shows supported GPUs for Instinct™, Radeon Pro™ and Radeon�
 GPUs. Please click the tabs below to switch between GPU product lines. If a GPU
 is not listed on this table, the GPU is not officially supported by AMD.
 
-::::{tab-set}
+:::::{tab-set}
 
-:::{tab-item} AMD Instinct™
+::::{tab-item} AMD Instinct™
 :sync: instinct
-
-Use Driver Shipped with ROCm
 
 | Product Name | Architecture | [LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) |Support |
 |:------------:|:------------:|:--------------------------------------------------------------------:|:-------:|
@@ -83,32 +81,40 @@ Use Driver Shipped with ROCm
 | AMD Instinct™ MI50   | GCN5.1 | gfx906 | ✅ |
 | AMD Instinct™ MI25   | GCN5.0 | gfx900 | ❌ |
 
-:::
+::::
 
-:::{tab-item} Radeon Pro™
+::::{tab-item} Radeon Pro™
 :sync: radeonpro
 
-[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
+:::{note}
+See {doc}`Radeon Software for Linux compability matrix <radeon:docs/compatibility>`
+for those using select RDNA™ 3 GPU with graphical applications and ROCm.
+:::
 
 | Name | Architecture |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
 |:----:|:------------:|:--------------------------------------------------------------------:|:-------:|
+| AMD Radeon™ Pro W7900   | RDNA3  | gfx1100 | ✅ (Ubuntu 22.04 only)|
 | AMD Radeon™ Pro W6800   | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro V620    | RDNA2  | gfx1030 | ✅ |
 | AMD Radeon™ Pro VII     | GCN5.1 | gfx906  | ✅ |
-:::
+::::
 
-:::{tab-item} Radeon™
+::::{tab-item} Radeon™
 :sync: radeonpro
 
-[Use Radeon Pro Driver](https://www.amd.com/en/support/linux-drivers)
+:::{note}
+See {doc}`Radeon Software for Linux compatibility <radeon:docs/compatibility>`
+for those using select RDNA™ 3 GPU with graphical applications and ROCm.
+:::
 
 | Name | Architecture    |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
 |:----:|:---------------:|:--------------------------------------------------------------------:|:-------:|
+| AMD Radeon™ RX 7900XTX | GCN5.1 | gfx1100  | ✅ (Ubuntu 22.04 only)|
 | AMD Radeon™ VII        | GCN5.1 | gfx906  | ✅ |
 
-:::
-
 ::::
+
+:::::
 
 ### Support Status
 
