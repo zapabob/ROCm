@@ -109,7 +109,7 @@ for those using select RDNA™ 3 GPU with graphical applications and ROCm.
 
 | Name | Architecture    |[LLVM Target](https://www.llvm.org/docs/AMDGPUUsage.html#processors) | Support|
 |:----:|:---------------:|:--------------------------------------------------------------------:|:-------:|
-| AMD Radeon™ RX 7900XTX | GCN5.1 | gfx1100  | ✅ (Ubuntu 22.04 only)|
+| AMD Radeon™ RX 7900XTX | RDNA3 | gfx1100  | ✅ (Ubuntu 22.04 only)|
 | AMD Radeon™ VII        | GCN5.1 | gfx906  | ✅ |
 
 ::::
