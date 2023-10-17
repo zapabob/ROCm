@@ -224,5 +224,6 @@ of any formatting issues, create a pull request in our
 
 ## Building our documentation
 
+<!--  % TODO: Fix the link to be able to work at every files  -->
 To learn how to build our documentation, refer to
-[Building documentation](./docs/contribute/building.md).
+[Building documentation](./building.md).

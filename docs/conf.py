@@ -69,6 +69,8 @@ article_pages = [
 
 ]
 
+exclude_patterns = ['temp']
+
 external_toc_path = "./sphinx/_toc.yml"
 
 docs_core = ROCmDocs("ROCm Documentation")

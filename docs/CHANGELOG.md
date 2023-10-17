@@ -78,7 +78,8 @@ The ROCm 5.7 release introduces the beta release of LLVM AddressSanitizer (ASan)
 
 Until now, the LLVM ASan process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
 
-Refer to the documentation on LLVM ASan with the GPU at [LLVM AddressSanitizer User Guide](./docs/conceptual/using-gpu-sanitizer.md).
+<!--  TODO: Fix the link to be able to work at every files   -->
+Refer to the documentation on LLVM ASan with the GPU at [LLVM AddressSanitizer User Guide](./conceptual/using-gpu-sanitizer.md).
 
 **Note**: The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
 

@@ -34,7 +34,7 @@ The ROCm documentation homepage is [rocm.docs.amd.com](https://rocm.docs.amd.com
 ### Building our documentation
 
 For a quick-start build, use the following code. For more options and detail, refer to
-[Building documentation](./docs/contribute/building.md).
+[Building documentation](./contribute/building.md).
 
 ```bash
 cd docs

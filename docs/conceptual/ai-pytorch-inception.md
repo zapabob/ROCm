@@ -881,9 +881,9 @@ To understand the code step by step, follow these steps:
         plt.show()
         ```
 
-     ![ ](../data/conceptual/mnist-3.png)
+        ![ ](../data/conceptual/mnist-3.png)
 
-     ```py
+        ```py
         i = 12
         plt.figure(figsize=(6,3))
         plt.subplot(1,2,1)

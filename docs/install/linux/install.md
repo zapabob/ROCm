@@ -378,7 +378,7 @@ sudo apt update
 
 Install packages of your choice in a single-version ROCm install or
 in a multi-version ROCm install fashion. For more information on what
-single/multi-version installations are, refer to {ref}`installation-types`.
+single/multi-version installations are, refer to {ref}`linux-install-methods`.
 For a comprehensive list of meta-packages, refer to
 {ref}`meta-package-desc`.
 
@@ -578,7 +578,7 @@ sudo yum clean all
 
 Install packages of your choice in a single-version ROCm install or
 in a multi-version ROCm install fashion. For more information on what
-single/multi-version installations are, refer to {ref}`installation-types`.
+single/multi-version installations are, refer to {ref}`linux-install-methods`.
 For a comprehensive list of meta-packages, refer to
 {ref}`meta-package-desc`.
 
@@ -681,7 +681,7 @@ sudo zypper ref
 
 Install packages of your choice in a single-version ROCm install or
 in a multi-version ROCm install fashion. For more information on what
-single/multi-version installations are, refer to {ref}`installation-types`.
+single/multi-version installations are, refer to {ref}`linux-install-methods`.
 For a comprehensive list of meta-packages, refer to
 {ref}`meta-package-desc`.
 
@@ -1176,6 +1176,7 @@ an updated version of the ROCm along with the currently installed version, refer
       :::::
       :::::{tab-item} Red Hat Enterprise Linux
       :sync: RHEL
+
       ::::{tab-set}
       :::{tab-item} RHEL 9.2
       :sync: RHEL-9.2
