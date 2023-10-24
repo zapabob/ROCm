@@ -89,15 +89,6 @@
 * {doc}`rocBLAS <rocblas:index>`
 * {doc}`rocSOLVER <rocsolver:index>`
 * {doc}`rocSPARSE <rocsparse:index>`
-
-:::
-
-:::{grid-item-card}
-:padding: 2
-**Matrix multiply**
-
-^^^
-
 * {doc}`rocWMMA <rocwmma:index>`
 
 :::

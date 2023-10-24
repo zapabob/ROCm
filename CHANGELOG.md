@@ -35,13 +35,13 @@ As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), RO
 
 * No new features and performance optimizations will be supported for the gfx906 GPUs beyond this major release (ROCm 5.7).
 
-* Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs till Q2 2024 (EOM (End of Maintenance) will be aligned with the closest ROCm release).
+* Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs until Q2 2024 (EOM (End of Maintenance) will be aligned with the closest ROCm release).
 
 * Bug fixes during the maintenance will be made to the next ROCm point release.
 
 * Bug fixes will not be backported to older ROCm releases for gfx906.
 
-* Distribution and operating system updates will continue as per the ROCm release cadence for gfx906 GPUs till EOM.
+* Distribution and operating system updates will continue as per the ROCm release cadence for gfx906 GPUs until EOM.
 
 #### Feature updates
 
@@ -3657,7 +3657,7 @@ This release introduces a new ROCm C++ library for accelerating mixed-precision 
 rocWMMA is released as a header library and includes test and sample projects to validate and illustrate example usages of the C++ API. GEMM matrix multiplication is used as primary validation given the heavy precedent for the library. However, the usage portfolio is growing significantly and demonstrates different ways rocWMMA may be consumed.
 
 For more information, refer to
-[Communication Libraries](../../../../docs/reference//library-index.md)
+[Communication Libraries](./reference/library-index.md)
 
 #### OpenMP enhancements in this release
 
@@ -4753,9 +4753,9 @@ The resolution includes a compiler change, which emits the required metadata by 
 
 Note:
 This fix may lead to breakage in some OpenMP offload use cases, which use print inside a target region and result in an abort in device code. The issue will be fixed in a future release.
-Compatibility Matrix Updates to the [Deep-learning guide](../../../../docs/how-to/deep-learning-rocm.md)
+Compatibility Matrix Updates to the [Deep-learning guide](./how-to/deep-learning-rocm.md)
 
-The compatibility matrix in the [Deep-learning guide](../../../../docs/how-to/deep-learning-rocm.md) is updated for ROCm v5.0.2.
+The compatibility matrix in the [Deep-learning guide](./how-to/deep-learning-rocm.md) is updated for ROCm v5.0.2.
 
 ### Library Changes in ROCM 5.0.2
 

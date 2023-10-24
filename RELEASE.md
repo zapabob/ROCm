@@ -31,7 +31,7 @@ AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 
 
 As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 will be the final release for gfx906 GPUs to be in a fully supported state.
 
-* ROCm 6.0 release will show MI50s as "under maintenance" mode for [Linux](./about/compatibility/linux-support.md) and [Windows](./about/compatibility/windows-support.md)
+* ROCm 6.0 release will show MI50s as "under maintenance" mode for [Linux](./compatibility/linux-support.md) and [Windows](./compatibility/windows-support.md)
 
 * No new features and performance optimizations will be supported for the gfx906 GPUs beyond this major release (ROCm 5.7).
 
@@ -78,7 +78,7 @@ The ROCm 5.7 release introduces the beta release of LLVM AddressSanitizer (ASan)
 
 Until now, the LLVM ASan process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
 
-Refer to the documentation on LLVM ASan with the GPU at [LLVM AddressSanitizer User Guide](./docs/conceptual/using_gpu_sanitizer.md).
+Refer to the documentation on LLVM ASan with the GPU at [LLVM AddressSanitizer User Guide](../conceptual/using-gpu-sanitizer.md).
 
 **Note**: The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
 

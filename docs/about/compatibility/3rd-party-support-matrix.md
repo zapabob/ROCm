@@ -24,17 +24,17 @@ TensorFlow.
 
 ## Communication libraries
 
-ROCm supports [OpenUCX](https://openucx.org/) an "an open-source,
-production-grade communication framework for data-centric and high-performance
-applications".
+ROCm supports [OpenUCX](https://openucx.org/), an open-source,
+production-grade communication framework for data-centric and high performance
+applications.
 
 UCX version | ROCm 5.4 and older | ROCm 5.5 and newer |
 |:----------|:------------------:|:------------------:|
 | -1.14.0   | COMPATIBLE         | INCOMPATIBLE       |
 |  1.14.1+  | COMPATIBLE         | COMPATIBLE         |
 
-The Unified Collective Communication Library [UCC](https://https://github.com/openucx/ucc)
-also has support for ROCm devices.
+The Unified Collective Communication ([UCC](https://github.com/openucx/ucc)) library also has
+support for ROCm devices.
 
 UCC version | ROCm 5.5 and older | ROCm 5.6 and newer |
 |:----------|:------------------:|:------------------:|
