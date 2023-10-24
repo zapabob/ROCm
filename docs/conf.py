@@ -12,7 +12,7 @@ from rocm_docs import ROCmDocs
 shutil.copy2('../CONTRIBUTING.md','./contribute/index.md')
 shutil.copy2('../RELEASE.md','./about/release-notes.md')
 # Keep capitalization due to similar linking on GitHub's markdown preview.
-shutil.copy2('../CHANGELOG.md','./CHANGELOG.md')
+shutil.copy2('../CHANGELOG.md','./about/CHANGELOG.md')
 
 latex_engine = "xelatex"
 

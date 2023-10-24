@@ -57,7 +57,7 @@ subtrees:
   entries:
   - file: about/release-notes.md
     title: Release notes
-  - file: CHANGELOG.md
+  - file: about/CHANGELOG.md
     title: Changelog
   - file: about/release-history.md
     title: Release history
