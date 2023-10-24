@@ -27,7 +27,7 @@ option, i.e. to allow access to all GPUs expose `/dev/kfd` and all
 `/dev/dri/renderD` devices:
 
 ```shell
-docker run --device /dev/kfd --device /dev/renderD128 --device /dev/renderD129 ...
+docker run --device /dev/kfd --device /dev/dri/renderD128 --device /dev/dri/renderD129 ...
 ```
 
 More conveniently, instead of listing all devices, the entire `/dev/dri` folder
