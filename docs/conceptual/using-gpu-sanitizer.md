@@ -5,7 +5,7 @@ The LLVM AddressSanitizer (ASan) provides a process that allows developers to de
 Until now, the LLVM ASan process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications exactly like pure CPU applications. However, this simplicity has not been achieved yet.
 
 This document provides documentation on using ROCm ASan.
-For information about LLVM ASan, see [the LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
+For information about LLVM ASan, see the [LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
 **Note**: The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
 
@@ -37,26 +37,17 @@ There are a few options if the compile time becomes unacceptable:
 
 ## Installing ROCm GPU ASan packages
 
-For a complete ROCm GPU Sanitizer installation, the following  must be installed,
-
-* For instrumented HSA and HIP runtimes, and tools (required)
+For a complete ROCm GPU Sanitizer installation, including packages, instrumented HSA and HIP runtimes, tools, and math libraries, use the following instruction,
 
 ```bash
-    sudo apt-get install amd-smi-lib-asan comgr-asan hip-runtime-amd-asan hsa-rocr-asan hsakmt-roct-asan hsa-amd-aqlprofile-asan rocm-core-asan rocm-dbgapi-asan rocm-debug-agent-asan rocm-opencl-asan rocm-smi-lib-asan rocprofiler-asan roctracer-asan
+    sudo apt-get install rocm-ml-sdk-asan
+
 ```
-
-* For instrumented math libraries (optional)
-
-```bash
-    sudo apt-get install hipfft-asan hipsparse-asan migraphx-asan miopen-hip-asan rocalution-asan rocblas-asan rocfft-asan rocm-core-asan rocsparse-asan hipblaslt-asan mivisionx-asan rocsolver-asan
-```
-
-**Note**: It is recommended to install all ASan packages. If the optional instrumented math libraries are not installed, the address sanitizer cannot find issues within those libraries.
 
 ## Using AMD-supplied ASan instrumented libraries
 
-ROCm releases have optional packages containing additional ASan instrumented builds of the ROCm libraries usually found in `/opt/rocm-<version>/lib`. The instrumented libraries have identical names as the regular uninstrumented libraries and are located in `/opt/rocm-<version>/lib/asan`.
-These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used, but, as descibed above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
+ROCm releases have optional packages that contain additional ASan instrumented builds of the ROCm libraries (usually found in `/opt/rocm-<version>/lib`). The instrumented libraries have identical names to the regular uninstrumented libraries, and are located in `/opt/rocm-<version>/lib/asan`.
+These additional libraries are built using the `amdclang++` and `hipcc` compilers, while some uninstrumented libraries are built with g++. The preexisting build options are used but, as described above, additional options are used: `-fsanitize=address`, `-shared-libsan` and `-g`.
 
 These additional libraries avoid additional developer effort to locate repositories, identify the correct branch, check out the correct tags, and other efforts needed to build the libraries from the source. And they extend the ability of the process to detect addressing errors into the ROCm libraries themselves.
 
@@ -86,7 +77,7 @@ If it does not appear, when executed the application will quickly output an ASan
 
 * Ensure that the application `llvm-symbolizer` can be executed, and that it is located in `/opt/rocm-<version>/llvm/bin`. This executable is not strictly required, but if found is used to translate ("symbolize") a host-side instruction address into a more useful function name, file name, and line number (assuming the application has been built to include debug information).
 
-There is an environment variable, `ASAN_OPTIONS` which can be used to adjust the runtime behavior of the ASAN runtime itself. There are more than a hundred "flags" that can be adjusted (see an old list at [flags](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags)) but the default settings are correct and should be used in most cases. It must be noted that these options only affect the host ASAN runtime. The device runtime only currently supports the default settings for the few relevant options.
+There is an environment variable, `ASAN_OPTIONS`, that can be used to adjust the runtime behavior of the ASAN runtime itself. There are more than a hundred "flags" that can be adjusted (see an old list at [flags](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags)) but the default settings are correct and should be used in most cases. It must be noted that these options only affect the host ASAN runtime. The device runtime only currently supports the default settings for the few relevant options.
 
 There are two `ASAN_OPTION` flags of particular note.
 
