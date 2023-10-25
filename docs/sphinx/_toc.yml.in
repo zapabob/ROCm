@@ -11,16 +11,8 @@ subtrees:
 
 - caption: Installation
   entries:
-  - file: install/linux/install-quick.md
-    title: Quick start (Linux)
   - file: install/windows/install-quick.md
     title: Quick start (Windows)
-  - file: install/linux/install.md
-    title: Linux install guide
-    subtrees:
-    - entries:
-      - file: install/linux/package-manager-integration.md
-        title: Package manager integration
   - file: install/windows/install.md
     title: Windows install guide
     subtrees:
@@ -48,7 +40,7 @@ subtrees:
     title: Third-party
   - file: about/compatibility/user-kernel-space-compat-matrix.md
     title: User/kernel space support
-  - file: about/compatibility/docker-image-support-matrix.md
+  - file: about/compatibility/docker-image-support-matrix.rst
     title: Docker
   - file: about/compatibility/openmp.md
     title: OpenMP

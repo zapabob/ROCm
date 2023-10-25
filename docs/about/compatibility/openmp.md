@@ -22,7 +22,7 @@ The OpenMP toolchain is automatically installed as part of the standard ROCm
 installation and is available under `/opt/rocm-{version}/llvm`. The
 sub-directories are:
 
-bin: Compilers (`flang` and `clang`) and other binaries.
+- bin: Compilers (`flang` and `clang`) and other binaries.
 
 * examples: The usage section below shows how to compile and run these programs.
 * include: Header files.

@@ -5,9 +5,25 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import shutil
+import jinja2
+import os
 
 from rocm_docs import ROCmDocs
 
+# Environement to process Jinja templates.
+jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader("."))
+
+# Jinja templates to render out.
+templates = [
+
+]
+
+# Render templates and output files without the last extension.
+# For example: 'install.md.jinja' becomes 'install.md'.
+for template in templates:
+    rendered = jinja_env.get_template(template).render()
+    with open(os.path.splitext(template)[0], 'w') as file:
+        file.write(rendered)
 
 shutil.copy2('../CONTRIBUTING.md','./contribute/index.md')
 shutil.copy2('../RELEASE.md','./about/release-notes.md')
@@ -15,14 +31,20 @@ shutil.copy2('../RELEASE.md','./about/release-notes.md')
 shutil.copy2('../CHANGELOG.md','./about/CHANGELOG.md')
 
 latex_engine = "xelatex"
+latex_elements = {
+    "fontpkg": r"""
+\usepackage{tgtermes}
+\usepackage{tgheros}
+\renewcommand\ttdefault{txtt}
+"""
+}
 
 # configurations for PDF output by Read the Docs
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2023 Advanced Micro Devices, Inc. All rights reserved."
-version = "5.7.0"
-release = "5.7.0"
-
+version = "5.7.1"
+release = "5.7.1"
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
