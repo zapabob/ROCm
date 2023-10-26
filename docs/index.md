@@ -46,7 +46,7 @@ ROCm compatibility information
 * [Windows (GPU & OS)](./about/compatibility/windows-support.md)
 * [Third-party](./about/compatibility/3rd-party-support-matrix.md)
 * [User/kernel space](./about/compatibility/user-kernel-space-compat-matrix.md)
-* [Docker](./about/compatibility/docker-image-support-matrix.md)
+* [Docker](./about/compatibility/docker-image-support-matrix.rst)
 * [OpenMP](./about/compatibility/openmp.md)
 
 :::

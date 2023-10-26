@@ -15,449 +15,61 @@ Welcome to the release notes for the ROCm platform.
 
 -------------------
 
-## ROCm 5.7.0
+## ROCm 5.7.1
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable no-duplicate-header -->
 
-### Release highlights for ROCm 5.7
+### What's New in This Release
 
-ROCm 5.7.0 includes many new features. These include: a new library (hipTensor), and optimizations for rocRAND and MIVisionX. Address sanitizer for host and device code (GPU) is now available as a beta. Note that ROCm 5.7.0 is EOS for MI50. 5.7 versions of ROCm are the last major release in the ROCm 5 series. This release is Linux-only.
+### ROCm Libraries
 
-Important: The next major ROCm release (ROCm 6.0) will not be backward compatible with the ROCm 5 series. Changes will include: splitting LLVM packages into more manageable sizes, changes to the HIP runtime API, splitting rocRAND and hipRAND into separate packages, and reorganizing our file structure.
+#### rocBLAS
+A new functionality rocblas-gemm-tune and an environment variable ROCBLAS_TENSILE_GEMM_OVERRIDE_PATH are added to rocBLAS in the ROCm 5.7.1 release.
 
-#### AMD Instinct™ MI50 end-of-support notice
+*rocblas-gemm-tune* is used to find the best-performing GEMM kernel for each GEMM problem set. It has a command line interface, which mimics the --yaml input used by rocblas-bench. To generate the expected --yaml input, profile logging can be used, by setting the environment variable ROCBLAS_LAYER4.
 
-AMD Instinct MI50, Radeon Pro VII, and Radeon VII products (collectively gfx906 GPUs) will enter maintenance mode starting Q3 2023.
+For more information on rocBLAS logging, see Logging in rocBLAS, in the [API Reference Guide](https://rocm.docs.amd.com/projects/rocBLAS/en/docs-5.7.1/API_Reference_Guide.html#logging-in-rocblas).
 
-As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), ROCm 5.7 will be the final release for gfx906 GPUs to be in a fully supported state.
+An example input file: Expected output (note selected GEMM idx may differ): Where the far right values (solution_index) are the indices of the best-performing kernels for those GEMMs in the rocBLAS kernel library. These indices can be directly used in future GEMM calls. See rocBLAS/samples/example_user_driven_tuning.cpp for sample code of directly using kernels via their indices.
 
-* ROCm 6.0 release will show MI50s as "under maintenance" mode for [Linux](./compatibility/linux-support.md) and [Windows](./compatibility/windows-support.md)
+If the output is stored in a file, the results can be used to override default kernel selection with the kernels found, by setting the environment variable ROCBLAS_TENSILE_GEMM_OVERRIDE_PATH, where points to the stored file.
 
-* No new features and performance optimizations will be supported for the gfx906 GPUs beyond this major release (ROCm 5.7).
+For more details, refer to the [rocBLAS Programmer's Guide.](https://rocm.docs.amd.com/projects/rocBLAS/en/latest/Programmers_Guide.html#rocblas-gemm-tune)
 
-* Bug fixes and critical security patches will continue to be supported for the gfx906 GPUs until Q2 2024 (EOM (End of Maintenance) will be aligned with the closest ROCm release).
+#### HIP 5.7.1 (for ROCm 5.7.1)
 
-* Bug fixes during the maintenance will be made to the next ROCm point release.
+ROCm 5.7.1 is a point release with several bug fixes in the HIP runtime.
 
-* Bug fixes will not be backported to older ROCm releases for gfx906.
+### Fixed defects
+The *hipPointerGetAttributes* API returns the correct HIP memory type as *hipMemoryTypeManaged* for managed memory.
 
-* Distribution and operating system updates will continue as per the ROCm release cadence for gfx906 GPUs until EOM.
-
-#### Feature updates
-
-##### Non-hostcall HIP printf
-
-**Current behavior**
-
-The current version of HIP printf relies on hostcalls, which, in turn, rely on PCIe atomics. However, PCle atomics are unavailable in some environments, and, as a result, HIP-printf does not work in those environments. Users may see the following error from runtime (with AMD_LOG_LEVEL 1 and above):
-
-```
-    Pcie atomics not enabled, hostcall not supported
-```
-**Workaround**
-
-The ROCm 5.7 release introduces an alternative to the current hostcall-based implementation that leverages an older OpenCL-based printf scheme, which does not rely on hostcalls/PCIe atomics.
-
-Note: This option is less robust than hostcall-based implementation and is intended to be a workaround when hostcalls do not work.
-
-The printf variant is now controlled via a new compiler option -mprintf-kind=<value>. This is supported only for HIP programs and takes the following values,
-
-* “hostcall” – This currently available implementation relies on hostcalls, which require the system to support PCIe atomics. It is the default scheme.
-
-* “buffered” – This implementation leverages the older printf scheme used by OpenCL; it relies on a memory buffer where printf arguments are stored during the kernel execution, and then the runtime handles the actual printing once the kernel finishes execution.
-
-**NOTE**: With the new workaround:
-
-* The printf buffer is fixed size and non-circular.  After the buffer is filled, calls to printf will not result in additional output.
-
-* The printf call returns either 0 (on success) or -1 (on failure, due to full buffer), unlike the hostcall scheme that returns the number of characters printed.
-
-##### Beta release of LLVM AddressSanitizer (ASan) with the GPU
-
-The ROCm 5.7 release introduces the beta release of LLVM AddressSanitizer (ASan) with the GPU. The LLVM ASan provides a process that allows developers to detect runtime addressing errors in applications and libraries. The detection is achieved using a combination of compiler-added instrumentation and runtime techniques, including function interception and replacement.
-
-Until now, the LLVM ASan process was only available for traditional purely CPU applications. However, ROCm has extended this mechanism to additionally allow the detection of some addressing errors on the GPU in heterogeneous applications. Ideally, developers should treat heterogeneous HIP and OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
-
-Refer to the documentation on LLVM ASan with the GPU at [LLVM AddressSanitizer User Guide](../conceptual/using-gpu-sanitizer.md).
-
-**Note**: The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
-
-#### Fixed defects
-
-The following defects are fixed in ROCm v5.7:
-
-* Test hangs observed in HMM RCCL
-
-* NoGpuTst test of Catch2 fails with Docker
-
-* Failures observed with non-HMM HIP directed catch2 tests with XNACK+
-
-* Multiple test failures and test hangs observed in hip-directed catch2 tests with xnack+
-
-#### HIP 5.7.0
-
-##### Optimizations
-
-##### Added
-
-* Added `meta_group_size`/`rank` for getting the number of tiles and rank of a tile in the partition
-
-* Added new APIs supporting Windows only, under development on Linux
-
-    * `hipMallocMipmappedArray` for allocating a mipmapped array on the device
-
-    * `hipFreeMipmappedArray` for freeing a mipmapped array on the device
-
-    * `hipGetMipmappedArrayLevel` for getting a mipmap level of a HIP mipmapped array
-
-    * `hipMipmappedArrayCreate` for creating a mipmapped array
-
-    * `hipMipmappedArrayDestroy` for destroy a mipmapped array
-
-    * `hipMipmappedArrayGetLevel` for getting a mipmapped array on a mipmapped level
-
-##### Changed
-
-##### Fixed
-
-##### Known issues
-
-* HIP memory type enum values currently don't support equivalent value to `cudaMemoryTypeUnregistered`, due to HIP functionality backward compatibility.
-* HIP API `hipPointerGetAttributes` could return invalid value in case the input memory pointer was not allocated through any HIP API on device or host.
-
-##### Upcoming changes for HIP in ROCm 6.0 release
-
-* Removal of `gcnarch` from hipDeviceProp_t structure
-
-* Addition of new fields in hipDeviceProp_t structure
-
-    * maxTexture1D
-
-    * maxTexture2D
-
-    * maxTexture1DLayered
-
-    * maxTexture2DLayered
-
-    * sharedMemPerMultiprocessor
-
-    * deviceOverlap
-
-    * asyncEngineCount
-
-    * surfaceAlignment
-
-    * unifiedAddressing
-
-    * computePreemptionSupported
-
-    * hostRegisterSupported
-
-    * uuid
-
-* Removal of deprecated code -hip-hcc codes from hip code tree
-
-* Correct hipArray usage in HIP APIs such as hipMemcpyAtoH and hipMemcpyHtoA
-
-* HIPMEMCPY_3D fields correction to avoid truncation of "size_t" to "unsigned int" inside hipMemcpy3D()
-
-* Renaming of 'memoryType' in hipPointerAttribute_t structure to 'type'
-
-* Correct hipGetLastError to return the last error instead of last API call's return code
-
-* Update hipExternalSemaphoreHandleDesc to add "unsigned int reserved[16]"
-
-* Correct handling of flag values in hipIpcOpenMemHandle for hipIpcMemLazyEnablePeerAccess
-
-* Remove hiparray* and make it opaque with hipArray_t
-
-### Library Changes in ROCM 5.7.0
+### Library Changes in ROCM 5.7.1
 
 | Library | Version |
 |---------|---------|
-| AMDMIGraphX | 2.5 ⇒ [2.7](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.7.0) |
-| hipBLAS | 0.54.0 ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.7.0) |
-| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.7.0) |
-| hipFFT | [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.7.0) |
-| hipSOLVER | 1.8.0 ⇒ [1.8.1](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.7.0) |
-| hipSPARSE | 2.3.7 ⇒ [2.3.8](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.7.0) |
-| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.7.0) |
-| rccl | 2.15.5 ⇒ [2.17.1-1](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.7.0) |
-| rocALUTION | 2.1.9 ⇒ [2.1.11](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.7.0) |
-| rocBLAS | 3.0.0 ⇒ [3.1.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.7.0) |
-| rocFFT | 1.0.23 ⇒ [1.0.24](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.7.0) |
-| rocm-cmake | 0.9.0 ⇒ [0.10.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.7.0) |
-| rocPRIM | 2.13.0 ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.7.0) |
-| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.7.0) |
-| rocSOLVER | 3.22.0 ⇒ [3.23.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.7.0) |
-| rocSPARSE | 2.5.2 ⇒ [2.5.4](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.7.0) |
-| rocThrust | [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.7.0) |
-| rocWMMA | 1.1.0 ⇒ [1.2.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.7.0) |
-| Tensile | 4.37.0 ⇒ [4.38.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.7.0) |
+| hipBLAS | [1.1.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.7.1) |
+| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.7.1) |
+| hipFFT | [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.7.1) |
+| hipSOLVER | 1.8.1 ⇒ [1.8.2](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.7.1) |
+| hipSPARSE | [2.3.8](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.7.1) |
+| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.7.1) |
+| rocALUTION | [2.1.11](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.7.1) |
+| rocBLAS | [3.1.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.7.1) |
+| rocFFT | [1.0.24](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.7.1) |
+| rocm-cmake | [0.10.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.7.1) |
+| rocPRIM | [2.13.1](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.7.1) |
+| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.7.1) |
+| rocSOLVER | [3.23.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.7.1) |
+| rocSPARSE | [2.5.4](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.7.1) |
+| rocThrust | [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.7.1) |
+| rocWMMA | [1.2.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.7.1) |
+| Tensile | [4.38.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.7.1) |
 
-#### AMDMIGraphX 2.7
+#### hipSOLVER 1.8.2
 
-MIGraphX 2.7 for ROCm 5.7.0
-
-##### Added
-
-- Enabled hipRTC to not require dev packages for migraphx runtime and allow the ROCm install to be in a different directory than it was during build time
-- Add support for multi-target execution
-- Added Dynamic Batch support with C++/Python APIs
-- Add migraphx.create_argument to python API
-- Added dockerfile example for Ubuntu 22.04
-- Add TensorFlow supported ops in driver similar to exist onnx operator list
-- Add a MIGRAPHX_TRACE_MATCHES_FOR env variable to filter the matcher trace
-- Improved debugging by printing max,min,mean and stddev values for TRACE_EVAL = 2
-- use fast_math flag instead of ENV flag for GELU
-- Print message from driver if offload copy is set for compiled program
-
-##### Optimizations
-
-- Optimized for ONNX Runtime 1.14.0
-- Improved compile times by only building for the GPU on the system
-- Improve performance of pointwise/reduction kernels when using NHWC layouts
-- Load specific version of the migraphx_py library
-- Annotate functions with the block size so the compiler can do a better job of optimizing 
-- Enable reshape on nonstandard shapes
-- Use half HIP APIs to compute max and min
-- Added support for broadcasted scalars to unsqueeze operator
-- Improved multiplies with dot operator
-- Handle broadcasts across dot and concat
-- Add verify namespace for better symbol resolution
+hipSOLVER 1.8.2 for ROCm 5.7.1
 
 ##### Fixed
 
-- Resolved accuracy issues with FP16 resnet50
-- Update cpp generator to handle inf from  float
-- Fix assertion error during verify and make DCE work with tuples
-- Fix convert operation for NaNs
-- Fix shape typo in API test
-- Fix compile warnings for shadowing variable names
-- Add missing specialization for the `nullptr` for the hash function
-
-##### Changed
-
-- Bumped version of half library to 5.6.0
-- Bumped CI to support rocm 5.6
-- Make building tests optional
-- replace np.bool with bool as per numpy request
-
-##### Removed
-
-- Removed int8x4 rocBlas calls due to deprecation
-- removed std::reduce usage since not all OS&#39; support it
-
-#### hipBLAS 1.1.0
-
-hipBLAS 1.1.0 for ROCm 5.7.0
-
-##### Changed
-
-- updated documentation requirements
-
-##### Dependencies
-
-- dependency rocSOLVER now depends on rocSPARSE
-
-#### hipSOLVER 1.8.1
-
-hipSOLVER 1.8.1 for ROCm 5.7.0
-
-##### Changed
-
-- Changed hipsolver-test sparse input data search paths to be relative to the test executable
-
-#### hipSPARSE 2.3.8
-
-hipSPARSE 2.3.8 for ROCm 5.7.0
-
-##### Improved
-
-- Fix compilation failures when using cusparse 12.1.0 backend
-- Fix compilation failures when using cusparse 12.0.0 backend
-- Fix compilation failures when using cusparse 10.1 (non-update versions) as backend
-- Minor improvements
-
-#### RCCL 2.17.1-1
-
-RCCL 2.17.1-1 for ROCm 5.7.0
-
-##### Changed
-
-* Compatibility with NCCL 2.17.1-1
-* Performance tuning for some collective operations
-
-##### Added
-
-* Minor improvements to MSCCL codepath
-* NCCL_NCHANNELS_PER_PEER support
-* Improved compilation performance
-* Support for gfx94x
-
-##### Fixed
-
-* Potential race-condition during ncclSocketClose()
-
-#### rocALUTION 2.1.11
-
-rocALUTION 2.1.11 for ROCm 5.7.0
-
-##### Added
-
-- Added support for gfx940, gfx941 and gfx942
-
-##### Improved
-
-- Fixed OpenMP runtime issue with Windows toolchain
-
-#### rocBLAS 3.1.0
-
-rocBLAS 3.1.0 for ROCm 5.7.0
-
-##### Added
-
-- yaml lock step argument scanning for rocblas-bench and rocblas-test clients. See Programmers Guide for details.
-- rocblas-gemm-tune is used to find the best performing GEMM kernel for each of a given set of GEMM problems.
-
-##### Fixed
-
-- make offset calculations for rocBLAS functions 64 bit safe.  Fixes for very large leading dimensions or increments potentially causing overflow:
-  - Level 1: axpy, copy, rot, rotm, scal, swap, asum, dot, iamax, iamin, nrm2
-  - Level 2: gemv, symv, hemv, trmv, ger, syr, her, syr2, her2, trsv
-  - Level 3: gemm, symm, hemm, trmm, syrk, herk, syr2k, her2k, syrkx, herkx, trsm, trtri, dgmm, geam
-  - General: set_vector, get_vector, set_matrix, get_matrix
-  - Related fixes: internal scalar loads with &gt; 32bit offsets
-  - fix in-place functionality for all trtri sizes
-
-##### Changed
-
-- dot when using rocblas_pointer_mode_host is now synchronous to match legacy BLAS as it stores results in host memory
-- enhanced reporting of installation issues caused by runtime libraries (Tensile)
-- standardized internal rocblas C++ interface across most functions
-
-##### Deprecated
-
-- Removal of __STDC_WANT_IEC_60559_TYPES_EXT__ define in future release
-
-##### Dependencies
-
-- optional use of AOCL BLIS 4.0 on Linux for clients
-- optional build tool only dependency on python psutil
-
-#### rocFFT 1.0.24
-
-rocFFT 1.0.24 for ROCm 5.7.0
-
-##### Optimizations
-
-- Improved performance of complex forward/inverse 1D FFTs (2049 &lt;= length &lt;= 131071) that use Bluestein&#39;s algorithm.
-
-##### Added
-
-- Implemented a solution map version converter and finish the first conversion from ver.0 to ver.1. Where version 1 removes some incorrect kernels (sbrc/sbcr using half_lds)
-
-##### Changed
-
-- Moved rocfft_rtc_helper executable to lib/rocFFT directory on Linux.
-- Moved library kernel cache to lib/rocFFT directory.
-
-#### rocm-cmake 0.10.0
-
-rocm-cmake 0.10.0 for ROCm 5.7.0
-
-##### Added
-
-- Added ROCMTest module
-- ROCMCreatePackage: Added support for ASAN packages
-
-#### rocPRIM 2.13.1
-
-rocPRIM 2.13.1 for ROCm 5.7.0
-
-##### Changed
-
-- Deprecated configuration `radix_sort_config` for device-level radix sort as it no longer matches the algorithm&#39;s parameters. New configuration `radix_sort_config_v2` is preferred instead.
-- Removed erroneous implementation of device-level `inclusive_scan` and `exclusive_scan`. The prior default implementation using lookback-scan now is the only available implementation.
-- The benchmark metric indicating the bytes processed for `exclusive_scan_by_key` and `inclusive_scan_by_key` has been changed to incorporate the key type. Furthermore, the benchmark log has been changed such that these algorithms are reported as `scan` and `scan_by_key` instead of `scan_exclusive` and `scan_inclusive`.
-- Deprecated configurations `scan_config` and `scan_by_key_config` for device-level scans, as they no longer match the algorithm&#39;s parameters. New configurations `scan_config_v2` and `scan_by_key_config_v2` are preferred instead.
-
-##### Fixed
-
-- Fixed build issue caused by missing header in `thread/thread_search.hpp`.
-
-#### rocSOLVER 3.23.0
-
-rocSOLVER 3.23.0 for ROCm 5.7.0
-
-##### Added
-
-- LU factorization without pivoting for block tridiagonal matrices:
-    - GEBLTTRF_NPVT now supports interleaved\_batched format
-- Linear system solver without pivoting for block tridiagonal matrices:
-    - GEBLTTRS_NPVT now supports interleaved\_batched format
-
-##### Fixed
-
-- Fixed stack overflow in sparse tests on Windows
-
-##### Changed
-
-- Changed rocsolver-test sparse input data search paths to be relative to the test executable
-- Changed build scripts to default to compressed debug symbols in Debug builds
-
-#### rocSPARSE 2.5.4
-
-rocSPARSE 2.5.4 for ROCm 5.7.0
-
-##### Added
-
-- Added more mixed precisions for SpMV, (matrix: float, vectors: double, calculation: double) and (matrix: rocsparse_float_complex, vectors: rocsparse_double_complex, calculation: rocsparse_double_complex)
-- Added support for gfx940, gfx941 and gfx942
-
-##### Improved
-
-- Fixed a bug in csrsm and bsrsm
-
-##### Known Issues
-
-In csritlu0, the algorithm rocsparse_itilu0_alg_sync_split_fusion has some accuracy issues to investigate with XNACK enabled. The fallback is rocsparse_itilu0_alg_sync_split.
-
-#### rocWMMA 1.2.0
-
-rocWMMA 1.2.0 for ROCm 5.7.0
-
-##### Changed
-
-- Fixed a bug with synchronization
-- Updated rocWMMA cmake versioning
-
-#### Tensile 4.38.0
-
-Tensile 4.38.0 for ROCm 5.7.0
-
-##### Added
-
-- Added support for FP16 Alt Round Near Zero Mode (this feature allows the generation of alternate kernels with intermediate rounding instead of truncation)
-- Added user-driven solution selection feature
-
-##### Optimizations
-
-- Enabled LocalSplitU with MFMA for I8 data type
-- Optimized K mask code in mfmaIter
-- Enabled TailLoop code in NoLoadLoop to prefetch global/local read
-- Enabled DirectToVgpr in TailLoop for NN, TN, and TT matrix orientations
-- Optimized DirectToLds test cases to reduce the test duration
-
-##### Changed
-
-- Removed DGEMM NT custom kernels and related test cases
-- Changed noTailLoop logic to apply noTailLoop only for NT
-- Changed the range of AssertFree0ElementMultiple and Free1
-- Unified aStr, bStr generation code in mfmaIter
-
-##### Fixed
-
-- Fixed LocalSplitU mismatch issue for SGEMM
-- Fixed BufferStore=0 and Ldc != Ldd case
-- Fixed mismatch issue with TailLoop + MatrixInstB &gt; 1
+- Fixed conflicts between the hipsolver-dev and -asan packages by excluding
+  hipsolver_module.f90 from the latter
