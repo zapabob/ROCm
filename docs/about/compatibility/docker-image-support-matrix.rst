@@ -68,7 +68,7 @@ tags, and associated inventories, are validated with ROCm 5.7.
 
                     * `ROCm 5.7 <https://repo.radeon.com/rocm/apt/5.7/>`_
                     * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
-                    * `Torch 1.12.1 <https://github.com/ROCmSoftwarePlatform/pytorch/tree/release/1.13>`_
+                    * `Torch 1.13.1 <https://github.com/ROCmSoftwarePlatform/pytorch/tree/release/1.13>`_
                     * `Apex 0.1 <https://github.com/ROCmSoftwarePlatform/apex/tree/v0.1>`_
                     * `Torchvision 0.14.0 <https://github.com/pytorch/vision/tree/v0.14.0>`_
                     * `Tensorboard 2.12.0 <https://github.com/tensorflow/tensorboard/tree/2.12.0>`_
@@ -98,7 +98,7 @@ tags, and associated inventories, are validated with ROCm 5.7.
 
                 * Inventory:
 
-                * `ROCm 5.7 <https://repo.radeon.com/rocm/yum/5.7/>`_
+                * `ROCm 5.7 (yum) <https://repo.radeon.com/rocm/yum/5.7/>`_
                 * `Python 3.9 <https://www.python.org/downloads/release/python-3918/>`_
                 * `Torch 2.1.0 <https://github.com/ROCmSoftwarePlatform/pytorch/tree/rocm5.7_internal_testing>`_
                 * `Apex 0.1 <https://github.com/ROCmSoftwarePlatform/apex/tree/v0.1>`_
