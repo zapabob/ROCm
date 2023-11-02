@@ -2,6 +2,8 @@
 
 | Version | Release Date |
 | ------- | ------------ |
+| [5.7.1](https://rocm.docs.amd.com/en/docs-5.7.1/) | Oct 13, 2023 |
+| [5.7.0](https://rocm.docs.amd.com/en/docs-5.7.0/) | Sep 15, 2023 |
 | [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/) | Jun 28, 2023 |
 | [5.5.1](https://rocm.docs.amd.com/en/docs-5.5.1/) | May 24, 2023 |
 | [5.5.0](https://rocm.docs.amd.com/en/docs-5.5.0/) | May 1, 2023 |
