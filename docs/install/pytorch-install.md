@@ -326,7 +326,7 @@ maintainers and installs all the required dependencies, including:
 ## Testing the PyTorch installation
 
 You can use PyTorch unit tests to validate your PyTorch installation. If you used a
-**prebuilt PyTorch Docker image from AMD ROCm DockerHub** or installed an
+**prebuilt PyTorch Docker image from AMD ROCm Docker Hub** or installed an
 **official wheels package**, validation tests are not necessary.
 
 If you want to manually run unit tests to validate your PyTorch installation fully, follow these steps:
