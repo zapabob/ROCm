@@ -31,13 +31,12 @@ For ROCm the Platform atomics are used in ROCm in the following ways:
 
 The PCIe 3.0 atomic operations feature allows atomic transactions to be requested by, routed through
 and completed by PCIe components. Routing and completion does not require software support.
-Component support for each is detectable via the DevCap2 register. Upstream bridges need to have
-atomic operations routing enabled or the atomic operations will fail even though PCIe endpoint and
-PCIe I/O devices has the capability to atomic operations.
+Component support for each is detectable via the Device Capabilities 2 (DevCap2) register. Upstream
+bridges need to have atomic operations routing enabled or the atomic operations will fail even though
+PCIe endpoint and PCIe I/O devices has the capability to atomic operations.
 
 To do atomic operations routing capability between two or more Root Ports, each associated Root Port
-must indicate that capability via the atomic operations routing supported bit in the Device Capabilities
-2 register.
+must indicate that capability via the atomic operations routing supported bit in the DevCap2 register.
 
 If your system has a PCIe Express Switch it needs to support atomic operations routing. Atomic
 operations requests are permitted only if a component's ``DEVCTL2.ATOMICOP_REQUESTER_ENABLE``
@@ -83,8 +82,8 @@ with PCIe Generation 3.0 support.
 In ROCm, we also take advantage of PCIe ID based ordering technology for P2P when the GPU
 originates two writes to two different targets:
 
-# Write to another GPU memory
-# Write to system memory to indicate transfer complete
+* Write to another GPU memory
+* Write to system memory to indicate transfer complete
 
 They are routed off to different ends of the computer but we want to make sure the write to system
 memory to indicate transfer complete occurs AFTER P2P write to GPU has complete.
