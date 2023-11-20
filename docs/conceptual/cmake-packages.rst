@@ -71,22 +71,25 @@ Source code written in the HIP dialect of C++ typically uses the `.hip`
 extension. When the HIP CMake language is enabled, it will automatically
 associate such source files with the HIP toolchain being used.
 
-..  code-block:: cpp
-
+.. <!-- spellcheck-disable -->
+.. code-block:: cpp
   cmake_minimum_required(VERSION 3.21) # HIP language support requires 3.21
   cmake_policy(VERSION 3.21.3...3.27)
   project(MyProj LANGUAGES HIP)
   add_executable(MyApp Main.hip)
+.. <!-- spellcheck-enable -->
 
 Should you have existing CUDA code that is from the source compatible subset of
 HIP, you can tell CMake that despite their `.cu` extension, they're HIP sources.
 Do note that this mostly facilitates compiling kernel code-only source files,
 as host-side CUDA API won't compile in this fashion.
 
-..  code-block:: cpp
+.. <!-- spellcheck-disable -->
+.. code-block:: cpp
 
   add_library(MyLib MyLib.cu)
   set_source_files_properties(MyLib.cu PROPERTIES LANGUAGE HIP)
+.. <!-- spellcheck-enable -->
 
 CMake itself only hosts part of the HIP language support, such as defining
 HIP-specific properties, etc. while the other half ships with the HIP
@@ -111,7 +114,8 @@ Illustrated in the example below is a C++ application using MIOpen from CMake.
 It calls ``find_package(miopen)``, which provides the ``MIOpen`` imported
 target. This can be linked with ``target_link_libraries``
 
-..  code-block:: cpp
+.. <!-- spellcheck-disable -->
+.. code-block:: cpp
 
   cmake_minimum_required(VERSION 3.5) # find_package(miopen) requires 3.5
   cmake_policy(VERSION 3.5...3.27)
@@ -119,7 +123,7 @@ target. This can be linked with ``target_link_libraries``
   find_package(miopen)
   add_library(MyLib ...)
   target_link_libraries(MyLib PUBLIC MIOpen)
-
+.. <!-- spellcheck-enable -->
 .. note::
 
   Most libraries are designed as host-only API, so using a GPU device
@@ -133,6 +137,7 @@ Use the HIP API without compiling the GPU device code. As there is no GPU code,
 any C or C++ compiler can be used. The ``find_package(hip)`` provides the
 ``hip::host`` imported target to use HIP in this context.
 
+.. <!-- spellcheck-disable -->
 ..  code-block:: cpp
 
   cmake_minimum_required(VERSION 3.5) # find_package(hip) requires 3.5
@@ -141,6 +146,7 @@ any C or C++ compiler can be used. The ``find_package(hip)`` provides the
   find_package(hip REQUIRED)
   add_executable(MyApp ...)
   target_link_libraries(MyApp PRIVATE hip::host)
+.. <!-- spellcheck-enable -->
 
 Compiling device code in C++ language mode
 ------------------------------------------
@@ -151,7 +157,7 @@ Compiling device code in C++ language mode
   understanding's sake. It pre-dates the existence of HIP language support in
   CMake. If source code has HIP device code in it, it is a HIP source file
   and should be compiled as such. Only resort to the method below if your
-  HIP-enabled CMake codepath can't mandate CMake version 3.21.
+  HIP-enabled CMake code path can't mandate CMake version 3.21.
 
 If code uses the HIP API and compiles GPU device code, it requires using a
 device compiler. The compiler for CMake can be set using either the
@@ -163,7 +169,8 @@ compiler that supports AMD GPU targets, which is usually Clang.
 The ``find_package(hip)`` provides the ``hip::device`` imported target to add
 all the flags necessary for device compilation.
 
-..  code-block:: cpp
+.. <!-- spellcheck-disable -->
+.. code-block:: cpp
 
   cmake_minimum_required(VERSION 3.8) # cxx_std_11 requires 3.8
   cmake_policy(VERSION 3.8...3.27)
@@ -172,12 +179,13 @@ all the flags necessary for device compilation.
   add_library(MyLib ...)
   target_link_libraries(MyLib PRIVATE hip::device)
   target_compile_features(MyLib PRIVATE cxx_std_11)
+.. <!-- spellcheck-enable -->
 
 .. note::
 
   Compiling for the GPU device requires at least C++11.
 
-This project can then be configured with for eg.
+This project can then be configured with the following CMake commands.
 
 -  Windows: ``cmake -D CMAKE_CXX_COMPILER:PATH=${env:HIP_PATH}\bin\clang++.exe``
 
@@ -191,7 +199,7 @@ When using the CXX language support to compile HIP device code, selecting the
 target GPU architectures is done via setting the ``GPU_TARGETS`` variable.
 ``CMAKE_HIP_ARCHITECTURES`` only exists when the HIP language is enabled. By
 default, this is set to some subset of the currently supported architectures of
-AMD ROCm. It can be set to eg. ``-D GPU_TARGETS="gfx1032;gfx1035"``.
+AMD ROCm. It can be set to the CMake option ``-D GPU_TARGETS="gfx1032;gfx1035"``.
 
 ROCm CMake packages
 -------------------
@@ -278,8 +286,8 @@ Following is an example ``CMakeUserPresets.json`` file which actually compiles
 the `amd/rocm-examples <https://github.com/amd/rocm-examples>`_ suite of sample
 applications on a typical ROCm installation:
 
-..  code-block:: json
-
+.. <!-- spellcheck-disable -->
+.. code-block:: json
   {
     "version": 3,
     "cmakeMinimumRequired": {
@@ -377,6 +385,7 @@ applications on a typical ROCm installation:
       }
     ]
   }
+.. <!-- spellcheck-enable -->
 
 .. note::
 
