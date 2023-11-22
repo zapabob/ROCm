@@ -11,7 +11,7 @@
 
 <!-- spellcheck-disable -->
 
-This page contains the release notes for the ROCm platform.
+This page contains the release notes for AMD ROCm Software.
 
 -------------------
 
@@ -1097,7 +1097,7 @@ Tensile 4.37.0 for ROCm 5.6.0
 #### HIP SDK for Windows
 
 AMD is pleased to announce the availability of the HIP SDK for Windows as part
-of the ROCm platform. The
+of AMD ROCm Software. The
 [HIP SDK OS and GPU support page](https://rocm.docs.amd.com/en/docs-5.5.1/release/windows_support.html)
 lists the versions of Windows and GPUs validated by AMD. HIP SDK features on
 Windows are described in detail in our

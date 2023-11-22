@@ -22,7 +22,7 @@ A list of device indices or {abbr}`UUID (universally unique identifier)`s
 that will be exposed to applications.
 
 Runtime
-: ROCm Platform Runtime. Applies to all applications using the user mode ROCm
+: ROCm Software Runtime. Applies to all applications using the user mode ROCm
   software stack.
 
 ```{code-block} shell

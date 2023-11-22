@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The ROCm platform has adopted the Linux Filesystem Hierarchy Standard (FHS) [https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to to ensure ROCm is consistent with standard open source conventions. The following sections specify how current and future releases of ROCm adhere to FHS, how the previous ROCm file system is supported, and how improved versioning specifications are applied to ROCm.
+The ROCm Software has adopted the Linux Filesystem Hierarchy Standard (FHS) [https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) in order to to ensure ROCm is consistent with standard open source conventions. The following sections specify how current and future releases of ROCm adhere to FHS, how the previous ROCm file system is supported, and how improved versioning specifications are applied to ROCm.
 
 ## Adopting the FHS
 
@@ -152,7 +152,7 @@ correct header file and use correct search paths.
 
 ## Changes in versioning specifications
 
-In order to better manage ROCm dependencies specification and allow smoother releases of ROCm while avoiding dependency conflicts, the ROCm platform shall adhere to the following scheme when numbering and incrementing ROCm files versions:
+In order to better manage ROCm dependencies specification and allow smoother releases of ROCm while avoiding dependency conflicts, ROCm software shall adhere to the following scheme when numbering and incrementing ROCm files versions:
 
 rocm-\<ver\>, where \<ver\> = \<x.y.z\>
 

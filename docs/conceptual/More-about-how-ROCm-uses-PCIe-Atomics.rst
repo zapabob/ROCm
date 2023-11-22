@@ -12,7 +12,7 @@ signaling memory operations where there may be multiple-writers across CPU and G
 The full list of HSA system architecture platform requirements are here:
 `HSA Sys Arch Features <http://hsafoundation.com/wp-content/uploads/2021/02/HSA-SysArch-1.2.pdf>`_.
 
-The ROCm platform uses the new PCI Express 3.0 (Peripheral Component Interconnect Express [PCIe]
+AMD ROCm Software uses the new PCI Express 3.0 (Peripheral Component Interconnect Express [PCIe]
 3.0) features for atomic read-modify-write transactions which extends inter-processor synchronization
 mechanisms to IO to support the defined set of HSA capabilities needed for queuing and signaling
 memory operations.

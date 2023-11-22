@@ -70,7 +70,7 @@ ROCm consists of the following drivers, development tools, and APIs.
 | [ROCProfiler](https://rocm.docs.amd.com/projects/rocprofiler/en/latest/profiler_home_page.html) | A profiling tool for HIP applications |
 | [rocRAND](https://rocm.docs.amd.com/projects/rocRAND/en/latest/) | Provides functions that generate pseudorandom and quasirandom numbers |
 | [ROCR-Runtime](https://github.com/RadeonOpenCompute/ROCR-Runtime/) | User-mode API interfaces and libraries necessary for host applications to launch compute kernels on available HSA ROCm kernel agents |
-| [rocSOLVER](https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/) | An implementation of LAPACK routines on the ROCm platform, implemented in the HIP programming language and optimized for AMD’s latest discrete GPUs |
+| [rocSOLVER](https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/) | An implementation of LAPACK routines on ROCm software, implemented in the HIP programming language and optimized for AMD’s latest discrete GPUs |
 | [rocSPARSE](https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/) | Exposes a common interface that provides BLAS for sparse computation implemented on ROCm runtime and toolchains (in the HIP programming language) |
 | [rocThrust](https://rocm.docs.amd.com/projects/rocThrust/en/latest/) | A parallel algorithm library |
 | [ROCT-Thunk-Interface](https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/) | User-mode API interfaces used to interact with the ROCk driver |

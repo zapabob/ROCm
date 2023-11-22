@@ -51,7 +51,7 @@ subtrees:
     title: Release notes
   - file: about/CHANGELOG.md
     title: Changelog
-  - file: about/release-history.md
+  - file: about/version-history.md
     title: Release history
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known issues
