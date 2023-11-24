@@ -200,6 +200,7 @@ hipSPARSELt
 hipTensor
 HPC
 HPCG
+HPE
 HPL
 HSA
 hsa
@@ -245,6 +246,7 @@ KVM
 LAPACK
 LCLK
 LDS
+libfabric
 libjpeg
 libs
 linearized
@@ -383,6 +385,7 @@ Rickle
 roadmap
 roc
 ROC
+RoCE
 rocAL
 rocALUTION
 rocalution
@@ -451,6 +454,7 @@ SKUs
 skylake
 sL
 SLES
+sm
 SMEM
 SMI
 smi
