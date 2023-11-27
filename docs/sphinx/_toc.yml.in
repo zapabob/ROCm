@@ -11,24 +11,10 @@ subtrees:
 
 - caption: Installation
   entries:
-  - file: install/windows/install-quick.md
-    title: Quick start (Windows)
-  - file: install/windows/install.md
-    title: Windows install guide
-    subtrees:
-    - entries:
-      - file: install/windows/windows-app-deployment-guidelines.md
-        title: Application deployment guidelines
-  - file: install/docker.md
-    title: ROCm Docker containers
-  - file: install/pytorch-install.md
-    title: PyTorch for ROCm
-  - file: install/tensorflow-install.md
-    title: Tensorflow for ROCm
-  - file: install/magma-install.md
-    title: MAGMA for ROCm
-  - file: install/spack-intro.md
-    title: ROCm & Spack
+  - file: ${project:linux-install}
+    title: Install ROCm on Linux
+  - file: ${project:windows-install}
+    title: Install HIP SDK on Windows
 
 - caption: Compatibility & support
   entries:
@@ -42,8 +28,6 @@ subtrees:
     title: User/kernel space support
   - file: about/compatibility/docker-image-support-matrix.rst
     title: Docker
-  - file: about/compatibility/openmp.md
-    title: OpenMP
 
 - caption: Release information
   entries:
@@ -110,6 +94,8 @@ subtrees:
     title: GPU memory
   - file: conceptual/compiler-disambiguation.md
     title: Compiler disambiguation
+  - file: about/compatibility/openmp.md
+    title: OpenMP    
   - file: conceptual/file-reorg.md
     title: File structure (Linux FHS)
   - file: conceptual/gpu-isolation.md
