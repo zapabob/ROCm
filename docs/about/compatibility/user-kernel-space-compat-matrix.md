@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="User and kernel-space support matrix">
+  <meta name="keywords" content="Kernel Fusion Driver, user space versions">
+</head>
+
 # User/kernel-space support matrix
 
 ROCm™ provides forward and backward compatibility between the Kernel Fusion

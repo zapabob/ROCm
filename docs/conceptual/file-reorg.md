@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="ROCm Linux Filesystem Hierarchy Standard reorganization">
+  <meta name="keywords" content="FHS, Linux Filesystem Hierarchy Standard, directory structure">
+</head>
+
 # ROCm Linux Filesystem Hierarchy Standard reorganization
 
 ## Introduction

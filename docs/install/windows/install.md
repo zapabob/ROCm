@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Windows quick-start installation guide">
+  <meta name="keywords" content="Windows, install, HIP, SDK">
+</head>
+
 # Install HIP SDK on Windows
 
 To install the HIP SDK on Windows, use the [quick-start guide](./install-quick.md) or follow the instructions below.

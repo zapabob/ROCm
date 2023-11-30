@@ -1,6 +1,10 @@
-***********
+.. meta::
+   :description: Using CMake
+   :keywords: CMake, dependencies, HIP, C++
+
+*********************************
 Using CMake
-***********
+*********************************
 
 Most components in ROCm support CMake. Projects depending on header-only or
 library components typically require CMake 3.5 or higher whereas those wanting

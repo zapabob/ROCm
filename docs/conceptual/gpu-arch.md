@@ -1,3 +1,10 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="GPU architecture">
+  <meta name="keywords" content="GPU architecture, architecture support, MI200, MI250, RDNA,
+  MI100, AMD Instinct">
+</head>
+
 # GPU architecture documentation
 
 :::::{grid} 1 1 2 2

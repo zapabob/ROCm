@@ -1,3 +1,10 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Inception V3 with PyTorch">
+  <meta name="keywords" content="PyTorch, Inception V3, deep-learning, training data, optimization
+  algorithm">
+</head>
+
 # Deep learning: Inception V3 with PyTorch
 
 ## Deep learning training

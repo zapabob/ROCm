@@ -1,3 +1,10 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="GPU isolation techniques">
+  <meta name="keywords" content="GPU isolation techniques, UUID, universally unique identifier,
+  environment variables, virtual machines">
+</head>
+
 # GPU isolation techniques
 
 Restricting the access of applications to a subset of GPUs, aka isolating

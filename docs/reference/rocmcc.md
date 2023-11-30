@@ -1,3 +1,10 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Compiler reference guide">
+  <meta name="keywords" content="compiler, hipCC, Clang, amdclang, optimizations, LLVM,
+  rocm-llvm">
+</head>
+
 # Compiler reference guide
 
 ## Introduction to compiler reference guide

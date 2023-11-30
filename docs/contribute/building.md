@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Building ROCm documentation">
+  <meta name="keywords" content="documentation, Visual Studio Code, GitHub, command line">
+</head>
+
 # Building documentation
 
 You can build our documentation via GitHub (in a pull request) or locally (using the command line or

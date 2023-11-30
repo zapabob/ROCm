@@ -1,3 +1,10 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="MI200 performance counters and metrics">
+  <meta name="keywords" content="MI200, performance counters, counters, GRBM counters, GRBM,
+  CPF counters, CPF, CPC counters, CPC, command processor counters, SPI counters, SPI">
+</head>
+
 # MI200 performance counters and metrics
 <!-- markdownlint-disable no-duplicate-header -->
 

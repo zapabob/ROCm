@@ -1,3 +1,10 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Deep learning using ROCm">
+  <meta name="keywords" content="deep learning, frameworks, installation, PyTorch, TensorFlow,
+  MAGMA">
+</head>
+
 # Deep learning guide
 
 The following sections cover the different framework installations for ROCm and

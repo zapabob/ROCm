@@ -1,4 +1,10 @@
-# Third party support matrix
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Third-party support matrix">
+  <meta name="keywords" content="supported versions, PyTorch, TensorFlow, OpenUCX, UCC">
+</head>
+
+# Third-party support matrix
 
 ROCm™ supports various 3rd party libraries and frameworks. Supported versions
 are tested and known to work. Non-supported versions of 3rd parties may also

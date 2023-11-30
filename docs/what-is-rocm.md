@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="What is ROCm">
+  <meta name="keywords" content="documentation, projects, introduction">
+</head>
+
 # What is ROCm?
 
 ROCm is an open-source stack, composed primarily of open-source software, designed for

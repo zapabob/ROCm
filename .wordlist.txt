@@ -84,6 +84,7 @@ CSE
 CSn
 csn
 CSV
+CTests
 CU
 cuBLAS
 CUDA
@@ -352,6 +353,7 @@ prefetchable
 preprocess
 preprocessing
 preq
+prequantized
 prerequisites
 PRNG
 profiler
@@ -402,6 +404,7 @@ rocm
 ROCm
 ROCmCC
 rocminfo
+rocMLIR
 ROCmSoftwarePlatform
 ROCmValidationSuite
 rocPRIM
@@ -497,6 +500,7 @@ toolchains
 toolset
 toolsets
 TorchAudio
+TorchMIGraphX
 TorchScript
 TorchServe
 TorchVision

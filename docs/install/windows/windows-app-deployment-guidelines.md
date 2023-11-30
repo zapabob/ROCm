@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Application deployment guidelines for Windows">
+  <meta name="keywords" content="Windows, install">
+</head>
+
 # Application deployment guidelines for Windows
 
 ISVs deploying applications using the HIP SDK depend on the AMD GPU Drivers, HIP

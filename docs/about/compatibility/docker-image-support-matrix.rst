@@ -1,3 +1,7 @@
+.. meta::
+   :description: Docker image support matrix
+   :keywords: Docker, support, PyTorch, TensorFlow, Ubuntu
+
 ******************************************************************
 Docker image support matrix
 ******************************************************************

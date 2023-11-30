@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="OpenMP support in ROCm">
+  <meta name="keywords" content="OpenMP, LLVM, OpenMP toolchain">
+</head>
+
 # OpenMP support in ROCm
 
 ## Introduction

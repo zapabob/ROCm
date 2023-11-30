@@ -1,3 +1,10 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="AMD ROCm documentation">
+  <meta name="keywords" content="documentation, guides, installation, compatibility, support,
+  reference">
+</head>
+
 # AMD ROCm™ documentation
 
 Welcome to the ROCm docs home page! If you're new to ROCm, you can review the following

@@ -1,3 +1,10 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Tuning guides">
+  <meta name="keywords" content="high-performance computing, HPC, Instinct accelerators,
+  Radeon, tuning, tuning guide">
+</head>
+
 # Tuning guides
 
 Use case-specific system setup and tuning guides.

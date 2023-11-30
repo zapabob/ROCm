@@ -1,4 +1,10 @@
-# How to provide feedback for ROCm documentation
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Providing feedback for ROCm documentation">
+  <meta name="keywords" content="documentation, pull request, GitHub">
+</head>
+
+# Providing feedback for ROCm documentation
 
 There are four standard ways to provide feedback for this repository.
 

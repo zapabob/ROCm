@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="ROCm licensing terms">
+  <meta name="keywords" content="license, licensing terms">
+</head>
+
 # ROCm licensing terms
 
 ROCm™ is released by Advanced Micro Devices, Inc. and is licensed per component separately.

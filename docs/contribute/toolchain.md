@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="ROCm documentation toolchain">
+  <meta name="keywords" content="documentation, toolchain, Sphinx, Doxygen, MyST">
+</head>
+
 # ROCm documentation toolchain
 
 Our documentation relies on several open source toolchains and sites.

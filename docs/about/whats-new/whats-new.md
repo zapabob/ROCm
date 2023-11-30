@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="What's new in ROCm">
+  <meta name="keywords" content="what's new">
+</head>
+
 # What's new in ROCm?
 
 ROCm is now supported on Windows.

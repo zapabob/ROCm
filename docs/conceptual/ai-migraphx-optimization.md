@@ -1,3 +1,10 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Inference optimization with MIGraphX">
+  <meta name="keywords" content="Inference optimization, MIGraphX, deep-learning, MIGraphX
+  installation">
+</head>
+
 # Inference optimization with MIGraphX
 
 The following sections cover inferencing and introduces [MIGraphX](https://rocm.docs.amd.com/projects/AMDMIGraphX/en/latest/).

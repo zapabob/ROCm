@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Windows GPU and OS support">
+  <meta name="keywords" content="Windows support, ROCm distributions">
+</head>
+
 # GPU and OS support (Windows)
 
 (windows-support)=

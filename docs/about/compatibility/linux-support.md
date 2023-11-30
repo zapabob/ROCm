@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Linux GPU and OS support">
+  <meta name="keywords" content="Linux support, ROCm distributions">
+</head>
+
 # GPU and OS support (Linux)
 
 (linux-support)=

@@ -1,6 +1,12 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="System debugging guide">
+  <meta name="keywords" content="debug, system-level debug, debug flags, PCIe debug">
+</head>
+
 # System debugging guide
 
-## ROCm language and system level debug, flags, and environment variables
+## ROCm language and system-level debug, flags, and environment variables
 
 Kernel options to avoid: the Ethernet port getting renamed every time you change graphics cards, `net.ifnames=0 biosdevname=0`
 

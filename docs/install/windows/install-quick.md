@@ -1,3 +1,9 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Windows quick-start installation guide">
+  <meta name="keywords" content="Windows, install, quick-start, HIP, SDK">
+</head>
+
 # Windows quick-start installation guide
 
 For a quick summary on installing ROCm (HIP SDK) on Windows, follow the steps listed on this page. If
