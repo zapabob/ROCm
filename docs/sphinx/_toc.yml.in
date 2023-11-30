@@ -7,38 +7,34 @@ root: index
 subtrees:
 - entries:
   - file: what-is-rocm.md
-  - file: about/whats-new/whats-new.md
-
-- caption: Installation
-  entries:
-  - file: ${project:linux-install}
-    title: Install ROCm on Linux
-  - file: ${project:windows-install}
-    title: Install HIP SDK on Windows
-
-- caption: Compatibility & support
-  entries:
-  - file: about/compatibility/linux-support.md
-    title: Linux (GPU & OS)
-  - file: about/compatibility/windows-support.md
-    title: Windows (GPU & OS)
-  - file: about/compatibility/3rd-party-support-matrix.md
-    title: Third-party
-  - file: about/compatibility/user-kernel-space-compat-matrix.md
-    title: User/kernel space support
-  - file: about/compatibility/docker-image-support-matrix.rst
-    title: Docker
-
-- caption: Release information
-  entries:
   - file: about/release-notes.md
     title: Release notes
-  - file: about/CHANGELOG.md
-    title: Changelog
-  - file: about/version-history.md
-    title: Release history
+    subtrees:
+    - entries:    
+      - file: about/CHANGELOG.md
+        title: Changelog
+      - file: about/whats-new/whats-new.md
   - url: https://github.com/RadeonOpenCompute/ROCm/labels/Verified%20Issue
     title: Known issues
+
+- caption: Install
+  entries:
+  - url: https://rocm.docs.amd.com/projects/linux-install/en/${branch}/
+    title: ROCm on Linux
+  - url: https://rocm.docs.amd.com/projects/linux-install/en/${branch}/
+    title: HIP SDK on Windows
+
+- caption: Supported configurations
+  entries:
+  - file: about/compatibility/linux-support.md
+    title: Linux
+  - file: about/compatibility/windows-support.md
+    title: Windows
+
+- caption: Reference
+  entries:
+    - file: reference/library-index.md
+      title: API libraries & tools
 
 - caption: How-to
   entries:
@@ -60,11 +56,6 @@ subtrees:
         title: RDNA2
   - url: https://github.com/amd/rocm-examples
     title: GitHub examples
-
-- caption: Reference
-  entries:
-    - file: reference/library-index.md
-      title: API libraries & tools
 
 - caption: Conceptual
   entries:
@@ -122,6 +113,7 @@ subtrees:
       - file: contribute/building.md
         title: Building documentation
       - file: contribute/feedback.md
-        title: Providing feedback
+        title: Provide feedback
   - file: about/license.md
     title: ROCm license
+
