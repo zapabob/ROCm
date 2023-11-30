@@ -44,7 +44,7 @@ subtrees:
   entries:
   - file: how-to/deep-learning-rocm.md
     title: Deep learning
-  - file: how-to/gpu-enabled-mpi.md
+  - file: how-to/gpu-enabled-mpi.rst
     title: Using MPI
   - file: how-to/system-debugging.md
     title: Debugging

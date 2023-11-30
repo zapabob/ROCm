@@ -63,7 +63,7 @@ Task-oriented walkthroughs
   * [MI200](./how-to/tuning-guides/mi200.md)
   * [RDNA2](./how-to/tuning-guides/w6000-v620.md)
 * [Setting up for deep learning with ROCm](./how-to/deep-learning-rocm.md)
-* [GPU-enabled MPI](./how-to/gpu-enabled-mpi.md)
+* [GPU-enabled MPI](./how-to/gpu-enabled-mpi.rst)
 * [System level debugging](./how-to/system-debugging.md)
 * [GitHub examples](https://github.com/amd/rocm-examples)
 

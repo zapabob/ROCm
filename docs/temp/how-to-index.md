@@ -18,7 +18,7 @@ Installation of various deep learning frameworks and applications.
 :::
 
 :::{grid-item-card}
-**[GPU-enabled MPI](./gpu-enabled-mpi.md)**
+**[GPU-enabled MPI](./gpu-enabled-mpi.rst)**
 
 This chapter exemplifies how to set up Open MPI with the ROCm platform.
 
