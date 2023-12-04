@@ -54,5 +54,5 @@ cmake --build build --target=doc
 
 ## Older ROCm releases
 
-For release information for older ROCm releases, refer to
-[`CHANGELOG`](./CHANGELOG.md).
+For release information for older ROCm releases, refer to the
+[CHANGELOG](./CHANGELOG.md).
