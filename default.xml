@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-    <remote name="roc-github"
-fetch="https://github.com/RadeonOpenCompute/" />
-    <remote name="rocm-devtools"
-fetch="https://github.com/ROCm-Developer-Tools/" />
-    <remote name="rocm-swplat"
-fetch="https://github.com/ROCmSoftwarePlatform/" />
-    <remote name="gpuopen-libs"
-fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
-    <remote name="gpuopen-tools"
-fetch="https://github.com/GPUOpen-Tools/" />
-    <remote name="KhronosGroup"
-fetch="https://github.com/KhronosGroup/" />
+    <remote name="rocm-org" fetch="https://github.com/ROCm/" />
+    <remote name="roc-github" fetch="https://github.com/RadeonOpenCompute/" />
+    <remote name="rocm-devtools" fetch="https://github.com/ROCm-Developer-Tools/" />
+    <remote name="rocm-swplat" fetch="https://github.com/ROCmSoftwarePlatform/" />
+    <remote name="gpuopen-libs" fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
+    <remote name="gpuopen-tools" fetch="https://github.com/GPUOpen-Tools/" />
+    <remote name="KhronosGroup" fetch="https://github.com/KhronosGroup/" />
     <default revision="refs/tags/rocm-5.7.1"
-     remote="roc-github"
+     remote="rocm-org"
      sync-c="true"
      sync-j="4" />
-<!--list of projects for ROCM-->
+<!--list of projects for ROCm-->
     <project name="ROCK-Kernel-Driver" />
     <project name="ROCT-Thunk-Interface" />
     <project name="ROCR-Runtime" />
@@ -26,54 +21,54 @@ fetch="https://github.com/KhronosGroup/" />
     <project name="rocm-cmake" />
     <project name="rocminfo" />
     <project name="rocm_bandwidth_test" />
-    <project name="rocprofiler" remote="rocm-devtools" />
-    <project name="roctracer" remote="rocm-devtools" />
+    <project name="rocprofiler" />
+    <project name="roctracer" />
     <project path="ROCm-OpenCL-Runtime/api/opencl/khronos/icd" name="OpenCL-ICD-Loader" remote="KhronosGroup" revision="6c03f8b58fafd9dd693eaac826749a5cfad515f8" />
     <project name="clang-ocl" />
     <project name="rdc" />
 <!--HIP Projects-->
-    <project name="HIP" remote="rocm-devtools" />
-    <project name="HIP-Examples" remote="rocm-devtools" />
-    <project name="clr" remote="rocm-devtools" />
-    <project name="HIPIFY" remote="rocm-devtools" />
-    <project name="HIPCC" remote="rocm-devtools" />
+    <project name="HIP" />
+    <project name="HIP-Examples" />
+    <project name="clr" />
+    <project name="HIPIFY" />
+    <project name="HIPCC" />
 <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
     <project name="llvm-project" />
     <project name="ROCm-Device-Libs" />
     <project name="ROCm-CompilerSupport" />
-    <project name="half" remote="rocm-swplat" revision="37742ce15b76b44e4b271c1e66d13d2fa7bd003e" />
+    <project name="half" revision="37742ce15b76b44e4b271c1e66d13d2fa7bd003e" />
 <!-- gdb projects -->
-    <project name="ROCgdb" remote="rocm-devtools" />
-    <project name="ROCdbgapi" remote="rocm-devtools" />
-    <project name="rocr_debug_agent" remote="rocm-devtools" />
+    <project name="ROCgdb" />
+    <project name="ROCdbgapi" />
+    <project name="rocr_debug_agent" />
 <!-- ROCm Libraries -->
-    <project groups="mathlibs" name="rocBLAS" remote="rocm-swplat" />
-    <project groups="mathlibs" name="Tensile" remote="rocm-swplat" />
-    <project groups="mathlibs" name="hipTensor" remote="rocm-swplat" />
-    <project groups="mathlibs" name="hipBLAS" remote="rocm-swplat" />
-    <project groups="mathlibs" name="rocFFT" remote="rocm-swplat" />
-    <project groups="mathlibs" name="hipFFT" remote="rocm-swplat" />
-    <project groups="mathlibs" name="rocRAND" remote="rocm-swplat" />
-    <project groups="mathlibs" name="rocSPARSE" remote="rocm-swplat" />
-    <project groups="mathlibs" name="rocSOLVER" remote="rocm-swplat" />
-    <project groups="mathlibs" name="hipSOLVER" remote="rocm-swplat" />
-    <project groups="mathlibs" name="hipSPARSE" remote="rocm-swplat" />
-    <project groups="mathlibs" name="rocALUTION" remote="rocm-swplat" />
-    <project groups="mathlibs" name="rocThrust" remote="rocm-swplat" />
-    <project groups="mathlibs" name="hipCUB" remote="rocm-swplat" />
-    <project groups="mathlibs" name="rocPRIM" remote="rocm-swplat" />
-    <project groups="mathlibs" name="rocWMMA" remote="rocm-swplat" />
-    <project groups="mathlibs" name="rccl" remote="rocm-swplat" />
-    <project name="rocMLIR" remote="rocm-swplat" />
-    <project name="MIOpen" remote="rocm-swplat" />
-    <project name="composable_kernel" remote="rocm-swplat" />
-    <project name="MIVisionX" remote="gpuopen-libs" />
-    <project name="rpp" remote="gpuopen-libs" />
-    <project name="hipfort" remote="rocm-swplat" />
-    <project name="AMDMIGraphX" remote="rocm-swplat" />
-    <project name="ROCmValidationSuite" remote="rocm-devtools" />
+    <project groups="mathlibs" name="rocBLAS" />
+    <project groups="mathlibs" name="Tensile" />
+    <project groups="mathlibs" name="hipTensor" />
+    <project groups="mathlibs" name="hipBLAS" />
+    <project groups="mathlibs" name="rocFFT" />
+    <project groups="mathlibs" name="hipFFT" />
+    <project groups="mathlibs" name="rocRAND" />
+    <project groups="mathlibs" name="rocSPARSE" />
+    <project groups="mathlibs" name="rocSOLVER" />
+    <project groups="mathlibs" name="hipSOLVER" />
+    <project groups="mathlibs" name="hipSPARSE" />
+    <project groups="mathlibs" name="rocALUTION" />
+    <project groups="mathlibs" name="rocThrust" />
+    <project groups="mathlibs" name="hipCUB" />
+    <project groups="mathlibs" name="rocPRIM" />
+    <project groups="mathlibs" name="rocWMMA" />
+    <project groups="mathlibs" name="rccl" />
+    <project name="rocMLIR" />
+    <project name="MIOpen" />
+    <project name="composable_kernel" />
+    <project name="MIVisionX" />
+    <project name="rpp" />
+    <project name="hipfort" />
+    <project name="AMDMIGraphX" />
+    <project name="ROCmValidationSuite" />
 <!-- Projects for OpenMP-Extras -->
-    <project name="aomp" path="openmp-extras/aomp" remote="rocm-devtools" />
-    <project name="aomp-extras" path="openmp-extras/aomp-extras" remote="rocm-devtools" />
-    <project name="flang" path="openmp-extras/flang" remote="rocm-devtools" />
+    <project name="aomp" path="openmp-extras/aomp" />
+    <project name="aomp-extras" path="openmp-extras/aomp-extras" />
+    <project name="flang" path="openmp-extras/flang" />
 </manifest>

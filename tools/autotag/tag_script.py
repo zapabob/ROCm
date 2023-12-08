@@ -227,9 +227,9 @@ def run_tagging():
 
     # Creates a collection of ROCm libraries grouped by release.
     release_bundle_factory = ReleaseBundleFactory(
-        "RadeonOpenCompute/ROCm",
+        "ROCm/ROCm",
         Github(**gh_args), Github(**pr_args),
-        "RadeonOpenCompute",
+        "ROCm",
         remote_map,
         args.branch
     )
