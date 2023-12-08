@@ -52,7 +52,7 @@
 
 ^^^
 
-* {doc}`hipCC <hipcc:index>`
+* {doc}`hipCC <HIPCC:index>`
 * {doc}`ROCdbgapi <rocdbgapi:index>`
 * [ROCmCC](./rocmcc.md)
 * {doc}`ROCm debugger (ROCgdb) <rocgdb:index>`
