@@ -452,6 +452,7 @@ Shlens
 sigmoid
 SIGQUIT
 SIMD
+SIMDs
 SKU
 SKUs
 skylake

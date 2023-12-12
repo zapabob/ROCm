@@ -8,455 +8,571 @@
 # MI200 performance counters and metrics
 <!-- markdownlint-disable no-duplicate-header -->
 
-This document lists and describes the hardware performance counters and the derived metrics available on the AMD Instinct™ MI200 GPU. All hardware performance monitors, and the derived performance metrics are accessible via AMD ROCm™ Profiler tool.
+This document lists and describes the hardware performance counters and derived metrics available on the AMD Instinct™ MI200 GPU. All the hardware basic counters and derived metrics are accessible via {doc}`ROCProfiler tool <rocprofiler:rocprofv1>`.
 
 ## MI200 performance counters list
 
+See the category-wise listing of MI200 performance counters in the following tables.
+
 ```{note}
-Preliminary validation of all MI200 performance counters is in progress. Those with “[*]” appended to the names require further evaluation.
+Preliminary validation of all MI200 performance counters is in progress. Those with “*” appended to the names require further evaluation.
 ```
 
-### GRBM
+### Graphics Register Bus Management (GRBM) counters
 
-#### GRBM counters
+| Hardware Counter   | Unit   | Definition                                                                |
+|:--------------------|:--------|:--------------------------------------------------------------------------|
+| `GRBM_COUNT`       | Cycles | Number of free-running GPU cycles                                         |
+| `GRBM_GUI_ACTIVE`  | Cycles | Number of GPU active cycles                                               |
+| `GRBM_CP_BUSY`     | Cycles | Number of cycles any of the Command Processor (CP) blocks are busy                  |
+| `GRBM_SPI_BUSY`    | Cycles | Number of cycles any of the Shader Processor Input (SPI) are busy in the shader engine(s) |
+| `GRBM_TA_BUSY`     | Cycles | Number of cycles any of the Texture Addressing Unit (TA) are busy in the shader engine(s) |
+| `GRBM_TC_BUSY`     | Cycles | Number of cycles any of the Texture Cache Blocks (TCP/TCI/TCA/TCC) are busy               |
+| `GRBM_CPC_BUSY`    | Cycles | Number of cycles the Command Processor - Compute (CPC) is busy                            |
+| `GRBM_CPF_BUSY`    | Cycles | Number of cycles the Command Processor - Fetcher (CPF) is busy                            |
+| `GRBM_UTCL2_BUSY`  | Cycles | Number of cycles the Unified Translation Cache - Level 2 (UTCL2) block is busy            |
+| `GRBM_EA_BUSY`     | Cycles | Number of cycles the Efficiency Arbiter (EA) block is busy                                |
 
-| Hardware Counter   | Unit   | Definition |
-|--------------------|--------| ------------------------------------------------------|
-| `grbm_count`       | Cycles | Free-running GPU clock |
-| `grbm_gui_active`  | Cycles | GPU active cycles |
-| `grbm_cp_busy`     | Cycles | Any of the command processor (CPC/CPF) blocks are busy. |
-| `grbm_spi_busy`    | Cycles | Any of the shader processor input (SPI) are busy in the shader engine(s). |
-| `grbm_ta_busy`     | Cycles | Any of the texture addressing unit are busy in the shader engine(s). |
-| `grbm_tc_busy`     | Cycles | Any of the texture cache blocks (TCP/TCI/TCA/TCC) are busy. |
-| `grbm_cpc_busy`    | Cycles | The command processor - compute (CPC) is busy. |
-| `grbm_cpf_busy`    | Cycles | The command processor - fetcher (CPF) is busy. |
-| `grbm_utcl2_busy`  | Cycles | The unified translation cache - level 2 (UTCL2) block is busy. |
-| `grbm_ea_busy`     | Cycles | The efficiency arbiter (EA) block is busy. |
+### Command Processor (CP) counters
 
-### Command processor
+The CP counters are further classified into CP-Fetcher (CPF) and CP-Compute (CPC).
 
-The command processor counters are further classified into fetcher and compute.
+#### CPF counters
 
-#### CPF
+| Hardware Counter                     | Unit   | Definition                  |
+|:--------------------------------------|:--------|:-------------------------------------------------------------|
+| `CPF_CMP_UTCL1_STALL_ON_TRANSLATION` | Cycles | Number of cycles one of the Compute UTCL1s is stalled waiting on translation |
+| `CPF_CPF_STAT_BUSY`                  | Cycles | Number of cycles CPF is busy                                                   |
+| `CPF_CPF_STAT_IDLE*`               | Cycles | Number of cycles CPF is idle                                                   |
+| `CPF_CPF_STAT_STALL`                 | Cycles | Number of cycles CPF is stalled                                                  |
+| `CPF_CPF_TCIU_BUSY`                  | Cycles | Number of cycles CPF Texture Cache Interface Unit (TCIU) interface is busy                                    |
+| `CPF_CPF_TCIU_IDLE`                  | Cycles | Number of cycles CPF TCIU interface is idle                                    |
+| `CPF_CPF_TCIU_STALL*`              | Cycles | Number of cycles CPF TCIU interface is stalled waiting on free tags        |
 
-##### CPF counters
-
-| Hardware Counter                     | Unit   | Definition                                                   |
-|--------------------------------------|--------|--------------------------------------------------------------|
-| `cpf_cmp_utcl1_stall_on_translation` | Cycles | One of the compute UTCL1s is stalled waiting on translation. |
-| `cpf_cpf_stat_idle[∗]`               | Cycles | CPF idle                                                   |
-| `cpf_cpf_stat_stall`                 | Cycles | CPF stall                                                  |
-| `cpf_cpf_tciu_busy`                  | Cycles | CPF TCIU interface busy                                    |
-| `cpf_cpf_tciu_idle`                  | Cycles | CPF TCIU interface idle                                    |
-| `cpf_cpf_tciu_stall[∗]`              | Cycles | CPF TCIU interface is stalled waiting on free tags.        |
-
-#### CPC
-
-##### CPC counters
+#### CPC counters
 
 | Hardware Counter                 | Unit   | Definition                                          |
-| ---------------------------------| -------| --------------------------------------------------- |
-| `cpc_me1_busy_for_packet_decode` | Cycles | CPC ME1 busy decoding packets                       |
-| `cpc_utcl1_stall_on_translation` | Cycles | One of the UTCL1s is stalled waiting on translation |
-| `cpc_cpc_stat_busy`              | Cycles | CPC busy                                            |
-| `cpc_cpc_stat_idle`              | Cycles | CPC idle                                            |
-| `cpc_cpc_stat_stall`             | Cycles | CPC stalled                                         |
-| `cpc_cpc_tciu_busy`              | Cycles | CPC TCIU interface busy                             |
-| `cpc_cpc_tciu_idle`              | Cycles | CPC TCIU interface idle                             |
-| `cpc_cpc_utcl2iu_busy`           | Cycles | CPC UTCL2 interface busy                            |
-| `cpc_cpc_utcl2iu_idle`           | Cycles | CPC UTCL2 interface idle                            |
-| `cpc_cpc_utcl2iu_stall[∗]`       | Cycles | CPC UTCL2 interface stalled waiting                 |
-| `cpc_me1_dci0_spi_busy`          | Cycles | CPC ME1 Processor busy                              |
+|:---------------------------------|:-------|:---------------------------------------------------|
+| `CPC_ME1_BUSY_FOR_PACKET_DECODE` | Cycles | Number of cycles CPC Micro Engine (ME1) is busy decoding packets                       |
+| `CPC_UTCL1_STALL_ON_TRANSLATION` | Cycles | Number of cycles one of the UTCL1s is stalled waiting on translation |
+| `CPC_CPC_STAT_BUSY`              | Cycles | Number of cycles CPC is busy                                            |
+| `CPC_CPC_STAT_IDLE`              | Cycles | Number of cycles CPC is idle                                            |
+| `CPC_CPC_STAT_STALL`             | Cycles | Number of cycles CPC is stalled                                         |
+| `CPC_CPC_TCIU_BUSY`              | Cycles | Number of cycles CPC TCIU interface is busy                             |
+| `CPC_CPC_TCIU_IDLE`              | Cycles | Number of cycles CPC TCIU interface is idle                             |
+| `CPC_CPC_UTCL2IU_BUSY`           | Cycles | Number of cycles CPC UTCL2 interface is busy                            |
+| `CPC_CPC_UTCL2IU_IDLE`           | Cycles | Number of cycles CPC UTCL2 interface is idle                            |
+| `CPC_CPC_UTCL2IU_STALL`          | Cycles | Number of cycles CPC UTCL2 interface is stalled                 |
+| `CPC_ME1_DC0_SPI_BUSY`           | Cycles | Number of cycles CPC ME1 Processor is busy                              |
 
-### SPI
-
-#### SPI counters
+### Shader Processor Input (SPI) counters
 
 | Hardware Counter             | Unit        | Definition                                                   |
-| :----------------------------| :-----------| -----------------------------------------------------------: |
-| `spi_csn_busy`                 | Cycles      | Number of clocks with outstanding waves                      |
-| `spi_csn_window_valid`         | Cycles      | Clock count enabled by perfcounter_start event               |
-| `spi_csn_num_threadgroups`     | Workgroups  | Total number of dispatched workgroups                        |
-| `spi_csn_wave`                 | Wavefronts  | Total number of dispatched wavefronts                        |
-| `spi_ra_req_no_alloc`          | Cycles      | Arb cycles with requests but no allocation (need to multiply this value by 4) |
-|`spi_ra_req_no_alloc_csn`       | Cycles      | Arb cycles with CSn req and no CSn alloc (need to multiply this value by 4) |
-| `spi_ra_res_stall_csn`         | Cycles      | Arb cycles with CSn req and no CSn fits (need to multiply this value by 4) |
-| `spi_ra_tmp_stall_csn[∗]`      | Cycles      | Cycles where CSn wants to req but does not fit in temp space |
-| `spi_ra_wave_simd_full_csn`    | SIMD-cycles | Sum of SIMD where WAVE cannot take csn wave when not fits    |
-| `spi_ra_vgpr_simd_full_csn[∗]` | SIMD-cycles | Sum of SIMD where VGPR cannot take csn wave when not fits    |
-| `spi_ra_sgpr_simd_full_csn[∗]` | SIMD-cycles | Sum of SIMD where SGPR cannot take csn wave when not fits    |
-| `spi_ra_lds_cu_full_csn`       | CUs         | Sum of CU where LDS cannot take csn wave when not fits       |
-| `spi_ra_bar_cu_full_csn[∗]`    | CUs         | Sum of CU where BARRIER cannot take csn wave when not fits   |
-| `spi_ra_bulky_cu_full_csn[∗]`  | CUs         | Sum of CU where BULKY cannot take csn wave when not fits     |
-| `spi_ra_tglim_cu_full_csn[∗]`  | Cycles      | Cycles where csn wants to req but all CUs are at tg_limit    |
-| `spi_ra_wvlim_cu_full_csn[∗]`  | Cycles      | Number of clocks csn is stalled due to WAVE LIMIT            |
-| `spi_vwc_csc_wr`               | Cycles      | Number of clocks to write CSC waves to VGPRs (need to multiply this value by 4) |
-| `spi_swc_csc_wr`               | Cycles      | Number of clocks to write CSC waves to SGPRs (need to multiply this value by 4) |
+|:----------------------------|:-----------|:-----------------------------------------------------------|
+| `SPI_CSN_BUSY`                 | Cycles      | Number of cycles with outstanding waves                      |
+| `SPI_CSN_WINDOW_VALID`         | Cycles      | Number of cycles enabled by `perfcounter_start` event               |
+| `SPI_CSN_NUM_THREADGROUPS`     | Workgroups  | Number of dispatched workgroups                        |
+| `SPI_CSN_WAVE`                 | Wavefronts  | Number of dispatched wavefronts                        |
+| `SPI_RA_REQ_NO_ALLOC`          | Cycles      | Number of Arb cycles with requests but no allocation |
+|`SPI_RA_REQ_NO_ALLOC_CSN`       | Cycles      | Number of Arb cycles with Compute Shader, n-th pipe (CSn) requests but no CSn allocation |
+| `SPI_RA_RES_STALL_CSN`         | Cycles      | Number of Arb stall cycles due to shortage of CSn pipeline slots |
+| `SPI_RA_TMP_STALL_CSN*`      | Cycles      | Number of stall cycles due to shortage of temp space |
+| `SPI_RA_WAVE_SIMD_FULL_CSN`    | SIMD-cycles | Accumulated number of Single Instruction Multiple Data (SIMDs) per cycle affected by shortage of wave slots for CSn wave dispatch   |
+| `SPI_RA_VGPR_SIMD_FULL_CSN*` | SIMD-cycles | Accumulated number of SIMDs per cycle affected by shortage of VGPR slots for CSn wave dispatch  |
+| `SPI_RA_SGPR_SIMD_FULL_CSN*` | SIMD-cycles | Accumulated number of SIMDs per cycle affected by shortage of SGPR slots for CSn wave dispatch    |
+| `SPI_RA_LDS_CU_FULL_CSN`       | CUs         | Number of Compute Units (CUs) affected by shortage of LDS space for CSn wave dispatch   |
+| `SPI_RA_BAR_CU_FULL_CSN*`    | CUs         | Number of CUs with CSn waves waiting at a BARRIER   |
+| `SPI_RA_BULKY_CU_FULL_CSN*`  | CUs         | Number of CUs with CSn waves waiting for BULKY resource     |
+| `SPI_RA_TGLIM_CU_FULL_CSN*`  | Cycles      | Number of CSn wave stall cycles due to restriction of `tg_limit` for thread group size    |
+| `SPI_RA_WVLIM_STALL_CSN*`  | Cycles      | Number of cycles CSn is stalled due to WAVE_LIMIT            |
+| `SPI_VWC_CSC_WR`               | Qcycles      | Number of quad-cycles taken to initialize Vector General Purpose Register (VGPRs) when launching waves |
+| `SPI_SWC_CSC_WR`               | Qcycles      | Number of quad-cycles taken to initialize Vector General Purpose Register (SGPRs) when launching waves |
 
-### Compute unit
+### Compute Unit (CU) counters
 
-The compute unit counters are further classified into instruction mix, MFMA operation counters, level counters, wavefront counters, wavefront cycle counters, local data share counters, and others.
+The CU counters are further classified into instruction mix, Matrix Fused Multiply Add (MFMA) operation counters, level counters, wavefront counters, wavefront cycle counters and Local Data Share (LDS) counters.
 
 #### Instruction mix
 
 | Hardware Counter        | Unit   | Definition                                                               |
-| :-----------------------| :-----:| -----------------------------------------------------------------------: |
-| `sq_insts`                | Instr | Number of instructions issued                                             |
-| `sq_insts_valu`           | Instr | Number of VALU instructions issued, including MFMA                        |
-| `sq_insts_valu_add_f16`   | Instr | Number of VALU F16 Add instructions issued                                |
-| `sq_insts_valu_mul_f16`   | Instr | Number of VALU F16 Multiply instructions issued                           |
-| `sq_insts_valu_fma_f16`   | Instr | Number of VALU F16 FMA instructions issued                                |
-| `sq_insts_valu_trans_f16` | Instr | Number of VALU F16 Transcendental instructions issued                     |
-| `sq_insts_valu_add_f32`   | Instr | Number of VALU F32 Add instructions issued                                |
-| `sq_insts_valu_mul_f32`   | Instr | Number of VALU F32 Multiply instructions issued                           |
-| `sq_insts_valu_fma_f32`   | Instr | Number of VALU F32 FMA instructions issued                                |
-| `sq_insts_valu_trans_f32` | Instr | Number of VALU F32 Transcendental instructions issued                     |
-| `sq_insts_valu_add_f64`   | Instr | Number of VALU F64 Add instructions issued                                |
-| `sq_insts_valu_mul_f64`   | Instr | Number of VALU F64 Multiply instructions issued                           |
-| `sq_insts_valu_fma_f64`   | Instr | Number of VALU F64 FMA instructions issued                                |
-| `sq_insts_valu_trans_f64` | Instr | Number of VALU F64 Transcendental instructions issued                     |
-| `sq_insts_valu_int32`     | Instr | Number of VALU 32-bit integer instructions issued (signed or unsigned)    |
-| `sq_insts_valu_int64`     | Instr | Number of VALU 64-bit integer instructions issued (signed or unsigned)    |
-| `sq_insts_valu_cvt`       | Instr | Number of VALU Conversion instructions issued                             |
-| `sq_insts_valu_mfma_i8`   | Instr | Number of 8-bit Integer MFMA instructions issued                          |
-| `sq_insts_valu_mfma_f16`  | Instr | Number of F16 MFMA instructions issued                                    |
-| `sq_insts_valu_mfma_bf16` | Instr | Number of BF16 MFMA instructions issued                                   |
-| `sq_insts_valu_mfma_f32`  | Instr | Number of F32 MFMA instructions issued                                    |
-| `sq_insts_valu_mfma_f64`  | Instr | Number of F64 MFMA instructions issued                                    |
-| `sq_insts_mfma`           | Instr | Number of MFMA instructions issued                                        |
-| `sq_insts_vmem_wr`        | Instr | Number of VMEM write instructions issued                                  |
-| `sq_insts_vmem_rd`        | Instr | Number of VMEM read instructions issued                                   |
-| `sq_insts_vmem`           | Instr | Number of VMEM instructions issued, including both FLAT and buffer instructions |
-| `sq_insts_salu`           | Instr | Number of SALU instructions issued                                        |
-| `sq_insts_smem`           | Instr | Number of SMEM instructions issued                                        |
-| `sq_insts_smem_norm`      | Instr | Number of SMEM instructions issued to normalize to match `smem_level`. Used in measuring SMEM latency |
-| `sq_insts_flat`           | Instr | Number of FLAT instructions issued                                        |
-| `sq_insts_flat_lds_only`  | Instr | Number of FLAT instructions issued that read/write only from/to LDS       |
-| `sq_insts_lds`            | Instr | Number of LDS instructions issued                                         |
-| `sq_insts_gds`            | Instr | Number of GDS instructions issued                                         |
-| `sq_insts_exp_gds`        | Instr | Number of EXP and GDS instructions excluding skipped export instructions issued |
-| `sq_insts_branch`         | Instr | Number of Branch instructions issued                                      |
-| `sq_insts_sendmsg`        | Instr | Number of SENDMSG instructions including s_endpgm issued                  |
-| `sq_insts_vskipped[∗]`    | Instr | Number of VSkipped instructions issued                                    |
+|:-----------------------|:-----|:-----------------------------------------------------------------------|
+| `SQ_INSTS`                | Instr | Number of instructions issued.                                              |
+| `SQ_INSTS_VALU`           | Instr | Number of Vector Arithmetic Logic Unit (VALU) instructions including MFMA issued.                         |
+| `SQ_INSTS_VALU_ADD_F16`   | Instr | Number of VALU Half Precision Floating Point (F16) ADD/SUB instructions issued.                            |
+| `SQ_INSTS_VALU_MUL_F16`   | Instr | Number of VALU F16 Multiply instructions issued.                   |
+| `SQ_INSTS_VALU_FMA_F16`   | Instr | Number of VALU F16 Fused Multiply Add (FMA)/ Multiply Add (MAD) instructions issued.                   |
+| `SQ_INSTS_VALU_TRANS_F16` | Instr | Number of VALU F16 Transcendental instructions issued.                   |
+| `SQ_INSTS_VALU_ADD_F32`   | Instr | Number of VALU Full Precision Floating Point (F32) ADD/SUB instructions issued.                 |
+| `SQ_INSTS_VALU_MUL_F32`   | Instr | Number of VALU F32 Multiply instructions issued.                    |
+| `SQ_INSTS_VALU_FMA_F32`   | Instr | Number of VALU F32 FMA/MAD instructions issued.                   |
+| `SQ_INSTS_VALU_TRANS_F32` | Instr | Number of VALU F32 Transcendental instructions issued.                    |
+| `SQ_INSTS_VALU_ADD_F64`   | Instr | Number of VALU F64 ADD/SUB instructions issued.                |
+| `SQ_INSTS_VALU_MUL_F64`   | Instr | Number of VALU F64 Multiply instructions issued.                    |
+| `SQ_INSTS_VALU_FMA_F64`   | Instr | Number of VALU F64 FMA/MAD instructions issued.                   |
+| `SQ_INSTS_VALU_TRANS_F64` | Instr | Number of VALU F64 Transcendental instructions issued.                 |
+| `SQ_INSTS_VALU_INT32`     | Instr | Number of VALU 32-bit integer instructions (signed or unsigned) issued.        |
+| `SQ_INSTS_VALU_INT64`     | Instr | Number of VALU 64-bit integer instructions (signed or unsigned) issued.       |
+| `SQ_INSTS_VALU_CVT`       | Instr | Number of VALU Conversion instructions issued.                   |
+| `SQ_INSTS_VALU_MFMA_I8`   | Instr | Number of 8-bit Integer MFMA instructions issued.               |
+| `SQ_INSTS_VALU_MFMA_F16`  | Instr | Number of F16 MFMA instructions issued.                                   |
+| `SQ_INSTS_VALU_MFMA_BF16` | Instr | Number of Brain Floating Point - 16 (BF16) MFMA instructions issued.                                  |
+| `SQ_INSTS_VALU_MFMA_F32`  | Instr | Number of F32 MFMA instructions issued.                                    |
+| `SQ_INSTS_VALU_MFMA_F64`  | Instr | Number of F64 MFMA instructions issued.                               |
+| `SQ_INSTS_MFMA`           | Instr | Number of MFMA instructions issued.                                  |
+| `SQ_INSTS_VMEM_WR`        | Instr | Number of Vector Memory (VMEM) Write instructions (including FLAT) issued.                                  |
+| `SQ_INSTS_VMEM_RD`        | Instr | Number of VMEM Read instructions (including FLAT) issued.  |
+| `SQ_INSTS_VMEM`           | Instr | Number of VMEM instructions issued, including both FLAT and Buffer instructions. |
+| `SQ_INSTS_SALU`           | Instr | Number of SALU instructions issued.                                        |
+| `SQ_INSTS_SMEM`           | Instr | Number of Scalar Memory (SMEM) instructions issued.                                       |
+| `SQ_INSTS_SMEM_NORM`      | Instr | Number of SMEM instructions normalized to match `smem_level` issued. |
+| `SQ_INSTS_FLAT`           | Instr | Number of FLAT instructions issued.                                     |
+| `SQ_INSTS_FLAT_LDS_ONLY`  | Instr | Number of FLAT instructions that read/write only from/to LDS issued. Works only if `EARLY_TA_DONE` is enabled.       |
+| `SQ_INSTS_LDS`            | Instr | Number of Local Data Share (LDS) instructions issued (including FLAT).                                         |
+| `SQ_INSTS_GDS`            | Instr | Number of Global Data Share (GDS) instructions issued.                                         |
+| `SQ_INSTS_EXP_GDS`        | Instr | Number of EXP and GDS instructions excluding skipped export instructions issued.  |
+| `SQ_INSTS_BRANCH`         | Instr | Number of Branch instructions issued.                                     |
+| `SQ_INSTS_SENDMSG`        | Instr | Number of `SENDMSG` instructions including `s_endpgm` issued.                 |
+| `SQ_INSTS_VSKIPPED*`    | Instr | Number of vector instructions skipped.                                 |
 
 #### MFMA operation counters
 
 | Hardware Counter             | Unit  | Definition                                      |
-| :----------------------------| :-----| ----------------------------------------------: |
-| `sq_insts_valu_mfma_mops_I8`   | IOP   | Number of 8-bit integer MFMA ops in unit of 512 |
-| `sq_insts_valu_mfma_mops_F16`  | FLOP  | Number of F16 floating MFMA ops in unit of 512  |
-| `sq_insts_valu_mfma_mops_BF16` | FLOP  | Number of BF16 floating MFMA ops in unit of 512 |
-| `sq_insts_valu_mfma_mops_F32`  | FLOP  | Number of F32 floating MFMA ops in unit of 512  |
-| `sq_insts_valu_mfma_mops_F64`  | FLOP  | Number of F64 floating MFMA ops in unit of 512  |
+|:----------------------------|:-----|:----------------------------------------------|
+| `SQ_INSTS_VALU_MFMA_MOPS_I8`   | IOP   | Number of 8-bit integer MFMA ops in the unit of 512 |
+| `SQ_INSTS_VALU_MFMA_MOPS_F16`  | FLOP  | Number of F16 floating MFMA ops in the unit of 512  |
+| `SQ_INSTS_VALU_MFMA_MOPS_BF16` | FLOP  | Number of BF16 floating MFMA ops in the unit of 512 |
+| `SQ_INSTS_VALU_MFMA_MOPS_F32`  | FLOP  | Number of F32 floating MFMA ops in the unit of 512  |
+| `SQ_INSTS_VALU_MFMA_MOPS_F64`  | FLOP  | Number of F64 floating MFMA ops in the unit of 512  |
 
 #### Level counters
 
+:::{note}
+All level counters must be followed by `SQ_ACCUM_PREV_HIRES` counter to measure average latency.
+:::
+
 | Hardware Counter    | Unit  | Definition                             |
-| :-------------------| :-----| -------------------------------------: |
-| `sq_accum_prev`       | Count | Accumulated counter sample value where accumulation takes place once every  four cycles |
-| `sq_accum_prev_hires` | Count | Accumulated counter sample value where accumulation takes place once every cycle |
-| `sq_level_waves`      | Waves | Number of inflight waves               |
-| `sq_insts_level_vmem` | Instr | Number of inflight VMEM instructions   |
-| `sq_insts_level_smem` | Instr | Number of inflight SMEM instructions   |
-| `sq_insts_level_lds`  | Instr | Number of inflight LDS instructions    |
-| `sq_ifetch_level`     | Instr | Number of inflight instruction fetches |
+|:-------------------|:-----|:-------------------------------------|
+| `SQ_ACCUM_PREV`       | Count | Accumulated counter sample value where accumulation takes place once every four cycles. |
+| `SQ_ACCUM_PREV_HIRES` | Count | Accumulated counter sample value where accumulation takes place once every cycle. |
+| `SQ_LEVEL_WAVES`      | Waves | Number of inflight waves. To calculate the wave latency, divide `SQ_ACCUM_PREV_HIRES` by `SQ_WAVE`.           |
+| `SQ_INST_LEVEL_VMEM` | Instr | Number of inflight VMEM (including FLAT) instructions. To calculate the VMEM latency, divide `SQ_ACCUM_PREV_HIRES` by `SQ_INSTS_VMEM`.   |
+| `SQ_INST_LEVEL_SMEM` | Instr | Number of inflight SMEM instructions. To calculate the SMEM latency, divide `SQ_ACCUM_PREV_HIRES` by `SQ_INSTS_SMEM_NORM`.    |
+| `SQ_INST_LEVEL_LDS`  | Instr | Number of inflight LDS (including FLAT) instructions. To calculate the LDS latency, divide `SQ_ACCUM_PREV_HIRES` by `SQ_INSTS_LDS`.  |
+| `SQ_IFETCH_LEVEL`     | Instr | Number of inflight instruction fetch requests from the cache. To calculate the instruction fetch latency, divide `SQ_ACCUM_PREV_HIRES` by `SQ_IFETCH`. |
 
 #### Wavefront counters
 
 | Hardware Counter     | Unit  | Definition                                                        |
-| :--------------------| :-----| ----------------------------------------------------------------: |
-| `sq_waves`             | Waves | Number of wavefronts dispatch to SQs, including both new and restored wavefronts |
-| `sq_waves_saved[∗]`    | Waves | Number of context-saved wavefronts                                |
-| `sq_waves_restored[∗]` | Waves | Number of context-restored wavefronts                             |
-| `sq_waves_eq_64`       | Waves | Number of wavefronts with exactly 64 active threads sent to SQs   |
-| `sq_waves_lt_64`       | Waves | Number of wavefronts with less than 64 active threads sent to SQs |
-| `sq_waves_lt_48`       | Waves | Number of wavefronts with less than 48 active threads sent to SQs |
-| `sq_waves_lt_32`       | Waves | Number of wavefronts with less than 32 active threads sent to SQs |
-| `sq_waves_lt_16`       | Waves | Number of wavefronts with less than 16 active threads sent to SQs |
+|:--------------------|:-----|:----------------------------------------------------------------|
+| `SQ_WAVES`             | Waves | Number of wavefronts dispatched to Sequencers (SQs), including both new and restored wavefronts  |
+| `SQ_WAVES_SAVED*`    | Waves | Number of context-saved waves                  |
+| `SQ_WAVES_RESTORED*` | Waves | Number of context-restored waves sent to SQs                  |
+| `SQ_WAVES_EQ_64`       | Waves | Number of wavefronts with exactly 64 active threads sent to SQs    |
+| `SQ_WAVES_LT_64`       | Waves | Number of wavefronts with less than 64 active threads sent to SQs  |
+| `SQ_WAVES_LT_48`       | Waves | Number of wavefronts with less than 48 active threads sent to SQs  |
+| `SQ_WAVES_LT_32`       | Waves | Number of wavefronts with less than 32 active threads sent to SQs  |
+| `SQ_WAVES_LT_16`       | Waves | Number of wavefronts with less than 16 active threads sent to SQs  |
 
 #### Wavefront cycle counters
 
 | Hardware Counter         | Unit    | Definition                                                            |
-| :------------------------| :-------| --------------------------------------------------------------------: |
-| `sq_cycles`                | Cycles  | Free-running  SQ clocks                                               |
-| `sq_busy_cycles`           | Cycles  | Number of cycles while SQ reports it to be busy                       |
-| `sq_busy_cu_cycles`        | Qcycles | Number of quad cycles each CU is busy                                 |
-| `sq_valu_mfma_busy_cycles` | Cycles  | Number of cycles the MFMA ALU is busy                                 |
-| `sq_wave_cycles`           | Qcycles | Number of quad cycles spent by waves in the CUs                       |
-| `sq_wait_any`              | Qcycles | Number of quad cycles spent waiting for anything                      |
-| `sq_wait_inst_any`         | Qcycles | Number of quad cycles spent waiting for an issued instruction         |
-| `sq_active_inst_any`       | Qcycles | Number of quad cycles spent by each wave to work on an instruction    |
-| `sq_active_inst_vmem`      | Qcycles | Number of quad cycles spent by each wave to work on a non-FLAT VMEM instruction |
-| `sq_active_inst_lds`       | Qcycles | Number of quad cycles spent by each wave to work on an LDS instruction |
-| `sq_active_inst_valu`      | Qcycles | Number of quad cycles spent by each wave to work on a VALU instruction |
-| `sq_active_inst_sca`       | Qcycles | Number of quad cycles spent by each wave to work on an SCA instruction |
-| `sq_active_inst_exp_gds`   | Qcycles | Number of quad cycles spent by each wave to work on EXP or GDS instruction |
-| `sq_active_inst_misc`      | Qcycles | Number of quad cycles spent by each wave to work on an MISC instruction, including branch and sendmsg |
-| `sq_active_inst_flat`      | Qcycles | Number of quad cycles spent by each wave to work on a FLAT instruction |
-| `sq_inst_cycles_vmem_wr`   | Qcycles | Number of quad cycles  spent to send addr and cmd data for VMEM write instructions, including both FLAT and buffer |
-| `sq_inst_cycles_vmem_rd`   | Qcycles | Number of quad cycles  spent to send addr and cmd data for VMEM read instructions, including both FLAT and buffer |
-| `sq_inst_cycles_smem`      | Qcycles | Number of quad cycles  spent to execute scalar memory reads           |
-| `sq_inst_cycles_salu`      | Cycles  | Number of cycles spent to execute non-memory read scalar operations   |
-| `sq_thread_cycles_valu`    | Cycles  | Number of thread cycles spent to execute VALU operations              |
+|:------------------------|:-------|:--------------------------------------------------------------------|
+| `SQ_CYCLES`                | Cycles  | Clock cycles.  |
+| `SQ_BUSY_CYCLES`           | Cycles  | Number of cycles while SQ reports it to be busy.                       |
+| `SQ_BUSY_CU_CYCLES`        | Qcycles | Number of quad-cycles each CU is busy.                                  |
+| `SQ_VALU_MFMA_BUSY_CYCLES` | Cycles  | Number of cycles the MFMA ALU is busy.                                 |
+| `SQ_WAVE_CYCLES`           | Qcycles | Number of quad-cycles spent by waves in the CUs.                       |
+| `SQ_WAIT_ANY`              | Qcycles | Number of quad-cycles spent waiting for anything.                    |
+| `SQ_WAIT_INST_ANY`         | Qcycles | Number of quad-cycles spent waiting for any instruction to be issued.         |
+| `SQ_ACTIVE_INST_ANY`       | Qcycles | Number of quad-cycles spent by each wave to work on an instruction.   |
+| `SQ_ACTIVE_INST_VMEM`      | Qcycles | Number of quad-cycles spent by the SQ instruction arbiter to work on a VMEM instruction.  |
+| `SQ_ACTIVE_INST_LDS`       | Qcycles | Number of quad-cycles spent by the SQ instruction arbiter to work on an LDS instruction. |
+| `SQ_ACTIVE_INST_VALU`      | Qcycles | Number of quad-cycles spent by the SQ instruction arbiter to work on a VALU instruction.  |
+| `SQ_ACTIVE_INST_SCA`       | Qcycles | Number of quad-cycles spent by the SQ instruction arbiter to work on a SALU or SMEM instruction.  |
+| `SQ_ACTIVE_INST_EXP_GDS`   | Qcycles | Number of quad-cycles spent by the SQ instruction arbiter to work on an EXPORT or GDS instruction.  |
+| `SQ_ACTIVE_INST_MISC`      | Qcycles | Number of quad-cycles spent by the SQ instruction aribter to work on a BRANCH or `SENDMSG` instruction.  |
+| `SQ_ACTIVE_INST_FLAT`      | Qcycles | Number of quad-cycles spent by the SQ instruction arbiter to work on a FLAT instruction.  |
+| `SQ_INST_CYCLES_VMEM_WR`   | Qcycles | Number of quad-cycles  spent to send addr and cmd data for VMEM Write instructions.  |
+| `SQ_INST_CYCLES_VMEM_RD`   | Qcycles | Number of quad-cycles  spent to send addr and cmd data for VMEM Read instructions.  |
+| `SQ_INST_CYCLES_SMEM`      | Qcycles | Number of quad-cycles  spent to execute scalar memory reads.          |
+| `SQ_INST_CYCLES_SALU`      | Qcycles  | Number of quad-cycles spent to execute non-memory read scalar operations.    |
+| `SQ_THREAD_CYCLES_VALU`    | Cycles  | Number of thread-cycles spent to execute VALU operations. This is similar to `INST_CYCLES_VALU` but multiplied by the number of active threads.            |
+| `SQ_WAIT_INST_LDS` | Qcycles | Number of quad-cycles spent waiting for LDS instruction to be issued.  |
 
-#### Local data share
+#### LDS counters
 
 | Hardware Counter           | Unit   | Definition                                                |
-| :--------------------------| :------| --------------------------------------------------------: |
-| `sq_lds_atomic_return`       | Cycles | Number of atomic return cycles in LDS                     |
-| `sq_lds_bank_conflict`       | Cycles | Number of cycles LDS is stalled by bank conflicts         |
-| `sq_lds_addr_conflict[∗]`    | Cycles | Number of cycles LDS is stalled by address conflicts      |
-| `sq_lds_unaligned_stalls[∗]` | Cycles | Number of cycles LDS is stalled processing flat unaligned load/store ops |
-| `sq_lds_mem_violations[∗]`   | Count  | Number of threads that have a memory violation in the LDS |
+|:--------------------------|:------|:--------------------------------------------------------|
+| `SQ_LDS_ATOMIC_RETURN`       | Cycles | Number of atomic return cycles in LDS                   |
+| `SQ_LDS_BANK_CONFLICT`       | Cycles | Number of cycles LDS is stalled by bank conflicts     |
+| `SQ_LDS_ADDR_CONFLICT*`    | Cycles | Number of cycles LDS is stalled by address conflicts     |
+| `SQ_LDS_UNALIGNED_STALL*` | Cycles | Number of cycles LDS is stalled processing flat unaligned load/store ops |
+| `SQ_LDS_MEM_VIOLATIONS*`   | Count  | Number of threads that have a memory violation in the LDS  |
+| `SQ_LDS_IDX_ACTIVE` | Cycles | Number of cycles LDS is used for indexed operations  |
 
-#### Miscellaneous
+#### Miscellaneous counters
 
-##### Local data share
+| Hardware Counter           | Unit   | Definition                                                |
+|:--------------------------|:------|:--------------------------------------------------------|
+| `SQ_IFETCH`        | Count   | Number of instruction fetch requests from `L1I` cache, in 32-byte width  |
+| `SQ_ITEMS`         | Threads | Number of valid items per wave                                  |
 
-| Hardware Counter | Unit    | Definition                                                |
-| :----------------| :-------| --------------------------------------------------------: |
-| `sq_ifetch`        | Count   | Number of fetch requests from L1I cache, in 32-byte width |
-| `sq_items`         | Threads | Number of valid threads                                   |
-
-### L1I and sL1D caches
-
-#### L1I and sL1D caches
+### L1I and sL1D cache counters
 
 | Hardware Counter             | Unit   | Definition                                                        |
-| :----------------------------| :------| ----------------------------------------------------------------: |
-| `sqc_icache_req`               | Req    | Number of L1I cache requests                                      |
-| `sqc_icache_hits`              | Count  | Number of L1I cache lookup-hits                                   |
-| `sqc_icache_misses`            | Count  | Number of L1I cache non-duplicate lookup-misses                   |
-| `sqc_icache_misses_duplicate`  | Count  | Number of d L1I cache duplicate lookup misses  whose previous lookup miss on the same cache line is not fulfilled yet |
-| `sqc_dcache_req`               | Req    | Number of sL1D cache requests                                       |
-| `sqc_dcache_input_valid_readb` | Cycles | Number of cycles while SQ input is valid but sL1D cache is not ready |
-| `sqc_dcache_hits`              | Count  | Number of sL1D cache lookup-hits                                  |
-| `sqc_dcache_misses`            | Count  | Number of sL1D non-duplicate lookup-misses                        |
-| `sqc_dcache_misses_duplicate`  | Count  | Number of sL1D duplicate lookup-misses                            |
-| `sqc_dcache_req_read_1`        | Req    | Number of read requests in a single 32-bit data word, DWORD (DW)  |
-| `sqc_dcache_req_read_2`        | Req    | Number of read requests in 2 DW                                   |
-| `sqc_dcache_req_read_4`        | Req    | Number of read requests in 4 DW                                   |
-| `sqc_dcache_req_read_8`        | Req    | Number of read requests in 8 DW                                   |
-| `sqc_dcache_req_read_16`       | Req    | Number of read requests in 16 DW                                  |
-| `sqc_dcache_atomic[∗]`         | Req    | Number of atomic requests                                         |
-| `sqc_tc_req`                   | Req    | Number of L2 cache requests that were issued by instruction and constant caches |
-| `sqc_tc_inst_req`              | Req    | Number of instruction cache line requests to L2 cache             |
-| `sqc_tc_data_read_req`         | Req    | Number of data read requests to the L2 cache                      |
-| `sqc_tc_data_write_req[∗]`     | Req    | Number of data write requests to the L2 cache                     |
-| `sqc_tc_data_atomic_req[∗]`    | Req    | Number of data atomic requests to the L2 cache                    |
-| `sqc_tc_stall[∗]`              | Cycles | Number of cycles while the valid requests to L2 cache are stalled |
+|:----------------------------|:------|:----------------------------------------------------------------|
+| `SQC_ICACHE_REQ`               | Req    | Number of `L1I` cache requests                                      |
+| `SQC_ICACHE_HITS`              | Count  | Number of `L1I` cache hits                                   |
+| `SQC_ICACHE_MISSES`            | Count  | Number of non-duplicate `L1I` cache misses including uncached requests                   |
+| `SQC_ICACHE_MISSES_DUPLICATE`  | Count  | Number of duplicate `L1I` cache misses whose previous lookup miss on the same cache line is not fulfilled yet |
+| `SQC_DCACHE_REQ`               | Req    | Number of `sL1D` cache requests                                  |
+| `SQC_DCACHE_INPUT_VALID_READYB` | Cycles | Number of cycles while SQ input is valid but sL1D cache is not ready |
+| `SQC_DCACHE_HITS`              | Count  | Number of `sL1D` cache hits                                |
+| `SQC_DCACHE_MISSES`            | Count  | Number of non-duplicate `sL1D` cache misses including uncached requests                        |
+| `SQC_DCACHE_MISSES_DUPLICATE`  | Count  | Number of duplicate `sL1D` cache misses                            |
+| `SQC_DCACHE_REQ_READ_1`        | Req    | Number of constant cache read requests in a single DW  |
+| `SQC_DCACHE_REQ_READ_2`        | Req    | Number of constant cache read requests in two DW      |
+| `SQC_DCACHE_REQ_READ_4`        | Req    | Number of constant cache read requests in four DW  |
+| `SQC_DCACHE_REQ_READ_8`        | Req    | Number of constant cache read requests in eight DW     |
+| `SQC_DCACHE_REQ_READ_16`       | Req    | Number of constant cache read requests in 16 DW      |
+| `SQC_DCACHE_ATOMIC*`         | Req    | Number of atomic requests                 |
+| `SQC_TC_REQ`                   | Req    | Number of TC requests that were issued by instruction and constant caches  |
+| `SQC_TC_INST_REQ`              | Req    | Number of instruction requests to the L2 cache            |
+| `SQC_TC_DATA_READ_REQ`         | Req    | Number of data Read requests to the L2 cache                   |
+| `SQC_TC_DATA_WRITE_REQ*`     | Req    | Number of data write requests to the L2 cache                    |
+| `SQC_TC_DATA_ATOMIC_REQ*`    | Req    | Number of data atomic requests to the L2 cache              |
+| `SQC_TC_STALL*`              | Cycles | Number of cycles while the valid requests to the L2 cache are stalled |
 
 ### Vector L1 cache subsystem
 
-The vector L1 cache subsystem counters are further classified into texture addressing unit, texture data unit, vector L1D cache, and texture cache arbiter.
+The vector L1 cache subsystem counters are further classified into Texture Addressing Unit (TA), Texture Data Unit (TD), vector L1D cache or Texture Cache per Pipe (TCP), and Texture Cache Arbiter (TCA) counters.
 
-#### Texture addressing unit
-
-##### Texture addressing unit counters
+#### TA counters
 
 | Hardware Counter                 | Unit   | Definition                                        |
-| :--------------------------------| :------| ------------------------------------------------: |
-| `ta_ta_busy`                       | Cycles | texture addressing unit busy cycles                                    |
-| `ta_total_wavefronts`              | Instr  | Number of wavefront instructions                  |
-| `ta_buffer_wavefronts`             | Instr  | Number of buffer wavefront instructions           |
-| `ta_buffer_read_wavefronts`        | Instr  | Number of buffer read wavefront instructions      |
-| `ta_buffer_write_wavefronts`       | Instr  | Number of buffer write wavefront instructions     |
-| `ta_buffer_atomic_wavefronts[∗]`   | Instr  | Number of buffer atomic wavefront instructions    |
-| `ta_buffer_total_cycles`           | Cycles | Number of buffer cycles, including read and write |
-| `ta_buffer_coalesced_read_cycles`  | Cycles | Number of coalesced buffer read cycles            |
-| `ta_buffer_coalesced_write_cycles` | Cycles | Number of coalesced buffer write cycles           |
-| `ta_addr_stalled_by_tc`            | Cycles | Number of cycles texture addressing unit address is stalled by TCP     |
-| `ta_data_stalled_by_tc`            | Cycles | Number of cycles texture addressing unit data is stalled by TCP        |
-| `ta_addr_stalled_by_td_cycles[∗]`  | Cycles | Number of cycles texture addressing unit address is stalled by TD      |
-| `ta_flat_wavefronts`               | Instr  | Number of flat wavefront instructions             |
-| `ta_flat_read_wavefronts`          | Instr  | Number of flat read wavefront instructions        |
-| `ta_flat_write_wavefronts`         | Instr  | Number of flat write wavefront instructions       |
-| `ta_flat_atomic_wavefronts`        | Instr  | Number of flat atomic wavefront instructions      |
+|:--------------------------------|:------|:------------------------------------------------|
+| `TA_TA_BUSY[n]`                       | Cycles | TA busy cycles. Value range for n: [0-15]. |
+| `TA_TOTAL_WAVEFRONTS[n]`              | Instr  | Number of wavefronts processed by TA. Value range for n: [0-15].       |
+| `TA_BUFFER_WAVEFRONTS[n]`             | Instr  | Number of buffer wavefronts processed by TA. Value range for n: [0-15].       |
+| `TA_BUFFER_READ_WAVEFRONTS[n]`        | Instr  | Number of buffer read wavefronts processed by TA. Value range for n: [0-15].  |
+| `TA_BUFFER_WRITE_WAVEFRONTS[n]`       | Instr  | Number of buffer write wavefronts processed by TA. Value range for n: [0-15]. |
+| `TA_BUFFER_ATOMIC_WAVEFRONTS[n]`   | Instr  | Number of buffer atomic wavefronts processed by TA. Value range for n: [0-15]. |
+| `TA_BUFFER_TOTAL_CYCLES[n]`           | Cycles | Number of buffer cycles (including read and write) issued to TC. Value range for n: [0-15].  |
+| `TA_BUFFER_COALESCED_READ_CYCLES[n]`  | Cycles | Number of coalesced buffer read cycles issued to TC. Value range for n: [0-15].         |
+| `TA_BUFFER_COALESCED_WRITE_CYCLES[n]` | Cycles | Number of coalesced buffer write cycles issued to TC. Value range for n: [0-15].         |
+| `TA_ADDR_STALLED_BY_TC_CYCLES[n]`     | Cycles | Number of cycles TA address path is stalled by TC. Value range for n: [0-15]. |
+| `TA_DATA_STALLED_BY_TC_CYCLES[n]`            | Cycles | Number of cycles TA data path is stalled by TC. Value range for n: [0-15].       |
+| `TA_ADDR_STALLED_BY_TD_CYCLES[n]`  | Cycles | Number of cycles TA address path is stalled by TD. Value range for n: [0-15].     |
+| `TA_FLAT_WAVEFRONTS[n]`               | Instr  | Number of flat opcode wavefronts processed by TA. Value range for n: [0-15].            |
+| `TA_FLAT_READ_WAVEFRONTS[n]`          | Instr  | Number of flat opcode read wavefronts processed by TA. Value range for n: [0-15].        |
+| `TA_FLAT_WRITE_WAVEFRONTS[n]`         | Instr  | Number of flat opcode write wavefronts processed by TA. Value range for n: [0-15].      |
+| `TA_FLAT_ATOMIC_WAVEFRONTS[n]`        | Instr  | Number of flat opcode atomic wavefronts processed by TA. Value range for n: [0-15].      |
 
-#### Texture data unit
-
-##### Texture data unit counters
+#### TD counters
 
 | Hardware Counter         | Unit  | Definition                                           |
-| :------------------------| :-----| ---------------------------------------------------: |
-| `td_td_busy`               | Cycle | TD busy cycles                                       |
-| `td_tc_stall`              | Cycle | Number of cycles TD is stalled by TCP                |
-| `td_spi_stall[∗]`          | Cycle | Number of cycles TD is stalled by SPI                |
-| `td_load_wavefront`        | Instr | Number of wavefront instructions (read/write/atomic) |
-| `td_store_wavefront`       | Instr | Number of write wavefront instructions               |
-| `td_atomic_wavefront`      | Instr | Number of atomic wavefront instructions              |
-| `td_coalescable_wavefront` | Instr | Number of coalescable instructions                   |
+|:------------------------|:-----|:---------------------------------------------------|
+| `TD_TD_BUSY[n]`               | Cycle | TD busy cycles while it is processing or waiting for data. Value range for n: [0-15].                            |
+| `TD_TC_STALL[n]`              | Cycle | Number of cycles TD is stalled waiting for TC data. Value range for n: [0-15].   |
+| `TD_SPI_STALL[n]`          | Cycle | Number of cycles TD is stalled by SPI. Value range for n: [0-15].      |
+| `TD_LOAD_WAVEFRONT[n]`        | Instr |Number of wavefront instructions (read/write/atomic). Value range for n: [0-15]. |
+| `TD_STORE_WAVEFRONT[n]`       | Instr | Number of write wavefront instructions. Value range for n: [0-15].|
+| `TD_ATOMIC_WAVEFRONT[n]`      | Instr | Number of atomic wavefront instructions. Value range for n: [0-15]. |
+| `TD_COALESCABLE_WAVEFRONT[n]` | Instr | Number of coalescable wavefronts according to TA. Value range for n: [0-15].     |
 
-#### Vector L1D cache
+#### TCP counters
 
 | Hardware Counter                    | Unit   | Definition                                                  |
-| :-----------------------------------| :------| ----------------------------------------------------------: |
-| `tcp_gate_en1`                        | Cycles | Number of cycles/ vL1D interface clocks are turned on    |
-| `tcp_gate_en2`                        | Cycles | Number of cycles vL1D core clocks are turned on           |
-| `tcp_td_tcp_stall_cycles`             | Cycles | Number of cycles TD stalls vL1D                           |
-| `tcp_tcr_tcp_stall_cycles`            | Cycles | Number of cycles TCR stalls vL1D                           |
-| `tcp_read_tagconflict_stall_cycles`   | Cycles | Number of cycles tagram conflict stalls on a read          |
-| `tcp_write_tagconflict_stall_cycles`  | Cycles | Number of cycles tagram conflict stalls on a write         |
-| `tcp_atomic_tagconflict_stall_cycles` | Cycles | Number of cycles tagram conflict stalls on an atomic       |
-| `tcp_pending_stall_cycles`            | Cycles | Number of cycles vL1D cache is stalled due to data pending from L2 cache |
-| `tcp_ta_tcp_state_read`               | Req    | Number of wavefront instruction requests to vL1D           |
-| `tcp_volatile[∗]`                     | Req    | Number of L1 volatile pixels/buffers from texture addressing unit               |
-| `tcp_total_accesses`                  | Req    | Number of vL1D accesses                                    |
-| `tcp_total_read`                      | Req    | Number of vL1D read accesses                               |
-| `tcp_total_write`                     | Req    | Number of vL1D write accesses                              |
-| `tcp_total_atomic_with_ret`           | Req    | Number of vL1D atomic with return                          |
-| `tcp_total_atomic_without_ret`        | Req    | Number of vL1D atomic without return                       |
-| `tcp_total_writeback_invalidates`     | Count  | Number of vL1D writebacks and Invalidates                  |
-| `tcp_utcl1_request`                   | Req    | Number of address translation requests to UTCL1            |
-| `tcp_utcl1_translation_hit`           | Req    | Number of UTCL1 translation hits                            |
-| `tcp_utcl1_translation_miss`          | Req    | Number of UTCL1 translation misses                          |
-| `tcp_utcl1_persmission_miss`          | Req    | Number of UTCL1 permission misses                           |
-| `tcp_total_cache_accesses`            | Req    | Number of vL1D cache accesses                               |
-| `tcp_tcp_latency`                     | Cycles | Accumulated wave access latency to vL1D over all wavefronts |
-| `tcp_tcc_read_req_latency`            | Cycles | Accumulated vL1D-L2 request latency over all wavefronts for reads and atomics with return |
-| `tcp_tcc_write_req_latency`           | Cycles | Accumulated vL1D-L2 request latency over all wavefronts for writes and atomics without return |
-| `tcp_tcc_read_req`                    | Req    | Number of read requests to L2 cache                        |
-| `tcp_tcc_write_req`                   | Req    | Number of write requests to L2 cache                       |
-| `tcp_tcc_atomic_with_ret_req`         | Req    | Number of atomic requests to L2 cache with return          |
-| `tcp_tcc_atomic_without_ret_req`      | Req    | Number of atomic requests to L2 cache without return       |
-| `tcp_tcc_nc_read_req`                 | Req    | Number of NC read requests to L2 cache                     |
-| `tcp_tcc_uc_read_req`                 | Req    | Number of UC read requests to L2 cache                     |
-| `tcp_tcc_cc_read_req`                 | Req    | Number of CC read requests to L2 cache                     |
-| `tcp_tcc_rw_read_req`                 | Req    | Number of RW read requests to L2 cache                     |
-| `tcp_tcc_nc_write_req`                | Req    | Number of NC write requests to L2 cache                    |
-| `tcp_tcc_uc_write_req`                | Req    | Number of UC write requests to L2 cache                    |
-| `tcp_tcc_cc_write_req`                | Req    | Number of CC write requests to L2 cache                    |
-| `tcp_tcc_rw_write_req`                | Req    | Number of RW write requests to L2 cache                    |
-| `tcp_tcc_nc_atomic_req`               | Req    | Number of NC atomic requests to L2 cache                   |
-| `tcp_tcc_uc_atomic_req`               | Req    | Number of UC atomic requests to L2 cache                   |
-| `tcp_tcc_cc_atomic_req`               | Req    | Number of CC atomic requests to L2 cache                   |
-| `tcp_tcc_rw_atomic_req`               | Req    | Number of RW atomic requests to L2 cache                   |
+|:-----------------------------------|:------|:----------------------------------------------------------|
+| `TCP_GATE_EN1[n]`                        | Cycles | Number of cycles vL1D interface clocks are turned on. Value range for n: [0-15].    |
+| `TCP_GATE_EN2[n]`                        | Cycles | Number of cycles vL1D core clocks are turned on. Value range for n: [0-15].  |
+| `TCP_TD_TCP_STALL_CYCLES[n]`             | Cycles | Number of cycles TD stalls vL1D. Value range for n: [0-15].                           |
+| `TCP_TCR_TCP_STALL_CYCLES[n]`            | Cycles | Number of cycles TCR stalls vL1D. Value range for n: [0-15].                           |
+| `TCP_READ_TAGCONFLICT_STALL_CYCLES[n]`   | Cycles | Number of cycles tagram conflict stalls on a read. Value range for n: [0-15].          |
+| `TCP_WRITE_TAGCONFLICT_STALL_CYCLES[n]`  | Cycles | Number of cycles tagram conflict stalls on a write. Value range for n: [0-15].         |
+| `TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES[n]` | Cycles | Number of cycles tagram conflict stalls on an atomic. Value range for n: [0-15].       |
+| `TCP_PENDING_STALL_CYCLES[n]`            | Cycles | Number of cycles vL1D cache is stalled due to data pending from L2 Cache. Value range for n: [0-15]. |
+| `TCP_TCP_TA_DATA_STALL_CYCLES` | Cycles | Number of cycles TCP stalls TA data interface. |
+| `TCP_TA_TCP_STATE_READ[n]`               | Req    | Number of state reads. Value range for n: [0-15].    |
+| `TCP_VOLATILE[n]`                     | Req    | Number of L1 volatile pixels/buffers from TA. Value range for n: [0-15].  |
+| `TCP_TOTAL_ACCESSES[n]`                  | Req    | Number of vL1D accesses. Equals `TCP_PERF_SEL_TOTAL_READ`+`TCP_PERF_SEL_TOTAL_NONREAD`. Value range for n: [0-15].                    |
+| `TCP_TOTAL_READ[n]`                      | Req    | Number of vL1D read accesses. Equals `TCP_PERF_SEL_TOTAL_HIT_LRU_READ` + `TCP_PERF_SEL_TOTAL_MISS_LRU_READ` + `TCP_PERF_SEL_TOTAL_MISS_EVICT_READ`. Value range for n: [0-15].    |
+| `TCP_TOTAL_WRITE[n]`                     | Req    | Number of vL1D write accesses. `Equals TCP_PERF_SEL_TOTAL_MISS_LRU_WRITE`+ `TCP_PERF_SEL_TOTAL_MISS_EVICT_WRITE`. Value range for n: [0-15].     |
+| `TCP_TOTAL_ATOMIC_WITH_RET[n]`           | Req    | Number of vL1D atomic requests with return. Value range for n: [0-15].       |
+| `TCP_TOTAL_ATOMIC_WITHOUT_RET[n]`        | Req    | Number of vL1D atomic without return. Value range for n: [0-15].        |
+| `TCP_TOTAL_WRITEBACK_INVALIDATES[n]`     | Count  | Total number of vL1D writebacks and invalidates. Equals `TCP_PERF_SEL_TOTAL_WBINVL1`+ `TCP_PERF_SEL_TOTAL_WBINVL1_VOL`+ `TCP_PERF_SEL_CP_TCP_INVALIDATE`+ `TCP_PERF_SEL_SQ_TCP_INVALIDATE_VOL`. Value range for n: [0-15].       |
+| `TCP_UTCL1_REQUEST[n]`                   | Req    | Number of address translation requests to UTCL1. Value range for n: [0-15].            |
+| `TCP_UTCL1_TRANSLATION_HIT[n]`           | Req    | Number of UTCL1 translation hits. Value range for n: [0-15].     |
+| `TCP_UTCL1_TRANSLATION_MISS[n]`          | Req    | Number of UTCL1 translation misses. Value range for n: [0-15].    |
+| `TCP_UTCL1_PERMISSION_MISS[n]`          | Req    | Number of UTCL1 permission misses. Value range for n: [0-15].       |
+| `TCP_TOTAL_CACHE_ACCESSES[n]`            | Req    | Number of vL1D cache accesses including hits and misses. Value range for n: [0-15].     |
+| `TCP_TCP_LATENCY[n]`                     | Cycles | Accumulated wave access latency to vL1D over all wavefronts. Value range for n: [0-15]. |
+| `TCP_TCC_READ_REQ_LATENCY[n]`            | Cycles | Total vL1D to L2 request latency over all wavefronts for reads and atomics with return. Value range for n: [0-15]. |
+| `TCP_TCC_WRITE_REQ_LATENCY[n]`           | Cycles | Total vL1D to L2 request latency over all wavefronts for writes and atomics without return. Value range for n: [0-15]. |
+| `TCP_TCC_READ_REQ[n]`                    | Req    | Number of read requests to L2 cache. Value range for n: [0-15].      |
+| `TCP_TCC_WRITE_REQ[n]`                   | Req    | Number of write requests to L2 cache. Value range for n: [0-15].                   |
+| `TCP_TCC_ATOMIC_WITH_RET_REQ[n]`         | Req    | Number of atomic requests to L2 cache with return. Value range for n: [0-15].       |
+| `TCP_TCC_ATOMIC_WITHOUT_RET_REQ[n]`      | Req    | Number of atomic requests to L2 cache without return. Value range for n: [0-15].    |
+| `TCP_TCC_NC_READ_REQ[n]`                 | Req    | Number of NC read requests to L2 cache. Value range for n: [0-15].       |
+| `TCP_TCC_UC_READ_REQ[n]`                 | Req    | Number of UC read requests to L2 cache. Value range for n: [0-15].          |
+| `TCP_TCC_CC_READ_REQ[n]`                 | Req    | Number of CC read requests to L2 cache. Value range for n: [0-15].     |
+| `TCP_TCC_RW_READ_REQ[n]`                 | Req    | Number of RW read requests to L2 cache. Value range for n: [0-15].       |
+| `TCP_TCC_NC_WRITE_REQ[n]`                | Req    | Number of NC write requests to L2 cache. Value range for n: [0-15].         |
+| `TCP_TCC_UC_WRITE_REQ[n]`                | Req    | Number of UC write requests to L2 cache. Value range for n: [0-15].         |
+| `TCP_TCC_CC_WRITE_REQ[n]`                | Req    | Number of CC write requests to L2 cache. Value range for n: [0-15].         |
+| `TCP_TCC_RW_WRITE_REQ[n]`                | Req    | Number of RW write requests to L2 cache. Value range for n: [0-15].         |
+| `TCP_TCC_NC_ATOMIC_REQ[n]`               | Req    | Number of NC atomic requests to L2 cache. Value range for n: [0-15].        |
+| `TCP_TCC_UC_ATOMIC_REQ[n]`               | Req    | Number of UC atomic requests to L2 cache. Value range for n: [0-15].      |
+| `TCP_TCC_CC_ATOMIC_REQ[n]`               | Req    | Number of CC atomic requests to L2 cache. Value range for n: [0-15].      |
+| `TCP_TCC_RW_ATOMIC_REQ[n]`               | Req    | Number of RW atomic requests to L2 cache. Value range for n: [0-15].       |
 
-#### TCA
+#### TCA counters
 
 | Hardware Counter | Unit   | Definition                                  |
-| :----------------| :------| ------------------------------------------: |
-| `tca_cycle`        | Cycles | TCA cycles                                  |
-| `tca_busy`         | Cycles | Number of cycles  TCA has a pending request |
+|:----------------|:------|:------------------------------------------|
+| `TCA_CYCLE[n]`        | Cycles | Number of TCA cycles. Value range for n: [0-31].                               |
+| `TCA_BUSY[n]`         | Cycles | Number of cycles TCA has a pending request. Value range for n: [0-31]. |
 
-### L2 cache access
+### L2 cache access counters
 
-#### L2 cache access counters
+L2 Cache is also known as Texture Cache per Channel (TCC).
 
 | Hardware Counter                 | Unit   | Definition                                                     |
-| :--------------------------------| :------| -------------------------------------------------------------: |
-| `tcc_cycle`                        |Cycle   | L2 cache free-running clocks                                  |
-| `tcc_busy`                         |Cycle   | L2 cache busy cycles                                          |
-| `tcc_req`                          |Req     | Number of L2 cache requests                                   |
-| `tcc_streaming_req[∗]`             |Req     | Number of L2 cache streaming requests                         |
-| `tcc_NC_req`                       |Req     | Number of NC requests                                         |
-| `tcc_UC_req`                       |Req     | Number of UC requests                                         |
-| `tcc_CC_req`                       |Req     | Number of CC requests                                         |
-| `tcc_RW_req`                       |Req     | Number of RW requests                                         |
-| `tcc_probe`                        |Req     | Number of L2 cache probe requests                             |
-| `tcc_probe_all[∗]`                 |Req     | Number of external probe requests with EA_TCC_preq_all== 1    |
-| `tcc_read_req`                     |Req     | Number of L2 cache read requests                              |
-| `tcc_write_req`                    |Req     | Number of L2 cache write requests                             |
-| `tcc_atomic_req`                   |Req     | Number of L2 cache atomic requests                            |
-| `tcc_hit`                          |Req     | Number of L2 cache lookup-hits                                |
-| `tcc_miss`                         |Req     | Number of L2 cache lookup-misses                              |
-| `tcc_writeback`                    |Req     | Number of lines written back to main memory, including writebacks of dirty lines and uncached write/atomic requests |
-| `tcc_ea_wrreq`                     |Req     | Total number of 32-byte and 64-byte write requests to EA      |
-| `tcc_ea_wrreq_64B`                 |Req     | Total number of 64-byte write requests to EA                  |
-| `tcc_ea_wr_uncached_32B`           |Req     | Number of 32-byte write/atomic going over the TC_EA_wrreq interface due to uncached traffic. Note that CC mtypes can produce uncached requests, and those are included in this. A 64-byte request is counted as 2. |
-| `tcc_ea_wrreq_stall`               | Cycles | Number of cycles a write request was stalled                  |
-| `tcc_ea_wrreq_io_credit_stall[∗]`  | Cycles | Number of cycles an EA write request runs out of IO credits   |
-| `tcc_ea_wrreq_gmi_credit_stall[∗]` | Cycles | Number of cycles an EA write request runs out of GMI credits  |
-| `tcc_ea_wrreq_dram_credit_stall`   | Cycles | Number of cycles an EA write request runs out of DRAM credits |
-| `tcc_too_many_ea_wrreqs_stall[∗]`  | Cycles | Number of cycles the L2 cache reaches maximum number of pending EA write requests |
-| `tcc_ea_wrreq_level`               | Req    | Accumulated number of L2 cache-EA write requests in flight    |
-| `tcc_ea_atomic`                    | Req    | Number of 32-byte and 64-byte atomic requests to EA           |
-| `tcc_ea_atomic_level`              | Req    | Accumulated number of L2 cache-EA atomic requests in flight   |
-| `tcc_ea_rdreq`                     | Req    | Total number of 32-byte and 64-byte read requests to EA       |
-| `tcc_ea_rdreq_32B`                 | Req    | Total number of 32-byte read requests to EA                   |
-| `tcc_ea_rd_uncached_32B`           | Req    | Number of 32-byte L2 cache-EA read due to uncached traffic. A 64-byte request is counted as 2. |
-| `tcc_ea_rdreq_io_credit_stall[∗]`  | Cycles | Number of cycles read request interface runs out of IO credits  |
-| `tcc_ea_rdreq_gmi_credit_stall[∗]` | Cycles | Number of cycles read request interface runs out of GMI credits |
-| `tcc_ea_rdreq_dram_credit_stall`   | Cycles | Number of cycles read request interface runs out of DRAM credits |
-| `tcc_ea_rdreq_level`               | Req    | Accumulated number of L2 cache-EA read requests in flight     |
-| `tcc_ea_rdreq_dram`                | Req    | Number of 32-byte and 64-byte read requests to HBM            |
-| `tcc_ea_wrreq_dram`                | Req    | Number of 32-byte and 64-byte write requests to HBM           |
-| `tcc_tag_stall`                    | Cycles | Number of cycles the normal request pipeline in the tag was stalled for any reason |
-| `tcc_normal_writeback`             | Req    | Number of L2 cache normal writeback                           |
-| `tcc_all_tc_op_wb_writeback[∗]`    | Req    | Number of instruction-triggered writeback requests            |
-| `tcc_normal_evict`                 | Req    | Number of L2 cache normal evictions                           |
-| `tcc_all_tc_op_inv_evict[∗]`       | Req    | Number of instruction-triggered eviction requests             |
+|:--------------------------------|:------|:-------------------------------------------------------------|
+| `TCC_CYCLE[n]`                        |Cycle   | Number of L2 cache free-running clocks. Value range for n: [0-31].               |
+| `TCC_BUSY[n]`                         |Cycle   | Number of L2 cache busy cycles. Value range for n: [0-31].                                        |
+| `TCC_REQ[n]`                          |Req     | Number of L2 cache requests of all types. This is measured at the tag block. This may be more than the number of requests arriving at the TCC, but it is a good indication of the total amount of work that needs to be performed. Value range for n: [0-31].      |
+| `TCC_STREAMING_REQ[n]`             |Req     | Number of L2 cache streaming requests. This is measured at the tag block. Value range for n: [0-31]. |
+| `TCC_NC_REQ[n]`                       |Req     | Number of NC requests. This is measured at the tag block. Value range for n: [0-31].   |
+| `TCC_UC_REQ[n]`                       |Req     | Number of UC requests. This is measured at the tag block. Value range for n: [0-31].   |
+| `TCC_CC_REQ[n]`                       |Req     | Number of CC requests. This is measured at the tag block. Value range for n: [0-31].   |
+| `TCC_RW_REQ[n]`                       |Req     | Number of RW requests. This is measured at the tag block. Value range for n: [0-31].   |
+| `TCC_PROBE[n]`                        |Req     | Number of probe requests. Value range for n: [0-31].  |
+| `TCC_PROBE_ALL[n]`                 |Req     | Number of external probe requests with `EA_TCC_preq_all`== 1. Value range for n: [0-31].    |
+| `TCC_READ[n]`                     |Req     | Number of L2 cache read requests. This includes compressed reads but not metadata reads. Value range for n: [0-31].   |
+| `TCC_WRITE[n]`                    |Req     | Number of L2 cache write requests. Value range for n: [0-31].     |
+| `TCC_ATOMIC[n]`                   |Req     | Number of L2 cache atomic requests of all types. Value range for n: [0-31]. |
+| `TCC_HIT[n]`                          |Req     | Number of L2 cache hits. Value range for n: [0-31].      |
+| `TCC_MISS[n]`                         |Req     | Number of L2 cache misses. Value range for n: [0-31].        |
+| `TCC_WRITEBACK[n]`                    |Req     | Number of lines written back to the main memory, including writebacks of dirty lines and uncached write/atomic requests. Value range for n: [0-31]. |
+| `TCC_EA_WRREQ[n]`                     |Req     | Number of 32-byte and 64-byte transactions going over the `TC_EA_wrreq` interface. Atomics may travel over the same interface and are generally classified as write requests. This does not include probe commands. Value range for n: [0-31].   |
+| `TCC_EA_WRREQ_64B[n]`                 |Req     | Total number of 64-byte transactions (write or `CMPSWAP`) going over the `TC_EA_wrreq` interface. Value range for n: [0-31].  |
+| `TCC_EA_WR_UNCACHED_32B[n]`           |Req     | Number of 32-byte write/atomic going over the `TC_EA_wrreq` interface due to uncached traffic. Note that CC mtypes can produce uncached requests, and those are included in this. A 64-byte request is counted as 2. Value range for n: [0-31].|
+| `TCC_EA_WRREQ_STALL[n]`               | Cycles | Number of cycles a write request is stalled. Value range for n: [0-31].                 |
+| `TCC_EA_WRREQ_IO_CREDIT_STALL[n]`  | Cycles | Number of cycles an EA write request is stalled due to the interface running out of IO credits. Value range for n: [0-31].  |
+| `TCC_EA_WRREQ_GMI_CREDIT_STALL[n]` | Cycles | Number of cycles an EA write request is stalled due to the interface running out of GMI credits. Value range for n: [0-31].  |
+| `TCC_EA_WRREQ_DRAM_CREDIT_STALL[n]`   | Cycles | Number of cycles an EA write request is stalled due to the interface running out of DRAM credits. Value range for n: [0-31]. |
+| `TCC_TOO_MANY_EA_WRREQS_STALL[n]`  | Cycles | Number of cycles the L2 cache is unable to send an EA write request due to it reaching its maximum capacity of pending EA write requests. Value range for n: [0-31]. |
+| `TCC_EA_WRREQ_LEVEL[n]`               | Req    | The accumulated number of EA write requests in flight. This is primarily intended to measure average EA write latency. Average write latency = `TCC_PERF_SEL_EA_WRREQ_LEVEL`/`TCC_PERF_SEL_EA_WRREQ`. Value range for n: [0-31].  |
+| `TCC_EA_ATOMIC[n]`                    | Req    | Number of 32-byte or 64-byte atomic requests going over the `TC_EA_wrreq` interface. Value range for n: [0-31].           |
+| `TCC_EA_ATOMIC_LEVEL[n]`              | Req    | The accumulated number of EA atomic requests in flight. This is primarily intended to measure average EA atomic latency. Average atomic latency = `TCC_PERF_SEL_EA_WRREQ_ATOMIC_LEVEL`/`TCC_PERF_SEL_EA_WRREQ_ATOMIC`. Value range for n: [0-31].  |
+| `TCC_EA_RDREQ[n]`                     | Req    | Number of 32-byte or 64-byte read requests to EA. Value range for n: [0-31].   |
+| `TCC_EA_RDREQ_32B[n]`                 | Req    | Number of 32-byte read requests to EA. Value range for n: [0-31].  |
+| `TCC_EA_RD_UNCACHED_32B[n]`           | Req    | Number of 32-byte EA reads due to uncached traffic. A 64-byte request is counted as 2. Value range for n: [0-31]. |
+| `TCC_EA_RDREQ_IO_CREDIT_STALL[n]`  | Cycles | Number of cycles there is a stall due to the read request interface running out of IO credits. Stalls occur irrespective of the need for a read to be performed. Value range for n: [0-31]. |
+| `TCC_EA_RDREQ_GMI_CREDIT_STALL[n]` | Cycles | Number of cycles there is a stall due to the read request interface running out of GMI credits. Stalls occur irrespective of the need for a read to be performed. Value range for n: [0-31]. |
+| `TCC_EA_RDREQ_DRAM_CREDIT_STALL[n]`   | Cycles | Number of cycles there is a stall due to the read request interface running out of DRAM credits. Stalls occur irrespective of the need for a read to be performed. Value range for n: [0-31]. |
+| `TCC_EA_RDREQ_LEVEL[n]`               | Req    | The accumulated number of EA read requests in flight. This is primarily intended to measure average EA read latency. Average read latency = `TCC_PERF_SEL_EA_RDREQ_LEVEL`/`TCC_PERF_SEL_EA_RDREQ`. Value range for n: [0-31].    |
+| `TCC_EA_RDREQ_DRAM[n]`                | Req    | Number of 32-byte or 64-byte EA read requests to High Bandwidth Memory (HBM). Value range for n: [0-31].   |
+| `TCC_EA_WRREQ_DRAM[n]`                | Req    | Number of 32-byte or 64-byte EA write requests to HBM. Value range for n: [0-31].  |
+| `TCC_TAG_STALL[n]`                    | Cycles | Number of cycles the normal request pipeline in the tag is stalled for any reason.  Normally, stalls of this nature are measured exactly at one point in the pipeline however in case of this counter, probes can stall the pipeline at a variety of places and there is no single point that can reasonably measure the total stalls accurately. Value range for n: [0-31]. |
+| `TCC_NORMAL_WRITEBACK[n]`             | Req    | Number of writebacks due to requests that are not writeback requests. Value range for n: [0-31].    |
+| `TCC_ALL_TC_OP_WB_WRITEBACK[n]`    | Req    | Number of writebacks due to all `TC_OP` writeback requests. Value range for n: [0-31].       |
+| `TCC_NORMAL_EVICT[n]`                 | Req    | Number of evictions due to requests that are not invalidate or probe requests. Value range for n: [0-31].        |
+| `TCC_ALL_TC_OP_INV_EVICT[n]`       | Req    | Number of evictions due to all `TC_OP` invalidate requests. Value range for n: [0-31].           |
 
 ## MI200 derived metrics list
 
-### Derived metrics on MI200 GPUs
-
 | Derived Metric   | Description                                                                            |
-| :----------------| -------------------------------------------------------------------------------------: |
-| `VFetchInsts`      | The average number of vector fetch instructions from the video memory executed per work-item (affected by flow control). Excludes FLAT instructions that fetch from video memory               |
-| `VWriteInsts`      | The average number of vector write instructions to the video memory executed per work-item (affected by flow control). Excludes FLAT instructions that write to video memory                 |
-| `FlatVMemInsts`    | The average number of FLAT instructions that read from or write to the video memory executed per work item (affected by flow control). Includes FLAT instructions that read from or write to scratch |
-| `LDSInsts`         | The average number of LDS read/write instructions executed per work item (affected by flow control). Excludes FLAT instructions that read from or write to LDS |
-| `FlatLDSInsts`     | The average number of FLAT instructions that read or write to LDS executed per work item (affected by flow control) |
-| `VALUUtilization`  | The percentage of active vector ALU threads in a wave. A lower number can mean either more thread divergence in a wave or that the work-group size is not a multiple of 64. Value range: 0% (bad), 100% (ideal - no thread divergence) |
-| `VALUBusy`         | The percentage of GPU time vector ALU instructions are processed. Value range: 0% (bad) to 100% (optimal) |
-| `SALUBusy`         | The percentage of GPU time scalar ALU instructions are processed. Value range: 0% (bad) to 100% (optimal) |
-| `MemWrites32B`     | The total number of effective 32B write transactions to the memory                      |
-| `L2CacheHit`       | The percentage of fetch, write, atomic, and other instructions that hit the data in L2 cache. Value range: 0% (no hit) to 100% (optimal) |
-| `MemUnitStalled`   | The percentage of GPU time the memory unit is stalled. Try reducing the number or size of fetches and writes if possible. Value range: 0% (optimal) to 100% (bad) |
-| `WriteUnitStalled` | The percentage of GPU time the write unit is stalled. Value range: 0% to 100% (bad)      |
-| `LDSBankConflict`  | The percentage of GPU time LDS is stalled by bank conflicts. Value range: 0% (optimal) to 100% (bad) |
+|:----------------|:-------------------------------------------------------------------------------------|
+| `ALUStalledByLDS` | Percentage of GPU time ALU units are stalled due to the LDS input queue being full or the output queue not being ready. Reduce this by reducing the LDS bank conflicts or the number of LDS accesses if possible. Value range: 0% (optimal) to 100% (bad). |
+| `FetchSize` | Total kilobytes fetched from the video memory. This is measured with all extra fetches and any cache or memory effects taken into account. |
+| `FlatLDSInsts`     | Average number of FLAT instructions that read from or write to LDS, executed per work item (affected by flow control). |
+| `FlatVMemInsts`    | Average number of FLAT instructions that read from or write to the video memory, executed per work item (affected by flow control). Includes FLAT instructions that read from or write to scratch. |
+| `GDSInsts` | Average number of GDS read/write instructions executed per work item (affected by flow control). |
+| `GPUBusy` | Percentage of time GPU is busy. |
+| `L2CacheHit`       | Percentage of fetch, write, atomic, and other instructions that hit the data in L2 cache. Value range: 0% (no hit) to 100% (optimal). |
+| `LDSBankConflict`  | Percentage of GPU time LDS is stalled by bank conflicts. Value range: 0% (optimal) to 100% (bad). |
+| `LDSInsts`         | Average number of LDS read/write instructions executed per work item (affected by flow control). Excludes FLAT instructions that read from or write to LDS. |
+| `MemUnitBusy` | Percentage of GPU time the memory unit is active. The result includes the stall time (`MemUnitStalled`). This is measured with all extra fetches and writes and any cache or memory effects taken into account. Value range: 0% to 100% (fetch-bound). |
+| `MemUnitStalled`   | Percentage of GPU time the memory unit is stalled. Try reducing the number or size of fetches and writes if possible. Value range: 0% (optimal) to 100% (bad). |
+| `MemWrites32B`     | Total number of effective 32B write transactions to the memory.                      |
+| `SALUBusy`         | Percentage of GPU time scalar ALU instructions are processed. Value range: 0% (bad) to 100% (optimal). |
+| `SALUInsts` | Average number of scalar ALU instructions executed per work item (affected by flow control). |
+| `SFetchInsts` | Average number of scalar fetch instructions from the video memory executed per work item (affected by flow control). |
+| `TA_ADDR_STALLED_BY_TC_CYCLES_sum` | Total number of cycles TA address path is stalled by TC, over all TA instances. |
+| `TA_ADDR_STALLED_BY_TD_CYCLES_sum` | Total number of cycles TA address path is stalled by TD, over all TA instances. |
+| `TA_BUFFER_WAVEFRONTS_sum` | Total number of buffer wavefronts processed by all TA instances. |
+| `TA_BUFFER_READ_WAVEFRONTS_sum` | Total number of buffer read wavefronts processed by all TA instances. |
+| `TA_BUFFER_WRITE_WAVEFRONTS_sum` | Total number of buffer write wavefronts processed by all TA instances. |
+| `TA_BUFFER_ATOMIC_WAVEFRONTS_sum` | Total number of buffer atomic wavefronts processed by all TA instances. |
+| `TA_BUFFER_TOTAL_CYCLES_sum` | Total number of buffer cycles (including read and write) issued to TC by all TA instances. |
+| `TA_BUFFER_COALESCED_READ_CYCLES_sum` | Total number of coalesced buffer read cycles issued to TC by all TA instances. |
+| `TA_BUFFER_COALESCED_WRITE_CYCLES_sum` | Total number of coalesced buffer write cycles issued to TC by all TA instances. |
+| `TA_BUSY_avr` | Average number of busy cycles over all TA instances. |
+| `TA_BUSY_max` | Maximum number of TA busy cycles over all TA instances. |
+| `TA_BUSY_min` | Minimum number of TA busy cycles over all TA instances. |
+| `TA_DATA_STALLED_BY_TC_CYCLES_sum` | Total number of cycles TA data path is stalled by TC, over all TA instances. |
+| `TA_FLAT_READ_WAVEFRONTS_sum` | Sum of flat opcode reads processed by all TA instances. |
+| `TA_FLAT_WRITE_WAVEFRONTS_sum` | Sum of flat opcode writes processed by all TA instances. |
+| `TA_FLAT_WAVEFRONTS_sum` | Total number of flat opcode wavefronts processed by all TA instances. |
+| `TA_FLAT_READ_WAVEFRONTS_sum` | Total number of flat opcode read wavefronts processed by all TA instances. |
+| `TA_FLAT_ATOMIC_WAVEFRONTS_sum` | Total number of flat opcode atomic wavefronts processed by all TA instances. |
+| `TA_TA_BUSY_sum` | Total number of TA busy cycles over all TA instances. |
+| `TA_TOTAL_WAVEFRONTS_sum` | Total number of wavefronts processed by all TA instances. |
+| `TCA_BUSY_sum` | Total number of cycles TCA has a pending request, over all TCA instances. |
+| `TCA_CYCLE_sum` | Total number of cycles over all TCA instances. |
+| `TCC_ALL_TC_OP_WB_WRITEBACK_sum` | Total number of writebacks due to all TC_OP writeback requests, over all TCC instances. |
+| `TCC_ALL_TC_OP_INV_EVICT_sum` | Total number of evictions due to all TC_OP invalidate requests, over all TCC instances. |
+| `TCC_ATOMIC_sum` | Total number of L2 cache atomic requests of all types, over all TCC instances. |
+| `TCC_BUSY_avr` | Average number of L2 cache busy cycles, over all TCC instances. |
+| `TCC_BUSY_sum` | Total number of L2 cache busy cycles, over all TCC instances. |
+| `TCC_CC_REQ_sum` | Total number of CC requests over all TCC instances. |
+| `TCC_CYCLE_sum` | Total number of L2 cache free running clocks, over all TCC instances. |
+| `TCC_EA_WRREQ_sum` | Total number of 32-byte and 64-byte transactions going over the TC_EA_wrreq interface, over all TCC instances. Atomics may travel over the same interface and are generally classified as write requests. This does not include probe commands. |
+| `TCC_EA_WRREQ_64B_sum` | Total number of 64-byte transactions (write or `CMPSWAP`) going over the TC_EA_wrreq interface, over all TCC instances. |
+| `TCC_EA_WR_UNCACHED_32B_sum` | Total Number of 32-byte write/atomic going over the TC_EA_wrreq interface due to uncached traffic, over all TCC instances. Note that CC mtypes can produce uncached requests, and those are included in this. A 64-byte request is counted as 2. |
+| `TCC_EA_WRREQ_STALL_sum` | Total Number of cycles a write request is stalled, over all instances. |
+| `TCC_EA_WRREQ_IO_CREDIT_STALL_sum` | Total number of cycles an EA write request is stalled due to the interface running out of IO credits, over all instances. |
+| `TCC_EA_WRREQ_GMI_CREDIT_STALL_sum` | Total number of cycles an EA write request is stalled due to the interface running out of GMI credits, over all instances. |
+| `TCC_EA_WRREQ_DRAM_CREDIT_STALL_sum` | Total number of cycles an EA write request is stalled due to the interface running out of DRAM credits, over all instances. |
+| `TCC_EA_WRREQ_LEVEL_sum` | Total number of EA write requests in flight over all TCC instances. |
+| `TCC_EA_RDREQ_LEVEL_sum` | Total number of EA read requests in flight over all TCC instances. |
+| `TCC_EA_ATOMIC_sum` | Total Number of 32-byte or 64-byte atomic requests going over the TC_EA_wrreq interface, over all TCC instances. |
+| `TCC_EA_ATOMIC_LEVEL_sum` | Total number of EA atomic requests in flight, over all TCC instances. |
+| `TCC_EA_RDREQ_sum` | Total number of 32-byte or 64-byte read requests to EA, over all TCC instances. |
+| `TCC_EA_RDREQ_32B_sum` | Total number of 32-byte read requests to EA, over all TCC instances. |
+| `TCC_EA_RD_UNCACHED_32B_sum` | Total number of 32-byte EA reads due to uncached traffic, over all TCC instances. |
+| `TCC_EA_RDREQ_IO_CREDIT_STALL_sum` | Total number of cycles there is a stall due to the read request interface running out of IO credits, over all TCC instances. |
+| `TCC_EA_RDREQ_GMI_CREDIT_STALL_sum` | Total number of cycles there is a stall due to the read request interface running out of GMI credits, over all TCC instances. |
+| `TCC_EA_RDREQ_DRAM_CREDIT_STALL_sum` | Total number of cycles there is a stall due to the read request interface running out of DRAM credits, over all TCC instances. |
+| `TCC_EA_RDREQ_DRAM_sum` | Total number of 32-byte or 64-byte EA read requests to HBM, over all TCC instances. |
+| `TCC_EA_WRREQ_DRAM_sum` | Total number of 32-byte or 64-byte EA write requests to HBM, over all TCC instances. |
+| `TCC_HIT_sum` | Total number of L2 cache hits over all TCC instances. |
+| `TCC_MISS_sum` | Total number of L2 cache misses over all TCC instances. |
+| `TCC_NC_REQ_sum` | Total number of NC requests over all TCC instances. |
+| `TCC_NORMAL_WRITEBACK_sum` | Total number of writebacks due to requests that are not writeback requests, over all TCC instances. |
+| `TCC_NORMAL_EVICT_sum` | Total number of evictions due to requests that are not invalidate or probe requests, over all TCC instances. |
+| `TCC_PROBE_sum` | Total number of probe requests over all TCC instances. |
+| `TCC_PROBE_ALL_sum` | Total number of external probe requests with EA_TCC_preq_all== 1, over all TCC instances. |
+| `TCC_READ_sum` | Total number of L2 cache read requests (including compressed reads but not metadata reads) over all TCC instances. |
+| `TCC_REQ_sum` | Total number of all types of L2 cache requests over all TCC instances. |
+| `TCC_RW_REQ_sum` | Total number of RW requests over all TCC instances. |
+| `TCC_STREAMING_REQ_sum` | Total number of L2 cache streaming requests over all TCC instances. |
+| `TCC_TAG_STALL_sum` | Total number of cycles the normal request pipeline in the tag is stalled for any reason, over all TCC instances. |
+| `TCC_TOO_MANY_EA_WRREQS_STALL_sum` | Total number of cycles L2 cache is unable to send an EA write request due to it reaching its maximum capacity of pending EA write requests, over all TCC instances. |
+| `TCC_UC_REQ_sum` | Total number of UC requests over all TCC instances. |
+| `TCC_WRITE_sum` | Total number of L2 cache write requests over all TCC instances. |
+| `TCC_WRITEBACK_sum` | Total number of lines written back to the main memory including writebacks of dirty lines and uncached write/atomic requests, over all TCC instances. |
+| `TCC_WRREQ_STALL_max` | Maximum number of cycles a write request is stalled, over all TCC instances. |
+| `TCP_ATOMIC_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tagram conflict stalls on an atomic, over all TCP instances. |
+| `TCP_GATE_EN1_sum` | Total number of cycles vL1D interface clocks are turned on, over all TCP instances. |
+| `TCP_GATE_EN2_sum` | Total number of cycles vL1D core clocks are turned on, over all TCP instances. |
+| `TCP_PENDING_STALL_CYCLES_sum` | Total number of cycles vL1D cache is stalled due to data pending from L2 Cache, over all TCP instances. |
+| `TCP_READ_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tagram conflict stalls on a read, over all TCP instances. |
+| `TCP_TA_TCP_STATE_READ_sum` | Total number of state reads by all TCP instances. |
+| `TCP_TCC_ATOMIC_WITH_RET_REQ_sum` | Total number of atomic requests to L2 cache with return, over all TCP instances. |
+| `TCP_TCC_ATOMIC_WITHOUT_RET_REQ_sum` | Total number of atomic requests to L2 cache without return, over all TCP instances. |
+| `TCP_TCC_CC_READ_REQ_sum` | Total number of CC read requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_CC_WRITE_REQ_sum` | Total number of CC write requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_CC_ATOMIC_REQ_sum` | Total number of CC atomic requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_NC_READ_REQ_sum` | Total number of NC read requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_NC_WRITE_REQ_sum` | Total number of NC write requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_NC_ATOMIC_REQ_sum` | Total number of NC atomic requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_READ_REQ_LATENCY_sum` | Total vL1D to L2 request latency over all wavefronts for reads and atomics with return for all TCP instances. |
+| `TCP_TCC_READ_REQ_sum` | Total number of read requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_RW_READ_REQ_sum` | Total number of RW read requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_RW_WRITE_REQ_sum` | Total number of RW write requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_RW_ATOMIC_REQ_sum` | Total number of RW atomic requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_UC_READ_REQ_sum` | Total number of UC read requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_UC_WRITE_REQ_sum` | Total number of UC write requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_UC_ATOMIC_REQ_sum` | Total number of UC atomic requests to L2 cache, over all TCP instances. |
+| `TCP_TCC_WRITE_REQ_LATENCY_sum` | Total vL1D to L2 request latency over all wavefronts for writes and atomics without return for all TCP instances. |
+| `TCP_TCC_WRITE_REQ_sum` | Total number of write requests to L2 cache, over all TCP instances. |
+| `TCP_TCP_LATENCY_sum` | Total wave access latency to vL1D over all wavefronts for all TCP instances. |
+| `TCP_TCR_TCP_STALL_CYCLES_sum` | Total number of cycles TCR stalls vL1D, over all TCP instances. |
+| `TCP_TD_TCP_STALL_CYCLES_sum` | Total number of cycles TD stalls vL1D, over all TCP instances. |
+| `TCP_TOTAL_ACCESSES_sum` | Total number of vL1D accesses, over all TCP instances. |
+| `TCP_TOTAL_READ_sum` | Total number of vL1D read accesses, over all TCP instances. |
+| `TCP_TOTAL_WRITE_sum` | Total number of vL1D write accesses, over all TCP instances. |
+| `TCP_TOTAL_ATOMIC_WITH_RET_sum` | Total number of vL1D atomic requests with return, over all TCP instances. |
+| `TCP_TOTAL_ATOMIC_WITHOUT_RET_sum` | Total number of vL1D atomic requests without return, over all TCP instances. |
+| `TCP_TOTAL_CACHE_ACCESSES_sum` | Total number of vL1D cache accesses (including hits and misses) by all TCP instances. |
+| `TCP_TOTAL_WRITEBACK_INVALIDATES_sum` | Total number of vL1D writebacks and invalidates, over all TCP instances. |
+| `TCP_UTCL1_PERMISSION_MISS_sum` | Total number of UTCL1 permission misses by all TCP instances. |
+| `TCP_UTCL1_REQUEST_sum` | Total number of address translation requests to UTCL1 by all TCP instances. |
+| `TCP_UTCL1_TRANSLATION_MISS_sum` | Total number of UTCL1 translation misses by all TCP instances. |
+| `TCP_UTCL1_TRANSLATION_HIT_sum` | Total number of UTCL1 translation hits by all TCP instances. |
+| `TCP_VOLATILE_sum` | Total number of L1 volatile pixels/buffers from TA, over all TCP instances. |
+| `TCP_WRITE_TAGCONFLICT_STALL_CYCLES_sum` | Total number of cycles tagram conflict stalls on a write, over all TCP instances. |
+| `TD_ATOMIC_WAVEFRONT_sum` | Total number of atomic wavefront instructions, over all TD instances. |
+| `TD_COALESCABLE_WAVEFRONT_sum` | Total number of coalescable wavefronts according to TA, over all TD instances. |
+| `TD_LOAD_WAVEFRONT_sum` | Total number of wavefront instructions (read/write/atomic), over all TD instances. |
+| `TD_SPI_STALL_sum` | Total number of cycles TD is stalled by SPI, over all TD instances. |
+| `TD_STORE_WAVEFRONT_sum` | Total number of write wavefront instructions, over all TD instances. |
+| `TD_TC_STALL_sum` | Total number of cycles TD is stalled waiting for TC data, over all TD instances. |
+| `TD_TD_BUSY_sum` | Total number of TD busy cycles while it is processing or waiting for data, over all TD instances. |
+| `VALUBusy`         | Percentage of GPU time vector ALU instructions are processed. Value range: 0% (bad) to 100% (optimal). |
+| `VALUInsts` | Average number of vector ALU instructions executed per work item (affected by flow control). |
+| `VALUUtilization`  | Percentage of active vector ALU threads in a wave. A lower number can mean either more thread divergence in a wave or that the work-group size is not a multiple of 64. Value range: 0% (bad), 100% (ideal - no thread divergence). |
+| `VFetchInsts`      | Average number of vector fetch instructions from the video memory executed per work-item (affected by flow control). Excludes FLAT instructions that fetch from video memory.               |
+| `VWriteInsts`      | Average number of vector write instructions to the video memory executed per work-item (affected by flow control). Excludes FLAT instructions that write to video memory.                 |
+| `Wavefronts` | Total wavefronts. |
+| `WRITE_REQ_32B` | Total number of 32-byte effective memory writes. |
+| `WriteSize` | Total kilobytes written to the video memory. This is measured with all extra fetches and any cache or memory effects taken into account. |
+| `WriteUnitStalled` | Percentage of GPU time the write unit is stalled. Value range: 0% to 100% (bad).      |
 
-## MI200 acronyms
+## Abbreviations
 
 | Abbreviation | Meaning                                                                           |
-| :------------| --------------------------------------------------------------------------------: |
-| `ALU`          | Arithmetic logic unit |
-| `Arb`          | Arbiter |
-| `BF16`        | Brain floating point – 16 |
-| `CC`           | Coherently cached |
-| `CP`           | Command processor |
-| `CPC`         | Command processor – compute |
-| `CPF`         | Command processor – fetcher |
-| `CS`           | Compute shader |
-| `CSC`         | Compute shader controller |
-| `CSn`          | Compute Shader, the n-th pipe |
-| `CU`           | Compute unit |
-| `DW`           | 32-bit data word, DWORD |
-| `EA`           | Efficiency arbiter |
-| `F16`          | Half-precision floating point |
-| `FLAT`       | FLAT instructions allow read/write/atomic access to a generic memory address pointer, which can resolve to any of the following physical memories:<br>•   Global Memory<br>•   Scratch (“private”)<br>•   LDS (“shared”)<br>•   Invalid – MEM_VIOL TrapStatus |
-| `FMA`          | Fused multiply-add |
-| `GDS`          | Global data share |
-| `GRBM`         | Graphics register bus manager |
-| `HBM`          | High bandwidth memory |
-| `Instr`        | Instructions |
-| `IOP`          | Integer operation |
-| `L2`           | Level-2 cache |
-| `LDS`          | Local data share |
-| `ME1`          | Micro-engine, running packet processing firmware on CPC |
-| `MFMA`         | Matrix fused multiply-add |
-| `NC`           | Noncoherently cached |
-| `RW`           | Coherently cached with write |
-| `SALU`         | Scalar ALU |
-| `SGPR`         | Scalar GPR |
-| `SIMD`         | Single instruction multiple data |
-| `sL1D`         | Scalar Level-1 data cache |
-| `SMEM`         | Scalar memory |
-| `SPI`          | Shader processor input |
-| `SQ`           | Sequencer |
-| `TA`           | Texture addressing unit |
-| `TC`           | Texture cache |
-| `TCA`          | Texture cache arbiter |
-| `TCC`          | Texture cache per channel, known as L2 cache |
-| `TCIU`         | Texture cache interface unit, command processor’s interface to memory system |
-| `TCP`          | Texture cache per pipe, known as vector L1 cache |
-| `TCR`          | Texture cache router |
-| `TD`           | Texture data unit |
-| `UC`           | Uncached |
-| `UTCL1`        | Unified translation cache – level 1 |
-| `UTCL2`        | Unified translation cache – level 2 |
-| `VALU`         | Vector ALU |
-| `VGPR`         | Vector GPR |
-| `vL1D`         | Vector level 1 data cache |
-| `VMEM`         | Vector memory |
+|:------------|:--------------------------------------------------------------------------------|
+| `ALU`          | Arithmetic Logic Unit                                                             |
+| `Arb`          | Arbiter                                                                           |
+| `BF16`         | Brain Floating Point - 16 bits                                                    |
+| `CC`           | Coherently Cached                                                                 |
+| `CP`           | Command Processor                                                                 |
+| `CPC`          | Command Processor - Compute                                                       |
+| `CPF`          | Command Processor - Fetcher                                                       |
+| `CS`           | Compute Shader                                                                    |
+| `CSC`          | Compute Shader Controller                                                         |
+| `CSn`          | Compute Shader, the n-th pipe                                                     |
+| `CU`           | Compute Unit                                                                      |
+| `DW`           | 32-bit Data Word, DWORD                                                           |
+| `EA`           | Efficiency Arbiter                                                                |
+| `F16`          | Half Precision Floating Point                                                     |
+| `F32`          | Full Precision Floating Point                                                     |
+| `FLAT`         | FLAT instructions allow read/write/atomic access to a generic memory address pointer, which can resolve to any of the following physical memories:<br>.   Global Memory<br>.   Scratch ("private")<br>.   LDS ("shared")<br>.   Invalid - MEM_VIOL TrapStatus |
+| `FMA`          | Fused Multiply Add                                                                |
+| `GDS`          | Global Data Share                                                                 |
+| `GRBM`         | Graphics Register Bus Manager                                                     |
+| `HBM`          | High Bandwidth Memory                                                             |
+| `Instr`        | Instructions                                                                      |
+| `IOP`          | Integer Operation                                                                 |
+| `L2`           | Level-2 Cache                                                                     |
+| `LDS`          | Local Data Share                                                                  |
+| `ME1`          | Micro Engine, running packet processing firmware on CPC                           |
+| `MFMA`         | Matrix Fused Multiply Add                                                         |
+| `NC`           | Noncoherently Cached                                                              |
+| `RW`           | Coherently Cached with Write                                                      |
+| `SALU`         | Scalar ALU                                                                        |
+| `SGPR`         | Scalar General Purpose Register                                                   |
+| `SIMD`         | Single Instruction Multiple Data                                                  |
+| `sL1D`         | Scalar Level-1 Data Cache                                                         |
+| `SMEM`         | Scalar Memory                                                                     |
+| `SPI`          | Shader Processor Input                                                            |
+| `SQ`           | Sequencer                                                                         |
+| `TA`           | Texture Addressing Unit                                                           |
+| `TC`           | Texture Cache                                                                     |
+| `TCA`          | Texture Cache Arbiter                                                             |
+| `TCC`          | Texture Cache per Channel, known as L2 Cache                                      |
+| `TCIU`         | Texture Cache Interface Unit (interface between CP and the memory system) |
+| `TCP`          | Texture Cache per Pipe, known as vector L1 Cache                                  |
+| `TCR`          | Texture Cache Router                                                              |
+| `TD`           | Texture Data Unit                                                                 |
+| `UC`           | Uncached                                                                          |
+| `UTCL1`        | Unified Translation Cache - Level 1                                               |
+| `UTCL2`        | Unified Translation Cache - Level 2                                               |
+| `VALU`         | Vector ALU                                                                        |
+| `VGPR`         | Vector General Purpose Register                                                   |
+| `vL1D`         | Vector Level -1 Data Cache                                                        |
+| `VMEM`         | Vector Memory                                                                     |
