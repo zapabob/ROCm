@@ -47,6 +47,7 @@ CMake support is added for the documentation in the [ROCm repository](https://gi
 | rocALUTION |  ⇒ [3.0.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-6.0.0) |
 | rocBLAS |  ⇒ [4.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-6.0.0) |
 | rocFFT |  ⇒ [1.0.25](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-6.0.0) |
+| ROCgdb | [13.2](https://github.com/ROCm/ROCgdb/releases/tag/rocm-6.0.0) |
 | rocm-cmake |  ⇒ [0.11.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-6.0.0) |
 | rocPRIM |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-6.0.0) |
 | rocprofiler | [2.0.0](https://github.com/ROCm/rocprofiler/releases/tag/rocm-6.0.0) |
@@ -494,6 +495,28 @@ rocFFT 1.0.25 for ROCm 6.0.0
 
 * rocFFT now correctly handles load callbacks that convert data from a smaller data type (e.g., 16-bit
   integers -> 32-bit float)
+
+#### ROCgdb 13.2
+
+ROCgdb 13.2 for ROCm 6.0.0
+
+##### Additions
+
+* Support for watchpoints on scratch memory addresses.
+* Added support for gfx1100, gfx1101, and gfx1102.
+* Added support for gfx940, gfx941 and gfx942.
+
+##### Optimizations
+
+* Improved performances when handling the end of a process with a large number of threads.
+
+##### Known Issues
+
+* On certain configurations, ROCgdb can show the following warning message:
+  `warning: Probes-based dynamic linker interface failed. Reverting to original interface.`
+  This does not affect ROCgdb's functionalities.
+
+* ROCgdb cannot debug a program on an AMDGPU device past a `s_sendmsg sendmsg(MSG_DEALLOC_VGPRS)` instruction. If an exception is reported after this instruction has been executed (including asynchronous exceptions), the wave is killed and the exceptions are only reported by the ROCm runtime.
 
 #### rocm-cmake 0.11.0
 
