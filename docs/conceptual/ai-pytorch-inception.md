@@ -43,7 +43,7 @@ Training is different from inference, particularly from the hardware perspective
 | Data for training is available on the disk before the training process and is generally significant. The training performance is measured by how fast the data batches can be processed. | Inference data usually arrive stochastically, which may be batched to improve performance. Inference performance is generally measured in throughput speed to process the batch of data and the delay in responding to the input (latency). |
 :::
 
-Different quantization data types are typically chosen between training (FP32, BF16) and inference (FP16, INT8). The computation hardware has different specializations from other datatypes, leading to improvement in performance if a faster datatype can be selected for the corresponding task.
+Different quantization data types are typically chosen between training (FP32, BF16) and inference (FP16, INT8). The computation hardware has different specializations from other data types, leading to improvement in performance if a faster datatype can be selected for the corresponding task.
 
 ## Case studies
 
@@ -63,7 +63,7 @@ This example is adapted from the PyTorch research hub page on [Inception V3](htt
 
 Follow these steps:
 
-1. Run the PyTorch ROCm-based Docker image or refer to the section [Installing PyTorch](../install/pytorch-install.md) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm-based Docker image or refer to the section {doc}`Installing PyTorch <rocm-install-on-linux:pytorch-install>` for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
     docker run -it -v $HOME:/data --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G rocm/pytorch:latest
@@ -153,7 +153,7 @@ The previous section focused on downloading and using the Inception V3 model for
 
 Follow these steps:
 
-1. Run the PyTorch ROCm Docker image or refer to the section [Installing PyTorch](../install/pytorch-install.md) for setting up a PyTorch environment on ROCm.
+1. Run the PyTorch ROCm Docker image or refer to the section {doc}`Installing PyTorch <rocm-install-on-linux:pytorch-install>` for setting up a PyTorch environment on ROCm.
 
     ```dockerfile
     docker pull rocm/pytorch:latest

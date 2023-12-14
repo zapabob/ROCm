@@ -27,33 +27,33 @@ Installation guides
 ^^^
 
 * Linux
-  * [Quick-start (Linux)](./install/linux/install-quick.md)
-  * [Linux install guide](./install/linux/install.md)
-  * [Package manager integration](./install/linux/package-manager-integration.md)
+  * {doc}`Quick-start (Linux)<rocm-install-on-linux:tutorial/quick-start>`
+  * {doc}`Linux install guide<rocm-install-on-linux:how-to/native-install/install>`
+  * {doc}`Package manager integration<rocm-install-on-linux:how-to/native-install/package-manager-integration>`
 * Windows
-  * [Quick-start (Windows)](./install/windows/install-quick.md)
-  * [Windows install guide](./install/windows/install.md)
-  * [Application deployment guidelines](./install/windows/windows-app-deployment-guidelines.md)
-* [Deploy ROCm Docker containers](./install/docker.md)
-* [PyTorch for ROCm](./install/pytorch-install.md)
-* [TensorFlow for ROCm](./install/tensorflow-install.md)
-* [MAGMA for ROCm](./install/magma-install.md)
-* [ROCm & Spack](./install/spack-intro.md)
+  * {doc}`Quick-start (Windows)<rocm-install-on-windows:tutorial/install-quick>`
+  * {doc}`Windows install guide<rocm-install-on-windows:how-to/install>`
+  * {doc}`Application deployment guidelines<rocm-install-on-windows:conceptual/deployment-guidelines>`
+* {doc}`Install Docker containers<rocm-install-on-linux:how-to/docker>`
+* {doc}`PyTorch for ROCm<rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
+* {doc}`TensorFlow for ROCm<rocm-install-on-linux:tensorflow-install>`
+* {doc}`MAGMA for ROCm<rocm-install-on-linux:how-to/3rd-party/magma-install>`
+* {doc}`ROCm & Spack<rocm-install-on-linux:how-to/spack>`
 
 :::
 
 :::{grid-item-card}
 :padding: 2
-**Compatibility & Support**
+**Compatibility & support**
 
 ROCm compatibility information
 ^^^
 
 * [Linux (GPU & OS)](./about/compatibility/linux-support.md)
 * [Windows (GPU & OS)](./about/compatibility/windows-support.md)
-* [Third-party](./about/compatibility/3rd-party-support-matrix.md)
-* [User/kernel space](./about/compatibility/user-kernel-space-compat-matrix.md)
-* [Docker](./about/compatibility/docker-image-support-matrix.rst)
+* {doc}`Third-party<rocm-install-on-linux:reference/3rd-party-support-matrix>`
+* {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
+* {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`
 * [OpenMP](./about/compatibility/openmp.md)
 
 :::

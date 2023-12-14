@@ -28,6 +28,7 @@ In short, CMake supports finding dependencies in two ways:
 *  In Module mode, it consults a file ``Find<PackageName>.cmake`` which tries to
   find the component in typical install locations and layouts. CMake ships a
   few dozen such scripts, but users and projects may ship them as well.
+
 *  In Config mode, it locates a file named ``<packagename>-config.cmake`` or
   ``<PackageName>Config.cmake`` which describes the installed component in all
   regards needed to consume it.
@@ -45,9 +46,9 @@ it to your CMake configuration command on the command line via
 ``-D CMAKE_PREFIX_PATH=....`` . AMD packaged ROCm installs can typically be
 added to the config file search paths such as:
 
--  Windows: ``-D CMAKE_PREFIX_PATH=${env:HIP_PATH}``
+*  Windows: ``-D CMAKE_PREFIX_PATH=${env:HIP_PATH}``
 
--  Linux: ``-D CMAKE_PREFIX_PATH=/opt/rocm``
+*  Linux: ``-D CMAKE_PREFIX_PATH=/opt/rocm``
 
 ROCm provides the respective *config-file* packages, and this enables
 ``find_package`` to be used directly. ROCm does not require any Find module as
@@ -55,8 +56,8 @@ the *config-file* packages are shipped with the upstream projects, such as
 rocPRIM and other ROCm libraries.
 
 For a complete guide on where and how ROCm may be installed on a system, refer
-to the installation guides for `Linux <../install/linux/install.html>`_ and
-`Windows <../install/windows/install.html>`_.
+to the installation guides for {doc}`Linux<rocm-install-on-linux:tutorial/quick-start>` and
+{doc}`Windows<rocm-install-on-windows:tutorial/install-quick>`.
 
 Using HIP in CMake
 ==================
