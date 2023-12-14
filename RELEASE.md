@@ -24,8 +24,9 @@ This page contains the release notes for AMD ROCm Software.
 #### OS and GPU support changes
 
 * AMD Instinct™ MI300A and MI300X support has been added
-* RHEL 9.3 support has been added
-* RHEL 8.9 support has been added
+* Added support for the following operating systems:
+  * RHEL 9.3
+  * RHEL 8.9
 
 #### Documentation
 
@@ -37,6 +38,7 @@ CMake support is added for the documentation in the
 | Library | Version |
 |---------|---------|
 | AMDMIGraphX |  ⇒ [2.8](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-6.0.0) |
+| HIP | [6.0.0](https://github.com/ROCm/HIP/releases/tag/rocm-6.0.0) |
 | hipBLAS |  ⇒ [2.0.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-6.0.0) |
 | hipCUB |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-6.0.0) |
 | hipFFT |  ⇒ [1.0.13](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-6.0.0) |
@@ -50,6 +52,7 @@ CMake support is added for the documentation in the
 | rocFFT |  ⇒ [1.0.25](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-6.0.0) |
 | rocm-cmake |  ⇒ [0.11.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-6.0.0) |
 | rocPRIM |  ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-6.0.0) |
+| rocprofiler | [2.0.0](https://github.com/ROCm/rocprofiler/releases/tag/rocm-6.0.0) |
 | rocRAND |  ⇒ [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-6.0.0) |
 | rocSOLVER |  ⇒ [3.24.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-6.0.0) |
 | rocSPARSE |  ⇒ [3.0.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-6.0.0) |
@@ -108,6 +111,107 @@ MIGraphX 2.8 for ROCm 6.0.0
 ##### Removals
 
 * Removed building Python 2.7 bindings
+
+#### HIP 6.0.0
+
+HIP 6.0.0 for ROCm 6.0.0
+
+##### Additions
+
+* New fields and structs for external resource interoperability
+  * `hipExternalMemoryHandleDesc_st`
+  * `hipExternalMemoryBufferDesc_st`
+  * `hipExternalSemaphoreHandleDesc_st`
+  * `hipExternalSemaphoreSignalParams_st`
+  * `hipExternalSemaphoreWaitParams_st Enumerations`
+  * `hipExternalMemoryHandleType_enum`
+  * `hipExternalSemaphoreHandleType_enum`
+  * `hipExternalMemoryHandleType_enum`
+
+* New environment variable `HIP_LAUNCH_BLOCKING`
+  * For serialization on kernel execution. The default value is 0 (disable); kernel will execute normally as defined in the queue. When this environment variable is set as 1 (enable), HIP runtime will serialize kernel enqueue; behaves the same as AMD_SERIALIZE_KERNEL.
+
+* More members are added in HIP struct `hipDeviceProp_t`, for new feature capabilities including:
+  * Texture
+    * `int maxTexture1DMipmap;`
+    * `int maxTexture2DMipmap[2];`
+    * `int maxTexture2DLinear[3];`
+    * `int maxTexture2DGather[2];`
+    * `int maxTexture3DAlt[3];`
+    * `int maxTextureCubemap;`
+    * `int maxTexture1DLayered[2];`
+    * `int maxTexture2DLayered[3];`
+    * `int maxTextureCubemapLayered[2];`
+  * Surface
+    * `int maxSurface1D;`
+    * `int maxSurface2D[2];`
+    * `int maxSurface3D[3];`
+    * `int maxSurface1DLayered[2];`
+    * `int maxSurface2DLayered[3];`
+    * `int maxSurfaceCubemap;`
+    * `int maxSurfaceCubemapLayered[2];`
+  * Device
+    * `hipUUID uuid;`
+    * `char luid[8];` this is an 8-byte unique identifier. Only valid on Windows
+    * `unsigned int luidDeviceNodeMask;`
+
+* LUID (Locally Unique Identifier) is supported for interoperability between devices. In HIP, more members are added in the struct `hipDeviceProp_t`, as properties to identify each device:
+  * `char luid[8];`
+  * `unsigned int luidDeviceNodeMask;`
+
+Note: HIP supports LUID only on Windows OS.
+
+##### Changes
+
+* Some OpenGL Interop HIP APIs are moved from the hip_runtime_api header to a new header file hip_gl_interop.h for the AMD platform, as follows:
+  * `hipGLGetDevices`
+  * `hipGraphicsGLRegisterBuffer`
+  * `hipGraphicsGLRegisterImage`
+
+###### Changes Impacting Backward Incompatibility
+
+* Data types for members in `HIP_MEMCPY3D` structure are changed from `unsigned int` to `size_t`.
+* The value of the flag `hipIpcMemLazyEnablePeerAccess` is changed to `0x01`, which was previously defined as `0`.
+* Some device property attributes are not currently supported in HIP runtime. In order to maintain consistency, the following related enumeration names are changed in `hipDeviceAttribute_t`
+  * `hipDeviceAttributeName` is changed to `hipDeviceAttributeUnused1`
+  * `hipDeviceAttributeUuid` is changed to `hipDeviceAttributeUnused2`
+  * `hipDeviceAttributeArch` is changed to `hipDeviceAttributeUnused3`
+  * `hipDeviceAttributeGcnArch` is changed to `hipDeviceAttributeUnused4`
+  * `hipDeviceAttributeGcnArchName` is changed to `hipDeviceAttributeUnused5`
+* HIP struct `hipArray` is removed from driver type header to comply with CUDA
+* `hipArray_t` replaces `hipArray*`, as the pointer to array.
+  * This allows `hipMemcpyAtoH` and `hipMemcpyHtoA` to have the correct array type which is equivalent to corresponding CUDA driver APIs.
+
+##### Fixes
+
+* Kernel launch maximum dimension validation is added specifically on gridY and gridZ in the HIP API `hipModule-LaunchKernel`. As a result,when `hipGetDeviceAttribute` is called for the value of `hipDeviceAttributeMaxGrid-Dim`, the behavior on the AMD platform is equivalent to NVIDIA.
+
+* The HIP stream synchronisation behaviour is changed in internal stream functions, in which a flag "wait" is added and set when the current stream is null pointer while executing stream synchronisation on other explicitly created streams. This change avoids blocking of execution on null/default stream. The change won't affect usage of applications, and makes them behave the same on the AMD platform as NVIDIA.
+
+* Error handling behavior on unsupported GPU is fixed, HIP runtime will log out error message, instead of creating signal abortion error which is invisible to developers but continued kernel execution process. This is for the case when developers compile any application via hipcc, setting the option `--offload-arch` with GPU ID which is different from the one on the system.
+
+* HIP complex vector type multiplication and division operations. On AMD platform, some duplicated complex operators are removed to avoid compilation failures. In HIP, `hipFloatComplex` and `hipDoubleComplex` are defined as complex data types: `typedef float2 hipFloatComplex; typedef double2 hipDoubleComplex;` Any application that uses complex multiplication and division operations needs to replace '*' and '/' operators with the following:
+  * `hipCmulf()` and `hipCdivf()` for `hipFloatComplex`
+  * `hipCmul()` and `hipCdiv()` for `hipDoubleComplex`
+Note: These complex operations are equivalent to corresponding types/functions on NVIDIA platform.
+
+##### Removals
+
+* Deprecated Heterogeneous Compute (HCC) symbols and flags are removed from the HIP source code, including:
+  * Build options on obsolete `HCC_OPTIONS` were removed from cmake.
+  * Micro definitions are removed:
+    * `HIP_INCLUDE_HIP_HCC_DETAIL_DRIVER_TYPES_H`
+    * `HIP_INCLUDE_HIP_HCC_DETAIL_HOST_DEFINES_H`
+  * Compilation flags for the platform definitions
+    * AMD platform
+      * `HIP_PLATFORM_HCC`
+      * `HCC` 
+      * `HIP_ROCclr`
+    * NVIDIA platform
+      * `HIP_PLATFORM_NVCC`
+* File directories in the clr repository are removed, for more details see https://github.com/ROCm-Developer-Tools/clr/blob/develop/hipamd/include/hip/hcc_detail and https://github.com/ROCm-Developer-Tools/clr/blob/develop/hipamd/include/hip/nvcc_detail
+* Deprecated gcnArch is removed from hip device struct `hipDeviceProp_t`.
+* Deprecated `enum hipMemoryType memoryType;` is removed from HIP struct `hipPointerAttribute_t` union.
 
 #### hipBLAS 2.0.0
 
@@ -426,6 +530,21 @@ rocPRIM 3.0.0 for ROCm 6.0.0
 
 * Fixed `rocprim::MatchAny` for devices with 64-bit warp size
   * Note that `rocprim::MatchAny` is deprecated; use `rocprim::match_any` instead
+
+#### rocprofiler 2.0.0
+
+rocprofiler 2.0.0 for ROCm 6.0.0
+
+##### Additions
+
+* Updated supported GPU architectures in README with profiler versions
+* Automatic ISA dumping for ATT. See README.
+* CSV mode for ATT. See README.
+* Added option to control kernel name truncation.
+* Limit rocprof(v1) script usage to only supported architectures.
+* Added Tool versioning to be able to run rocprofv2 using rocprof. See README for more information.
+* Added Plugin Versioning way in rocprofv2. See README for more details.
+* Added `--version` in rocprof and rocprofv2 to be able to see the current rocprof/v2 version along with ROCm version information.
 
 #### rocRAND 2.10.17
 
