@@ -27,15 +27,14 @@ Installation guides
 
 * Linux
   * {doc}`Quick-start (Linux)<rocm-install-on-linux:tutorial/quick-start>`
-  * {doc}`Linux install guide<rocm-install-on-linux:how-to/native-install/install>`
+  * {doc}`Linux install guide<rocm-install-on-linux:how-to/native-install/index>`
   * {doc}`Package manager integration<rocm-install-on-linux:how-to/native-install/package-manager-integration>`
 * Windows
-  * {doc}`Quick-start (Windows)<rocm-install-on-windows:tutorial/install-quick>`
   * {doc}`Windows install guide<rocm-install-on-windows:how-to/install>`
   * {doc}`Application deployment guidelines<rocm-install-on-windows:conceptual/deployment-guidelines>`
 * {doc}`Install Docker containers<rocm-install-on-linux:how-to/docker>`
 * {doc}`PyTorch for ROCm<rocm-install-on-linux:how-to/3rd-party/pytorch-install>`
-* {doc}`TensorFlow for ROCm<rocm-install-on-linux:tensorflow-install>`
+* {doc}`TensorFlow for ROCm<rocm-install-on-linux:how-to/3rd-party/tensorflow-install>`
 * {doc}`MAGMA for ROCm<rocm-install-on-linux:how-to/3rd-party/magma-install>`
 * {doc}`ROCm & Spack<rocm-install-on-linux:how-to/spack>`
 
