@@ -7,8 +7,7 @@ root: index
 subtrees:
 - entries:
   - file: what-is-rocm.md
-  - file: about/release-notes.md
-    title: Release notes
+  - file: about/whats-new/whats-new.md
     subtrees:
     - entries:
       - file: about/CHANGELOG.md
@@ -85,7 +84,7 @@ subtrees:
   - file: conceptual/compiler-disambiguation.md
     title: Compiler disambiguation
   - file: about/compatibility/openmp.md
-    title: OpenMP    
+    title: OpenMP
   - file: conceptual/file-reorg.md
     title: File structure (Linux FHS)
   - file: conceptual/gpu-isolation.md
@@ -104,15 +103,19 @@ subtrees:
 - caption: Contribute
   entries:
   - file: contribute/index.md
-    title: Contribute to ROCm docs
+    title: Contribute to ROCm
     subtrees:
     - entries:
-      - file: contribute/toolchain.md
-        title: Documentation tools
-      - file: contribute/building.md
-        title: Building documentation
-      - file: contribute/feedback.md
-        title: Provide feedback
+      - file: contribute/contribute-docs.md
+        title: Contribute to ROCm docs
+        subtrees:
+        - entries:
+          - file: contribute/toolchain.md
+            title: Documentation tools
+          - file: contribute/building.md
+            title: Building documentation
+          - file: contribute/feedback.md
+            title: Provide feedback
   - file: about/license.md
     title: ROCm license
 

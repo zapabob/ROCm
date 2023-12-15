@@ -1,229 +1,95 @@
-# Contributing to ROCm documentation
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Contributing to ROCm">
+  <meta name="keywords" content="ROCm, contributing, contribute, maintainer, contributor">
+</head>
 
-AMD values and encourages contributions to our code and documentation. If you choose to
-contribute, we encourage you to be polite and respectful. Improving documentation is a long-term
-process, to which we are dedicated.
+# Contribute to ROCm
 
-If you have issues when trying to contribute, refer to the
-[discussions](https://github.com/RadeonOpenCompute/ROCm/discussions) page in our GitHub
-repository.
+AMD values and encourages contributions to our code and documentation. If you want to contribute
+to our ROCm repositories, first review the following guidance. For documentation-specific information,
+see [Contributing to ROCm docs](./docs/contribute/contribute-docs.md).
 
-## Folder structure and naming convention
+ROCm is a software stack made up of a collection of drivers, development tools, and APIs that enable
+GPU programming from low-level kernel to end-user applications. Because some of our components
+are inherited from external projects (such as
+[LLVM](https://github.com/ROCm/llvm-project) and
+[Kernel driver](https://github.com/ROCm/ROCK-Kernel-Driver)), these use
+project-specific contribution guidelines and workflow. Refer to their repositories for more information.
+All other ROCm components follow the workflow described in the following sections.
 
-Our documentation follows the Pitchfork folder structure. Most documentation files are stored in the
-`/docs` folder. Some special files (such as release, contributing, and changelog) are stored in the root
-(`/`) folder.
+## Development workflow
 
-All images are stored in the `/docs/data` folder. An image's file path mirrors that of the documentation
-file where it is used.
+ROCm uses GitHub to host code, collaborate, and manage version control. We use pull requests (PRs)
+for all changes within our repositories. We use
+[GitHub issues](https://github.com/ROCm/ROCm/issues) to track known issues, such as
+bugs.
 
-Our naming structure uses kebab case; for example, `my-file-name.rst`.
+### Issue tracking
 
-## Supported formats and syntax
+Before filing a new issue, search the
+[existing issues](https://github.com/ROCm/ROCm/issues) to make sure your issue isn't
+already listed.
 
-Our documentation includes both Markdown and RST files. We are gradually transitioning existing
-Markdown to RST in order to more effectively meet our documentation needs. When contributing,
-RST is preferred; if you must use Markdown, use GitHub-flavored Markdown.
+General issue guidelines:
 
-We use [Sphinx Design](https://sphinx-design.readthedocs.io/en/latest/index.html) syntax and compile
-our API references using [Doxygen](https://www.doxygen.nl/).
+* Use your best judgement for issue creation. If your issue is already listed, upvote the issue and
+  comment or post to provide additional details, such as how you reproduced this issue.
+* If you're not sure if your issue is the same, err on the side of caution and file your issue.
+  You can add a comment to include the issue number (and link) for the similar issue. If we evaluate
+  your issue as being the same as the existing issue, we'll close the duplicate.
+* If your issue doesn't exist, use the issue template to file a new issue.
+  * When filing an issue, be sure to provide as much information as possible, including script output so
+    we can collect information about your configuration. This helps reduce the time required to
+    reproduce your issue.
+  * Check your issue regularly, as we may require additional information to successfully reproduce the
+    issue.
 
-The following table shows some common documentation components and the syntax convention we
-use for each:
+### Pull requests
 
-<table>
-<tr>
-<th>Component</th>
-<th>RST syntax</th>
-</tr>
-<tr>
-<td>Code blocks</td>
-<td>
+Our repositories typically use the **develop** branch an integration branch for new code so, when
+making a PR, target this branch.
 
-```rst
+When creating a PR, use the following process. Note that each repository may include additional,
+project-specific steps. Refer to each repository's PR process for any additional steps.
 
-.. code-block:: language-name
+* Identify the issue you want to fix
+* Target the **develop** branch for integration
+* Ensure your code builds successfully
+* Each component has a suite of test cases to run; include the log of the successful test run in your PR
+* Do not break existing test cases
+* New functionality is only merged with new unit tests
+  * If your PR includes a new feature, you must provide an application or test so we can ensure that the
+    feature works and continues to be valid in the future
+* Tests must have good code coverage
+* Submit your PR and work with the reviewer or maintainer to get your PR approved
+* Once approved, the PR is brought onto internal CI systems and may be merged into the component
+  during our release cycle, as coordinated by the maintainer
+* We'll inform you once your change is committed
 
-  My code block.
-
-
+```important
+By creating a PR, you agree to allow your contribution to be licensed under the
+terms of the LICENSE.txt file in the corresponding repository. Different repositories may use different
+licenses.
 ```
 
-</td>
-</tr>
-<tr>
-<td>Cross-referencing internal files</td>
-<td>
+You can look up each license on the [ROCm licensing](./docs/about/licensing.md) page.
 
-```rst
+### New feature development
 
-:doc:`Title <../path/to/file/filename>`
+Use the [GitHub Discussion forum](https://github.com/ROCm/ROCm/discussions)
+(Ideas category) to propose new features. Our maintainers are happy to provide direction and
+feedback on feature development.
 
-```
+### Documentation
 
-</td>
-</tr>
-<tr>
-<td>External links</td>
-<td>
+Submit ROCm documentation changes to our
+[documentation repository](https://github.com/ROCm/ROCm). You must update
+documentation related to any new feature or API contribution.
 
-```rst
+Note that each ROCm project uses its own repository for documentation.
 
-`link name  <URL>`_
+## Future development workflow
 
-```
-
-</td>
-</tr>
-<tr>
-<tr>
-<td>Headings</td>
-<td>
-
-```rst
-
-******************
-Chapter title (H1)
-******************
-
-Section title (H2)
-===============
-
-Subsection title (H3)
----------------------
-
-Sub-subsection title (H4)
-^^^^^^^^^^^^^^^^^^^^
-
-
-```
-
-</td>
-</tr>
-<tr>
-<td>Images</td>
-<td>
-
-```rst
-
-.. image:: image1.png
-
-```
-
-</td>
-</tr>
-<tr>
-<td>Internal links</td>
-<td>
-
-```rst
-
-1. Add a tag to the section you want to reference:
-
-.. _my-section-tag: section-1
-
-Section 1
-==========
-
-2. Link to your tag:
-
-As shown in :ref:`section-1`.
-
-```
-
-</td>
-</tr>
-<tr>
-<tr>
-<td>Lists</td>
-<td>
-
-```rst
-
-# Ordered (numbered) list item
-
-* Unordered (bulleted) list item
-
-```
-
-</td>
-</tr>
-<tr>
-<tr>
-<td>Math (block)</td>
-<td>
-
-```rst
-
-.. math::
-
-  A = \begin{pmatrix}
-          0.0 & 1.0 & 1.0 & 3.0 \\
-          4.0 & 5.0 & 6.0 & 7.0 \\
-        \end{pmatrix}
-
-```
-
-</td>
-</tr>
-<tr>
-<td>Math (inline)</td>
-<td>
-
-```rst
-
-:math:`2 \times 2 `
-
-```
-
-</td>
-</tr>
-<tr>
-<td>Notes</td>
-<td>
-
-```rst
-
-.. note::
-
-  My note here.
-
-```
-
-</td>
-</tr>
-<tr>
-<td>Tables</td>
-<td>
-
-```rst
-
-.. csv-table::  Optional title here
-  :widths: 30, 70  #optional column widths
-  :header: "entry1 header", "entry2 header"
-
-   "entry1", "entry2"
-
-```
-
-</td>
-</tr>
-</table>
-
-## Language and style
-
-We use the
-[Google developer documentation style guide](https://developers.google.com/style/highlights) to
-guide our content.
-
-Font size and type, page layout, white space control, and other formatting
-details are controlled via
-[rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core). If you want to notify us
-of any formatting issues, create a pull request in our
-[rocm-docs-core](https://github.com/RadeonOpenCompute/rocm-docs-core) GitHub repository.
-
-## Building our documentation
-
-<!--  % TODO: Fix the link to be able to work at every files  -->
-To learn how to build our documentation, refer to
-[Building documentation](./building.md).
+The current ROCm development workflow is GitHub-based. If, in the future, we change this platform,
+the tools and links may change. In this instance, we will update contribution guidelines accordingly.
