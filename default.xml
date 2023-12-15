@@ -7,7 +7,7 @@
     <remote name="gpuopen-libs" fetch="https://github.com/GPUOpen-ProfessionalCompute-Libraries/" />
     <remote name="gpuopen-tools" fetch="https://github.com/GPUOpen-Tools/" />
     <remote name="KhronosGroup" fetch="https://github.com/KhronosGroup/" />
-    <default revision="refs/tags/rocm-5.7.1"
+    <default revision="refs/tags/rocm-6.0.0"
      remote="rocm-org"
      sync-c="true"
      sync-j="4" />
@@ -30,6 +30,7 @@
     <project name="HIP" />
     <project name="HIP-Examples" />
     <project name="clr" />
+    <project name="hipother" />
     <project name="HIPIFY" />
     <project name="HIPCC" />
 <!-- The following projects are all associated with the AMDGPU LLVM compiler -->
@@ -49,7 +50,9 @@
     <project groups="mathlibs" name="rocFFT" />
     <project groups="mathlibs" name="hipFFT" />
     <project groups="mathlibs" name="rocRAND" />
+    <project groups="mathlibs" name="hipRAND" />
     <project groups="mathlibs" name="rocSPARSE" />
+    <project groups="mathlibs" name="hipSPARSELt" />
     <project groups="mathlibs" name="rocSOLVER" />
     <project groups="mathlibs" name="hipSOLVER" />
     <project groups="mathlibs" name="hipSPARSE" />
@@ -59,7 +62,6 @@
     <project groups="mathlibs" name="rocPRIM" />
     <project groups="mathlibs" name="rocWMMA" />
     <project groups="mathlibs" name="rccl" />
-    <project name="rocMLIR" />
     <project name="MIOpen" />
     <project name="composable_kernel" />
     <project name="MIVisionX" />
