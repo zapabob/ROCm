@@ -93,6 +93,16 @@ final release for gfx906 GPUs in a fully supported state.
   * Distribution and operating system updates will continue per the ROCm release cadence for gfx906
     GPUs until EOM.
 
+### Known issues
+
+* Hang is observed with rocSPARSE tests: [Issue 2726](https://github.com/ROCm/ROCm/issues/2726).
+* AddressSanitizer instrumentation is incorrect for device global variables:
+  [Issue 2551](https://github.com/ROCm/ROCm/issues/2551).
+* Dynamically loaded HIP runtime library references incorrect version of `hipDeviceGetProperties`
+  API: [Issue 2728](https://github.com/ROCm/ROCm/issues/2728).
+* Memory access violations when running rocFFT-HMM:
+  [Issue 2730](https://github.com/ROCm/ROCm/issues/2730).
+
 ### Library changes
 
 | Library | Version |

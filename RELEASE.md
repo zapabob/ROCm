@@ -234,7 +234,7 @@ can refer to the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELO
 * **Added support for the PyTorch kernel plugin**.
     We added awareness of `__HIP_NO_HALF_CONVERSIONS__` to support PyTorch users.
 
-### TransferBench
+### TransferBench (beta)
 
 * **Improved ordering control**.
     You can now set the thread block size (`BLOCK_SIZE`) and the thread block order (`BLOCK_ORDER`)
