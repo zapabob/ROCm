@@ -11,7 +11,6 @@ Welcome to the ROCm docs home page! If you're new to ROCm, you can review the fo
 resources to learn more about our products and what we support:
 
 * [What is ROCm?](./what-is-rocm.md)
-* [What's new?](about/whats-new/whats-new)
 * [Release notes](./about/release-notes.md)
 
 Our documentation is organized into the following categories:
