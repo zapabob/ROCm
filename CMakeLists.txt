@@ -24,7 +24,7 @@ cmake_minimum_required(VERSION 3.18.0)
 
 project(ROCm VERSION 5.7.1 LANGUAGES NONE)
 
-option(ROCM_BUILD_DOCS "Build ROCm documentation" ON)
+option(BUILD_DOCS "Build ROCm documentation" ON)
 
 include(GNUInstallDirs)
 
@@ -35,6 +35,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
 include(Dependencies)
 
 # Build docs
-if(ROCM_BUILD_DOCS)
+if(BUILD_DOCS)
   add_subdirectory(docs)
 endif()
