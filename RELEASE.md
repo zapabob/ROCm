@@ -24,7 +24,7 @@ support. Future releases will add additional OS's to match our general offering.
 
 | Operating Systems | MI300A | MI300X |
 |:---:|:---:|:---:|
-| Ubuntu 22.04.5 | Supported | Supported |
+| Ubuntu 22.04.3 | Supported | Supported |
 | RHEL 8.9 | Supported |  |
 | SLES15 SP5 | Supported |  |
 

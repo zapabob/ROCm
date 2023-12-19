@@ -24,11 +24,11 @@ subtrees:
 
 - caption: Supported configurations
   entries:
-  - file: about/compatibility/linux-support.md
+  - url: https://rocm.docs.amd.com/projects/install-on-linux/en/${branch}/reference/system-requirements.html
     title: Linux
-  - file: about/compatibility/windows-support.md
+  - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/reference/system-requirements.html
     title: Windows
-
+    
 - caption: Reference
   entries:
     - file: reference/library-index.md

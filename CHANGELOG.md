@@ -37,9 +37,9 @@ the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
 AMD Instinct™ MI300A and MI300X Accelerator support has been enabled for limited operating
 systems.
 
-* Ubuntu 22.04.5 (MI300A and MI300X)
+* Ubuntu 22.04.3 (MI300A and MI300X)
 * RHEL 8.9 (MI300A)
-* SLES 15 SP5
+* SLES 15 SP5(MI300A)
 
 We've added support for the following operating systems:
 
