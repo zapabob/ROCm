@@ -29,9 +29,6 @@ MI300 series. Future releases will further enable and optimize this new platfo
   tutorials on the [AMD ROCm Docs](https://rocm.docs.amd.com) site.
 * Consolidated developer resources and training on the new AMD ROCm Developer Hub.
 
-The following section provide a release overview for ROCm 6.0. For additional details, you can refer to
-the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
-
 ### OS and GPU support changes
 
 AMD Instinct™ MI300A and MI300X Accelerator support has been enabled for limited operating
