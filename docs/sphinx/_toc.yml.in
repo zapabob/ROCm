@@ -7,7 +7,8 @@ root: index
 subtrees:
 - entries:
   - file: what-is-rocm.md
-  - file: about/whats-new/whats-new.md
+  - file: about/release-notes.md
+    title: Release notes
     subtrees:
     - entries:
       - file: about/CHANGELOG.md
@@ -28,7 +29,7 @@ subtrees:
     title: Linux
   - url: https://rocm.docs.amd.com/projects/install-on-windows/en/${branch}/reference/system-requirements.html
     title: Windows
-    
+
 - caption: Reference
   entries:
     - file: reference/library-index.md

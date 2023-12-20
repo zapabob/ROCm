@@ -15,7 +15,8 @@ Along with host APIs, the OpenMP compilers support offloading code and data onto
 GPU devices. This document briefly describes the installation location of the
 OpenMP toolchain, example usage of device offloading, and usage of `rocprof`
 with OpenMP applications. The GPUs supported are the same as those supported by
-this ROCm release. See the list of supported GPUs for [Linux](../../about/compatibility/linux-support.md) and [Windows](../../about/compatibility/windows-support.md).
+this ROCm release. See the list of supported GPUs for {doc}`Linux<rocm-install-on-linux:reference/system-requirements>` and
+{doc}`Windows<rocm-install-on-windows:reference/system-requirements>`.
 
 The ROCm OpenMP compiler is implemented using LLVM compiler technology.
 The following image illustrates the internal steps taken to translate a user’s application into an executable that can offload computation to the AMDGPU. The compilation is a two-pass process. Pass 1 compiles the application to generate the CPU code and Pass 2 links the CPU code to the AMDGPU device code.
@@ -47,10 +48,10 @@ cd $ROCM_PATH/share/openmp-extras/examples/openmp/veccopy
 sudo make run
 ```
 
-```{note}
+:::{note}
 `sudo` is required since we are building inside the `/opt` directory.
 Alternatively, copy the files to your home directory first.
-```
+:::
 
 The above invocation of Make compiles and runs the program. Note the options
 that are required for target offload from an OpenMP program:
@@ -59,12 +60,14 @@ that are required for target offload from an OpenMP program:
 -fopenmp --offload-arch=<gpu-arch>
 ```
 
-```{note}
+:::{note}
 The compiler also accepts the alternative offloading notation:
 
 ```bash
 -fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=<gpu-arch>
 ```
+
+:::
 
 Obtain the value of `gpu-arch` by running the following command:
 
@@ -327,10 +330,10 @@ double a = 0.0;
 a = a + 1.0;
 ```
 
-```{note}
+:::{note}
 `AMD_unsafe_fp_atomics` is an alias for `AMD_fast_fp_atomics`, and
 `AMD_safe_fp_atomics` is implemented with a compare-and-swap loop.
-```
+:::
 
 To disable the generation of fast floating-point atomic instructions at the file
 level, build using the option `-msafe-fp-atomics` or use a hint clause on a

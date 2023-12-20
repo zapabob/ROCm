@@ -9,8 +9,8 @@
 
 For the HIP reference documentation, see:
 
-* {doc}`hip:.doxygen/docBin/html/group___memory`
-* {doc}`hip:.doxygen/docBin/html/group___memory_m`
+* {doc}`hip:doxygen/html/group___memory`
+* {doc}`hip:doxygen/html/group___memory_m`
 
 Host memory exists on the host (e.g. CPU) of the machine in random access memory (RAM).
 

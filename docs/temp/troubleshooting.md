@@ -29,11 +29,11 @@ To implement a workaround, follow these steps:
     roc-obj-ls -v $TORCHDIR/lib/libtorch_hip.so # check for gfx target
     ```
 
-```{note}
+:::{note}
     Recompile PyTorch with the right gfx target if compiling from the source if
     the hardware is not supported. For wheels or Docker installation, contact
     ROCm support [^ROCm_issues].
-```
+:::
 
 **Q: Why am I unable to access Docker or GPU in user accounts?**
 

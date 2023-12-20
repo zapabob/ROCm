@@ -114,7 +114,7 @@ companies.
 
 ## Package licensing
 
-```{attention}
+:::{attention}
 AQL Profiler and AOCC CPU optimization are both provided in binary form, each
 subject to the license agreement enclosed in the directory for the binary and is
 available here: `/opt/rocm/share/doc/rocm-llvm-alt/EULA`. By using, installing,
@@ -122,7 +122,7 @@ copying or distributing AQL Profiler and/or AOCC CPU Optimizations, you agree to
 the terms and conditions of this license agreement. If you do not agree to the
 terms of this agreement, do not install, copy or use the AQL Profiler and/or the
 AOCC CPU Optimizations.
-```
+:::
 
 For the rest of the ROCm packages, you can find the licensing information at the
 following location: `/opt/rocm/share/doc/<component-name>/`

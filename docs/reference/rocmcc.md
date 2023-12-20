@@ -141,12 +141,12 @@ The `-famd-opt` flag is useful when a user wants to build with the proprietary
 optimization compiler and not have to depend on setting any of the other
 proprietary optimization flags.
 
-```{note}
+:::{note}
 `-famd-opt` can be used in addition to the other proprietary CPU optimization
 flags. The table of optimizations below implicitly enables the invocation of the
 AMD proprietary optimizations compiler, whereas the `-famd-opt` flag requires
 this to be handled explicitly.
-```
+:::
 
 #### `-fstruct-layout=[1,2,3,4,5,6,7]`
 
@@ -262,12 +262,12 @@ loop. The heuristic can be controlled with the following options:
 
   Where, `n` is a positive integer and higher value of `<n>` facilitates more unswitching.
 
-   ```{note}
+   :::{note}
    These options may facilitate more unswitching under some workloads. Since
    loop-unswitching inherently leads to code bloat, facilitating more
    unswitching may significantly increase the code size. Hence, it may also lead
    to longer compilation times.
-   ```
+   :::
 
 ##### `-enable-strided-vectorization`
 
@@ -458,11 +458,11 @@ supports ASM statements, their use is not recommended for the following reasons:
 * Writing correct ASM statements is often difficult; we strongly recommend
   thorough testing of any use of ASM statements.
 
-```{note}
+:::{note}
 For developers who choose to include ASM statements in the code, AMD is
 interested in understanding the use case and appreciates feedback at
 [https://github.com/RadeonOpenCompute/ROCm/issues](https://github.com/RadeonOpenCompute/ROCm/issues)
-```
+:::
 
 ### Miscellaneous OpenMP compiler features
 

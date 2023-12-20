@@ -25,13 +25,13 @@ Finding dependencies
 
 In short, CMake supports finding dependencies in two ways:
 
-*  In Module mode, it consults a file ``Find<PackageName>.cmake`` which tries to
-  find the component in typical install locations and layouts. CMake ships a
-  few dozen such scripts, but users and projects may ship them as well.
+* In Module mode, it consults a file ``Find<PackageName>.cmake`` which tries to find the component
+  in typical install locations and layouts. CMake ships a few dozen such scripts, but users and projects
+  may ship them as well.
 
-*  In Config mode, it locates a file named ``<packagename>-config.cmake`` or
-  ``<PackageName>Config.cmake`` which describes the installed component in all
-  regards needed to consume it.
+* In Config mode, it locates a file named ``<packagename>-config.cmake`` or
+  ``<PackageName>Config.cmake`` which describes the installed component in all regards needed to
+  consume it.
 
 ROCm predominantly relies on Config mode, one notable exception being the Module
 driving the compilation of HIP programs on NVIDIA runtimes. As such, when

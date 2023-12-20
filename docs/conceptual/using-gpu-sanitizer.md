@@ -14,7 +14,9 @@ Until now, the LLVM ASan process was only available for traditional purely CPU a
 This document provides documentation on using ROCm ASan.
 For information about LLVM ASan, see the [LLVM documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
 
-**Note**: The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
+:::{note}
+The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
+:::
 
 ## Compiling for ASan
 

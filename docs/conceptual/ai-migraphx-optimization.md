@@ -216,23 +216,23 @@ Follow these steps:
     ./inception_inference
     ```
 
-```{note}
+:::{note}
     Set `LD_LIBRARY_PATH` to `/opt/rocm/lib` if required during the build. Additional examples can be found in the MIGraphX repository under the `/examples/` directory.
-```
+:::
 
 ## Tuning MIGraphX
 
 MIGraphX uses MIOpen kernels to target AMD GPU. For the model compiled with MIGraphX, tune MIOpen to pick the best possible kernel implementation. The MIOpen tuning results in a significant performance boost. Tuning can be done by setting the environment variable `MIOPEN_FIND_ENFORCE=3`.
 
-```{note}
+:::{note}
     The tuning process can take a long time to finish.
-```
+:::
 
 **Example:** The average inference time of the inception model example shown previously over 100 iterations using untuned kernels is 0.01383ms. After tuning, it reduces to 0.00459ms, which is a 3x improvement. This result is from ROCm v4.5 on a MI100 GPU.
 
-```{note}
+:::{note}
     The results may vary depending on the system configurations.
-```
+:::
 
 For reference, the following code snippet shows inference runs for only the first 10 iterations for both tuned and untuned kernels:
 

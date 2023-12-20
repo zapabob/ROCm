@@ -242,7 +242,9 @@ HIP 6.0.0 for ROCm 6.0.0
     * `char luid[8];`
     * `unsigned int luidDeviceNodeMask;`
 
-Note: HIP supports LUID only on Windows OS.
+:::{note}
+HIP supports LUID only on Windows OS.
+:::
 
 ##### Changes
 
@@ -279,7 +281,10 @@ Note: HIP supports LUID only on Windows OS.
 * HIP complex vector type multiplication and division operations. On AMD platform, some duplicated complex operators are removed to avoid compilation failures. In HIP, `hipFloatComplex` and `hipDoubleComplex` are defined as complex data types: `typedef float2 hipFloatComplex; typedef double2 hipDoubleComplex;` Any application that uses complex multiplication and division operations needs to replace '*' and '/' operators with the following:
   * `hipCmulf()` and `hipCdivf()` for `hipFloatComplex`
   * `hipCmul()` and `hipCdiv()` for `hipDoubleComplex`
-Note: These complex operations are equivalent to corresponding types/functions on NVIDIA platform.
+
+  :::{note}
+  These complex operations are equivalent to corresponding types/functions on NVIDIA platform.
+  :::
 
 ##### Removals
 
@@ -1010,11 +1015,11 @@ New features include:
 Note that ROCm 5.7.0 is EOS for MI50. 5.7 versions of ROCm are the last major releases in the ROCm 5
 series. This release is Linux-only.
 
-```important
+:::{important}
 The next major ROCm release (ROCm 6.0) will not be backward compatible with the ROCm 5 series.
 Changes will include: splitting LLVM packages into more manageable sizes, changes to the HIP runtime
 API, splitting rocRAND and hipRAND into separate packages, and reorganizing our file structure.
-```
+:::
 
 #### AMD Instinct™ MI50 end-of-support notice
 
@@ -1025,8 +1030,8 @@ As outlined in [5.6.0](https://rocm.docs.amd.com/en/docs-5.6.0/release.html), RO
 final release for gfx906 GPUs to be in a fully supported state.
 
 * ROCm 6.0 release will show MI50s as "under maintenance" for
-  [Linux](../about/compatibility/linux-support.md) and
-  [Windows](../about/compatibility/windows-support.md)
+  {doc}`Linux<rocm-install-on-linux:reference/system-requirements>` and
+  {doc}`Windows<rocm-install-on-windows:reference/system-requirements>`
 
 * No new features and performance optimizations will be supported for the gfx906 GPUs beyond this
   major release (ROCm 5.7).
@@ -1060,8 +1065,10 @@ environments. Users may see the following error from runtime (with AMD_LOG_LEVEL
 The ROCm 5.7 release introduces an alternative to the current hostcall-based implementation that
 leverages an older OpenCL-based printf scheme, which does not rely on hostcalls/PCIe atomics.
 
-Note: This option is less robust than hostcall-based implementation and is intended to be a
+:::{note}
+This option is less robust than hostcall-based implementation and is intended to be a
 workaround when hostcalls do not work.
+:::
 
 The printf variant is now controlled via a new compiler option -mprintf-kind=<value>. This is
 supported only for HIP programs and takes the following values,
@@ -1094,11 +1101,11 @@ the GPU in heterogeneous applications. Ideally, developers should treat heteroge
 OpenMP applications like pure CPU applications. However, this simplicity has not been achieved yet.
 
 Refer to the documentation on LLVM ASan with the GPU at
-[LLVM AddressSanitizer User Guide](../conceptual/using_gpu_sanitizer.md).
+[LLVM AddressSanitizer User Guide](../conceptual/using-gpu-sanitizer.md).
 
-```note
+:::{note}
 The beta release of LLVM ASan for ROCm is currently tested and validated on Ubuntu 20.04.
-```
+:::
 
 #### Defect fixes
 
@@ -2089,9 +2096,9 @@ The following hipcc changes are implemented in this release:
 
 ##### New HIP APIs in this release
 
-```note
+:::{note}
 This is a pre-official version (beta) release of the new APIs and may contain unresolved issues.
-```
+:::
 
 ###### Memory management HIP APIs
 
@@ -2188,13 +2195,13 @@ This release consists of the following OpenMP enhancements:
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be
 available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
-```note
+:::{note}
 There will be a transition period where the Perl scripts and compiled binaries are available before the
 scripts are removed. There will be no functional difference between the Perl scripts and their compiled
 binary counterpart. No user action is required. Once these are available, users can optionally switch to
 `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from
 `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
-```
+:::
 
 ##### Linux file system hierarchy standard for ROCm
 
@@ -2234,10 +2241,10 @@ The following is the new file system hierarchy:4
 
 ```
 
-```note
+:::{note}
 ROCm will not support backward compatibility with the v5.1(old) file system hierarchy in its next major
 release.
-```
+:::
 
 For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 
@@ -2246,9 +2253,9 @@ For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 ROCm has moved header files and libraries to its new location as indicated in the above structure and
 included symbolic-link and wrapper header files in its old location for backward compatibility.
 
-> **Note**
->
-> ROCm will continue supporting backward compatibility until the next major release.
+:::{note}
+ROCm will continue supporting backward compatibility until the next major release.
+:::
 
 ##### Wrapper header files
 
@@ -2825,13 +2832,13 @@ Tensile 4.36.0 for ROCm 5.5.0
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be
 available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
-```note
+:::{note}
 There will be a transition period where the Perl scripts and compiled binaries are available before the
 scripts are removed. There will be no functional difference between the Perl scripts and their compiled
 binary counterpart. No user action is required. Once these are available, users can optionally switch to
 `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from
 `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
-```
+:::
 
 ##### Linux file system hierarchy standard for ROCm
 
@@ -2875,10 +2882,10 @@ The following is the new file system hierarchy:4
 
 ```
 
-```note
+:::{note}
 ROCm will not support backward compatibility with the v5.1(old) file system hierarchy in its next major
 release.
-```
+:::
 
 For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 
@@ -2887,9 +2894,9 @@ For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 ROCm has moved header files and libraries to its new location as indicated in the above structure and
 included symbolic-link and wrapper header files in its old location for backward compatibility.
 
-```note
+:::{note}
 ROCm will continue supporting backward compatibility until the next major release.
-```
+:::
 
 ##### Wrapper header files
 
@@ -2999,13 +3006,13 @@ rocFFT 1.0.21 for ROCm 5.4.3
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be
 available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
-```note
+:::{note}
 There will be a transition period where the Perl scripts and compiled binaries are available  before the
 scripts are removed. There will be no functional difference between the Perl scripts and their compiled
 binary counterpart. No user action is required. Once these are available, users can optionally switch to
 `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from
 `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
-```
+:::
 
 #### `hipcc` options deprecation
 
@@ -3067,9 +3074,9 @@ The ROCm v5.4.1 release consists of the following new HIP API:
 
 The following new HIP API is introduced in the ROCm v5.4.1 release.
 
-> **Note**
->
-> This is a pre-official version (beta) release of the new APIs.
+:::{note}
+This is a pre-official version (beta) release of the new APIs.
+:::
 
 ```cpp
 hipError_t hipLaunchHostFunc(hipStream_t stream, hipHostFn_t fn, void* userData);
@@ -3093,13 +3100,13 @@ For more information, refer to the HIP API documentation at
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be
 available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
-```note
+:::{note}
 There will be a transition period where the Perl scripts and compiled binaries are available  before the
 scripts are removed. There will be no functional difference between the Perl scripts and their compiled
 binary counterpart. No user action is required. Once these are available, users can optionally switch to
 `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from
 `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
-```
+:::
 
 ### IFWI fixes
 
@@ -3194,9 +3201,9 @@ int wallClkRate = 0; //in kilohertz
 
 Where hipDeviceAttributeWallClockRate is a device attribute.
 
-```note
+:::{note}
 The wall clock frequency is a per-device attribute.
-```
+:::
 
 ##### New registry added for GPU_MAX_HW_QUEUES
 
@@ -3207,10 +3214,10 @@ The environment variable controls how many independent hardware queues HIP runti
 per process, per device. If the application allocates more HIP streams than this number, then the HIP
 runtime reuses the same hardware queues for the new streams in a round-robin manner.
 
-```note
+:::{note}
 This maximum number does not apply to hardware queues created for CU-masked HIP streams or
 cooperative queues for HIP Cooperative Groups (there is only one queue per device).
-```
+:::
 
 For more details, refer to the HIP Programming Guide.
 
@@ -3218,9 +3225,9 @@ For more details, refer to the HIP Programming Guide.
 
 The following new HIP APIs are available in the ROCm v5.4 release.
 
-> **Note**
->
-> This is a pre-official version (beta) release of the new APIs.
+:::{note}
+This is a pre-official version (beta) release of the new APIs.
+:::
 
 ##### Error handling
 
@@ -3266,13 +3273,13 @@ This release consists of the following OpenMP enhancements:
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be
 available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
-```note
+:::{note}
 There will be a transition period where the Perl scripts and compiled binaries are available before the
 scripts are removed. There will be no functional difference between the Perl scripts and their compiled
 binary counterpart. No user action is required. Once these are available, users can optionally switch to
 `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from
 `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
-```
+:::
 
 ##### Linux file system hierarchy standard for ROCm
 
@@ -3316,10 +3323,10 @@ The following is the new file system hierarchy:
 
 ```
 
-```note
+:::{note}
 ROCm will not support backward compatibility with the v5.1(old) file system hierarchy in its next major
 release.
-```
+:::
 
 For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 
@@ -3328,9 +3335,9 @@ For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 ROCm has moved header files and libraries to its new location as indicated in the above structure and
 included symbolic-link and wrapper header files in its old location for backward compatibility.
 
-```note
+:::{note}
 ROCm will continue supporting backward compatibility until the next major release.
-```
+:::
 
 ##### Wrapper header files
 
@@ -3398,7 +3405,7 @@ determine coherent support.
 `hipHostMalloc()` allocates memory with fine-grained access by default when the environment variable
 `HIP_HOST_COHERENT=1` is used.
 
-For more information, refer to {doc}`hip:.doxygen/docBin/html/index`.
+For more information, refer to {doc}`hip:doxygen/html/index`.
 
 
 #### SoftHang with `hipStreamWithCUMask` test on AMD Instinct™
@@ -3864,13 +3871,13 @@ This issue is currently under investigation and will be resolved in a future rel
 The `hipcc` and `hipconfig` Perl scripts are deprecated. In a future release, compiled binaries will be
 available as `hipcc.bin` and `hipconfig.bin` as replacements for the Perl scripts.
 
-```note
+:::{note}
 There will be a transition period where the Perl scripts and compiled binaries are available  before the
 scripts are removed. There will be no functional difference between the Perl scripts and their compiled
 binary counterpart. No user action is required. Once these are available, users can optionally switch to
 `hipcc.bin` and `hipconfig.bin`. The `hipcc`/`hipconfig` soft link will be assimilated to point from
 `hipcc`/`hipconfig` to the respective compiled binaries as the default option.
-```
+:::
 
 #### Linux file system hierarchy standard for ROCm
 
@@ -3914,10 +3921,10 @@ The following is the new file system hierarchy:
 
 ```
 
-```note
+:::{note}
 ROCm will not support backward compatibility with the v5.1(old) file system hierarchy in its next major
 release.
-```
+:::
 
 For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 
@@ -3926,9 +3933,9 @@ For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 ROCm has moved header files and libraries to its new location as indicated in the above structure and
 included symbolic-link and wrapper header files in its old location for backward compatibility.
 
-```note
+:::{note}
 ROCm will continue supporting backward compatibility until the next major release.
-```
+:::
 
 ##### Wrapper header files
 
@@ -4790,7 +4797,7 @@ The new APIs for virtual memory management are as follows:
   ```
 
 For more information, refer to the HIP API documentation at
-{doc}`hip:.doxygen/docBin/html/modules`.
+{doc}`hip:doxygen/html/modules`.
 
 ##### Planned HIP changes in future releases
 
@@ -4890,10 +4897,10 @@ The following is the new file system hierarchy:
 
 ```
 
-```note
+:::{note}
 ROCm will not support backward compatibility with the v5.1(old) file system hierarchy in its next major
 release.
-```
+:::
 
 For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 
@@ -4902,9 +4909,10 @@ For more information, refer to <https://refspecs.linuxfoundation.org/fhs.shtml>.
 ROCm has moved header files and libraries to its new location as indicated in the above structure and
 included symbolic-link and wrapper header files in its old location for backward compatibility.
 
-```note
+:::{note}
 ROCm will continue supporting backward compatibility until the next major release.
-```
+:::
+
 ##### Wrapper header files
 
 Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/include`) with a
@@ -5017,10 +5025,10 @@ allow for undefined values.
 
 The workaround is to initialize the parameters to `__shfl_sync`.
 
-```note
+:::{note}
 When the `-Wall` compilation flag is used, the compiler generates a warning indicating the variable is
 initialized along some path.
-```
+:::
 
 Example:
 
@@ -5437,11 +5445,11 @@ The accuracy is guaranteed if the compiler options `-g -O0` are used and apply o
 This enhancement enables ROCDebugger users to interact with the HIP source-level variables and
 function arguments.
 
-```note
+:::{note}
 The newly-suggested compiler -g option must be used instead of the previously-suggested `-ggdb`
 option. Although the effect of these two options is currently equivalent, this is not guaranteed for the
 future, as changes might be made by the upstream LLVM community.
-```
+:::
 
 ##### Machine interface lanes support
 
@@ -5514,16 +5522,16 @@ this ROCm release, CRIU is enhanced with a new plugin to support AMD GPUs, which
 For more information, refer to
 <https://github.com/checkpoint-restore/criu/tree/criu-dev/plugins/amdgpu>
 
-```note
+:::{note}
 The CRIU plugin (amdgpu_plugin) is merged upstream with the CRIU repository. The KFD kernel
 patches are also available upstream with the amd-staging-drm-next branch (public) and the ROCm 5.1
 release branch.
-```
+:::
 
-```note
+:::{note}
 This is a Beta release of the Checkpoint and Restore functionality, and some features are not available
 in this release.
-```
+:::
 
 For more information, refer to the following websites:
 
@@ -5584,7 +5592,9 @@ debug information.
 **Issue:** Random memory access fault issues are observed while running Math libraries unit tests.
 This issue is encountered in ROCm v5.0, ROCm v5.0.1, and ROCm v5.0.2.
 
-Note, the faults only occur in the SRIOV environment.
+:::{note}
+The faults only occur in the SRIOV environment.
+:::
 
 **Workaround:** Use SDMA to update the page table. The Guest set up steps are as follows:
 
@@ -5605,7 +5615,7 @@ Where expectation is 0.
 #### CU masking causes application to freeze
 
 Using CU Masking results in an application freeze or runs exceptionally slowly. This issue is noticed
-only in the GFX10 suite of products. Note, this issue is observed only in GFX10 suite of products.
+only in the GFX10 suite of products. Note that this issue is observed only in GFX10 suite of products.
 
 This issue is under active investigation at this time.
 
@@ -5994,12 +6004,12 @@ The resolution includes a compiler change, which emits the required metadata by 
 compiler can prove that the hostcall facility is not required by the kernel. This ensures that the
 “assert()” call never fails.
 
-```note
+:::{note}
 This fix may lead to breakage in some OpenMP offload use cases, which use print inside a target region
 and result in an abort in device code. The issue will be fixed in a future release.
-```
+:::
 
-The compatibility matrix in the [Deep-learning guide](./how-to/deep-learning-rocm.md) is updated for
+The compatibility matrix in the [Deep-learning guide](../how-to/deep-learning-rocm.md) is updated for
 ROCm v5.0.2.
 
 ### Library changes in ROCM 5.0.2
@@ -6086,27 +6096,27 @@ Refer to the HIP Installation Guide v5.0 for more details.
 
 Managed memory, including the `__managed__` keyword, is now supported in the HIP combined host/device compilation. Through unified memory allocation, managed memory allows data to be shared and accessible to both the CPU and GPU using a single pointer. The allocation is managed by the AMD GPU driver using the Linux Heterogeneous Memory Management (HMM) mechanism. The user can call managed memory API hipMallocManaged to allocate a large chunk of HMM memory, execute kernels on a device, and fetch data between the host and device as needed.
 
-> **Note**
->
-> In a HIP application,  it is recommended to do a capability check before calling the managed memory APIs. For example,
->
-> ```cpp
-> int managed_memory = 0;
-> HIPCHECK(hipDeviceGetAttribute(&managed_memory,
->   hipDeviceAttributeManagedMemory,p_gpuDevice));
-> if (!managed_memory ) {
->   printf ("info: managed memory access not supported on the device %d\n Skipped\n", p_gpuDevice);
-> }
-> else {
->   HIPCHECK(hipSetDevice(p_gpuDevice));
->   HIPCHECK(hipMallocManaged(&Hmm, N * sizeof(T)));
-> . . .
-> }
-> ```
+:::{note}
+In a HIP application,  it is recommended to do a capability check before calling the managed memory APIs. For example,
 
-> **Note**
->
-> The managed memory capability check may not be necessary; however, if HMM is not supported, managed malloc will fall back to using system memory. Other managed memory API calls will, then, have
+ ```cpp
+ int managed_memory = 0;
+ HIPCHECK(hipDeviceGetAttribute(&managed_memory,
+   hipDeviceAttributeManagedMemory,p_gpuDevice));
+ if (!managed_memory ) {
+   printf ("info: managed memory access not supported on the device %d\n Skipped\n", p_gpuDevice);
+ }
+ else {
+   HIPCHECK(hipSetDevice(p_gpuDevice));
+   HIPCHECK(hipMallocManaged(&Hmm, N * sizeof(T)));
+ . . .
+ }
+ ```
+:::
+
+:::{note}
+The managed memory capability check may not be necessary; however, if HMM is not supported, managed malloc will fall back to using system memory. Other managed memory API calls will, then, have
+:::
 
 Refer to the HIP API documentation for more details on managed memory APIs.
 
@@ -6465,7 +6475,9 @@ During the deprecation, two macros `_HIP_ENABLE_COMPLEX_OPERATORS` and
 `_HIP_ENABLE_VECTOR_OPERATORS` are provided to allow users to conditionally enable arithmetic
 operators of HIP complex or vector types.
 
-Note, the two macros are mutually exclusive and, by default, set to Off.
+:::{note}
+The two macros are mutually exclusive and, by default, set to Off.
+:::
 
 The arithmetic operators of HIP complex and vector types will be removed in a future release.
 

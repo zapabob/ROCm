@@ -47,8 +47,8 @@ Installation guides
 ROCm compatibility information
 ^^^
 
-* [Linux (GPU & OS)](./about/compatibility/linux-support.md)
-* [Windows (GPU & OS)](./about/compatibility/windows-support.md)
+* {doc}`System requirements (Linux)<rocm-install-on-linux:reference/system-requirements>`
+* {doc}`System requirements (Windows)<rocm-install-on-windows:reference/system-requirements>`
 * {doc}`Third-party<rocm-install-on-linux:reference/3rd-party-support-matrix>`
 * {doc}`User/kernel space<rocm-install-on-linux:reference/user-kernel-space-compat-matrix>`
 * {doc}`Docker<rocm-install-on-linux:reference/docker-image-support-matrix>`

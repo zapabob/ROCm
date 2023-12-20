@@ -70,9 +70,6 @@ article_pages = [
     {"file":"install/windows/cli/index", "os":["windows"]},
     {"file":"install/windows/gui/index", "os":["windows"]},
 
-    {"file":"about/compatibility/linux-support", "os":["linux"]},
-    {"file":"about/compatibility/windows-support", "os":["windows"]},
-
     {"file":"about/compatibility/docker-image-support-matrix", "os":["linux"]},
     {"file":"about/compatibility/user-kernel-space-compat-matrix", "os":["linux"]},
 
