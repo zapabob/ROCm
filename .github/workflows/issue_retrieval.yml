@@ -7,7 +7,7 @@ on:
 jobs:
   auto-retrieve:
     runs-on: 
-      group: AMD-Ubuntu-20.04
+      group: ROCM-Ubuntu
     steps:
       - name: Generate a token
         id: generate_token
