@@ -19,5 +19,5 @@ jobs:
         uses: abhimeda/rocm_issue_management@main
         with:
           authentication-token: ${{ steps.generate_token.outputs.token }}
-          github-organization: 'RadeonOpenCompute'
-          github-repo: 'github_action_poc'
+          github-organization: 'ROCm'
+          project-num: '5'
