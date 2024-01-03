@@ -20,4 +20,4 @@ jobs:
         with:
           authentication-token: ${{ steps.generate_token.outputs.token }}
           github-organization: 'ROCm'
-          project-num: '5'
+          project-num: '6'
