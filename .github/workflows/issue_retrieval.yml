@@ -6,8 +6,7 @@ on:
 
 jobs:
   auto-retrieve:
-    runs-on: 
-      group: ROCM-Ubuntu
+    runs-on: ubuntu-latest
     steps:
       - name: Generate a token
         id: generate_token
