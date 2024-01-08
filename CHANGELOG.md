@@ -36,7 +36,7 @@ systems.
 
 * Ubuntu 22.04.3 (MI300A and MI300X)
 * RHEL 8.9 (MI300A)
-* SLES 15 SP5(MI300A)
+* SLES 15 SP5 (MI300A)
 
 We've added support for the following operating systems:
 
