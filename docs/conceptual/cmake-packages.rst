@@ -56,8 +56,10 @@ the *config-file* packages are shipped with the upstream projects, such as
 rocPRIM and other ROCm libraries.
 
 For a complete guide on where and how ROCm may be installed on a system, refer
-to the installation guides for {doc}`Linux<rocm-install-on-linux:tutorial/quick-start>` and
-{doc}`Windows<rocm-install-on-windows:tutorial/install-quick>`.
+to the installation guides for
+`Linux <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/tutorial/quick-start.html>`_
+and
+`Windows <https://rocm.docs.amd.com/projects/install-on-windows/en/latest/index.html>`_.
 
 Using HIP in CMake
 ==================

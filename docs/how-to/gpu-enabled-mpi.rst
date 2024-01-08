@@ -44,7 +44,7 @@ home directory in our example, but you can specify a different location if you w
         mkdir -p $BUILD_DIR
 
 2. Install UCX. To view UCX and ROCm version compatibility, refer to the
-`communication libraries tables <https://rocm.docs.amd.com/en/latest/release/3rd_party_support_matrix.html>`_.
+`communication libraries tables <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/3rd-party-support-matrix.html>`_
 
     .. code-block:: shell
 
@@ -153,7 +153,7 @@ library with ROCm support.
 .. note::
 
     You can verify UCC and ROCm version compatibility using the
-    `communication libraries <https://rocm.docs.amd.com/en/latest/release/3rd_party_support_matrix.html>`_.
+    `communication libraries tables <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/3rd-party-support-matrix.html>`_
 
 .. code-block:: shell
 
