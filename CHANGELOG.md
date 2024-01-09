@@ -15,7 +15,60 @@ This page contains the release notes for AMD ROCm Software.
 
 -------------------
 
+## ROCm 6.0.1
+
+
+### Library changes in ROCM 6.0.1
+
+| Library | Version |
+|---------|---------|
+| AMDMIGraphX | [2.8](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-6.0.1) |
+| hipBLAS | [2.0.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-6.0.1) |
+| hipCUB | [3.0.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-6.0.1) |
+| hipFFT | [1.0.13](https://github.com/ROCm/hipFFT/releases/tag/rocm-6.0.1) |
+| hipRAND | [2.10.17](https://github.com/ROCm/hipRAND/releases/tag/rocm-6.0.1) |
+| hipSOLVER | [2.0.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-6.0.1) |
+| hipSPARSE | [3.0.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-6.0.1) |
+| hipSPARSELt |  ⇒ [0.1.0](https://github.com/ROCm/hipSPARSELt/releases/tag/rocm-6.0.1) |
+| hipTensor | [1.1.0](https://github.com/ROCm/hipTensor/releases/tag/rocm-6.0.1) |
+| MIOpen | [2.19.0](https://github.com/ROCm/MIOpen/releases/tag/rocm-6.0.1) |
+| rccl | [2.15.5](https://github.com/ROCm/rccl/releases/tag/rocm-6.0.1) |
+| rocALUTION | [3.0.3](https://github.com/ROCm/rocALUTION/releases/tag/rocm-6.0.1) |
+| rocBLAS | [4.0.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-6.0.1) |
+| rocFFT | [1.0.25](https://github.com/ROCm/rocFFT/releases/tag/rocm-6.0.1) |
+| rocm-cmake | [0.11.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-6.0.1) |
+| rocPRIM | [3.0.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-6.0.1) |
+| rocRAND | [2.10.17](https://github.com/ROCm/rocRAND/releases/tag/rocm-6.0.1) |
+| rocSOLVER | [3.24.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-6.0.1) |
+| rocSPARSE | [3.0.2](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-6.0.1) |
+| rocThrust | [3.0.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-6.0.1) |
+| rocWMMA | [1.3.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-6.0.1) |
+| Tensile | [4.39.0](https://github.com/ROCm/Tensile/releases/tag/rocm-6.0.1) |
+
+#### hipSPARSELt 0.1.0
+
+hipSPARSELt 0.1.0 for ROCm 6.0.1
+
+##### Added
+
+- Enable hipSPARSELt APIs
+- Support platform: gfx940, gfx941, gfx942 
+- Support problem type: fp16, bf16, int8
+- Support activation: relu, gelu, abs, sigmod, tanh
+- Support gelu scaling
+- Support bias vector
+- Support batched computation (single sparse x multiple dense, multiple sparse x single dense)
+- Support cuSPARSELt v0.4 backend
+- Integreate with tensilelite kernel generator
+- Add Gtest: hipsparselt-test
+- Add benchmarking tool: hipsparselt-bench
+- Add sample app: example_spmm_strided_batched, example_prune, example_compress
+
+-------------------
+
 ## ROCm 6.0.0
+<!-- markdownlint-disable first-line-h1 -->
+<!-- markdownlint-disable no-duplicate-header -->
 
 ROCm 6.0 is a major release with new performance optimizations, expanded frameworks and library
 support, and improved developer experience. This includes initial enablement of the AMD Instinct™
@@ -28,6 +81,9 @@ MI300 series. Future releases will further enable and optimize this new platfo
 * Prepackaged HPC and AI containers on AMD Infinity Hub, with improved documentation and
   tutorials on the [AMD ROCm Docs](https://rocm.docs.amd.com) site.
 * Consolidated developer resources and training on the new AMD ROCm Developer Hub.
+
+The following section provide a release overview for ROCm 6.0. For additional details, you can refer to
+the [Changelog](https://rocm.docs.amd.com/en/develop/about/CHANGELOG.html).
 
 ### OS and GPU support changes
 
@@ -240,7 +296,7 @@ HIP 6.0.0 for ROCm 6.0.0
     * `unsigned int luidDeviceNodeMask;`
 
 :::{note}
-HIP supports LUID only on Windows OS.
+HIP only supports LUID on Windows OS.
 :::
 
 ##### Changes
@@ -278,10 +334,7 @@ HIP supports LUID only on Windows OS.
 * HIP complex vector type multiplication and division operations. On AMD platform, some duplicated complex operators are removed to avoid compilation failures. In HIP, `hipFloatComplex` and `hipDoubleComplex` are defined as complex data types: `typedef float2 hipFloatComplex; typedef double2 hipDoubleComplex;` Any application that uses complex multiplication and division operations needs to replace '*' and '/' operators with the following:
   * `hipCmulf()` and `hipCdivf()` for `hipFloatComplex`
   * `hipCmul()` and `hipCdiv()` for `hipDoubleComplex`
-
-  :::{note}
-  These complex operations are equivalent to corresponding types/functions on NVIDIA platform.
-  :::
+Note: These complex operations are equivalent to corresponding types/functions on NVIDIA platform.
 
 ##### Removals
 
@@ -906,6 +959,493 @@ Tensile 4.39.0 for ROCm 6.0.0
 * Compiler directive for gfx942
 * Formatting for `DecisionTree_test.cpp`
 
+### Library changes in ROCM 6.0.0
+
+| Library | Version |
+|---------|---------|
+| AMDMIGraphX | 2.7 ⇒ [2.8](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-6.0.0) |
+| hipBLAS | 1.1.0 ⇒ [2.0.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-6.0.0) |
+| hipCUB | 2.13.1 ⇒ [3.0.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-6.0.0) |
+| hipFFT | 1.0.12 ⇒ [1.0.13](https://github.com/ROCm/hipFFT/releases/tag/rocm-6.0.0) |
+| hipRAND | 2.10.16 ⇒ [2.10.17](https://github.com/ROCm/hipRAND/releases/tag/rocm-6.0.0) |
+| hipSOLVER | 1.8.2 ⇒ [2.0.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-6.0.0) |
+| hipSPARSE | 2.3.8 ⇒ [3.0.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-6.0.0) |
+| hipTensor |  ⇒ [1.1.0](https://github.com/ROCm/hipTensor/releases/tag/rocm-6.0.0) |
+| MIOpen | [2.19.0](https://github.com/ROCm/MIOpen/releases/tag/rocm-6.0.0) |
+| rccl | [2.15.5](https://github.com/ROCm/rccl/releases/tag/rocm-6.0.0) |
+| rocALUTION | 2.1.11 ⇒ [3.0.3](https://github.com/ROCm/rocALUTION/releases/tag/rocm-6.0.0) |
+| rocBLAS | 3.1.0 ⇒ [4.0.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-6.0.0) |
+| rocFFT | 1.0.24 ⇒ [1.0.25](https://github.com/ROCm/rocFFT/releases/tag/rocm-6.0.0) |
+| rocm-cmake | 0.10.0 ⇒ [0.11.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-6.0.0) |
+| rocPRIM | 2.13.1 ⇒ [3.0.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-6.0.0) |
+| rocRAND | [2.10.17](https://github.com/ROCm/rocRAND/releases/tag/rocm-6.0.0) |
+| rocSOLVER | 3.23.0 ⇒ [3.24.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-6.0.0) |
+| rocSPARSE | 2.5.4 ⇒ [3.0.2](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-6.0.0) |
+| rocThrust | 2.18.0 ⇒ [3.0.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-6.0.0) |
+| rocWMMA | 1.2.0 ⇒ [1.3.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-6.0.0) |
+| Tensile | 4.38.0 ⇒ [4.39.0](https://github.com/ROCm/Tensile/releases/tag/rocm-6.0.0) |
+
+#### AMDMIGraphX 2.8
+
+MIGraphX 2.8 for ROCm 6.0.0
+
+##### Additions
+
+* Support for MI300 GPUs
+* Support for TorchMIGraphX via PyTorch
+* Boosted overall performance by integrating rocMLIR
+* INT8 support for ONNX Runtime
+* Support for ONNX version 1.14.1
+* Added new operators: `Qlinearadd`, `QlinearGlobalAveragePool`, `Qlinearconv`, `Shrink`, `CastLike`,
+  and `RandomUniform`
+* Added an error message for when `gpu_targets` is not set during MIGraphX compilation
+* Added parameter to set tolerances with `migraphx-driver` verify
+* Added support for MXR files &gt; 4 GB
+* Added `MIGRAPHX_TRACE_MLIR` flag
+* BETA added capability for using ROCm Composable Kernels via the `MIGRAPHX_ENABLE_CK=1`
+  environment variable
+
+##### Optimizations
+
+* Improved performance support for INT8
+* Improved time precision while benchmarking candidate kernels from CK or MLIR
+* Removed contiguous from reshape parsing
+* Updated the `ConstantOfShape` operator to support Dynamic Batch
+* Simplified dynamic shapes-related operators to their static versions, where possible
+* Improved debugging tools for accuracy issues
+* Included a print warning about `miopen_fusion` while generating `mxr`
+* General reduction in system memory usage during model compilation
+* Created additional fusion opportunities during model compilation
+* Improved debugging for matchers
+* Improved general debug messages
+
+##### Fixes
+
+* Fixed scatter operator for nonstandard shapes with some models from ONNX Model Zoo
+* Provided a compile option to improve the accuracy of some models by disabling Fast-Math
+* Improved layernorm + pointwise fusion matching to ignore argument order
+* Fixed accuracy issue with `ROIAlign` operator
+* Fixed computation logic for the `Trilu` operator
+* Fixed support for the DETR model
+
+##### Changes
+
+* Changed MIGraphX version to 2.8
+* Extracted the test packages into a separate deb file when building MIGraphX from source
+
+##### Removals
+
+* Removed building Python 2.7 bindings
+
+#### hipBLAS 2.0.0
+
+hipBLAS 2.0.0 for ROCm 6.0.0
+
+##### Added
+
+- added option to define HIPBLAS_USE_HIP_BFLOAT16 to switch API to use hip_bfloat16 type
+- added hipblasGemmExWithFlags API
+
+##### Deprecated
+
+- hipblasDatatype_t is deprecated and will be removed in a future release and replaced with hipDataType
+- hipblasComplex and hipblasDoubleComplex are deprecated and will be removed in a future release and replaced with hipComplex and hipDoubleComplex
+- use of hipblasDatatype_t for hipblasGemmEx for compute-type is deprecated and will be replaced with hipblasComputeType_t in a future release
+
+##### Removed
+
+- hipblasXtrmm that calculates B &lt;- alpha * op(A) * B is removed and replaced with hipblasXtrmm that calculates C &lt;- alpha * op(A) * B
+
+#### hipCUB 3.0.0
+
+hipCUB 3.0.0 for ROCm 6.0.0
+
+##### Changed
+
+- Removed `DOWNLOAD_ROCPRIM`, forcing rocPRIM to download can be done with `DEPENDENCIES_FORCE_DOWNLOAD`.
+
+#### hipFFT 1.0.13
+
+hipFFT 1.0.13 for ROCm 6.0.0
+
+##### Changed
+
+- hipfft-rider has been renamed to hipfft-bench, controlled by the BUILD_CLIENTS_BENCH CMake option.  A link for the 
+  old file name is installed, and the old BUILD_CLIENTS_RIDER CMake option is accepted for compatibility but both 
+  will be removed in a future release.
+- Binaries in debug builds no longer have a &#34;-d&#34; suffix.
+- The minimum rocFFT required version has been updated to 1.0.21.
+
+##### Added
+
+- Implemented hipfftXtSetGPUs, hipfftXtMalloc, hipfftXtMemcpy, hipfftXtFree, hipfftXtExecDescriptor APIs to allow computing FFTs on multiple devices in a single process.
+
+#### hipRAND 2.10.17
+
+hipRAND 2.10.17 for ROCm 6.0.0
+
+##### Fixed
+
+- Fixed benchmark and unit test builds on Windows.
+
+#### hipSOLVER 2.0.0
+
+hipSOLVER 2.0.0 for ROCm 6.0.0
+
+##### Added
+
+- Added hipBLAS as an optional dependency to hipsolver-test. Use the `BUILD_HIPBLAS_TESTS` CMake option to test compatibility between hipSOLVER and hipBLAS.
+
+##### Changed
+
+- Types hipsolverOperation_t, hipsolverFillMode_t, and hipsolverSideMode_t are now aliases of hipblasOperation_t, hipblasFillMode_t, and hipblasSideMode_t.
+
+##### Fixed
+
+- Fixed tests for hipsolver info updates in ORGBR/UNGBR, ORGQR/UNGQR,
+  ORGTR/UNGTR, ORMQR/UNMQR, and ORMTR/UNMTR.
+
+#### hipSPARSE 3.0.0
+
+hipSPARSE 3.0.0 for ROCm 6.0.0
+
+##### Added
+
+- Added hipsparseGetErrorName and hipsparseGetErrorString
+
+##### Changed
+
+- Changed hipsparseSpSV_solve() API function to match cusparse API
+- Changed generic API functions to use const descriptors
+- Documentation improved
+
+#### hipTensor 1.1.0
+
+hipTensor 1.1.0 for ROCm 6.0.0
+
+##### Additions
+
+* Architecture support for gfx940, gfx941, and gfx942
+* Client tests configuration parameters now support YAML file input format
+
+##### Changes
+
+* Doxygen now treats warnings as errors
+
+##### Fixes
+
+* Client tests output redirections now behave accordingly
+* Removed dependency static library deployment
+* Security issues for documentation
+* Compile issues in debug mode
+* Corrected soft link for ROCm deployment
+
+#### rocALUTION 3.0.3
+
+rocALUTION 3.0.3 for ROCm 6.0.0
+
+##### Added
+
+- Added support for 64bit integer vectors
+- Added inclusive and exclusive sum functionality for Vector classes
+- Added Transpose functionality for Global/LocalMatrix
+- Added TripleMatrixProduct functionality LocalMatrix
+- Added Sort() function for LocalVector class
+- Added multiple stream support to the HIP backend
+
+##### Optimized
+
+- GlobalMatrix::Apply() now uses multiple streams to better hide communication
+
+##### Changed
+
+- Matrix dimensions and number of non-zeros are now stored using 64bit integers
+- Improved ILUT preconditioner
+
+##### Removed
+
+- Removed LocalVector::GetIndexValues(ValueType\*)
+- Removed LocalVector::SetIndexValues(const ValueType\*)
+- Removed LocalMatrix::RSDirectInterpolation(const LocalVector&amp;, const LocalVector&amp;, LocalMatrix\*, LocalMatrix\*)
+- Removed LocalMatrix::RSExtPIInterpolation(const LocalVector&amp;, const LocalVector&amp;, bool, float, LocalMatrix\*, LocalMatrix\*)
+- Removed LocalMatrix::RugeStueben()
+- Removed LocalMatrix::AMGSmoothedAggregation(ValueType, const LocalVector&amp;, const LocalVector&amp;, LocalMatrix\*, LocalMatrix\*, int)
+- Removed LocalMatrix::AMGAggregation(const LocalVector&amp;, LocalMatrix\*, LocalMatrix\*)
+
+##### Fixed
+
+- Unit tests do not ignore BCSR block dimension anymore
+- Fixed typos in the documentation
+- Fixed a bug in multicoloring for non-symmetric matrix patterns
+
+#### rocBLAS 4.0.0
+
+rocBLAS 4.0.0 for ROCm 6.0.0
+
+##### Added
+
+- Addition of beta API rocblas_gemm_batched_ex3 and rocblas_gemm_strided_batched_ex3
+- Added input/output type f16_r/bf16_r and execution type f32_r support for Level 2 gemv_batched and gemv_strided_batched
+- Added rocblas_status_excluded_from_build to be used when calling functions which require Tensile when using rocBLAS built without Tensile
+- Added system for async kernel launches setting a failure rocblas_status based on hipPeekAtLastError discrepancy
+
+##### Optimized
+
+- Trsm performance for small sizes m &lt; 32 &amp;&amp; n &lt; 32
+
+##### Deprecated
+
+- In a future release atomic operations will be disabled by default so results will be repeatable. Atomic operations can always be enabled or disabled using the function rocblas_set_atomics_mode. Enabling atomic operations can improve performance.
+
+##### Removed
+
+- rocblas_gemm_ext2 API function is removed
+- in-place trmm API from Legacy BLAS is removed. It is replaced by an API that supports both in-place and out-of-place trmm
+- int8x4 support is removed. int8 support is unchanged
+- The #define STDC_WANT_IEC_60559_TYPES_EXT has been removed from rocblas-types.h. Users who want ISO/IEC TS 18661-3:2015 functionality must define STDC_WANT_IEC_60559_TYPES_EXT before including float.h, math.h, and rocblas.h
+- The default build removes device code for gfx803 architecture from the fat binary
+
+##### Fixed
+
+- Make offset calculations for rocBLAS functions 64 bit safe. Fixes for very large leading dimension or increment potentially causing overflow:
+  - Level2: gbmv, gemv, hbmv, sbmv, spmv, tbmv, tpmv, tbsv, tpsv
+- Lazy loading to support heterogeneous architecture setup and load appropriate tensile library files based on the device&#39;s architecture
+- Guard against no-op kernel launches resulting in potential hipGetLastError
+
+##### Changed
+
+- Default verbosity of rocblas-test reduced. To see all tests set environment variable GTEST_LISTENER=PASS_LINE_IN_LOG
+
+#### rocFFT 1.0.25
+
+rocFFT 1.0.25 for ROCm 6.0.0
+
+##### Added
+
+- Implemented experimental APIs to allow computing FFTs on data distributed across multiple devices in a single process.
+
+  `rocfft_field` is a new type that can be added to a plan description, to describe layout of FFT input or output.  `rocfft_field_add_brick` can be called one or more times to describe a brick decomposition of an FFT field, where each brick can be assigned a different device.
+
+  These interfaces are still experimental and subject to change.  We are interested to hear feedback on them.  Questions and concerns may be raised by opening issues on the [rocFFT issue tracker](https://github.com/ROCmSoftwarePlatform/rocFFT/issues).
+
+  Note that at this time, multi-device FFTs have several limitations:
+
+  * Real-complex (forward or inverse) FFTs are not currently supported.
+  * Planar format fields are not currently supported.
+  * Batch (i.e. `number_of_transforms` provided to `rocfft_plan_create`) must be 1.
+  * The FFT input is gathered to the current device at execute time, so all of the FFT data must fit on that device.
+
+  We expect these limitations to be removed in future releases.
+
+##### Optimizations
+
+- Improved performance of some small 2D/3D real FFTs supported by 2D_SINGLE kernel. gfx90a gets more optimization
+  by offline tuning.
+- Removed an extra kernel launch from even-length real-complex FFTs that use callbacks.
+
+##### Changed
+
+- Built kernels in solution-map to library kernel cache.
+- Real forward transforms (real-to-complex) no longer overwrite input.  rocFFT still may overwrite real inverse (complex-to-real) input, as this allows for faster performance.
+
+- rocfft-rider and dyna-rocfft-rider have been renamed to rocfft-bench and dyna-rocfft-bench, controlled by the
+  BUILD_CLIENTS_BENCH CMake option.  Links for the old file names are installed, and the old
+  BUILD_CLIENTS_RIDER CMake option is accepted for compatibility but both will be removed in a future release.
+- Binaries in debug builds no longer have a &#34;-d&#34; suffix.
+
+##### Fixed
+
+- rocFFT now correctly handles load callbacks that convert data from a smaller data type (e.g. 16-bit integers -&gt; 32-bit float).
+
+#### rocm-cmake 0.11.0
+
+rocm-cmake 0.11.0 for ROCm 6.0.0
+
+##### Changed
+
+- ROCMSphinxDoc: Improved validation, documentation and rocm-docs-core integration.
+
+##### Fixed
+
+- ROCMClangTidy: Fixed extra make flags passed for clang tidy.
+- ROCMTest: Fixed issues when using module in a subdirectory.
+
+#### rocPRIM 3.0.0
+
+rocPRIM 3.0.0 for ROCm 6.0.0
+
+##### Added
+
+- `block_sort::sort()` overload for keys and values with a dynamic size, for all block sort algorithms. Additionally, all `block_sort::sort()` overloads with a dynamic size are now supported for `block_sort_algorithm::merge_sort` and `block_sort_algorithm::bitonic_sort`.
+- New two-way partition primitive `partition_two_way` which can write to two separate iterators.
+
+##### Optimizations
+
+- Improved the performance of `partition`.
+
+##### Fixed
+
+- Fixed `rocprim::MatchAny` for devices with 64-bit warp size. The function `rocprim::MatchAny` is deprecated and `rocprim::match_any` is preferred instead.
+
+#### rocSOLVER 3.24.0
+
+rocSOLVER 3.24.0 for ROCm 6.0.0
+
+##### Added
+
+- Cholesky refactorization for sparse matrices
+    - CSRRF_REFACTCHOL
+- Added `rocsolver_rfinfo_mode` and the ability to specify the desired refactorization routine (see `rocsolver_set_rfinfo_mode`).
+
+##### Changed
+
+- CSRRF_ANALYSIS and CSRRF_SOLVE now support sparse Cholesky factorization
+
+#### rocSPARSE 3.0.2
+
+rocSPARSE 3.0.2 for ROCm 6.0.0
+
+##### Added
+
+- Added rocsparse_inverse_permutation
+- Added mixed precisions for SpVV
+- Added uniform int8 precision for Gather and Scatter
+
+##### Optimized
+
+- Optimization to doti routine
+- Optimization to spin-looping algorithms
+
+##### Changed
+
+- Changed rocsparse_spmv function arguments
+- Changed rocsparse_xbsrmv routines function arguments
+- doti, dotci, spvv, and csr2ell now require calling hipStreamSynchronize after when using host pointer mode
+- Improved documentation
+- Improved verbose output during argument checking on API function calls
+
+##### Deprecated
+
+- Deprecated rocsparse_spmv_ex
+- Deprecated rocsparse_xbsrmv_ex routines
+
+##### Removed
+
+- Removed auto stages from spmv, spmm, spgemm, spsv, spsm, and spitsv.
+- Removed rocsparse_spmm_ex routine
+
+##### Fixed
+
+- Fixed a bug in rocsparse-bench, where SpMV algorithm was not taken into account in CSR format
+- Fixed the BSR/GEBSR routines bsrmv, bsrsv, bsrmm, bsrgeam, gebsrmv, gebsrmm so that block_dim==0 is considered an invalid size
+- Fixed bug where passing nnz = 0 to doti or dotci did not always return a dot product of 0
+
+#### rocThrust 3.0.0
+
+rocThrust 3.0.0 for ROCm 6.0.0
+
+##### Added
+
+- Updated to match upstream Thrust 2.0.1
+- NV_IF_TARGET macro from libcu++ for NVIDIA backend and HIP implementation for HIP backend.
+
+##### Changed
+
+- The cmake build system now additionally accepts `GPU_TARGETS` in addition to `AMDGPU_TARGETS` for
+  setting the targeted gpu architectures. `GPU_TARGETS=all` will compile for all supported architectures.
+  `AMDGPU_TARGETS` is only provided for backwards compatibility, `GPU_TARGETS` should be preferred.
+
+##### Removed
+
+- Removed cub symlink from the root of the repository.
+- Removed support for deprecated macros (THRUST_DEVICE_BACKEND and THRUST_HOST_BACKEND).
+
+##### Fixed
+
+- Fixed a segmentation fault when binary search / upper bound / lower bound / equal range was invoked with `hip_rocprim::execute_on_stream_base` policy.
+
+##### Known Issues
+
+- For NVIDIA backend, `NV_IF_TARGET` and `THRUST_RDC_ENABLED` intend to substitute the `THRUST_HAS_CUDART` macro, which is now no longer used in Thrust (provided for legacy support only). However, there is no `THRUST_RDC_ENABLED` macro available for the HIP backend, so some branches in Thrust&#39;s code may be unreachable in the HIP backend.
+
+#### rocWMMA 1.3.0
+
+rocWMMA 1.3.0 for ROCm 6.0.0
+
+##### Added
+
+- Added support for gfx940, gfx941 and gfx942 targets
+- Added support for f8, bf8 and xfloat32 datatypes
+- Added support for HIP_NO_HALF, __ HIP_NO_HALF_CONVERSIONS__ and __ HIP_NO_HALF_OPERATORS__ (e.g. pytorch environment)
+
+##### Changed
+
+- rocWMMA with hipRTC now supports bfloat16_t datatype
+- gfx11 wmma now uses lane swap instead of broadcast for layout adjustment
+- Updated samples GEMM parameter validation on host arch
+
+##### Fixed
+
+- Disabled gtest static library deployment
+- Extended tests now build in large code model
+
+#### Tensile 4.39.0
+
+Tensile 4.39.0 for ROCm 6.0.0
+
+##### Added
+
+- Added aquavanjaram support: gfx940/gfx941/gfx942, fp8/bf8 datatype, xf32 datatype, and stochastic rounding for various datatypes
+- Added/updated tuning scripts
+- Added DirectToLds support for larger data types with 32bit global load (old parameter DirectToLds is replaced with DirectToLdsA and DirectToLdsB), and the corresponding test cases
+- Added the average of frequency, power consumption, and temperature information for the winner kernels to the CSV file
+- Added asmcap check for MFMA + const src
+- Added support for wider local read + pack with v_perm (with VgprForLocalReadPacking=True)
+- Added a new parameter to increase miLatencyLeft
+
+##### Optimizations
+
+- Enabled InitAccVgprOpt for MatrixInstruction cases
+- Implemented local read related parameter calculations with DirectToVgpr
+- Adjusted miIssueLatency for gfx940
+- Enabled dedicated vgpr allocation for local read + pack
+- Optimized code initialization
+- Optimized sgpr allocation
+- Supported DGEMM TLUB + RLVW=2 for odd N (edge shift change)
+- Enabled miLatency optimization for (gfx940/gfx941 + MFMA) for specific data types, and fixed instruction scheduling
+
+##### Changed
+
+- Removed old code for DTL + (bpe * GlobalReadVectorWidth &gt; 4)
+- Changed/updated failed CI tests for gfx11xx, InitAccVgprOpt, and DTLds
+- Removed unused CustomKernels and ReplacementKernels
+- Added a reject condition for DTVB + TransposeLDS=False (not supported so far)
+- Removed unused code for DirectToLds
+- Updated test cases for DTV + TransposeLDS=False
+- Moved parameter MinKForGSU from globalparameter to BenchmarkCommonParameter to support smaller K
+- Changed how to calculate latencyForLR for miLatency
+- Set minimum value of latencyForLRCount for 1LDSBuffer to avoid getting rejected by overflowedResources=5 (related to miLatency)
+- Refactored allowLRVWBforTLUandMI and renamed it as VectorWidthB
+- Supported multi-gpu for different architectures in lazy library loading
+- Enabled dtree library for batch &gt; 1
+- Added problem scale feature for dtree selection
+- Enabled ROCm SMI for gfx940/941.
+- Modified non-lazy load build to skip experimental logic
+
+##### Fixed
+
+- Fixed predicate ordering for fp16alt impl round near zero mode to unbreak distance modes
+- Fixed boundary check for mirror dims and re-enable disabled mirror dims test cases
+- Fixed merge error affecting i8 with wmma
+- Fixed mismatch issue with DTLds + TSGR + TailLoop
+- Fixed a bug with InitAccVgprOpt + GSU&gt;1 and a mismatch issue with PGR=0
+- Fixed override for unloaded solutions when lazy loading
+- Fixed build some errors (adding missing headers)
+- Fixed boost link for a clean build on ubuntu22
+- Fixed bug in forcestoresc1 arch selection
+- Fixed compiler directive for gfx941 and gfx942
+- Fixed formatting for DecisionTree_test.cpp
+
 -------------------
 
 ## ROCm 5.7.1
@@ -967,24 +1507,25 @@ for managed memory.
 
 | Library | Version |
 |---------|---------|
-| AMDMIGraphX | [2.7](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.7.1) |
-| hipBLAS | [1.1.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.7.1) |
-| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.7.1) |
-| hipFFT | [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.7.1) |
-| hipSOLVER | 1.8.1 ⇒ [1.8.2](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.7.1) |
-| hipSPARSE | [2.3.8](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.7.1) |
-| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.7.1) |
-| rocALUTION | [2.1.11](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.7.1) |
-| rocBLAS | [3.1.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.7.1) |
-| rocFFT | [1.0.24](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.7.1) |
-| rocm-cmake | [0.10.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.7.1) |
-| rocPRIM | [2.13.1](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.7.1) |
-| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.7.1) |
-| rocSOLVER | [3.23.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.7.1) |
-| rocSPARSE | [2.5.4](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.7.1) |
-| rocThrust | [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.7.1) |
-| rocWMMA | [1.2.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.7.1) |
-| Tensile | [4.38.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.7.1) |
+| AMDMIGraphX | [2.7](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-5.7.1) |
+| hipBLAS | [1.1.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.7.1) |
+| hipCUB | [2.13.1](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.7.1) |
+| hipFFT | [1.0.12](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.7.1) |
+| hipRAND | [2.10.16](https://github.com/ROCm/hipRAND/releases/tag/rocm-5.7.1) |
+| hipSOLVER | 1.8.1 ⇒ [1.8.2](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.7.1) |
+| hipSPARSE | [2.3.8](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.7.1) |
+| MIOpen | [2.19.0](https://github.com/ROCm/MIOpen/releases/tag/rocm-5.7.1) |
+| rocALUTION | [2.1.11](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.7.1) |
+| rocBLAS | [3.1.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.7.1) |
+| rocFFT | [1.0.24](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.7.1) |
+| rocm-cmake | [0.10.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.7.1) |
+| rocPRIM | [2.13.1](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.7.1) |
+| rocRAND | [2.10.17](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.7.1) |
+| rocSOLVER | [3.23.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.7.1) |
+| rocSPARSE | [2.5.4](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.7.1) |
+| rocThrust | [2.18.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.7.1) |
+| rocWMMA | [1.2.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.7.1) |
+| Tensile | [4.38.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.7.1) |
 
 #### hipSOLVER 1.8.2
 
@@ -1200,24 +1741,25 @@ The following defects are fixed in ROCm v5.7:
 
 | Library | Version |
 |---------|---------|
-| AMDMIGraphX | 2.5 ⇒ [2.7](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.7.0) |
-| hipBLAS | 0.54.0 ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.7.0) |
-| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.7.0) |
-| hipFFT | [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.7.0) |
-| hipSOLVER | 1.8.0 ⇒ [1.8.1](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.7.0) |
-| hipSPARSE | 2.3.7 ⇒ [2.3.8](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.7.0) |
-| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.7.0) |
-| rocALUTION | 2.1.9 ⇒ [2.1.11](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.7.0) |
-| rocBLAS | 3.0.0 ⇒ [3.1.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.7.0) |
-| rocFFT | 1.0.23 ⇒ [1.0.24](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.7.0) |
-| rocm-cmake | 0.9.0 ⇒ [0.10.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.7.0) |
-| rocPRIM | 2.13.0 ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.7.0) |
-| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.7.0) |
-| rocSOLVER | 3.22.0 ⇒ [3.23.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.7.0) |
-| rocSPARSE | 2.5.2 ⇒ [2.5.4](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.7.0) |
-| rocThrust | [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.7.0) |
-| rocWMMA | 1.1.0 ⇒ [1.2.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.7.0) |
-| Tensile | 4.37.0 ⇒ [4.38.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.7.0) |
+| AMDMIGraphX | 2.5 ⇒ [2.7](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-5.7.0) |
+| hipBLAS | 0.54.0 ⇒ [1.1.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.7.0) |
+| hipCUB | [2.13.1](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.7.0) |
+| hipFFT | [1.0.12](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.7.0) |
+| hipRAND | [2.10.16](https://github.com/ROCm/hipRAND/releases/tag/rocm-5.7.0) |
+| hipSOLVER | 1.8.0 ⇒ [1.8.1](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.7.0) |
+| hipSPARSE | 2.3.7 ⇒ [2.3.8](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.7.0) |
+| MIOpen | [2.19.0](https://github.com/ROCm/MIOpen/releases/tag/rocm-5.7.0) |
+| rocALUTION | 2.1.9 ⇒ [2.1.11](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.7.0) |
+| rocBLAS | 3.0.0 ⇒ [3.1.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.7.0) |
+| rocFFT | 1.0.23 ⇒ [1.0.24](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.7.0) |
+| rocm-cmake | 0.9.0 ⇒ [0.10.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.7.0) |
+| rocPRIM | 2.13.0 ⇒ [2.13.1](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.7.0) |
+| rocRAND | [2.10.17](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.7.0) |
+| rocSOLVER | 3.22.0 ⇒ [3.23.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.7.0) |
+| rocSPARSE | 2.5.2 ⇒ [2.5.4](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.7.0) |
+| rocThrust | [2.18.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.7.0) |
+| rocWMMA | 1.1.0 ⇒ [1.2.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.7.0) |
+| Tensile | 4.37.0 ⇒ [4.38.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.7.0) |
 
 #### AMDMIGraphX 2.7
 
@@ -1489,25 +2031,26 @@ ROCm 5.6.1 is a point release with several bug fixes in the HIP runtime.
 
 | Library | Version |
 |---------|---------|
-| AMDMIGraphX | [2.5](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.6.1) |
-| hipBLAS | [0.53.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.1) |
-| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.6.1) |
-| hipFFT | [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.6.1) |
-| hipSOLVER | [1.8.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.6.1) |
-| hipSPARSE | 2.3.6 ⇒ [2.3.7](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.6.1) |
-| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.6.1) |
-| rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.6.1) |
-| rocALUTION | [2.1.9](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.6.1) |
-| rocBLAS | [3.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.6.1) |
-| rocFFT | [1.0.23](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.6.1) |
-| rocm-cmake | [0.9.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.6.1) |
-| rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.6.1) |
-| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.6.1) |
-| rocSOLVER | [3.22.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.6.1) |
-| rocSPARSE | [2.5.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.6.1) |
-| rocThrust | [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.6.1) |
-| rocWMMA | [1.1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.6.1) |
-| Tensile | [4.37.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.6.1) |
+| AMDMIGraphX | [2.5](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-5.6.1) |
+| hipBLAS | [0.53.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.6.1) |
+| hipCUB | [2.13.1](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.6.1) |
+| hipFFT | [1.0.12](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.6.1) |
+| hipRAND | [2.10.16](https://github.com/ROCm/hipRAND/releases/tag/rocm-5.6.1) |
+| hipSOLVER | [1.8.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.6.1) |
+| hipSPARSE | 2.3.6 ⇒ [2.3.7](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.6.1) |
+| MIOpen | [2.19.0](https://github.com/ROCm/MIOpen/releases/tag/rocm-5.6.1) |
+| rccl | [2.15.5](https://github.com/ROCm/rccl/releases/tag/rocm-5.6.1) |
+| rocALUTION | [2.1.9](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.6.1) |
+| rocBLAS | [3.0.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.6.1) |
+| rocFFT | [1.0.23](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.6.1) |
+| rocm-cmake | [0.9.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.6.1) |
+| rocPRIM | [2.13.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.6.1) |
+| rocRAND | [2.10.17](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.6.1) |
+| rocSOLVER | [3.22.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.6.1) |
+| rocSPARSE | [2.5.2](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.6.1) |
+| rocThrust | [2.18.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.6.1) |
+| rocWMMA | [1.1.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.6.1) |
+| Tensile | [4.37.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.6.1) |
 
 #### hipSPARSE 2.3.7
 
@@ -1727,25 +2270,26 @@ The resulting `a.out` will depend on
 
 | Library | Version |
 |---------|---------|
-| AMDMIGraphX | [2.5](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.6.0) |
-| hipBLAS | [0.53.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.6.0) |
-| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.6.0) |
-| hipFFT | 1.0.11 ⇒ [1.0.12](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.6.0) |
-| hipSOLVER | 1.7.0 ⇒ [1.8.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.6.0) |
-| hipSPARSE | 2.3.5 ⇒ [2.3.6](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.6.0) |
-| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.6.0) |
-| rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.6.0) |
-| rocALUTION | 2.1.8 ⇒ [2.1.9](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.6.0) |
-| rocBLAS | 2.47.0 ⇒ [3.0.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.6.0) |
-| rocFFT | 1.0.22 ⇒ [1.0.23](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.6.0) |
-| rocm-cmake | 0.8.1 ⇒ [0.9.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.6.0) |
-| rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.6.0) |
-| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.6.0) |
-| rocSOLVER | 3.21.0 ⇒ [3.22.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.6.0) |
-| rocSPARSE | 2.5.1 ⇒ [2.5.2](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.6.0) |
-| rocThrust | 2.17.0 ⇒ [2.18.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.6.0) |
-| rocWMMA | 1.0 ⇒ [1.1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.6.0) |
-| Tensile | 4.36.0 ⇒ [4.37.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.6.0) |
+| AMDMIGraphX | [2.5](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-5.6.0) |
+| hipBLAS | [0.53.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.6.0) |
+| hipCUB | [2.13.1](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.6.0) |
+| hipFFT | 1.0.11 ⇒ [1.0.12](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.6.0) |
+| hipRAND | [2.10.16](https://github.com/ROCm/hipRAND/releases/tag/rocm-5.6.0) |
+| hipSOLVER | 1.7.0 ⇒ [1.8.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.6.0) |
+| hipSPARSE | 2.3.5 ⇒ [2.3.6](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.6.0) |
+| MIOpen | [2.19.0](https://github.com/ROCm/MIOpen/releases/tag/rocm-5.6.0) |
+| rccl | [2.15.5](https://github.com/ROCm/rccl/releases/tag/rocm-5.6.0) |
+| rocALUTION | 2.1.8 ⇒ [2.1.9](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.6.0) |
+| rocBLAS | 2.47.0 ⇒ [3.0.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.6.0) |
+| rocFFT | 1.0.22 ⇒ [1.0.23](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.6.0) |
+| rocm-cmake | 0.8.1 ⇒ [0.9.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.6.0) |
+| rocPRIM | [2.13.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.6.0) |
+| rocRAND | [2.10.17](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.6.0) |
+| rocSOLVER | 3.21.0 ⇒ [3.22.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.6.0) |
+| rocSPARSE | 2.5.1 ⇒ [2.5.2](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.6.0) |
+| rocThrust | 2.17.0 ⇒ [2.18.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.6.0) |
+| rocWMMA | 1.0 ⇒ [1.1.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.6.0) |
+| Tensile | 4.36.0 ⇒ [4.37.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.6.0) |
 
 #### hipFFT 1.0.12
 
@@ -1990,7 +2534,7 @@ Tensile 4.37.0 for ROCm 5.6.0
 #### HIP SDK for Windows
 
 AMD is pleased to announce the availability of the HIP SDK for Windows as part
-of AMD ROCm Software. The
+of ROCm software. The
 [HIP SDK OS and GPU support page](https://rocm.docs.amd.com/en/docs-5.5.1/release/windows_support.html)
 lists the versions of Windows and GPUs validated by AMD. HIP SDK features on
 Windows are described in detail in our
@@ -2013,25 +2557,26 @@ The following HIP API is updated in the ROCm 5.5.1 release:
 
 | Library | Version |
 |---------|---------|
-| AMDMIGraphX | [2.5](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.5.1) |
-| hipBLAS | [0.54.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.5.1) |
-| hipCUB | [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.5.1) |
-| hipFFT | [1.0.11](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.5.1) |
-| hipSOLVER | [1.7.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.5.1) |
-| hipSPARSE | [2.3.5](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.5.1) |
-| MIOpen | [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.5.1) |
-| rccl | [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.5.1) |
-| rocALUTION | [2.1.8](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.5.1) |
-| rocBLAS | [2.47.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.5.1) |
-| rocFFT | [1.0.22](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.5.1) |
-| rocm-cmake | [0.8.1](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.5.1) |
-| rocPRIM | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.5.1) |
-| rocRAND | [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.5.1) |
-| rocSOLVER | [3.21.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.5.1) |
-| rocSPARSE | [2.5.1](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.5.1) |
-| rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.5.1) |
-| rocWMMA | [1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.5.1) |
-| Tensile | [4.36.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.5.1) |
+| AMDMIGraphX | [2.5](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-5.5.1) |
+| hipBLAS | [0.54.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.5.1) |
+| hipCUB | [2.13.1](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.5.1) |
+| hipFFT | [1.0.11](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.5.1) |
+| hipRAND | [2.10.16](https://github.com/ROCm/hipRAND/releases/tag/rocm-5.5.1) |
+| hipSOLVER | [1.7.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.5.1) |
+| hipSPARSE | [2.3.5](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.5.1) |
+| MIOpen | [2.19.0](https://github.com/ROCm/MIOpen/releases/tag/rocm-5.5.1) |
+| rccl | [2.15.5](https://github.com/ROCm/rccl/releases/tag/rocm-5.5.1) |
+| rocALUTION | [2.1.8](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.5.1) |
+| rocBLAS | [2.47.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.5.1) |
+| rocFFT | [1.0.22](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.5.1) |
+| rocm-cmake | [0.8.1](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.5.1) |
+| rocPRIM | [2.13.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.5.1) |
+| rocRAND | [2.10.17](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.5.1) |
+| rocSOLVER | [3.21.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.5.1) |
+| rocSPARSE | [2.5.1](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.5.1) |
+| rocThrust | [2.17.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.5.1) |
+| rocWMMA | [1.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.5.1) |
+| Tensile | [4.36.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.5.1) |
 
 -------------------
 
@@ -2253,7 +2798,6 @@ included symbolic-link and wrapper header files in its old location for backward
 :::{note}
 ROCm will continue supporting backward compatibility until the next major release.
 :::
-
 ##### Wrapper header files
 
 Wrapper header files are placed in the old location (`/opt/rocm-xxx/<component>/include`) with a
@@ -2365,25 +2909,26 @@ This issue is under investigation and will be resolved in a future release.
 
 | Library | Version |
 |---------|---------|
-| AMDMIGraphX |  ⇒ [2.5](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX/releases/tag/rocm-5.5.0) |
-| hipBLAS | 0.53.0 ⇒ [0.54.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.5.0) |
-| hipCUB | 2.13.0 ⇒ [2.13.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.5.0) |
-| hipFFT | 1.0.10 ⇒ [1.0.11](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.5.0) |
-| hipSOLVER | 1.6.0 ⇒ [1.7.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.5.0) |
-| hipSPARSE | 2.3.3 ⇒ [2.3.5](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.5.0) |
-| MIOpen |  ⇒ [2.19.0](https://github.com/ROCmSoftwarePlatform/MIOpen/releases/tag/rocm-5.5.0) |
-| rccl | 2.13.4 ⇒ [2.15.5](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.5.0) |
-| rocALUTION | 2.1.3 ⇒ [2.1.8](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.5.0) |
-| rocBLAS | 2.46.0 ⇒ [2.47.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.5.0) |
-| rocFFT | 1.0.21 ⇒ [1.0.22](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.5.0) |
-| rocm-cmake | 0.8.0 ⇒ [0.8.1](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.5.0) |
-| rocPRIM | 2.12.0 ⇒ [2.13.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.5.0) |
-| rocRAND | 2.10.16 ⇒ [2.10.17](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.5.0) |
-| rocSOLVER | 3.20.0 ⇒ [3.21.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.5.0) |
-| rocSPARSE | 2.4.0 ⇒ [2.5.1](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.5.0) |
-| rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.5.0) |
-| rocWMMA | 0.9 ⇒ [1.0](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.5.0) |
-| Tensile | 4.35.0 ⇒ [4.36.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.5.0) |
+| AMDMIGraphX |  ⇒ [2.5](https://github.com/ROCm/AMDMIGraphX/releases/tag/rocm-5.5.0) |
+| hipBLAS | 0.53.0 ⇒ [0.54.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.5.0) |
+| hipCUB | 2.13.0 ⇒ [2.13.1](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.5.0) |
+| hipFFT | 1.0.10 ⇒ [1.0.11](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.5.0) |
+| hipRAND |  ⇒ [2.10.16](https://github.com/ROCm/hipRAND/releases/tag/rocm-5.5.0) |
+| hipSOLVER | 1.6.0 ⇒ [1.7.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.5.0) |
+| hipSPARSE | 2.3.3 ⇒ [2.3.5](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.5.0) |
+| MIOpen |  ⇒ [2.19.0](https://github.com/ROCm/MIOpen/releases/tag/rocm-5.5.0) |
+| rccl | 2.13.4 ⇒ [2.15.5](https://github.com/ROCm/rccl/releases/tag/rocm-5.5.0) |
+| rocALUTION | 2.1.3 ⇒ [2.1.8](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.5.0) |
+| rocBLAS | 2.46.0 ⇒ [2.47.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.5.0) |
+| rocFFT | 1.0.21 ⇒ [1.0.22](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.5.0) |
+| rocm-cmake | 0.8.0 ⇒ [0.8.1](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.5.0) |
+| rocPRIM | 2.12.0 ⇒ [2.13.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.5.0) |
+| rocRAND | 2.10.16 ⇒ [2.10.17](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.5.0) |
+| rocSOLVER | 3.20.0 ⇒ [3.21.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.5.0) |
+| rocSPARSE | 2.4.0 ⇒ [2.5.1](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.5.0) |
+| rocThrust | [2.17.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.5.0) |
+| rocWMMA | 0.9 ⇒ [1.0](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.5.0) |
+| Tensile | 4.35.0 ⇒ [4.36.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.5.0) |
 
 #### AMDMIGraphX 2.5
 
@@ -2475,6 +3020,19 @@ hipFFT 1.0.11 for ROCm 5.5.0
 
 - Fixed old version rocm include/lib folders not removed on upgrade.
 
+#### hipRAND 2.10.16
+
+hipRAND 2.10.16 for ROCm 5.5.0
+
+##### Added
+
+- rocRAND backend support for Sobol 64, Scrambled Sobol 32 and 64, and MT19937.
+- `hiprandGenerateLongLong` for generating 64-bits uniformly distributed integers with Sobol 64 and Scrambled Sobol 64.
+
+##### Changed
+
+- Python 2.7 is no longer officially supported.
+
 #### hipSOLVER 1.7.0
 
 hipSOLVER 1.7.0 for ROCm 5.5.0
@@ -2507,7 +3065,7 @@ MIOpen 2.19.0 for ROCm 5.5.0
 
 ##### Added
 
-- ROCm 5.5 support for gfx1101 (Navi 32)
+- ROCm 5.5 support for gfx1101 (Navi32)
 
 ##### Changed
 
@@ -2551,7 +3109,7 @@ rocALUTION 2.1.8 for ROCm 5.5.0
 
 ##### Added
 
-- Added build support for Navi 32
+- Added build support for Navi32
 
 ##### Improved
 
@@ -2721,7 +3279,7 @@ rocSPARSE 2.5.1 for ROCm 5.5.0
 
 - Added bsrgemm and spgemm for BSR format
 - Added bsrgeam
-- Added build support for Navi 32
+- Added build support for Navi32
 - Added experimental hipGraph support for some rocSPARSE routines
 - Added csritsv, spitsv csr iterative triangular solve
 - Added mixed precisions for SpMV
@@ -2966,23 +3524,23 @@ appears.
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.53.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.4.3) |
-| hipCUB | [2.13.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.4.3) |
-| hipFFT | [1.0.10](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.4.3) |
-| hipSOLVER | [1.6.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.4.3) |
-| hipSPARSE | [2.3.3](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.4.3) |
-| rccl | [2.13.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.4.3) |
-| rocALUTION | [2.1.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.4.3) |
-| rocBLAS | [2.46.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.4.3) |
-| rocFFT | 1.0.20 ⇒ [1.0.21](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.4.3) |
-| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.4.3) |
-| rocPRIM | [2.12.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.4.3) |
-| rocRAND | [2.10.16](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.4.3) |
-| rocSOLVER | [3.20.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.4.3) |
-| rocSPARSE | [2.4.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.4.3) |
-| rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.4.3) |
-| rocWMMA | [0.9](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.4.3) |
-| Tensile | [4.35.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.4.3) |
+| hipBLAS | [0.53.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.4.3) |
+| hipCUB | [2.13.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.4.3) |
+| hipFFT | [1.0.10](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.4.3) |
+| hipSOLVER | [1.6.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.4.3) |
+| hipSPARSE | [2.3.3](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.4.3) |
+| rccl | [2.13.4](https://github.com/ROCm/rccl/releases/tag/rocm-5.4.3) |
+| rocALUTION | [2.1.3](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.4.3) |
+| rocBLAS | [2.46.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.4.3) |
+| rocFFT | 1.0.20 ⇒ [1.0.21](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.4.3) |
+| rocm-cmake | [0.8.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.4.3) |
+| rocPRIM | [2.12.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.4.3) |
+| rocRAND | [2.10.16](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.4.3) |
+| rocSOLVER | [3.20.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.4.3) |
+| rocSPARSE | [2.4.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.4.3) |
+| rocThrust | [2.17.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.4.3) |
+| rocWMMA | [0.9](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.4.3) |
+| Tensile | [4.35.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.4.3) |
 
 #### rocFFT 1.0.21
 
@@ -3039,23 +3597,23 @@ This is a known issue and will be fixed in a future release.
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.53.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.4.2) |
-| hipCUB | [2.13.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.4.2) |
-| hipFFT | [1.0.10](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.4.2) |
-| hipSOLVER | [1.6.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.4.2) |
-| hipSPARSE | [2.3.3](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.4.2) |
-| rccl | [2.13.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.4.2) |
-| rocALUTION | [2.1.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.4.2) |
-| rocBLAS | [2.46.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.4.2) |
-| rocFFT | [1.0.20](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.4.2) |
-| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.4.2) |
-| rocPRIM | [2.12.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.4.2) |
-| rocRAND | [2.10.16](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.4.2) |
-| rocSOLVER | [3.20.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.4.2) |
-| rocSPARSE | [2.4.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.4.2) |
-| rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.4.2) |
-| rocWMMA | [0.9](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.4.2) |
-| Tensile | [4.35.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.4.2) |
+| hipBLAS | [0.53.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.4.2) |
+| hipCUB | [2.13.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.4.2) |
+| hipFFT | [1.0.10](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.4.2) |
+| hipSOLVER | [1.6.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.4.2) |
+| hipSPARSE | [2.3.3](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.4.2) |
+| rccl | [2.13.4](https://github.com/ROCm/rccl/releases/tag/rocm-5.4.2) |
+| rocALUTION | [2.1.3](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.4.2) |
+| rocBLAS | [2.46.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.4.2) |
+| rocFFT | [1.0.20](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.4.2) |
+| rocm-cmake | [0.8.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.4.2) |
+| rocPRIM | [2.12.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.4.2) |
+| rocRAND | [2.10.16](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.4.2) |
+| rocSOLVER | [3.20.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.4.2) |
+| rocSPARSE | [2.4.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.4.2) |
+| rocThrust | [2.17.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.4.2) |
+| rocWMMA | [0.9](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.4.2) |
+| Tensile | [4.35.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.4.2) |
 
 -------------------
 
@@ -3140,23 +3698,23 @@ AMD Instinct™ MI200 devices.
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.53.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.4.1) |
-| hipCUB | [2.13.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.4.1) |
-| hipFFT | [1.0.10](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.4.1) |
-| hipSOLVER | [1.6.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.4.1) |
-| hipSPARSE | [2.3.3](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.4.1) |
-| rccl | [2.13.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.4.1) |
-| rocALUTION | [2.1.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.4.1) |
-| rocBLAS | [2.46.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.4.1) |
-| rocFFT | 1.0.19 ⇒ [1.0.20](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.4.1) |
-| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.4.1) |
-| rocPRIM | [2.12.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.4.1) |
-| rocRAND | [2.10.16](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.4.1) |
-| rocSOLVER | [3.20.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.4.1) |
-| rocSPARSE | [2.4.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.4.1) |
-| rocThrust | [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.4.1) |
-| rocWMMA | [0.9](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.4.1) |
-| Tensile | [4.35.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.4.1) |
+| hipBLAS | [0.53.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.4.1) |
+| hipCUB | [2.13.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.4.1) |
+| hipFFT | [1.0.10](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.4.1) |
+| hipSOLVER | [1.6.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.4.1) |
+| hipSPARSE | [2.3.3](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.4.1) |
+| rccl | [2.13.4](https://github.com/ROCm/rccl/releases/tag/rocm-5.4.1) |
+| rocALUTION | [2.1.3](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.4.1) |
+| rocBLAS | [2.46.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.4.1) |
+| rocFFT | 1.0.19 ⇒ [1.0.20](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.4.1) |
+| rocm-cmake | [0.8.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.4.1) |
+| rocPRIM | [2.12.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.4.1) |
+| rocRAND | [2.10.16](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.4.1) |
+| rocSOLVER | [3.20.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.4.1) |
+| rocSPARSE | [2.4.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.4.1) |
+| rocThrust | [2.17.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.4.1) |
+| rocWMMA | [0.9](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.4.1) |
+| Tensile | [4.35.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.4.1) |
 
 #### rocFFT 1.0.20
 
@@ -3430,23 +3988,23 @@ as it is a unique ID for that device in that particular node.
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | 0.52.0 ⇒ [0.53.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.4.0) |
-| hipCUB | 2.12.0 ⇒ [2.13.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.4.0) |
-| hipFFT | 1.0.9 ⇒ [1.0.10](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.4.0) |
-| hipSOLVER | 1.5.0 ⇒ [1.6.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.4.0) |
-| hipSPARSE | 2.3.1 ⇒ [2.3.3](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.4.0) |
-| rccl | 2.12.10 ⇒ [2.13.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.4.0) |
-| rocALUTION | 2.1.0 ⇒ [2.1.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.4.0) |
-| rocBLAS | 2.45.0 ⇒ [2.46.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.4.0) |
-| rocFFT | 1.0.18 ⇒ [1.0.19](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.4.0) |
-| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.4.0) |
-| rocPRIM | 2.11.0 ⇒ [2.12.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.4.0) |
-| rocRAND | 2.10.15 ⇒ [2.10.16](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.4.0) |
-| rocSOLVER | 3.19.0 ⇒ [3.20.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.4.0) |
-| rocSPARSE | 2.2.0 ⇒ [2.4.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.4.0) |
-| rocThrust | 2.16.0 ⇒ [2.17.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.4.0) |
-| rocWMMA | 0.8 ⇒ [0.9](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.4.0) |
-| Tensile | 4.34.0 ⇒ [4.35.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.4.0) |
+| hipBLAS | 0.52.0 ⇒ [0.53.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.4.0) |
+| hipCUB | 2.12.0 ⇒ [2.13.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.4.0) |
+| hipFFT | 1.0.9 ⇒ [1.0.10](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.4.0) |
+| hipSOLVER | 1.5.0 ⇒ [1.6.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.4.0) |
+| hipSPARSE | 2.3.1 ⇒ [2.3.3](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.4.0) |
+| rccl | 2.12.10 ⇒ [2.13.4](https://github.com/ROCm/rccl/releases/tag/rocm-5.4.0) |
+| rocALUTION | 2.1.0 ⇒ [2.1.3](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.4.0) |
+| rocBLAS | 2.45.0 ⇒ [2.46.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.4.0) |
+| rocFFT | 1.0.18 ⇒ [1.0.19](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.4.0) |
+| rocm-cmake | [0.8.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.4.0) |
+| rocPRIM | 2.11.0 ⇒ [2.12.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.4.0) |
+| rocRAND | 2.10.15 ⇒ [2.10.16](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.4.0) |
+| rocSOLVER | 3.19.0 ⇒ [3.20.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.4.0) |
+| rocSPARSE | 2.2.0 ⇒ [2.4.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.4.0) |
+| rocThrust | 2.16.0 ⇒ [2.17.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.4.0) |
+| rocWMMA | 0.8 ⇒ [0.9](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.4.0) |
+| Tensile | 4.34.0 ⇒ [4.35.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.4.0) |
 
 #### hipBLAS 0.53.0
 
@@ -3531,7 +4089,7 @@ rocALUTION 2.1.3 for ROCm 5.4.0
 
 ##### Added
 
-- Added build support for Navi 31 and Navi 33
+- Added build support for Navi31 and Navi33
 - Added support for non-squared global matrices
 
 ##### Improved
@@ -3658,7 +4216,7 @@ rocSPARSE 2.4.0 for ROCm 5.4.0
 - Added rocsparse_spmv_ex routine
 - Added rocsparse_bsrmv_ex_analysis and rocsparse_bsrmv_ex routines
 - Added csritilu0 routine
-- Added build support for Navi 31 and Navi 33
+- Added build support for Navi31 and Navi 33
 
 ##### Improved
 
@@ -3761,23 +4319,23 @@ This issue is resolved with the following fixes to compilation failures:
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.52.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.3.3) |
-| hipCUB | [2.12.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.3.3) |
-| hipFFT | [1.0.9](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.3.3) |
-| hipSOLVER | [1.5.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.3.3) |
-| hipSPARSE | [2.3.1](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.3.3) |
-| rccl | [2.12.10](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.3.3) |
-| rocALUTION | [2.1.0](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.3.3) |
-| rocBLAS | [2.45.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.3.3) |
-| rocFFT | [1.0.18](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.3.3) |
-| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.3.3) |
-| rocPRIM | [2.11.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.3.3) |
-| rocRAND | [2.10.15](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.3.3) |
-| rocSOLVER | [3.19.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.3.3) |
-| rocSPARSE | [2.2.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.3.3) |
-| rocThrust | [2.16.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.3.3) |
-| rocWMMA | [0.8](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.3.3) |
-| Tensile | [4.34.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.3.3) |
+| hipBLAS | [0.52.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.3.3) |
+| hipCUB | [2.12.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.3.3) |
+| hipFFT | [1.0.9](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.3.3) |
+| hipSOLVER | [1.5.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.3.3) |
+| hipSPARSE | [2.3.1](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.3.3) |
+| rccl | [2.12.10](https://github.com/ROCm/rccl/releases/tag/rocm-5.3.3) |
+| rocALUTION | [2.1.0](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.3.3) |
+| rocBLAS | [2.45.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.3.3) |
+| rocFFT | [1.0.18](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.3.3) |
+| rocm-cmake | [0.8.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.3.3) |
+| rocPRIM | [2.11.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.3.3) |
+| rocRAND | [2.10.15](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.3.3) |
+| rocSOLVER | [3.19.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.3.3) |
+| rocSPARSE | [2.2.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.3.3) |
+| rocThrust | [2.16.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.3.3) |
+| rocWMMA | [0.8](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.3.3) |
+| Tensile | [4.34.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.3.3) |
 
 -------------------
 
@@ -3839,23 +4397,23 @@ This issue is currently under investigation and will be resolved in a future rel
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.52.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.3.2) |
-| hipCUB | [2.12.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.3.2) |
-| hipFFT | [1.0.9](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.3.2) |
-| hipSOLVER | [1.5.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.3.2) |
-| hipSPARSE | [2.3.1](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.3.2) |
-| rccl | [2.12.10](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.3.2) |
-| rocALUTION | [2.1.0](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.3.2) |
-| rocBLAS | [2.45.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.3.2) |
-| rocFFT | [1.0.18](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.3.2) |
-| rocm-cmake | [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.3.2) |
-| rocPRIM | [2.11.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.3.2) |
-| rocRAND | [2.10.15](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.3.2) |
-| rocSOLVER | [3.19.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.3.2) |
-| rocSPARSE | [2.2.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.3.2) |
-| rocThrust | [2.16.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.3.2) |
-| rocWMMA | [0.8](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.3.2) |
-| Tensile | [4.34.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.3.2) |
+| hipBLAS | [0.52.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.3.2) |
+| hipCUB | [2.12.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.3.2) |
+| hipFFT | [1.0.9](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.3.2) |
+| hipSOLVER | [1.5.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.3.2) |
+| hipSPARSE | [2.3.1](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.3.2) |
+| rccl | [2.12.10](https://github.com/ROCm/rccl/releases/tag/rocm-5.3.2) |
+| rocALUTION | [2.1.0](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.3.2) |
+| rocBLAS | [2.45.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.3.2) |
+| rocFFT | [1.0.18](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.3.2) |
+| rocm-cmake | [0.8.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.3.2) |
+| rocPRIM | [2.11.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.3.2) |
+| rocRAND | [2.10.15](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.3.2) |
+| rocSOLVER | [3.19.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.3.2) |
+| rocSPARSE | [2.2.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.3.2) |
+| rocThrust | [2.16.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.3.2) |
+| rocWMMA | [0.8](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.3.2) |
+| Tensile | [4.34.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.3.2) |
 
 -------------------
 
@@ -4053,23 +4611,23 @@ indicated in the warning message.
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | 0.51.0 ⇒ [0.52.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.3.0) |
-| hipCUB | 2.11.1 ⇒ [2.12.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.3.0) |
-| hipFFT | 1.0.8 ⇒ [1.0.9](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.3.0) |
-| hipSOLVER | 1.4.0 ⇒ [1.5.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.3.0) |
-| hipSPARSE | 2.2.0 ⇒ [2.3.1](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.3.0) |
-| rccl | [2.12.10](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.3.0) |
-| rocALUTION | 2.0.3 ⇒ [2.1.0](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.3.0) |
-| rocBLAS | 2.44.0 ⇒ [2.45.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.3.0) |
-| rocFFT | 1.0.17 ⇒ [1.0.18](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.3.0) |
-| rocm-cmake |  ⇒ [0.8.0](https://github.com/RadeonOpenCompute/rocm-cmake/releases/tag/rocm-5.3.0) |
-| rocPRIM | 2.10.14 ⇒ [2.11.0](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.3.0) |
-| rocRAND | 2.10.14 ⇒ [2.10.15](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.3.0) |
-| rocSOLVER | 3.18.0 ⇒ [3.19.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.3.0) |
-| rocSPARSE | [2.2.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.3.0) |
-| rocThrust | 2.15.0 ⇒ [2.16.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.3.0) |
-| rocWMMA | 0.7 ⇒ [0.8](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.3.0) |
-| Tensile | 4.33.0 ⇒ [4.34.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.3.0) |
+| hipBLAS | 0.51.0 ⇒ [0.52.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.3.0) |
+| hipCUB | 2.11.1 ⇒ [2.12.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.3.0) |
+| hipFFT | 1.0.8 ⇒ [1.0.9](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.3.0) |
+| hipSOLVER | 1.4.0 ⇒ [1.5.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.3.0) |
+| hipSPARSE | 2.2.0 ⇒ [2.3.1](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.3.0) |
+| rccl | [2.12.10](https://github.com/ROCm/rccl/releases/tag/rocm-5.3.0) |
+| rocALUTION | 2.0.3 ⇒ [2.1.0](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.3.0) |
+| rocBLAS | 2.44.0 ⇒ [2.45.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.3.0) |
+| rocFFT | 1.0.17 ⇒ [1.0.18](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.3.0) |
+| rocm-cmake |  ⇒ [0.8.0](https://github.com/ROCm/rocm-cmake/releases/tag/rocm-5.3.0) |
+| rocPRIM | 2.10.14 ⇒ [2.11.0](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.3.0) |
+| rocRAND | 2.10.14 ⇒ [2.10.15](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.3.0) |
+| rocSOLVER | 3.18.0 ⇒ [3.19.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.3.0) |
+| rocSPARSE | [2.2.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.3.0) |
+| rocThrust | 2.15.0 ⇒ [2.16.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.3.0) |
+| rocWMMA | 0.7 ⇒ [0.8](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.3.0) |
+| Tensile | 4.33.0 ⇒ [4.34.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.3.0) |
 
 #### hipBLAS 0.52.0
 
@@ -4450,22 +5008,22 @@ For release information for older ROCm releases, refer to
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.51.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.2.3) |
-| hipCUB | [2.11.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.2.3) |
-| hipFFT | [1.0.8](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.2.3) |
-| hipSOLVER | [1.4.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.2.3) |
-| hipSPARSE | [2.2.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.2.3) |
-| rccl | 2.11.4 ⇒ [2.12.10](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.2.3) |
-| rocALUTION | [2.0.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.2.3) |
-| rocBLAS | [2.44.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.2.3) |
-| rocFFT | [1.0.17](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.2.3) |
-| rocPRIM | [2.10.14](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.2.3) |
-| rocRAND | [2.10.14](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.2.3) |
-| rocSOLVER | [3.18.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.2.3) |
-| rocSPARSE | [2.2.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.2.3) |
-| rocThrust | [2.15.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.2.3) |
-| rocWMMA | [0.7](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.2.3) |
-| Tensile | [4.33.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.2.3) |
+| hipBLAS | [0.51.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.2.3) |
+| hipCUB | [2.11.1](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.2.3) |
+| hipFFT | [1.0.8](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.2.3) |
+| hipSOLVER | [1.4.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.2.3) |
+| hipSPARSE | [2.2.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.2.3) |
+| rccl | 2.11.4 ⇒ [2.12.10](https://github.com/ROCm/rccl/releases/tag/rocm-5.2.3) |
+| rocALUTION | [2.0.3](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.2.3) |
+| rocBLAS | [2.44.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.2.3) |
+| rocFFT | [1.0.17](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.2.3) |
+| rocPRIM | [2.10.14](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.2.3) |
+| rocRAND | [2.10.14](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.2.3) |
+| rocSOLVER | [3.18.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.2.3) |
+| rocSPARSE | [2.2.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.2.3) |
+| rocThrust | [2.15.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.2.3) |
+| rocWMMA | [0.7](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.2.3) |
+| Tensile | [4.33.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.2.3) |
 
 #### rccl 2.12.10
 
@@ -4497,22 +5055,22 @@ RCCL 2.12.10 for ROCm 5.2.3
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.51.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.2.1) |
-| hipCUB | [2.11.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.2.1) |
-| hipFFT | [1.0.8](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.2.1) |
-| hipSOLVER | [1.4.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.2.1) |
-| hipSPARSE | [2.2.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.2.1) |
-| rccl | [2.11.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.2.1) |
-| rocALUTION | [2.0.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.2.1) |
-| rocBLAS | [2.44.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.2.1) |
-| rocFFT | [1.0.17](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.2.1) |
-| rocPRIM | [2.10.14](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.2.1) |
-| rocRAND | [2.10.14](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.2.1) |
-| rocSOLVER | [3.18.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.2.1) |
-| rocSPARSE | [2.2.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.2.1) |
-| rocThrust | [2.15.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.2.1) |
-| rocWMMA | [0.7](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.2.1) |
-| Tensile | [4.33.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.2.1) |
+| hipBLAS | [0.51.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.2.1) |
+| hipCUB | [2.11.1](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.2.1) |
+| hipFFT | [1.0.8](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.2.1) |
+| hipSOLVER | [1.4.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.2.1) |
+| hipSPARSE | [2.2.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.2.1) |
+| rccl | [2.11.4](https://github.com/ROCm/rccl/releases/tag/rocm-5.2.1) |
+| rocALUTION | [2.0.3](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.2.1) |
+| rocBLAS | [2.44.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.2.1) |
+| rocFFT | [1.0.17](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.2.1) |
+| rocPRIM | [2.10.14](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.2.1) |
+| rocRAND | [2.10.14](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.2.1) |
+| rocSOLVER | [3.18.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.2.1) |
+| rocSPARSE | [2.2.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.2.1) |
+| rocThrust | [2.15.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.2.1) |
+| rocWMMA | [0.7](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.2.1) |
+| Tensile | [4.33.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.2.1) |
 
 -------------------
 
@@ -5075,22 +5633,22 @@ This issue is under investigation and will be fixed in a future release.
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | 0.50.0 ⇒ [0.51.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.2.0) |
-| hipCUB | 2.11.0 ⇒ [2.11.1](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.2.0) |
-| hipFFT | 1.0.7 ⇒ [1.0.8](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.2.0) |
-| hipSOLVER | 1.3.0 ⇒ [1.4.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.2.0) |
-| hipSPARSE | 2.1.0 ⇒ [2.2.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.2.0) |
-| rccl | [2.11.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.2.0) |
-| rocALUTION | 2.0.2 ⇒ [2.0.3](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.2.0) |
-| rocBLAS | 2.43.0 ⇒ [2.44.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.2.0) |
-| rocFFT | 1.0.16 ⇒ [1.0.17](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.2.0) |
-| rocPRIM | 2.10.13 ⇒ [2.10.14](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.2.0) |
-| rocRAND | 2.10.13 ⇒ [2.10.14](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.2.0) |
-| rocSOLVER | 3.17.0 ⇒ [3.18.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.2.0) |
-| rocSPARSE | 2.1.0 ⇒ [2.2.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.2.0) |
-| rocThrust | 2.14.0 ⇒ [2.15.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.2.0) |
-| rocWMMA |  ⇒ [0.7](https://github.com/ROCmSoftwarePlatform/rocWMMA/releases/tag/rocm-5.2.0) |
-| Tensile | 4.32.0 ⇒ [4.33.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.2.0) |
+| hipBLAS | 0.50.0 ⇒ [0.51.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.2.0) |
+| hipCUB | 2.11.0 ⇒ [2.11.1](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.2.0) |
+| hipFFT | 1.0.7 ⇒ [1.0.8](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.2.0) |
+| hipSOLVER | 1.3.0 ⇒ [1.4.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.2.0) |
+| hipSPARSE | 2.1.0 ⇒ [2.2.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.2.0) |
+| rccl | [2.11.4](https://github.com/ROCm/rccl/releases/tag/rocm-5.2.0) |
+| rocALUTION | 2.0.2 ⇒ [2.0.3](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.2.0) |
+| rocBLAS | 2.43.0 ⇒ [2.44.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.2.0) |
+| rocFFT | 1.0.16 ⇒ [1.0.17](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.2.0) |
+| rocPRIM | 2.10.13 ⇒ [2.10.14](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.2.0) |
+| rocRAND | 2.10.13 ⇒ [2.10.14](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.2.0) |
+| rocSOLVER | 3.17.0 ⇒ [3.18.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.2.0) |
+| rocSPARSE | 2.1.0 ⇒ [2.2.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.2.0) |
+| rocThrust | 2.14.0 ⇒ [2.15.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.2.0) |
+| rocWMMA |  ⇒ [0.7](https://github.com/ROCm/rocWMMA/releases/tag/rocm-5.2.0) |
+| Tensile | 4.32.0 ⇒ [4.33.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.2.0) |
 
 #### hipBLAS 0.51.0
 
@@ -5193,7 +5751,7 @@ rocBLAS 2.44.0 for ROCm 5.2.0
 
 ##### Removed
 
-- Remove Navi 12 (gfx1011) from fat binary.
+- Remove Navi12 (gfx1011) from fat binary.
 
 #### rocFFT 1.0.17
 
@@ -5355,21 +5913,22 @@ Tensile 4.33.0 for ROCm 5.2.0
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.50.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.1.3) |
-| hipCUB | [2.11.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.1.3) |
-| hipFFT | [1.0.7](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.1.3) |
-| hipSOLVER | [1.3.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.1.3) |
-| hipSPARSE | [2.1.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.1.3) |
-| rccl | [2.11.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.1.3) |
-| rocALUTION | [2.0.2](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.1.3) |
-| rocBLAS | [2.43.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.1.3) |
-| rocFFT | [1.0.16](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.1.3) |
-| rocPRIM | [2.10.13](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.1.3) |
-| rocRAND | [2.10.13](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.1.3) |
-| rocSOLVER | [3.17.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.1.3) |
-| rocSPARSE | [2.1.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.1.3) |
-| rocThrust | [2.14.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.1.3) |
-| Tensile | [4.32.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.1.3) |
+| hipBLAS | [0.50.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.1.3) |
+| hipCUB | [2.11.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.1.3) |
+| hipFFT | [1.0.7](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.1.3) |
+| hipRAND | [2.10.13](https://github.com/ROCm/hipRAND/releases/tag/rocm-5.1.3) |
+| hipSOLVER | [1.3.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.1.3) |
+| hipSPARSE | [2.1.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.1.3) |
+| rccl | [2.11.4](https://github.com/ROCm/rccl/releases/tag/rocm-5.1.3) |
+| rocALUTION | [2.0.2](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.1.3) |
+| rocBLAS | [2.43.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.1.3) |
+| rocFFT | [1.0.16](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.1.3) |
+| rocPRIM | [2.10.13](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.1.3) |
+| rocRAND | [2.10.13](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.1.3) |
+| rocSOLVER | [3.17.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.1.3) |
+| rocSPARSE | [2.1.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.1.3) |
+| rocThrust | [2.14.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.1.3) |
+| Tensile | [4.32.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.1.3) |
 
 -------------------
 
@@ -5380,21 +5939,22 @@ Tensile 4.33.0 for ROCm 5.2.0
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.50.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.1.1) |
-| hipCUB | [2.11.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.1.1) |
-| hipFFT | [1.0.7](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.1.1) |
-| hipSOLVER | [1.3.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.1.1) |
-| hipSPARSE | [2.1.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.1.1) |
-| rccl | [2.11.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.1.1) |
-| rocALUTION | [2.0.2](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.1.1) |
-| rocBLAS | [2.43.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.1.1) |
-| rocFFT | [1.0.16](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.1.1) |
-| rocPRIM | [2.10.13](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.1.1) |
-| rocRAND | [2.10.13](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.1.1) |
-| rocSOLVER | [3.17.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.1.1) |
-| rocSPARSE | [2.1.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.1.1) |
-| rocThrust | [2.14.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.1.1) |
-| Tensile | [4.32.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.1.1) |
+| hipBLAS | [0.50.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.1.1) |
+| hipCUB | [2.11.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.1.1) |
+| hipFFT | [1.0.7](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.1.1) |
+| hipRAND | [2.10.13](https://github.com/ROCm/hipRAND/releases/tag/rocm-5.1.1) |
+| hipSOLVER | [1.3.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.1.1) |
+| hipSPARSE | [2.1.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.1.1) |
+| rccl | [2.11.4](https://github.com/ROCm/rccl/releases/tag/rocm-5.1.1) |
+| rocALUTION | [2.0.2](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.1.1) |
+| rocBLAS | [2.43.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.1.1) |
+| rocFFT | [1.0.16](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.1.1) |
+| rocPRIM | [2.10.13](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.1.1) |
+| rocRAND | [2.10.13](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.1.1) |
+| rocSOLVER | [3.17.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.1.1) |
+| rocSPARSE | [2.1.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.1.1) |
+| rocThrust | [2.14.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.1.1) |
+| Tensile | [4.32.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.1.1) |
 
 -------------------
 
@@ -5589,9 +6149,7 @@ debug information.
 **Issue:** Random memory access fault issues are observed while running Math libraries unit tests.
 This issue is encountered in ROCm v5.0, ROCm v5.0.1, and ROCm v5.0.2.
 
-:::{note}
-The faults only occur in the SRIOV environment.
-:::
+Note, the faults only occur in the SRIOV environment.
 
 **Workaround:** Use SDMA to update the page table. The Guest set up steps are as follows:
 
@@ -5612,7 +6170,7 @@ Where expectation is 0.
 #### CU masking causes application to freeze
 
 Using CU Masking results in an application freeze or runs exceptionally slowly. This issue is noticed
-only in the GFX10 suite of products. Note that this issue is observed only in GFX10 suite of products.
+only in the GFX10 suite of products. Note, this issue is observed only in GFX10 suite of products.
 
 This issue is under active investigation at this time.
 
@@ -5648,21 +6206,22 @@ This is a known issue and will be fixed in a future release.
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | 0.49.0 ⇒ [0.50.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.1.0) |
-| hipCUB | 2.10.13 ⇒ [2.11.0](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.1.0) |
-| hipFFT | 1.0.4 ⇒ [1.0.7](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.1.0) |
-| hipSOLVER | 1.2.0 ⇒ [1.3.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.1.0) |
-| hipSPARSE | 2.0.0 ⇒ [2.1.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.1.0) |
-| rccl | 2.10.3 ⇒ [2.11.4](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.1.0) |
-| rocALUTION | 2.0.1 ⇒ [2.0.2](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.1.0) |
-| rocBLAS | 2.42.0 ⇒ [2.43.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.1.0) |
-| rocFFT | 1.0.13 ⇒ [1.0.16](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.1.0) |
-| rocPRIM | 2.10.12 ⇒ [2.10.13](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.1.0) |
-| rocRAND | 2.10.12 ⇒ [2.10.13](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.1.0) |
-| rocSOLVER | 3.16.0 ⇒ [3.17.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.1.0) |
-| rocSPARSE | 2.0.0 ⇒ [2.1.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.1.0) |
-| rocThrust | 2.13.0 ⇒ [2.14.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.1.0) |
-| Tensile | 4.31.0 ⇒ [4.32.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.1.0) |
+| hipBLAS | 0.49.0 ⇒ [0.50.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.1.0) |
+| hipCUB | 2.10.13 ⇒ [2.11.0](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.1.0) |
+| hipFFT | 1.0.4 ⇒ [1.0.7](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.1.0) |
+| hipRAND |  ⇒ [2.10.13](https://github.com/ROCm/hipRAND/releases/tag/rocm-5.1.0) |
+| hipSOLVER | 1.2.0 ⇒ [1.3.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.1.0) |
+| hipSPARSE | 2.0.0 ⇒ [2.1.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.1.0) |
+| rccl | 2.10.3 ⇒ [2.11.4](https://github.com/ROCm/rccl/releases/tag/rocm-5.1.0) |
+| rocALUTION | 2.0.1 ⇒ [2.0.2](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.1.0) |
+| rocBLAS | 2.42.0 ⇒ [2.43.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.1.0) |
+| rocFFT | 1.0.13 ⇒ [1.0.16](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.1.0) |
+| rocPRIM | 2.10.12 ⇒ [2.10.13](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.1.0) |
+| rocRAND | 2.10.12 ⇒ [2.10.13](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.1.0) |
+| rocSOLVER | 3.16.0 ⇒ [3.17.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.1.0) |
+| rocSPARSE | 2.0.0 ⇒ [2.1.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.1.0) |
+| rocThrust | 2.13.0 ⇒ [2.14.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.1.0) |
+| Tensile | 4.31.0 ⇒ [4.32.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.1.0) |
 
 #### hipBLAS 0.50.0
 
@@ -5713,6 +6272,16 @@ hipFFT 1.0.7 for ROCm 5.1.0
 ##### Changed
 
 - Use fft_params struct for accuracy and benchmark clients.
+
+#### hipRAND 2.10.13
+
+hipRAND 2.10.13 for ROCm 5.1.0
+
+##### Changed
+
+- Header file installation location changed to match other libraries.
+  - Using the `hiprand.h` header file should now use `#include &lt;hiprand/hiprand.h&gt;`, rather than `#include &lt;hiprand.h&gt;`
+  - Symlinks are included for backwards compatibility
 
 #### hipSOLVER 1.3.0
 
@@ -6006,28 +6575,28 @@ This fix may lead to breakage in some OpenMP offload use cases, which use print 
 and result in an abort in device code. The issue will be fixed in a future release.
 :::
 
-The compatibility matrix in the [Deep-learning guide](../how-to/deep-learning-rocm.md) is updated for
+The compatibility matrix in the [Deep-learning guide](./how-to/deep-learning-rocm.md) is updated for
 ROCm v5.0.2.
 
 ### Library changes in ROCM 5.0.2
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.49.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.0.2) |
-| hipCUB | [2.10.13](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.0.2) |
-| hipFFT | [1.0.4](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.0.2) |
-| hipSOLVER | [1.2.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.0.2) |
-| hipSPARSE | [2.0.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.0.2) |
-| rccl | [2.10.3](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.0.2) |
-| rocALUTION | [2.0.1](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.0.2) |
-| rocBLAS | [2.42.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.0.2) |
-| rocFFT | [1.0.13](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.0.2) |
-| rocPRIM | [2.10.12](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.0.2) |
-| rocRAND | [2.10.12](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.0.2) |
-| rocSOLVER | [3.16.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.0.2) |
-| rocSPARSE | [2.0.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.0.2) |
-| rocThrust | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.0.2) |
-| Tensile | [4.31.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.0.2) |
+| hipBLAS | [0.49.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.0.2) |
+| hipCUB | [2.10.13](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.0.2) |
+| hipFFT | [1.0.4](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.0.2) |
+| hipSOLVER | [1.2.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.0.2) |
+| hipSPARSE | [2.0.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.0.2) |
+| rccl | [2.10.3](https://github.com/ROCm/rccl/releases/tag/rocm-5.0.2) |
+| rocALUTION | [2.0.1](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.0.2) |
+| rocBLAS | [2.42.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.0.2) |
+| rocFFT | [1.0.13](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.0.2) |
+| rocPRIM | [2.10.12](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.0.2) |
+| rocRAND | [2.10.12](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.0.2) |
+| rocSOLVER | [3.16.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.0.2) |
+| rocSPARSE | [2.0.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.0.2) |
+| rocThrust | [2.13.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.0.2) |
+| Tensile | [4.31.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.0.2) |
 
 -------------------
 
@@ -6056,21 +6625,21 @@ Subsequent Perl scripts will no longer be available in ROCm in a future release.
 
 | Library | Version |
 |---------|---------|
-| hipBLAS | [0.49.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.0.1) |
-| hipCUB | [2.10.13](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.0.1) |
-| hipFFT | [1.0.4](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.0.1) |
-| hipSOLVER | [1.2.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.0.1) |
-| hipSPARSE | [2.0.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.0.1) |
-| rccl | [2.10.3](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.0.1) |
-| rocALUTION | [2.0.1](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.0.1) |
-| rocBLAS | [2.42.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.0.1) |
-| rocFFT | [1.0.13](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.0.1) |
-| rocPRIM | [2.10.12](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.0.1) |
-| rocRAND | [2.10.12](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.0.1) |
-| rocSOLVER | [3.16.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.0.1) |
-| rocSPARSE | [2.0.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.0.1) |
-| rocThrust | [2.13.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.0.1) |
-| Tensile | [4.31.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.0.1) |
+| hipBLAS | [0.49.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.0.1) |
+| hipCUB | [2.10.13](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.0.1) |
+| hipFFT | [1.0.4](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.0.1) |
+| hipSOLVER | [1.2.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.0.1) |
+| hipSPARSE | [2.0.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.0.1) |
+| rccl | [2.10.3](https://github.com/ROCm/rccl/releases/tag/rocm-5.0.1) |
+| rocALUTION | [2.0.1](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.0.1) |
+| rocBLAS | [2.42.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.0.1) |
+| rocFFT | [1.0.13](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.0.1) |
+| rocPRIM | [2.10.12](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.0.1) |
+| rocRAND | [2.10.12](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.0.1) |
+| rocSOLVER | [3.16.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.0.1) |
+| rocSPARSE | [2.0.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.0.1) |
+| rocThrust | [2.13.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.0.1) |
+| Tensile | [4.31.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.0.1) |
 
 -------------------
 
@@ -6472,9 +7041,7 @@ During the deprecation, two macros `_HIP_ENABLE_COMPLEX_OPERATORS` and
 `_HIP_ENABLE_VECTOR_OPERATORS` are provided to allow users to conditionally enable arithmetic
 operators of HIP complex or vector types.
 
-:::{note}
-The two macros are mutually exclusive and, by default, set to Off.
-:::
+Note, the two macros are mutually exclusive and, by default, set to Off.
 
 The arithmetic operators of HIP complex and vector types will be removed in a future release.
 
@@ -6495,21 +7062,21 @@ MIOpenTensile will be deprecated in a future release.
 
 | Library | Version |
 |---------|---------|
-| hipBLAS |  ⇒ [0.49.0](https://github.com/ROCmSoftwarePlatform/hipBLAS/releases/tag/rocm-5.0.0) |
-| hipCUB |  ⇒ [2.10.13](https://github.com/ROCmSoftwarePlatform/hipCUB/releases/tag/rocm-5.0.0) |
-| hipFFT |  ⇒ [1.0.4](https://github.com/ROCmSoftwarePlatform/hipFFT/releases/tag/rocm-5.0.0) |
-| hipSOLVER |  ⇒ [1.2.0](https://github.com/ROCmSoftwarePlatform/hipSOLVER/releases/tag/rocm-5.0.0) |
-| hipSPARSE |  ⇒ [2.0.0](https://github.com/ROCmSoftwarePlatform/hipSPARSE/releases/tag/rocm-5.0.0) |
-| rccl |  ⇒ [2.10.3](https://github.com/ROCmSoftwarePlatform/rccl/releases/tag/rocm-5.0.0) |
-| rocALUTION |  ⇒ [2.0.1](https://github.com/ROCmSoftwarePlatform/rocALUTION/releases/tag/rocm-5.0.0) |
-| rocBLAS |  ⇒ [2.42.0](https://github.com/ROCmSoftwarePlatform/rocBLAS/releases/tag/rocm-5.0.0) |
-| rocFFT |  ⇒ [1.0.13](https://github.com/ROCmSoftwarePlatform/rocFFT/releases/tag/rocm-5.0.0) |
-| rocPRIM |  ⇒ [2.10.12](https://github.com/ROCmSoftwarePlatform/rocPRIM/releases/tag/rocm-5.0.0) |
-| rocRAND |  ⇒ [2.10.12](https://github.com/ROCmSoftwarePlatform/rocRAND/releases/tag/rocm-5.0.0) |
-| rocSOLVER |  ⇒ [3.16.0](https://github.com/ROCmSoftwarePlatform/rocSOLVER/releases/tag/rocm-5.0.0) |
-| rocSPARSE |  ⇒ [2.0.0](https://github.com/ROCmSoftwarePlatform/rocSPARSE/releases/tag/rocm-5.0.0) |
-| rocThrust |  ⇒ [2.13.0](https://github.com/ROCmSoftwarePlatform/rocThrust/releases/tag/rocm-5.0.0) |
-| Tensile |  ⇒ [4.31.0](https://github.com/ROCmSoftwarePlatform/Tensile/releases/tag/rocm-5.0.0) |
+| hipBLAS |  ⇒ [0.49.0](https://github.com/ROCm/hipBLAS/releases/tag/rocm-5.0.0) |
+| hipCUB |  ⇒ [2.10.13](https://github.com/ROCm/hipCUB/releases/tag/rocm-5.0.0) |
+| hipFFT |  ⇒ [1.0.4](https://github.com/ROCm/hipFFT/releases/tag/rocm-5.0.0) |
+| hipSOLVER |  ⇒ [1.2.0](https://github.com/ROCm/hipSOLVER/releases/tag/rocm-5.0.0) |
+| hipSPARSE |  ⇒ [2.0.0](https://github.com/ROCm/hipSPARSE/releases/tag/rocm-5.0.0) |
+| rccl |  ⇒ [2.10.3](https://github.com/ROCm/rccl/releases/tag/rocm-5.0.0) |
+| rocALUTION |  ⇒ [2.0.1](https://github.com/ROCm/rocALUTION/releases/tag/rocm-5.0.0) |
+| rocBLAS |  ⇒ [2.42.0](https://github.com/ROCm/rocBLAS/releases/tag/rocm-5.0.0) |
+| rocFFT |  ⇒ [1.0.13](https://github.com/ROCm/rocFFT/releases/tag/rocm-5.0.0) |
+| rocPRIM |  ⇒ [2.10.12](https://github.com/ROCm/rocPRIM/releases/tag/rocm-5.0.0) |
+| rocRAND |  ⇒ [2.10.12](https://github.com/ROCm/rocRAND/releases/tag/rocm-5.0.0) |
+| rocSOLVER |  ⇒ [3.16.0](https://github.com/ROCm/rocSOLVER/releases/tag/rocm-5.0.0) |
+| rocSPARSE |  ⇒ [2.0.0](https://github.com/ROCm/rocSPARSE/releases/tag/rocm-5.0.0) |
+| rocThrust |  ⇒ [2.13.0](https://github.com/ROCm/rocThrust/releases/tag/rocm-5.0.0) |
+| Tensile |  ⇒ [4.31.0](https://github.com/ROCm/Tensile/releases/tag/rocm-5.0.0) |
 
 #### hipBLAS 0.49.0
 
