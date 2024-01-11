@@ -47,14 +47,13 @@ General issue guidelines:
 
 ### Pull requests
 
-Our repositories typically use the **develop** branch an integration branch for new code so, when
-making a PR, target this branch.
+When you create a pull request, you should target the default branch.  Our repositories typically use the **develop** branch as the default integration branch.
 
 When creating a PR, use the following process. Note that each repository may include additional,
 project-specific steps. Refer to each repository's PR process for any additional steps.
 
 * Identify the issue you want to fix
-* Target the **develop** branch for integration
+* Target the default branch (usually the **develop** branch) for integration
 * Ensure your code builds successfully
 * Each component has a suite of test cases to run; include the log of the successful test run in your PR
 * Do not break existing test cases
