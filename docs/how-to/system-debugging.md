@@ -1,7 +1,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="System debugging guide">
-  <meta name="keywords" content="debug, system-level debug, debug flags, PCIe debug">
+  <meta name="keywords" content="debug, system-level debug, debug flags, PCIe debug, AMD,
+  ROCm">
 </head>
 
 # System debugging guide

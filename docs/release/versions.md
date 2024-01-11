@@ -1,6 +1,12 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="ROCm release history">
+  <meta name="keywords" content="documentation, release history, ROCm, AMD">
+</head>
+
 # ROCm release history
 
-| Version | Release Date |
+| Version | Release date |
 | ------- | ------------ |
 | [6.0.0](https://rocm.docs.amd.com/en/docs-6.0.0/) | Dec 15, 2023 |
 | [5.7.1](https://rocm.docs.amd.com/en/docs-5.7.1/) | Oct 13, 2023 |

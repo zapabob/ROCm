@@ -1,7 +1,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="What is ROCm">
-  <meta name="keywords" content="documentation, projects, introduction">
+  <meta name="keywords" content="documentation, projects, introduction, ROCm, AMD">
 </head>
 
 # What is ROCm?

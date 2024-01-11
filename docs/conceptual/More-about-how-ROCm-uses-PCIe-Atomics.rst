@@ -1,6 +1,6 @@
 .. meta::
    :description: How ROCm uses PCIe atomics
-   :keywords: PCIe, PCIe atomics, atomics, BAR memory
+   :keywords: PCIe, PCIe atomics, atomics, BAR memory, AMD, ROCm
 
 *****************************************************************************
 How ROCm uses PCIe atomics

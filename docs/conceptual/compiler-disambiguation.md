@@ -1,7 +1,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="ROCm compilers disambiguation">
-  <meta name="keywords" content="compilers, compiler naming">
+  <meta name="keywords" content="compilers, compiler naming, AMD, ROCm">
 </head>
 
 # ROCm compilers disambiguation

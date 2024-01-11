@@ -1,7 +1,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="ROCm documentation toolchain">
-  <meta name="keywords" content="documentation, toolchain, Sphinx, Doxygen, MyST">
+  <meta name="keywords" content="documentation, toolchain, Sphinx, Doxygen, MyST, AMD, ROCm">
 </head>
 
 # ROCm documentation toolchain

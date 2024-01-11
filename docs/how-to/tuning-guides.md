@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="Tuning guides">
   <meta name="keywords" content="high-performance computing, HPC, Instinct accelerators,
-  Radeon, tuning, tuning guide">
+  Radeon, tuning, tuning guide, AMD, ROCm">
 </head>
 
 # Tuning guides

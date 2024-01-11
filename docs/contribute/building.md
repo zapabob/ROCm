@@ -1,7 +1,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="Building ROCm documentation">
-  <meta name="keywords" content="documentation, Visual Studio Code, GitHub, command line">
+  <meta name="keywords" content="documentation, Visual Studio Code, GitHub, command line,
+  AMD, ROCm">
 </head>
 
 # Building documentation

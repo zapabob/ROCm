@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="Inference optimization with MIGraphX">
   <meta name="keywords" content="Inference optimization, MIGraphX, deep-learning, MIGraphX
-  installation">
+  installation, AMD, ROCm">
 </head>
 
 # Inference optimization with MIGraphX

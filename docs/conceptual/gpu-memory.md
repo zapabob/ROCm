@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="GPU memory">
   <meta name="keywords" content="GPU memory, VRAM, video random access memory, pageable
-  memory, pinned memory, managed memory">
+  memory, pinned memory, managed memory, AMD, ROCm">
 </head>
 
 # GPU memory

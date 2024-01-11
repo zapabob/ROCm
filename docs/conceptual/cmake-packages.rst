@@ -1,6 +1,6 @@
 .. meta::
    :description: Using CMake
-   :keywords: CMake, dependencies, HIP, C++
+   :keywords: CMake, dependencies, HIP, C++, AMD, ROCm
 
 *********************************
 Using CMake

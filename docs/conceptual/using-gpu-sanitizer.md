@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="Using the LLVM ASan on a GPU">
   <meta name="keywords" content="LLVM, ASan, address sanitizer, AddressSanitizer, instrumented
-  libraries, instrumented applications">
+  libraries, instrumented applications, AMD, ROCm">
 </head>
 
 # Using the LLVM ASan on a GPU (beta release)

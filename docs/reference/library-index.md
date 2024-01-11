@@ -3,7 +3,7 @@
   <meta name="description" content="ROCm API libraries & tools">
   <meta name="keywords" content="ROCm, API, libraries, tools, artificial intelligence, development,
   Communications, C++ primitives, Fast Fourier transforms, FFTs, random number generators, linear
-  algebra">
+  algebra, AMD">
 </head>
 
 # ROCm API libraries & tools

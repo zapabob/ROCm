@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="Compiler reference guide">
   <meta name="keywords" content="compiler, hipCC, Clang, amdclang, optimizations, LLVM,
-  rocm-llvm">
+  rocm-llvm, , AMD, ROCm">
 </head>
 
 # Compiler reference guide

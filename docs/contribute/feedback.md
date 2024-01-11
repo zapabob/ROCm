@@ -1,7 +1,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="Providing feedback for ROCm documentation">
-  <meta name="keywords" content="documentation, pull request, GitHub">
+  <meta name="keywords" content="documentation, pull request, GitHub, AMD, ROCm">
 </head>
 
 # Providing feedback for ROCm documentation

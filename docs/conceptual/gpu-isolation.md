@@ -2,7 +2,7 @@
   <meta charset="UTF-8">
   <meta name="description" content="GPU isolation techniques">
   <meta name="keywords" content="GPU isolation techniques, UUID, universally unique identifier,
-  environment variables, virtual machines">
+  environment variables, virtual machines, AMD, ROCm">
 </head>
 
 # GPU isolation techniques

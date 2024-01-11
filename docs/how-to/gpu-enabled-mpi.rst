@@ -1,3 +1,7 @@
+.. meta::
+   :description: GPU-enabled Message Passing Interface
+   :keywords: Message Passing Interface, MPI, AMD, ROCm
+
 ***************************************************************************************************
 GPU-enabled Message Passing Interface
 ***************************************************************************************************
