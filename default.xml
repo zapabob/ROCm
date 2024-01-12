@@ -47,6 +47,7 @@
     <project groups="mathlibs" name="Tensile" />
     <project groups="mathlibs" name="hipTensor" />
     <project groups="mathlibs" name="hipBLAS" />
+    <project groups="mathlibs" name="hipBLASLt" />
     <project groups="mathlibs" name="rocFFT" />
     <project groups="mathlibs" name="hipFFT" />
     <project groups="mathlibs" name="rocRAND" />
