@@ -12,8 +12,8 @@ jobs:
         id: generate_token
         uses: actions/create-github-app-token@v1
         with:
-          app_id: ${{ vars.APP_ID }}
-          private_key: ${{ vars.APP_PEM }}
+          app_id: ${{ secrets.ACTION_APP_ID }}
+          private_key: ${{ secrets.ACTION_PEM }}
       - name: 'Retrieve Issue'
         uses: abhimeda/rocm_issue_management@main
         with:
