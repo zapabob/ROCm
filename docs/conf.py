@@ -38,9 +38,9 @@ latex_elements = {
 # configurations for PDF output by Read the Docs
 project = "ROCm Documentation"
 author = "Advanced Micro Devices, Inc."
-copyright = "Copyright (c) 2023-2024 Advanced Micro Devices, Inc. All rights reserved."
-version = "6.0.0"
-release = "6.0.0"
+copyright = "Copyright (c) 2024 Advanced Micro Devices, Inc. All rights reserved."
+version = "6.0.1"
+release = "6.0.1"
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
@@ -50,7 +50,7 @@ article_pages = [
     {
         "file":"release",
         "os":["linux", "windows"],
-        "date":"2023-07-27"
+        "date":"2024-01-09"
     },
 
     {"file":"install/windows/install-quick", "os":["windows"]},
